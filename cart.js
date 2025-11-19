@@ -144,20 +144,24 @@ class ShoppingCart {
    * quantity is incremented. Afterwards the cart is saved, counts and
    * summaries are updated, and a brief notification is shown.
    *
-   * @param {Object} product object containing id, name, price, category, image
+   * @param {Object} product object containing id, name, price, category, image, quantity
    */
   addItem(product) {
+    const quantityToAdd = product.quantity || 1;
     const existingItem = this.items.find(item => item.id === product.id);
     if (existingItem) {
-      existingItem.quantity += 1;
+      existingItem.quantity += quantityToAdd;
     } else {
-      this.items.push({ ...product, quantity: 1 });
+      this.items.push({ ...product, quantity: quantityToAdd });
     }
     this.saveCart();
     this.updateCartCount();
     this.renderCart();
     this.openCart();
-    this.showNotification('Produkt hinzugefügt');
+
+    // Show notification with quantity
+    const message = quantityToAdd > 1 ? `${quantityToAdd}x hinzugefügt` : 'Produkt hinzugefügt';
+    this.showNotification(message);
   }
 
   /**
@@ -259,6 +263,7 @@ class ShoppingCart {
             <div class="flex-1">
               <p class="text-xs text-gray-500 uppercase tracking-wide">${item.category}</p>
               <h4 class="font-semibold text-gray-900 text-sm leading-tight">${item.name}</h4>
+              ${item.variant && item.variant !== 'Standard' ? `<p class="text-xs text-gray-500 mt-1">${item.variant}</p>` : ''}
             </div>
             <button onclick="cart.removeItem('${item.id}')" class="text-gray-400 hover:text-red-600 transition-colors p-1" aria-label="Entfernen">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -76,3 +76,25 @@ if (yearEl) {
     });
   }
 })();
+
+// Product card click handler - navigate to product page
+(function() {
+  const productCards = document.querySelectorAll('.product-card[data-product-id]');
+
+  productCards.forEach(card => {
+    // Make the entire card clickable except for the cart button
+    card.style.cursor = 'pointer';
+
+    card.addEventListener('click', (e) => {
+      // Don't navigate if clicking the cart button
+      if (e.target.closest('.cart-btn')) {
+        return;
+      }
+
+      const productId = card.getAttribute('data-product-id');
+      if (productId) {
+        window.location.href = `product.html?id=${productId}`;
+      }
+    });
+  });
+})();
