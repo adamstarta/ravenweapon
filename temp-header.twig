@@ -1,0 +1,116 @@
+{% sw_extends '@Storefront/storefront/layout/header/header.html.twig' %}
+
+{% block layout_header %}
+<header class="raven-header-wrapper">
+    {# Mobile Header #}
+    <div class="raven-mobile-header bg-white relative z-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24 py-2">
+            <div class="flex items-center justify-between h-13">
+                <div class="flex items-center gap-3">
+                    <a href="{{ path('frontend.home.page') }}" class="inline-flex items-center" style="height: 40px; width: 182px;" aria-label="Raven Weapon home">
+                        <div class="raven-logo" style="height: 40px; width: 182px;"></div>
+                    </a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="{{ path('frontend.checkout.cart.page') }}" class="relative inline-flex items-center justify-center rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50" style="height: 38px; width: 38px;" aria-label="Warenkorb">
+                        {% sw_icon 'bag' style { 'size': 'sm' } %}
+                        {% if page.cart.lineItems.count > 0 %}
+                            <span class="cart-count absolute raven-gradient-gold text-gray-900 text-xs rounded-full flex items-center justify-center font-bold" style="top: -4px; right: -4px; width: 18px; height: 18px;">
+                                {{ page.cart.lineItems.count }}
+                            </span>
+                        {% endif %}
+                    </a>
+                    <button type="button" class="raven-mobile-toggle inline-flex items-center justify-center rounded-md text-gray-600 hover:bg-gray-100" style="height: 38px; width: 38px;" data-offcanvas-menu-toggle="true" aria-label="Menu">
+                        {% sw_icon 'stack' style { 'size': 'md' } %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Desktop Header #}
+    <div class="raven-desktop-header bg-white border-b border-gray-200 pt-3">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+            {# Top Row: Logo, Search, Cart #}
+            <div class="flex items-center justify-between h-13 py-2">
+                <div class="flex items-center">
+                    <a href="{{ path('frontend.home.page') }}" class="inline-flex items-center" style="height: 40px; width: 222px;" aria-label="Raven Weapon home">
+                        <div class="raven-logo" style="height: 40px; width: 182px;"></div>
+                    </a>
+                </div>
+
+                {# Search Bar #}
+                <div class="relative" style="width: 300px; height: 36px;">
+                    {% block layout_header_search %}
+                    <form action="{{ path('frontend.search.page') }}" method="get" class="raven-search-form">
+                        <input type="search" name="search" placeholder="Suche"
+                               class="raven-search-input w-full h-full rounded-full bg-gray-100 pl-9 pr-3 text-base text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-gray-300"/>
+                        <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </form>
+                    {% endblock %}
+                </div>
+
+                {# Account and Cart #}
+                <div class="flex items-center gap-2">
+                    <a href="{{ path('frontend.account.login.page') }}" class="relative inline-flex items-center justify-center rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50" style="height: 38px; width: 38px;" aria-label="Account">
+                        {% sw_icon 'user' style { 'size': 'sm' } %}
+                    </a>
+                    <a href="{{ path('frontend.checkout.cart.page') }}" class="relative inline-flex items-center justify-center rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50" style="height: 38px; width: 38px;" aria-label="Warenkorb">
+                        {% sw_icon 'bag' style { 'size': 'sm' } %}
+                        {% if page.cart.lineItems.count > 0 %}
+                            <span class="cart-count absolute raven-gradient-gold text-gray-900 text-xs rounded-full flex items-center justify-center font-bold" style="top: -4px; right: -4px; width: 18px; height: 18px;">
+                                {{ page.cart.lineItems.count }}
+                            </span>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+
+            {# Navigation Row #}
+            <div class="pb-2">
+                <nav class="raven-nav flex items-center justify-center gap-5">
+                    <a href="{{ path('frontend.home.page') }}" class="group relative inline-flex items-center text-sm font-medium text-black py-2 pr-5">
+                        {{ "general.homeLink"|trans|sw_sanitize }}
+                    </a>
+
+                    {% for treeItem in page.header.navigation.tree %}
+                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: treeItem.category.id }) }}"
+                           class="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 py-2 pr-5">
+                            {{ treeItem.category.translated.name }}
+                            {% if treeItem.children|length > 0 %}
+                                <svg class="h-4 w-4 text-gray-500 group-hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z" clip-rule="evenodd"/>
+                                </svg>
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+
+                    <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" class="group relative inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 py-2 pr-5">
+                        {{ "footer.aboutUsLink"|trans|sw_sanitize }}
+                    </a>
+                    <a href="{{ path('frontend.cms.page', { id: 'contact' }) }}" class="group relative inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 py-2 pr-5">
+                        {{ "footer.contactLink"|trans|sw_sanitize }}
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    {# Mobile Search Bar #}
+    <div class="raven-mobile-search bg-white border-b border-gray-200 px-6 py-3">
+        <div class="relative">
+            <form action="{{ path('frontend.search.page') }}" method="get">
+                <input type="search" name="search" placeholder="Suche"
+                       class="raven-search-input w-full h-9 rounded-full bg-gray-100 pl-10 pr-4 text-base text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-gray-300"/>
+                <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </form>
+        </div>
+    </div>
+</header>
+{% endblock %}

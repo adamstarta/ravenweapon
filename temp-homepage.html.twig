@@ -1,0 +1,227 @@
+{% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
+
+{% block base_main_inner %}
+<main class="raven-homepage">
+
+    {# ========================================== #}
+    {# HERO SECTION #}
+    {# ========================================== #}
+    <section class="raven-hero relative w-full overflow-hidden" style="min-height: 520px; padding: 4rem 0;">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('bundles/raventheme/assets/hero-background.jpg') }}');"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.55), rgba(0,0,0,0.65));"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-24 text-white">
+            <h1 class="raven-hero-title mb-3" style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                RAVEN WEAPON AG
+            </h1>
+
+            <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(1.25rem, 3vw, 2.5rem); font-weight: 400; color: white; margin-bottom: 1.5rem; max-width: 42rem;">
+                Eine Waffe für jede Mission,<br>genau wie Du sie willst
+            </h2>
+
+            <ul style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(1rem, 2vw, 1.75rem); font-weight: 600; color: white; margin-bottom: 2.5rem; list-style: none; padding-left: 2rem;">
+                <li style="position: relative; margin-bottom: 0.25rem;">
+                    <span style="position: absolute; left: -1.5rem; top: 50%; transform: translateY(-50%); width: 0.5rem; height: 0.5rem; background: white; border-radius: 50%;"></span>
+                    Schweizer Familienbetrieb
+                </li>
+                <li style="position: relative; margin-bottom: 0.25rem;">
+                    <span style="position: absolute; left: -1.5rem; top: 50%; transform: translateY(-50%); width: 0.5rem; height: 0.5rem; background: white; border-radius: 50%;"></span>
+                    Made in Canada
+                </li>
+                <li style="position: relative;">
+                    <span style="position: absolute; left: -1.5rem; top: 50%; transform: translateY(-50%); width: 0.5rem; height: 0.5rem; background: white; border-radius: 50%;"></span>
+                    Höchste Qualität
+                </li>
+            </ul>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+                <a href="{{ path('frontend.navigation.page', { navigationId: page.header.navigation.active.id }) }}" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
+                    {% sw_icon 'bag' style { 'size': 'sm' } %}
+                    <span style="margin-left: 0.5rem;">Zum Shop</span>
+                </a>
+                <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" style="display: inline-flex; align-items: center; padding: 0.5rem 1rem; background: white; color: #414651; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #d1d5db; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    Über uns
+                    <svg style="width: 1rem; height: 1rem; margin-left: 0.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    {# ========================================== #}
+    {# PRODUCTS SECTION #}
+    {# ========================================== #}
+    <section class="raven-products bg-white" style="padding: 3rem 0;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2.5rem;">
+                <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; color: #111827; line-height: 1.1;">
+                    Beliebte Produkte
+                </h2>
+                <a href="{{ path('frontend.navigation.page', { navigationId: page.header.navigation.active.id }) }}" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
+                    {% sw_icon 'bag' style { 'size': 'sm' } %}
+                    <span style="margin-left: 0.5rem;">Alle Produkte ansehen</span>
+                </a>
+            </div>
+
+            {# Use Shopware's CMS product listing element #}
+            {% if page.cmsPage %}
+                {% for section in page.cmsPage.sections %}
+                    {% for block in section.blocks %}
+                        {% if block.type == 'product-slider' or block.type == 'product-listing' %}
+                            {% sw_include '@Storefront/storefront/element/cms-element-' ~ block.slots.first.type ~ '.html.twig' with {
+                                element: block.slots.first
+                            } %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                {# Fallback: Display message if no CMS products configured #}
+                <div style="text-align: center; padding: 3rem; color: #6b7280;">
+                    <p>Produkte werden aus dem Shopware CMS geladen. Bitte konfigurieren Sie einen Product Slider im CMS.</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    {# ========================================== #}
+    {# CATEGORIES SECTION #}
+    {# ========================================== #}
+    <section class="raven-categories bg-white" style="padding: 3rem 0;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+            <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; color: #111827; line-height: 1.1; margin-bottom: 2rem;">
+                Kategorien
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                {% for treeItem in page.header.navigation.tree|slice(0, 4) %}
+                <a href="{{ seoUrl('frontend.navigation.page', { navigationId: treeItem.category.id }) }}"
+                   style="display: block; padding: 1.25rem; text-align: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; background: white; text-decoration: none; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
+                   onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
+                   onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';">
+                    <span style="display: inline-flex; width: 3rem; height: 3rem; align-items: center; justify-content: center; background: #f3f4f6; border-radius: 0.5rem; margin-bottom: 0.75rem; color: #374151;">
+                        {% sw_icon 'products' style { 'size': 'md' } %}
+                    </span>
+                    <div style="font-weight: 600; color: #111827;">{{ treeItem.category.translated.name }}</div>
+                    <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">{{ treeItem.category.translated.description|striptags|slice(0, 40) }}...</div>
+                </a>
+                {% else %}
+                {# Fallback static categories if navigation is empty #}
+                <a href="#" style="display: block; padding: 1.25rem; text-align: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; background: white; text-decoration: none;">
+                    <span style="display: inline-flex; width: 3rem; height: 3rem; align-items: center; justify-content: center; background: #f3f4f6; border-radius: 0.5rem; margin-bottom: 0.75rem;">
+                        {% sw_icon 'products' %}
+                    </span>
+                    <div style="font-weight: 600; color: #111827;">Waffen</div>
+                    <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">Präzisionswaffen für jeden Einsatz</div>
+                </a>
+                <a href="#" style="display: block; padding: 1.25rem; text-align: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; background: white; text-decoration: none;">
+                    <span style="display: inline-flex; width: 3rem; height: 3rem; align-items: center; justify-content: center; background: #f3f4f6; border-radius: 0.5rem; margin-bottom: 0.75rem;">
+                        {% sw_icon 'products' %}
+                    </span>
+                    <div style="font-weight: 600; color: #111827;">Munition</div>
+                    <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">Kaliber 9mm, .223, 7.62x39 & mehr</div>
+                </a>
+                <a href="#" style="display: block; padding: 1.25rem; text-align: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; background: white; text-decoration: none;">
+                    <span style="display: inline-flex; width: 3rem; height: 3rem; align-items: center; justify-content: center; background: #f3f4f6; border-radius: 0.5rem; margin-bottom: 0.75rem;">
+                        {% sw_icon 'products' %}
+                    </span>
+                    <div style="font-weight: 600; color: #111827;">Waffenzubehör</div>
+                    <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">Optiken, Magazine & Anbauteile</div>
+                </a>
+                <a href="#" style="display: block; padding: 1.25rem; text-align: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; background: white; text-decoration: none;">
+                    <span style="display: inline-flex; width: 3rem; height: 3rem; align-items: center; justify-content: center; background: #f3f4f6; border-radius: 0.5rem; margin-bottom: 0.75rem;">
+                        {% sw_icon 'products' %}
+                    </span>
+                    <div style="font-weight: 600; color: #111827;">Ausrüstung</div>
+                    <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">Taktisches Zubehör & Schutzausrüstung</div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {# ========================================== #}
+    {# BRANDS SECTION #}
+    {# ========================================== #}
+    <section class="raven-brands bg-white" style="padding: 3rem 0;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+            <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; color: #111827; line-height: 1.1; margin-bottom: 2rem;">
+                Unsere Marken
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                <div style="border: 1px solid #e5e7eb; border-radius: 0.5rem; height: 8rem; display: flex; align-items: center; justify-content: center; background: white; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7';">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-snigel.png') }}" alt="Snigel" style="max-height: 100%; max-width: 100%; object-fit: contain; padding: 0.75rem;">
+                </div>
+                <div style="border: 1px solid #e5e7eb; border-radius: 0.5rem; height: 8rem; display: flex; align-items: center; justify-content: center; background: white; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7';">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-zerotech.png') }}" alt="ZeroTech" style="max-height: 100%; max-width: 100%; object-fit: contain; padding: 0.25rem;">
+                </div>
+                <div style="border: 1px solid #e5e7eb; border-radius: 0.5rem; height: 8rem; display: flex; align-items: center; justify-content: center; background: white; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7';">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-magpul.png') }}" alt="Magpul" style="max-height: 100%; max-width: 100%; object-fit: contain; padding: 1rem;">
+                </div>
+                <div style="border: 1px solid #e5e7eb; border-radius: 0.5rem; height: 8rem; display: flex; align-items: center; justify-content: center; background: white; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7';">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-lockhart.png') }}" alt="Lockhart Tactical" style="max-height: 100%; max-width: 100%; object-fit: contain; padding: 0.75rem;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# ========================================== #}
+    {# VIDEO SECTION #}
+    {# ========================================== #}
+    <section class="raven-video bg-white" style="padding: 3rem 0;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: start;">
+                {# Video Embed - Cloudflare Stream #}
+                <div style="border-radius: 0.5rem; overflow: hidden; position: relative; padding-top: 56.25%;">
+                    <iframe
+                        src="https://customer-zz0gro70wkcharf0.cloudflarestream.com/14b22c52b620a8e2d65ba9eb5b481bdb/iframe?poster=https%3A%2F%2Fcustomer-zz0gro70wkcharf0.cloudflarestream.com%2F14b22c52b620a8e2d65ba9eb5b481bdb%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+                        loading="lazy"
+                        style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+                        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                        allowfullscreen="true"
+                    ></iframe>
+                </div>
+
+                {# Video Description #}
+                <div>
+                    <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 400; color: #111827; margin-bottom: 1rem;">
+                        Video und Informationen
+                    </h2>
+                    <p style="color: #374151; line-height: 1.625; margin-bottom: 1rem;">
+                        Fügen Sie hier einen kurzen, klaren Beschreibungstext ein und integrieren Sie relevante Keywords, um Ihre Sichtbarkeit bei Google zu verbessern.
+                    </p>
+                    <ul style="color: #374151; list-style-type: disc; padding-left: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;">Keyword 1 – Nutzenpunkt</li>
+                        <li style="margin-bottom: 0.5rem;">Keyword 2 – Nutzenpunkt</li>
+                        <li style="margin-bottom: 0.5rem;">Keyword 3 – Nutzenpunkt</li>
+                        <li style="margin-bottom: 0.5rem;">Keyword 4 – Nutzenpunkt</li>
+                        <li>Keyword 5 – Nutzenpunkt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}
+
+{# Add responsive grid styles #}
+{% block base_body_classes %}
+{{ parent() }}
+<style>
+@media (min-width: 768px) {
+    .raven-categories div[style*="grid-template-columns"] {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .raven-brands div[style*="grid-template-columns"] {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    .raven-video div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    .raven-hero {
+        min-height: 640px !important;
+        padding: 5rem 0 !important;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - RAVEN WEAPON AG</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui"],
+            heading: ["Chakra Petch", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Simple Header -->
+  <header class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="inline-flex items-center">
+          <div class="bg-left bg-no-repeat h-10 w-[182px]" style="background-image:url('assets/raven-logo-bold (1)-stroke-and-fill.svg');background-size:100% 455%"></div>
+        </a>
+        <a href="register.html" class="text-sm text-gray-600 hover:text-gray-900">
+          Noch kein Konto? <span class="font-semibold">Registrieren</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Form -->
+  <main class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <!-- Title -->
+      <div class="text-center">
+        <h1 class="font-heading text-4xl font-bold text-gray-900 mb-2">Anmelden</h1>
+        <p class="text-gray-600">Melden Sie sich bei Ihrem Konto an</p>
+      </div>
+
+      <!-- Messages -->
+      <div id="auth-error" class="hidden"></div>
+      <div id="auth-success" class="hidden"></div>
+      <div id="auth-loading" class="hidden text-center text-gray-600"></div>
+
+      <!-- Form -->
+      <form id="login-form" class="mt-8 space-y-6 bg-white p-8 rounded-lg shadow-md">
+        <div class="space-y-4">
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+              E-Mail-Adresse
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+              placeholder="ihre@email.com"
+            />
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
+              Passwort
+            </label>
+            <div class="relative">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                class="appearance-none relative block w-full px-3 py-2 pr-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                placeholder="••••••••"
+              />
+              <button
+                type="button"
+                class="password-toggle absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+                data-target="password"
+                aria-label="Passwort anzeigen"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="flex items-center justify-between text-sm">
+          <div class="flex items-center">
+            <input
+              id="remember"
+              name="remember"
+              type="checkbox"
+              class="h-4 w-4 text-yellow-500 focus:ring-yellow-400 border-gray-300 rounded"
+            />
+            <label for="remember" class="ml-2 text-gray-700">
+              Angemeldet bleiben
+            </label>
+          </div>
+          <a href="#" class="font-medium text-gray-600 hover:text-gray-900">
+            Passwort vergessen?
+          </a>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button
+            type="submit"
+            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-gray-900 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 transition-all shadow-md"
+          >
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <i class="fas fa-sign-in-alt"></i>
+            </span>
+            Anmelden
+          </button>
+        </div>
+
+        <!-- Register Link -->
+        <div class="text-center text-sm text-gray-600">
+          Noch kein Konto?
+          <a href="register.html" class="font-medium text-gray-900 hover:text-gray-700">
+            Jetzt registrieren
+          </a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Auth System -->
+  <script src="auth/js/auth.js"></script>
+
+  <!-- Password Toggle Script -->
+  <script>
+    document.querySelectorAll('.password-toggle').forEach(button => {
+      button.addEventListener('click', function() {
+        const targetId = this.dataset.target;
+        const input = document.getElementById(targetId);
+        const icon = this.querySelector('i');
+
+        if (input.type === 'password') {
+          input.type = 'text';
+          icon.classList.remove('fa-eye');
+          icon.classList.add('fa-eye-slash');
+          this.setAttribute('aria-label', 'Passwort verbergen');
+        } else {
+          input.type = 'password';
+          icon.classList.remove('fa-eye-slash');
+          icon.classList.add('fa-eye');
+          this.setAttribute('aria-label', 'Passwort anzeigen');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

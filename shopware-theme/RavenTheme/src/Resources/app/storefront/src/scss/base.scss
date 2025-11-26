@@ -1,0 +1,436 @@
+/*
+RAVEN THEME - Base Styles
+==================================================
+Custom component styles for Raven Weapon AG
+*/
+
+// =============================================================================
+// GOOGLE FONTS
+// =============================================================================
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Chakra+Petch:wght@400;600;700&display=swap');
+
+// =============================================================================
+// UTILITY CLASSES (Tailwind-like)
+// =============================================================================
+
+// Display utilities
+.hidden { display: none !important; }
+.block { display: block; }
+.inline-flex { display: inline-flex; }
+.flex { display: flex; }
+.grid { display: grid; }
+
+// Flexbox utilities
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-5 { gap: 1.25rem; }
+.gap-8 { gap: 2rem; }
+
+// Spacing utilities
+.p-4 { padding: 1rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-12 { margin-top: 3rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+
+// Typography utilities
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.text-center { text-align: center; }
+
+// Color utilities
+.text-black { color: #000000; }
+.text-white { color: #ffffff; }
+.text-gray-500 { color: #6b7280; }
+.text-gray-600 { color: #4b5563; }
+.text-gray-700 { color: #374151; }
+.text-gray-900 { color: #111827; }
+.bg-white { background-color: #ffffff; }
+.bg-black { background-color: #000000; }
+.bg-gray-100 { background-color: #f3f4f6; }
+.bg-gray-800 { background-color: #1f2937; }
+.bg-red-600 { background-color: #dc2626; }
+
+// Border utilities
+.border { border-width: 1px; }
+.border-t { border-top-width: 1px; }
+.border-b { border-bottom-width: 1px; }
+.border-gray-200 { border-color: #e5e7eb; }
+.border-gray-300 { border-color: #d1d5db; }
+.rounded-md { border-radius: 0.375rem; }
+.rounded-full { border-radius: 9999px; }
+.overflow-hidden { overflow: hidden; }
+
+// Width/Height utilities
+.w-full { width: 100%; }
+.h-9 { height: 2.25rem; }
+.h-10 { height: 2.5rem; }
+.h-13 { height: 3.25rem; }
+.w-5 { width: 1.25rem; }
+.h-5 { height: 1.25rem; }
+.w-9 { width: 2.25rem; }
+.w-10 { width: 2.5rem; }
+
+// Position utilities
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.z-30 { z-index: 30; }
+.z-50 { z-index: 50; }
+.top-0 { top: 0; }
+.left-0 { left: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+
+// Grid utilities
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+// Hover/Focus utilities
+.hover\:bg-gray-50:hover { background-color: #f9fafb; }
+.hover\:bg-gray-100:hover { background-color: #f3f4f6; }
+.hover\:text-gray-900:hover { color: #111827; }
+
+// =============================================================================
+// RESPONSIVE UTILITIES
+// =============================================================================
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .md\:hidden { display: none !important; }
+  .md\:block { display: block !important; }
+  .md\:flex { display: flex !important; }
+  .md\:flex-row { flex-direction: row; }
+  .md\:items-center { align-items: center; }
+  .md\:justify-between { justify-content: space-between; }
+  .md\:w-auto { width: auto; }
+  .md\:py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+  .md\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:px-24 { padding-left: 6rem; padding-right: 6rem; }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+// =============================================================================
+// RAVEN THEME COMPONENTS
+// =============================================================================
+
+// Typography
+.raven-font-heading {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+// Gold Gradient
+.raven-gradient-gold {
+  background: linear-gradient(135deg, #FDE047 0%, #F59E0B 50%, #D97706 100%);
+}
+
+// Header styles
+.raven-header {
+  font-family: 'Inter', sans-serif;
+}
+
+.raven-header-mobile,
+.raven-header-desktop {
+  background-color: #ffffff;
+}
+
+.raven-search-input {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  line-height: 22px;
+  background-color: rgba(120, 120, 128, 0.16);
+
+  &::placeholder {
+    color: rgba(107, 114, 128, 0.8);
+  }
+
+  &:focus {
+    outline: none;
+    ring: 2px solid #d1d5db;
+  }
+}
+
+.raven-nav {
+  font-family: 'Inter', sans-serif;
+
+  a {
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+}
+
+.raven-cart-btn {
+  transition: background-color 150ms ease;
+
+  .cart-count {
+    border: 1px solid #d97706;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Footer styles
+.raven-footer {
+  font-family: 'Inter', sans-serif;
+}
+
+.raven-footer-features {
+  .feature-icon {
+    flex-shrink: 0;
+  }
+}
+
+.raven-newsletter-bar {
+  background: linear-gradient(to right, #fde047, #f59e0b, #eab308);
+
+  input[type="email"] {
+    &::placeholder {
+      color: #4b5563;
+    }
+  }
+
+  button[type="submit"] {
+    transition: background-color 150ms ease;
+
+    &:hover {
+      background-color: #1f2937;
+    }
+  }
+}
+
+// =============================================================================
+// PRODUCT GRID & CARDS (from legacy CSS)
+// =============================================================================
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.product-card {
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 120ms ease, transform 120ms ease;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.product-img-wrap {
+  height: 14rem;
+  overflow: hidden;
+
+  img {
+    transition: transform 120ms ease;
+  }
+
+  @media (min-width: 768px) {
+    height: 16rem;
+  }
+
+  @media (min-width: 1024px) {
+    height: 18rem;
+  }
+}
+
+.product-card:hover .product-img-wrap img {
+  transform: scale(1.05);
+}
+
+// Gold Rulers between products
+:root {
+  --grid-gap: 2rem;
+  --half-gap: calc(var(--grid-gap) / 2);
+  --ruler-color: #E9D68A;
+  --ruler-width: 2px;
+  --ruler-top: 6%;
+  --ruler-bottom: 6%;
+}
+
+@media (min-width: 640px) and (max-width: 767.98px) {
+  .product-card:nth-child(2n+2)::before {
+    content: "";
+    position: absolute;
+    top: var(--ruler-top);
+    bottom: var(--ruler-bottom);
+    width: 0;
+    border-left: var(--ruler-width) solid var(--ruler-color);
+    left: calc(0px - var(--half-gap));
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .product-card:nth-child(3n+2)::before,
+  .product-card:nth-child(3n+3)::before {
+    content: "";
+    position: absolute;
+    top: var(--ruler-top);
+    bottom: var(--ruler-bottom);
+    width: 0;
+    border-left: var(--ruler-width) solid var(--ruler-color);
+    left: calc(0px - var(--half-gap));
+    pointer-events: none;
+  }
+}
+
+// Price styling
+.price,
+.product-price {
+  font-family: 'Inter', sans-serif;
+  color: #E53935;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+// Availability dot
+.avail-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #77C15A;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+}
+
+// =============================================================================
+// SHOPWARE COMPONENT OVERRIDES
+// =============================================================================
+
+// Override Shopware's default header
+.header-main {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+// Override navigation
+.main-navigation {
+  font-family: 'Inter', sans-serif;
+}
+
+// Override product boxes
+.product-box {
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  .product-image-wrapper {
+    background-color: #f9fafb;
+  }
+
+  .product-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  .product-price {
+    color: #E53935;
+    font-weight: 800;
+  }
+}
+
+// Override buttons
+.btn-primary {
+  background: linear-gradient(135deg, #FDE047 0%, #F59E0B 50%, #D97706 100%);
+  border: none;
+  color: #111827;
+  font-weight: 600;
+
+  &:hover {
+    background: linear-gradient(135deg, #FDE047 0%, #F59E0B 100%);
+    color: #111827;
+  }
+}
+
+.btn-outline-primary {
+  border-color: #F59E0B;
+  color: #111827;
+
+  &:hover {
+    background-color: #FDE047;
+    border-color: #F59E0B;
+    color: #111827;
+  }
+}
+
+// Override cart/checkout
+.checkout-main {
+  font-family: 'Inter', sans-serif;
+}
+
+.cart-item {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+// Override forms
+.form-control {
+  font-family: 'Inter', sans-serif;
+  border-radius: 0.5rem;
+
+  &:focus {
+    border-color: #9ca3af;
+    box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.25);
+  }
+}
+
+// =============================================================================
+// CONTAINER OVERRIDE
+// =============================================================================
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  @media (min-width: 1024px) {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}

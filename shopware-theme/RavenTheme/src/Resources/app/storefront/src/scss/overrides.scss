@@ -1,0 +1,87 @@
+/*
+RAVEN THEME - SCSS Variable Overrides
+==================================================
+These variables override the default Shopware Bootstrap variables
+*/
+
+// =============================================================================
+// COLOR PALETTE
+// =============================================================================
+
+// Primary Colors - Gold/Yellow accent
+$raven-gold-light: #FDE047;
+$raven-gold: #F2C200;
+$raven-gold-dark: #D97706;
+$raven-amber: #F59E0B;
+
+// Neutrals
+$raven-black: #0B0F14;
+$raven-navy: #1E2A36;
+$raven-gray-900: #111827;
+$raven-gray-700: #374151;
+$raven-gray-600: #6B7280;
+$raven-gray-500: #9CA3AF;
+$raven-gray-300: #D1D5DB;
+$raven-gray-200: #E5E7EB;
+$raven-gray-100: #F3F4F6;
+
+// Semantic Colors
+$raven-red: #E53935;
+$raven-green: #77C15A;
+$raven-swiss-red: #FF0000;
+
+// =============================================================================
+// SHOPWARE/BOOTSTRAP OVERRIDES
+// =============================================================================
+
+// Primary color scheme
+$primary: $raven-gold !default;
+$secondary: $raven-gray-700 !default;
+$success: $raven-green !default;
+$danger: $raven-red !default;
+$warning: $raven-amber !default;
+
+// Body
+$body-bg: #ffffff !default;
+$body-color: $raven-gray-900 !default;
+
+// Typography
+$font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !default;
+$headings-font-family: 'Chakra Petch', $font-family-base !default;
+$font-size-base: 1rem !default;
+$line-height-base: 1.5 !default;
+$headings-font-weight: 600 !default;
+
+// Links
+$link-color: $raven-gray-700 !default;
+$link-hover-color: $raven-gray-900 !default;
+$link-decoration: none !default;
+$link-hover-decoration: none !default;
+
+// Buttons
+$btn-border-radius: 0.5rem !default;
+$btn-padding-y: 0.625rem !default;
+$btn-padding-x: 1.25rem !default;
+$btn-font-weight: 600 !default;
+
+// Forms
+$input-border-radius: 0.5rem !default;
+$input-bg: $raven-gray-100 !default;
+$input-border-color: $raven-gray-300 !default;
+$input-focus-border-color: $raven-gray-500 !default;
+$input-placeholder-color: rgba($raven-gray-600, 0.8) !default;
+
+// Cards
+$card-border-radius: 0.5rem !default;
+$card-border-color: $raven-gray-200 !default;
+$card-cap-bg: transparent !default;
+
+// Border radius
+$border-radius: 0.5rem !default;
+$border-radius-sm: 0.375rem !default;
+$border-radius-lg: 0.75rem !default;
+
+// Shadows
+$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !default;
+$box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !default;
+$box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !default;

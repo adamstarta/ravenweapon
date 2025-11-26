@@ -1,0 +1,160 @@
+// =============================================================================
+// RAVEN THEME - Header & Layout Overrides
+// =============================================================================
+
+// Hide ALL default Shopware header elements
+.header-main {
+  padding: 0 !important;
+  background: transparent !important;
+
+  .header-row,
+  .header-actions-btn,
+  .header-search,
+  .header-logo-main-link,
+  .main-navigation {
+    display: none !important;
+  }
+}
+
+// RAVEN Header Wrapper - Full width white background
+.raven-header-wrapper {
+  background: white;
+  width: 100%;
+}
+
+// Logo with background image
+.raven-logo {
+  background-image: url('/bundles/raventheme/assets/raven-logo-bold.svg');
+  background-size: 100% 455%;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+// Mobile Header - Show on mobile only
+.raven-mobile-header {
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+// Desktop Header - Show on desktop only
+.raven-desktop-header {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block !important;
+  }
+}
+
+// Mobile Search - Show on mobile only
+.raven-mobile-search {
+  display: block;
+
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+// Gold Gradient for cart badge
+.raven-gradient-gold {
+  background: linear-gradient(135deg, #FDE047 0%, #F59E0B 50%, #D97706 100%) !important;
+  border: 1px solid #D97706;
+}
+
+// Search input styling
+.raven-search-input {
+  background-color: rgba(120, 120, 128, 0.16) !important;
+  font-size: 17px;
+  line-height: 22px;
+
+  &::placeholder {
+    color: rgba(107, 114, 128, 0.8);
+  }
+}
+
+// Navigation styling
+.raven-nav {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  a {
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+}
+
+// Max width container
+.max-w-7xl {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Padding utilities with important
+.px-6 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+.py-2 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+.py-3 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+.pt-3 { padding-top: 0.75rem !important; }
+.pb-2 { padding-bottom: 0.5rem !important; }
+
+@media (min-width: 1024px) {
+  .lg\:px-24 { padding-left: 6rem !important; padding-right: 6rem !important; }
+}
+
+// Height utilities
+.h-9 { height: 2.25rem !important; }
+.h-10 { height: 2.5rem !important; }
+.h-13 { height: 3.25rem !important; }
+
+// Flexbox utilities with important
+.flex { display: flex !important; }
+.items-center { align-items: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-center { justify-content: center !important; }
+.gap-2 { gap: 0.5rem !important; }
+.gap-3 { gap: 0.75rem !important; }
+.gap-5 { gap: 1.25rem !important; }
+
+// Position utilities
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+
+// Border utilities
+.border { border-width: 1px !important; }
+.border-b { border-bottom-width: 1px !important; }
+.border-gray-200 { border-color: #e5e7eb !important; }
+.border-gray-300 { border-color: #d1d5db !important; }
+.rounded-md { border-radius: 0.375rem !important; }
+.rounded-full { border-radius: 9999px !important; }
+
+// Background colors
+.bg-white { background-color: #ffffff !important; }
+.bg-gray-100 { background-color: #f3f4f6 !important; }
+
+// Text colors
+.text-black { color: #000000 !important; }
+.text-gray-500 { color: #6b7280 !important; }
+.text-gray-600 { color: #4b5563 !important; }
+.text-gray-700 { color: #374151 !important; }
+.text-gray-900 { color: #111827 !important; }
+
+// Text sizing
+.text-xs { font-size: 0.75rem !important; line-height: 1rem !important; }
+.text-sm { font-size: 0.875rem !important; line-height: 1.25rem !important; }
+.text-base { font-size: 1rem !important; line-height: 1.5rem !important; }
+
+// Font weights
+.font-medium { font-weight: 500 !important; }
+.font-bold { font-weight: 700 !important; }
+
+// Inline flex
+.inline-flex { display: inline-flex !important; }
+
+// Z-index
+.z-50 { z-index: 50 !important; }
+
+// Hide default Shopware footer
+.footer-main {
+  display: none !important;
+}

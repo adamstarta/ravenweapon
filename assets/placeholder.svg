@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#f3f4f6"/>
+  <rect x="140" y="130" width="120" height="100" rx="8" fill="#d1d5db"/>
+  <circle cx="170" cy="160" r="12" fill="#9ca3af"/>
+  <polygon points="150,210 200,170 250,210" fill="#9ca3af"/>
+  <polygon points="180,210 220,180 260,210" fill="#6b7280"/>
+  <text x="200" y="270" font-family="system-ui, sans-serif" font-size="14" fill="#6b7280" text-anchor="middle">Bild nicht verfügbar</text>
+</svg>

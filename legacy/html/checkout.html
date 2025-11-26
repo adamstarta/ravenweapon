@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kasse - RAVEN WEAPON AG</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter","ui-sans-serif","system-ui"],
+              heading: ["Chakra Petch","ui-sans-serif","system-ui"],
+            },
+            colors: {
+              brand: {
+                gold1: "#FDE68A",
+                gold2: "#FBBF24",
+                gold3: "#F59E0B",
+              }
+            },
+          },
+          container: { center: true, padding: { DEFAULT:"1rem", lg:"2rem", xl:"2.5rem" } },
+        },
+      };
+    </script>
+
+    <style>
+      .form-input{
+        padding:.75rem 1rem;border:1px solid #E5E7EB;border-radius:.5rem;background:#fff;outline:0;
+        transition:border-color .2s, box-shadow .2s
+      }
+      .form-input:focus{border-color:#F59E0B;box-shadow:0 0 0 3px rgba(245,158,11,.15)}
+      .section-title{font-family:'Chakra Petch', ui-sans-serif, system-ui}
+
+      .radio-row{
+        border:1.5px solid #E5E7EB;border-radius:.75rem;padding:.9rem 1rem;display:flex;align-items:center;gap:.75rem;
+        cursor:pointer;transition:border-color .2s, background .2s
+      }
+      .radio-row input[type="radio"]{accent-color:#F59E0B}
+      .radio-row.active input[type="radio"]{accent-color:#1f2937}
+      .radio-row:hover{border-color:#F59E0B}
+      .radio-row.active{border-color:#F59E0B;background:rgba(245, 158, 11, 0.15);color:#1f2937}
+      .radio-row.active *{color:#1f2937}
+
+      /* Payment method details animation */
+      .payment-method [id$="-details"], .payment-method [id$="-note"] {
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      .payment-method [id$="-details"]:not(.hidden), .payment-method [id$="-note"]:not(.hidden) {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 1000px;
+      }
+
+      /* GOLD primary button */
+      .btn-primary{
+        background:linear-gradient(to top, #F2B90D 12%, #F6CE55 88%);
+        color:#111827;font-weight:700;border:1px solid #C59A0F;border-radius:.75rem;padding:1rem 1.25rem;
+        box-shadow:0 2px 6px rgba(0,0,0,0.25);font-family:'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans';
+        transition:all 0.2s ease-in-out;
+        position:relative;
+        overflow:hidden;
+      }
+      .btn-primary:hover{
+        box-shadow:0 4px 10px rgba(0,0,0,0.35);
+        transform:translateY(-1px);
+      }
+      .btn-primary:active{transform:translateY(0)}
+      .btn-primary::before{
+        content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+        background:linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 35%, rgba(255,255,255,0.00) 60%);
+        pointer-events:none;
+      }
+      .btn-secondary{border:1px solid #E5E7EB;border-radius:.5rem;padding:.65rem .9rem;font-weight:600}
+
+      /* divider between columns */
+      @media (min-width:1024px){ .v-divider{border-left:1px solid #e5e7eb} }
+
+      /* quantity badge OUTSIDE the thumbnail */
+      .qty-wrap{position:relative;display:inline-block}
+      .qty-badge{
+        position:absolute;top:-8px;left:-8px;z-index:10;
+        background:#111827;color:#fff;border-radius:9999px;
+        font-size:.7rem;line-height:1rem;min-width:20px;height:20px;padding:0 5px;display:flex;align-items:center;justify-content:center;
+        font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,0.3);border:2px solid #fff;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-50 text-gray-900 antialiased font-sans">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-6 lg:px-24 py-4">
+        <div class="flex items-center justify-between">
+          <a href="index.html" class="inline-flex items-center h-10">
+            <div class="bg-left bg-no-repeat h-10 w-[182px]"
+                 style="background-image:url('assets/raven-logo-bold (1)-stroke-and-fill.svg');background-size:100% 455%"></div>
+          </a>
+          <a href="index.html" class="text-sm text-gray-600 hover:text-gray-900">
+            <i class="fa-solid fa-arrow-left mr-1"></i> Zurück zum Shop
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-24 py-8 md:py-12">
+      <h1 class="section-title text-3xl md:text-4xl font-bold mb-6">Kasse</h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(340px,420px)] gap-10">
+        <!-- LEFT -->
+        <div>
+          <!-- email + opt-in (populated dynamically when user is logged in) -->
+          <div class="flex items-center gap-3 mb-4">
+            <div id="user-avatar" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-sm font-semibold text-gray-700">G</div>
+            <div id="user-email" class="text-sm text-gray-800">Gast</div>
+            <i class="fa-solid fa-ellipsis-vertical text-gray-400 ml-auto"></i>
+          </div>
+          <label class="inline-flex items-center gap-2 text-sm text-gray-700 mb-6">
+            <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
+            Neuigkeiten und Angebote via E-Mail erhalten
+          </label>
+
+          <!-- Lieferung -->
+          <h2 class="section-title text-xl font-bold mb-3">Lieferung</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Land / Region</label>
+              <select id="shipping-country" class="form-input w-full">
+                <option value="Schweiz">Schweiz</option><option value="Deutschland">Deutschland</option><option value="Österreich">Österreich</option><option value="Liechtenstein">Liechtenstein</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Vorname</label>
+                <input id="shipping-firstname" class="form-input w-full" placeholder="Vorname">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nachname</label>
+                <input id="shipping-lastname" class="form-input w-full" placeholder="Nachname">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Firma (optional)</label>
+              <input id="shipping-company" class="form-input w-full" placeholder="Firma">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
+              <div class="relative">
+                <input id="shipping-address" class="form-input w-full pr-10" placeholder="Straße & Nr.">
+                <i class="fa-solid fa-magnifying-glass text-gray-400 absolute right-3 top-1/2 -translate-y-1/2"></i>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Postleitzahl</label>
+                <input id="shipping-zip" class="form-input w-full" placeholder="8000">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Stadt</label>
+                <input id="shipping-city" class="form-input w-full" placeholder="Stadt">
+              </div>
+            </div>
+
+            <a id="use-saved-address" class="text-sm text-yellow-600 hover:underline cursor-pointer" style="color: #F59E0B;">Eine gespeicherte Adresse verwenden</a>
+
+            <!-- Saved Addresses Dropdown (hidden by default) -->
+            <div id="saved-addresses-container" class="hidden mt-3">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Gespeicherte Adressen</label>
+              <select id="saved-addresses-select" class="form-input w-full">
+                <option value="">-- Adresse auswählen --</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="h-px bg-gray-200 my-6"></div>
+
+          <!-- Versand hint -->
+          <h3 class="section-title text-base font-semibold mb-2">Versand</h3>
+          <div class="rounded-md bg-gray-100 text-gray-700 text-sm px-4 py-3 mb-6">
+            Gib deine Lieferadresse ein, um verfügbare Versandarten anzuzeigen.
+          </div>
+
+          <div class="h-px bg-gray-200 my-6"></div>
+
+          <!-- Zahlung -->
+          <h2 class="section-title text-xl font-bold mb-1">Zahlung</h2>
+          <p class="text-sm text-gray-600 mb-3">Alle Transaktionen sind sicher und verschlüsselt.</p>
+
+          <div id="payment-list" class="space-y-0 overflow-hidden rounded-xl border border-gray-200">
+            <div class="payment-method">
+              <label class="radio-row active rounded-none rounded-t-xl" data-row>
+                <input type="radio" name="payment" value="postfinance" checked>
+                <span class="font-medium">PostFinance Card</span>
+                <img src="https://www.postfinance.ch/content/dam/pfch/image/icon/postfinancecard_coba_chf.png/_jcr_content/renditions/original./postfinancecard_coba_chf.png" alt="PostFinance" class="h-6 ml-auto">
+              </label>
+              <div id="postfinance-details" class="text-sm text-gray-700 bg-gray-50 border-t border-b border-gray-200 px-4 py-3">
+                <div class="bg-white border border-gray-200 rounded-md p-4 text-center">
+                  <div class="text-gray-600 mb-2">
+                    <i class="fa-solid fa-window-maximize text-2xl text-gray-400 mb-2"></i>
+                  </div>
+                  <p class="text-sm text-gray-700">
+                    Nachdem du "Jetzt kaufen" geklickt hast, wirst du zu<br>
+                    PostFinance Card weitergeleitet, um deinen Einkauf<br>
+                    sicher abzuschließen.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="payment-method">
+              <label class="radio-row rounded-none rounded-b-xl" data-row>
+                <input type="radio" name="payment" value="kreditkarte">
+                <span class="font-medium">Kreditkarte</span>
+                <span class="ml-auto flex items-center gap-2">
+                  <i class="fa-brands fa-cc-visa text-gray-600"></i>
+                  <i class="fa-brands fa-cc-mastercard text-gray-600"></i>
+                </span>
+              </label>
+              <div id="creditcard-details" class="hidden bg-gray-50 border border-gray-200 rounded-lg p-4 mx-4 mb-3">
+                <h3 class="font-medium text-gray-900 mb-4">Kreditkarteninformationen</h3>
+
+                <div class="space-y-4">
+                  <!-- Card Number -->
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Kartennummer</label>
+                    <div class="relative">
+                      <input type="text" class="form-input w-full pr-10" placeholder="1234 5678 9012 3456" maxlength="19">
+                      <i class="fa-solid fa-lock text-gray-400 absolute right-3 top-1/2 -translate-y-1/2"></i>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-4">
+                    <!-- Expiry Date -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-1">Gültig bis (MM/JJ)</label>
+                      <input type="text" class="form-input w-full" placeholder="MM/JJ" maxlength="5">
+                    </div>
+
+                    <!-- Security Code -->
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-1">
+                        Sicherheitscode
+                        <i class="fa-solid fa-question-circle text-gray-400 ml-1" title="Die letzten 3 Ziffern auf der Rückseite Ihrer Karte"></i>
+                      </label>
+                      <input type="text" class="form-input w-full" placeholder="123" maxlength="4">
+                    </div>
+                  </div>
+
+                  <!-- Cardholder Name -->
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Name des Karteninhabers</label>
+                    <input type="text" class="form-input w-full" placeholder="Vorname Nachname">
+                  </div>
+
+                  <!-- Checkbox -->
+                  <div class="flex items-start gap-2 pt-2">
+                    <input type="checkbox" id="use-delivery-address" class="w-4 h-4 mt-0.5 rounded border-gray-300">
+                    <label for="use-delivery-address" class="text-sm text-gray-700">
+                      Lieferadresse als Rechnungsadresse verwenden
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="h-px bg-gray-200 my-6"></div>
+
+          <!-- Versand (Shipping Options) -->
+          <h2 class="section-title text-xl font-bold mb-3">Versand</h2>
+          <div class="space-y-0 overflow-hidden rounded-xl border border-gray-200">
+            <label class="radio-row active rounded-none rounded-t-xl" id="shipping-priority">
+              <input type="radio" name="shipping-method" value="postpac" checked>
+              <div class="flex-1">
+                <span class="font-medium">Versand mit PostPac Priority</span>
+                <p class="text-sm text-gray-600 mt-0.5">Zustellung innerhalb 2-3 Werktagen.</p>
+              </div>
+            </label>
+            <label class="radio-row rounded-none rounded-b-xl" id="shipping-pickup">
+              <input type="radio" name="shipping-method" value="pickup">
+              <div class="flex-1">
+                <span class="font-medium">Abholung vor Ort</span>
+                <p class="text-sm text-gray-600 mt-0.5">Kostenlos - Nach Terminvereinbarung</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- RIGHT (sticky) -->
+        <aside class="v-divider lg:pl-8 overflow-visible">
+          <div class="lg:sticky lg:top-6 overflow-visible">
+            <!-- Cart items container (dynamically populated) -->
+            <div id="cart-items-container" class="space-y-3 mb-4 max-h-64 overflow-y-auto pt-3 pl-3" style="margin-left: -0.75rem; padding-left: 1.5rem;">
+              <!-- Items will be rendered by JavaScript -->
+            </div>
+
+            <!-- Coupon -->
+            <div class="flex gap-2 mb-6">
+              <input id="coupon" type="text" class="form-input flex-1" placeholder="Rabattcode oder Gutschein" />
+              <button id="apply-coupon" class="btn-secondary">Anwenden</button>
+            </div>
+
+            <!-- Totals -->
+            <div class="space-y-2 text-sm mb-2">
+              <div class="flex justify-between text-gray-700">
+                <span>Zwischensumme</span><span id="subtotal">CHF 0.00</span>
+              </div>
+              <div class="flex justify-between text-gray-700">
+                <span>Versand</span><span id="shipping">Lieferadresse eingeben</span>
+              </div>
+              <div class="flex justify-between text-gray-800 font-semibold">
+                <span>Gesamt</span><span id="total">CHF 0.00</span>
+              </div>
+              <div class="text-xs text-gray-500">inkl. CHF <span id="vat">0.00</span> MwSt</div>
+            </div>
+
+            <!-- AGB Agreement Checkbox -->
+            <div class="flex items-start gap-2 mt-4 mb-4">
+              <input type="checkbox" id="agb-checkbox" class="w-4 h-4 mt-0.5 rounded border-gray-300 accent-amber-500">
+              <label for="agb-checkbox" class="text-sm text-gray-700">
+                Ja, ich stimme den <a href="agb.html" target="_blank" class="text-amber-600 hover:underline font-medium">AGB</a> und der <a href="datenschutz.html" target="_blank" class="text-amber-600 hover:underline font-medium">Datenschutzerklärung</a> von Raven Weapon AG zu.
+              </label>
+            </div>
+
+            <!-- GOLD BUTTON -->
+            <button id="buy" class="btn-primary w-full" aria-label="Bestellen">Bestellen</button>
+
+            <!-- links under the button -->
+            <div class="mt-6 text-xs text-gray-600 flex flex-wrap gap-x-4 gap-y-2">
+              <a href="#" class="hover:underline">Widerrufsrecht</a>
+              <a href="#" class="hover:underline">Versand</a>
+              <a href="#" class="hover:underline">Datenschutzerklärung</a>
+              <a href="agb.html" target="_blank" class="hover:underline">AGB</a>
+              <a href="#" class="hover:underline">Impressum</a>
+              <a href="#" class="hover:underline">Kontakt</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 border-t border-gray-200 bg-white py-8">
+      <div class="max-w-7xl mx-auto px-6 lg:px-24">
+        <div class="text-center text-sm text-gray-500">
+          © 2025 RAVEN WEAPON AG. Alle Rechte vorbehalten.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Cart / page logic -->
+    <script src="auth/js/auth.js"></script>
+    <script src="cart.js?v=2"></script>
+    <script>
+      // AUTHENTICATION CHECK - Redirect to login if not logged in
+      function checkAuthenticationBeforeCheckout() {
+        // Wait for authSystem to be ready
+        const checkAuth = () => {
+          if (!window.authSystem) {
+            // Auth system not loaded yet, wait a bit
+            setTimeout(checkAuth, 100);
+            return;
+          }
+
+          // Check if user is logged in
+          if (!window.authSystem.initialized) {
+            // Auth system not initialized yet, wait a bit
+            setTimeout(checkAuth, 100);
+            return;
+          }
+
+          // Check if user is logged in
+          if (!window.authSystem.isLoggedIn()) {
+            console.log('[Checkout] User not logged in, redirecting to login...');
+            // Redirect to login with return URL
+            window.location.href = 'login.html?redirect=checkout.html';
+          } else {
+            console.log('[Checkout] User authenticated, proceeding with checkout');
+          }
+        };
+
+        checkAuth();
+      }
+
+      // Run authentication check immediately
+      checkAuthenticationBeforeCheckout();
+
+      // payment tile active + details toggle
+      const paymentRows = document.querySelectorAll('[data-row]');
+
+      paymentRows.forEach(row=>{
+        const input=row.querySelector('input[type="radio"]');
+        const paymentMethod = row.closest('.payment-method');
+        const detailsSection = paymentMethod.querySelector('[id$="-details"], [id$="-note"]');
+
+        input.addEventListener('change',()=>{
+          paymentRows.forEach(r=>r.classList.remove('active'));
+          row.classList.add('active');
+
+          // Hide all payment details first
+          document.querySelectorAll('.payment-method [id$="-details"], .payment-method [id$="-note"]').forEach(el => {
+            el.classList.add('hidden');
+          });
+
+          // Show relevant details for selected payment method
+          if (detailsSection) {
+            detailsSection.classList.remove('hidden');
+          }
+        });
+      });
+
+      // (billing toggle removed - now using shipping options instead)
+
+      // Credit card input formatting
+      function formatCreditCardInput(input) {
+        let value = input.value.replace(/\s/g, '');
+        let formatted = '';
+        for (let i = 0; i < value.length && i < 16; i++) {
+          if (i > 0 && i % 4 === 0) formatted += ' ';
+          formatted += value[i];
+        }
+        input.value = formatted;
+      }
+
+      function formatExpiryInput(input) {
+        let value = input.value.replace(/\D/g, '');
+        if (value.length >= 2) {
+          value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        }
+        input.value = value;
+      }
+
+      // Add event listeners for credit card formatting
+      function addCreditCardFormatting() {
+        const cardNumberInput = document.querySelector('input[placeholder="1234 5678 9012 3456"]');
+        const expiryInput = document.querySelector('input[placeholder="MM/JJ"]');
+
+        if (cardNumberInput) {
+          cardNumberInput.addEventListener('input', function() {
+            formatCreditCardInput(this);
+          });
+        }
+
+        if (expiryInput) {
+          expiryInput.addEventListener('input', function() {
+            formatExpiryInput(this);
+          });
+        }
+      }
+
+      // Initialize formatting on page load and when payment method changes
+      addCreditCardFormatting();
+
+      // load summary from cart - renders ALL cart items
+      function loadSummary() {
+        let items = [];
+        let subtotal = 0;
+
+        if (window.cart && cart.items && cart.items.length) {
+          items = cart.items;
+          subtotal = cart.getTotal();
+        } else {
+          // Cart is empty - show message
+          items = [];
+          subtotal = 0;
+        }
+
+        // Render all cart items
+        const container = document.getElementById('cart-items-container');
+        if (container) {
+          container.innerHTML = '';
+
+          if (items.length === 0) {
+            // Show empty cart message
+            container.innerHTML = '<div class="text-center py-4 text-gray-500"><i class="fa-solid fa-shopping-cart text-2xl mb-2"></i><p class="text-sm">Ihr Warenkorb ist leer</p><a href="shop/index.html" class="text-yellow-600 hover:underline text-sm mt-2 inline-block">Zum Shop</a></div>';
+          } else {
+            items.forEach(function(item) {
+              const itemTotal = (item.price || 0) * (item.quantity || 1);
+              const imageSrc = item.image || 'assets/placeholder.svg';
+              const itemName = item.name || 'Produkt';
+              const itemVariant = item.variant || item.category || 'Standard';
+
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'flex items-start gap-3';
+              itemDiv.innerHTML =
+                '<div class="qty-wrap">' +
+                  '<span class="qty-badge">' + (item.quantity || 1) + '</span>' +
+                  '<div class="w-16 h-16 bg-white border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">' +
+                    '<img src="' + imageSrc + '" class="max-w-full max-h-full object-contain p-1" alt="' + itemName + '" onerror="this.onerror=null;this.src=\'assets/placeholder.svg\'">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="flex-1 min-w-0">' +
+                  '<div class="text-sm font-medium text-gray-900 truncate">' + itemName + '</div>' +
+                  '<div class="text-xs text-gray-500">' + itemVariant + '</div>' +
+                '</div>' +
+                '<div class="text-sm font-medium">CHF ' + itemTotal.toFixed(2) + '</div>';
+              container.appendChild(itemDiv);
+            });
+          }
+        }
+
+        // Calculate totals
+        const freeShippingThreshold = 100;
+        const shipping = subtotal >= freeShippingThreshold ? 0 : 9.90;
+        const vat = (subtotal + shipping) * 0.06;
+        const total = subtotal + shipping;
+
+        document.getElementById('subtotal').textContent = 'CHF ' + subtotal.toFixed(2);
+        document.getElementById('shipping').textContent = subtotal === 0 ? 'Lieferadresse eingeben' : (shipping === 0 ? 'Kostenlos' : 'CHF ' + shipping.toFixed(2));
+        document.getElementById('total').textContent = 'CHF ' + total.toFixed(2);
+        document.getElementById('vat').textContent = vat.toFixed(2);
+      }
+
+      // coupon demo
+      document.getElementById('apply-coupon').addEventListener('click',()=>{
+        const c = document.getElementById('coupon').value.trim();
+        if(!c) return;
+        alert('Gutschein angewendet (Demo).');
+      });
+
+      // buy - with AGB validation - Redirect to HikaShop checkout for real payment processing
+      document.getElementById('buy').addEventListener('click', async ()=>{
+        const agbCheckbox = document.getElementById('agb-checkbox');
+        if (!agbCheckbox.checked) {
+          alert('Bitte stimmen Sie den AGB und der Datenschutzerklärung zu, um fortzufahren.');
+          agbCheckbox.focus();
+          return;
+        }
+
+        // Validate cart has items
+        if (!window.cart || !window.cart.items || window.cart.items.length === 0) {
+          alert('Ihr Warenkorb ist leer.');
+          return;
+        }
+
+        // Get selected payment method
+        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+        // Get shipping method
+        const shippingMethod = document.querySelector('input[name="shipping-method"]:checked').value;
+
+        // Collect shipping address data
+        const orderData = {
+          payment_method: paymentMethod,
+          shipping_method: shippingMethod,
+          shipping_address: {
+            country: document.getElementById('shipping-country').value,
+            firstname: document.getElementById('shipping-firstname').value,
+            lastname: document.getElementById('shipping-lastname').value,
+            company: document.getElementById('shipping-company').value,
+            address: document.getElementById('shipping-address').value,
+            zip: document.getElementById('shipping-zip').value,
+            city: document.getElementById('shipping-city').value
+          },
+          cart_items: window.cart.items
+        };
+
+        // Validate required shipping fields
+        if (!orderData.shipping_address.firstname || !orderData.shipping_address.lastname ||
+            !orderData.shipping_address.address || !orderData.shipping_address.zip ||
+            !orderData.shipping_address.city) {
+          alert('Bitte füllen Sie alle Pflichtfelder der Lieferadresse aus.');
+          return;
+        }
+
+        console.log('[Checkout] Submitting order:', orderData);
+
+        // Redirect to HikaShop checkout with the selected payment method
+        // The HikaShop checkout URL with payment plugin
+        const hikaCheckoutUrl = 'http://localhost/ravenweaponwebapp/index.php?option=com_hikashop&ctrl=checkout&task=step&step=3';
+
+        // Store order data in sessionStorage for HikaShop to pick up
+        sessionStorage.setItem('raven_order_data', JSON.stringify(orderData));
+
+        // Redirect to HikaShop checkout
+        window.location.href = hikaCheckoutUrl;
+      });
+
+      // Shipping method toggle
+      const shippingPriority = document.getElementById('shipping-priority');
+      const shippingPickup = document.getElementById('shipping-pickup');
+      if (shippingPriority && shippingPickup) {
+        shippingPriority.addEventListener('click', () => {
+          shippingPriority.classList.add('active');
+          shippingPickup.classList.remove('active');
+        });
+        shippingPickup.addEventListener('click', () => {
+          shippingPickup.classList.add('active');
+          shippingPriority.classList.remove('active');
+        });
+      }
+
+      // Listen for cart loaded event from cart.js
+      window.addEventListener('cartLoaded', function(e) {
+        console.log('[Checkout] Cart loaded event received, updating summary...');
+        loadSummary();
+        updateCheckoutUserDisplay();
+      });
+
+      // Also try loading immediately if cart already exists
+      function initCheckoutSummary() {
+        if (window.cart && window.cart.items && window.cart.items.length > 0) {
+          console.log('[Checkout] Cart already loaded, showing summary');
+          loadSummary();
+        }
+        updateCheckoutUserDisplay();
+      }
+
+      // Update user display in checkout header
+      function updateCheckoutUserDisplay() {
+        if (window.authSystem && window.authSystem.isLoggedIn()) {
+          const user = window.authSystem.getUser();
+          if (user) {
+            const avatarEl = document.getElementById('user-avatar');
+            const emailEl = document.getElementById('user-email');
+            if (avatarEl && user.name) {
+              // Get initials from name
+              const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+              avatarEl.textContent = initials;
+            }
+            if (emailEl && user.email) {
+              emailEl.textContent = user.email;
+            }
+          }
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCheckoutSummary);
+      } else {
+        // Wait a bit for auth and cart to initialize
+        setTimeout(initCheckoutSummary, 300);
+      }
+
+      // =============================================
+      // SAVED ADDRESSES INTEGRATION
+      // =============================================
+
+      // Load saved addresses from localStorage
+      function loadSavedAddresses() {
+        const savedAddresses = JSON.parse(localStorage.getItem('raven_addresses') || '[]');
+        return savedAddresses;
+      }
+
+      // Populate the saved addresses dropdown
+      function populateSavedAddressesDropdown() {
+        const select = document.getElementById('saved-addresses-select');
+        const addresses = loadSavedAddresses();
+
+        // Clear existing options except the first one
+        select.innerHTML = '<option value="">-- Adresse auswählen --</option>';
+
+        if (addresses.length === 0) {
+          select.innerHTML = '<option value="">Keine gespeicherten Adressen</option>';
+          return;
+        }
+
+        // Sort: default address first
+        addresses.sort((a, b) => (b.isDefault ? 1 : 0) - (a.isDefault ? 1 : 0));
+
+        addresses.forEach(addr => {
+          const option = document.createElement('option');
+          option.value = addr.id;
+          const defaultBadge = addr.isDefault ? ' (Standard)' : '';
+          option.textContent = `${addr.firstName} ${addr.lastName} - ${addr.street}, ${addr.zip} ${addr.city}${defaultBadge}`;
+          select.appendChild(option);
+        });
+      }
+
+      // Fill shipping form with selected address
+      function fillShippingForm(addressId) {
+        const addresses = loadSavedAddresses();
+        const address = addresses.find(a => a.id === addressId);
+
+        if (!address) return;
+
+        // Fill the shipping form fields
+        const countrySelect = document.getElementById('shipping-country');
+        const firstnameInput = document.getElementById('shipping-firstname');
+        const lastnameInput = document.getElementById('shipping-lastname');
+        const companyInput = document.getElementById('shipping-company');
+        const addressInput = document.getElementById('shipping-address');
+        const zipInput = document.getElementById('shipping-zip');
+        const cityInput = document.getElementById('shipping-city');
+
+        if (countrySelect) {
+          // Try to match the country
+          const options = Array.from(countrySelect.options);
+          const match = options.find(opt => opt.value.toLowerCase() === address.country.toLowerCase());
+          if (match) {
+            countrySelect.value = match.value;
+          }
+        }
+
+        if (firstnameInput) firstnameInput.value = address.firstName || '';
+        if (lastnameInput) lastnameInput.value = address.lastName || '';
+        if (companyInput) companyInput.value = address.company || '';
+        if (addressInput) addressInput.value = address.street || '';
+        if (zipInput) zipInput.value = address.zip || '';
+        if (cityInput) cityInput.value = address.city || '';
+
+        // Show success feedback
+        showAddressFeedback('Adresse wurde eingetragen');
+      }
+
+      // Show feedback message
+      function showAddressFeedback(message) {
+        const container = document.getElementById('saved-addresses-container');
+        if (!container) return;
+
+        // Remove existing feedback
+        const existingFeedback = container.querySelector('.address-feedback');
+        if (existingFeedback) existingFeedback.remove();
+
+        // Create feedback element
+        const feedback = document.createElement('div');
+        feedback.className = 'address-feedback text-sm text-green-600 mt-2 flex items-center gap-2';
+        feedback.innerHTML = '<i class="fa-solid fa-check"></i> ' + message;
+        container.appendChild(feedback);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+          feedback.remove();
+        }, 3000);
+      }
+
+      // Toggle saved addresses dropdown
+      function setupSavedAddressesToggle() {
+        const toggleLink = document.getElementById('use-saved-address');
+        const container = document.getElementById('saved-addresses-container');
+        const select = document.getElementById('saved-addresses-select');
+
+        if (!toggleLink || !container || !select) return;
+
+        toggleLink.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          // Toggle visibility
+          const isHidden = container.classList.contains('hidden');
+
+          if (isHidden) {
+            // Load and show
+            populateSavedAddressesDropdown();
+            container.classList.remove('hidden');
+            toggleLink.textContent = 'Adressen ausblenden';
+          } else {
+            // Hide
+            container.classList.add('hidden');
+            toggleLink.textContent = 'Eine gespeicherte Adresse verwenden';
+          }
+        });
+
+        // Handle address selection
+        select.addEventListener('change', () => {
+          const selectedId = select.value;
+          if (selectedId) {
+            fillShippingForm(selectedId);
+          }
+        });
+      }
+
+      // Auto-fill with default address if user is logged in
+      function autoFillDefaultAddress() {
+        const addresses = loadSavedAddresses();
+        const defaultAddress = addresses.find(a => a.isDefault);
+
+        if (defaultAddress && window.authSystem && window.authSystem.isLoggedIn()) {
+          fillShippingForm(defaultAddress.id);
+          // Show the dropdown with the default selected
+          const container = document.getElementById('saved-addresses-container');
+          const toggleLink = document.getElementById('use-saved-address');
+          if (container && toggleLink) {
+            populateSavedAddressesDropdown();
+            container.classList.remove('hidden');
+            toggleLink.textContent = 'Adressen ausblenden';
+            document.getElementById('saved-addresses-select').value = defaultAddress.id;
+          }
+        }
+      }
+
+      // Initialize saved addresses functionality
+      function initSavedAddresses() {
+        setupSavedAddressesToggle();
+
+        // Wait for auth system then auto-fill
+        const checkAuthAndFill = () => {
+          if (window.authSystem) {
+            if (window.authSystem.isLoggedIn()) {
+              autoFillDefaultAddress();
+            }
+          } else {
+            setTimeout(checkAuthAndFill, 200);
+          }
+        };
+
+        setTimeout(checkAuthAndFill, 300);
+      }
+
+      // Initialize on page load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSavedAddresses);
+      } else {
+        initSavedAddresses();
+      }
+    </script>
+  </body>
+</html>

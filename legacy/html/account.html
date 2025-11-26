@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Account - RAVEN WEAPON AG</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui"],
+            heading: ["Chakra Petch", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Simple Header -->
+  <header class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="inline-flex items-center">
+          <div class="bg-left bg-no-repeat h-10 w-[182px]" style="background-image:url('assets/raven-logo-bold (1)-stroke-and-fill.svg');background-size:100% 455%"></div>
+        </a>
+        <a href="index.html" class="text-sm text-gray-600 hover:text-gray-900">
+          <i class="fas fa-arrow-left mr-2"></i>Back to Shop
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <!-- Page Title -->
+      <div class="mb-8">
+        <h1 class="font-heading text-4xl font-bold text-gray-900">My Account</h1>
+        <p class="text-gray-600 mt-2">Manage your orders and account information</p>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading" class="text-center py-12">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-yellow-400"></div>
+        <p class="text-gray-600 mt-4">Loading account data...</p>
+      </div>
+
+      <!-- Not Logged In State -->
+      <div id="not-logged-in" class="hidden bg-white rounded-lg shadow-md p-8 text-center">
+        <i class="fas fa-user-lock text-6xl text-gray-300 mb-4"></i>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Please sign in</h2>
+        <p class="text-gray-600 mb-6">You must be logged in to view your account.</p>
+        <div class="flex gap-4 justify-center">
+          <a href="login.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 text-black font-semibold rounded-lg hover:brightness-95 transition-all shadow-md">
+            Sign In
+          </a>
+          <a href="register.html" class="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition-all">
+            Register
+          </a>
+        </div>
+      </div>
+
+      <!-- Account Dashboard with Sidebar -->
+      <div id="account-dashboard" class="hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
+          <!-- Sidebar Navigation -->
+          <aside class="h-fit">
+            <nav class="space-y-2">
+              <a href="#overview" data-section="overview" class="nav-link active flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors">
+                <i class="fa-solid fa-th-large w-5 mr-3"></i>
+                Overview
+              </a>
+              <a href="#orders" data-section="orders" class="nav-link flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors">
+                <i class="fa-solid fa-shopping-bag w-5 mr-3"></i>
+                Orders
+              </a>
+              <a href="#addresses" data-section="addresses" class="nav-link flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors">
+                <i class="fa-solid fa-map-marker-alt w-5 mr-3"></i>
+                Addresses
+              </a>
+              <a href="#account-details" data-section="account-details" class="nav-link flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors">
+                <i class="fa-solid fa-user-circle w-5 mr-3"></i>
+                Account Details
+              </a>
+              <hr class="my-4 border-gray-200">
+              <button type="button" id="logout-btn" class="nav-link flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors text-red-600 hover:bg-red-50 w-full text-left">
+                <i class="fa-solid fa-sign-out-alt w-5 mr-3"></i>
+                Logout
+              </button>
+            </nav>
+          </aside>
+
+          <!-- Main Content Area -->
+          <div class="space-y-6">
+            <!-- Overview Section -->
+            <div id="overview-section" class="section-content bg-white rounded-lg shadow-md p-6">
+              <!-- User Welcome -->
+              <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-300 to-amber-400 flex items-center justify-center text-black text-2xl font-bold" id="user-initials">
+                  JA
+                </div>
+                <div class="flex-1">
+                  <h2 class="text-2xl font-bold text-gray-900">
+                    Welcome, <span id="user-name">-</span>!
+                  </h2>
+                  <p class="text-gray-600 flex items-center gap-2 mt-1">
+                    <i class="fas fa-envelope text-sm"></i>
+                    <span id="user-email">-</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Order History -->
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Order History</h3>
+
+                <!-- Empty State -->
+                <div id="no-orders" class="text-center py-12">
+                  <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 mb-4">
+                    <i class="fas fa-shopping-bag text-3xl text-gray-400"></i>
+                  </div>
+                  <p class="text-gray-600 mb-6">You haven't placed any orders yet</p>
+                  <a href="index.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 text-black font-semibold rounded-lg hover:brightness-95 transition-all shadow-md">
+                    Shop Now
+                  </a>
+                </div>
+
+                <!-- Orders List (will be populated dynamically) -->
+                <div id="orders-list" class="hidden space-y-4">
+                  <!-- Orders will be inserted here -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Orders Section -->
+            <div id="orders-section" class="section-content hidden bg-white rounded-lg shadow-md p-6">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">My Orders</h2>
+              <div id="orders-content" class="space-y-4">
+                <p class="text-gray-600">No orders found.</p>
+              </div>
+            </div>
+
+            <!-- Addresses Section -->
+            <div id="addresses-section" class="section-content hidden bg-white rounded-lg shadow-md p-6">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">My Addresses</h2>
+              <div id="addresses-content" class="space-y-4">
+                <p class="text-gray-600">No addresses saved yet.</p>
+              </div>
+            </div>
+
+            <!-- Account Details Section -->
+            <div id="account-details-section" class="section-content hidden space-y-6">
+              <!-- Account Information Card -->
+              <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Account Information</h2>
+                <form id="account-form" class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="form-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400" readonly>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="form-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400" readonly>
+                  </div>
+                  <p class="text-sm text-gray-500">
+                    <i class="fas fa-info-circle mr-1"></i>
+                    Contact support to update your name or email
+                  </p>
+                </form>
+              </div>
+
+              <!-- Change Password Card -->
+              <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Change Password</h2>
+                <form id="change-password-form" class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                    <input type="password" id="current-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400" placeholder="Enter current password" required>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                    <input type="password" id="new-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400" placeholder="Enter new password" required>
+                    <p class="text-xs text-gray-500 mt-1">Password must be at least 8 characters long</p>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                    <input type="password" id="confirm-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400" placeholder="Confirm new password" required>
+                  </div>
+
+                  <!-- Messages -->
+                  <div id="password-error" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <span id="password-error-text"></span>
+                  </div>
+                  <div id="password-success" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    Password changed successfully!
+                  </div>
+
+                  <button type="submit" id="change-password-btn" class="w-full px-6 py-3 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 text-black font-semibold rounded-lg hover:brightness-95 transition-all shadow-md">
+                    Change Password
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Auth System -->
+  <script src="auth/js/auth.js"></script>
+
+  <script>
+    // Navigation handling
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('.nav-link:not(#logout-btn)');
+      const sections = document.querySelectorAll('.section-content');
+
+      // Sidebar navigation
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const sectionId = link.dataset.section;
+
+          // Update active state
+          navLinks.forEach(l => l.classList.remove('active', 'bg-gray-100', 'text-gray-900'));
+          navLinks.forEach(l => l.classList.add('text-gray-600', 'hover:bg-gray-50'));
+          link.classList.remove('text-gray-600', 'hover:bg-gray-50');
+          link.classList.add('active', 'bg-gray-100', 'text-gray-900');
+
+          // Show selected section
+          sections.forEach(section => {
+            section.classList.add('hidden');
+          });
+          document.getElementById(`${sectionId}-section`).classList.remove('hidden');
+        });
+      });
+
+      // Initialize active state
+      const activeLink = document.querySelector('.nav-link.active');
+      if (activeLink) {
+        activeLink.classList.add('bg-gray-100', 'text-gray-900');
+      }
+      navLinks.forEach(l => {
+        if (!l.classList.contains('active')) {
+          l.classList.add('text-gray-600', 'hover:bg-gray-50');
+        }
+      });
+
+      // Check authentication
+      checkAuth();
+    });
+
+    async function checkAuth() {
+      const loading = document.getElementById('loading');
+      const notLoggedIn = document.getElementById('not-logged-in');
+      const dashboard = document.getElementById('account-dashboard');
+
+      try {
+        // Wait for auth system
+        if (!window.authSystem || !window.authSystem.initialized) {
+          setTimeout(checkAuth, 100);
+          return;
+        }
+
+        if (window.authSystem.isLoggedIn()) {
+          const user = window.authSystem.getUser();
+
+          // Update user info
+          document.getElementById('user-name').textContent = user.name || 'User';
+          document.getElementById('user-email').textContent = user.email || '-';
+
+          // Update initials
+          if (user.name) {
+            const names = user.name.split(' ');
+            const initials = names.map(n => n.charAt(0).toUpperCase()).join('');
+            document.getElementById('user-initials').textContent = initials.substring(0, 2);
+          }
+
+          // Update form fields
+          document.getElementById('form-name').value = user.name || '';
+          document.getElementById('form-email').value = user.email || '';
+
+          // Show dashboard
+          loading.classList.add('hidden');
+          dashboard.classList.remove('hidden');
+        } else {
+          // Not logged in
+          loading.classList.add('hidden');
+          notLoggedIn.classList.remove('hidden');
+        }
+      } catch (error) {
+        console.error('[Account] Auth check failed:', error);
+        loading.classList.add('hidden');
+        notLoggedIn.classList.remove('hidden');
+      }
+    }
+
+    // Logout handler
+    document.getElementById('logout-btn')?.addEventListener('click', async () => {
+      if (window.authSystem) {
+        await window.authSystem.logout();
+      }
+    });
+
+    // Change Password Form Handler
+    document.getElementById('change-password-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const currentPassword = document.getElementById('current-password').value;
+      const newPassword = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      const errorDiv = document.getElementById('password-error');
+      const errorText = document.getElementById('password-error-text');
+      const successDiv = document.getElementById('password-success');
+      const submitBtn = document.getElementById('change-password-btn');
+
+      // Hide previous messages
+      errorDiv.classList.add('hidden');
+      successDiv.classList.add('hidden');
+
+      // Validation
+      if (newPassword.length < 8) {
+        errorText.textContent = 'Password must be at least 8 characters long';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        errorText.textContent = 'New passwords do not match';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      // Disable button during request
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Changing Password...';
+
+      try {
+        const response = await fetch('http://localhost/ravenweaponwebapp/api/api/change-password.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            currentPassword,
+            newPassword
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Show success message
+          successDiv.classList.remove('hidden');
+
+          // Clear form
+          document.getElementById('change-password-form').reset();
+
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            successDiv.classList.add('hidden');
+          }, 5000);
+        } else {
+          // Show error message
+          errorText.textContent = result.message || 'Failed to change password';
+          errorDiv.classList.remove('hidden');
+        }
+      } catch (error) {
+        console.error('[Account] Password change error:', error);
+        errorText.textContent = 'An error occurred. Please try again.';
+        errorDiv.classList.remove('hidden');
+      } finally {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Change Password';
+      }
+    });
+  </script>
+</body>
+</html>

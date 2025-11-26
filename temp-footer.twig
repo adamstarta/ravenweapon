@@ -1,0 +1,88 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_inner_container %}
+<footer class="raven-footer border-t border-gray-200 bg-white" style="margin-top: 3rem;">
+    {# Feature Highlights #}
+    <div class="raven-footer-features">
+        <div class="container" style="max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1rem;">
+                {# Swiss Quality #}
+                <div style="display: flex; align-items: flex-start; gap: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.375rem; padding: 1rem; background: white;">
+                    <span style="display: inline-flex; height: 36px; width: 36px; align-items: center; justify-content: center; border-radius: 9999px; background: #dc2626; color: white; overflow: hidden;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="width: 100%; height: 100%;">
+                            <rect width="32" height="32" fill="#FF0000"/>
+                            <path d="M13 6h6v7h7v6h-7v7h-6v-7H6v-6h7V6z" fill="white"/>
+                        </svg>
+                    </span>
+                    <div>
+                        <div style="font-weight: 600; color: #111827;">Schweizer Qualität</div>
+                        <div style="font-size: 0.875rem; color: #4b5563;">Produktion in Luzern</div>
+                    </div>
+                </div>
+
+                {# Best Prices #}
+                <div style="display: flex; align-items: flex-start; gap: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.375rem; padding: 1rem; background: white;">
+                    <span style="display: inline-flex; height: 36px; width: 36px; align-items: center; justify-content: center; border-radius: 9999px; background: #1f2937; color: white;">
+                        {% sw_icon 'tags' style { 'size': 'sm' } %}
+                    </span>
+                    <div>
+                        <div style="font-weight: 600; color: #111827;">Beste Preise</div>
+                        <div style="font-size: 0.875rem; color: #4b5563;">Direktverkauf = tiefe Preise</div>
+                    </div>
+                </div>
+
+                {# Fast Shipping #}
+                <div style="display: flex; align-items: flex-start; gap: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.375rem; padding: 1rem; background: white;">
+                    <span style="display: inline-flex; height: 36px; width: 36px; align-items: center; justify-content: center; border-radius: 9999px; background: #1f2937; color: white;">
+                        {% sw_icon 'package' style { 'size': 'sm' } %}
+                    </span>
+                    <div>
+                        <div style="font-weight: 600; color: #111827;">Versand heute</div>
+                        <div style="font-size: 0.875rem; color: #4b5563;">Mo–Fr, bis 19:20 Uhr bestellt</div>
+                    </div>
+                </div>
+
+                {# Phone Support #}
+                <div style="display: flex; align-items: flex-start; gap: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.375rem; padding: 1rem; background: white;">
+                    <span style="display: inline-flex; height: 36px; width: 36px; align-items: center; justify-content: center; border-radius: 9999px; background: #1f2937; color: white;">
+                        {% sw_icon 'phone' style { 'size': 'sm' } %}
+                    </span>
+                    <div>
+                        <div style="font-weight: 600; color: #111827;">Telefonisch erreichbar</div>
+                        <div style="font-size: 0.875rem; color: #4b5563;">Mo–Fr 08:00–17:00 Uhr</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Newsletter Bar #}
+    <div style="background: linear-gradient(135deg, #FDE047 0%, #F59E0B 50%, #D97706 100%); padding: 1.5rem 0;">
+        <div class="container" style="max-width: 80rem; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+                <div style="font-size: 1.125rem; font-weight: 700; color: #000;">Newsletter abonnieren</div>
+                <form style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <input type="email" placeholder="E-Mail-Adresse" style="padding: 0.5rem 1rem; border-radius: 0.375rem; border: 1px solid #d1d5db; min-width: 250px;">
+                    <button type="submit" style="padding: 0.5rem 1.5rem; background: #000; color: #fff; border-radius: 0.375rem; font-weight: 600; border: none; cursor: pointer;">Abonnieren</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {# Footer Bottom #}
+    <div style="background: #f9fafb; padding: 2rem 0;">
+        <div class="container" style="max-width: 80rem; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+                <div style="font-size: 0.875rem; color: #6b7280;">
+                    © {{ "now"|date("Y") }} RAVEN WEAPON AG. Alle Rechte vorbehalten.
+                </div>
+                <div style="display: flex; gap: 1.5rem; font-size: 0.875rem;">
+                    <a href="{{ path('frontend.cms.page', { id: 'agb' }) }}" style="color: #4b5563; text-decoration: none;">AGB</a>
+                    <a href="{{ path('frontend.cms.page', { id: 'impressum' }) }}" style="color: #4b5563; text-decoration: none;">Impressum</a>
+                    <a href="{{ path('frontend.cms.page', { id: 'datenschutz' }) }}" style="color: #4b5563; text-decoration: none;">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% sw_extends '@Storefront/storefront/layout/header/header.html.twig' %}
+
+{% block layout_header %}
+<header class="raven-header">
+    {# Mobile Header #}
+    <div class="raven-header-mobile md:hidden bg-white relative z-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24 py-2">
+            <div class="flex items-center justify-between h-13">
+                <div class="flex items-center gap-3">
+                    <a href="{{ path('frontend.home.page') }}" class="inline-flex items-center h-10 w-[182px]" aria-label="{{ "header.logoLink"|trans|sw_sanitize }}">
+                        {% if config('core.basicInformation.shopName') %}
+                            <img src="{{ asset('bundles/raventheme/assets/raven-logo.svg') }}" alt="{{ config('core.basicInformation.shopName') }}" class="h-10">
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="flex items-center gap-2">
+                    {# Cart Button Mobile #}
+                    <a href="{{ path('frontend.checkout.cart.page') }}" class="raven-cart-btn relative inline-flex items-center justify-center h-[38px] w-[38px] rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50" aria-label="{{ "checkout.cartTitle"|trans|sw_sanitize }}">
+                        {% sw_icon 'bag' style { 'size': 'sm' } %}
+                        {% if page.cart.lineItems.count > 0 %}
+                            <span class="cart-count absolute -top-1 -right-1 text-gray-900 text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold raven-gradient-gold">
+                                {{ page.cart.lineItems.count }}
+                            </span>
+                        {% endif %}
+                    </a>
+                    {# Mobile Menu Toggle #}
+                    <button type="button" class="raven-mobile-toggle md:hidden inline-flex items-center justify-center h-[38px] w-[38px] rounded-md text-gray-600 hover:bg-gray-100" data-offcanvas-menu-toggle="true" aria-label="{{ "general.menuLink"|trans|sw_sanitize }}">
+                        {% sw_icon 'stack' style { 'size': 'md' } %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Desktop Header #}
+    <div class="raven-header-desktop hidden md:block bg-white border-b border-gray-200 pt-3">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+            {# Top Row: Logo, Search, Account, Cart #}
+            <div class="flex items-center justify-between h-13 py-2">
+                <div class="flex items-center">
+                    <a href="{{ path('frontend.home.page') }}" class="inline-flex items-center h-10 w-[222px]" aria-label="{{ "header.logoLink"|trans|sw_sanitize }}">
+                        {% if config('core.basicInformation.shopName') %}
+                            <img src="{{ asset('bundles/raventheme/assets/raven-logo.svg') }}" alt="{{ config('core.basicInformation.shopName') }}" class="h-10">
+                        {% endif %}
+                    </a>
+                </div>
+
+                {# Search Bar #}
+                <div class="relative w-[300px] h-9">
+                    {% block layout_header_search %}
+                        <form action="{{ path('frontend.search.page') }}" method="get" class="raven-search-form">
+                            <input type="search"
+                                   name="search"
+                                   placeholder="{{ "header.searchPlaceholder"|trans|sw_sanitize }}"
+                                   class="raven-search-input w-full h-full rounded-full bg-gray-100 pl-9 pr-3 text-base text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-gray-300"
+                                   aria-label="{{ "header.searchPlaceholder"|trans|sw_sanitize }}">
+                            <button type="submit" class="absolute left-3 top-1/2 -translate-y-1/2" aria-label="{{ "header.searchButton"|trans|sw_sanitize }}">
+                                {% sw_icon 'search' style { 'size': 'xs', 'class': 'text-gray-500' } %}
+                            </button>
+                        </form>
+                    {% endblock %}
+                </div>
+
+                {# Account & Cart #}
+                <div class="flex items-center gap-2">
+                    {# Account #}
+                    <a href="{{ path('frontend.account.login.page') }}" class="inline-flex items-center justify-center h-[38px] w-[38px] rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50" aria-label="{{ "account.overviewLink"|trans|sw_sanitize }}">
+                        {% sw_icon 'avatar' style { 'size': 'sm' } %}
+                    </a>
+
+                    {# Cart Button Desktop #}
+                    <a href="{{ path('frontend.checkout.cart.page') }}" class="raven-cart-btn relative inline-flex items-center justify-center h-[38px] w-[38px] rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50" aria-label="{{ "checkout.cartTitle"|trans|sw_sanitize }}">
+                        {% sw_icon 'bag' style { 'size': 'sm' } %}
+                        {% set cartCount = page.cart.lineItems.count|default(0) %}
+                        {% if cartCount > 0 %}
+                            <span class="cart-count absolute -top-1 -right-1 text-gray-900 text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold raven-gradient-gold">
+                                {{ cartCount }}
+                            </span>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+
+            {# Navigation Row #}
+            <div class="pb-2">
+                <nav class="raven-nav flex items-center justify-center gap-5">
+                    <a href="{{ path('frontend.home.page') }}" class="group relative inline-flex items-center text-sm font-medium text-black py-2 pr-5">
+                        {{ "general.homeLink"|trans|sw_sanitize }}
+                    </a>
+
+                    {# Dynamic Navigation from Categories #}
+                    {% for treeItem in page.header.navigation.tree %}
+                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: treeItem.category.id }) }}"
+                           class="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 py-2 pr-5">
+                            {{ treeItem.category.translated.name }}
+                            {% if treeItem.children|length > 0 %}
+                                {% sw_icon 'arrow-medium-down' style { 'size': 'xs', 'class': 'text-gray-500 group-hover:text-gray-700' } %}
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+
+                    <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" class="group relative inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 py-2 pr-5">
+                        {{ "footer.aboutUsLink"|trans|sw_sanitize }}
+                    </a>
+                    <a href="{{ path('frontend.cms.page', { id: 'contact' }) }}" class="group relative inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 py-2 pr-5">
+                        {{ "footer.contactLink"|trans|sw_sanitize }}
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    {# Mobile Search Bar #}
+    <div class="md:hidden bg-white border-b border-gray-200 px-6 py-3">
+        <div class="relative">
+            <form action="{{ path('frontend.search.page') }}" method="get">
+                <input type="search"
+                       name="search"
+                       placeholder="{{ "header.searchPlaceholder"|trans|sw_sanitize }}"
+                       class="raven-search-input w-full h-9 rounded-full bg-gray-100 pl-10 pr-4 text-base text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-gray-300">
+                <button type="submit" class="absolute left-3 top-1/2 -translate-y-1/2">
+                    {% sw_icon 'search' style { 'size': 'xs', 'class': 'text-gray-500' } %}
+                </button>
+            </form>
+        </div>
+    </div>
+</header>
+{% endblock %}
