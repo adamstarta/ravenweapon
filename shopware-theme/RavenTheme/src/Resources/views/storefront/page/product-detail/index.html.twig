@@ -1,0 +1,228 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+
+{% block page_product_detail %}
+<div class="raven-product-detail container py-8 md:py-12">
+    {# Breadcrumb #}
+    <nav class="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+        <a href="{{ path('frontend.home.page') }}" class="hover:text-gray-700">Home</a>
+        <span class="mx-2">/</span>
+        <a href="{{ path('frontend.navigation.page', { navigationId: page.header.navigation.active.id }) }}" class="hover:text-gray-700">Shop</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">
+            {% if page.product.categories|first %}{{ page.product.categories|first.translated.name }}{% else %}Produkt{% endif %}
+        </span>
+    </nav>
+
+    {# Product Grid: Image Left, Info Right #}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+
+        {# LEFT: Product Image Gallery #}
+        <div class="product-image-section">
+            <div class="product-main-image bg-white rounded-xl p-8 shadow-sm mb-4">
+                {% if page.product.cover.media %}
+                <img id="product-main-image"
+                     src="{{ page.product.cover.media.url }}"
+                     alt="{{ page.product.translated.name }}"
+                     class="w-full h-auto object-contain"
+                     style="max-height: 500px;">
+                {% else %}
+                <img src="{{ asset('bundles/raventheme/assets/placeholder.png') }}"
+                     alt="{{ page.product.translated.name }}"
+                     class="w-full h-auto object-contain">
+                {% endif %}
+            </div>
+
+            {# Thumbnail gallery - only show if multiple images #}
+            {% if page.product.media|length > 1 %}
+            <div class="grid grid-cols-4 gap-2">
+                {% for media in page.product.media %}
+                <button class="image-swatch border-2 border-gray-200 rounded-lg p-2 hover:border-amber-500 transition-all"
+                        onclick="document.getElementById('product-main-image').src='{{ media.media.url }}';
+                                 document.querySelectorAll('.image-swatch').forEach(el => el.classList.remove('selected'));
+                                 this.classList.add('selected');"
+                        {% if loop.first %}class="image-swatch selected"{% endif %}>
+                    <img src="{{ media.media.url }}" alt="" class="w-full h-full object-contain">
+                </button>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        {# RIGHT: Product Info #}
+        <div class="product-info-section">
+            {# Category #}
+            <p class="cat-label text-sm text-gray-500 mb-2">
+                {% if page.product.categories|first %}
+                    {{ page.product.categories|first.translated.name }}
+                {% else %}
+                    Produkt
+                {% endif %}
+            </p>
+
+            {# Product Name #}
+            <h1 class="prod-title text-3xl md:text-4xl text-gray-900 mb-4" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700;">
+                {{ page.product.translated.name }}
+            </h1>
+
+            {# Price #}
+            <div class="raven-product-price mb-6" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 600; font-size: 24px; line-height: 1.2; font-variant-numeric: tabular-nums;">
+                {{ page.product.calculatedPrice.unitPrice|currency }}
+            </div>
+
+            {# Availability Status #}
+            <div class="flex items-center gap-2 mb-6">
+                {% if page.product.availableStock > 0 %}
+                <span class="raven-avail-dot" style="width: 20px; height: 20px; border-radius: 9999px; background: #77C15A; display: inline-flex; align-items: center; justify-content: center;">
+                    <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;">
+                        <path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span class="text-green-600 font-medium">Verfügbar</span>
+                {% else %}
+                <span class="w-5 h-5 rounded-full bg-red-500"></span>
+                <span class="text-red-600 font-medium">Nicht verfügbar</span>
+                {% endif %}
+            </div>
+
+            {# Color Variants (if product has color options) #}
+            {% if page.product.options|length > 0 %}
+            <div class="mb-6">
+                <p class="text-sm font-semibold text-gray-900 mb-3" style="font-family: 'Inter', sans-serif;">
+                    Farbe: <span id="selected-color-name" class="font-bold">{{ page.product.options|first.translated.name|default('Standard') }}</span>
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    {% for option in page.product.options %}
+                    <button class="color-swatch {% if loop.first %}selected{% endif %}"
+                            style="width: 48px; height: 48px; border-radius: 8px; border: 2px solid transparent; cursor: pointer; transition: all 0.2s ease; background-color: {{ option.colorHexCode|default('#2C2C2C') }};"
+                            title="{{ option.translated.name }}"
+                            onclick="document.getElementById('selected-color-name').textContent='{{ option.translated.name }}';
+                                     document.querySelectorAll('.color-swatch').forEach(el => el.classList.remove('selected'));
+                                     this.classList.add('selected');">
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {# Add to Cart Form #}
+            <form action="{{ path('frontend.checkout.line-item.add') }}" method="post" class="mb-8">
+                {{ sw_csrf('frontend.checkout.line-item.add') }}
+                <input type="hidden" name="lineItems[{{ page.product.id }}][id]" value="{{ page.product.id }}">
+                <input type="hidden" name="lineItems[{{ page.product.id }}][type]" value="product">
+                <input type="hidden" name="lineItems[{{ page.product.id }}][referencedId]" value="{{ page.product.id }}">
+                <input type="hidden" name="redirectTo" value="frontend.detail.page">
+                <input type="hidden" name="redirectParameters[productId]" value="{{ page.product.id }}">
+
+                {# Quantity Selector #}
+                <div class="mb-6">
+                    <div class="flex items-center gap-3">
+                        <button type="button"
+                                id="qty-decrease"
+                                class="quantity-btn"
+                                style="width: 40px; height: 40px; border: 1px solid #D1D5DB; border-radius: 6px; background: white; font-weight: 600; cursor: pointer; transition: all 0.2s;"
+                                onclick="let qtyInput = document.getElementById('quantity'); if(qtyInput.value > 1) qtyInput.value = parseInt(qtyInput.value) - 1;">
+                            −
+                        </button>
+                        <input type="number"
+                               id="quantity"
+                               name="lineItems[{{ page.product.id }}][quantity]"
+                               value="1"
+                               min="1"
+                               max="{{ page.product.availableStock }}"
+                               class="quantity-input"
+                               style="width: 60px; height: 40px; border: 1px solid #D1D5DB; border-radius: 6px; text-align: center; font-weight: 600; font-family: 'Inter', sans-serif;"
+                               readonly>
+                        <button type="button"
+                                id="qty-increase"
+                                class="quantity-btn"
+                                style="width: 40px; height: 40px; border: 1px solid #D1D5DB; border-radius: 6px; background: white; font-weight: 600; cursor: pointer; transition: all 0.2s;"
+                                onclick="let qtyInput = document.getElementById('quantity'); if(qtyInput.value < {{ page.product.availableStock }}) qtyInput.value = parseInt(qtyInput.value) + 1;">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                {# Add to Cart Button #}
+                <button type="submit"
+                        class="add-to-cart-btn raven-btn-primary w-full py-4 rounded-lg text-gray-900 font-bold text-base flex items-center justify-center gap-2"
+                        style="background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25); position: relative; overflow: hidden; transition: all 0.2s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-5 h-5" fill="currentColor">
+                        <path d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/>
+                    </svg>
+                    In den Warenkorb
+                    <span class="btn-gloss" style="position: absolute; inset: 0; border-radius: 0.5rem; background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 35%, rgba(255,255,255,0.00) 60%); pointer-events: none;"></span>
+                </button>
+            </form>
+
+            {# Product Description #}
+            {% if page.product.translated.description %}
+            <div class="border-t border-gray-200 pt-6">
+                <h2 class="prod-title text-xl text-gray-900 mb-3" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700;">
+                    Beschreibung
+                </h2>
+                <div class="text-gray-700 leading-relaxed" style="font-family: 'Inter', sans-serif;">
+                    {{ page.product.translated.description|raw }}
+                </div>
+            </div>
+            {% endif %}
+
+            {# Additional Product Details #}
+            {% if page.product.manufacturer %}
+            <div class="border-t border-gray-200 pt-6 mt-6">
+                <h3 class="font-semibold text-gray-900 mb-2" style="font-family: 'Inter', sans-serif;">Hersteller</h3>
+                <p class="text-gray-700" style="font-family: 'Inter', sans-serif;">{{ page.product.manufacturer.translated.name }}</p>
+            </div>
+            {% endif %}
+
+            {# Product Number #}
+            {% if page.product.productNumber %}
+            <div class="mt-4">
+                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                    Artikelnummer: <span class="font-medium text-gray-700">{{ page.product.productNumber }}</span>
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .quantity-btn:hover {
+        background: #F3F4F6;
+        border-color: #9CA3AF;
+    }
+
+    .color-swatch:hover {
+        transform: scale(1.05);
+        border-color: #E9D68A !important;
+    }
+
+    .color-swatch.selected {
+        border-color: #F2C200 !important;
+        border-width: 3px;
+        box-shadow: 0 0 0 2px rgba(242, 194, 0, 0.2);
+    }
+
+    .image-swatch:hover {
+        transform: scale(1.05);
+        border-color: #E9D68A !important;
+    }
+
+    .image-swatch.selected {
+        border-color: #F2C200 !important;
+        border-width: 3px;
+        box-shadow: 0 0 0 2px rgba(242, 194, 0, 0.2);
+    }
+
+    .add-to-cart-btn:hover {
+        box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+    }
+
+    .product-main-image {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+</style>
+{% endblock %}
