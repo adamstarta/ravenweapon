@@ -14,7 +14,7 @@
                             <path d="M13 6h6v7h7v6h-7v7h-6v-7H6v-6h7V6z" fill="white"/>
                         </svg>
                     </span>
-                    <div>
+                    <div class="nav-text">
                         <div class="font-semibold text-gray-900">{{ "raven.footer.swissQuality"|trans|sw_sanitize|default('Schweizer Qualität') }}</div>
                         <div class="text-sm text-gray-600">{{ "raven.footer.swissQualityDesc"|trans|sw_sanitize|default('Produktion in Luzern') }}</div>
                     </div>
@@ -25,7 +25,7 @@
                     <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 text-white">
                         {% sw_icon 'tags' style { 'size': 'sm' } %}
                     </span>
-                    <div>
+                    <div class="nav-text">
                         <div class="font-semibold text-gray-900">{{ "raven.footer.bestPrices"|trans|sw_sanitize|default('Beste Preise') }}</div>
                         <div class="text-sm text-gray-600">{{ "raven.footer.bestPricesDesc"|trans|sw_sanitize|default('Direktverkauf = tiefe Preise') }}</div>
                     </div>
@@ -36,7 +36,7 @@
                     <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 text-white">
                         {% sw_icon 'package' style { 'size': 'sm' } %}
                     </span>
-                    <div>
+                    <div class="nav-text">
                         <div class="font-semibold text-gray-900">{{ "raven.footer.fastShipping"|trans|sw_sanitize|default('Versand heute') }}</div>
                         <div class="text-sm text-gray-600">{{ "raven.footer.fastShippingDesc"|trans|sw_sanitize|default('Mo–Fr, bis 19:20 Uhr bestellt') }}</div>
                     </div>
@@ -47,7 +47,7 @@
                     <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 text-white">
                         {% sw_icon 'phone' style { 'size': 'sm' } %}
                     </span>
-                    <div>
+                    <div class="nav-text">
                         <div class="font-semibold text-gray-900">{{ config('core.basicInformation.phone')|default('+41 79 356 19 86') }}</div>
                         <div class="text-sm text-gray-600">{{ "raven.footer.phoneDesc"|trans|sw_sanitize|default('frei, freundlich, kompetent') }}</div>
                     </div>
@@ -66,24 +66,25 @@
                     </span>
                     <div>
                         <div class="text-xl md:text-2xl font-semibold text-black raven-font-heading">Newsletter</div>
-                        <div class="text-black/80 text-sm">{{ "raven.newsletter.subtitle"|trans|sw_sanitize|default('Jetzt anmelden und profitieren') }}</div>
+                        <div class="nav-text text-black/80 text-sm">{{ "raven.newsletter.subtitle"|trans|sw_sanitize|default('Jetzt anmelden und profitieren') }}</div>
                     </div>
                 </div>
                 {% block layout_footer_newsletter %}
                     {% sw_include '@Storefront/storefront/layout/footer/footer-newsletter.html.twig' ignore missing %}
                 {% endblock %}
                 {# Fallback simple newsletter form #}
-                <div class="flex rounded-md overflow-hidden shadow-sm">
-                    <input type="email"
-                           id="newsletter-email-footer"
-                           placeholder="{{ "raven.newsletter.placeholder"|trans|sw_sanitize|default('Ihre E-Mail') }}"
-                           class="w-full md:w-[420px] px-4 py-2 text-gray-900 placeholder-gray-600 bg-white outline-none">
-                    <button type="button"
-                            onclick="window.location.href='/newsletter'"
-                            class="px-4 md:px-6 py-2 bg-black text-white font-semibold hover:bg-gray-800 transition-colors">
-                        {{ "raven.newsletter.subscribe"|trans|sw_sanitize|default('Abonnieren') }}
-                    </button>
-                </div>
+                <form class="w-full md:w-auto">
+                    <div class="flex rounded-md overflow-hidden shadow-sm">
+                        <input type="email"
+                               id="newsletter-email-footer"
+                               placeholder="{{ "raven.newsletter.placeholder"|trans|sw_sanitize|default('Ihre E-Mail') }}"
+                               class="nav-text w-full md:w-[420px] px-4 py-2 text-gray-900 placeholder-gray-600 bg-white outline-none">
+                        <button type="submit"
+                                class="nav-text px-4 md:px-6 py-2 bg-black text-white font-semibold hover:bg-gray-800 transition-colors">
+                            {{ "raven.newsletter.subscribe"|trans|sw_sanitize|default('Abonnieren') }}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -94,14 +95,14 @@
             {# Brand Column #}
             <div>
                 <h3 class="text-sm font-semibold text-gray-900 tracking-wide mb-3">{{ "raven.footer.brandTitle"|trans|sw_sanitize|default('DIE MARKE') }}</h3>
-                <p class="text-gray-700 text-sm">{{ config('core.basicInformation.shopName')|default('RAVEN WEAPON AG') }}</p>
-                <p class="text-gray-700 text-sm mt-2">{{ "raven.footer.brandDesc"|trans|sw_sanitize|default('Höchste Qualität') }}</p>
+                <p class="nav-text text-gray-700 text-sm">{{ config('core.basicInformation.shopName')|default('RAVEN WEAPON AG') }}</p>
+                <p class="nav-text text-gray-700 text-sm mt-2">{{ "raven.footer.brandDesc"|trans|sw_sanitize|default('Höchste Qualität') }}</p>
             </div>
 
             {# Company Column #}
             <div>
                 <h3 class="text-sm font-semibold text-gray-900 tracking-wide mb-3">{{ "raven.footer.companyTitle"|trans|sw_sanitize|default('DAS UNTERNEHMEN') }}</h3>
-                <ul class="text-sm text-gray-700 space-y-1">
+                <ul class="nav-text text-sm text-gray-700 space-y-1">
                     <li>{{ config('core.basicInformation.shopName')|default('Raven Weapon AG') }}</li>
                     <li>{{ config('core.basicInformation.address.street')|default('Sunnenbergstrasse 2') }}</li>
                     <li>{{ config('core.basicInformation.address.zipcode')|default('8633') }} {{ config('core.basicInformation.address.city')|default('Wolfhausen') }}</li>
@@ -113,7 +114,7 @@
             {# Useful Links Column #}
             <div>
                 <h3 class="text-sm font-semibold text-gray-900 tracking-wide mb-3">{{ "raven.footer.linksTitle"|trans|sw_sanitize|default('NÜTZLICHE LINKS') }}</h3>
-                <ul class="text-sm text-gray-700 space-y-2">
+                <ul class="nav-text text-sm text-gray-700 space-y-2">
                     {% for item in page.footer %}
                         <li><a href="{{ seoUrl('frontend.cms.page', { id: item.id }) }}" class="hover:text-gray-900">{{ item.translated.name }}</a></li>
                     {% endfor %}
@@ -125,7 +126,7 @@
             {# Categories Column #}
             <div>
                 <h3 class="text-sm font-semibold text-gray-900 tracking-wide mb-3">{{ "raven.footer.categoriesTitle"|trans|sw_sanitize|default('BELIEBTE KATEGORIEN') }}</h3>
-                <ul class="text-sm text-gray-700 space-y-2">
+                <ul class="nav-text text-sm text-gray-700 space-y-2">
                     {% for treeItem in page.header.navigation.tree %}
                         <li>
                             <a href="{{ seoUrl('frontend.navigation.page', { navigationId: treeItem.category.id }) }}" class="hover:text-gray-900">
@@ -159,7 +160,7 @@
 
     {# Copyright Bar #}
     <div class="border-t border-gray-200">
-        <div class="container py-6 text-sm text-gray-500 text-center">
+        <div class="nav-text container py-6 text-sm text-gray-500 text-center">
             &copy; {{ "now"|date("Y") }} {{ config('core.basicInformation.shopName')|default('RAVEN WEAPON AG') }}. {{ "footer.copyrightInfo"|trans|sw_sanitize|default('Alle Rechte vorbehalten.') }}
         </div>
     </div>
