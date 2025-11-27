@@ -1,0 +1,120 @@
+{% sw_extends '@Storefront/storefront/page/checkout/cart/index.html.twig' %}
+
+{% block page_checkout_cart %}
+<div class="raven-cart max-w-7xl mx-auto px-6 lg:px-24 py-8 md:py-12">
+    {# Cart Header #}
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2" style="font-family: 'Chakra Petch', sans-serif;">
+            Ihr Warenkorb
+        </h1>
+        {% if page.cart.lineItems.count > 0 %}
+        <div id="shipping-banner" class="text-sm md:text-base text-gray-700 md:text-right">
+            {% set freeShippingThreshold = 59 %}
+            {% set subtotal = page.cart.price.netPrice %}
+            {% set remaining = freeShippingThreshold - subtotal %}
+            {% if remaining > 0 %}
+                Nur {{ remaining|currency }} mehr, um kostenlosen Versand zu erhalten!
+                <a href="{{ path('frontend.home.page') }}" class="text-blue-600 hover:underline font-medium">Weiter einkaufen</a>
+            {% else %}
+                <span class="font-semibold text-green-700">Kostenloser Versand!</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    {% if page.cart.lineItems.count > 0 %}
+    {# Cart Table #}
+    <div class="border-t border-gray-200">
+        {# Header Row (Desktop only) #}
+        <div class="hidden md:grid grid-cols-3 gap-4 py-2 uppercase text-sm font-semibold text-gray-700">
+            <span>Produkt</span>
+            <span class="text-center">Anzahl</span>
+            <span class="text-right">Summe</span>
+        </div>
+
+        {# Cart Items #}
+        <div id="cart-rows">
+            {% for lineItem in page.cart.lineItems %}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center py-4 border-b border-gray-200">
+                {# Product Details #}
+                <div class="flex items-center md:items-start gap-4">
+                    <div class="w-20 h-20 md:w-24 md:h-24 bg-white border border-gray-200 rounded p-2 flex-shrink-0">
+                        {% if lineItem.cover %}
+                        <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" class="w-full h-full object-contain">
+                        {% else %}
+                        <img src="{{ asset('bundles/raventheme/assets/placeholder.png') }}" alt="{{ lineItem.label }}" class="w-full h-full object-contain">
+                        {% endif %}
+                    </div>
+                    <div>
+                        <p class="font-medium text-gray-900">{{ lineItem.label }}</p>
+                        <p class="text-sm text-gray-600">{{ lineItem.price.unitPrice|currency }}</p>
+                        {% if lineItem.payload.options %}
+                        <p class="text-sm text-gray-500">
+                            {% for option in lineItem.payload.options %}
+                                Variante: {{ option.group }}: {{ option.option }}
+                            {% endfor %}
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# Quantity Controls #}
+                <div class="flex justify-start md:justify-center items-center">
+                    <form action="{{ path('frontend.checkout.line-item.change-quantity', { id: lineItem.id }) }}" method="post" class="inline-flex border border-gray-300 rounded-md overflow-hidden">
+                        {{ sw_csrf('frontend.checkout.line-item.change-quantity') }}
+                        <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
+                        <button type="button" onclick="var input = this.nextElementSibling; if(input.value > 1) { input.value--; this.closest('form').submit(); }" class="px-3 py-1 text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Menge verringern">−</button>
+                        <input type="number" name="quantity" value="{{ lineItem.quantity }}" min="1" max="99" readonly class="w-12 text-center border-l border-r border-gray-300 py-1 focus:outline-none">
+                        <button type="button" onclick="var input = this.previousElementSibling; input.value++; this.closest('form').submit();" class="px-3 py-1 text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Menge erhöhen">+</button>
+                    </form>
+                </div>
+
+                {# Price and Remove #}
+                <div class="flex justify-between md:justify-end items-center">
+                    <span class="font-medium text-gray-900">{{ lineItem.price.totalPrice|currency }}</span>
+                    <form action="{{ path('frontend.checkout.line-item.delete', { id: lineItem.id }) }}" method="post" class="ml-4">
+                        {{ sw_csrf('frontend.checkout.line-item.delete') }}
+                        <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
+                        <button type="submit" class="text-red-500 hover:text-red-700" aria-label="Entfernen">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5">
+                                <path fill="currentColor" d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.12 5.71A1 1 0 005.7 7.13L10.59 12l-4.9 4.88a1 1 0 101.42 1.42L12 13.41l4.88 4.89a1 1 0 001.42-1.42L13.41 12l4.89-4.88a1 1 0 000-1.41z"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# Summary Section #}
+    <div class="mt-8 border-t border-gray-200 pt-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <div class="text-lg md:text-xl font-semibold text-gray-900 flex items-baseline gap-2 md:justify-end">
+                    <span>Zwischensumme</span>
+                    <span class="font-bold">{{ page.cart.price.totalPrice|currency }}</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-1 md:text-right">Inklusive Steuer. Versandkosten werden an der Kasse berechnet.</p>
+            </div>
+            <a href="{{ path('frontend.checkout.confirm.page') }}" class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-black shadow-md hover:brightness-95 transition-all" style="background: linear-gradient(to right, #F2B90D 12%, #F6CE55 88%);">
+                Zur Kasse
+            </a>
+        </div>
+    </div>
+
+    {% else %}
+    {# Empty Cart State #}
+    <div class="text-center py-16">
+        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+        </svg>
+        <p class="text-gray-700 text-lg font-medium">Ihr Warenkorb ist leer</p>
+        <p class="text-gray-500 text-sm mt-2">Fügen Sie Produkte hinzu, um fortzufahren</p>
+        <a href="{{ path('frontend.home.page') }}" class="mt-6 inline-flex items-center justify-center px-5 py-2.5 rounded-lg font-semibold text-black shadow-md hover:brightness-95 transition-all" style="background: linear-gradient(to right, #F2B90D 12%, #F6CE55 88%);">
+            Weiter einkaufen
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
