@@ -227,56 +227,30 @@
     </section>
 
     {# ========================================== #}
-    {# CATEGORIES SECTION #}
+    {# CATEGORIES SECTION - Raven Weapon Categories #}
     {# ========================================== #}
     <section class="bg-white py-12 md:py-16">
         <div class="container">
             <h2 class="raven-section-title mb-8">Kategorien</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {% for treeItem in page.header.navigation.tree|slice(0, 4) %}
-                <a href="{{ seoUrl('frontend.navigation.page', { navigationId: treeItem.category.id }) }}" class="raven-category-card">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {# Raven Weapons #}
+                <a href="{{ path('frontend.navigation.page', { navigationId: page.header.navigation.active.id }) }}" class="raven-category-card">
                     <span class="raven-category-icon">
                         {% sw_icon 'products' style { 'size': 'md' } %}
                     </span>
-                    <div class="raven-category-title">{{ treeItem.category.translated.name }}</div>
-                    <div class="raven-category-desc">{{ treeItem.category.translated.description|striptags|slice(0, 40) }}...</div>
+                    <div class="raven-category-title">Raven Weapons</div>
+                    <div class="raven-category-desc">Präzisionswaffen für jeden Einsatz - 5.56, 300 AAC, 7.62×39, 9mm, .22</div>
                     <span class="category-overlay"></span>
                 </a>
-                {% else %}
-                {# Fallback static categories #}
-                <a href="#" class="raven-category-card">
+                {# Raven Caliber Kit #}
+                <a href="{{ path('frontend.navigation.page', { navigationId: page.header.navigation.active.id }) }}" class="raven-category-card">
                     <span class="raven-category-icon">
-                        <i class="fa-solid fa-gun"></i>
+                        {% sw_icon 'products' style { 'size': 'md' } %}
                     </span>
-                    <div class="raven-category-title">Waffen</div>
-                    <div class="raven-category-desc">Präzisionswaffen für jeden Einsatz</div>
+                    <div class="raven-category-title">Raven Caliber Kit</div>
+                    <div class="raven-category-desc">Kaliber-Wechselkits für Ihr RAVEN System</div>
                     <span class="category-overlay"></span>
                 </a>
-                <a href="#" class="raven-category-card">
-                    <span class="raven-category-icon">
-                        <i class="fa-solid fa-bullseye"></i>
-                    </span>
-                    <div class="raven-category-title">Munition</div>
-                    <div class="raven-category-desc">Kaliber 9mm, .223, 7.62×39 & mehr</div>
-                    <span class="category-overlay"></span>
-                </a>
-                <a href="#" class="raven-category-card">
-                    <span class="raven-category-icon">
-                        <i class="fa-solid fa-crosshairs"></i>
-                    </span>
-                    <div class="raven-category-title">Waffenzubehör</div>
-                    <div class="raven-category-desc">Optiken, Magazine & Anbauteile</div>
-                    <span class="category-overlay"></span>
-                </a>
-                <a href="#" class="raven-category-card">
-                    <span class="raven-category-icon">
-                        <i class="fa-solid fa-vest"></i>
-                    </span>
-                    <div class="raven-category-title">Ausrüstung</div>
-                    <div class="raven-category-desc">Taktisches Zubehör & Schutzausrüstung</div>
-                    <span class="category-overlay"></span>
-                </a>
-                {% endfor %}
             </div>
         </div>
     </section>
