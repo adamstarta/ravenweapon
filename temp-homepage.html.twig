@@ -64,20 +64,8 @@
                 </a>
             </div>
 
-            {# Try to fetch products from Shopware DB first #}
-            {% if page.cmsPage and page.cmsPage.sections %}
-                {# If CMS configured, show it #}
-                {% for section in page.cmsPage.sections %}
-                    {% for block in section.blocks %}
-                        {% if block.type == 'product-slider' or block.type == 'product-listing' %}
-                            {% sw_include '@Storefront/storefront/element/cms-element-' ~ block.slots.first.type ~ '.html.twig' with {
-                                element: block.slots.first
-                            } %}
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-            {% else %}
-                {# FALLBACK: Static products matching design reference #}
+            {# STATIC FALLBACK PRODUCTS - Always show these until dynamic products are configured #}
+            {# To enable dynamic products: Configure a Product Slider in Shopware Admin CMS #}
                 <div class="product-grid">
                     {# 300 AAC RAVEN #}
                     <article class="product-card group">
@@ -235,7 +223,6 @@
                         </div>
                     </article>
                 </div>
-            {% endif %}
         </div>
     </section>
 
