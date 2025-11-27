@@ -60,8 +60,7 @@
 
                 {# Quantity Controls #}
                 <div class="flex justify-start md:justify-center items-center">
-                    <form action="{{ path('frontend.checkout.line-item.change-quantity', { id: lineItem.id }) }}" method="post" class="inline-flex border border-gray-300 rounded-md overflow-hidden">
-                        {{ sw_csrf('frontend.checkout.line-item.change-quantity') }}
+                    <form action="{{ path('frontend.checkout.line-item.change-quantity', { id: lineItem.id }) }}" method="post" class="inline-flex border border-gray-300 rounded-md overflow-hidden" data-form-csrf-handler="true">
                         <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
                         <button type="button" onclick="var input = this.nextElementSibling; if(input.value > 1) { input.value--; this.closest('form').submit(); }" class="px-3 py-1 text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Menge verringern">−</button>
                         <input type="number" name="quantity" value="{{ lineItem.quantity }}" min="1" max="99" readonly class="w-12 text-center border-l border-r border-gray-300 py-1 focus:outline-none">
@@ -72,8 +71,7 @@
                 {# Price and Remove #}
                 <div class="flex justify-between md:justify-end items-center">
                     <span class="font-medium text-gray-900">{{ lineItem.price.totalPrice|currency }}</span>
-                    <form action="{{ path('frontend.checkout.line-item.delete', { id: lineItem.id }) }}" method="post" class="ml-4">
-                        {{ sw_csrf('frontend.checkout.line-item.delete') }}
+                    <form action="{{ path('frontend.checkout.line-item.delete', { id: lineItem.id }) }}" method="post" class="ml-4" data-form-csrf-handler="true">
                         <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
                         <button type="submit" class="text-red-500 hover:text-red-700" aria-label="Entfernen">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5">
