@@ -1,0 +1,227 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_head %}
+    {{ parent() }}
+    <style>
+        /* Hide manufacturer name in product cards */
+        .product-info a strong,
+        .card-body a strong,
+        .cms-element-product-listing a strong {
+            display: none !important;
+        }
+        /* Hide flash messages */
+        .alert-content,
+        .alert.alert-info,
+        .alert.alert-success {
+            display: none !important;
+        }
+    </style>
+{% endblock %}
+
+{% block base_body_script %}
+    {# Hide manufacturer names in product cards #}
+    <style>
+        .product-info a strong,
+        .card-body a strong,
+        .cms-element-product-listing a strong {
+            display: none !important;
+        }
+        .alert-content,
+        .alert.alert-info,
+        .alert.alert-success {
+            display: none !important;
+        }
+    </style>
+
+    {# Raven Cart AJAX handler - MUST load BEFORE Shopware's scripts #}
+    <script>
+    (function() {
+        'use strict';
+
+        function refreshOffcanvasCart() {
+            fetch('/checkout/offcanvas', {
+                method: 'GET',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(function(response) { return response.text(); })
+            .then(function(html) {
+                var offcanvas = document.querySelector('.offcanvas.show .offcanvas-body');
+                if (offcanvas) {
+                    offcanvas.innerHTML = html;
+                }
+            });
+        }
+
+        function submitCartFormAjax(form) {
+            var formData = new FormData(form);
+            var action = form.getAttribute('action');
+            fetch(action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(function() { refreshOffcanvasCart(); })
+            .catch(function() { refreshOffcanvasCart(); });
+        }
+
+        // Intercept ALL form submissions using capture phase
+        document.addEventListener('submit', function(e) {
+            var form = e.target;
+            var action = form.getAttribute('action');
+            if (!action) return;
+
+            if (action.indexOf('checkout/line-item/delete') !== -1 ||
+                action.indexOf('checkout/line-item/change-quantity') !== -1) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                submitCartFormAjax(form);
+                return false;
+            }
+
+            if (action.indexOf('checkout/line-item/add') !== -1) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var formData = new FormData(form);
+                fetch(action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                }).then(function() {
+                    var cartBtn = document.querySelector('[data-offcanvas-cart]');
+                    if (cartBtn) cartBtn.click();
+                });
+                return false;
+            }
+        }, true);
+
+        // Handle quantity and delete button clicks
+        document.addEventListener('click', function(e) {
+            var minusBtn = e.target.closest('.js-btn-minus');
+            if (minusBtn) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var form = minusBtn.closest('form');
+                var input = form ? form.querySelector('input[name="quantity"]') : null;
+                if (input) {
+                    var current = parseInt(input.value) || 1;
+                    if (current > 1) {
+                        input.value = current - 1;
+                        submitCartFormAjax(form);
+                    }
+                }
+                return;
+            }
+
+            var plusBtn = e.target.closest('.js-btn-plus');
+            if (plusBtn) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var form = plusBtn.closest('form');
+                var input = form ? form.querySelector('input[name="quantity"]') : null;
+                if (input) {
+                    var current = parseInt(input.value) || 1;
+                    input.value = current + 1;
+                    submitCartFormAjax(form);
+                }
+                return;
+            }
+
+            var removeBtn = e.target.closest('.raven-item-remove');
+            if (removeBtn) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var form = removeBtn.closest('form');
+                if (form) submitCartFormAjax(form);
+                return;
+            }
+        }, true);
+
+        window.ravenRefreshCart = refreshOffcanvasCart;
+        console.log('Raven Cart AJAX handler loaded FIRST');
+    })();
+    </script>
+    {{ parent() }}
+{% endblock %}
+
+{% block base_head_DISABLED %}
+    {{ parent() }}
+
+    <script>
+    // Raven Theme - Off-Canvas Cart Handler
+    (function() {
+        function ravenOpenCart() {
+            fetch('/checkout/offcanvas', {
+                method: 'GET',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(function(response) { return response.text(); })
+            .then(function(html) {
+                var offcanvas = document.getElementById('raven-offcanvas-cart');
+                if (!offcanvas) {
+                    offcanvas = document.createElement('div');
+                    offcanvas.id = 'raven-offcanvas-cart';
+                    offcanvas.className = 'offcanvas offcanvas-end';
+                    offcanvas.style.cssText = 'position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;z-index:1050;background:#fff;transform:translateX(100%);transition:transform 0.3s ease;';
+                    document.body.appendChild(offcanvas);
+                }
+                offcanvas.innerHTML = '<div class="offcanvas-body p-0">' + html + '</div>';
+
+                // Show offcanvas
+                offcanvas.style.transform = 'translateX(0)';
+                offcanvas.classList.add('show');
+
+                // Create backdrop
+                var backdrop = document.getElementById('raven-offcanvas-backdrop');
+                if (!backdrop) {
+                    backdrop = document.createElement('div');
+                    backdrop.id = 'raven-offcanvas-backdrop';
+                    backdrop.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.15s;';
+                    backdrop.onclick = ravenCloseCart;
+                    document.body.appendChild(backdrop);
+                }
+                setTimeout(function() { backdrop.style.opacity = '1'; }, 10);
+                document.body.style.overflow = 'hidden';
+
+                // Attach close handlers
+                offcanvas.querySelectorAll('[data-offcanvas-close], .js-offcanvas-close, .raven-cart-close').forEach(function(btn) {
+                    btn.onclick = ravenCloseCart;
+                });
+
+                // Initialize Shopware plugins
+                if (window.PluginManager) {
+                    window.PluginManager.initializePlugins();
+                }
+            });
+        }
+
+        function ravenCloseCart() {
+            var offcanvas = document.getElementById('raven-offcanvas-cart');
+            var backdrop = document.getElementById('raven-offcanvas-backdrop');
+            if (offcanvas) {
+                offcanvas.style.transform = 'translateX(100%)';
+                offcanvas.classList.remove('show');
+            }
+            if (backdrop) {
+                backdrop.style.opacity = '0';
+                setTimeout(function() { backdrop.remove(); }, 150);
+            }
+            document.body.style.overflow = '';
+        }
+
+        // Expose to global scope
+        window.ravenOpenCart = ravenOpenCart;
+        window.ravenCloseCart = ravenCloseCart;
+
+        // Also listen for add-to-cart events
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle cart button clicks
+            document.querySelectorAll('[data-offcanvas-cart]').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    ravenOpenCart();
+                });
+            });
+        });
+    })();
+    </script>
+{% endblock %}

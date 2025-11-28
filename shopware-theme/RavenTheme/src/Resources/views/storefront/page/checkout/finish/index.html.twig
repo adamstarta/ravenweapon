@@ -1,0 +1,353 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/index.html.twig' %}
+
+{% block base_header %}
+    {# Custom minimal header for checkout #}
+    <header class="raven-checkout-header">
+        <div class="checkout-header-inner">
+            <a href="{{ path('frontend.home.page') }}" class="checkout-logo">
+                <div style="background-image:url('{{ asset('bundles/raventheme/assets/raven-logo-bold (1)-stroke-and-fill.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:40px;width:180px;"></div>
+            </a>
+            <div class="checkout-contact">
+                <span>Fragen? <a href="tel:+41793561986">+41 79 356 19 86</a></span>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block base_footer %}
+    <footer class="raven-checkout-footer">
+        <div class="checkout-footer-inner">
+            <div class="footer-trust">
+                <span class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    SSL-verschluesselt
+                </span>
+                <span class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Sicherer Checkout
+                </span>
+            </div>
+            <p class="footer-copyright">© {{ 'now'|date('Y') }} Raven Weapon AG</p>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block page_checkout %}
+<style>
+/* Raven Checkout Finish Styles */
+body {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+/* Header */
+.raven-checkout-header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+}
+
+.checkout-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkout-contact {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.checkout-contact a {
+    color: #F2B90D;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.checkout-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Progress Steps */
+.checkout-progress {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.progress-step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem;
+}
+
+.step-number {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 50% !important;
+    background: #e5e7eb !important;
+    color: #6b7280 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+}
+
+.progress-step.active .step-number {
+    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 100%) !important;
+    color: #1f2937 !important;
+    box-shadow: 0 4px 12px rgba(242, 185, 13, 0.35) !important;
+}
+
+.progress-step.completed .step-number {
+    background: #22c55e !important;
+    color: white !important;
+}
+
+.step-label {
+    display: block !important;
+    font-size: 0.8125rem !important;
+    color: #6b7280 !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+}
+
+.progress-step.active .step-label,
+.progress-step.completed .step-label {
+    color: #111827 !important;
+    font-weight: 600 !important;
+}
+
+.progress-line {
+    flex: 1 !important;
+    height: 2px !important;
+    background: #e5e7eb !important;
+    margin: 0 1rem !important;
+    max-width: 80px;
+    margin-bottom: 1.75rem !important;
+}
+
+.progress-line.completed {
+    background: #22c55e !important;
+}
+
+/* Success Message */
+.raven-success-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.raven-success-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+}
+
+.raven-success-icon svg {
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.raven-success-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.75rem;
+}
+
+.raven-success-subtitle {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.raven-order-number {
+    display: inline-block;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.raven-order-number-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.raven-order-number-value {
+    font-family: 'Chakra Petch', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Order Summary Card */
+.raven-order-summary {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+.raven-order-summary h3 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+/* Continue Shopping Button */
+.raven-continue-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 50%, #F2B90D 100%) !important;
+    background-size: 200% 100% !important;
+    color: #1f2937 !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 14px rgba(242, 185, 13, 0.35) !important;
+    transition: all 0.3s ease !important;
+}
+
+.raven-continue-btn:hover {
+    background-position: 100% 0 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(242, 185, 13, 0.45) !important;
+    color: #1f2937 !important;
+}
+
+/* Footer */
+.raven-checkout-footer {
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+.checkout-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.footer-trust {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+}
+
+.trust-badge svg {
+    color: #9ca3af;
+}
+
+.footer-copyright {
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    margin: 0;
+}
+
+/* Override default styles */
+.finish-header {
+    display: none !important;
+}
+
+.checkout-finish-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+</style>
+
+{# Progress Steps #}
+<div class="checkout-progress">
+    <div class="progress-step completed">
+        <span class="step-number">&#10003;</span>
+        <span class="step-label">Anmeldung</span>
+    </div>
+    <div class="progress-line completed"></div>
+    <div class="progress-step completed">
+        <span class="step-number">&#10003;</span>
+        <span class="step-label">Zahlung</span>
+    </div>
+    <div class="progress-line completed"></div>
+    <div class="progress-step active">
+        <span class="step-number">3</span>
+        <span class="step-label">Bestaetigung</span>
+    </div>
+</div>
+
+<div class="raven-success-container">
+    {# Success Icon #}
+    <div class="raven-success-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+    </div>
+
+    {# Success Message #}
+    <h1 class="raven-success-title">Vielen Dank fuer Ihre Bestellung!</h1>
+    <p class="raven-success-subtitle">Wir haben Ihre Bestellung erhalten und werden sie schnellstmoeglich bearbeiten.</p>
+
+    {# Order Number #}
+    {% if page.order.orderNumber is defined %}
+    <div class="raven-order-number">
+        <div class="raven-order-number-label">Bestellnummer</div>
+        <div class="raven-order-number-value">{{ page.order.orderNumber }}</div>
+    </div>
+    {% endif %}
+
+    {# Continue Shopping Button #}
+    <a href="{{ path('frontend.home.page') }}" class="raven-continue-btn">
+        <span>Weiter einkaufen</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+    </a>
+</div>
+
+{{ parent() }}
+{% endblock %}
+
+{% block base_body_classes %}{{ parent() }} raven-checkout-finish{% endblock %}

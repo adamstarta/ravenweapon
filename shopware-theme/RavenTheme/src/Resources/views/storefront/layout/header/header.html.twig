@@ -1,35 +1,585 @@
 {% sw_extends '@Storefront/storefront/layout/header/header.html.twig' %}
 
+{% block layout_header_actions_cart %}
+    {# Cart Button - Opens Off-Canvas Cart Sidebar using Shopware's built-in plugin #}
+    <button type="button"
+            class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+            data-off-canvas-cart="true"
+            data-url="{{ path('frontend.cart.offcanvas') }}"
+            aria-label="Warenkorb"
+            title="Warenkorb">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        {% set cartCount = page.cart.lineItems.count|default(0) %}
+        {% if cartCount > 0 %}
+            <span class="raven-cart-badge absolute -top-1.5 -right-1.5 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 text-black text-[10px] leading-none w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md">
+                {{ cartCount }}
+            </span>
+        {% endif %}
+    </button>
+{% endblock %}
+
 {% block layout_header %}
-<header class="raven-header">
+<style>
+    /* Hide manufacturer name in product cards */
+    .product-info a strong,
+    .card-body a strong,
+    .cms-element-product-listing a strong,
+    a[title*="Lockhart"] strong,
+    a[href*="RAVEN"] strong {
+        display: none !important;
+    }
+
+    /* Make header full width - override Shopware's container constraints */
+    .header-main,
+    header.header-main,
+    .header-row,
+    .header-main > .container,
+    .header-main .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Remove bottom border/shadow from header-main if any */
+    .header-main {
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Header Animations & Styles */
+    .raven-header {
+        font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    }
+    .raven-header a, .raven-header button {
+        transition: all 0.2s ease;
+    }
+    .raven-nav-link {
+        position: relative;
+        transition: color 0.2s ease;
+    }
+    .raven-nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, #F2B90D, #D4A847);
+        transition: width 0.3s ease;
+    }
+    .raven-nav-link:hover::after, .raven-nav-link.active::after {
+        width: 100%;
+    }
+    .raven-nav-link:hover {
+        color: #111827 !important;
+    }
+    .raven-icon-btn {
+        transition: all 0.2s ease;
+    }
+    .raven-icon-btn:hover {
+        background: #f3f4f6;
+        border-color: #d1d5db;
+        transform: translateY(-1px);
+    }
+    .raven-icon-btn:hover svg {
+        color: #111827;
+    }
+    .raven-search-input {
+        transition: all 0.2s ease;
+    }
+    .raven-search-input:focus {
+        background: rgba(120,120,128,0.12);
+        box-shadow: 0 0 0 3px rgba(212, 168, 71, 0.2);
+    }
+    .raven-logo {
+        transition: opacity 0.2s ease;
+    }
+    .raven-logo:hover {
+        opacity: 0.85;
+    }
+    .raven-cart-badge {
+        animation: pulse-badge 2s infinite;
+    }
+    @keyframes pulse-badge {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+    /* Fix search icon display */
+    .raven-search-form button[type="submit"] svg,
+    .raven-search-form button[type="submit"] img {
+        width: 16px !important;
+        height: 16px !important;
+        display: block !important;
+    }
+    /* Hide Shopware's default search suggest button that appears on right */
+    .header-search-btn,
+    .search-suggest-container .btn {
+        display: none !important;
+    }
+
+    /* Account dropdown menu styles */
+    .raven-account-menu a:hover {
+        background: #f9fafb !important;
+    }
+    .raven-account-menu a[href*="logout"]:hover {
+        background: #fef2f2 !important;
+    }
+    .raven-account-menu.show {
+        display: block !important;
+        animation: fadeInDown 0.15s ease;
+    }
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script>
+(function() {
+    'use strict';
+
+    // Update cart badge count in navbar
+    function updateCartBadge() {
+        fetch('/checkout/offcanvas', {
+            method: 'GET',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+            var count = 0;
+
+            // Try to find the count from the raven-cart-count span
+            var countMatch = html.match(/class="raven-cart-count"[^>]*>(\d+)</);
+            if (countMatch) {
+                count = parseInt(countMatch[1]);
+            } else {
+                // Fallback: count cart items by looking for js-cart-item class
+                var itemMatches = html.match(/class="[^"]*js-cart-item[^"]*"/g);
+                if (itemMatches) {
+                    count = itemMatches.length;
+                }
+            }
+
+            console.log('Cart badge update: ' + count + ' items');
+
+            // Update existing badges or create new ones
+            document.querySelectorAll('.header-cart-btn').forEach(function(btn) {
+                var badge = btn.querySelector('.raven-cart-badge');
+                if (count > 0) {
+                    if (!badge) {
+                        badge = document.createElement('span');
+                        badge.className = 'raven-cart-badge';
+                        badge.style.cssText = 'position:absolute;top:-6px;right:-6px;background:linear-gradient(to right,#facc15,#f59e0b,#facc15);color:#000;font-size:10px;line-height:1;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,0.2);animation:pulse-badge 2s infinite;';
+                        btn.appendChild(badge);
+                    }
+                    badge.textContent = count;
+                    badge.style.display = 'flex';
+                } else if (badge) {
+                    badge.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // Refresh cart content in any open offcanvas
+    function refreshOffcanvasCart() {
+        fetch('/checkout/offcanvas', {
+            method: 'GET',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function(response) { return response.text(); })
+        .then(function(html) {
+            var offcanvas = document.querySelector('.offcanvas.show .offcanvas-body');
+            if (offcanvas) {
+                offcanvas.innerHTML = html;
+            }
+            var ravenOffcanvas = document.getElementById('raven-offcanvas-cart');
+            if (ravenOffcanvas) {
+                ravenOffcanvas.innerHTML = '<div class="offcanvas-body p-0">' + html + '</div>';
+            }
+            // Update badge after refresh
+            updateCartBadge();
+        });
+    }
+
+    // Submit form via AJAX and refresh cart
+    function submitCartFormAjax(form) {
+        var formData = new FormData(form);
+        var action = form.getAttribute('action');
+        fetch(action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function() { refreshOffcanvasCart(); })
+        .catch(function() { refreshOffcanvasCart(); });
+    }
+
+    // Open cart offcanvas
+    function openOffcanvasCart() {
+        fetch('/checkout/offcanvas', {
+            method: 'GET',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function(r) { return r.text(); })
+        .then(function(h) {
+            var o = document.getElementById('raven-offcanvas-cart');
+            if (!o) {
+                o = document.createElement('div');
+                o.id = 'raven-offcanvas-cart';
+                o.style.cssText = 'position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;z-index:1050;background:#fff;transform:translateX(100%);transition:transform 0.3s ease;box-shadow:-4px 0 15px rgba(0,0,0,0.1);';
+                document.body.appendChild(o);
+            }
+            o.innerHTML = '<div class="offcanvas-body p-0">' + h + '</div>';
+            o.style.transform = 'translateX(0)';
+            o.classList.add('show');
+            var b = document.getElementById('raven-offcanvas-backdrop');
+            if (!b) {
+                b = document.createElement('div');
+                b.id = 'raven-offcanvas-backdrop';
+                b.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.15s;';
+                b.onclick = closeOffcanvasCart;
+                document.body.appendChild(b);
+            }
+            setTimeout(function() { b.style.opacity = '1'; }, 10);
+            document.body.style.overflow = 'hidden';
+            o.querySelectorAll('[data-offcanvas-close],.js-offcanvas-close,.raven-cart-close').forEach(function(x) {
+                x.onclick = closeOffcanvasCart;
+            });
+            if (window.PluginManager) window.PluginManager.initializePlugins();
+        });
+    }
+
+    // Close cart offcanvas
+    function closeOffcanvasCart() {
+        var o = document.getElementById('raven-offcanvas-cart');
+        var b = document.getElementById('raven-offcanvas-backdrop');
+        if (o) {
+            o.style.transform = 'translateX(100%)';
+            o.classList.remove('show');
+        }
+        if (b) {
+            b.style.opacity = '0';
+            setTimeout(function() { b.remove(); }, 150);
+        }
+        document.body.style.overflow = '';
+    }
+
+    // Intercept ALL form submissions using capture phase
+    document.addEventListener('submit', function(e) {
+        var form = e.target;
+        var action = form.getAttribute('action');
+        if (!action) return;
+
+        if (action.indexOf('checkout/line-item/delete') !== -1 ||
+            action.indexOf('checkout/line-item/change-quantity') !== -1) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            submitCartFormAjax(form);
+            return false;
+        }
+
+        if (action.indexOf('checkout/line-item/add') !== -1) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var formData = new FormData(form);
+            fetch(action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            }).then(function() {
+                updateCartBadge();
+                openOffcanvasCart();
+            });
+            return false;
+        }
+    }, true);
+
+    // Handle quantity and delete button clicks
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('[data-offcanvas-cart]')) {
+            e.preventDefault();
+            openOffcanvasCart();
+            return;
+        }
+
+        var minusBtn = e.target.closest('.js-btn-minus, [data-quantity-minus]');
+        if (minusBtn) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var form = minusBtn.closest('form');
+            var input = form ? form.querySelector('input[name="quantity"]') : null;
+            if (input) {
+                var current = parseInt(input.value) || 1;
+                if (current > 1) {
+                    input.value = current - 1;
+                    submitCartFormAjax(form);
+                }
+            }
+            return;
+        }
+
+        var plusBtn = e.target.closest('.js-btn-plus, [data-quantity-plus]');
+        if (plusBtn) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var form = plusBtn.closest('form');
+            var input = form ? form.querySelector('input[name="quantity"]') : null;
+            if (input) {
+                var current = parseInt(input.value) || 1;
+                input.value = current + 1;
+                submitCartFormAjax(form);
+            }
+            return;
+        }
+
+        var removeBtn = e.target.closest('.raven-item-remove, [data-remove-item]');
+        if (removeBtn) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var form = removeBtn.closest('form');
+            if (form) submitCartFormAjax(form);
+            return;
+        }
+    }, true);
+
+    // Expose to global scope
+    window.ravenOpenCart = openOffcanvasCart;
+    window.ravenCloseCart = closeOffcanvasCart;
+    window.ravenRefreshCart = refreshOffcanvasCart;
+    window.ravenUpdateBadge = updateCartBadge;
+
+    // Update cart badge on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+    } else {
+        updateCartBadge();
+    }
+
+    // Strip manufacturer name from product titles
+    function stripManufacturerFromTitles() {
+        var manufacturers = ['Lockhart Tactical'];
+        document.querySelectorAll('h1, .product-detail-name, .product-name').forEach(function(el) {
+            var text = el.textContent || '';
+            manufacturers.forEach(function(mfr) {
+                if (text.indexOf(mfr) === 0) {
+                    el.textContent = text.substring(mfr.length).trim();
+                }
+            });
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', stripManufacturerFromTitles);
+    } else {
+        stripManufacturerFromTitles();
+    }
+
+    // Inject CSS to hide manufacturer names in product cards - run immediately
+    (function() {
+        var style = document.createElement('style');
+        style.id = 'raven-hide-manufacturer-css';
+        style.textContent = '.product-info a strong, .card-body a strong, .cms-element-product-listing a strong { display: none !important; }';
+        (document.head || document.documentElement).appendChild(style);
+    })();
+
+    // Check login state and update dropdown menus
+    function checkLoginState() {
+        fetch('/account', {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function(response) {
+            // If we get redirected to login page, user is not logged in
+            if (response.url.indexOf('/account/login') !== -1 || response.url.indexOf('/account/register') !== -1) {
+                updateAccountMenus(false, null);
+            } else {
+                return response.text();
+            }
+        })
+        .then(function(html) {
+            if (!html) return;
+            // Try to extract customer name from the account page HTML
+            var nameMatch = html.match(/Willkommen[^<]*<\/p>\s*<h3[^>]*>([^<]+)</i);
+            if (nameMatch) {
+                updateAccountMenus(true, nameMatch[1].trim());
+            } else {
+                // Alternative: look for user-name class
+                var altMatch = html.match(/class="user-name"[^>]*>([^<]+)</);
+                if (altMatch) {
+                    updateAccountMenus(true, altMatch[1].trim());
+                } else {
+                    // Check if we're on account page (not redirected to login)
+                    if (html.indexOf('Übersicht') !== -1 || html.indexOf('Mein Profil') !== -1) {
+                        updateAccountMenus(true, 'Kunde');
+                    } else {
+                        updateAccountMenus(false, null);
+                    }
+                }
+            }
+        })
+        .catch(function() {
+            // On error, assume not logged in
+            updateAccountMenus(false, null);
+        });
+    }
+
+    function updateAccountMenus(isLoggedIn, customerName) {
+        document.querySelectorAll('.raven-account-menu').forEach(function(menu) {
+            var loggedInMenu = menu.querySelector('.raven-logged-in-menu');
+            var guestMenu = menu.querySelector('.raven-guest-menu');
+            var nameEl = menu.querySelector('.raven-customer-name');
+
+            if (isLoggedIn) {
+                if (loggedInMenu) loggedInMenu.style.display = 'block';
+                if (guestMenu) guestMenu.style.display = 'none';
+                if (nameEl && customerName) nameEl.textContent = customerName;
+            } else {
+                if (loggedInMenu) loggedInMenu.style.display = 'none';
+                if (guestMenu) guestMenu.style.display = 'block';
+            }
+        });
+    }
+
+    // Account dropdown toggle
+    function initAccountDropdown() {
+        document.querySelectorAll('.raven-account-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var dropdown = btn.closest('.raven-account-dropdown');
+                var menu = dropdown ? dropdown.querySelector('.raven-account-menu') : null;
+                if (menu) {
+                    // Close other open dropdowns
+                    document.querySelectorAll('.raven-account-menu.show').forEach(function(m) {
+                        if (m !== menu) m.classList.remove('show');
+                    });
+                    // Toggle this dropdown
+                    menu.classList.toggle('show');
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.raven-account-dropdown')) {
+                document.querySelectorAll('.raven-account-menu.show').forEach(function(m) {
+                    m.classList.remove('show');
+                });
+            }
+        });
+
+        // Check login state on page load
+        checkLoginState();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAccountDropdown);
+    } else {
+        initAccountDropdown();
+    }
+
+    console.log('Raven Cart AJAX handler loaded with custom offcanvas');
+})();
+</script>
+
+<header class="raven-header" style="width: 100%;">
     {# Mobile Header #}
-    <div class="raven-header-mobile md:hidden bg-white relative z-50">
-        <div class="max-w-7xl mx-auto px-6 lg:px-24 py-[10px]">
-            <div class="flex items-center justify-between h-[52px]">
-                <div class="flex items-center gap-3">
-                    <a href="{{ path('frontend.home.page') }}" class="inline-flex items-center h-10 w-[182px]" aria-label="{{ "header.logoLink"|trans|sw_sanitize }}">
-                        {% if config('core.basicInformation.shopName') %}
-                            <img src="{{ asset('bundles/raventheme/assets/logo.svg') }}" alt="{{ config('core.basicInformation.shopName') }}" class="h-10">
-                        {% endif %}
+    <div class="raven-header-mobile md:hidden bg-white relative z-50" style="width: 100%;">
+        <div style="width: 100%; padding: 12px 24px;">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="{{ path('frontend.home.page') }}" class="raven-logo inline-flex items-center" aria-label="Raven Weapon home">
+                        <div style="background-image:url('{{ asset('bundles/raventheme/assets/raven-logo-bold (1)-stroke-and-fill.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:36px;width:160px;"></div>
                     </a>
                 </div>
-                <div class="flex items-center gap-2">
-                    {# Account Icon Mobile #}
-                    <a href="{{ path('frontend.account.login.page') }}" class="relative inline-flex items-center justify-center h-[38px] w-[38px] rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300" aria-label="{{ "account.overviewLink"|trans|sw_sanitize }}">
-                        {% sw_icon 'avatar' style { 'size': 'sm' } %}
-                    </a>
-                    {# Cart Button Mobile #}
-                    <a href="{{ path('frontend.checkout.cart.page') }}" class="raven-cart-btn relative inline-flex items-center justify-center h-[38px] w-[38px] rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300" aria-label="{{ "checkout.cartTitle"|trans|sw_sanitize }}">
-                        {% sw_icon 'bag' style { 'size': 'sm' } %}
+                <div class="flex items-center gap-3">
+                    {# Account Icon Mobile - With Dropdown #}
+                    <div class="raven-account-dropdown" style="position: relative;">
+                        <button type="button"
+                                class="raven-icon-btn raven-account-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                                aria-label="Mein Konto">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <circle cx="12" cy="8" r="4"/>
+                                <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
+                            </svg>
+                        </button>
+                        {# Mobile Dropdown Menu - Will be dynamically updated by JS #}
+                        <div class="raven-account-menu" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 8px; min-width: 180px; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #e5e7eb; overflow: hidden; z-index: 1000;">
+                            {# Logged In Menu - hidden by default, shown via JS #}
+                            <div class="raven-logged-in-menu" style="display: none;">
+                                <div style="padding: 12px 16px; border-bottom: 1px solid #f3f4f6;">
+                                    <p style="font-size: 12px; color: #6b7280; margin: 0;">Angemeldet als</p>
+                                    <p class="raven-customer-name" style="font-size: 14px; font-weight: 600; color: #111827; margin: 4px 0 0 0;"></p>
+                                </div>
+                                <a href="{{ path('frontend.account.home.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/></svg>
+                                    Mein Konto
+                                </a>
+                                <a href="{{ path('frontend.account.order.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+                                    Bestellungen
+                                </a>
+                                <div style="border-top: 1px solid #f3f4f6;">
+                                    <a href="{{ path('frontend.account.logout.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #dc2626; font-size: 14px; text-decoration: none;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                        Abmelden
+                                    </a>
+                                </div>
+                            </div>
+                            {# Not Logged In Menu - shown by default #}
+                            <div class="raven-guest-menu">
+                                <a href="{{ path('frontend.account.login.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                                    Anmelden
+                                </a>
+                                <a href="{{ path('frontend.account.register.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                                    Registrieren
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {# Cart Button Mobile - Opens Off-Canvas Cart Sidebar #}
+                    <button type="button"
+                            class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                            data-off-canvas-cart="true"
+                            data-url="{{ path('frontend.cart.offcanvas') }}"
+                            aria-label="Warenkorb">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
                         {% if page.cart.lineItems.count > 0 %}
-                            <span class="cart-count absolute -top-2 -right-2 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 text-black text-[10px] leading-none w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-sm">
+                            <span class="raven-cart-badge absolute -top-1.5 -right-1.5 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 text-black text-[10px] leading-none w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md">
                                 {{ page.cart.lineItems.count }}
                             </span>
                         {% endif %}
-                    </a>
+                    </button>
                     {# Mobile Menu Toggle #}
-                    <button type="button" class="raven-mobile-toggle md:hidden inline-flex items-center justify-center h-[38px] w-[38px] rounded-md text-gray-600 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300" data-offcanvas-menu-toggle="true" aria-label="{{ "general.menuLink"|trans|sw_sanitize }}">
-                        {% sw_icon 'stack' style { 'size': 'md' } %}
+                    <button type="button"
+                            class="raven-icon-btn md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                            data-offcanvas-menu-toggle="true"
+                            aria-label="Menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <line x1="3" y1="12" x2="21" y2="12"/>
+                            <line x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -37,96 +587,258 @@
     </div>
 
     {# Desktop Header #}
-    <div class="raven-header-desktop hidden md:block bg-white border-b border-gray-200 pt-3">
-        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+    <div class="raven-header-desktop hidden md:block bg-white" style="width: 100%; border-bottom: 1px solid #e5e7eb;">
+        <div style="width: 100%; max-width: 100%; padding-left: 48px; padding-right: 48px;">
             {# Top Row: Logo, Search, Account, Cart #}
-            <div class="flex items-center justify-between h-[52px] py-[10px]">
+            <div class="flex items-center justify-between h-16 py-2">
                 <div class="flex items-center">
-                    <a href="{{ path('frontend.home.page') }}" class="inline-flex items-center h-10 w-[222px]" aria-label="{{ "header.logoLink"|trans|sw_sanitize }}">
-                        {% if config('core.basicInformation.shopName') %}
-                            <img src="{{ asset('bundles/raventheme/assets/logo.svg') }}" alt="{{ config('core.basicInformation.shopName') }}" class="h-10">
-                        {% endif %}
+                    <a href="{{ path('frontend.home.page') }}" class="raven-logo inline-flex items-center" aria-label="Raven Weapon home">
+                        <div style="background-image:url('{{ asset('bundles/raventheme/assets/raven-logo-bold (1)-stroke-and-fill.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:40px;width:182px;"></div>
                     </a>
                 </div>
 
-                {# Search Bar #}
-                <div class="relative w-[300px] h-9">
+                {# Search Bar - Improved #}
+                <div style="position: relative; width: 320px;">
                     {% block layout_header_search %}
-                        <form action="{{ path('frontend.search.page') }}" method="get" class="raven-search-form">
+                        <form action="{{ path('frontend.search.page') }}" method="get" class="raven-search-form" style="position: relative;">
                             <input type="search"
                                    name="search"
-                                   placeholder="{{ "header.searchPlaceholder"|trans|sw_sanitize }}"
-                                   class="raven-search-input w-full h-full rounded-full bg-[rgba(120,120,128,0.16)] pl-9 pr-3 text-[17px] leading-[22px] text-[#111827] placeholder-gray-500/80 outline-none focus:ring-2 focus:ring-gray-300"
-                                   aria-label="{{ "header.searchPlaceholder"|trans|sw_sanitize }}">
-                            <button type="submit" class="absolute left-3 top-1/2 -translate-y-1/2" aria-label="{{ "header.searchButton"|trans|sw_sanitize }}">
-                                {% sw_icon 'search' style { 'size': 'xs', 'class': 'text-gray-500' } %}
+                                   placeholder="Produkte suchen..."
+                                   class="raven-search-input"
+                                   style="width: 100%; height: 40px; border-radius: 9999px; background: #f3f4f6; padding-left: 44px; padding-right: 16px; font-size: 15px; color: #1f2937; border: 1px solid transparent; outline: none;"
+                                   aria-label="Suche">
+                            <button type="submit" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #9ca3af; background: none; border: none; cursor: pointer; padding: 0;" aria-label="Suchen">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; display: block;">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                </svg>
                             </button>
                         </form>
                     {% endblock %}
                 </div>
 
-                {# Account & Cart #}
-                <div class="flex items-center gap-2">
-                    {# Account #}
-                    <a href="{{ path('frontend.account.login.page') }}" class="relative inline-flex items-center justify-center h-[38px] w-[38px] rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300" aria-label="{{ "account.overviewLink"|trans|sw_sanitize }}">
-                        {% sw_icon 'avatar' style { 'size': 'sm' } %}
-                    </a>
+                {# Account & Cart - Improved Icons #}
+                <div class="flex items-center gap-3">
+                    {# Account - With Dropdown Menu #}
+                    <div class="raven-account-dropdown" style="position: relative;">
+                        <button type="button"
+                                class="raven-icon-btn raven-account-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                                aria-label="Mein Konto"
+                                title="Mein Konto">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <circle cx="12" cy="8" r="4"/>
+                                <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
+                            </svg>
+                        </button>
+                        {# Dropdown Menu - Will be dynamically updated by JS based on login state #}
+                        <div class="raven-account-menu" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 8px; min-width: 180px; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #e5e7eb; overflow: hidden; z-index: 1000;">
+                            {# Logged In Menu - hidden by default, shown via JS #}
+                            <div class="raven-logged-in-menu" style="display: none;">
+                                <div style="padding: 12px 16px; border-bottom: 1px solid #f3f4f6;">
+                                    <p style="font-size: 12px; color: #6b7280; margin: 0;">Angemeldet als</p>
+                                    <p class="raven-customer-name" style="font-size: 14px; font-weight: 600; color: #111827; margin: 4px 0 0 0;"></p>
+                                </div>
+                                <a href="{{ path('frontend.account.home.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none; transition: background 0.15s;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                                        <circle cx="12" cy="8" r="4"/>
+                                        <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
+                                    </svg>
+                                    Mein Konto
+                                </a>
+                                <a href="{{ path('frontend.account.order.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none; transition: background 0.15s;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                                        <line x1="3" y1="6" x2="21" y2="6"/>
+                                    </svg>
+                                    Bestellungen
+                                </a>
+                                <div style="border-top: 1px solid #f3f4f6;">
+                                    <a href="{{ path('frontend.account.logout.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #dc2626; font-size: 14px; text-decoration: none; transition: background 0.15s;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                            <polyline points="16 17 21 12 16 7"/>
+                                            <line x1="21" y1="12" x2="9" y2="12"/>
+                                        </svg>
+                                        Abmelden
+                                    </a>
+                                </div>
+                            </div>
+                            {# Not Logged In Menu - shown by default #}
+                            <div class="raven-guest-menu">
+                                <a href="{{ path('frontend.account.login.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none; transition: background 0.15s;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                                        <polyline points="10 17 15 12 10 7"/>
+                                        <line x1="15" y1="12" x2="3" y2="12"/>
+                                    </svg>
+                                    Anmelden
+                                </a>
+                                <a href="{{ path('frontend.account.register.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none; transition: background 0.15s;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="8.5" cy="7" r="4"/>
+                                        <line x1="20" y1="8" x2="20" y2="14"/>
+                                        <line x1="23" y1="11" x2="17" y2="11"/>
+                                    </svg>
+                                    Registrieren
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                    {# Cart Button Desktop #}
-                    <a href="{{ path('frontend.checkout.cart.page') }}" class="raven-cart-btn relative inline-flex items-center justify-center h-[38px] w-[38px] rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300" aria-label="{{ "checkout.cartTitle"|trans|sw_sanitize }}">
-                        {% sw_icon 'bag' style { 'size': 'sm' } %}
+                    {# Cart Button Desktop - Opens Off-Canvas Cart Sidebar #}
+                    <button type="button"
+                            class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                            data-off-canvas-cart="true"
+                            data-url="{{ path('frontend.cart.offcanvas') }}"
+                            aria-label="Warenkorb"
+                            title="Warenkorb">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
                         {% set cartCount = page.cart.lineItems.count|default(0) %}
                         {% if cartCount > 0 %}
-                            <span class="cart-count absolute -top-2 -right-2 bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 text-black text-[10px] leading-none w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-sm">
+                            <span class="raven-cart-badge absolute -top-1.5 -right-1.5 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 text-black text-[10px] leading-none w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md">
                                 {{ cartCount }}
                             </span>
                         {% endif %}
-                    </a>
+                    </button>
                 </div>
             </div>
 
-            {# Navigation Row #}
-            <div class="pb-2">
-                <nav class="nav-text flex items-center justify-center gap-5">
-                    <a href="{{ path('frontend.home.page') }}" class="group relative inline-flex items-center text-sm font-medium text-black py-2 pr-5">
-                        {{ "general.homeLink"|trans|sw_sanitize }}
+            {# Navigation Row - With Hover Animations #}
+            <div class="pb-3">
+                <nav class="flex items-center justify-center gap-8">
+                    <a href="{{ path('frontend.home.page') }}" class="raven-nav-link text-sm font-medium text-gray-900 py-2">
+                        Startseite
                     </a>
 
                     {# Dynamic Navigation from Categories #}
                     {% for treeItem in page.header.navigation.tree %}
                         <a href="{{ seoUrl('frontend.navigation.page', { navigationId: treeItem.category.id }) }}"
-                           class="group inline-flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-gray-900 py-2 pr-5">
+                           class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
                             {{ treeItem.category.translated.name }}
                             {% if treeItem.children|length > 0 %}
-                                {% sw_icon 'arrow-medium-down' style { 'size': 'xs', 'class': 'text-gray-500 group-hover:text-gray-700' } %}
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-gray-400">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
                             {% endif %}
                         </a>
                     {% endfor %}
 
-                    <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" class="group relative inline-flex items-center text-sm font-medium text-slate-700 hover:text-gray-900 py-2 pr-5">
-                        {{ "footer.aboutUsLink"|trans|sw_sanitize }}
+                    <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" class="raven-nav-link text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                        Über uns
                     </a>
-                    <a href="{{ path('frontend.cms.page', { id: 'contact' }) }}" class="group relative inline-flex items-center text-sm font-medium text-slate-700 hover:text-gray-900 py-2 pr-5">
-                        {{ "footer.contactLink"|trans|sw_sanitize }}
+                    <a href="{{ path('frontend.cms.page', { id: 'contact' }) }}" class="raven-nav-link text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                        Kontakt
                     </a>
                 </nav>
             </div>
         </div>
     </div>
 
-    {# Mobile Search Bar #}
-    <div class="md:hidden bg-white border-b border-gray-200 px-6 py-3">
-        <div class="relative">
-            <form action="{{ path('frontend.search.page') }}" method="get">
+    {# Mobile Search Bar - Improved #}
+    <div class="md:hidden" style="background: white; border-bottom: 1px solid #f3f4f6; padding: 12px 24px;">
+        <div style="position: relative;">
+            <form action="{{ path('frontend.search.page') }}" method="get" style="position: relative;">
                 <input type="search"
                        name="search"
-                       placeholder="{{ "header.searchPlaceholder"|trans|sw_sanitize }}"
-                       class="raven-search-input w-full h-9 rounded-full bg-[rgba(120,120,128,0.16)] pl-10 pr-4 text-[17px] leading-[22px] text-[#111827] placeholder-gray-500/80 outline-none focus:ring-2 focus:ring-gray-300">
-                <button type="submit" class="absolute left-3 top-1/2 -translate-y-1/2">
-                    {% sw_icon 'search' style { 'size': 'xs', 'class': 'text-gray-500' } %}
+                       placeholder="Produkte suchen..."
+                       class="raven-search-input"
+                       style="width: 100%; height: 40px; border-radius: 9999px; background: #f3f4f6; padding-left: 44px; padding-right: 16px; font-size: 15px; color: #1f2937; border: 1px solid transparent; outline: none;"
+                       aria-label="Suche">
+                <button type="submit" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #9ca3af; background: none; border: none; cursor: pointer; padding: 0;" aria-label="Suchen">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; display: block;">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
                 </button>
             </form>
         </div>
     </div>
 </header>
+
+<script>
+    // Custom Offcanvas Cart Handler for Raven Theme
+    (function() {
+        function openOffcanvasCart() {
+            fetch('/checkout/offcanvas', {
+                method: 'GET',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(response => response.text())
+            .then(html => {
+                let offcanvas = document.getElementById('raven-offcanvas-cart');
+                if (!offcanvas) {
+                    offcanvas = document.createElement('div');
+                    offcanvas.id = 'raven-offcanvas-cart';
+                    offcanvas.className = 'offcanvas offcanvas-end';
+                    offcanvas.style.cssText = 'width: 420px; max-width: 100vw; z-index: 1050;';
+                    offcanvas.innerHTML = '<div class="offcanvas-body p-0">' + html + '</div>';
+                    document.body.appendChild(offcanvas);
+                } else {
+                    offcanvas.querySelector('.offcanvas-body').innerHTML = html;
+                }
+
+                offcanvas.classList.add('show');
+                offcanvas.style.visibility = 'visible';
+                offcanvas.style.transform = 'translateX(0)';
+
+                let backdrop = document.getElementById('raven-offcanvas-backdrop');
+                if (!backdrop) {
+                    backdrop = document.createElement('div');
+                    backdrop.id = 'raven-offcanvas-backdrop';
+                    backdrop.className = 'offcanvas-backdrop fade';
+                    backdrop.style.zIndex = '1040';
+                    backdrop.onclick = closeOffcanvasCart;
+                    document.body.appendChild(backdrop);
+                }
+                setTimeout(() => backdrop.classList.add('show'), 10);
+                document.body.style.overflow = 'hidden';
+
+                offcanvas.querySelectorAll('[data-offcanvas-close], .js-offcanvas-close, .raven-cart-close').forEach(btn => {
+                    btn.onclick = closeOffcanvasCart;
+                });
+
+                if (window.PluginManager) {
+                    window.PluginManager.initializePlugins();
+                }
+            });
+        }
+
+        function closeOffcanvasCart() {
+            const offcanvas = document.getElementById('raven-offcanvas-cart');
+            const backdrop = document.getElementById('raven-offcanvas-backdrop');
+            if (offcanvas) {
+                offcanvas.classList.remove('show');
+                offcanvas.style.transform = 'translateX(100%)';
+            }
+            if (backdrop) {
+                backdrop.classList.remove('show');
+                setTimeout(() => backdrop.remove(), 150);
+            }
+            document.body.style.overflow = '';
+        }
+
+        function initCartButtons() {
+            document.querySelectorAll('[data-offcanvas-cart]').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openOffcanvasCart();
+                });
+            });
+        }
+
+        window.openOffcanvasCart = openOffcanvasCart;
+        window.closeOffcanvasCart = closeOffcanvasCart;
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCartButtons);
+        } else {
+            initCartButtons();
+        }
+    })();
+</script>
 {% endblock %}

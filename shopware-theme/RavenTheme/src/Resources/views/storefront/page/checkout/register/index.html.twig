@@ -1,0 +1,917 @@
+{% sw_extends '@Storefront/storefront/page/checkout/register/index.html.twig' %}
+
+{% block base_main_inner %}
+<div class="raven-checkout-register">
+    <div class="checkout-wrapper">
+        {# Logo Section #}
+        <div class="checkout-logo">
+            <a href="{{ path('frontend.home.page') }}">
+                <div class="logo-image" style="background-image:url('{{ asset('bundles/raventheme/assets/raven-logo-bold (1)-stroke-and-fill.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:50px;width:220px;"></div>
+            </a>
+        </div>
+
+        {# Progress Steps #}
+        <div class="checkout-progress">
+            <div class="progress-step active">
+                <span class="step-number">1</span>
+                <span class="step-label">Anmeldung</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <span class="step-number">2</span>
+                <span class="step-label">Versand</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <span class="step-number">3</span>
+                <span class="step-label">Bezahlung</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+                <span class="step-number">4</span>
+                <span class="step-label">Bestaetigung</span>
+            </div>
+        </div>
+
+        {# Main Content - Two Column Layout #}
+        <div class="checkout-content">
+            {# Left Side - Login/Register Forms #}
+            <div class="checkout-forms">
+                {# Login Section #}
+                <div class="form-card login-section" id="loginCollapse">
+                    <div class="card-header">
+                        <h2>Bereits Kunde?</h2>
+                        <p>Melden Sie sich an fuer einen schnelleren Checkout</p>
+                    </div>
+
+                    <form action="{{ path('frontend.account.login') }}"
+                          method="post"
+                          class="checkout-form"
+                          data-form-csrf-handler="true">
+
+                        <input type="hidden" name="redirectTo" value="frontend.checkout.confirm.page">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="loginMail">E-Mail-Adresse *</label>
+                                <input type="email"
+                                       name="email"
+                                       id="loginMail"
+                                       placeholder="ihre@email.de"
+                                       autocomplete="email"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Passwort *</label>
+                                <input type="password"
+                                       name="password"
+                                       id="loginPassword"
+                                       placeholder="Ihr Passwort"
+                                       autocomplete="current-password"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-login">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                                    <polyline points="10 17 15 12 10 7"></polyline>
+                                    <line x1="15" y1="12" x2="3" y2="12"></line>
+                                </svg>
+                                Anmelden & Weiter
+                            </button>
+                            <a href="{{ path('frontend.account.recover.page') }}" class="forgot-link">
+                                Passwort vergessen?
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                {# Divider #}
+                <div class="section-divider">
+                    <span>oder</span>
+                </div>
+
+                {# Guest/Register Section #}
+                <div class="form-card register-section">
+                    <div class="card-header">
+                        <h2>Als Gast bestellen oder Konto erstellen</h2>
+                        <p>Geben Sie Ihre Versandinformationen ein</p>
+                    </div>
+
+                    <form action="{{ path('frontend.checkout.register.save') }}"
+                          method="post"
+                          class="checkout-form"
+                          data-form-csrf-handler="true">
+
+                        <input type="hidden" name="redirectTo" value="frontend.checkout.confirm.page">
+
+                        {# Personal Details #}
+                        <div class="form-section">
+                            <h3 class="section-title">Persoenliche Daten</h3>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="personalSalutation">Anrede</label>
+                                    <select name="salutationId" id="personalSalutation" class="form-select">
+                                        {% for salutation in page.salutations %}
+                                            <option value="{{ salutation.id }}">{{ salutation.translated.displayName }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="personalFirstName">Vorname *</label>
+                                    <input type="text"
+                                           name="firstName"
+                                           id="personalFirstName"
+                                           placeholder="Max"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="personalLastName">Nachname *</label>
+                                    <input type="text"
+                                           name="lastName"
+                                           id="personalLastName"
+                                           placeholder="Mustermann"
+                                           required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="personalMail">E-Mail-Adresse *</label>
+                                <input type="email"
+                                       name="email"
+                                       id="personalMail"
+                                       placeholder="ihre@email.de"
+                                       autocomplete="email"
+                                       required>
+                            </div>
+
+                            {# Account Creation Option #}
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="createCustomerAccount" id="createAccount" value="1">
+                                    <span class="checkbox-text">Kundenkonto erstellen</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group password-field" id="passwordField" style="display: none;">
+                                <label for="personalPassword">Passwort *</label>
+                                <input type="password"
+                                       name="password"
+                                       id="personalPassword"
+                                       placeholder="Mindestens 8 Zeichen"
+                                       minlength="8">
+                                <span class="field-hint">Mindestens 8 Zeichen</span>
+                            </div>
+                        </div>
+
+                        {# Shipping Address #}
+                        <div class="form-section">
+                            <h3 class="section-title">Lieferadresse</h3>
+
+                            <div class="form-group">
+                                <label for="addressStreet">Strasse und Hausnummer *</label>
+                                <input type="text"
+                                       name="billingAddress[street]"
+                                       id="addressStreet"
+                                       placeholder="Musterstrasse 123"
+                                       required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="addressZipcode">PLZ *</label>
+                                    <input type="text"
+                                           name="billingAddress[zipcode]"
+                                           id="addressZipcode"
+                                           placeholder="8000"
+                                           required>
+                                </div>
+                                <div class="form-group flex-2">
+                                    <label for="addressCity">Ort *</label>
+                                    <input type="text"
+                                           name="billingAddress[city]"
+                                           id="addressCity"
+                                           placeholder="Zuerich"
+                                           required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="addressCountry">Land *</label>
+                                <select name="billingAddress[countryId]" id="addressCountry" class="form-select" required>
+                                    {% for country in page.countries %}
+                                        <option value="{{ country.id }}"{% if country.iso == 'CH' %} selected{% endif %}>
+                                            {{ country.translated.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            {# Different Billing Address Option #}
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="differentShippingAddress" id="differentAddress" value="1">
+                                    <span class="checkbox-text">Abweichende Rechnungsadresse</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        {# Privacy & Terms #}
+                        <div class="form-section">
+                            <div class="privacy-notice">
+                                <p>
+                                    Mit dem Klick auf "Weiter zur Zahlung" bestaetigen Sie, dass Sie unsere
+                                    <a href="{{ path('frontend.cms.page', { id: 'privacy' }) }}" target="_blank">Datenschutzerklaerung</a>
+                                    gelesen haben und unsere
+                                    <a href="{{ path('frontend.cms.page', { id: 'tos' }) }}" target="_blank">AGB</a>
+                                    akzeptieren.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-continue">
+                            Weiter zur Zahlung
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            {# Right Side - Order Summary #}
+            <div class="checkout-summary">
+                <div class="summary-card">
+                    <h3 class="summary-title">Bestelluebersicht</h3>
+
+                    {# Cart Items #}
+                    <div class="summary-items">
+                        {% for lineItem in page.cart.lineItems %}
+                            <div class="summary-item">
+                                <div class="item-image">
+                                    {% if lineItem.cover.url is defined and lineItem.cover.url %}
+                                        <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}">
+                                    {% else %}
+                                        <div class="item-placeholder">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                                <polyline points="21 15 16 10 5 21"/>
+                                            </svg>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="item-details">
+                                    <span class="item-name">{{ lineItem.label }}</span>
+                                    <span class="item-qty">Menge: {{ lineItem.quantity }}</span>
+                                </div>
+                                <div class="item-price">
+                                    CHF {{ lineItem.price.totalPrice|number_format(2, '.', "'") }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {# Totals #}
+                    <div class="summary-totals">
+                        <div class="total-row">
+                            <span>Zwischensumme</span>
+                            <span>CHF {{ page.cart.price.positionPrice|number_format(2, '.', "'") }}</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Versandkosten</span>
+                            <span>CHF {{ page.cart.deliveries.first.shippingCosts.totalPrice|default(0)|number_format(2, '.', "'") }}</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Gesamtsumme</span>
+                            <span>CHF {{ page.cart.price.totalPrice|number_format(2, '.', "'") }}</span>
+                        </div>
+                        <div class="total-row tax-info">
+                            <span>inkl. MwSt.</span>
+                            <span>CHF {{ page.cart.price.calculatedTaxes.amount|number_format(2, '.', "'") }}</span>
+                        </div>
+                    </div>
+
+                    {# Edit Cart Link #}
+                    <a href="{{ path('frontend.checkout.cart.page') }}" class="edit-cart-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Warenkorb bearbeiten
+                    </a>
+                </div>
+
+                {# Trust Badges #}
+                <div class="checkout-trust">
+                    <div class="trust-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <span>SSL-verschluesselt</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Sicherer Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Back Link #}
+        <div class="checkout-back">
+            <a href="{{ path('frontend.home.page') }}" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Zurueck zum Shop
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Raven Checkout Register Page */
+.raven-checkout-register {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 2rem 1.5rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.checkout-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Logo */
+.checkout-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Progress Steps */
+.checkout-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.progress-step.active .step-number {
+    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 100%);
+    color: #1f2937;
+    box-shadow: 0 4px 12px rgba(242, 185, 13, 0.35);
+}
+
+.progress-step.completed .step-number {
+    background: #22c55e;
+    color: white;
+}
+
+.step-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.progress-step.active .step-label {
+    color: #111827;
+    font-weight: 600;
+}
+
+.progress-line {
+    flex: 1;
+    height: 2px;
+    background: #e5e7eb;
+    margin: 0 0.75rem;
+    max-width: 80px;
+    margin-bottom: 1.5rem;
+}
+
+/* Content Grid */
+.checkout-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 900px) {
+    .checkout-content {
+        grid-template-columns: 1fr 380px;
+        gap: 2.5rem;
+    }
+}
+
+/* Form Cards */
+.form-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .form-card {
+        padding: 2rem;
+    }
+}
+
+.card-header {
+    margin-bottom: 1.5rem;
+}
+
+.card-header h2 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.375rem 0;
+}
+
+.card-header p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Form Styles */
+.checkout-form .form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.checkout-form .form-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 480px) {
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group.flex-2 {
+    grid-column: span 1;
+}
+
+@media (min-width: 480px) {
+    .form-group.flex-2 {
+        flex: 2;
+    }
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.checkout-form input[type="text"],
+.checkout-form input[type="email"],
+.checkout-form input[type="password"],
+.checkout-form input[type="tel"],
+.checkout-form select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #111827;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.checkout-form input:hover,
+.checkout-form select:hover {
+    border-color: #d1d5db;
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus {
+    outline: none;
+    border-color: #F2B90D;
+    box-shadow: 0 0 0 4px rgba(242, 185, 13, 0.1);
+}
+
+.checkout-form input::placeholder {
+    color: #9ca3af;
+}
+
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.field-hint {
+    display: block;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.375rem;
+}
+
+/* Checkbox */
+.checkbox-group {
+    margin-top: 0.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    accent-color: #F2B90D;
+    cursor: pointer;
+}
+
+.checkbox-text {
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+/* Section Divider */
+.section-divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+}
+
+.section-divider span {
+    padding: 0 1rem;
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* Buttons */
+.btn-login {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #f3f4f6;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    color: #374151;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-login:hover {
+    background: #e5e7eb;
+    border-color: #d1d5db;
+    color: #111827;
+}
+
+.btn-continue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 50%, #F2B90D 100%);
+    background-size: 200% 100%;
+    border: none;
+    border-radius: 12px;
+    color: #1f2937;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(242, 185, 13, 0.35);
+}
+
+.btn-continue:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(242, 185, 13, 0.45);
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.forgot-link {
+    font-size: 0.875rem;
+    color: #F2B90D;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* Privacy Notice */
+.privacy-notice {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.privacy-notice p {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.privacy-notice a {
+    color: #F2B90D;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.privacy-notice a:hover {
+    text-decoration: underline;
+}
+
+/* Summary Card */
+.summary-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    position: sticky;
+    top: 2rem;
+}
+
+.summary-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 1.25rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+/* Summary Items */
+.summary-items {
+    margin-bottom: 1.25rem;
+}
+
+.summary-item {
+    display: flex;
+    gap: 0.875rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.item-image {
+    width: 56px;
+    height: 56px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.item-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.item-placeholder {
+    color: #d1d5db;
+}
+
+.item-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.item-name {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-qty {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.item-price {
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+/* Totals */
+.summary-totals {
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+.total-row.grand-total {
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+    border-top: 2px solid #111827;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.total-row.tax-info {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* Edit Cart Link */
+.edit-cart-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-decoration: none;
+    border: 1px dashed #e5e7eb;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.edit-cart-link:hover {
+    color: #111827;
+    border-color: #d1d5db;
+    background: #f9fafb;
+}
+
+/* Trust Badges */
+.checkout-trust {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.checkout-trust .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.checkout-trust .trust-item svg {
+    color: #9ca3af;
+}
+
+/* Back Link */
+.checkout-back {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #111827;
+}
+
+/* Hide default Shopware elements */
+.checkout-aside,
+.checkout-main,
+.checkout-register {
+    display: none !important;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Toggle password field visibility
+    const createAccountCheckbox = document.getElementById('createAccount');
+    const passwordField = document.getElementById('passwordField');
+    const passwordInput = document.getElementById('personalPassword');
+
+    if (createAccountCheckbox && passwordField) {
+        createAccountCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                passwordField.style.display = 'block';
+                passwordInput.required = true;
+            } else {
+                passwordField.style.display = 'none';
+                passwordInput.required = false;
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

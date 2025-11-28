@@ -1,61 +1,823 @@
 {% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
 
-{% block page_checkout_confirm %}
-<div class="raven-checkout max-w-7xl mx-auto px-6 lg:px-24 py-8 md:py-12">
+{% block base_header %}
+    {# Luxury minimal header for checkout #}
+    <header class="raven-checkout-header">
+        <div class="checkout-header-inner">
+            <a href="{{ path('frontend.home.page') }}" class="checkout-logo">
+                <div style="background-image:url('{{ asset('bundles/raventheme/assets/raven-logo-bold (1)-stroke-and-fill.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:44px;width:200px;"></div>
+            </a>
+            <div class="checkout-secure-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 12 15 15 10"></polyline></svg>
+                <span>Sicherer Checkout</span>
+            </div>
+            <div class="checkout-contact">
+                <span>Hilfe? </span>
+                <a href="tel:+41793561986">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    +41 79 356 19 86
+                </a>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block base_footer %}
+    <footer class="raven-checkout-footer">
+        <div class="checkout-footer-inner">
+            <div class="footer-trust">
+                <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <div>
+                        <strong>SSL-Verschlüsselt</strong>
+                        <span>256-bit Sicherheit</span>
+                    </div>
+                </div>
+                <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <div>
+                        <strong>Käuferschutz</strong>
+                        <span>100% Garantie</span>
+                    </div>
+                </div>
+                <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                    <div>
+                        <strong>Sichere Zahlung</strong>
+                        <span>Alle Methoden</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© {{ 'now'|date('Y') }} Raven Weapon AG · Schweizer Qualität</p>
+                <div class="footer-links">
+                    <a href="#">AGB</a>
+                    <a href="#">Datenschutz</a>
+                    <a href="#">Impressum</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block base_head %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           RAVEN LUXURY CHECKOUT - Premium Design
+           ============================================ */
+
+        :root {
+            --raven-gold: #D4A847;
+            --raven-gold-light: #E8C76B;
+            --raven-gold-dark: #B8922E;
+            --raven-charcoal: #1A1A1A;
+            --raven-dark: #111111;
+            --raven-gray-900: #1f2937;
+            --raven-gray-700: #374151;
+            --raven-gray-500: #6b7280;
+            --raven-gray-300: #d1d5db;
+            --raven-gray-100: #f3f4f6;
+            --raven-cream: #FDFCF9;
+            --raven-white: #ffffff;
+        }
+
+        body.is-checkout-confirm {
+            background: linear-gradient(180deg, #FDFCF9 0%, #F5F3EE 100%) !important;
+            min-height: 100vh;
+        }
+
+        /* ============ LUXURY HEADER ============ */
+        .raven-checkout-header {
+            background: linear-gradient(180deg, var(--raven-charcoal) 0%, var(--raven-dark) 100%);
+            padding: 1.25rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .checkout-header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .checkout-secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(212, 168, 71, 0.15);
+            border: 1px solid rgba(212, 168, 71, 0.3);
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            color: var(--raven-gold);
+            font-weight: 500;
+        }
+
+        .checkout-secure-badge svg {
+            color: var(--raven-gold);
+        }
+
+        .checkout-contact {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .checkout-contact a {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            color: var(--raven-white);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .checkout-contact a:hover {
+            color: var(--raven-gold);
+        }
+
+        /* ============ PROGRESS STEPS - Luxury ============ */
+        .checkout-progress {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            max-width: 600px;
+            margin: 3rem auto 2.5rem;
+            padding: 0 1.5rem;
+        }
+
+        .progress-step {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.75rem;
+        }
+
+        .step-number {
+            width: 52px !important;
+            height: 52px !important;
+            min-width: 52px !important;
+            min-height: 52px !important;
+            border-radius: 50% !important;
+            background: var(--raven-white) !important;
+            border: 2px solid var(--raven-gray-300) !important;
+            color: var(--raven-gray-500) !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-weight: 600 !important;
+            font-size: 1.125rem !important;
+            line-height: 1 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .progress-step.active .step-number {
+            background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 100%) !important;
+            border: 2px solid var(--raven-gold-dark) !important;
+            color: var(--raven-charcoal) !important;
+            box-shadow: 0 6px 20px rgba(212, 168, 71, 0.4), 0 0 0 6px rgba(212, 168, 71, 0.1) !important;
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--raven-charcoal) !important;
+            border: 2px solid var(--raven-charcoal) !important;
+            color: var(--raven-gold) !important;
+        }
+
+        .step-label {
+            display: block !important;
+            font-size: 0.875rem !important;
+            color: var(--raven-gray-500) !important;
+            font-weight: 500 !important;
+            text-align: center !important;
+            letter-spacing: 0.025em !important;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--raven-charcoal) !important;
+            font-weight: 600 !important;
+        }
+
+        .progress-step.completed .step-label {
+            color: var(--raven-charcoal) !important;
+            font-weight: 600 !important;
+        }
+
+        .progress-line {
+            flex: 1 !important;
+            height: 2px !important;
+            background: var(--raven-gray-300) !important;
+            margin: 0 1.25rem !important;
+            max-width: 100px;
+            margin-bottom: 2rem !important;
+            position: relative;
+        }
+
+        .progress-line.completed {
+            background: var(--raven-charcoal) !important;
+        }
+
+        /* ============ LUXURY FOOTER ============ */
+        .raven-checkout-footer {
+            background: linear-gradient(180deg, var(--raven-charcoal) 0%, var(--raven-dark) 100%);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .checkout-footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-trust {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-trust .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+        }
+
+        .footer-trust .trust-badge svg {
+            color: var(--raven-gold);
+            flex-shrink: 0;
+        }
+
+        .footer-trust .trust-badge div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.125rem;
+        }
+
+        .footer-trust .trust-badge strong {
+            color: var(--raven-white);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .footer-trust .trust-badge span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--raven-gold);
+        }
+
+        /* ============ WRAPPER ============ */
+        .raven-checkout-wrapper {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* ============ FORM INPUTS - Luxury ============ */
+        .raven-checkout-wrapper .form-control,
+        .raven-checkout-wrapper .form-select,
+        .raven-checkout-wrapper select.form-control {
+            padding: 0.9375rem 1.125rem;
+            border: 1.5px solid var(--raven-gray-300);
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            background: var(--raven-white);
+            transition: all 0.25s ease;
+        }
+
+        .raven-checkout-wrapper .form-control:focus,
+        .raven-checkout-wrapper .form-select:focus {
+            border-color: var(--raven-gold);
+            box-shadow: 0 0 0 4px rgba(212, 168, 71, 0.12);
+            outline: none;
+        }
+
+        /* ============ SECTION CARDS - Premium ============ */
+        .raven-checkout-section {
+            background: var(--raven-white);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .raven-checkout-section:hover {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+        }
+
+        .raven-checkout-section h2,
+        .raven-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--raven-charcoal);
+            margin: 0 0 1.25rem 0;
+            letter-spacing: -0.01em;
+        }
+
+        /* ============ PAYMENT/SHIPPING METHODS - Luxury ============ */
+        .raven-checkout-wrapper .payment-method,
+        .raven-checkout-wrapper .shipping-method {
+            border: 1.5px solid var(--raven-gray-300);
+            border-radius: 12px;
+            margin-bottom: 0.875rem;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .raven-checkout-wrapper .payment-method .payment-method-label,
+        .raven-checkout-wrapper .shipping-method .shipping-method-label {
+            padding: 1.125rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+            cursor: pointer;
+            transition: background 0.25s;
+        }
+
+        .raven-checkout-wrapper .payment-method:hover,
+        .raven-checkout-wrapper .shipping-method:hover {
+            border-color: var(--raven-gold);
+            box-shadow: 0 2px 12px rgba(212, 168, 71, 0.1);
+        }
+
+        .raven-checkout-wrapper .payment-method.is-active,
+        .raven-checkout-wrapper .shipping-method.is-active {
+            border-color: var(--raven-gold);
+            background: linear-gradient(135deg, rgba(212, 168, 71, 0.04) 0%, rgba(232, 199, 107, 0.04) 100%);
+            box-shadow: 0 4px 16px rgba(212, 168, 71, 0.12);
+        }
+
+        .raven-checkout-wrapper input[type="radio"] {
+            accent-color: var(--raven-gold);
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ============ ADDRESS CARDS ============ */
+        .raven-address-card {
+            background: linear-gradient(135deg, var(--raven-gray-100) 0%, var(--raven-cream) 100%);
+            border: 1px solid var(--raven-gray-300);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .raven-address-card .address-name {
+            font-weight: 600;
+            color: var(--raven-charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .raven-address-card .address-details {
+            font-size: 0.875rem;
+            color: var(--raven-gray-700);
+            line-height: 1.7;
+        }
+
+        /* ============ TOS CHECKBOX ============ */
+        .raven-checkout-wrapper .checkout-confirm-tos-label {
+            font-size: 0.9375rem;
+            color: var(--raven-gray-700);
+            line-height: 1.6;
+        }
+
+        .raven-checkout-wrapper .checkout-confirm-tos-label a {
+            color: var(--raven-gold-dark);
+            font-weight: 500;
+            text-decoration: underline;
+            text-decoration-color: rgba(212, 168, 71, 0.3);
+            transition: text-decoration-color 0.2s;
+        }
+
+        .raven-checkout-wrapper .checkout-confirm-tos-label a:hover {
+            text-decoration-color: var(--raven-gold);
+        }
+
+        .raven-checkout-wrapper .form-check-input {
+            accent-color: var(--raven-gold);
+            width: 20px;
+            height: 20px;
+            margin-top: 0.25rem;
+        }
+
+        /* ============ CART SUMMARY ============ */
+        .raven-summary-section {
+            background: var(--raven-white);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .raven-summary-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--raven-gray-100);
+        }
+
+        .raven-summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .raven-summary-image {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            flex-shrink: 0;
+        }
+
+        .raven-summary-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border: 1px solid var(--raven-gray-300);
+            border-radius: 10px;
+            padding: 0.375rem;
+            background: var(--raven-white);
+        }
+
+        .raven-summary-qty {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: 24px;
+            height: 24px;
+            background: var(--raven-charcoal);
+            color: var(--raven-gold);
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ============ TOTALS ============ */
+        .raven-totals {
+            border-top: 1px solid var(--raven-gray-300);
+            padding-top: 1.25rem;
+            margin-top: 1.25rem;
+        }
+
+        .raven-total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9375rem;
+            color: var(--raven-gray-700);
+        }
+
+        .raven-total-row.total {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--raven-charcoal);
+            padding-top: 1rem;
+            margin-top: 0.75rem;
+            border-top: 2px solid var(--raven-charcoal);
+        }
+
+        /* ============ LUXURY SUBMIT BUTTON ============ */
+        .raven-btn-primary,
+        .raven-checkout-wrapper .btn-primary,
+        .raven-checkout-wrapper .begin-checkout-btn {
+            background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 50%, var(--raven-gold) 100%) !important;
+            background-size: 200% 100% !important;
+            color: var(--raven-charcoal) !important;
+            font-weight: 700 !important;
+            border: 2px solid var(--raven-gold-dark) !important;
+            border-radius: 12px !important;
+            padding: 1.125rem 2rem !important;
+            font-size: 1.0625rem !important;
+            letter-spacing: 0.025em !important;
+            box-shadow: 0 6px 20px rgba(212, 168, 71, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+            transition: all 0.3s ease !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .raven-btn-primary:hover,
+        .raven-checkout-wrapper .btn-primary:hover {
+            background-position: 100% 0 !important;
+            box-shadow: 0 8px 28px rgba(212, 168, 71, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+            transform: translateY(-2px);
+        }
+
+        .raven-btn-primary:active,
+        .raven-checkout-wrapper .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 16px rgba(212, 168, 71, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+        }
+
+        /* ============ MAIN HEADER ============ */
+        .confirm-main-header {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 2.25rem !important;
+            font-weight: 600 !important;
+            color: var(--raven-charcoal) !important;
+            margin-bottom: 2rem !important;
+            letter-spacing: -0.02em !important;
+        }
+
+        /* ============ CARD OVERRIDES ============ */
+        .raven-checkout-wrapper .card,
+        .raven-checkout-wrapper .checkout-card {
+            border: 1px solid rgba(0, 0, 0, 0.06) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04) !important;
+            overflow: hidden;
+        }
+
+        .raven-checkout-wrapper .card-body {
+            padding: 2rem !important;
+        }
+
+        .raven-checkout-wrapper .card-title {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+            color: var(--raven-charcoal) !important;
+            margin-bottom: 1.25rem !important;
+        }
+
+        /* ============ LINE ITEMS ============ */
+        .raven-checkout-wrapper .line-item-row {
+            border-bottom: 1px solid var(--raven-gray-100);
+            padding: 1.25rem 0;
+        }
+
+        .raven-checkout-wrapper .line-item-img {
+            border-radius: 10px;
+            border: 1px solid var(--raven-gray-300);
+        }
+
+        /* ============ ALERTS ============ */
+        .raven-checkout-wrapper .alert {
+            border-radius: 12px;
+            border: none;
+            padding: 1rem 1.25rem;
+        }
+
+        /* ============ COUPON FORM ============ */
+        .raven-coupon-form {
+            display: flex;
+            gap: 0.625rem;
+            margin: 1.25rem 0;
+        }
+
+        .raven-coupon-form input {
+            flex: 1;
+            padding: 0.875rem 1.125rem;
+            border: 1.5px solid var(--raven-gray-300);
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .raven-coupon-form input:focus {
+            border-color: var(--raven-gold);
+            box-shadow: 0 0 0 4px rgba(212, 168, 71, 0.12);
+            outline: none;
+        }
+
+        .raven-coupon-form button {
+            padding: 0.875rem 1.25rem;
+            border: 1.5px solid var(--raven-charcoal);
+            border-radius: 10px;
+            background: var(--raven-charcoal);
+            color: var(--raven-white);
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .raven-coupon-form button:hover {
+            background: var(--raven-gold);
+            border-color: var(--raven-gold);
+            color: var(--raven-charcoal);
+        }
+
+        /* ============ CHECKOUT LAYOUT ============ */
+        .checkout-main {
+            background: transparent !important;
+        }
+
+        @media (min-width: 992px) {
+            .checkout-container .row {
+                display: grid;
+                grid-template-columns: 1fr minmax(360px, 440px);
+                gap: 3rem;
+            }
+
+            .checkout-aside {
+                padding-left: 2.5rem;
+                border-left: 1px solid rgba(0, 0, 0, 0.06);
+            }
+
+            .checkout-aside-container {
+                position: sticky;
+                top: 2rem;
+            }
+        }
+
+        /* ============ ANIMATIONS ============ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .raven-checkout-section {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .raven-checkout-section:nth-child(1) { animation-delay: 0.1s; }
+        .raven-checkout-section:nth-child(2) { animation-delay: 0.15s; }
+        .raven-checkout-section:nth-child(3) { animation-delay: 0.2s; }
+        .raven-checkout-section:nth-child(4) { animation-delay: 0.25s; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 767px) {
+            .checkout-header-inner {
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .checkout-secure-badge {
+                order: 3;
+                margin-top: 0.75rem;
+            }
+
+            .footer-trust {
+                gap: 1rem;
+            }
+
+            .footer-trust .trust-badge {
+                flex: 1 1 calc(50% - 0.5rem);
+                min-width: 140px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .raven-checkout-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block base_body_classes %}{{ parent() }} is-checkout-confirm{% endblock %}
+
+{% block page_checkout %}
+{# Progress Steps #}
+<div class="checkout-progress">
+    <div class="progress-step completed">
+        <span class="step-number">✓</span>
+        <span class="step-label">Anmeldung</span>
+    </div>
+    <div class="progress-line completed"></div>
+    <div class="progress-step active">
+        <span class="step-number">2</span>
+        <span class="step-label">Zahlung</span>
+    </div>
+    <div class="progress-line"></div>
+    <div class="progress-step">
+        <span class="step-number">3</span>
+        <span class="step-label">Bestaetigung</span>
+    </div>
+</div>
+
+<div class="raven-checkout-wrapper">
     {{ parent() }}
 </div>
 {% endblock %}
 
 {% block page_checkout_confirm_header %}
-<h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8" style="font-family: 'Chakra Petch', sans-serif;">
-    Bestellung abschliessen
+<h1 class="confirm-main-header" style="font-family: 'Inter', sans-serif;">
+    Kasse
 </h1>
 {% endblock %}
 
-{% block page_checkout_confirm_submit %}
-<button type="submit" class="raven-btn-primary w-full justify-center py-3 text-lg" form="confirmOrderForm">
-    Zahlungspflichtig bestellen
-</button>
-{% endblock %}
-
 {% block page_checkout_confirm_tos %}
-<div class="checkout-confirm-tos-container mb-6">
-    {{ parent() }}
+<div class="raven-checkout-section">
+    <h2 class="raven-section-title">Allgemeine Geschaeftsbedingungen</h2>
+    <div class="confirm-tos">
+        {% block page_checkout_confirm_tos_control %}
+            <div class="form-check" style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                {% block page_checkout_confirm_tos_control_checkbox %}
+                    <input type="checkbox"
+                           class="checkout-confirm-tos-checkbox form-check-input{% if formViolations.getViolations('/tos') is not empty %} is-invalid{% endif %}"
+                           required="required"
+                           id="tos"
+                           form="confirmOrderForm"
+                           name="tos"
+                           style="margin-top: 0.25rem;">
+                {% endblock %}
+
+                {% block page_checkout_confirm_tos_control_label %}
+                    <label for="tos" class="checkout-confirm-tos-label">
+                        Ich habe die <a href="{{ path('frontend.cms.page', { id: config('core.basicInformation.tosPage') }) }}" target="_blank">AGB</a>
+                        und <a href="{{ path('frontend.cms.page', { id: config('core.basicInformation.privacyPage') }) }}" target="_blank">Datenschutzerklaerung</a> gelesen und akzeptiere diese.
+                    </label>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
 </div>
 {% endblock %}
 
 {% block page_checkout_confirm_address %}
-<div class="raven-checkout-section bg-white rounded-lg border border-gray-200 p-6 mb-6">
-    <h2 class="text-lg font-semibold text-gray-900 mb-4" style="font-family: 'Chakra Petch', sans-serif;">
-        Adresse
-    </h2>
-    {{ parent() }}
+<div class="raven-checkout-section">
+    <h2 class="raven-section-title">Lieferadresse</h2>
+    <div class="confirm-address">
+        {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-address.html.twig' %}
+    </div>
 </div>
 {% endblock %}
 
-{% block page_checkout_confirm_payment %}
-<div class="raven-checkout-section bg-white rounded-lg border border-gray-200 p-6 mb-6">
-    <h2 class="text-lg font-semibold text-gray-900 mb-4" style="font-family: 'Chakra Petch', sans-serif;">
-        Zahlungsart
-    </h2>
-    {{ parent() }}
+{% block page_checkout_confirm_payment_shipping %}
+<div class="raven-checkout-section">
+    <h2 class="raven-section-title">Zahlung</h2>
+    <p style="font-size: 0.875rem; color: #6B7280; margin-bottom: 1rem;">Alle Transaktionen sind sicher und verschluesselt.</p>
+    {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-payment.html.twig' %}
+</div>
+
+<div class="raven-checkout-section">
+    <h2 class="raven-section-title">Versandart</h2>
+    {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
 </div>
 {% endblock %}
 
-{% block page_checkout_confirm_shipping %}
-<div class="raven-checkout-section bg-white rounded-lg border border-gray-200 p-6 mb-6">
-    <h2 class="text-lg font-semibold text-gray-900 mb-4" style="font-family: 'Chakra Petch', sans-serif;">
-        Versandart
-    </h2>
-    {{ parent() }}
-</div>
-{% endblock %}
-
-{% block page_checkout_confirm_product_table %}
-<div class="raven-checkout-section bg-white rounded-lg border border-gray-200 p-6 mb-6">
-    <h2 class="text-lg font-semibold text-gray-900 mb-4" style="font-family: 'Chakra Petch', sans-serif;">
-        Ihre Bestellung
-    </h2>
-    {{ parent() }}
+{% block page_checkout_confirm_submit %}
+<div class="checkout-confirm-submit">
+    <button type="submit"
+            class="raven-btn-primary w-100 d-flex justify-content-center align-items-center gap-2"
+            form="confirmOrderForm"
+            id="confirmFormSubmit">
+        <span>Zahlungspflichtig bestellen</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+        </svg>
+    </button>
 </div>
 {% endblock %}

@@ -1,0 +1,363 @@
+{% sw_extends '@Storefront/storefront/page/checkout/address/index.html.twig' %}
+
+{% block base_header %}
+    {# Custom minimal header for checkout #}
+    <header class="raven-checkout-header">
+        <div class="checkout-header-inner">
+            <a href="{{ path('frontend.home.page') }}" class="checkout-logo">
+                <div style="background-image:url('{{ asset('bundles/raventheme/assets/raven-logo-bold (1)-stroke-and-fill.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:40px;width:180px;"></div>
+            </a>
+            <div class="checkout-contact">
+                <span>Fragen? <a href="tel:+41793561986">+41 79 356 19 86</a></span>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block page_checkout %}
+<style>
+/* Raven Checkout Styles */
+.raven-checkout-body {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+.raven-checkout-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Header */
+.raven-checkout-header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+}
+
+.checkout-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkout-contact {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.checkout-contact a {
+    color: #F2B90D;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.checkout-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Progress Steps */
+.checkout-progress {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.progress-step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem;
+}
+
+.step-number {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 50% !important;
+    background: #e5e7eb !important;
+    color: #6b7280 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+}
+
+.progress-step.active .step-number {
+    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 100%) !important;
+    color: #1f2937 !important;
+    box-shadow: 0 4px 12px rgba(242, 185, 13, 0.35) !important;
+}
+
+.step-label {
+    display: block !important;
+    font-size: 0.8125rem !important;
+    color: #6b7280 !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+}
+
+.progress-step.active .step-label {
+    color: #111827 !important;
+    font-weight: 600 !important;
+}
+
+.progress-line {
+    flex: 1 !important;
+    height: 2px !important;
+    background: #e5e7eb !important;
+    margin: 0 1rem !important;
+    max-width: 80px;
+    margin-bottom: 1.75rem !important;
+}
+
+/* Main Title */
+.raven-checkout-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1.5rem;
+}
+
+/* Login Toggle */
+.raven-login-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.raven-login-toggle svg {
+    color: #22c55e;
+}
+
+.login-toggle-link {
+    color: #111827;
+    text-decoration: none;
+}
+
+.login-toggle-link:hover {
+    color: #F2B90D;
+}
+
+/* Summary Headers */
+.raven-summary-header,
+.raven-products-header {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f3f4f6;
+    margin-bottom: 1rem;
+}
+
+/* Form Styling Override */
+.checkout .card {
+    border-radius: 16px !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+.checkout .card-body {
+    padding: 1.5rem !important;
+}
+
+.checkout .form-control {
+    border-radius: 10px !important;
+    border: 2px solid #e5e7eb !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9375rem !important;
+}
+
+.checkout .form-control:focus {
+    border-color: #F2B90D !important;
+    box-shadow: 0 0 0 4px rgba(242, 185, 13, 0.1) !important;
+}
+
+.checkout .form-select {
+    border-radius: 10px !important;
+    border: 2px solid #e5e7eb !important;
+    padding: 0.75rem 1rem !important;
+}
+
+.checkout .form-select:focus {
+    border-color: #F2B90D !important;
+    box-shadow: 0 0 0 4px rgba(242, 185, 13, 0.1) !important;
+}
+
+.checkout .btn-primary {
+    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 50%, #F2B90D 100%) !important;
+    background-size: 200% 100% !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 1rem 2rem !important;
+    font-weight: 600 !important;
+    color: #1f2937 !important;
+    box-shadow: 0 4px 14px rgba(242, 185, 13, 0.35) !important;
+}
+
+.checkout .btn-primary:hover {
+    background-position: 100% 0 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(242, 185, 13, 0.45) !important;
+}
+
+.checkout .form-check-input:checked {
+    background-color: #F2B90D !important;
+    border-color: #F2B90D !important;
+}
+
+.checkout-aside {
+    background: white !important;
+    border-radius: 16px !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    padding: 1.5rem !important;
+}
+
+/* Footer */
+.raven-checkout-footer {
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+.checkout-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.footer-trust {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+}
+
+.trust-badge svg {
+    color: #9ca3af;
+}
+
+.footer-copyright {
+    font-size: 0.8125rem;
+    color: #9ca3af;
+    margin: 0;
+}
+
+/* Hide default header elements */
+.header-minimal {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .checkout-progress {
+        margin: 1.5rem auto;
+    }
+
+    .step-label {
+        display: none !important;
+    }
+
+    .progress-line {
+        margin-bottom: 0 !important;
+    }
+
+    .footer-trust {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+</style>
+<div class="raven-checkout-page">
+    {# Progress Steps #}
+    <div class="checkout-progress">
+        <div class="progress-step active">
+            <span class="step-number">1</span>
+            <span class="step-label">Anmeldung</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+            <span class="step-number">2</span>
+            <span class="step-label">Zahlung</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+            <span class="step-number">3</span>
+            <span class="step-label">Bestaetigung</span>
+        </div>
+    </div>
+
+    {{ parent() }}
+</div>
+{% endblock %}
+
+{% block page_checkout_address_header %}
+    <h1 class="raven-checkout-title">Versandinformationen</h1>
+{% endblock %}
+
+{% block page_checkout_address_login_toggle %}
+    <div class="raven-login-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
+        </svg>
+        <a href="#loginCollapse"
+           class="login-toggle-link"
+           data-bs-toggle="collapse"
+           aria-expanded="false">
+            <strong>Bereits Kunde? Hier anmelden</strong>
+        </a>
+    </div>
+{% endblock %}
+
+{% block page_checkout_summary_header %}
+    <h2 class="raven-summary-header">Bestelluebersicht</h2>
+{% endblock %}
+
+{% block page_checkout_address_products_header %}
+    <h2 class="raven-products-header">Warenkorb</h2>
+{% endblock %}
+
+{% block base_footer %}
+    <footer class="raven-checkout-footer">
+        <div class="checkout-footer-inner">
+            <div class="footer-trust">
+                <span class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    SSL-verschluesselt
+                </span>
+                <span class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Sicherer Checkout
+                </span>
+            </div>
+            <p class="footer-copyright">© {{ 'now'|date('Y') }} Raven Weapon AG</p>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block base_body_classes %}{{ parent() }} raven-checkout-body{% endblock %}

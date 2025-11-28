@@ -1,0 +1,747 @@
+{% sw_extends '@Storefront/storefront/page/account/addressbook/index.html.twig' %}
+
+{% block page_account_main_content %}
+<div class="raven-account-dashboard">
+    <div class="account-container">
+        {# Sidebar #}
+        <aside class="account-sidebar">
+            <div class="sidebar-header">
+                <div class="user-avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
+                    </svg>
+                </div>
+                <div class="user-info">
+                    <p class="user-greeting">Willkommen zurück</p>
+                    <h3 class="user-name">{{ context.customer.firstName }} {{ context.customer.lastName }}</h3>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="{{ path('frontend.account.home.page') }}" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Übersicht
+                </a>
+
+                <a href="{{ path('frontend.account.profile.page') }}" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Mein Profil
+                </a>
+
+                <a href="{{ path('frontend.account.address.page') }}" class="nav-item active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Adressen
+                </a>
+
+                <a href="{{ path('frontend.account.payment.page') }}" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    Zahlungsarten
+                </a>
+
+                <a href="{{ path('frontend.account.order.page') }}" class="nav-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    Bestellungen
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="{{ path('frontend.account.logout.page') }}" class="logout-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Abmelden
+                </a>
+            </div>
+        </aside>
+
+        {# Main Content #}
+        <main class="account-main">
+            <div class="page-header">
+                <h1 class="page-title">Meine Adressen</h1>
+                <p class="page-subtitle">Verwalten Sie Ihre Liefer- und Rechnungsadressen</p>
+            </div>
+
+            {# Default Addresses #}
+            <div class="addresses-grid">
+                {# Billing Address #}
+                <div class="address-card default">
+                    <div class="address-card-header">
+                        <div class="address-type">
+                            <div class="type-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                            </div>
+                            <span>Rechnungsadresse</span>
+                        </div>
+                        <span class="default-badge">Standard</span>
+                    </div>
+                    {% set billingAddress = context.customer.defaultBillingAddress %}
+                    {% if billingAddress %}
+                    <div class="address-content">
+                        <p class="address-name">{{ billingAddress.firstName }} {{ billingAddress.lastName }}</p>
+                        {% if billingAddress.company %}<p class="address-line">{{ billingAddress.company }}</p>{% endif %}
+                        <p class="address-line">{{ billingAddress.street }}</p>
+                        <p class="address-line">{{ billingAddress.zipcode }} {{ billingAddress.city }}</p>
+                        <p class="address-line">{{ billingAddress.country.translated.name }}</p>
+                    </div>
+                    <div class="address-actions">
+                        <a href="{{ path('frontend.account.address.edit.page', { addressId: billingAddress.id }) }}" class="btn-action">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                            Bearbeiten
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="address-content empty">
+                        <p>Keine Adresse hinterlegt</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {# Shipping Address #}
+                <div class="address-card default">
+                    <div class="address-card-header">
+                        <div class="address-type">
+                            <div class="type-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                            </div>
+                            <span>Lieferadresse</span>
+                        </div>
+                        <span class="default-badge">Standard</span>
+                    </div>
+                    {% set shippingAddress = context.customer.defaultShippingAddress %}
+                    {% if shippingAddress %}
+                    <div class="address-content">
+                        {% if shippingAddress.id == billingAddress.id %}
+                            <p class="same-as-billing">Gleich wie Rechnungsadresse</p>
+                        {% else %}
+                            <p class="address-name">{{ shippingAddress.firstName }} {{ shippingAddress.lastName }}</p>
+                            {% if shippingAddress.company %}<p class="address-line">{{ shippingAddress.company }}</p>{% endif %}
+                            <p class="address-line">{{ shippingAddress.street }}</p>
+                            <p class="address-line">{{ shippingAddress.zipcode }} {{ shippingAddress.city }}</p>
+                            <p class="address-line">{{ shippingAddress.country.translated.name }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="address-actions">
+                        <a href="{{ path('frontend.account.address.edit.page', { addressId: shippingAddress.id }) }}" class="btn-action">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                            Bearbeiten
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="address-content empty">
+                        <p>Keine Adresse hinterlegt</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {# All Addresses #}
+            <div class="all-addresses-section">
+                <div class="section-header">
+                    <h2 class="section-title">Alle Adressen</h2>
+                    <a href="{{ path('frontend.account.address.create.page') }}" class="btn-add-address">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Neue Adresse
+                    </a>
+                </div>
+
+                <div class="addresses-list">
+                    {% for address in page.addresses %}
+                    <div class="address-list-item">
+                        <div class="address-info">
+                            <p class="address-name">{{ address.firstName }} {{ address.lastName }}</p>
+                            <p class="address-line">{{ address.street }}, {{ address.zipcode }} {{ address.city }}</p>
+                        </div>
+                        <div class="address-badges">
+                            {% if address.id == context.customer.defaultBillingAddressId %}
+                                <span class="badge billing">Rechnung</span>
+                            {% endif %}
+                            {% if address.id == context.customer.defaultShippingAddressId %}
+                                <span class="badge shipping">Lieferung</span>
+                            {% endif %}
+                        </div>
+                        <div class="address-item-actions">
+                            <a href="{{ path('frontend.account.address.edit.page', { addressId: address.id }) }}" class="action-btn edit" title="Bearbeiten">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </a>
+                            {% if address.id != context.customer.defaultBillingAddressId and address.id != context.customer.defaultShippingAddressId %}
+                            <form action="{{ path('frontend.account.address.delete', { addressId: address.id }) }}" method="post" class="delete-form" data-form-csrf-handler="true">
+                                <button type="submit" class="action-btn delete" title="Löschen">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="no-addresses">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <p>Sie haben noch keine Adressen gespeichert</p>
+                        <a href="{{ path('frontend.account.address.create.page') }}" class="btn-primary">Adresse hinzufügen</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   RAVEN ACCOUNT - ADDRESS PAGE
+   ============================================ */
+
+:root {
+    --raven-gold: #D4A847;
+    --raven-gold-light: #E8C76B;
+    --raven-gold-dark: #B8922E;
+    --raven-charcoal: #1A1A1A;
+    --raven-gray-700: #374151;
+    --raven-gray-500: #6b7280;
+    --raven-gray-400: #9ca3af;
+    --raven-gray-300: #d1d5db;
+    --raven-gray-100: #f3f4f6;
+    --raven-gray-50: #f9fafb;
+    --raven-cream: #FDFCF9;
+    --raven-white: #ffffff;
+}
+
+.raven-account-dashboard {
+    min-height: calc(100vh - 200px);
+    background: linear-gradient(180deg, var(--raven-cream) 0%, #F5F3EE 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 2rem 1rem;
+}
+
+@media (min-width: 768px) {
+    .raven-account-dashboard {
+        padding: 3rem 2rem;
+    }
+}
+
+.account-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .account-container {
+        grid-template-columns: 280px 1fr;
+        gap: 3rem;
+    }
+}
+
+/* ============ SIDEBAR ============ */
+.account-sidebar {
+    background: var(--raven-white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--raven-gray-100);
+    margin-bottom: 1.5rem;
+}
+
+.user-avatar {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--raven-charcoal);
+}
+
+.user-info { flex: 1; }
+
+.user-greeting {
+    font-size: 0.75rem;
+    color: var(--raven-gray-500);
+    margin: 0 0 0.25rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.user-name {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    border-radius: 12px;
+    color: var(--raven-gray-700);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background: var(--raven-gray-50);
+    color: var(--raven-charcoal);
+}
+
+.nav-item.active {
+    background: linear-gradient(135deg, rgba(212, 168, 71, 0.15) 0%, rgba(232, 199, 107, 0.1) 100%);
+    color: var(--raven-gold-dark);
+}
+
+.nav-item.active svg { color: var(--raven-gold); }
+
+.nav-item svg {
+    flex-shrink: 0;
+    color: var(--raven-gray-400);
+    transition: color 0.2s ease;
+}
+
+.nav-item:hover svg { color: var(--raven-gray-700); }
+
+.sidebar-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--raven-gray-100);
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    border-radius: 12px;
+    color: var(--raven-gray-500);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.logout-btn:hover {
+    background: #FEF2F2;
+    color: #DC2626;
+}
+
+.logout-btn:hover svg { color: #DC2626; }
+
+/* ============ MAIN CONTENT ============ */
+.account-main { min-width: 0; }
+
+.page-header { margin-bottom: 2rem; }
+
+.page-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--raven-charcoal);
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--raven-gray-500);
+    margin: 0;
+}
+
+/* ============ ADDRESS CARDS ============ */
+.addresses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .addresses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.address-card {
+    background: var(--raven-white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.address-card.default {
+    border: 2px solid rgba(212, 168, 71, 0.3);
+}
+
+.address-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--raven-gray-100);
+}
+
+.address-type {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.type-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(212, 168, 71, 0.15) 0%, rgba(232, 199, 107, 0.1) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.type-icon svg {
+    color: var(--raven-gold);
+}
+
+.address-type span {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.default-badge {
+    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 100%);
+    color: var(--raven-charcoal);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.address-content {
+    margin-bottom: 1rem;
+}
+
+.address-content.empty {
+    color: var(--raven-gray-400);
+    font-style: italic;
+}
+
+.address-name {
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0 0 0.5rem 0;
+}
+
+.address-line {
+    font-size: 0.9375rem;
+    color: var(--raven-gray-700);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.5;
+}
+
+.same-as-billing {
+    color: var(--raven-gold-dark);
+    font-weight: 500;
+    font-style: italic;
+    margin: 0;
+}
+
+.address-actions {
+    padding-top: 1rem;
+    border-top: 1px solid var(--raven-gray-100);
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--raven-gold-dark);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+    color: var(--raven-gold);
+}
+
+/* ============ ALL ADDRESSES SECTION ============ */
+.all-addresses-section {
+    background: var(--raven-white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.btn-add-address {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 100%);
+    border: 2px solid var(--raven-gold-dark);
+    border-radius: 10px;
+    color: var(--raven-charcoal);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-add-address:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 168, 71, 0.3);
+}
+
+.addresses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.address-list-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--raven-gray-50);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.address-list-item:hover {
+    background: var(--raven-gray-100);
+}
+
+.address-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.address-info .address-name {
+    font-size: 0.9375rem;
+    margin-bottom: 0.25rem;
+}
+
+.address-info .address-line {
+    font-size: 0.8125rem;
+    color: var(--raven-gray-500);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.address-badges {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge.billing {
+    background: rgba(212, 168, 71, 0.15);
+    color: var(--raven-gold-dark);
+}
+
+.badge.shipping {
+    background: rgba(59, 130, 246, 0.15);
+    color: #2563eb;
+}
+
+.address-item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: none;
+    background: var(--raven-white);
+    color: var(--raven-gray-500);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.action-btn:hover {
+    color: var(--raven-charcoal);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn.delete:hover {
+    background: #FEF2F2;
+    color: #DC2626;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.no-addresses {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--raven-gray-400);
+}
+
+.no-addresses svg {
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.no-addresses p {
+    font-size: 0.9375rem;
+    margin: 0 0 1.5rem 0;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 50%, var(--raven-gold) 100%);
+    background-size: 200% 100%;
+    border: 2px solid var(--raven-gold-dark);
+    border-radius: 12px;
+    color: var(--raven-charcoal);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 168, 71, 0.4);
+}
+
+/* Hide default elements */
+.account-content,
+.account-sidebar-menu,
+.account-welcome,
+.account-address {
+    display: none !important;
+}
+
+/* Full page background */
+.raven-account-page-bg {
+    background: linear-gradient(180deg, #FDFCF9 0%, #F5F3EE 100%) !important;
+    min-height: 100vh;
+}
+</style>
+
+<script>
+document.body.classList.add('raven-account-page-bg');
+</script>
+{% endblock page_account_main_content %}

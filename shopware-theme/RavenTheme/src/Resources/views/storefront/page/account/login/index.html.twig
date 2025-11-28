@@ -1,25 +1,628 @@
-{% sw_extends '@Storefront/storefront/page/account/login/index.html.twig' %}
+{% sw_extends '@Storefront/storefront/page/account/register/index.html.twig' %}
 
-{% block page_account_login %}
-<div class="raven-login max-w-md mx-auto px-6 py-12 md:py-16">
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-8" style="font-family: 'Chakra Petch', sans-serif;">
-        Anmelden
-    </h1>
-    {{ parent() }}
+{% block base_content %}
+<div class="raven-login-page">
+    <div class="login-wrapper">
+        {# Logo Section #}
+        <div class="login-logo animate-fade-in">
+            <a href="{{ path('frontend.home.page') }}">
+                <div class="logo-image" style="background-image:url('{{ asset('bundles/raventheme/assets/raven-logo-bold (1)-stroke-and-fill.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:50px;width:220px;"></div>
+            </a>
+        </div>
+
+        {# Main Content - Two Column Layout #}
+        <div class="login-content">
+            {# Left Side - Login Form #}
+            <div class="login-card animate-fade-in-up">
+                <div class="card-header">
+                    <h1>Willkommen zurück</h1>
+                    <p>Melden Sie sich bei Ihrem Konto an</p>
+                </div>
+
+                <form action="{{ path('frontend.account.login') }}"
+                      method="post"
+                      class="login-form"
+                      data-form-csrf-handler="true">
+
+                    <input type="hidden" name="redirectTo" value="{{ redirectTo }}">
+                    {% for key, value in redirectParameters %}
+                        <input type="hidden" name="redirectParameters[{{ key }}]" value="{{ value }}">
+                    {% endfor %}
+
+                    <div class="form-group">
+                        <label for="loginMail">E-Mail-Adresse</label>
+                        <input type="email"
+                               name="email"
+                               id="loginMail"
+                               placeholder="ihre@email.de"
+                               autocomplete="email"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Passwort</label>
+                        <input type="password"
+                               name="password"
+                               id="loginPassword"
+                               placeholder="Ihr Passwort"
+                               autocomplete="current-password"
+                               required>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember" value="1">
+                            <span>Angemeldet bleiben</span>
+                        </label>
+                        <a href="{{ path('frontend.account.recover.page') }}" class="forgot-link">
+                            Passwort vergessen?
+                        </a>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg>
+                        Anmelden
+                    </button>
+                </form>
+
+                {# Login Benefits #}
+                <div class="login-benefits">
+                    <p class="benefits-title">Vorteile für Kunden:</p>
+                    <ul>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Express-Kauf ohne Dateneingabe
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Bestellübersicht und Tracking
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Persönliche Einstellungen speichern
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {# Right Side - Register Card #}
+            <div class="register-card animate-fade-in-up delay-100">
+                <div class="card-header">
+                    <h2>Neu hier?</h2>
+                    <p>Erstellen Sie ein Konto und profitieren Sie von exklusiven Vorteilen</p>
+                </div>
+
+                <div class="register-benefits">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </span>
+                        <div>
+                            <strong>Schneller Checkout</strong>
+                            <p>Ihre Daten werden gespeichert - schneller bestellen</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </span>
+                        <div>
+                            <strong>Sendungsverfolgung</strong>
+                            <p>Verfolgen Sie Ihre Bestellungen in Echtzeit</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </span>
+                        <div>
+                            <strong>Sicheres Konto</strong>
+                            <p>Ihre Daten sind bei uns sicher aufbewahrt</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="{{ path('frontend.account.login.page') }}#register-form" class="register-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="8.5" cy="7" r="4"></circle>
+                        <line x1="20" y1="8" x2="20" y2="14"></line>
+                        <line x1="23" y1="11" x2="17" y2="11"></line>
+                    </svg>
+                    Konto erstellen
+                </a>
+
+                <p class="register-note">
+                    Kostenlos und unverbindlich
+                </p>
+            </div>
+        </div>
+
+        {# Trust Badges #}
+        <div class="trust-badges animate-fade-in-up delay-200">
+            <div class="trust-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                SSL-verschlüsselt
+            </div>
+            <div class="trust-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Sicher & Geschützt
+            </div>
+            <div class="trust-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                Sichere Bezahlung
+            </div>
+        </div>
+    </div>
 </div>
-{% endblock %}
 
-{% block page_account_login_form_submit %}
-<button type="submit" class="raven-btn-primary w-full justify-center py-3">
-    Anmelden
-</button>
-{% endblock %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   RAVEN LUXURY LOGIN - Premium Design
+   ============================================ */
 
-{% block page_account_login_register_card %}
-<div class="mt-8 text-center">
-    <p class="text-gray-600 mb-4">Noch kein Konto?</p>
-    <a href="{{ path('frontend.account.login.page') }}#register" class="raven-btn-outline">
-        Jetzt registrieren
-    </a>
-</div>
+:root {
+    --raven-gold: #D4A847;
+    --raven-gold-light: #E8C76B;
+    --raven-gold-dark: #B8922E;
+    --raven-charcoal: #1A1A1A;
+    --raven-dark: #111111;
+    --raven-gray-900: #1f2937;
+    --raven-gray-700: #374151;
+    --raven-gray-500: #6b7280;
+    --raven-gray-300: #d1d5db;
+    --raven-gray-100: #f3f4f6;
+    --raven-cream: #FDFCF9;
+    --raven-white: #ffffff;
+}
+
+/* ============ PAGE CONTAINER ============ */
+.raven-login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(180deg, var(--raven-cream) 0%, #F5F3EE 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+}
+
+/* Subtle pattern overlay */
+.raven-login-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============ LOGO ============ */
+.login-logo {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.login-logo a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.login-logo a:hover {
+    transform: scale(1.02);
+}
+
+/* ============ CONTENT GRID ============ */
+.login-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .login-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+/* ============ LUXURY CARDS ============ */
+.login-card,
+.register-card {
+    background: var(--raven-white);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover,
+.register-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 640px) {
+    .login-card,
+    .register-card {
+        padding: 3rem;
+    }
+}
+
+/* ============ CARD HEADER ============ */
+.card-header {
+    margin-bottom: 2.25rem;
+    text-align: center;
+}
+
+.card-header h1,
+.card-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0 0 0.625rem 0;
+    letter-spacing: -0.02em;
+}
+
+.card-header p {
+    font-size: 0.9375rem;
+    color: var(--raven-gray-500);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ============ FORM STYLES ============ */
+.login-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.login-form label {
+    display: block;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    font-size: 0.8125rem;
+    margin-bottom: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    border: 2px solid var(--raven-gray-300);
+    border-radius: 14px;
+    background: var(--raven-white);
+    color: var(--raven-charcoal);
+    transition: all 0.25s ease;
+    font-family: inherit;
+}
+
+.login-form input:hover {
+    border-color: var(--raven-gray-500);
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--raven-gold);
+    box-shadow: 0 0 0 4px rgba(212, 168, 71, 0.15);
+}
+
+.login-form input::placeholder {
+    color: var(--raven-gray-500);
+}
+
+/* ============ FORM OPTIONS ============ */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    color: var(--raven-gray-700);
+}
+
+.remember-me input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    accent-color: var(--raven-gold);
+    cursor: pointer;
+}
+
+.forgot-link {
+    font-size: 0.9375rem;
+    color: var(--raven-gold-dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.forgot-link:hover {
+    color: var(--raven-gold);
+    text-decoration: underline;
+}
+
+/* ============ LUXURY LOGIN BUTTON ============ */
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 1.125rem 1.75rem;
+    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 50%, var(--raven-gold) 100%);
+    background-size: 200% 100%;
+    border: 2px solid var(--raven-gold-dark);
+    border-radius: 14px;
+    color: var(--raven-charcoal);
+    font-family: inherit;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(212, 168, 71, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.login-btn:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(212, 168, 71, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(212, 168, 71, 0.35);
+}
+
+/* ============ LOGIN BENEFITS ============ */
+.login-benefits {
+    margin-top: 2.25rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--raven-gray-100);
+}
+
+.benefits-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--raven-gray-500);
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.login-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.login-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--raven-gray-700);
+    margin-bottom: 0.625rem;
+}
+
+.login-benefits li svg {
+    color: var(--raven-gold);
+    flex-shrink: 0;
+}
+
+/* ============ REGISTER CARD ============ */
+.register-card {
+    background: linear-gradient(180deg, var(--raven-charcoal) 0%, var(--raven-dark) 100%);
+}
+
+.register-card .card-header h2 {
+    font-size: 1.75rem;
+    color: var(--raven-white);
+}
+
+.register-card .card-header p {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.register-benefits {
+    margin-bottom: 2.25rem;
+}
+
+.benefit-item {
+    display: flex;
+    gap: 1.125rem;
+    padding: 1.125rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.benefit-item:last-child {
+    border-bottom: none;
+}
+
+.benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: rgba(212, 168, 71, 0.15);
+    border: 1px solid rgba(212, 168, 71, 0.25);
+    border-radius: 14px;
+    color: var(--raven-gold);
+    flex-shrink: 0;
+}
+
+.benefit-item strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--raven-white);
+    margin-bottom: 0.375rem;
+    font-weight: 600;
+}
+
+.benefit-item p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ============ REGISTER BUTTON ============ */
+.register-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 1.125rem 1.75rem;
+    background: transparent;
+    border: 2px solid var(--raven-gold);
+    border-radius: 14px;
+    color: var(--raven-gold);
+    font-family: inherit;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+    background: var(--raven-gold);
+    color: var(--raven-charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 168, 71, 0.3);
+}
+
+.register-note {
+    text-align: center;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 1.25rem 0 0 0;
+}
+
+/* ============ TRUST BADGES ============ */
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--raven-gray-700);
+}
+
+.trust-item svg {
+    color: var(--raven-gold);
+}
+
+/* ============ ANIMATIONS ============ */
+.animate-fade-in {
+    animation: fadeIn 0.7s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.delay-100 {
+    animation-delay: 0.15s;
+    opacity: 0;
+}
+
+.delay-200 {
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============ HIDE DEFAULT ELEMENTS ============ */
+.account-login-page,
+.account-content {
+    display: none !important;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 767px) {
+    .login-wrapper {
+        max-width: 440px;
+    }
+
+    .login-card,
+    .register-card {
+        padding: 2rem;
+    }
+
+    .card-header h1,
+    .card-header h2 {
+        font-size: 1.625rem;
+    }
+
+    .trust-badges {
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .trust-item {
+        font-size: 0.75rem;
+    }
+}
+</style>
 {% endblock %}

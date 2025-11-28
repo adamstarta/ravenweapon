@@ -20,10 +20,16 @@ services:
       - ./temp-footer.twig:/var/www/html/custom/plugins/RavenTheme/src/Resources/views/storefront/layout/footer/footer.html.twig
       # Mount assets
       - ./assets:/var/www/html/custom/plugins/RavenTheme/src/Resources/public/assets
+      # Persist MySQL database - IMPORTANT: prevents data loss on container restart
+      - mysql_data:/var/lib/mysql
     environment:
       - SHOPWARE_ADMIN_USERNAME=admin
       - SHOPWARE_ADMIN_PASSWORD=shopware
     restart: unless-stopped
+
+volumes:
+  mysql_data:
+    driver: local
 
 # Usage:
 # 1. Start: docker-compose up -d

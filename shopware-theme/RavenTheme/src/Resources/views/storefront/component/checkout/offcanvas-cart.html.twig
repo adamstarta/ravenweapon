@@ -1,0 +1,677 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+{# Hide the default "Continue shopping" back button at top #}
+{% block utilities_offcanvas_close_text %}{% endblock %}
+{% block utilities_offcanvas_close_icon %}{% endblock %}
+
+{% block utilities_offcanvas_content %}
+<style>
+/* Raven Offcanvas Cart Styles */
+.raven-offcanvas-cart {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: white;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+}
+
+/* Header */
+.raven-cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.raven-cart-header-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.raven-cart-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.raven-cart-count {
+    font-size: 0.875rem;
+    color: #6B7280;
+    background: #F3F4F6;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+}
+
+.raven-cart-close {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: transparent;
+    color: #6B7280;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.raven-cart-close:hover {
+    background: #F3F4F6;
+    color: #111827;
+}
+
+/* Cart Items */
+.raven-cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+}
+
+.raven-cart-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.raven-cart-item:last-child {
+    border-bottom: none;
+}
+
+.raven-item-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: #FAFAFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.raven-item-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    padding: 0.25rem;
+}
+
+.raven-item-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #F3F4F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #D1D5DB;
+}
+
+.raven-item-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.raven-item-name {
+    font-weight: 600;
+    color: #111827;
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.raven-item-name:hover {
+    color: #374151;
+}
+
+.raven-item-price {
+    font-weight: 700;
+    color: #111827;
+    font-size: 0.9375rem;
+    margin-top: 0.25rem;
+}
+
+.raven-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.raven-qty-form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: #fff;
+}
+
+.raven-qty-btn {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F9FAFB;
+    border: none;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.raven-qty-btn:hover {
+    background: #F3F4F6;
+    color: #111827;
+}
+
+.raven-qty-btn:active {
+    background: #E5E7EB;
+}
+
+.raven-qty-input {
+    width: 44px;
+    height: 34px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #111827;
+    -moz-appearance: textfield;
+}
+
+.raven-qty-input::-webkit-outer-spin-button,
+.raven-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove Button */
+.raven-item-remove-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.raven-item-remove {
+    padding: 0.375rem;
+    border: none;
+    background: transparent;
+    color: #9CA3AF;
+    cursor: pointer;
+    transition: color 0.2s;
+    border-radius: 0.375rem;
+}
+
+.raven-item-remove:hover {
+    color: #EF4444;
+    background: #FEF2F2;
+}
+
+/* Empty Cart */
+.raven-cart-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.raven-cart-empty svg {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    color: #D1D5DB;
+}
+
+.raven-empty-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 0.5rem 0;
+}
+
+.raven-empty-text {
+    font-size: 0.875rem;
+    color: #9CA3AF;
+    margin: 0 0 1.5rem 0;
+}
+
+.raven-btn-continue {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #111827;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.raven-btn-continue:hover {
+    background: #374151;
+    color: #fff;
+}
+
+/* Footer */
+.raven-cart-footer {
+    border-top: 1px solid #E5E7EB;
+    padding: 1.25rem 1.5rem;
+    background: #FAFAFA;
+}
+
+.raven-cart-subtotal {
+    margin-bottom: 1rem;
+}
+
+.raven-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.raven-subtotal-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.raven-subtotal-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.raven-cart-tax {
+    font-size: 0.75rem;
+    color: #6B7280;
+    text-align: right;
+    margin-top: 0.25rem;
+}
+
+/* Action Buttons */
+.raven-cart-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.raven-btn-checkout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid #C59A0F;
+    border-radius: 0.75rem;
+    background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%);
+    color: #111827;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.raven-btn-checkout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 35%, rgba(255,255,255,0.00) 60%);
+    pointer-events: none;
+}
+
+.raven-btn-checkout:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transform: translateY(-1px);
+    color: #111827;
+}
+
+.raven-btn-checkout:active {
+    transform: translateY(0);
+}
+
+.raven-btn-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.75rem;
+    background: white;
+    color: #374151;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.raven-btn-cart:hover {
+    background: #F9FAFB;
+    border-color: #D1D5DB;
+    color: #111827;
+}
+
+/* Override Shopware default styles */
+.offcanvas.is-open .offcanvas-body,
+.offcanvas-cart .offcanvas-body,
+.cart-offcanvas {
+    padding: 0 !important;
+}
+
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .raven-offcanvas-cart {
+        font-size: 14px;
+    }
+
+    .raven-cart-header {
+        padding: 1rem;
+    }
+
+    .raven-cart-title {
+        font-size: 1.125rem;
+    }
+
+    .raven-cart-items {
+        padding: 0.75rem 1rem;
+    }
+
+    .raven-cart-item {
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+    }
+
+    .raven-item-image {
+        width: 64px;
+        height: 64px;
+    }
+
+    .raven-item-name {
+        font-size: 0.8125rem;
+    }
+
+    .raven-item-price {
+        font-size: 0.875rem;
+    }
+
+    .raven-qty-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .raven-qty-input {
+        width: 36px;
+        height: 30px;
+        font-size: 0.8125rem;
+    }
+
+    .raven-cart-footer {
+        padding: 1rem;
+    }
+
+    .raven-subtotal-label {
+        font-size: 0.9375rem;
+    }
+
+    .raven-subtotal-value {
+        font-size: 1.125rem;
+    }
+
+    .raven-btn-checkout {
+        padding: 0.875rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .raven-btn-cart {
+        padding: 0.625rem 1rem;
+        font-size: 0.8125rem;
+    }
+
+    .raven-cart-empty {
+        padding: 3rem 1.5rem;
+    }
+
+    .raven-cart-empty svg {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+/* Tablet and small desktop */
+@media (min-width: 481px) and (max-width: 768px) {
+    .raven-cart-header {
+        padding: 1.125rem 1.25rem;
+    }
+
+    .raven-cart-items {
+        padding: 0.875rem 1.25rem;
+    }
+
+    .raven-cart-footer {
+        padding: 1.125rem 1.25rem;
+    }
+}
+
+/* Smooth scrollbar for cart items */
+.raven-cart-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.raven-cart-items::-webkit-scrollbar-track {
+    background: #F3F4F6;
+    border-radius: 3px;
+}
+
+.raven-cart-items::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 3px;
+}
+
+.raven-cart-items::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.raven-cart-item {
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+/* Loading state for buttons */
+.raven-qty-btn:disabled,
+.raven-item-remove:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+</style>
+
+{% block component_offcanvas_cart %}
+    {% set isCartNotEmpty = (page.cart.lineItems|length > 0) %}
+
+    <div class="raven-offcanvas-cart">
+        {# Header #}
+        <div class="raven-cart-header">
+            <div class="raven-cart-header-content">
+                <h2 class="raven-cart-title">Warenkorb</h2>
+                {% if isCartNotEmpty %}
+                    <span class="raven-cart-count">{{ page.cart.lineItems|length }}</span>
+                {% endif %}
+            </div>
+            <button class="raven-cart-close js-offcanvas-close" aria-label="Schliessen" data-offcanvas-close="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        {% if isCartNotEmpty %}
+            {# Cart Items #}
+            <div class="raven-cart-items">
+                {% for lineItem in page.cart.lineItems %}
+                    <div class="raven-cart-item js-cart-item" data-line-item-id="{{ lineItem.id }}">
+                        {# Product Image #}
+                        <div class="raven-item-image">
+                            {% if lineItem.cover.url is defined and lineItem.cover.url %}
+                                <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" loading="lazy">
+                            {% else %}
+                                <div class="raven-item-placeholder">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                                        <polyline points="21 15 16 10 5 21"/>
+                                    </svg>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        {# Product Info #}
+                        <div class="raven-item-info">
+                            <a href="{{ seoUrl('frontend.detail.page', {'productId': lineItem.referencedId}) }}" class="raven-item-name">
+                                {{ lineItem.label }}
+                            </a>
+                            <div class="raven-item-price">
+                                CHF {{ lineItem.price.unitPrice|number_format(2, '.', "'") }}
+                            </div>
+
+                            {# Quantity Controls with +/- buttons #}
+                            <div class="raven-item-quantity">
+                                {% if lineItem.stackable %}
+                                    <form action="{{ path('frontend.checkout.line-item.change-quantity', {'id': lineItem.id}) }}"
+                                          method="post"
+                                          class="raven-qty-form"
+                                          data-form-auto-submit="true"
+                                          data-form-auto-submit-options='{"changeTriggerSelectors": [".js-offcanvas-cart-change-quantity-number"]}'>
+                                        <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">
+
+                                        <button type="button"
+                                                class="raven-qty-btn js-btn-minus"
+                                                aria-label="Menge verringern">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                            </svg>
+                                        </button>
+
+                                        <input type="number"
+                                               name="quantity"
+                                               value="{{ lineItem.quantity }}"
+                                               min="{{ lineItem.quantityInformation.minPurchase|default(1) }}"
+                                               max="{{ lineItem.quantityInformation.maxPurchase|default(100) }}"
+                                               step="{{ lineItem.quantityInformation.purchaseSteps|default(1) }}"
+                                               class="raven-qty-input js-offcanvas-cart-change-quantity-number js-quantity-selector"
+                                               data-quantity-selector="true">
+
+                                        <button type="button"
+                                                class="raven-qty-btn js-btn-plus"
+                                                aria-label="Menge erhoehen">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <span style="font-size: 0.875rem; color: #6B7280;">Menge: {{ lineItem.quantity }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        {# Remove Button #}
+                        <div class="raven-item-remove-wrap">
+                            {% if lineItem.removable %}
+                                <form action="{{ path('frontend.checkout.line-item.delete', {'id': lineItem.id}) }}"
+                                      method="post">
+                                    <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">
+                                    <button type="submit" class="raven-item-remove" aria-label="Artikel entfernen">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="3 6 5 6 21 6"/>
+                                            <path d="m19 6-.867 12.142A2 2 0 0 1 16.138 20H7.862a2 2 0 0 1-1.995-1.858L5 6m5 0V4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2"/>
+                                        </svg>
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {# Footer with Summary and Buttons #}
+            <div class="raven-cart-footer">
+                <div class="raven-cart-subtotal">
+                    <div class="raven-subtotal-row">
+                        <span class="raven-subtotal-label">Summe</span>
+                        <span class="raven-subtotal-value">CHF {{ page.cart.price.positionPrice|number_format(2, '.', "'") }}</span>
+                    </div>
+                    <div class="raven-cart-tax">
+                        {% if page.cart.price.taxStatus == "gross" %}
+                            inkl. MwSt.
+                        {% else %}
+                            zzgl. MwSt.
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="raven-cart-actions">
+                    <a href="{{ path('frontend.checkout.confirm.page') }}" class="raven-btn-checkout">
+                        Zur Kasse
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                    <a href="{{ path('frontend.checkout.cart.page') }}" class="raven-btn-cart">
+                        Warenkorb ansehen
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            {# Empty Cart State #}
+            <div class="raven-cart-empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+                <p class="raven-empty-title">Dein Warenkorb ist leer</p>
+                <p class="raven-empty-text">Entdecke unsere Produkte und fuege sie hinzu</p>
+                <a href="{{ path('frontend.home.page') }}" class="raven-btn-continue">
+                    Weiter einkaufen
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% endblock %}

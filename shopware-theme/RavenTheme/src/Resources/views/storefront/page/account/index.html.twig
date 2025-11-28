@@ -1,22 +1,636 @@
 {% sw_extends '@Storefront/storefront/page/account/index.html.twig' %}
 
 {% block page_account %}
-<div class="raven-account max-w-7xl mx-auto px-6 lg:px-24 py-8 md:py-12">
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8" style="font-family: 'Chakra Petch', sans-serif;">
-        Mein Konto
-    </h1>
-    {{ parent() }}
+<div class="raven-account-dashboard">
+    <div class="account-container">
+        {# Sidebar #}
+        <aside class="account-sidebar">
+            <div class="sidebar-header">
+                <div class="user-avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
+                    </svg>
+                </div>
+                <div class="user-info">
+                    <p class="user-greeting">Willkommen zurück</p>
+                    <h3 class="user-name">{{ context.customer.firstName }} {{ context.customer.lastName }}</h3>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                {% set currentRoute = app.request.attributes.get('_route') %}
+
+                <a href="{{ path('frontend.account.home.page') }}" class="nav-item {% if currentRoute == 'frontend.account.home.page' %}active{% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Übersicht
+                </a>
+
+                <a href="{{ path('frontend.account.profile.page') }}" class="nav-item {% if currentRoute == 'frontend.account.profile.page' %}active{% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Mein Profil
+                </a>
+
+                <a href="{{ path('frontend.account.address.page') }}" class="nav-item {% if currentRoute == 'frontend.account.address.page' %}active{% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Adressen
+                </a>
+
+                <a href="{{ path('frontend.account.payment.page') }}" class="nav-item {% if currentRoute == 'frontend.account.payment.page' %}active{% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                    Zahlungsarten
+                </a>
+
+                <a href="{{ path('frontend.account.order.page') }}" class="nav-item {% if currentRoute == 'frontend.account.order.page' %}active{% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    Bestellungen
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="{{ path('frontend.account.logout.page') }}" class="logout-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Abmelden
+                </a>
+            </div>
+        </aside>
+
+        {# Main Content #}
+        <main class="account-main">
+            <div class="page-header">
+                <h1 class="page-title">Übersicht</h1>
+                <p class="page-subtitle">Verwalten Sie Ihre Kontoinformationen und Einstellungen</p>
+            </div>
+
+            <div class="dashboard-grid">
+                {# Personal Data Card #}
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Persönliche Daten</h3>
+                    <div class="card-content">
+                        <p class="data-line">{{ context.customer.firstName }} {{ context.customer.lastName }}</p>
+                        <p class="data-line email">{{ context.customer.email }}</p>
+                    </div>
+                    <a href="{{ path('frontend.account.profile.page') }}" class="card-link">
+                        Bearbeiten
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                {# Payment Method Card #}
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Zahlungsart</h3>
+                    <div class="card-content">
+                        {% if context.customer.defaultPaymentMethod %}
+                            <p class="data-line highlight">{{ context.customer.defaultPaymentMethod.translated.name }}</p>
+                            <p class="data-line small">{{ context.customer.defaultPaymentMethod.translated.description|striptags|slice(0, 50) }}...</p>
+                        {% else %}
+                            <p class="data-line">Keine Zahlungsart hinterlegt</p>
+                        {% endif %}
+                    </div>
+                    <a href="{{ path('frontend.account.payment.page') }}" class="card-link">
+                        Ändern
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                {# Billing Address Card #}
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Rechnungsadresse</h3>
+                    <div class="card-content">
+                        {% set billingAddress = context.customer.defaultBillingAddress %}
+                        {% if billingAddress %}
+                            <p class="data-line">{{ billingAddress.firstName }} {{ billingAddress.lastName }}</p>
+                            <p class="data-line">{{ billingAddress.street }}</p>
+                            <p class="data-line">{{ billingAddress.zipcode }} {{ billingAddress.city }}</p>
+                            <p class="data-line">{{ billingAddress.country.translated.name }}</p>
+                        {% else %}
+                            <p class="data-line">Keine Adresse hinterlegt</p>
+                        {% endif %}
+                    </div>
+                    <a href="{{ path('frontend.account.address.page') }}" class="card-link">
+                        Bearbeiten
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                {# Shipping Address Card #}
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Lieferadresse</h3>
+                    <div class="card-content">
+                        {% set shippingAddress = context.customer.defaultShippingAddress %}
+                        {% if shippingAddress %}
+                            {% if shippingAddress.id == billingAddress.id %}
+                                <p class="data-line highlight">Gleich wie Rechnungsadresse</p>
+                            {% else %}
+                                <p class="data-line">{{ shippingAddress.firstName }} {{ shippingAddress.lastName }}</p>
+                                <p class="data-line">{{ shippingAddress.street }}</p>
+                                <p class="data-line">{{ shippingAddress.zipcode }} {{ shippingAddress.city }}</p>
+                            {% endif %}
+                        {% else %}
+                            <p class="data-line">Keine Adresse hinterlegt</p>
+                        {% endif %}
+                    </div>
+                    <a href="{{ path('frontend.account.address.page') }}" class="card-link">
+                        Bearbeiten
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            {# Recent Orders Section #}
+            <div class="recent-orders">
+                <div class="section-header">
+                    <h2 class="section-title">Letzte Bestellungen</h2>
+                    <a href="{{ path('frontend.account.order.page') }}" class="view-all-link">
+                        Alle anzeigen
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                <div class="orders-placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <p>Ihre Bestellhistorie wird hier angezeigt</p>
+                    <a href="{{ path('frontend.home.page') }}" class="shop-now-btn">Jetzt einkaufen</a>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   RAVEN ACCOUNT DASHBOARD - Premium Design
+   ============================================ */
+
+:root {
+    --raven-gold: #D4A847;
+    --raven-gold-light: #E8C76B;
+    --raven-gold-dark: #B8922E;
+    --raven-charcoal: #1A1A1A;
+    --raven-dark: #111111;
+    --raven-gray-900: #1f2937;
+    --raven-gray-700: #374151;
+    --raven-gray-500: #6b7280;
+    --raven-gray-400: #9ca3af;
+    --raven-gray-300: #d1d5db;
+    --raven-gray-200: #e5e7eb;
+    --raven-gray-100: #f3f4f6;
+    --raven-gray-50: #f9fafb;
+    --raven-cream: #FDFCF9;
+    --raven-white: #ffffff;
+}
+
+.raven-account-dashboard {
+    min-height: calc(100vh - 200px);
+    background: linear-gradient(180deg, var(--raven-cream) 0%, #F5F3EE 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 2rem 1rem;
+}
+
+
+@media (min-width: 768px) {
+    .raven-account-dashboard {
+        padding: 3rem 2rem;
+    }
+}
+
+.account-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .account-container {
+        grid-template-columns: 280px 1fr;
+        gap: 3rem;
+    }
+}
+
+/* ============ SIDEBAR ============ */
+.account-sidebar {
+    background: var(--raven-white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--raven-gray-100);
+    margin-bottom: 1.5rem;
+}
+
+.user-avatar {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--raven-charcoal);
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-greeting {
+    font-size: 0.75rem;
+    color: var(--raven-gray-500);
+    margin: 0 0 0.25rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.user-name {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    border-radius: 12px;
+    color: var(--raven-gray-700);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background: var(--raven-gray-50);
+    color: var(--raven-charcoal);
+}
+
+.nav-item.active {
+    background: linear-gradient(135deg, rgba(212, 168, 71, 0.15) 0%, rgba(232, 199, 107, 0.1) 100%);
+    color: var(--raven-gold-dark);
+}
+
+.nav-item.active svg {
+    color: var(--raven-gold);
+}
+
+.nav-item svg {
+    flex-shrink: 0;
+    color: var(--raven-gray-400);
+    transition: color 0.2s ease;
+}
+
+.nav-item:hover svg {
+    color: var(--raven-gray-700);
+}
+
+.sidebar-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--raven-gray-100);
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    border-radius: 12px;
+    color: var(--raven-gray-500);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.logout-btn:hover {
+    background: #FEF2F2;
+    color: #DC2626;
+}
+
+.logout-btn:hover svg {
+    color: #DC2626;
+}
+
+/* ============ MAIN CONTENT ============ */
+.account-main {
+    min-width: 0;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--raven-charcoal);
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--raven-gray-500);
+    margin: 0;
+}
+
+/* ============ DASHBOARD GRID ============ */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.dashboard-card {
+    background: var(--raven-white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, rgba(212, 168, 71, 0.15) 0%, rgba(232, 199, 107, 0.1) 100%);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.card-icon svg {
+    color: var(--raven-gold);
+}
+
+.card-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--raven-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem 0;
+}
+
+.card-content {
+    flex: 1;
+    margin-bottom: 1rem;
+}
+
+.data-line {
+    font-size: 0.9375rem;
+    color: var(--raven-gray-700);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.5;
+}
+
+.data-line.highlight {
+    color: var(--raven-charcoal);
+    font-weight: 600;
+}
+
+.data-line.email {
+    color: var(--raven-gold-dark);
+}
+
+.data-line.small {
+    font-size: 0.8125rem;
+    color: var(--raven-gray-500);
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--raven-gold-dark);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.card-link:hover {
+    color: var(--raven-gold);
+    gap: 0.75rem;
+}
+
+/* ============ RECENT ORDERS ============ */
+.recent-orders {
+    background: var(--raven-white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--raven-gold-dark);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.view-all-link:hover {
+    color: var(--raven-gold);
+    gap: 0.75rem;
+}
+
+.orders-placeholder {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--raven-gray-400);
+}
+
+.orders-placeholder svg {
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.orders-placeholder p {
+    font-size: 0.9375rem;
+    margin: 0 0 1.5rem 0;
+}
+
+.shop-now-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 50%, var(--raven-gold) 100%);
+    background-size: 200% 100%;
+    border: 2px solid var(--raven-gold-dark);
+    border-radius: 12px;
+    color: var(--raven-charcoal);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.shop-now-btn:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 168, 71, 0.4);
+}
+
+/* ============ HIDE DEFAULT ELEMENTS ============ */
+.account-content,
+.account-sidebar-menu,
+.account-welcome,
+.account-overview {
+    display: none !important;
+}
+
+/* ============ FULL PAGE BACKGROUND ============ */
+.raven-account-page-bg {
+    background: linear-gradient(180deg, #FDFCF9 0%, #F5F3EE 100%) !important;
+    min-height: 100vh;
+}
+
+.raven-account-page-bg .raven-header,
+.raven-account-page-bg header,
+.raven-account-page-bg .header-main {
+    background: transparent !important;
+}
+
+.raven-account-page-bg .raven-account-dashboard {
+    background: transparent;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('raven-account-page-bg');
+});
+// Also add immediately in case DOMContentLoaded already fired
+document.body.classList.add('raven-account-page-bg');
+</script>
 {% endblock %}
 
-{% block page_account_sidebar_menu %}
-<nav class="raven-account-nav mb-8 lg:mb-0">
-    <ul class="space-y-2">
-        <li><a href="{{ path('frontend.account.home.page') }}" class="block px-4 py-2 rounded-lg {% if page.metaInformation.canonical == path('frontend.account.home.page') %}bg-amber-100 text-amber-800{% else %}hover:bg-gray-100{% endif %}">Übersicht</a></li>
-        <li><a href="{{ path('frontend.account.profile.page') }}" class="block px-4 py-2 rounded-lg {% if page.metaInformation.canonical == path('frontend.account.profile.page') %}bg-amber-100 text-amber-800{% else %}hover:bg-gray-100{% endif %}">Profil</a></li>
-        <li><a href="{{ path('frontend.account.address.page') }}" class="block px-4 py-2 rounded-lg {% if page.metaInformation.canonical == path('frontend.account.address.page') %}bg-amber-100 text-amber-800{% else %}hover:bg-gray-100{% endif %}">Adressen</a></li>
-        <li><a href="{{ path('frontend.account.payment.page') }}" class="block px-4 py-2 rounded-lg {% if page.metaInformation.canonical == path('frontend.account.payment.page') %}bg-amber-100 text-amber-800{% else %}hover:bg-gray-100{% endif %}">Zahlungsarten</a></li>
-        <li><a href="{{ path('frontend.account.order.page') }}" class="block px-4 py-2 rounded-lg {% if page.metaInformation.canonical == path('frontend.account.order.page') %}bg-amber-100 text-amber-800{% else %}hover:bg-gray-100{% endif %}">Bestellungen</a></li>
-    </ul>
-</nav>
-{% endblock %}
+{# Hide default sidebar #}
+{% block page_account_sidebar %}{% endblock %}
+{% block page_account_main_content %}{% endblock %}

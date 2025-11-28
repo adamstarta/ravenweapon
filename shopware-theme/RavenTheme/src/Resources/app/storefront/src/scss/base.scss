@@ -23,6 +23,40 @@ $black-overlay: rgba(0, 0, 0, 0.7);
 $search-bg: rgba(120, 120, 128, 0.16);
 
 // =============================================================================
+// HIDE DEFAULT SHOPWARE NAVIGATION (we use custom header nav)
+// =============================================================================
+.main-navigation-menu {
+  display: none !important;
+}
+
+// =============================================================================
+// HIDE MANUFACTURER LINKS AND PRODUCT DETAIL EXTRAS
+// =============================================================================
+.product-detail-manufacturer-link,
+.cms-element-product-description-reviews .product-detail-manufacturer-link,
+a[href=""].product-detail-manufacturer-link,
+.product-detail-manufacturer,
+.product-manufacturer-block {
+  display: none !important;
+}
+
+// Hide manufacturer name (strong tag) in product card links on category pages
+.product-info a strong,
+.card-body a strong,
+.product-box a strong,
+.raven-product-card a strong,
+.cms-element-product-listing a strong {
+  display: none !important;
+}
+
+// Hide flash messages / alerts (cart handled via AJAX)
+.alert-content,
+.alert.alert-info,
+.alert.alert-success {
+  display: none !important;
+}
+
+// =============================================================================
 // UTILITY CLASSES (Tailwind-like)
 // =============================================================================
 
@@ -79,9 +113,12 @@ $search-bg: rgba(120, 120, 128, 0.16);
 .text-gray-900 { color: #111827; }
 .bg-white { background-color: #ffffff; }
 .bg-black { background-color: #000000; }
+.bg-gray-50 { background-color: #f9fafb; }
 .bg-gray-100 { background-color: #f3f4f6; }
 .bg-gray-800 { background-color: #1f2937; }
 .bg-red-600 { background-color: #dc2626; }
+.text-green-600 { color: #16a34a; }
+.text-red-600 { color: #dc2626; }
 
 // Border utilities
 .border { border-width: 1px; }
@@ -107,12 +144,19 @@ $search-bg: rgba(120, 120, 128, 0.16);
 .relative { position: relative; }
 .absolute { position: absolute; }
 .fixed { position: fixed; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-10 { z-index: 10; }
 .z-30 { z-index: 30; }
 .z-50 { z-index: 50; }
 .top-0 { top: 0; }
 .left-0 { left: 0; }
 .right-0 { right: 0; }
 .bottom-0 { bottom: 0; }
+
+// Background utilities
+.bg-cover { background-size: cover; }
+.bg-center { background-position: center; }
+.bg-no-repeat { background-repeat: no-repeat; }
 
 // Grid utilities
 .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
@@ -139,7 +183,12 @@ $search-bg: rgba(120, 120, 128, 0.16);
   .md\:justify-between { justify-content: space-between; }
   .md\:w-auto { width: auto; }
   .md\:py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+  .md\:py-12 { padding-top: 3rem; padding-bottom: 3rem; }
   .md\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+  .md\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+  .md\:gap-12 { gap: 3rem; }
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:\!grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
 }
 
 @media (min-width: 1024px) {
@@ -819,15 +868,34 @@ $search-bg: rgba(120, 120, 128, 0.16);
   }
 }
 
+// 3-column grid for category pages (like reference design)
+.raven-product-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .raven-product-card,
 .product-card {
   background: #ffffff;
   cursor: pointer;
   position: relative;
-  transition: box-shadow 120ms ease, transform 120ms ease;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: box-shadow 150ms ease, transform 120ms ease;
 
   &:hover {
-    box-shadow: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 
   &:active {
@@ -935,14 +1003,35 @@ $search-bg: rgba(120, 120, 128, 0.16);
 // =============================================================================
 
 .raven-product-price,
+.raven-price,
 .price,
 .product-price {
   font-family: 'Inter', sans-serif;
   color: $price-red;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 16px;
   line-height: 1.2;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
+}
+
+// Category label
+.cat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6b7280;
+}
+
+// Product title
+.prod-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #1f2937;
+
+  .font-bold {
+    font-weight: 700;
+  }
 }
 
 .raven-avail-dot,
@@ -971,6 +1060,32 @@ $search-bg: rgba(120, 120, 128, 0.16);
   border-radius: 0.375rem;
   transition: background-color 150ms ease;
   color: #1f2937;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.raven-cart-btn-small {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  transition: background-color 150ms ease;
+  color: #1f2937;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 
   &:hover {
     background-color: #f3f4f6;
@@ -1141,5 +1256,852 @@ $search-bg: rgba(120, 120, 128, 0.16);
   @media (min-width: 1024px) {
     padding-left: 6rem;
     padding-right: 6rem;
+  }
+}
+
+// =============================================================================
+// HIDE MANUFACTURER FILTER
+// =============================================================================
+.filter-multi-select-manufacturer {
+  display: none !important;
+}
+
+// =============================================================================
+// ANIMATIONS & KEYFRAMES
+// =============================================================================
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(242, 185, 13, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(242, 185, 13, 0.8), 0 0 30px rgba(242, 185, 13, 0.4); }
+}
+
+// Animation utility classes
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.5s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+// Staggered animation delays
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+
+// Initially hidden for animation
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.visible {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+// =============================================================================
+// IMPROVED NAVBAR STYLES
+// =============================================================================
+.raven-header {
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  &.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+    .raven-header-desktop {
+      border-bottom: none;
+    }
+  }
+}
+
+.raven-header-desktop {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+// Improved search bar
+.raven-search-form {
+  position: relative;
+
+  .raven-search-input {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 22px;
+    background-color: #f3f4f6;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    width: 100%;
+    padding-left: 2.75rem;
+    padding-right: 1rem;
+    height: 2.5rem;
+    color: #111827;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:hover {
+      background-color: #e5e7eb;
+    }
+
+    &:focus {
+      outline: none;
+      background-color: #ffffff;
+      border-color: #F2B90D;
+      box-shadow: 0 0 0 3px rgba(242, 185, 13, 0.15);
+    }
+  }
+
+  button[type="submit"] {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #F2B90D;
+    }
+  }
+}
+
+// Improved nav links
+.nav-text {
+  a {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4b5563;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, #F2B90D, #F6CE55);
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: #111827;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &.active {
+      color: #111827;
+      font-weight: 600;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Improved icon buttons
+.raven-icon-btn,
+.raven-header a[class*="inline-flex"][class*="rounded-md"] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  width: 42px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 100%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    border-color: #F2B90D;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(242, 185, 13, 0.2);
+
+    &::before {
+      opacity: 0.1;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  svg, i {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Cart count badge animation
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 100%);
+  color: #1f2937;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(242, 185, 13, 0.4);
+  animation: scaleIn 0.3s ease-out;
+}
+
+// Mobile menu toggle
+.raven-mobile-toggle {
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// Logo hover effect
+.raven-header a[aria-label="Raven Weapon home"] {
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+// =============================================================================
+// IMPROVED LOGIN PAGE STYLES
+// =============================================================================
+.raven-login {
+  animation: fadeInUp 0.5s ease-out;
+
+  h1 {
+    background: linear-gradient(135deg, #111827 0%, #374151 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  // Form inputs
+  .form-control,
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    font-family: 'Inter', sans-serif;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    font-size: 15px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #d1d5db;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #F2B90D;
+      box-shadow: 0 0 0 3px rgba(242, 185, 13, 0.15);
+    }
+  }
+
+  // Form labels
+  label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+
+  // Checkbox styling
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 2px solid #d1d5db;
+    accent-color: #F2B90D;
+  }
+}
+
+.raven-btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 50%, #F2B90D 100%);
+  background-size: 200% 100%;
+  border: none;
+  border-radius: 12px;
+  color: #1f2937;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(242, 185, 13, 0.4);
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(242, 185, 13, 0.5);
+    background-position: 100% 0;
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.raven-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  color: #374151;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #F2B90D;
+    color: #1f2937;
+    background-color: rgba(242, 185, 13, 0.05);
+  }
+}
+
+// =============================================================================
+// HOMEPAGE ANIMATIONS
+// =============================================================================
+.raven-homepage {
+  // Hero section animations
+  .raven-hero {
+    .raven-hero-title {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    h2 {
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    ul {
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    > div > div:last-child {
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+  }
+
+  // Section animations
+  .raven-products,
+  .raven-categories,
+  .raven-brands,
+  .raven-video {
+    h2 {
+      animation: fadeInUp 0.6s ease-out;
+    }
+  }
+
+  // Product card hover effects
+  .raven-product-card {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-img {
+      transition: transform 0.5s ease;
+    }
+
+    &:hover .product-img {
+      transform: scale(1.08);
+    }
+  }
+
+  // Category card animations
+  .raven-categories a {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-color: #F2B90D;
+    }
+
+    span:first-child {
+      transition: all 0.3s ease;
+    }
+
+    &:hover span:first-child {
+      background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 100%);
+      color: #1f2937;
+      transform: scale(1.1);
+    }
+  }
+
+  // Brand card animations
+  .raven-brands-grid > div {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      border-color: #F2B90D;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      transition: all 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// =============================================================================
+// SMOOTH SCROLL
+// =============================================================================
+html {
+  scroll-behavior: smooth;
+}
+
+// =============================================================================
+// FOCUS VISIBLE STYLES
+// =============================================================================
+*:focus-visible {
+  outline: 2px solid #F2B90D;
+  outline-offset: 2px;
+}
+
+// =============================================================================
+// SELECTION STYLES
+// =============================================================================
+::selection {
+  background-color: rgba(242, 185, 13, 0.3);
+  color: #1f2937;
+}
+
+// =============================================================================
+// SHOPWARE LOGIN PAGE STYLING
+// =============================================================================
+.is-act-login {
+  .content-main {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    min-height: calc(100vh - 200px);
+    padding: 3rem 1rem;
+  }
+
+  .account-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  // Login and Register cards
+  .card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .card-body {
+    padding: 2rem;
+
+    @media (min-width: 640px) {
+      padding: 2.5rem;
+    }
+  }
+
+  // Card titles
+  .card-title,
+  .login-header-headline {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+
+  // Form inputs
+  .form-control {
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 0.9375rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #111827;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #d1d5db;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #F2B90D;
+      box-shadow: 0 0 0 4px rgba(242, 185, 13, 0.1);
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+
+  // Labels
+  .form-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  // Primary button (Login/Register)
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 50%, #F2B90D 100%) !important;
+    background-size: 200% 100%;
+    border: none !important;
+    border-radius: 12px !important;
+    color: #1f2937 !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(242, 185, 13, 0.35);
+
+    &:hover {
+      background-position: 100% 0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(242, 185, 13, 0.45);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Links
+  a:not(.btn) {
+    color: #F2B90D;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #d4a00d;
+      text-decoration: underline;
+    }
+  }
+
+  // Checkbox styling
+  .custom-checkbox .custom-control-label::before {
+    border-radius: 4px;
+    border: 2px solid #d1d5db;
+  }
+
+  .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #F2B90D;
+    border-color: #F2B90D;
+  }
+
+  // Login advantages list
+  .login-advantages {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: #4b5563;
+      margin-bottom: 0.5rem;
+
+      &::before {
+        content: "✓";
+        color: #22c55e;
+        font-weight: bold;
+      }
+    }
+  }
+
+  // Select dropdowns
+  .custom-select {
+    font-family: 'Inter', sans-serif;
+    padding: 0.875rem 1rem;
+    font-size: 0.9375rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #F2B90D;
+      box-shadow: 0 0 0 4px rgba(242, 185, 13, 0.1);
+    }
+  }
+
+  // Alert messages
+  .alert {
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+  }
+
+  .alert-danger {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+  }
+
+  .alert-success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #16a34a;
+  }
+}
+
+// =============================================================================
+// FIX SEARCH ICON IN HEADER
+// =============================================================================
+.raven-search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .raven-search-input {
+    width: 100%;
+    height: 42px;
+    padding: 0 1rem 0 2.75rem;
+    font-size: 15px;
+    background: #f3f4f6;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:hover {
+      background: #e5e7eb;
+    }
+
+    &:focus {
+      background: #ffffff;
+      border-color: #F2B90D;
+      box-shadow: 0 0 0 3px rgba(242, 185, 13, 0.15);
+    }
+  }
+
+  button[type="submit"] {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #F2B90D;
+    }
+
+    svg, .icon {
+      width: 18px;
+      height: 18px;
+    }
   }
 }
