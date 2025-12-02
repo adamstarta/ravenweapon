@@ -792,10 +792,6 @@
                 setTimeout(() => backdrop.classList.add('show'), 10);
                 document.body.style.overflow = 'hidden';
 
-                offcanvas.querySelectorAll('[data-offcanvas-close], .js-offcanvas-close, .raven-cart-close').forEach(btn => {
-                    btn.onclick = closeOffcanvasCart;
-                });
-
                 if (window.PluginManager) {
                     window.PluginManager.initializePlugins();
                 }
@@ -824,6 +820,15 @@
                 });
             });
         }
+
+        // Use event delegation for close button - this handles dynamically loaded content
+        document.addEventListener('click', function(e) {
+            var closeBtn = e.target.closest('[data-offcanvas-close], .js-offcanvas-close, .raven-cart-close');
+            if (closeBtn) {
+                e.preventDefault();
+                closeOffcanvasCart();
+            }
+        });
 
         window.openOffcanvasCart = openOffcanvasCart;
         window.closeOffcanvasCart = closeOffcanvasCart;
