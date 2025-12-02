@@ -2,24 +2,26 @@
 
 {% block layout_header_actions_cart %}
     {# Cart Button - Opens Off-Canvas Cart Sidebar using Shopware's built-in plugin #}
-    <button type="button"
-            class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
-            data-off-canvas-cart="true"
-            data-url="{{ path('frontend.cart.offcanvas') }}"
-            aria-label="Warenkorb"
-            title="Warenkorb">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 0 1-8 0"/>
-        </svg>
+    <div class="header-cart-wrapper" style="display: flex; align-items: center; gap: 6px;">
+        <button type="button"
+                class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                data-off-canvas-cart="true"
+                data-url="{{ path('frontend.cart.offcanvas') }}"
+                aria-label="Warenkorb"
+                title="Warenkorb">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+        </button>
         {% set cartCount = page.cart.lineItems.count|default(0) %}
         {% if cartCount > 0 %}
-            <span class="raven-cart-badge absolute -top-1.5 -right-1.5 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 text-black text-[10px] leading-none w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md">
+            <span class="raven-cart-badge-outside" style="display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 8px; background: linear-gradient(to right, #facc15, #f59e0b, #facc15); color: #000; font-size: 12px; font-weight: 700; border-radius: 9999px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
                 {{ cartCount }}
             </span>
         {% endif %}
-    </button>
+    </div>
 {% endblock %}
 
 {% block layout_header %}
@@ -104,12 +106,12 @@
     .raven-logo:hover {
         opacity: 0.85;
     }
-    .raven-cart-badge {
+    .raven-cart-badge-outside {
         animation: pulse-badge 2s infinite;
     }
     @keyframes pulse-badge {
         0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.1); }
+        50% { transform: scale(1.05); }
     }
     /* Fix search icon display */
     .raven-search-form button[type="submit"] svg,
@@ -175,18 +177,18 @@
 
             console.log('Cart badge update: ' + count + ' items');
 
-            // Update existing badges or create new ones
-            document.querySelectorAll('.header-cart-btn').forEach(function(btn) {
-                var badge = btn.querySelector('.raven-cart-badge');
+            // Update existing badges (now outside the button, in wrapper)
+            document.querySelectorAll('.header-cart-wrapper').forEach(function(wrapper) {
+                var badge = wrapper.querySelector('.raven-cart-badge-outside');
                 if (count > 0) {
                     if (!badge) {
                         badge = document.createElement('span');
-                        badge.className = 'raven-cart-badge';
-                        badge.style.cssText = 'position:absolute;top:-6px;right:-6px;background:linear-gradient(to right,#facc15,#f59e0b,#facc15);color:#000;font-size:10px;line-height:1;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,0.2);animation:pulse-badge 2s infinite;';
-                        btn.appendChild(badge);
+                        badge.className = 'raven-cart-badge-outside';
+                        badge.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 8px;background:linear-gradient(to right,#facc15,#f59e0b,#facc15);color:#000;font-size:12px;font-weight:700;border-radius:9999px;box-shadow:0 1px 3px rgba(0,0,0,0.2);';
+                        wrapper.appendChild(badge);
                     }
                     badge.textContent = count;
-                    badge.style.display = 'flex';
+                    badge.style.display = 'inline-flex';
                 } else if (badge) {
                     badge.style.display = 'none';
                 }
@@ -517,13 +519,13 @@
                                 <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
                             </svg>
                         </button>
-                        {# Mobile Dropdown Menu - Will be dynamically updated by JS #}
+                        {# Mobile Dropdown Menu - Server-side rendered #}
                         <div class="raven-account-menu" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 8px; min-width: 180px; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #e5e7eb; overflow: hidden; z-index: 1000;">
-                            {# Logged In Menu - hidden by default, shown via JS #}
-                            <div class="raven-logged-in-menu" style="display: none;">
+                            {% if context.customer %}
+                                {# Logged In Menu #}
                                 <div style="padding: 12px 16px; border-bottom: 1px solid #f3f4f6;">
                                     <p style="font-size: 12px; color: #6b7280; margin: 0;">Angemeldet als</p>
-                                    <p class="raven-customer-name" style="font-size: 14px; font-weight: 600; color: #111827; margin: 4px 0 0 0;"></p>
+                                    <p style="font-size: 14px; font-weight: 600; color: #111827; margin: 4px 0 0 0;">{{ context.customer.firstName }} {{ context.customer.lastName }}</p>
                                 </div>
                                 <a href="{{ path('frontend.account.home.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none;">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/></svg>
@@ -539,9 +541,8 @@
                                         Abmelden
                                     </a>
                                 </div>
-                            </div>
-                            {# Not Logged In Menu - shown by default #}
-                            <div class="raven-guest-menu">
+                            {% else %}
+                                {# Not Logged In Menu #}
                                 <a href="{{ path('frontend.account.login.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none;">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
                                     Anmelden
@@ -550,26 +551,28 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
                                     Registrieren
                                 </a>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     {# Cart Button Mobile - Opens Off-Canvas Cart Sidebar #}
-                    <button type="button"
-                            class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
-                            data-off-canvas-cart="true"
-                            data-url="{{ path('frontend.cart.offcanvas') }}"
-                            aria-label="Warenkorb">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                            <line x1="3" y1="6" x2="21" y2="6"/>
-                            <path d="M16 10a4 4 0 0 1-8 0"/>
-                        </svg>
+                    <div class="header-cart-wrapper" style="display: flex; align-items: center; gap: 4px;">
+                        <button type="button"
+                                class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                                data-off-canvas-cart="true"
+                                data-url="{{ path('frontend.cart.offcanvas') }}"
+                                aria-label="Warenkorb">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                                <line x1="3" y1="6" x2="21" y2="6"/>
+                                <path d="M16 10a4 4 0 0 1-8 0"/>
+                            </svg>
+                        </button>
                         {% if page.cart.lineItems.count > 0 %}
-                            <span class="raven-cart-badge absolute -top-1.5 -right-1.5 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 text-black text-[10px] leading-none w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md">
+                            <span class="raven-cart-badge-outside" style="display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; background: linear-gradient(to right, #facc15, #f59e0b, #facc15); color: #000; font-size: 11px; font-weight: 700; border-radius: 9999px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
                                 {{ page.cart.lineItems.count }}
                             </span>
                         {% endif %}
-                    </button>
+                    </div>
                     {# Mobile Menu Toggle #}
                     <button type="button"
                             class="raven-icon-btn md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
@@ -630,13 +633,13 @@
                                 <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
                             </svg>
                         </button>
-                        {# Dropdown Menu - Will be dynamically updated by JS based on login state #}
+                        {# Dropdown Menu - Server-side rendered based on login state #}
                         <div class="raven-account-menu" style="display: none; position: absolute; top: 100%; right: 0; margin-top: 8px; min-width: 180px; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 1px solid #e5e7eb; overflow: hidden; z-index: 1000;">
-                            {# Logged In Menu - hidden by default, shown via JS #}
-                            <div class="raven-logged-in-menu" style="display: none;">
+                            {% if context.customer %}
+                                {# Logged In Menu #}
                                 <div style="padding: 12px 16px; border-bottom: 1px solid #f3f4f6;">
                                     <p style="font-size: 12px; color: #6b7280; margin: 0;">Angemeldet als</p>
-                                    <p class="raven-customer-name" style="font-size: 14px; font-weight: 600; color: #111827; margin: 4px 0 0 0;"></p>
+                                    <p style="font-size: 14px; font-weight: 600; color: #111827; margin: 4px 0 0 0;">{{ context.customer.firstName }} {{ context.customer.lastName }}</p>
                                 </div>
                                 <a href="{{ path('frontend.account.home.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none; transition: background 0.15s;">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
@@ -662,9 +665,8 @@
                                         Abmelden
                                     </a>
                                 </div>
-                            </div>
-                            {# Not Logged In Menu - shown by default #}
-                            <div class="raven-guest-menu">
+                            {% else %}
+                                {# Not Logged In Menu #}
                                 <a href="{{ path('frontend.account.login.page') }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: #374151; font-size: 14px; text-decoration: none; transition: background 0.15s;">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
                                         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
@@ -682,29 +684,31 @@
                                     </svg>
                                     Registrieren
                                 </a>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
 
                     {# Cart Button Desktop - Opens Off-Canvas Cart Sidebar #}
-                    <button type="button"
-                            class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
-                            data-off-canvas-cart="true"
-                            data-url="{{ path('frontend.cart.offcanvas') }}"
-                            aria-label="Warenkorb"
-                            title="Warenkorb">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                            <line x1="3" y1="6" x2="21" y2="6"/>
-                            <path d="M16 10a4 4 0 0 1-8 0"/>
-                        </svg>
+                    <div class="header-cart-wrapper" style="display: flex; align-items: center; gap: 6px;">
+                        <button type="button"
+                                class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                                data-off-canvas-cart="true"
+                                data-url="{{ path('frontend.cart.offcanvas') }}"
+                                aria-label="Warenkorb"
+                                title="Warenkorb">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                                <line x1="3" y1="6" x2="21" y2="6"/>
+                                <path d="M16 10a4 4 0 0 1-8 0"/>
+                            </svg>
+                        </button>
                         {% set cartCount = page.cart.lineItems.count|default(0) %}
                         {% if cartCount > 0 %}
-                            <span class="raven-cart-badge absolute -top-1.5 -right-1.5 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 text-black text-[10px] leading-none w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-md">
+                            <span class="raven-cart-badge-outside" style="display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 8px; background: linear-gradient(to right, #facc15, #f59e0b, #facc15); color: #000; font-size: 12px; font-weight: 700; border-radius: 9999px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
                                 {{ cartCount }}
                             </span>
                         {% endif %}
-                    </button>
+                    </div>
                 </div>
             </div>
 
@@ -715,24 +719,14 @@
                         Startseite
                     </a>
 
-                    {# Dynamic Navigation from Categories #}
-                    {% for treeItem in page.header.navigation.tree %}
-                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: treeItem.category.id }) }}"
-                           class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                            {{ treeItem.category.translated.name }}
-                            {% if treeItem.children|length > 0 %}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-gray-400">
-                                    <polyline points="6 9 12 15 18 9"/>
-                                </svg>
-                            {% endif %}
-                        </a>
-                    {% endfor %}
-
-                    <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" class="raven-nav-link text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                        Über uns
+                    {# Category Links - Raven Weapons and Raven Caliber Kit #}
+                    <a href="/Raven-Weapons/"
+                       class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                        Weapons
                     </a>
-                    <a href="{{ path('frontend.cms.page', { id: 'contact' }) }}" class="raven-nav-link text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                        Kontakt
+                    <a href="/Raven-Caliber-Kit/"
+                       class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                        Kalibers
                     </a>
                 </nav>
             </div>
