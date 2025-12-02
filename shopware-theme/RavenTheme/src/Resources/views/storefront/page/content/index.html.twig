@@ -1,8 +1,10 @@
 {% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
 
 {% block base_main_inner %}
-{# Only show custom homepage for the root navigation/homepage #}
-{% if page.header.navigation.active.id == page.header.navigation.active.path|first or page.cmsPage.type == 'landingpage' %}
+{# Only show custom homepage for the actual homepage (entry point category, not child categories) #}
+{# Check if we're on the root entry point by verifying the category has no parent in the visible navigation #}
+{% set isHomepage = (page.cmsPage.type == 'landingpage' and page.header.navigation.active.parentId is null) or (page.header.navigation.active.id == page.header.navigation.active.path|first and page.header.navigation.active.path|length == 1) %}
+{% if isHomepage %}
 
 {# Hide Shopware flash messages - we use cart sidebar instead #}
 <style>
@@ -51,7 +53,7 @@
 
             <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
                 <a href="{{ path('frontend.home.page') }}" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
-                    {% sw_icon 'bag' style { 'size': 'sm' } %}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     <span style="margin-left: 0.5rem;">Zum Shop</span>
                 </a>
                 <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" style="display: inline-flex; align-items: center; padding: 0.5rem 1rem; background: white; color: #414651; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #d1d5db; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
@@ -85,8 +87,8 @@
             content: '' !important;
             position: absolute !important;
             right: -1rem !important;
-            top: 10% !important;
-            height: 80% !important;
+            top: 0 !important;
+            height: 100% !important;
             width: 2px !important;
             background: #D4A847 !important;
             display: block !important;
@@ -107,8 +109,8 @@
                 <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 4rem); font-weight: 400; color: #111827; line-height: 1.1;">
                     Beliebte Produkte
                 </h2>
-                <a href="{{ path('frontend.home.page') }}" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
-                    {% sw_icon 'bag' style { 'size': 'sm' } %}
+                <a href="{{ path('frontend.search.page') }}?search=" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     <span style="margin-left: 0.5rem;">Zum gesamten Sortiment</span>
                 </a>
             </div>
@@ -127,7 +129,7 @@
                         <p style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0;">Waffe</p>
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                             <div style="flex: 1;">
-                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">2985.–</div>
+                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">CHF 2985.–</div>
                                 <div style="color: #374151; font-size: 1rem; margin-top: 0.25rem;"><span style="font-weight: 700;">Lockhart Tactical</span> .223 RAVEN</div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
@@ -162,7 +164,7 @@
                         <p style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0;">Waffe</p>
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                             <div style="flex: 1;">
-                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">3150.–</div>
+                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">CHF 3150.–</div>
                                 <div style="color: #374151; font-size: 1rem; margin-top: 0.25rem;"><span style="font-weight: 700;">Lockhart Tactical</span> 300 AAC RAVEN</div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
@@ -197,7 +199,7 @@
                         <p style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0;">Waffe</p>
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                             <div style="flex: 1;">
-                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">3150.–</div>
+                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">CHF 3150.–</div>
                                 <div style="color: #374151; font-size: 1rem; margin-top: 0.25rem;"><span style="font-weight: 700;">Lockhart Tactical</span> 7.62×39 RAVEN</div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
@@ -232,7 +234,7 @@
                         <p style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0;">Zubehör</p>
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                             <div style="flex: 1;">
-                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">1849.–</div>
+                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">CHF 1849.–</div>
                                 <div style="color: #374151; font-size: 1rem; margin-top: 0.25rem;"><span style="font-weight: 700;">Lockhart Tactical</span> .223 CALIBER KIT</div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
@@ -267,7 +269,7 @@
                         <p style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0;">Zubehör</p>
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                             <div style="flex: 1;">
-                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">1949.–</div>
+                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">CHF 1949.–</div>
                                 <div style="color: #374151; font-size: 1rem; margin-top: 0.25rem;"><span style="font-weight: 700;">Lockhart Tactical</span> 300 AAC CALIBER KIT</div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
@@ -302,7 +304,7 @@
                         <p style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0;">Zubehör</p>
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                             <div style="flex: 1;">
-                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">1949.–</div>
+                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">CHF 1949.–</div>
                                 <div style="color: #374151; font-size: 1rem; margin-top: 0.25rem;"><span style="font-weight: 700;">Lockhart Tactical</span> 7.62×39 CALIBER KIT</div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">

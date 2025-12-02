@@ -4,8 +4,20 @@
 {% block utilities_offcanvas_close_text %}{% endblock %}
 {% block utilities_offcanvas_close_icon %}{% endblock %}
 
+{# Hide the default Shopware offcanvas header completely #}
+{% block utilities_offcanvas_header %}{% endblock %}
+
 {% block utilities_offcanvas_content %}
 <style>
+/* Hide default Shopware offcanvas header with black close button */
+.offcanvas-header,
+.offcanvas-close,
+.btn.offcanvas-close,
+.offcanvas-body > .offcanvas-header,
+#raven-offcanvas-cart .offcanvas-header {
+    display: none !important;
+}
+
 /* Raven Offcanvas Cart Styles */
 .raven-offcanvas-cart {
     display: flex;

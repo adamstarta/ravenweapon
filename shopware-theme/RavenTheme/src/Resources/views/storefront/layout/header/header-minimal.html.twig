@@ -1,0 +1,6 @@
+{% sw_extends '@Storefront/storefront/layout/header/header-minimal.html.twig' %}
+
+{# Override to remove the default "Questions regarding your order?" support contact section #}
+{% block layout_header_minimal_contact %}
+    {# Empty - removed support hotline from checkout header #}
+{% endblock %}

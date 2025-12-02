@@ -2,70 +2,16 @@
 
 {% block base_main_inner %}
 <main class="raven-category-page">
-    {# Hero Banner for Category #}
-    <section class="category-hero" style="background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #0f172a 100%); padding: 3rem 0 4rem; position: relative; overflow: hidden;">
-        {# Decorative elements #}
-        <div class="hero-decoration" style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; opacity: 0.05; background-image: url('{{ asset('bundles/raventheme/assets/hero-background.jpg') }}'); background-size: cover; background-position: center;"></div>
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(31,41,55,1) 0%, rgba(31,41,55,0.8) 50%, rgba(31,41,55,0.4) 100%);"></div>
-
-        <div class="max-w-7xl mx-auto px-6 lg:px-24 relative z-10">
-            {# Breadcrumb #}
-            <nav class="breadcrumb animate-fade-in" style="margin-bottom: 1.5rem;" aria-label="Breadcrumb">
-                <div style="display: flex; align-items: center; gap: 0.5rem; font-family: 'Inter', sans-serif; font-size: 0.875rem;">
-                    <a href="{{ path('frontend.home.page') }}" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
-                    </a>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                    <span style="color: #F2B90D; font-weight: 500;">{{ page.header.navigation.active.translated.name }}</span>
-                </div>
-            </nav>
-
-            {# Category Title #}
-            <div class="category-header" style="display: flex; flex-direction: column; gap: 1rem;">
-                <h1 class="animate-fade-in-up" style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; color: white; line-height: 1.1; margin: 0;">
+    {# Clean Header Section #}
+    <section style="background: white; padding: 2rem 0 1rem;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+                <h1 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; color: #111827; line-height: 1.1; margin: 0;">
                     {{ page.header.navigation.active.translated.name }}
                 </h1>
-
-                {% if page.listing.total is defined %}
-                <p class="animate-fade-in-up delay-100" style="font-family: 'Inter', sans-serif; font-size: 1.125rem; color: rgba(255,255,255,0.7); margin: 0; opacity: 0; animation-fill-mode: forwards;">
-                    <span style="color: #F2B90D; font-weight: 600;">{{ page.listing.total }}</span> {% if page.listing.total == 1 %}Produkt{% else %}Produkte{% endif %} verfügbar
-                </p>
-                {% endif %}
-            </div>
-
-            {# Category Description #}
-            {% if page.header.navigation.active.translated.description %}
-            <div class="category-description animate-fade-in-up delay-200" style="margin-top: 1.5rem; max-width: 600px; font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.8); line-height: 1.6; opacity: 0; animation-fill-mode: forwards;">
-                {{ page.header.navigation.active.translated.description|striptags|slice(0, 200) }}{% if page.header.navigation.active.translated.description|length > 200 %}...{% endif %}
-            </div>
-            {% endif %}
-        </div>
-    </section>
-
-    {# Filter Bar (Optional) #}
-    <section class="filter-bar" style="background: white; border-bottom: 1px solid #e5e7eb; position: sticky; top: 80px; z-index: 40;">
-        <div class="max-w-7xl mx-auto px-6 lg:px-24">
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; gap: 1rem; flex-wrap: wrap;">
-                {# View toggle and sort #}
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <span style="font-family: 'Inter', sans-serif; font-size: 0.875rem; color: #6b7280;">Sortieren:</span>
-                    <select style="font-family: 'Inter', sans-serif; padding: 0.5rem 2rem 0.5rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; background: white; font-size: 0.875rem; color: #374151; cursor: pointer;">
-                        <option>Beliebtheit</option>
-                        <option>Preis aufsteigend</option>
-                        <option>Preis absteigend</option>
-                        <option>Neueste</option>
-                    </select>
-                </div>
-
-                {# Results count #}
                 {% if page.listing.total is defined %}
                 <span style="font-family: 'Inter', sans-serif; font-size: 0.875rem; color: #9ca3af;">
-                    {{ page.listing.total }} Ergebnisse
+                    {{ page.listing.total }} {% if page.listing.total == 1 %}Produkt{% else %}Produkte{% endif %}
                 </span>
                 {% endif %}
             </div>
@@ -73,101 +19,53 @@
     </section>
 
     {# Products Section #}
-    <section class="products-section" style="background: #f9fafb; padding: 3rem 0 5rem;">
+    <section class="products-section" style="background: white; padding: 1rem 0 4rem;">
         <div class="max-w-7xl mx-auto px-6 lg:px-24">
 
             {% if page.listing.elements|length > 0 %}
             {# Product Grid #}
-            <div class="product-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 1.5rem;">
+            <div class="raven-product-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 2rem;">
                 {% for product in page.listing.elements %}
-                <article class="product-card-enhanced" data-product-index="{{ loop.index }}" style="background: white; border-radius: 16px; border: 1px solid #e5e7eb; overflow: hidden; opacity: 0; transform: translateY(30px);">
-                    <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" class="product-link" style="display: block; text-decoration: none; color: inherit;">
-                        {# Product Image #}
-                        <div class="product-image-container" style="height: 220px; background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                <article class="raven-product-card" style="background: white; cursor: pointer;">
+                    <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" style="text-decoration: none; color: inherit; display: block;">
+                        <div style="height: 18rem; background: white; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                             {% if product.cover.media %}
-                                {% sw_thumbnails 'product-image-thumbnails' with {
-                                    media: product.cover.media,
-                                    sizes: {
-                                        'default': '400px'
-                                    },
-                                    attributes: {
-                                        'class': 'product-image',
-                                        'style': 'max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.5s ease;',
-                                        'alt': product.cover.media.translated.alt ?: product.translated.name,
-                                        'title': product.cover.media.translated.title ?: product.translated.name
-                                    }
-                                } %}
+                                <img class="product-img" src="{{ product.cover.media.url }}" alt="{{ product.translated.name }}" style="max-width: 100%; max-height: 100%; object-fit: contain; padding: 0.75rem;">
                             {% else %}
                                 <div style="color: #d1d5db;">
                                     {% sw_icon 'placeholder' style { 'size': 'lg' } %}
                                 </div>
                             {% endif %}
-
-                            {# Quick view badge #}
-                            <div class="quick-view-badge" style="position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.7); color: white; padding: 0.375rem 0.75rem; border-radius: 20px; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; opacity: 0; transform: translateY(-10px); transition: all 0.3s ease;">
-                                Ansehen
-                            </div>
                         </div>
                     </a>
-
-                    {# Product Info #}
-                    <div class="product-info" style="padding: 1.25rem;">
-                        {# Category Label #}
-                        <span style="font-family: 'Inter', sans-serif; font-size: 0.6875rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500;">
-                            {% if product.categories|first %}
-                                {{ product.categories|first.translated.name }}
-                            {% else %}
-                                {{ page.header.navigation.active.translated.name }}
-                            {% endif %}
-                        </span>
-
-                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-top: 0.5rem;">
-                            <div style="flex: 1; min-width: 0;">
-                                {# Price #}
-                                <div style="font-family: 'Inter', sans-serif; color: #dc2626; font-weight: 700; font-size: 1.375rem; line-height: 1.2;">
+                    <div style="padding: 0.75rem 0 1rem;">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
+                            <div style="flex: 1;">
+                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">
                                     {% if product.calculatedPrice %}
                                         {% set priceValue = product.calculatedPrice.unitPrice %}
                                         {% set cents = ((priceValue * 100) % 100)|round %}
-                                        CHF {% if cents == 0 %}{{ priceValue|number_format(0, "'", '') }}.–{% else %}{{ priceValue|number_format(2, '.', "'") }}{% endif %}
+                                        CHF {% if cents == 0 %}{{ priceValue|number_format(0, '.', '') }}.–{% else %}{{ priceValue|number_format(2, '.', '') }}{% endif %}
                                     {% endif %}
                                 </div>
-
-                                {# Product Name #}
-                                {% set manufacturerName = product.manufacturer.translated.name|default('') %}
-                                {% set productName = product.translated.name %}
-                                {% set showManufacturer = manufacturerName and (productName|lower is not same as(manufacturerName|lower)) and (manufacturerName|lower not in productName|lower) %}
-                                <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" style="display: block; font-family: 'Inter', sans-serif; color: #374151; font-size: 0.9375rem; margin-top: 0.375rem; text-decoration: none; line-height: 1.4;">
-                                    {% if showManufacturer %}<span style="font-weight: 700;">{{ manufacturerName }}</span> {% endif %}{{ productName }}
-                                </a>
+                                <div style="color: #374151; font-size: 1rem; margin-top: 0.25rem;">
+                                    {{ product.translated.name }}
+                                </div>
                             </div>
-
-                            {# Availability and Cart #}
-                            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-                                {# Availability #}
-                                {% if product.availableStock > 0 or product.isCloseout == false %}
-                                <span class="avail-badge" style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #22c55e, #16a34a); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);" title="Verfügbar">
-                                    <svg viewBox="0 0 24 24" fill="none" style="width: 14px; height: 14px;"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
+                                <span style="width: 20px; height: 20px; border-radius: 50%; background: {% if product.availableStock > 0 or product.isCloseout == false %}#77C15A{% else %}#ef4444{% endif %}; display: inline-flex; align-items: center; justify-content: center;" title="{% if product.availableStock > 0 or product.isCloseout == false %}Verfügbar{% else %}Nicht verfügbar{% endif %}">
+                                    <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                 </span>
-                                {% else %}
-                                <span class="avail-badge" style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #ef4444, #dc2626); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);" title="Nicht verfügbar">
-                                    <svg viewBox="0 0 24 24" fill="none" style="width: 14px; height: 14px;"><path d="M6 18L18 6M6 6l12 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                </span>
-                                {% endif %}
-
-                                {# Add to Cart #}
-                                <form action="{{ path('frontend.checkout.line-item.add') }}" method="post" data-add-to-cart="true" style="margin: 0;">
-                                    <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas"/>
-                                    <input type="hidden" name="lineItems[{{ product.id }}][id]" value="{{ product.id }}"/>
-                                    <input type="hidden" name="lineItems[{{ product.id }}][referencedId]" value="{{ product.id }}"/>
-                                    <input type="hidden" name="lineItems[{{ product.id }}][type]" value="product"/>
-                                    <input type="hidden" name="lineItems[{{ product.id }}][stackable]" value="1"/>
-                                    <input type="hidden" name="lineItems[{{ product.id }}][removable]" value="1"/>
-                                    <input type="hidden" name="lineItems[{{ product.id }}][quantity]" value="1"/>
-
-                                    <button type="submit" class="cart-btn-enhanced" style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: #f3f4f6; border: 1px solid #e5e7eb; color: #374151; cursor: pointer; transition: all 0.2s ease;" title="In den Warenkorb" aria-label="In den Warenkorb">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor" style="width: 22px; height: 22px;">
-                                            <path d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/>
-                                        </svg>
+                                <form action="{{ path('frontend.checkout.line-item.add') }}" method="post" data-form-csrf-handler="true">
+                                    <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][id]" value="{{ product.id }}">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][quantity]" value="1">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][type]" value="product">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][referencedId]" value="{{ product.id }}">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][stackable]" value="1">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][removable]" value="1">
+                                    <button type="submit" style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 0.375rem; background: transparent; border: none; color: #374151; cursor: pointer;" title="In den Warenkorb">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor" style="width: 24px; height: 24px;"><path d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/></svg>
                                     </button>
                                 </form>
                             </div>
@@ -179,19 +77,17 @@
 
             {# Pagination #}
             {% if page.listing.pages > 1 %}
-            <div class="pagination-wrapper" style="margin-top: 4rem; display: flex; justify-content: center;">
-                <div class="pagination-container" style="display: flex; align-items: center; gap: 0.5rem; background: white; padding: 0.5rem; border-radius: 12px; border: 1px solid #e5e7eb;">
-                    {% sw_include '@Storefront/storefront/component/pagination.html.twig' with {
-                        entities: page.listing,
-                        criteria: page.listing.criteria
-                    } %}
-                </div>
+            <div style="margin-top: 3rem; display: flex; justify-content: center;">
+                {% sw_include '@Storefront/storefront/component/pagination.html.twig' with {
+                    entities: page.listing,
+                    criteria: page.listing.criteria
+                } %}
             </div>
             {% endif %}
 
             {% else %}
             {# Empty State #}
-            <div class="empty-state" style="text-align: center; padding: 5rem 2rem; background: white; border-radius: 20px; border: 1px solid #e5e7eb;">
+            <div style="text-align: center; padding: 4rem 2rem;">
                 <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9ca3af;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -200,11 +96,7 @@
                 </div>
                 <h3 style="font-family: 'Chakra Petch', sans-serif; font-size: 1.5rem; font-weight: 600; color: #111827; margin-bottom: 0.5rem;">Keine Produkte gefunden</h3>
                 <p style="font-family: 'Inter', sans-serif; color: #6b7280; margin-bottom: 2rem;">In dieser Kategorie sind noch keine Produkte vorhanden.</p>
-                <a href="{{ path('frontend.home.page') }}" class="raven-btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
+                <a href="{{ path('frontend.home.page') }}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F;">
                     Zur Startseite
                 </a>
             </div>
@@ -213,109 +105,41 @@
     </section>
 </main>
 
-{# Category Page Animations #}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Staggered animation for product cards
-    const productCards = document.querySelectorAll('.product-card-enhanced');
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const card = entry.target;
-                const index = parseInt(card.dataset.productIndex) || 0;
-                const delay = (index % 3) * 100; // Stagger by column
-
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, delay);
-
-                cardObserver.unobserve(card);
-            }
-        });
-    }, observerOptions);
-
-    productCards.forEach(card => {
-        cardObserver.observe(card);
-    });
-});
-</script>
-
 <style>
-/* Responsive grid */
-@media (min-width: 640px) {
-    .product-grid { grid-template-columns: repeat(2, 1fr) !important; }
-}
+@media (min-width: 640px) { .raven-product-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (min-width: 768px) { .raven-product-grid { grid-template-columns: repeat(3, 1fr) !important; } }
 
-@media (min-width: 768px) {
-    .product-grid { grid-template-columns: repeat(3, 1fr) !important; }
-}
-
-/* Product card hover effects */
-.product-card-enhanced {
+.raven-product-card {
     transition: all 0.3s ease;
+    position: relative;
+    background: white !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
 }
+.raven-product-card:hover .product-img { transform: scale(1.05); }
+.product-img { transition: transform 0.3s ease; }
 
-.product-card-enhanced:hover {
-    transform: translateY(-8px) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    border-color: #F2B90D;
+/* Vertical gold divider between products */
+.raven-product-card::after {
+    content: '' !important;
+    position: absolute !important;
+    right: -1rem !important;
+    top: 0 !important;
+    height: 100% !important;
+    width: 2px !important;
+    background: #D4A847 !important;
+    display: block !important;
 }
-
-.product-card-enhanced:hover .product-image {
-    transform: scale(1.08);
+@media (min-width: 768px) {
+    .raven-product-card:nth-child(3n)::after { display: none !important; }
 }
-
-.product-card-enhanced:hover .quick-view-badge {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+@media (min-width: 640px) and (max-width: 767px) {
+    .raven-product-card:nth-child(2n)::after { display: none !important; }
 }
-
-/* Cart button hover */
-.cart-btn-enhanced:hover {
-    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 100%) !important;
-    border-color: #F2B90D !important;
-    color: #1f2937 !important;
-    transform: scale(1.05);
-}
-
-/* Animation classes */
-.animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
-}
-
-.animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Filter bar sticky shadow */
-.filter-bar {
-    transition: box-shadow 0.3s ease;
-}
-
-.filter-bar.scrolled {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+@media (max-width: 639px) {
+    .raven-product-card::after { display: none !important; }
 }
 </style>
 {% endblock %}

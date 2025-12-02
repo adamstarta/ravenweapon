@@ -23,6 +23,31 @@
         {% endif %}
     </div>
 
+    {# Login Requirement Notice for Guest Users #}
+    {% if page.cart.lineItems.count > 0 and not context.customer %}
+    <div style="background: linear-gradient(135deg, #FEF3C7 0%, #FFFBEB 100%); border: 1px solid #F59E0B; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #F59E0B; border-radius: 50%; flex-shrink: 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+            <p style="font-weight: 600; color: #92400E; margin: 0 0 0.25rem 0; font-size: 1rem;">Anmeldung erforderlich</p>
+            <p style="font-size: 0.875rem; color: #B45309; margin: 0;">Bitte melden Sie sich an oder erstellen Sie ein Konto, um zur Kasse zu gehen.</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="{{ path('frontend.account.login.page') }}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; background: #111827; color: white; font-weight: 600; font-size: 0.875rem; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                Anmelden
+            </a>
+            <a href="{{ path('frontend.account.login.page') }}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; background: white; color: #111827; font-weight: 600; font-size: 0.875rem; border: 1px solid #D1D5DB; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
+                Konto erstellen
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
     {% if page.cart.lineItems.count > 0 %}
     {# Cart Items #}
     <div id="cart-rows" style="border-top: 1px solid #E5E7EB;">
@@ -85,9 +110,16 @@
                 </div>
                 <p style="font-size: 0.875rem; color: #6B7280; margin: 0.25rem 0 0 0;">Inklusive Steuer. Versandkosten werden an der Kasse berechnet.</p>
             </div>
+            {% if context.customer %}
             <a href="{{ path('frontend.checkout.confirm.page') }}" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; color: #111827; text-decoration: none; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
                 Zur Kasse
             </a>
+            {% else %}
+            <a href="{{ path('frontend.account.login.page') }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; color: #111827; text-decoration: none; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                Anmelden um fortzufahren
+            </a>
+            {% endif %}
         </div>
     </div>
 

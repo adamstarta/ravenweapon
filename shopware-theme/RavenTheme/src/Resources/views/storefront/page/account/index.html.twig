@@ -47,13 +47,7 @@
                     Adressen
                 </a>
 
-                <a href="{{ path('frontend.account.payment.page') }}" class="nav-item {% if currentRoute == 'frontend.account.payment.page' %}active{% endif %}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                        <line x1="1" y1="10" x2="23" y2="10"></line>
-                    </svg>
-                    Zahlungsarten
-                </a>
+                {# Payment page removed in Shopware 6.7 - payment selection is now only during checkout #}
 
                 <a href="{{ path('frontend.account.order.page') }}" class="nav-item {% if currentRoute == 'frontend.account.order.page' %}active{% endif %}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -106,7 +100,7 @@
                     </a>
                 </div>
 
-                {# Payment Method Card #}
+                {# Payment Method Card - payment selection now only in checkout #}
                 <div class="dashboard-card">
                     <div class="card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -123,12 +117,9 @@
                             <p class="data-line">Keine Zahlungsart hinterlegt</p>
                         {% endif %}
                     </div>
-                    <a href="{{ path('frontend.account.payment.page') }}" class="card-link">
-                        Ändern
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </a>
+                    <span class="card-link" style="color: var(--raven-gray-400); cursor: default;">
+                        Wählbar beim Checkout
+                    </span>
                 </div>
 
                 {# Billing Address Card #}

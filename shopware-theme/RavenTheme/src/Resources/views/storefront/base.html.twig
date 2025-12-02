@@ -1,7 +1,12 @@
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
+{% block base_head_title %}
+    <title>Raven Weapon AG</title>
+{% endblock %}
+
 {% block base_head %}
     {{ parent() }}
+    <script>document.title = 'Raven Weapon AG';</script>
     <style>
         /* Hide manufacturer name in product cards */
         .product-info a strong,
