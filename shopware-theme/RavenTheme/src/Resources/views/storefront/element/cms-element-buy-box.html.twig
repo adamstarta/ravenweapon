@@ -39,25 +39,233 @@
     {% set formattedPrice = priceCents == 0 ? priceValue|number_format(0, '.', ',') ~ '.–' : priceValue|number_format(2, '.', ',') %}
 
     <div class="raven-buy-box-wrapper">
-        {# LEFT: Main Product Image #}
+        {# LEFT: Main Product Image with Zoom #}
         <div class="raven-main-image-container">
-            <div class="raven-main-image">
+            <div class="raven-main-image" id="raven-zoom-container">
                 {% if mainImageUrl %}
                 <img id="raven-main-product-image"
                      src="{{ mainImageUrl }}"
                      alt="{{ product.translated.name }}"
                      class="raven-product-img">
+                {# Zoom Lens (hidden by default) #}
+                <div id="raven-zoom-lens" class="raven-zoom-lens"></div>
+                {# Zoomed Result Box #}
+                <div id="raven-zoom-result" class="raven-zoom-result">
+                    <img id="raven-zoom-result-img" src="{{ mainImageUrl }}" alt="Zoomed">
+                </div>
                 {% else %}
                 {# Fallback placeholder #}
                 <div class="raven-no-image">Kein Bild verfügbar</div>
+                {% endif %}
+            </div>
+
+            {# ========== DYNAMIC RATINGS & REVIEWS SECTION ========== #}
+            {# Get reviews from Shopware's product review system #}
+            {% set reviews = product.productReviews|default([]) %}
+            {% set reviewCount = reviews|length %}
+
+            {# Calculate average rating #}
+            {% set totalPoints = 0 %}
+            {% set star5 = 0 %}
+            {% set star4 = 0 %}
+            {% set star3 = 0 %}
+            {% set star2 = 0 %}
+            {% set star1 = 0 %}
+
+            {% for review in reviews %}
+                {% set totalPoints = totalPoints + review.points %}
+                {% if review.points == 5 %}{% set star5 = star5 + 1 %}
+                {% elseif review.points == 4 %}{% set star4 = star4 + 1 %}
+                {% elseif review.points == 3 %}{% set star3 = star3 + 1 %}
+                {% elseif review.points == 2 %}{% set star2 = star2 + 1 %}
+                {% elseif review.points == 1 %}{% set star1 = star1 + 1 %}
+                {% endif %}
+            {% endfor %}
+
+            {% set avgRating = reviewCount > 0 ? (totalPoints / reviewCount)|round(1) : 0 %}
+            {% set avgRatingFloor = avgRating|round(0, 'floor') %}
+            {% set hasHalfStar = (avgRating - avgRatingFloor) >= 0.25 and (avgRating - avgRatingFloor) < 0.75 %}
+            {% set fullStars = hasHalfStar ? avgRatingFloor : avgRating|round(0) %}
+
+            <div class="raven-reviews-section">
+                <div class="raven-reviews-header">
+                    <h3 class="raven-reviews-title">Kundenbewertungen</h3>
+                    <button type="button" class="raven-write-review-btn" onclick="document.getElementById('raven-review-modal').style.display='flex';">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Bewertung schreiben
+                    </button>
+                </div>
+
+                {# Review Modal #}
+                <div id="raven-review-modal" class="raven-review-modal" style="display:none;">
+                    <div class="raven-review-modal-content">
+                        <div class="raven-review-modal-header">
+                            <h3>Bewertung schreiben</h3>
+                            <button type="button" class="raven-review-modal-close" onclick="document.getElementById('raven-review-modal').style.display='none';">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <form id="raven-review-form" class="raven-review-form">
+                            <input type="hidden" name="productId" value="{{ product.id }}">
+
+                            {# Star Rating Selection #}
+                            <div class="raven-form-group">
+                                <label>Ihre Bewertung <span class="required">*</span></label>
+                                <div class="raven-star-rating-input" id="raven-star-input">
+                                    {% for i in 1..5 %}
+                                    <button type="button" class="raven-star-btn" data-rating="{{ i }}" onclick="setReviewRating({{ i }})">
+                                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                    </button>
+                                    {% endfor %}
+                                </div>
+                                <input type="hidden" name="points" id="raven-review-points" value="" required>
+                            </div>
+
+                            {# Review Title #}
+                            <div class="raven-form-group">
+                                <label for="raven-review-title-input">Titel <span class="required">*</span></label>
+                                <input type="text" id="raven-review-title-input" name="title" placeholder="Kurze Zusammenfassung" required maxlength="100">
+                            </div>
+
+                            {# Review Content #}
+                            <div class="raven-form-group">
+                                <label for="raven-review-content">Ihre Bewertung <span class="required">*</span></label>
+                                <textarea id="raven-review-content" name="content" rows="4" placeholder="Teilen Sie Ihre Erfahrung mit diesem Produkt..." required minlength="20" maxlength="1000"></textarea>
+                                <span class="raven-char-count"><span id="raven-char-current">0</span>/1000</span>
+                            </div>
+
+                            {# Name (for guests) #}
+                            <div class="raven-form-group">
+                                <label for="raven-review-name">Ihr Name <span class="required">*</span></label>
+                                <input type="text" id="raven-review-name" name="name" placeholder="Wie sollen wir Sie nennen?" required maxlength="50">
+                            </div>
+
+                            {# Email #}
+                            <div class="raven-form-group">
+                                <label for="raven-review-email">E-Mail <span class="required">*</span></label>
+                                <input type="email" id="raven-review-email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+                                <span class="raven-form-hint">Wird nicht öffentlich angezeigt</span>
+                            </div>
+
+                            {# Error/Success Message #}
+                            <div id="raven-review-message" class="raven-review-message" style="display:none;"></div>
+
+                            {# Submit Button #}
+                            <div class="raven-form-actions">
+                                <button type="button" class="raven-btn-cancel" onclick="document.getElementById('raven-review-modal').style.display='none';">Abbrechen</button>
+                                <button type="submit" class="raven-btn-submit" id="raven-submit-review">
+                                    <span class="btn-text">Bewertung absenden</span>
+                                    <span class="btn-loading" style="display:none;">
+                                        <svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>
+                                        Wird gesendet...
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                {% if reviewCount > 0 %}
+                {# Star Rating Display - Dynamic #}
+                <div class="raven-rating-summary">
+                    <div class="raven-stars">
+                        {% for i in 1..5 %}
+                            {% if i <= fullStars %}
+                                <svg class="raven-star filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            {% elseif hasHalfStar and i == fullStars + 1 %}
+                                <svg class="raven-star half" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            {% else %}
+                                <svg class="raven-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <span class="raven-rating-value">{{ avgRating }}</span>
+                    <span class="raven-review-count">({{ reviewCount }} {% if reviewCount == 1 %}Bewertung{% else %}Bewertungen{% endif %})</span>
+                </div>
+
+                {# Rating Breakdown Bars - Dynamic #}
+                <div class="raven-rating-breakdown">
+                    {% set barData = [
+                        { label: '5 Sterne', count: star5 },
+                        { label: '4 Sterne', count: star4 },
+                        { label: '3 Sterne', count: star3 },
+                        { label: '2 Sterne', count: star2 },
+                        { label: '1 Stern', count: star1 }
+                    ] %}
+                    {% for bar in barData %}
+                        {% set barPercent = reviewCount > 0 ? ((bar.count / reviewCount) * 100)|round : 0 %}
+                        <div class="raven-bar-row">
+                            <span class="raven-bar-label">{{ bar.label }}</span>
+                            <div class="raven-bar-bg"><div class="raven-bar-fill" style="width: {{ barPercent }}%;"></div></div>
+                            <span class="raven-bar-count">{{ bar.count }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {# Actual Reviews List - Dynamic #}
+                <div class="raven-reviews-list">
+                    {% for review in reviews|slice(0, 5) %}
+                    <div class="raven-review-item">
+                        <div class="raven-review-header">
+                            <div class="raven-review-stars">
+                                {% for i in 1..5 %}
+                                    <svg class="raven-star {% if i <= review.points %}filled{% endif %} small" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                {% endfor %}
+                            </div>
+                            <span class="raven-review-author">
+                                {% if review.externalUser %}
+                                    {{ review.externalUser }}
+                                {% elseif review.customer %}
+                                    {{ review.customer.firstName|first }}.{{ review.customer.lastName|first }}.
+                                {% else %}
+                                    Kunde
+                                {% endif %}
+                            </span>
+                            {% if review.customer %}
+                            <span class="raven-review-verified">Verifizierter Kauf</span>
+                            {% endif %}
+                        </div>
+                        {% if review.title %}
+                        <p class="raven-review-title"><strong>{{ review.title }}</strong></p>
+                        {% endif %}
+                        <p class="raven-review-text">{{ review.content }}</p>
+                        <span class="raven-review-date">{{ review.createdAt|date('d.m.Y') }}</span>
+                    </div>
+                    {% endfor %}
+
+                    {% if reviewCount > 5 %}
+                    <a href="#" class="raven-show-all-reviews" onclick="document.querySelector('.raven-reviews-list').classList.toggle('show-all'); this.textContent = this.textContent === 'Alle {{ reviewCount }} Bewertungen anzeigen' ? 'Weniger anzeigen' : 'Alle {{ reviewCount }} Bewertungen anzeigen'; return false;">
+                        Alle {{ reviewCount }} Bewertungen anzeigen
+                    </a>
+                    {% endif %}
+                </div>
+
+                {% else %}
+                {# No Reviews State #}
+                <div class="raven-no-reviews">
+                    <div class="raven-no-reviews-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <p class="raven-no-reviews-text">Noch keine Bewertungen</p>
+                    <p class="raven-no-reviews-subtext">Sei der Erste, der dieses Produkt bewertet!</p>
+                </div>
                 {% endif %}
             </div>
         </div>
 
         {# RIGHT: Product Info #}
         <div class="raven-buy-box">
-            {# Category Label #}
-            <p class="raven-category">Waffe</p>
+            {# Category Label - Dynamic from product categories #}
+            {% set productCategory = product.categories|first %}
+            <p class="raven-category">{{ productCategory ? productCategory.translated.name : 'Produkt' }}</p>
 
             {# Product Title #}
             <h1 class="raven-title">{{ fullTitle }}</h1>
@@ -122,13 +330,22 @@
                 </button>
             </form>
 
-            {# Description Section #}
+            {# Description Section with See More #}
             {% if product.translated.description %}
             <div class="raven-description-section">
                 <h2 class="raven-description-title">Beschreibung</h2>
-                <div class="raven-description-text">
-                    {{ product.translated.description|striptags }}
+                <div class="raven-description-wrapper" id="raven-desc-wrapper">
+                    <div class="raven-description-text" id="raven-desc-content">
+                        {{ product.translated.description|striptags }}
+                    </div>
+                    <div class="raven-description-fade" id="raven-desc-fade"></div>
                 </div>
+                <button type="button" class="raven-see-more-btn" id="raven-see-more-btn" style="display: none;">
+                    <span id="raven-see-more-text">Mehr anzeigen</span>
+                    <svg id="raven-see-more-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
             </div>
             {% endif %}
         </div>
@@ -439,6 +656,342 @@
         font-size: 0.95rem;
     }
 
+    /* ========== SEE MORE STYLES ========== */
+    .raven-description-wrapper {
+        position: relative;
+        max-height: 120px;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+
+    .raven-description-wrapper.expanded {
+        max-height: 2000px;
+    }
+
+    .raven-description-fade {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .raven-description-wrapper.expanded .raven-description-fade {
+        opacity: 0;
+    }
+
+    .raven-see-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        padding: 0.5rem 1rem;
+        background: transparent;
+        border: 1px solid #D4A847;
+        border-radius: 6px;
+        color: #D4A847;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .raven-see-more-btn:hover {
+        background: #D4A847;
+        color: #1f2937;
+    }
+
+    .raven-see-more-btn svg {
+        transition: transform 0.3s ease;
+    }
+
+    .raven-see-more-btn.expanded svg {
+        transform: rotate(180deg);
+    }
+
+    /* ========== IMAGE ZOOM STYLES ========== */
+    #raven-zoom-container {
+        position: relative;
+        cursor: crosshair;
+    }
+
+    .raven-zoom-lens {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border: 3px solid #D4A847;
+        border-radius: 50%;
+        background: rgba(212, 168, 71, 0.15);
+        pointer-events: none;
+        display: none;
+        z-index: 10;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    .raven-zoom-result {
+        position: absolute;
+        top: 0;
+        left: calc(100% + 20px);
+        width: 350px;
+        height: 350px;
+        border: 2px solid #E5E7EB;
+        border-radius: 12px;
+        background: white;
+        overflow: hidden;
+        display: none;
+        z-index: 100;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+
+    .raven-zoom-result img {
+        position: absolute;
+        width: auto;
+        height: auto;
+        max-width: none;
+    }
+
+    @media (max-width: 1200px) {
+        .raven-zoom-result {
+            display: none !important;
+        }
+    }
+
+    /* ========== RATINGS & REVIEWS STYLES ========== */
+    .raven-reviews-section {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .raven-reviews-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .raven-reviews-title {
+        font-family: 'Chakra Petch', sans-serif;
+        font-weight: 700;
+        font-size: 1.125rem;
+        color: #111827;
+        margin: 0;
+    }
+
+    .raven-write-review-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.5rem 0.75rem;
+        background: transparent;
+        border: none;
+        color: #D4A847;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .raven-write-review-btn:hover {
+        color: #B8942D;
+    }
+
+    .raven-rating-summary {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .raven-stars {
+        display: flex;
+        gap: 2px;
+    }
+
+    .raven-star {
+        width: 20px;
+        height: 20px;
+        fill: #E5E7EB;
+    }
+
+    .raven-star.filled {
+        fill: #F59E0B;
+    }
+
+    .raven-star.half {
+        fill: url(#raven-half-star-grad);
+    }
+
+    .raven-star.small {
+        width: 14px;
+        height: 14px;
+    }
+
+    .raven-rating-value {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #111827;
+    }
+
+    .raven-review-count {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8125rem;
+        color: #6B7280;
+    }
+
+    .raven-rating-breakdown {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        margin-bottom: 1rem;
+    }
+
+    .raven-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        color: #6B7280;
+    }
+
+    .raven-bar-label {
+        width: 55px;
+        flex-shrink: 0;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .raven-bar-bg {
+        flex: 1;
+        height: 6px;
+        background: #E5E7EB;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .raven-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #F59E0B, #D4A847);
+        border-radius: 3px;
+    }
+
+    .raven-bar-count {
+        width: 20px;
+        text-align: right;
+        flex-shrink: 0;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .raven-reviews-list {
+        border-top: 1px solid #E5E7EB;
+        padding-top: 1rem;
+    }
+
+    .raven-review-item {
+        padding: 0.75rem 0;
+    }
+
+    .raven-review-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .raven-review-stars {
+        display: flex;
+        gap: 1px;
+    }
+
+    .raven-review-author {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .raven-review-verified {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.6875rem;
+        color: #16A34A;
+        background: #DCFCE7;
+        padding: 0.125rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    .raven-review-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #4B5563;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .raven-review-date {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.75rem;
+        color: #9CA3AF;
+        display: block;
+        margin-top: 0.375rem;
+    }
+
+    .raven-review-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #111827;
+        margin: 0 0 0.25rem 0;
+    }
+
+    /* No Reviews State */
+    .raven-no-reviews {
+        text-align: center;
+        padding: 2rem 1rem;
+    }
+
+    .raven-no-reviews-icon {
+        color: #D1D5DB;
+        margin-bottom: 1rem;
+    }
+
+    .raven-no-reviews-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #374151;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .raven-no-reviews-subtext {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #9CA3AF;
+        margin: 0;
+    }
+
+    /* Show All Reviews Link */
+    .raven-show-all-reviews {
+        display: inline-block;
+        margin-top: 1rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #D4A847;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .raven-show-all-reviews:hover {
+        color: #B8942D;
+        text-decoration: underline;
+    }
+
     /* Hide default Shopware elements */
     .raven-buy-box .product-detail-price-container,
     .raven-buy-box .product-detail-tax-container,
@@ -462,6 +1015,553 @@
             width: 60px;
             height: 60px;
         }
+
+        .raven-reviews-section {
+            margin-top: 1rem;
+        }
+    }
+
+    /* ========== REVIEW MODAL STYLES ========== */
+    .raven-review-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .raven-review-modal-content {
+        background: white;
+        border-radius: 16px;
+        max-width: 500px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        animation: modalSlideIn 0.3s ease;
+    }
+
+    @keyframes modalSlideIn {
+        from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .raven-review-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #E5E7EB;
+    }
+
+    .raven-review-modal-header h3 {
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #111827;
+        margin: 0;
+    }
+
+    .raven-review-modal-close {
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        color: #6B7280;
+        border-radius: 8px;
+        transition: all 0.2s;
+    }
+
+    .raven-review-modal-close:hover {
+        background: #F3F4F6;
+        color: #111827;
+    }
+
+    .raven-review-form {
+        padding: 1.5rem;
+    }
+
+    .raven-form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .raven-form-group label {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+    }
+
+    .raven-form-group label .required {
+        color: #EF4444;
+    }
+
+    .raven-form-group input[type="text"],
+    .raven-form-group input[type="email"],
+    .raven-form-group textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9375rem;
+        border: 1px solid #D1D5DB;
+        border-radius: 8px;
+        transition: all 0.2s;
+        background: white;
+    }
+
+    .raven-form-group input:focus,
+    .raven-form-group textarea:focus {
+        outline: none;
+        border-color: #D4A847;
+        box-shadow: 0 0 0 3px rgba(212, 168, 71, 0.15);
+    }
+
+    .raven-form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .raven-char-count {
+        display: block;
+        text-align: right;
+        font-size: 0.75rem;
+        color: #9CA3AF;
+        margin-top: 0.25rem;
+    }
+
+    .raven-form-hint {
+        display: block;
+        font-size: 0.75rem;
+        color: #9CA3AF;
+        margin-top: 0.25rem;
+    }
+
+    /* Star Rating Input */
+    .raven-star-rating-input {
+        display: flex;
+        gap: 0.25rem;
+    }
+
+    .raven-star-btn {
+        background: none;
+        border: none;
+        padding: 0.25rem;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .raven-star-btn:hover {
+        transform: scale(1.2);
+    }
+
+    .raven-star-btn svg {
+        width: 32px;
+        height: 32px;
+        fill: #E5E7EB;
+        transition: fill 0.2s;
+    }
+
+    .raven-star-btn.active svg,
+    .raven-star-btn:hover svg {
+        fill: #F59E0B;
+    }
+
+    /* Form Actions */
+    .raven-form-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: flex-end;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid #E5E7EB;
+    }
+
+    .raven-btn-cancel {
+        padding: 0.75rem 1.25rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #6B7280;
+        background: white;
+        border: 1px solid #D1D5DB;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .raven-btn-cancel:hover {
+        background: #F3F4F6;
+        border-color: #9CA3AF;
+    }
+
+    .raven-btn-submit {
+        padding: 0.75rem 1.5rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #111827;
+        background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%);
+        border: 1px solid #C59A0F;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .raven-btn-submit:hover {
+        box-shadow: 0 4px 12px rgba(212, 168, 71, 0.4);
+    }
+
+    .raven-btn-submit:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+
+    .raven-btn-submit .btn-loading .spinner {
+        width: 16px;
+        height: 16px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    /* Review Message */
+    .raven-review-message {
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+    }
+
+    .raven-review-message.success {
+        background: #DCFCE7;
+        color: #166534;
+        border: 1px solid #BBF7D0;
+    }
+
+    .raven-review-message.error {
+        background: #FEE2E2;
+        color: #991B1B;
+        border: 1px solid #FECACA;
+    }
+
+    @media (max-width: 480px) {
+        .raven-review-modal-content {
+            max-height: 100vh;
+            border-radius: 0;
+        }
+
+        .raven-form-actions {
+            flex-direction: column;
+        }
+
+        .raven-btn-cancel,
+        .raven-btn-submit {
+            width: 100%;
+            justify-content: center;
+        }
     }
 </style>
+
+{# SVG Gradient Definition for Half Stars #}
+<svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+    <defs>
+        <linearGradient id="raven-half-star-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="50%" style="stop-color:#F59E0B;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#E5E7EB;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+</svg>
+
+<script>
+    // ========== IMAGE ZOOM FUNCTIONALITY ==========
+    (function() {
+        function initImageZoom() {
+            const container = document.getElementById('raven-zoom-container');
+            const mainImage = document.getElementById('raven-main-product-image');
+            const lens = document.getElementById('raven-zoom-lens');
+            const result = document.getElementById('raven-zoom-result');
+            const resultImg = document.getElementById('raven-zoom-result-img');
+
+            if (!container || !mainImage || !lens || !result || !resultImg) return;
+
+            const zoomLevel = 2.5;
+            let isActive = false;
+
+            function moveLens(e) {
+                if (!isActive) return;
+                e.preventDefault();
+
+                const rect = mainImage.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+
+                let x = e.clientX - rect.left;
+                let y = e.clientY - rect.top;
+
+                const lensHalfW = lens.offsetWidth / 2;
+                const lensHalfH = lens.offsetHeight / 2;
+
+                x = Math.max(lensHalfW, Math.min(x, rect.width - lensHalfW));
+                y = Math.max(lensHalfH, Math.min(y, rect.height - lensHalfH));
+
+                lens.style.left = (x - lensHalfW + (rect.left - containerRect.left)) + 'px';
+                lens.style.top = (y - lensHalfH + (rect.top - containerRect.top)) + 'px';
+
+                const bgX = -(x * zoomLevel - result.offsetWidth / 2);
+                const bgY = -(y * zoomLevel - result.offsetHeight / 2);
+
+                resultImg.style.width = (rect.width * zoomLevel) + 'px';
+                resultImg.style.height = (rect.height * zoomLevel) + 'px';
+                resultImg.style.left = bgX + 'px';
+                resultImg.style.top = bgY + 'px';
+            }
+
+            function showZoom() {
+                if (window.innerWidth < 1200) return;
+                isActive = true;
+                lens.style.display = 'block';
+                result.style.display = 'block';
+            }
+
+            function hideZoom() {
+                isActive = false;
+                lens.style.display = 'none';
+                result.style.display = 'none';
+            }
+
+            container.addEventListener('mouseenter', showZoom);
+            container.addEventListener('mouseleave', hideZoom);
+            container.addEventListener('mousemove', moveLens);
+
+            // Update zoom image when color variant changes
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+                        resultImg.src = mainImage.src;
+                    }
+                });
+            });
+            observer.observe(mainImage, { attributes: true });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initImageZoom);
+        } else {
+            initImageZoom();
+        }
+    })();
+
+    // ========== SEE MORE FUNCTIONALITY ==========
+    (function() {
+        function initSeeMore() {
+            const wrapper = document.getElementById('raven-desc-wrapper');
+            const content = document.getElementById('raven-desc-content');
+            const fade = document.getElementById('raven-desc-fade');
+            const btn = document.getElementById('raven-see-more-btn');
+            const btnText = document.getElementById('raven-see-more-text');
+
+            if (!wrapper || !content || !btn) return;
+
+            const maxHeight = 120;
+            const contentHeight = content.scrollHeight;
+
+            if (contentHeight > maxHeight + 20) {
+                btn.style.display = 'inline-flex';
+
+                btn.addEventListener('click', function() {
+                    const isExpanded = wrapper.classList.contains('expanded');
+
+                    if (isExpanded) {
+                        wrapper.classList.remove('expanded');
+                        btn.classList.remove('expanded');
+                        btnText.textContent = 'Mehr anzeigen';
+                        wrapper.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    } else {
+                        wrapper.classList.add('expanded');
+                        btn.classList.add('expanded');
+                        btnText.textContent = 'Weniger anzeigen';
+                    }
+                });
+            } else {
+                btn.style.display = 'none';
+                if (fade) fade.style.display = 'none';
+                wrapper.style.maxHeight = 'none';
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSeeMore);
+        } else {
+            initSeeMore();
+        }
+    })();
+
+    // ========== REVIEW FORM FUNCTIONALITY ==========
+    // Star rating selection
+    let selectedRating = 0;
+
+    function setReviewRating(rating) {
+        selectedRating = rating;
+        document.getElementById('raven-review-points').value = rating;
+
+        // Update star buttons visual state
+        const starBtns = document.querySelectorAll('.raven-star-btn');
+        starBtns.forEach((btn, index) => {
+            if (index < rating) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+
+    (function() {
+        function initReviewForm() {
+            const modal = document.getElementById('raven-review-modal');
+            const form = document.getElementById('raven-review-form');
+            const textarea = document.getElementById('raven-review-content');
+            const charCount = document.getElementById('raven-char-current');
+            const messageBox = document.getElementById('raven-review-message');
+            const submitBtn = document.getElementById('raven-submit-review');
+
+            if (!modal || !form) return;
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Character count for textarea
+            if (textarea && charCount) {
+                textarea.addEventListener('input', function() {
+                    charCount.textContent = this.value.length;
+                });
+            }
+
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Validate rating
+                if (!selectedRating) {
+                    showMessage('Bitte wählen Sie eine Bewertung (1-5 Sterne)', 'error');
+                    return;
+                }
+
+                // Get form data
+                const productId = form.querySelector('[name="productId"]').value;
+                const title = form.querySelector('[name="title"]').value.trim();
+                const content = form.querySelector('[name="content"]').value.trim();
+                const name = form.querySelector('[name="name"]').value.trim();
+                const email = form.querySelector('[name="email"]').value.trim();
+
+                // Validate
+                if (!title || !content || !name || !email) {
+                    showMessage('Bitte füllen Sie alle Pflichtfelder aus', 'error');
+                    return;
+                }
+
+                if (content.length < 20) {
+                    showMessage('Ihre Bewertung muss mindestens 20 Zeichen lang sein', 'error');
+                    return;
+                }
+
+                // Show loading state
+                setLoading(true);
+
+                try {
+                    // Submit to Shopware Store API
+                    const response = await fetch('/store-api/product/' + productId + '/review', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'sw-access-key': document.querySelector('meta[name="sw-access-key"]')?.content || ''
+                        },
+                        body: JSON.stringify({
+                            title: title,
+                            content: content,
+                            points: selectedRating,
+                            name: name,
+                            email: email
+                        })
+                    });
+
+                    if (response.ok || response.status === 204) {
+                        showMessage('Vielen Dank für Ihre Bewertung! Sie wird nach Prüfung veröffentlicht.', 'success');
+                        form.reset();
+                        selectedRating = 0;
+                        document.querySelectorAll('.raven-star-btn').forEach(btn => btn.classList.remove('active'));
+                        if (charCount) charCount.textContent = '0';
+
+                        // Close modal after 2 seconds
+                        setTimeout(() => {
+                            modal.style.display = 'none';
+                            messageBox.style.display = 'none';
+                        }, 2500);
+                    } else {
+                        const errorData = await response.json().catch(() => ({}));
+                        const errorMsg = errorData.errors?.[0]?.detail || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
+                        showMessage(errorMsg, 'error');
+                    }
+                } catch (error) {
+                    console.error('Review submission error:', error);
+                    showMessage('Verbindungsfehler. Bitte überprüfen Sie Ihre Internetverbindung.', 'error');
+                } finally {
+                    setLoading(false);
+                }
+            });
+
+            function showMessage(text, type) {
+                messageBox.textContent = text;
+                messageBox.className = 'raven-review-message ' + type;
+                messageBox.style.display = 'block';
+            }
+
+            function setLoading(loading) {
+                const btnText = submitBtn.querySelector('.btn-text');
+                const btnLoading = submitBtn.querySelector('.btn-loading');
+
+                if (loading) {
+                    submitBtn.disabled = true;
+                    btnText.style.display = 'none';
+                    btnLoading.style.display = 'flex';
+                } else {
+                    submitBtn.disabled = false;
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                }
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initReviewForm);
+        } else {
+            initReviewForm();
+        }
+    })();
+</script>
 {% endblock %}

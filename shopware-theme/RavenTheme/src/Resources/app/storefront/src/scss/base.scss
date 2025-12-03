@@ -1182,9 +1182,25 @@ a[href=""].product-detail-manufacturer-link,
 .product-box {
   border-radius: 0.5rem;
   overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition: box-shadow 150ms ease, transform 120ms ease;
+
+  &:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
 
   .product-image-wrapper {
-    background-color: #f9fafb;
+    background-color: #ffffff;
+  }
+
+  // FIX: Add more padding to product info so price doesn't stick to edge
+  .product-info {
+    padding: 1rem 1.25rem !important;
+  }
+
+  .card-body {
+    padding: 1rem 1.25rem !important;
   }
 
   .product-name {
@@ -1195,6 +1211,17 @@ a[href=""].product-detail-manufacturer-link,
   .product-price {
     color: #E53935;
     font-weight: 800;
+    padding-top: 0.5rem;
+  }
+
+  .product-price-wrapper {
+    padding-top: 0.5rem;
+  }
+
+  // Availability and cart button row
+  .product-action {
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
   }
 }
 
