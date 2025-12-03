@@ -45,25 +45,14 @@
                     <h3 class="text-lg font-bold text-gray-900" style="font-family: 'Chakra Petch', sans-serif;">
                         Kundenbewertungen
                     </h3>
-                    {% if context.customer %}
-                    {# Logged in - show review button #}
-                    <button id="write-review-btn" class="text-sm text-amber-600 hover:text-amber-700 font-medium flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                        Bewertung schreiben
-                    </button>
-                    {% else %}
-                    {# Not logged in - redirect to login #}
+                    {# Always require login to write reviews - link to account page #}
                     <a href="{{ path('frontend.account.login.page') }}" class="text-sm text-amber-600 hover:text-amber-700 font-medium flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                         </svg>
-                        Anmelden um zu bewerten
+                        Bewertung schreiben
                     </a>
-                    {% endif %}
                 </div>
 
                 {# Star Rating Display #}
