@@ -1,0 +1,42 @@
+{#
+    Shared Star Rating Component
+    Usage: {% sw_include '@Storefront/storefront/component/product/star-rating.html.twig' with { product: product } %}
+
+    Displays star ratings for products based on ratingAverage
+#}
+
+{% if product.ratingAverage and product.ratingAverage > 0 %}
+    {% set rating = product.ratingAverage %}
+    {% set ratingRound = rating|round %}
+    <div class="raven-star-rating" style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+        <div class="raven-stars" style="display: flex; gap: 2px;">
+            {% for i in 1..5 %}
+                {% if rating >= i %}
+                    {# Full star #}
+                    <svg class="raven-star filled" style="width: 14px; height: 14px; fill: #D4A847;" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                {% elseif rating >= (i - 0.5) %}
+                    {# Half star #}
+                    <svg class="raven-star half" style="width: 14px; height: 14px;" viewBox="0 0 24 24">
+                        <defs>
+                            <linearGradient id="half-{{ product.id }}-{{ i }}">
+                                <stop offset="50%" stop-color="#D4A847"/>
+                                <stop offset="50%" stop-color="#D1D5DB"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#half-{{ product.id }}-{{ i }})" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                {% else %}
+                    {# Empty star #}
+                    <svg class="raven-star empty" style="width: 14px; height: 14px; fill: #D1D5DB;" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <span class="raven-rating-number" style="font-size: 0.75rem; color: #6b7280; font-family: 'Inter', sans-serif;">
+            ({{ rating|number_format(1) }})
+        </span>
+    </div>
+{% endif %}

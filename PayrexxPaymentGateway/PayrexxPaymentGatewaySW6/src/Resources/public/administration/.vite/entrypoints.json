@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/payrexxpaymentgatewaysw6/administration/",
+  "entryPoints": {
+    "payrexx-payment-gateway-s-w6": {
+      "css": [
+        "/bundles/payrexxpaymentgatewaysw6/administration/assets/payrexx-payment-gateway-s-w6-GCvCB1AX.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/payrexxpaymentgatewaysw6/administration/assets/payrexx-payment-gateway-s-w6-DWMell1W.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

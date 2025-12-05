@@ -14,7 +14,7 @@
             {% set remaining = freeShippingThreshold - subtotal %}
             {% if remaining > 0 %}
                 {% set remainCents = ((remaining * 100) % 100)|round %}
-                Nur {% if remainCents == 0 %}{{ remaining|number_format(0, '.', '') }}.–{% else %}{{ remaining|number_format(2, '.', '') }}{% endif %} mehr, um kostenlosen Versand zu erhalten!
+                Nur {% if remainCents == 0 %}{{ remaining|number_format(0, '.', '') }}{% else %}{{ remaining|number_format(2, '.', '') }}{% endif %} mehr, um kostenlosen Versand zu erhalten!
                 <a href="{{ path('frontend.home.page') }}" style="color: #2563EB; font-weight: 500;">Weiter einkaufen</a>
             {% else %}
                 <span style="font-weight: 600; color: #047857;">Kostenloser Versand!</span>
@@ -67,7 +67,7 @@
                 <p style="font-weight: 600; color: #111827; margin: 0 0 0.25rem 0;">{{ lineItem.label }}</p>
                 {% set unitP = lineItem.price.unitPrice %}
                 {% set unitCents = ((unitP * 100) % 100)|round %}
-                <p style="font-size: 0.875rem; color: #6B7280; margin: 0;">{% if unitCents == 0 %}{{ unitP|number_format(0, '.', '') }}.–{% else %}{{ unitP|number_format(2, '.', '') }}{% endif %}</p>
+                <p style="font-size: 0.875rem; color: #6B7280; margin: 0;">{% if unitCents == 0 %}{{ unitP|number_format(0, '.', '') }}{% else %}{{ unitP|number_format(2, '.', '') }}{% endif %}</p>
             </div>
 
             {# Quantity Controls #}
@@ -84,7 +84,7 @@
             <div style="display: flex; align-items: center; gap: 1rem;">
                 {% set totalP = lineItem.price.totalPrice %}
                 {% set totalCents = ((totalP * 100) % 100)|round %}
-                <span style="font-weight: 600; color: #111827; min-width: 80px; text-align: right;">{% if totalCents == 0 %}{{ totalP|number_format(0, '.', '') }}.–{% else %}{{ totalP|number_format(2, '.', '') }}{% endif %}</span>
+                <span style="font-weight: 600; color: #111827; min-width: 80px; text-align: right;">{% if totalCents == 0 %}{{ totalP|number_format(0, '.', '') }}{% else %}{{ totalP|number_format(2, '.', '') }}{% endif %}</span>
                 <form action="{{ path('frontend.checkout.line-item.delete', { id: lineItem.id }) }}" method="post" data-form-csrf-handler="true">
                     <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
                     <button type="submit" style="padding: 0.25rem; background: transparent; border: none; color: #9CA3AF; cursor: pointer;" aria-label="Entfernen">
@@ -106,7 +106,7 @@
                     <span>Zwischensumme</span>
                     {% set subP = page.cart.price.totalPrice %}
                     {% set subCents = ((subP * 100) % 100)|round %}
-                    <span style="font-weight: 700;">{% if subCents == 0 %}{{ subP|number_format(0, '.', '') }}.–{% else %}{{ subP|number_format(2, '.', '') }}{% endif %}</span>
+                    <span style="font-weight: 700;">{% if subCents == 0 %}{{ subP|number_format(0, '.', '') }}{% else %}{{ subP|number_format(2, '.', '') }}{% endif %}</span>
                 </div>
                 <p style="font-size: 0.875rem; color: #6B7280; margin: 0.25rem 0 0 0;">Inklusive Steuer. Versandkosten werden an der Kasse berechnet.</p>
             </div>

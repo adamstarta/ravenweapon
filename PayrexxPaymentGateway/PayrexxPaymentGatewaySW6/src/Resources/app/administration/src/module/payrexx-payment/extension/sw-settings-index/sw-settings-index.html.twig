@@ -1,0 +1,11 @@
+{% block sw_settings_content_card_slot_plugins %}
+    {% parent %}
+
+    <sw-settings-item :label="$tc('payrexx-payment.module.title')"
+                      :to="{ name: 'payrexx.payment.index' }"
+                      :backgroundEnabled="false">
+        <template #icon>
+            <img class="sw-settings-index__payrexx-icon" :src="'payrexxpaymentgatewaysw6/administration/plugin.png' | asset" :alt="Payrexx">
+        </template>
+    </sw-settings-item>
+{% endblock %}

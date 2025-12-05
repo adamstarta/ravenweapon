@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="true"/>
+
+        <service id="PayrexxPaymentGateway\Handler\PaymentHandler">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container" />
+            <argument type="service" id="PayrexxPaymentGateway\Service\CustomerService" />
+            <argument type="service" id="PayrexxPaymentGateway\Service\PayrexxApiService" />
+            <argument type="service" id="PayrexxPaymentGateway\Handler\TransactionHandler" />
+            <argument type="service" id="PayrexxPaymentGateway\Service\ConfigService" />
+            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="router" />
+            <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack" />
+            <argument type="service" id="Shopware\Core\Framework\Plugin\PluginService" />
+            <tag name="shopware.payment.method" />
+        </service>
+
+        <service id="PayrexxPaymentGateway\Handler\TransactionHandler">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container" />
+            <argument type="service" id="monolog.logger"/>
+        </service>
+
+        <service id="PayrexxPaymentGateway\Service\CustomerService" class="PayrexxPaymentGateway\Service\CustomerService">
+            <argument type="service" id="order_address.repository" />
+            <argument type="service" id="monolog.logger"/>
+        </service>
+        <service id="PayrexxPaymentGateway\Service\PayrexxApiService" class="PayrexxPaymentGateway\Service\PayrexxApiService">
+            <argument type="service" id="customer.repository" />
+            <argument type="service" id="monolog.logger"/>
+            <argument type="service" id="PayrexxPaymentGateway\Service\ConfigService" />
+        </service>
+        <service id="PayrexxPaymentGateway\Service\ConfigService" class="PayrexxPaymentGateway\Service\ConfigService">
+            <argument type="service" id="system_config.repository" />
+            <argument type="service" id="monolog.logger"/>
+        </service>
+
+        <service id="PayrexxPaymentGateway\CookieProvider\CookieProvider" decorates="Shopware\Storefront\Framework\Cookie\CookieProviderInterface">
+            <argument type="service" id="PayrexxPaymentGateway\CookieProvider\CookieProvider.inner" />
+        </service>
+
+        <service id="PayrexxPaymentGateway\Subscriber\BackendSubscriber">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="PayrexxPaymentGateway\Service\PayrexxApiService" />
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="PayrexxPaymentGateway\Webhook\Dispatcher">
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="service_container" />
+            <argument type="service" id="PayrexxPaymentGateway\Service\ConfigService" />
+            <argument type="service" id="PayrexxPaymentGateway\Service\PayrexxApiService" />
+            <argument type="service" id="PayrexxPaymentGateway\Handler\TransactionHandler" />
+            <argument type="service" id="monolog.logger"/>
+        </service>
+
+        <service id="PayrexxPaymentGateway\Webhook\Cancel">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="PayrexxPaymentGateway\Handler\TransactionHandler" />
+        </service>
+   </services>
+</container>

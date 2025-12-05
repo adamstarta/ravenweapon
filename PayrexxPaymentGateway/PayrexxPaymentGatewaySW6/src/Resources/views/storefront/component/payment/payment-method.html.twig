@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/component/payment/payment-method.html.twig' %}
+
+{% block component_payment_fieldset_template %}
+    {{ parent() }}
+    {% if payment.customFields.payrexx_payment_method_name == 'payrexx_payment_apple_pay' %}
+        <div id='payrexx-applepay'>
+            <template data-payrexx-apple-pay></template>
+        </div>
+    {% elseif payment.customFields.payrexx_payment_method_name == 'payrexx_payment_google_pay' %}
+        <div id='payrexx-googlepay'>
+            <script src="https://pay.google.com/gp/p/js/pay.js"></script>
+            <template data-payrexx-google-pay></template>
+        </div>
+    {% endif %}
+{% endblock %}

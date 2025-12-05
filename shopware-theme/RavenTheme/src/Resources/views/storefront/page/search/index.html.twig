@@ -3,9 +3,7 @@
 {% block base_main_inner %}
 <main class="raven-all-products-page">
     {# Hero Banner #}
-    <section class="all-products-hero" style="background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #0f172a 100%); padding: 3rem 0 4rem; position: relative; overflow: hidden;">
-        <div class="hero-decoration" style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; opacity: 0.05; background-image: url('{{ asset('bundles/raventheme/assets/hero-background.jpg') }}'); background-size: cover; background-position: center;"></div>
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(31,41,55,1) 0%, rgba(31,41,55,0.8) 50%, rgba(31,41,55,0.4) 100%);"></div>
+    <section class="all-products-hero" style="background: #1a1a1a; padding: 3rem 0 4rem; position: relative; overflow: hidden;">
 
         <div class="max-w-7xl mx-auto px-6 lg:px-24 relative z-10">
             {# Breadcrumb #}
@@ -20,14 +18,14 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
-                    <span style="color: #F2B90D; font-weight: 500;">{% if page.searchTerm %}Suchergebnisse{% else %}Alle Produkte{% endif %}</span>
+                    <span style="color: #F2B90D; font-weight: 500;">{% if page.searchTerm %}{{ page.searchTerm }}{% else %}Alle Produkte{% endif %}</span>
                 </div>
             </nav>
 
             {# Title #}
             <h1 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; color: white; line-height: 1.1; margin: 0;">
                 {% if page.searchTerm %}
-                    Suchergebnisse für "{{ page.searchTerm }}"
+                    {{ page.searchTerm }}
                 {% else %}
                     Alle Produkte
                 {% endif %}
@@ -41,28 +39,250 @@
         </div>
     </section>
 
-    {# Filter Bar - Not sticky to avoid overlap issues #}
+    {# Filter Bar - Matching Category Page Style #}
     <section class="filter-bar" style="background: white; border-bottom: 1px solid #e5e7eb;">
         <div class="max-w-7xl mx-auto px-6 lg:px-24">
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; gap: 1rem; flex-wrap: wrap;">
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <span style="font-family: 'Inter', sans-serif; font-size: 0.875rem; color: #6b7280;">Sortieren:</span>
-                    <select style="font-family: 'Inter', sans-serif; padding: 0.5rem 2rem 0.5rem 1rem; border: 1px solid #e5e7eb; border-radius: 8px; background: white; font-size: 0.875rem; color: #374151; cursor: pointer;">
-                        <option>Beliebtheit</option>
-                        <option>Preis aufsteigend</option>
-                        <option>Preis absteigend</option>
-                        <option>Neueste</option>
-                    </select>
+            <div class="raven-filter-bar" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; gap: 0.75rem; flex-wrap: wrap;">
+                {# Left side: Filter buttons - Same as category pages #}
+                <div class="raven-filters-left" style="display: flex; flex-wrap: wrap; gap: 0.625rem;">
+                    {# Farbe (Color) Filter #}
+                    <div class="raven-filter-group" style="position: relative;">
+                        <button type="button" class="raven-filter-btn" data-filter-toggle="color" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: #333; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;">
+                            Farbe
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.7;"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="color" style="display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; min-width: 260px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 100; padding: 1rem;">
+                            <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                <input type="checkbox" id="color-black" value="black" data-filter-color style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                <label for="color-black" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Schwarz</label>
+                            </div>
+                            <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                <input type="checkbox" id="color-fde" value="fde" data-filter-color style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                <label for="color-fde" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">FDE / Tan</label>
+                            </div>
+                            <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                <input type="checkbox" id="color-odg" value="odg" data-filter-color style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                <label for="color-odg" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">OD Green</label>
+                            </div>
+                            <button type="button" class="raven-filter-apply" data-apply-filter="color" style="width: 100%; margin-top: 1rem; padding: 0.625rem 1rem; background: #333; color: white; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer;">Anwenden</button>
+                        </div>
+                    </div>
+
+                    {# Preis (Price) Filter #}
+                    <div class="raven-filter-group" style="position: relative;">
+                        <button type="button" class="raven-filter-btn" data-filter-toggle="price" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: #333; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;">
+                            Preis
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.7;"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="price" style="display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; min-width: 260px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 100; padding: 1rem;">
+                            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                <input type="number" id="raven-price-min" placeholder="Min" min="0" style="flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.875rem; width: 100px;">
+                                <span style="color: #999;">–</span>
+                                <input type="number" id="raven-price-max" placeholder="Max" min="0" style="flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.875rem; width: 100px;">
+                                <span style="color: #666; font-size: 0.875rem;">CHF</span>
+                            </div>
+                            <button type="button" class="raven-filter-apply" data-apply-filter="price" style="width: 100%; margin-top: 1rem; padding: 0.625rem 1rem; background: #333; color: white; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer;">Anwenden</button>
+                        </div>
+                    </div>
+
+                    {# Hersteller (Manufacturer) Filter #}
+                    <div class="raven-filter-group" style="position: relative;">
+                        <button type="button" class="raven-filter-btn" data-filter-toggle="manufacturer" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: #333; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;">
+                            Hersteller
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.7;"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="manufacturer" style="display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; min-width: 260px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 100; padding: 1rem; max-height: 300px; overflow-y: auto;">
+                            {# All manufacturers - listed from products in the system #}
+                                <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                    <input type="checkbox" id="mfr-acheron" value="Acheron" data-filter-manufacturer style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                    <label for="mfr-acheron" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Acheron</label>
+                                </div>
+                                <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                    <input type="checkbox" id="mfr-aimpact" value="Aimpact" data-filter-manufacturer style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                    <label for="mfr-aimpact" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Aimpact</label>
+                                </div>
+                                <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                    <input type="checkbox" id="mfr-lockhart" value="Lockhart Tactical" data-filter-manufacturer style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                    <label for="mfr-lockhart" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Lockhart Tactical</label>
+                                </div>
+                                <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                    <input type="checkbox" id="mfr-magpul" value="Magpul" data-filter-manufacturer style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                    <label for="mfr-magpul" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Magpul</label>
+                                </div>
+                                <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                    <input type="checkbox" id="mfr-zerotolerance" value="Zero Tolerance" data-filter-manufacturer style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                    <label for="mfr-zerotolerance" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Zero Tolerance</label>
+                                </div>
+                            <button type="button" class="raven-filter-apply" data-apply-filter="manufacturer" style="width: 100%; margin-top: 1rem; padding: 0.625rem 1rem; background: #333; color: white; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer;">Anwenden</button>
+                        </div>
+                    </div>
+
+                    {# Im Angebot (On Offer) Filter #}
+                    <div class="raven-filter-group" style="position: relative;">
+                        <button type="button" class="raven-filter-btn" data-filter-toggle="offer" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: #333; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;">
+                            Im Angebot
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.7;"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="offer" style="display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; min-width: 260px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 100; padding: 1rem;">
+                            <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                <input type="checkbox" id="offer-yes" value="1" data-filter-offer style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                <label for="offer-yes" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Nur Angebote anzeigen</label>
+                            </div>
+                            <button type="button" class="raven-filter-apply" data-apply-filter="offer" style="width: 100%; margin-top: 1rem; padding: 0.625rem 1rem; background: #333; color: white; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer;">Anwenden</button>
+                        </div>
+                    </div>
+
+                    {# Lagerstatus (Stock Status) Filter #}
+                    <div class="raven-filter-group" style="position: relative;">
+                        <button type="button" class="raven-filter-btn" data-filter-toggle="stock" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: #333; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;">
+                            Lagerstatus
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.7;"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="stock" style="display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; min-width: 260px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 100; padding: 1rem;">
+                            <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
+                                <input type="checkbox" id="stock-available" value="1" data-filter-stock style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
+                                <label for="stock-available" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Nur verfügbare Artikel</label>
+                            </div>
+                            <button type="button" class="raven-filter-apply" data-apply-filter="stock" style="width: 100%; margin-top: 1rem; padding: 0.625rem 1rem; background: #333; color: white; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer;">Anwenden</button>
+                        </div>
+                    </div>
                 </div>
 
-                {% if page.listing.total is defined %}
-                <span style="font-family: 'Inter', sans-serif; font-size: 0.875rem; color: #9ca3af;">
-                    {{ page.listing.total }} Ergebnisse
-                </span>
-                {% endif %}
+                {# Right side: Sorting only #}
+                <div class="raven-right-controls" style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div class="raven-sort-wrapper" style="position: relative;">
+                        <button type="button" class="raven-sort-btn" data-sort-toggle style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1rem; background: transparent; border: none; font-size: 0.9375rem; font-weight: 500; color: #333; cursor: pointer; font-family: 'Inter', sans-serif;">
+                            <span data-sort-label>Neueste</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; color: #D4A847;"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-sort-menu" data-sort-menu style="display: none; position: absolute; top: 100%; right: 0; margin-top: 4px; min-width: 180px; background: white; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 100; overflow: hidden;">
+                            <a href="#" data-sort-value="name-asc" style="display: block; padding: 0.75rem 1rem; font-size: 0.875rem; color: #374151; text-decoration: none;">Name A-Z</a>
+                            <a href="#" data-sort-value="name-desc" style="display: block; padding: 0.75rem 1rem; font-size: 0.875rem; color: #374151; text-decoration: none;">Name Z-A</a>
+                            <a href="#" data-sort-value="price-asc" style="display: block; padding: 0.75rem 1rem; font-size: 0.875rem; color: #374151; text-decoration: none;">Preis aufsteigend</a>
+                            <a href="#" data-sort-value="price-desc" style="display: block; padding: 0.75rem 1rem; font-size: 0.875rem; color: #374151; text-decoration: none;">Preis absteigend</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            {# Pagination Row - Below Filter Bar #}
+            {% set totalProducts = page.listing.total|default(0) %}
+            {% set perPage = 24 %}
+            {% set currentPage = app.request.get('p')|default(1) %}
+            {% set totalPages = ((totalProducts / perPage)|round(0, 'ceil'))|default(1) %}
+
+            {% if totalPages > 1 %}
+            <div class="raven-pagination-row" style="display: flex; justify-content: flex-end; align-items: center; padding: 0.5rem 0; margin-bottom: 0.5rem;">
+                <nav class="pagination-nav" aria-label="Pagination" style="display: flex; align-items: center; gap: 0.25rem;">
+                    {# Previous Page #}
+                    {% if currentPage > 1 %}
+                    <a href="?search={{ page.searchTerm|default('') }}&p={{ currentPage - 1 }}" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; color: #374151; text-decoration: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </a>
+                    {% endif %}
+
+                    {# Page Numbers #}
+                    {% for i in 1..totalPages %}
+                        {% if i == currentPage %}
+                        <span style="display: flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; padding: 0 8px; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; border-radius: 6px; font-size: 0.875rem; font-weight: 600; border: 1px solid #C59A0F;">{{ i }}</span>
+                        {% elseif i <= 5 or i > totalPages - 2 or (i >= currentPage - 1 and i <= currentPage + 1) %}
+                        <a href="?search={{ page.searchTerm|default('') }}&p={{ i }}" style="display: flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; padding: 0 8px; color: #374151; text-decoration: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500;">{{ i }}</a>
+                        {% elseif i == 6 or i == totalPages - 2 %}
+                        <span style="padding: 0 4px; color: #9ca3af;">...</span>
+                        {% endif %}
+                    {% endfor %}
+
+                    {# Next Page #}
+                    {% if currentPage < totalPages %}
+                    <a href="?search={{ page.searchTerm|default('') }}&p={{ currentPage + 1 }}" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; color: #374151; text-decoration: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
+            {% endif %}
         </div>
     </section>
+
+    {# Filter Sidebar - Hidden by default #}
+    <div id="filter-sidebar" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000;">
+        <div id="filter-backdrop" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+        <div id="filter-panel" style="position: absolute; top: 0; left: 0; width: 320px; max-width: 90vw; height: 100%; background: white; box-shadow: 4px 0 20px rgba(0,0,0,0.15); overflow-y: auto; transform: translateX(-100%); transition: transform 0.3s ease;">
+            <div style="padding: 1.5rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+                    <h3 style="font-family: 'Chakra Petch', sans-serif; font-size: 1.25rem; font-weight: 600; color: #111827; margin: 0;">Filter</h3>
+                    <button id="filter-close-btn" style="width: 32px; height: 32px; border: none; background: #f3f4f6; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                {# Price Range Filter #}
+                <div class="filter-group" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e5e7eb;">
+                    <h4 style="font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600; color: #374151; margin: 0 0 1rem 0;">Preis</h4>
+                    <div style="display: flex; gap: 0.75rem; align-items: center;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.75rem; color: #6b7280; display: block; margin-bottom: 0.25rem;">Min (CHF)</label>
+                            <input type="number" id="price-min" placeholder="0" style="width: 100%; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.875rem;">
+                        </div>
+                        <span style="color: #9ca3af; margin-top: 1rem;">–</span>
+                        <div style="flex: 1;">
+                            <label style="font-size: 0.75rem; color: #6b7280; display: block; margin-bottom: 0.25rem;">Max (CHF)</label>
+                            <input type="number" id="price-max" placeholder="10000" style="width: 100%; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 0.875rem;">
+                        </div>
+                    </div>
+                </div>
+
+                {# Category Filter #}
+                <div class="filter-group" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e5e7eb;">
+                    <h4 style="font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600; color: #374151; margin: 0 0 1rem 0;">Kategorie</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        {% for treeItem in page.header.navigation.tree %}
+                            {% set category = treeItem.category %}
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 6px; transition: background 0.2s;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" class="category-filter" value="{{ category.id }}" style="width: 16px; height: 16px; accent-color: #D4A847;">
+                                <span style="font-size: 0.875rem; color: #374151;">{{ category.translated.name }}</span>
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {# Manufacturer Filter #}
+                {% if page.listing.aggregations.manufacturer is defined and page.listing.aggregations.manufacturer.entities|length > 0 %}
+                <div class="filter-group" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e5e7eb;">
+                    <h4 style="font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600; color: #374151; margin: 0 0 1rem 0;">Hersteller</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 200px; overflow-y: auto;">
+                        {% for manufacturer in page.listing.aggregations.manufacturer.entities %}
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 6px; transition: background 0.2s;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='transparent'">
+                                <input type="checkbox" class="manufacturer-filter" value="{{ manufacturer.id }}" style="width: 16px; height: 16px; accent-color: #D4A847;">
+                                <span style="font-size: 0.875rem; color: #374151;">{{ manufacturer.translated.name }}</span>
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {# Availability Filter #}
+                <div class="filter-group" style="margin-bottom: 1.5rem;">
+                    <h4 style="font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600; color: #374151; margin: 0 0 1rem 0;">Verfügbarkeit</h4>
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem; border-radius: 6px; transition: background 0.2s;" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='transparent'">
+                        <input type="checkbox" id="in-stock-filter" style="width: 16px; height: 16px; accent-color: #D4A847;">
+                        <span style="font-size: 0.875rem; color: #374151;">Nur verfügbare Produkte</span>
+                    </label>
+                </div>
+
+                {# Apply Filters Button #}
+                <button id="apply-filters-btn" style="width: 100%; padding: 0.875rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border: 1px solid #C59A0F; border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.9375rem;">
+                    Filter anwenden
+                </button>
+                <button id="reset-filters-btn" style="width: 100%; padding: 0.75rem; background: transparent; color: #6b7280; font-weight: 500; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.875rem; margin-top: 0.5rem;">
+                    Filter zurücksetzen
+                </button>
+            </div>
+        </div>
+    </div>
 
     {# Products Section #}
     <section class="products-section" style="background: #f9fafb; padding: 3rem 0 5rem;">
@@ -85,21 +305,34 @@
                         </div>
                     </a>
                     <div style="padding: 0.75rem 1.5rem 1rem;">
-                        <p style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0;">
-                            {% if product.categories|first %}{{ product.categories|first.translated.name }}{% else %}Produkt{% endif %}
-                        </p>
                         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                             <div style="flex: 1;">
                                 <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">
                                     {% if product.calculatedPrice %}
                                         {% set priceValue = product.calculatedPrice.unitPrice %}
                                         {% set cents = ((priceValue * 100) % 100)|round %}
-                                        {% if cents == 0 %}{{ priceValue|number_format(0, '.', '') }}.–{% else %}{{ priceValue|number_format(2, '.', '') }}{% endif %}
+                                        CHF {% if cents == 0 %}{{ priceValue|number_format(0, '.', "'") }}{% else %}{{ priceValue|number_format(2, '.', "'") }}{% endif %}
                                     {% endif %}
                                 </div>
+                                {# Star Ratings - Use ratingAverage which is available in listings #}
+                                {% if product.ratingAverage and product.ratingAverage > 0 %}
+                                    {% set rating = product.ratingAverage|round %}
+                                    <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+                                        <div style="display: flex; gap: 2px;">
+                                            {% for i in 1..5 %}
+                                                {% if rating >= i %}
+                                                    <svg style="width: 14px; height: 14px; color: #D4A847;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                                {% else %}
+                                                    <svg style="width: 14px; height: 14px; color: #D1D5DB;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <span style="font-size: 0.75rem; color: #6b7280;">({{ product.ratingAverage|number_format(1) }})</span>
+                                    </div>
+                                {% endif %}
                                 <div style="color: #374151; font-size: 1rem; margin-top: 0.25rem;">
-                                    {% set manufacturerName = product.manufacturer.translated.name|default('') %}
-                                    {% if manufacturerName %}<span style="font-weight: 700;">{{ manufacturerName }}</span> {% endif %}{{ product.translated.name }}
+                                    <div style="font-weight: 700;">{{ product.manufacturer.translated.name|default('') }}</div>
+                                    <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" style="color: inherit; text-decoration: none;">{{ product.translated.name }}</a>
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
@@ -125,15 +358,35 @@
                 {% endfor %}
             </div>
 
-            {# Pagination #}
-            {% if page.listing.pages > 1 %}
-            <div class="pagination-wrapper" style="margin-top: 4rem; display: flex; justify-content: center;">
-                <div class="pagination-container" style="display: flex; align-items: center; gap: 0.5rem; background: white; padding: 0.5rem; border-radius: 12px; border: 1px solid #e5e7eb;">
-                    {% sw_include '@Storefront/storefront/component/pagination.html.twig' with {
-                        entities: page.listing,
-                        criteria: page.listing.criteria
-                    } %}
-                </div>
+            {# Bottom Pagination #}
+            {% if totalPages > 1 %}
+            <div class="pagination-wrapper" style="margin-top: 3rem; display: flex; justify-content: center;">
+                <nav class="pagination-nav" aria-label="Pagination" style="display: flex; align-items: center; gap: 0.25rem; background: white; padding: 0.5rem 1rem; border-radius: 12px; border: 1px solid #e5e7eb;">
+                    {# Previous Page #}
+                    {% if currentPage > 1 %}
+                    <a href="?search={{ page.searchTerm|default('') }}&p={{ currentPage - 1 }}" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; color: #374151; text-decoration: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </a>
+                    {% endif %}
+
+                    {# Page Numbers #}
+                    {% for i in 1..totalPages %}
+                        {% if i == currentPage %}
+                        <span style="display: flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; padding: 0 8px; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; border-radius: 6px; font-size: 0.875rem; font-weight: 600; border: 1px solid #C59A0F;">{{ i }}</span>
+                        {% elseif i <= 5 or i > totalPages - 2 or (i >= currentPage - 1 and i <= currentPage + 1) %}
+                        <a href="?search={{ page.searchTerm|default('') }}&p={{ i }}" style="display: flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; padding: 0 8px; color: #374151; text-decoration: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500;">{{ i }}</a>
+                        {% elseif i == 6 or i == totalPages - 2 %}
+                        <span style="padding: 0 4px; color: #9ca3af;">...</span>
+                        {% endif %}
+                    {% endfor %}
+
+                    {# Next Page #}
+                    {% if currentPage < totalPages %}
+                    <a href="?search={{ page.searchTerm|default('') }}&p={{ currentPage + 1 }}" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; color: #374151; text-decoration: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                    {% endif %}
+                </nav>
             </div>
             {% endif %}
 
@@ -164,7 +417,7 @@
 
 <style>
 @media (min-width: 640px) { .product-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-@media (min-width: 768px) { .product-grid { grid-template-columns: repeat(3, 1fr) !important; } }
+@media (min-width: 768px) { .product-grid { grid-template-columns: repeat(4, 1fr) !important; } }
 
 .raven-product-card {
     transition: all 0.3s ease;
@@ -177,26 +430,119 @@
 }
 .raven-product-card:hover .product-img { transform: scale(1.05); }
 .product-img { transition: transform 0.3s ease; }
-
-/* Vertical gold divider between products */
-.raven-product-card::after {
-    content: '' !important;
-    position: absolute !important;
-    right: -0.75rem !important;
-    top: 0 !important;
-    height: 100% !important;
-    width: 2px !important;
-    background: #D4A847 !important;
-    display: block !important;
-}
-@media (min-width: 768px) {
-    .raven-product-card:nth-child(3n)::after { display: none !important; }
-}
-@media (min-width: 640px) and (max-width: 767px) {
-    .raven-product-card:nth-child(2n)::after { display: none !important; }
-}
-@media (max-width: 639px) {
-    .raven-product-card::after { display: none !important; }
-}
 </style>
+
+<script>
+(function() {
+    'use strict';
+
+    // Filter dropdown toggle
+    document.querySelectorAll('[data-filter-toggle]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var type = btn.getAttribute('data-filter-toggle');
+            var panel = document.querySelector('[data-filter-panel="' + type + '"]');
+            // Close other dropdowns
+            document.querySelectorAll('.raven-filter-dropdown').forEach(function(p) {
+                if (p !== panel) p.style.display = 'none';
+            });
+            var sortMenu = document.querySelector('[data-sort-menu]');
+            if (sortMenu) sortMenu.style.display = 'none';
+            // Toggle this dropdown
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+
+    // Sort toggle
+    var sortBtn = document.querySelector('[data-sort-toggle]');
+    var sortMenu = document.querySelector('[data-sort-menu]');
+    if (sortBtn && sortMenu) {
+        sortBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('.raven-filter-dropdown').forEach(function(p) {
+                p.style.display = 'none';
+            });
+            sortMenu.style.display = sortMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        sortMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('[data-sort-label]').textContent = link.textContent;
+                sortMenu.style.display = 'none';
+                var url = new URL(window.location);
+                url.searchParams.set('order', link.getAttribute('data-sort-value'));
+                window.location.href = url.toString();
+            });
+        });
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.raven-filter-group') && !e.target.closest('.raven-sort-wrapper')) {
+            document.querySelectorAll('.raven-filter-dropdown').forEach(function(p) {
+                p.style.display = 'none';
+            });
+            if (sortMenu) sortMenu.style.display = 'none';
+        }
+    });
+
+    // Apply price filter
+    document.querySelectorAll('[data-apply-filter="price"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var currentUrl = new URL(window.location.href);
+            var priceMin = document.getElementById('raven-price-min').value;
+            var priceMax = document.getElementById('raven-price-max').value;
+            if (priceMin) currentUrl.searchParams.set('min-price', priceMin);
+            else currentUrl.searchParams.delete('min-price');
+            if (priceMax) currentUrl.searchParams.set('max-price', priceMax);
+            else currentUrl.searchParams.delete('max-price');
+            window.location.href = currentUrl.toString();
+        });
+    });
+
+    // Apply manufacturer filter
+    document.querySelectorAll('[data-apply-filter="manufacturer"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var currentUrl = new URL(window.location.href);
+            var manufacturerFilters = document.querySelectorAll('[data-filter-manufacturer]:checked');
+            var manufacturers = Array.from(manufacturerFilters).map(function(cb) { return cb.value; });
+            if (manufacturers.length > 0) {
+                currentUrl.searchParams.set('manufacturer', manufacturers.join('|'));
+            } else {
+                currentUrl.searchParams.delete('manufacturer');
+            }
+            window.location.href = currentUrl.toString();
+        });
+    });
+
+    // Apply stock filter
+    document.querySelectorAll('[data-apply-filter="stock"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var currentUrl = new URL(window.location.href);
+            var stockFilter = document.querySelector('[data-filter-stock]:checked');
+            if (stockFilter) {
+                currentUrl.searchParams.set('stock', '1');
+            } else {
+                currentUrl.searchParams.delete('stock');
+            }
+            window.location.href = currentUrl.toString();
+        });
+    });
+
+    // Restore filter state from URL
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('min-price') && document.getElementById('raven-price-min')) {
+        document.getElementById('raven-price-min').value = urlParams.get('min-price');
+    }
+    if (urlParams.get('max-price') && document.getElementById('raven-price-max')) {
+        document.getElementById('raven-price-max').value = urlParams.get('max-price');
+    }
+    if (urlParams.get('stock') && document.getElementById('stock-available')) {
+        document.getElementById('stock-available').checked = true;
+    }
+
+    console.log('Raven search filters initialized');
+})();
+</script>
 {% endblock %}

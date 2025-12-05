@@ -1,0 +1,48 @@
+{
+  "name": "payrexx/payment",
+  "description": "A Shopware plugin to accept payments with Payrexx",
+  "version": "2.1.7",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Payrexx AG",
+      "homepage": "https://payrexx.com"
+    }
+  ],
+  "require": {
+    "php": "^8",
+    "shopware/core": "^6.6.5 || ~6.7.0",
+    "shopware/administration": "^6.6.5 || ~6.7.0",
+    "payrexx/payrexx": "^2.0.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "PayrexxPaymentGateway\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "PayrexxPaymentGateway\\PayrexxPaymentGatewaySW6",
+    "label": {
+      "en-GB": "Payrexx Payment Gateway",
+      "de-DE": "Payrexx Payment Gateway",
+      "de-CH": "Payrexx Payment Gateway"
+    },
+    "description": {
+      "en-GB": "Payrexx enables you to process payments securely and easily. You do not need your own website or programming skills to accept over 100+ payment methods.",
+      "de-DE": "Payrexx ermöglicht Ihnen eine sichere und einfache Zahlungsabwicklung. Sie benötigen weder eine eigene Website noch Programmierkenntnisse, um über 100+ Zahlungsmittel zu akzeptieren.",
+      "de-CH": "Payrexx ermöglicht Ihnen eine sichere und einfache Zahlungsabwicklung. Sie benötigen weder eine eigene Website noch Programmierkenntnisse, um über 100+ Zahlungsmittel zu akzeptieren."
+    },
+    "manufacturerLink": {
+      "en-GB": "https://payrexx.com/en/",
+      "de-DE": "https://payrexx.com/de/",
+      "de-CH": "https://payrexx.com/de/"
+    },
+    "supportLink": {
+      "en-GB": "https://support.payrexx.com/en/",
+      "de-DE": "https://support.payrexx.com/de/",
+      "de-CH": "https://support.payrexx.com/de/"
+
+    }
+  }
+}

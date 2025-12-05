@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/payrexx-payment-gateway-s-w6-DWMell1W.js",
+    "name": "payrexx-payment-gateway-s-w6",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/payrexx-payment-gateway-s-w6-GCvCB1AX.css"
+    ]
+  }
+}

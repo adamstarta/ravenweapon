@@ -27,3 +27,10 @@ npm-debug.log*
 # Build outputs
 dist/
 build/
+
+# Claude Code / MCP config
+.claude/
+.mcp.json
+
+# Credentials (SENSITIVE)
+.server-credentials

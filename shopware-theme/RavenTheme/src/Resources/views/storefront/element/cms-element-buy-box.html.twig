@@ -36,7 +36,7 @@
     {# Format price Swiss style with CHF #}
     {% set priceValue = product.calculatedPrice.unitPrice %}
     {% set priceCents = ((priceValue * 100) % 100)|round %}
-    {% set formattedPrice = priceCents == 0 ? priceValue|number_format(0, '.', ',') ~ '.–' : priceValue|number_format(2, '.', ',') %}
+    {% set formattedPrice = priceCents == 0 ? priceValue|number_format(0, '.', "'") : priceValue|number_format(2, '.', "'") %}
 
     <div class="raven-buy-box-wrapper">
         {# LEFT: Main Product Image with Zoom #}
@@ -58,214 +58,17 @@
                 <div class="raven-no-image">Kein Bild verfügbar</div>
                 {% endif %}
             </div>
-
-            {# ========== DYNAMIC RATINGS & REVIEWS SECTION ========== #}
-            {# Get reviews from Shopware's product review system #}
-            {% set reviews = product.productReviews|default([]) %}
-            {% set reviewCount = reviews|length %}
-
-            {# Calculate average rating #}
-            {% set totalPoints = 0 %}
-            {% set star5 = 0 %}
-            {% set star4 = 0 %}
-            {% set star3 = 0 %}
-            {% set star2 = 0 %}
-            {% set star1 = 0 %}
-
-            {% for review in reviews %}
-                {% set totalPoints = totalPoints + review.points %}
-                {% if review.points == 5 %}{% set star5 = star5 + 1 %}
-                {% elseif review.points == 4 %}{% set star4 = star4 + 1 %}
-                {% elseif review.points == 3 %}{% set star3 = star3 + 1 %}
-                {% elseif review.points == 2 %}{% set star2 = star2 + 1 %}
-                {% elseif review.points == 1 %}{% set star1 = star1 + 1 %}
-                {% endif %}
-            {% endfor %}
-
-            {% set avgRating = reviewCount > 0 ? (totalPoints / reviewCount)|round(1) : 0 %}
-            {% set avgRatingFloor = avgRating|round(0, 'floor') %}
-            {% set hasHalfStar = (avgRating - avgRatingFloor) >= 0.25 and (avgRating - avgRatingFloor) < 0.75 %}
-            {% set fullStars = hasHalfStar ? avgRatingFloor : avgRating|round(0) %}
-
-            <div class="raven-reviews-section">
-                <div class="raven-reviews-header">
-                    <h3 class="raven-reviews-title">Kundenbewertungen</h3>
-                    <button type="button" class="raven-write-review-btn" onclick="document.getElementById('raven-review-modal').style.display='flex';">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                        Bewertung schreiben
-                    </button>
-                </div>
-
-                {# Review Modal #}
-                <div id="raven-review-modal" class="raven-review-modal" style="display:none;">
-                    <div class="raven-review-modal-content">
-                        <div class="raven-review-modal-header">
-                            <h3>Bewertung schreiben</h3>
-                            <button type="button" class="raven-review-modal-close" onclick="document.getElementById('raven-review-modal').style.display='none';">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
-                        </div>
-                        <form id="raven-review-form" class="raven-review-form">
-                            <input type="hidden" name="productId" value="{{ product.id }}">
-
-                            {# Star Rating Selection #}
-                            <div class="raven-form-group">
-                                <label>Ihre Bewertung <span class="required">*</span></label>
-                                <div class="raven-star-rating-input" id="raven-star-input">
-                                    {% for i in 1..5 %}
-                                    <button type="button" class="raven-star-btn" data-rating="{{ i }}" onclick="setReviewRating({{ i }})">
-                                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                                    </button>
-                                    {% endfor %}
-                                </div>
-                                <input type="hidden" name="points" id="raven-review-points" value="" required>
-                            </div>
-
-                            {# Review Title #}
-                            <div class="raven-form-group">
-                                <label for="raven-review-title-input">Titel <span class="required">*</span></label>
-                                <input type="text" id="raven-review-title-input" name="title" placeholder="Kurze Zusammenfassung" required maxlength="100">
-                            </div>
-
-                            {# Review Content #}
-                            <div class="raven-form-group">
-                                <label for="raven-review-content">Ihre Bewertung <span class="required">*</span></label>
-                                <textarea id="raven-review-content" name="content" rows="4" placeholder="Teilen Sie Ihre Erfahrung mit diesem Produkt..." required minlength="20" maxlength="1000"></textarea>
-                                <span class="raven-char-count"><span id="raven-char-current">0</span>/1000</span>
-                            </div>
-
-                            {# Name (for guests) #}
-                            <div class="raven-form-group">
-                                <label for="raven-review-name">Ihr Name <span class="required">*</span></label>
-                                <input type="text" id="raven-review-name" name="name" placeholder="Wie sollen wir Sie nennen?" required maxlength="50">
-                            </div>
-
-                            {# Email #}
-                            <div class="raven-form-group">
-                                <label for="raven-review-email">E-Mail <span class="required">*</span></label>
-                                <input type="email" id="raven-review-email" name="email" placeholder="Ihre E-Mail-Adresse" required>
-                                <span class="raven-form-hint">Wird nicht öffentlich angezeigt</span>
-                            </div>
-
-                            {# Error/Success Message #}
-                            <div id="raven-review-message" class="raven-review-message" style="display:none;"></div>
-
-                            {# Submit Button #}
-                            <div class="raven-form-actions">
-                                <button type="button" class="raven-btn-cancel" onclick="document.getElementById('raven-review-modal').style.display='none';">Abbrechen</button>
-                                <button type="submit" class="raven-btn-submit" id="raven-submit-review">
-                                    <span class="btn-text">Bewertung absenden</span>
-                                    <span class="btn-loading" style="display:none;">
-                                        <svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>
-                                        Wird gesendet...
-                                    </span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                {% if reviewCount > 0 %}
-                {# Star Rating Display - Dynamic #}
-                <div class="raven-rating-summary">
-                    <div class="raven-stars">
-                        {% for i in 1..5 %}
-                            {% if i <= fullStars %}
-                                <svg class="raven-star filled" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            {% elseif hasHalfStar and i == fullStars + 1 %}
-                                <svg class="raven-star half" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            {% else %}
-                                <svg class="raven-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    <span class="raven-rating-value">{{ avgRating }}</span>
-                    <span class="raven-review-count">({{ reviewCount }} {% if reviewCount == 1 %}Bewertung{% else %}Bewertungen{% endif %})</span>
-                </div>
-
-                {# Rating Breakdown Bars - Dynamic #}
-                <div class="raven-rating-breakdown">
-                    {% set barData = [
-                        { label: '5 Sterne', count: star5 },
-                        { label: '4 Sterne', count: star4 },
-                        { label: '3 Sterne', count: star3 },
-                        { label: '2 Sterne', count: star2 },
-                        { label: '1 Stern', count: star1 }
-                    ] %}
-                    {% for bar in barData %}
-                        {% set barPercent = reviewCount > 0 ? ((bar.count / reviewCount) * 100)|round : 0 %}
-                        <div class="raven-bar-row">
-                            <span class="raven-bar-label">{{ bar.label }}</span>
-                            <div class="raven-bar-bg"><div class="raven-bar-fill" style="width: {{ barPercent }}%;"></div></div>
-                            <span class="raven-bar-count">{{ bar.count }}</span>
-                        </div>
-                    {% endfor %}
-                </div>
-
-                {# Actual Reviews List - Dynamic #}
-                <div class="raven-reviews-list">
-                    {% for review in reviews|slice(0, 5) %}
-                    <div class="raven-review-item">
-                        <div class="raven-review-header">
-                            <div class="raven-review-stars">
-                                {% for i in 1..5 %}
-                                    <svg class="raven-star {% if i <= review.points %}filled{% endif %} small" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                                {% endfor %}
-                            </div>
-                            <span class="raven-review-author">
-                                {% if review.externalUser %}
-                                    {{ review.externalUser }}
-                                {% elseif review.customer %}
-                                    {{ review.customer.firstName|first }}.{{ review.customer.lastName|first }}.
-                                {% else %}
-                                    Kunde
-                                {% endif %}
-                            </span>
-                            {% if review.customer %}
-                            <span class="raven-review-verified">Verifizierter Kauf</span>
-                            {% endif %}
-                        </div>
-                        {% if review.title %}
-                        <p class="raven-review-title"><strong>{{ review.title }}</strong></p>
-                        {% endif %}
-                        <p class="raven-review-text">{{ review.content }}</p>
-                        <span class="raven-review-date">{{ review.createdAt|date('d.m.Y') }}</span>
-                    </div>
-                    {% endfor %}
-
-                    {% if reviewCount > 5 %}
-                    <a href="#" class="raven-show-all-reviews" onclick="document.querySelector('.raven-reviews-list').classList.toggle('show-all'); this.textContent = this.textContent === 'Alle {{ reviewCount }} Bewertungen anzeigen' ? 'Weniger anzeigen' : 'Alle {{ reviewCount }} Bewertungen anzeigen'; return false;">
-                        Alle {{ reviewCount }} Bewertungen anzeigen
-                    </a>
-                    {% endif %}
-                </div>
-
-                {% else %}
-                {# No Reviews State #}
-                <div class="raven-no-reviews">
-                    <div class="raven-no-reviews-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <p class="raven-no-reviews-text">Noch keine Bewertungen</p>
-                    <p class="raven-no-reviews-subtext">Sei der Erste, der dieses Produkt bewertet!</p>
-                </div>
-                {% endif %}
-            </div>
         </div>
 
         {# RIGHT: Product Info #}
         <div class="raven-buy-box">
-            {# Category Label - Dynamic from product categories #}
-            {% set productCategory = product.categories|first %}
-            <p class="raven-category">{{ productCategory ? productCategory.translated.name : 'Produkt' }}</p>
+            {# Manufacturer Name Label - Clickable with SEO URL #}
+            {% if manufacturerName %}
+                {% set manufacturerSlug = manufacturerName|lower|replace({' ': '-', '.': '', ',': '', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'}) %}
+                <a href="/{{ manufacturerSlug }}" class="raven-category" style="text-decoration: none;">{{ manufacturerName }}</a>
+            {% else %}
+                <p class="raven-category">Produkt</p>
+            {% endif %}
 
             {# Product Title #}
             <h1 class="raven-title">{{ fullTitle }}</h1>
@@ -349,6 +152,83 @@
             </div>
             {% endif %}
         </div>
+    </div>
+
+    {# ========== REVIEWS SECTION - Below main product grid ========== #}
+    {% set reviews = product.productReviews|default([]) %}
+    {% set reviewCount = reviews|length %}
+    {% set totalPoints = 0 %}
+    {% set star5 = 0 %}{% set star4 = 0 %}{% set star3 = 0 %}{% set star2 = 0 %}{% set star1 = 0 %}
+    {% for review in reviews %}
+        {% set totalPoints = totalPoints + review.points %}
+        {% if review.points == 5 %}{% set star5 = star5 + 1 %}
+        {% elseif review.points == 4 %}{% set star4 = star4 + 1 %}
+        {% elseif review.points == 3 %}{% set star3 = star3 + 1 %}
+        {% elseif review.points == 2 %}{% set star2 = star2 + 1 %}
+        {% elseif review.points == 1 %}{% set star1 = star1 + 1 %}{% endif %}
+    {% endfor %}
+    {% set avgRating = reviewCount > 0 ? (totalPoints / reviewCount)|round(1) : 0 %}
+    {% set fullStars = avgRating|round(0) %}
+
+    <div class="raven-reviews-section" style="margin-top: 2rem;">
+        <div class="raven-reviews-header">
+            <h3 class="raven-reviews-title">Kundenbewertungen</h3>
+            <button type="button" class="raven-write-review-btn" onclick="window.location.href='{{ path('frontend.account.login.page') }}';">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                Bewertung schreiben
+            </button>
+        </div>
+
+        {% if reviewCount > 0 %}
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <div>
+                <div class="raven-rating-summary">
+                    <div class="raven-stars">
+                        {% for i in 1..5 %}
+                            <svg class="raven-star {% if i <= fullStars %}filled{% endif %}" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        {% endfor %}
+                    </div>
+                    <span class="raven-rating-value">{{ avgRating }}</span>
+                    <span class="raven-review-count">({{ reviewCount }} Bewertung{% if reviewCount != 1 %}en{% endif %})</span>
+                </div>
+                <div class="raven-rating-breakdown">
+                    <div class="raven-bar-row"><span class="raven-bar-label">5 Sterne</span><div class="raven-bar-bg"><div class="raven-bar-fill" style="width: {{ reviewCount > 0 ? (star5 / reviewCount * 100) : 0 }}%;"></div></div><span class="raven-bar-count">{{ star5 }}</span></div>
+                    <div class="raven-bar-row"><span class="raven-bar-label">4 Sterne</span><div class="raven-bar-bg"><div class="raven-bar-fill" style="width: {{ reviewCount > 0 ? (star4 / reviewCount * 100) : 0 }}%;"></div></div><span class="raven-bar-count">{{ star4 }}</span></div>
+                    <div class="raven-bar-row"><span class="raven-bar-label">3 Sterne</span><div class="raven-bar-bg"><div class="raven-bar-fill" style="width: {{ reviewCount > 0 ? (star3 / reviewCount * 100) : 0 }}%;"></div></div><span class="raven-bar-count">{{ star3 }}</span></div>
+                    <div class="raven-bar-row"><span class="raven-bar-label">2 Sterne</span><div class="raven-bar-bg"><div class="raven-bar-fill" style="width: {{ reviewCount > 0 ? (star2 / reviewCount * 100) : 0 }}%;"></div></div><span class="raven-bar-count">{{ star2 }}</span></div>
+                    <div class="raven-bar-row"><span class="raven-bar-label">1 Stern</span><div class="raven-bar-bg"><div class="raven-bar-fill" style="width: {{ reviewCount > 0 ? (star1 / reviewCount * 100) : 0 }}%;"></div></div><span class="raven-bar-count">{{ star1 }}</span></div>
+                </div>
+            </div>
+            <div class="raven-reviews-list">
+                {% for review in reviews|slice(0, 5) %}
+                <div class="raven-review-item">
+                    <div class="raven-review-header">
+                        <div class="raven-review-stars">
+                            {% for i in 1..5 %}<svg class="raven-star {% if i <= review.points %}filled{% endif %} small" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{% endfor %}
+                        </div>
+                        <span class="raven-review-author">{{ review.externalUser|default(review.customer ? review.customer.firstName|first ~ '.' ~ review.customer.lastName|first ~ '.' : 'Kunde') }}</span>
+                    </div>
+                    {% if review.title %}<p class="raven-review-title"><strong>{{ review.title }}</strong></p>{% endif %}
+                    <p class="raven-review-text">{{ review.content }}</p>
+                    <span class="raven-review-date">{{ review.createdAt|date('d.m.Y') }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class="raven-no-reviews">
+            <div class="raven-no-reviews-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            <p class="raven-no-reviews-text">Noch keine Bewertungen</p>
+            <p class="raven-no-reviews-subtext">Sei der Erste, der dieses Produkt bewertet!</p>
+        </div>
+        {% endif %}
     </div>
     {% endif %}
 </div>
@@ -592,6 +472,17 @@
         text-align: center;
         font-weight: 600;
         font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        line-height: 40px;
+        padding: 0;
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    .raven-qty-input::-webkit-outer-spin-button,
+    .raven-qty-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 
     /* Add to cart button */

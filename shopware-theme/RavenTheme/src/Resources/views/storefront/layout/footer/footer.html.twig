@@ -1,7 +1,7 @@
 {% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
 
 {% block layout_footer_inner_container %}
-<footer class="raven-footer">
+<footer class="raven-footer" style="margin-top: 60px;">
     {# Feature Highlights Strip #}
     <div class="footer-features" style="background: #ffffff; border-top: 1px solid #e5e7eb;">
         <div class="max-w-7xl mx-auto px-6 lg:px-24 py-6">
@@ -68,9 +68,6 @@
 
     {# Newsletter Section #}
     <div class="newsletter-section" style="background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 50%, #FFD54F 100%); position: relative; overflow: hidden;">
-        {# Decorative pattern #}
-        <div style="position: absolute; inset: 0; opacity: 0.1; background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23000000\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-
         <div class="max-w-7xl mx-auto px-6 lg:px-24 py-8 relative z-10">
             <div class="newsletter-content" style="display: flex; flex-direction: column; gap: 1.5rem; align-items: center; text-align: center;">
                 <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
@@ -101,43 +98,21 @@
 
     {# Main Footer Content #}
     <div class="footer-main" style="background: #111827; color: white;">
-        <div class="max-w-7xl mx-auto px-6 lg:px-24 py-12">
-            <div class="footer-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 3rem;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24 py-12" style="padding-top: 3rem;">
+            <div class="footer-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 3rem; margin-top: 1rem; padding-bottom: 2rem;">
                 {# Brand Column #}
                 <div class="footer-brand">
-                    <a href="{{ path('frontend.home.page') }}" style="display: inline-block; margin-bottom: 1.25rem;">
-                        {# Raven Logo - White version for dark background #}
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" style="height: 40px; width: auto;">
-                            <g fill="white">
-                                <path d="M25 5c-11 0-20 9-20 20s9 20 20 20c3.5 0 6.8-.9 9.7-2.5L25 30l-5 12.5C11.5 42.5 5 36 5 25S15 5 25 5z"/>
-                                <path d="M35 15l-10 15 9.7 12.5c5.5-3.5 9.3-9.5 9.3-17.5 0-4-1.2-7.8-3.3-11L35 15z"/>
-                            </g>
-                            <text x="55" y="22" fill="white" font-family="'Chakra Petch', sans-serif" font-size="18" font-weight="700">RAVEN</text>
-                            <text x="55" y="38" fill="white" font-family="'Chakra Petch', sans-serif" font-size="12" font-weight="400" letter-spacing="3">WEAPON</text>
-                        </svg>
-                    </a>
                     <p style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 1.5rem; max-width: 280px;">
                         Schweizer Qualität trifft auf kanadische Handwerkskunst. Ihre erste Adresse für Präzisionswaffen.
                     </p>
 
                     {# Social Links #}
                     <div style="display: flex; gap: 0.75rem;">
-                        <a href="https://instagram.com/ravenweapon" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); color: white; transition: all 0.2s ease;" aria-label="Instagram">
+                        <a href="https://www.instagram.com/ravenweapon/" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); color: white; transition: all 0.2s ease;" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
-                        <a href="https://youtube.com/@ravenweapon" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); color: white; transition: all 0.2s ease;" aria-label="YouTube">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
-                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                            </svg>
-                        </a>
-                        <a href="https://wa.me/41793561986" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.1); color: white; transition: all 0.2s ease;" aria-label="WhatsApp">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                             </svg>
                         </a>
                     </div>
@@ -163,33 +138,12 @@
                 <div>
                     <h4 style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; color: #F2B90D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.25rem;">Informationen</h4>
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                        <li><a href="{{ path('frontend.cms.page', { id: 'contact' }) }}" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">Kontakt</a></li>
-                        <li><a href="#versand" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">Versand & Lieferung</a></li>
-                        <li><a href="#faq" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">FAQ</a></li>
-                        <li><a href="#agb" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">AGB</a></li>
-                        <li><a href="#impressum" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">Impressum</a></li>
-                        <li><a href="#datenschutz" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">Datenschutz</a></li>
+                        <li><a href="{{ path('frontend.legal.agb') }}" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">Allgemeine Geschäftsbedingungen</a></li>
+                        <li><a href="{{ path('frontend.legal.impressum') }}" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">Impressum</a></li>
+                        <li><a href="{{ path('frontend.legal.datenschutz') }}" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">Datenschutzerklärung</a></li>
                     </ul>
                 </div>
 
-                {# Categories Column #}
-                <div>
-                    <h4 style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; color: #F2B90D; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.25rem;">Kategorien</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                        {% for treeItem in page.header.navigation.tree %}
-                            <li>
-                                <a href="{{ seoUrl('frontend.navigation.page', { navigationId: treeItem.category.id }) }}" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">
-                                    {{ treeItem.category.translated.name }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                        <li>
-                            <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" class="footer-link" style="font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.2s;">
-                                Über uns
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
 
@@ -225,7 +179,7 @@
 
 @media (min-width: 1024px) {
     .features-grid { grid-template-columns: repeat(4, 1fr) !important; }
-    .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr !important; }
+    .footer-grid { grid-template-columns: 1.5fr 1fr 1fr !important; }
 }
 
 /* Feature card hover */

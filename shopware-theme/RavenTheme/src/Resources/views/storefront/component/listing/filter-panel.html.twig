@@ -1,5 +1,319 @@
 {% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
 
-{# Hide filter panel on category pages #}
+{# Override filter panel styling to match horizontal button design #}
 {% block component_filter_panel %}
+<style>
+/* Raven Filter Panel - Horizontal Button Style */
+.cms-element-product-listing-wrapper .filter-panel-wrapper,
+.filter-panel-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.filter-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+/* Filter buttons - pill style */
+.filter-panel-item {
+    position: relative;
+}
+
+.filter-panel-item-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+}
+
+.filter-panel-item-toggle:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+.filter-panel-item-toggle[aria-expanded="true"],
+.filter-panel-item-toggle.is-active {
+    background: #111827;
+    color: white;
+    border-color: #111827;
+}
+
+.filter-panel-item-toggle .icon {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.2s ease;
+}
+
+.filter-panel-item-toggle[aria-expanded="true"] .icon {
+    transform: rotate(180deg);
+}
+
+/* Filter dropdown panels */
+.filter-panel-item-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    min-width: 280px;
+    max-width: 320px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+    z-index: 100;
+    padding: 1rem;
+}
+
+/* Filter options inside dropdown */
+.filter-multi-select-list,
+.filter-property-select-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.filter-multi-select-list-item,
+.filter-property-select-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.filter-multi-select-list-item label,
+.filter-property-select-item label {
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    flex: 1;
+}
+
+.filter-multi-select-checkbox,
+.filter-property-select-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #D4A847;
+}
+
+/* Price range filter */
+.filter-range {
+    padding: 0.5rem 0;
+}
+
+.filter-range-inputs {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.filter-range-input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.875rem;
+}
+
+/* Raven Price Filter Number Inputs */
+.filter-range-min,
+.filter-range-max,
+.filter-panel input[type="number"],
+input.min-input,
+input.max-input {
+    width: 80px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    color: #374151;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s ease;
+    -moz-appearance: textfield;
+}
+
+.filter-range-min:focus,
+.filter-range-max:focus,
+.filter-panel input[type="number"]:focus,
+input.min-input:focus,
+input.max-input:focus {
+    border-color: #D4A847;
+    box-shadow: 0 0 0 3px rgba(212, 168, 71, 0.1);
+}
+
+/* Hide number input spinners */
+.filter-panel input[type="number"]::-webkit-outer-spin-button,
+.filter-panel input[type="number"]::-webkit-inner-spin-button,
+input.min-input::-webkit-outer-spin-button,
+input.min-input::-webkit-inner-spin-button,
+input.max-input::-webkit-outer-spin-button,
+input.max-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Price filter container styling */
+.filter-range-container,
+.filter-range-inputs-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f9fafb;
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+}
+
+.filter-range-container span,
+.filter-range-inputs-wrapper span {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Submit button in price filter */
+.filter-range-submit,
+.filter-panel button[type="submit"] {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    background: #111827;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.filter-range-submit:hover,
+.filter-panel button[type="submit"]:hover {
+    background: #1f2937;
+}
+
+/* Boolean/Checkbox filters */
+.filter-boolean {
+    padding: 0.5rem 0;
+}
+
+.filter-boolean-input {
+    width: 18px;
+    height: 18px;
+    accent-color: #D4A847;
+}
+
+/* Active filter count badge */
+.filter-active-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    background: #D4A847;
+    color: #111827;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 9999px;
+    margin-left: 6px;
+}
+
+/* Reset filters link */
+.filter-reset-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.filter-reset-all:hover {
+    color: #111827;
+    text-decoration: underline;
+}
+
+/* Active filters tags row */
+.filter-active-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.filter-active-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #92400e;
+}
+
+.filter-active-remove {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #92400e;
+    line-height: 1;
+    font-size: 1rem;
+}
+
+/* Hide default labels we don't need */
+.filter-panel-items-container > .filter-panel-active-filter-container {
+    display: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .filter-panel {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-panel-item-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-top: 0;
+        min-width: 100%;
+        max-width: 100%;
+        border-radius: 16px 16px 0 0;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
+</style>
+
+{{ parent() }}
 {% endblock %}

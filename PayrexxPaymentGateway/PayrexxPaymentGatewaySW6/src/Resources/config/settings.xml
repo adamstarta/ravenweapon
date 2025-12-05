@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Configuration</title>
+        <input-field type="single-select">
+            <name>platform</name>
+            <label>Platform</label>
+            <label lang="de-DE">Plattform</label>
+            <defaultValue>payrexx.com</defaultValue>
+            <placeholder>Payrexx</placeholder>
+            <options>
+                <option>
+                    <id>payrexx.com</id>
+                    <name>Payrexx</name>
+                </option>
+                <option>
+                    <id>shop-and-pay.com</id>
+                    <name>Shop and Pay</name>
+                </option>
+                <option>
+                    <id>ideal-pay.ch</id>
+                    <name>Ideal Pay</name>
+                </option>
+                <option>
+                    <id>payzzter.com</id>
+                    <name>Payzzter</name>
+                </option>
+                <option>
+                    <id>go2flow.finance</id>
+                    <name>Go2Flow</name>
+                </option>
+                <option>
+                    <id>guvoto-pay.ch</id>
+                    <name>Guvoto-Pay</name>
+                </option>
+                <option>
+                    <id>select2pay.at</id>
+                    <name>Select2Pay</name>
+                </option>
+                <option>
+                    <id>zahls.ch</id>
+                    <name>Zahls.ch</name>
+                </option>
+                <option>
+                    <id>paydirect.ch</id>
+                    <name>Paydirect</name>
+                </option>
+            </options>
+        </input-field>
+        <component name="platform-connect-button">
+            <name>platformConnectButton</name>
+            <label>Connect to Platform</label>
+            <label lang="de-DE">Mit Platform verbinden</label>
+            <helpText>Opens a new window to connect to your selected platform to import the credentials</helpText>
+            <helpText lang="de-DE">Öffnet ein neues Fenster, um eine Verbindung zu Ihrer ausgewählten Plattform herzustellen und die Anmeldedaten zu importieren.</helpText>
+        </component>
+        <input-field type="text">
+            <name>instanceName</name>
+            <label>Instance name</label>
+            <label lang="de-DE">Instanz Name</label>
+
+            <helpText>The name of the Payrexx account</helpText>
+        </input-field>
+        <input-field type="text">
+            <name>apiKey</name>
+            <label>API Key</label>
+            <label lang="de-DE">API Key</label>
+
+            <helpText>The API key you find in your Payrexx merchant backend</helpText>
+        </input-field>
+        <input-field type="text">
+            <name>lookFeelID</name>
+            <label>Look &amp; Feel ID</label>
+            <label lang="de-DE">Look &amp; Feel ID</label>
+
+            <helpText>A Look &amp; Feel ID from the settings of your Payrexx Merchant account. The standard is used if
+                left empty
+            </helpText>
+        </input-field>
+    </card>
+</config>

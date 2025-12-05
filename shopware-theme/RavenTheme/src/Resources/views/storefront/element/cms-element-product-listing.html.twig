@@ -1,0 +1,901 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-listing.html.twig' %}
+
+{% block element_product_listing %}
+<style>
+/* Hide default Shopware filter panel completely */
+.cms-element-product-listing .filter-panel-wrapper,
+.cms-element-product-listing .filter-panel,
+.cms-element-product-listing-wrapper .filter-panel-wrapper,
+.cms-element-product-listing-wrapper .filter-panel,
+.filter-panel-wrapper,
+.filter-panel-items-container,
+[data-filter-panel-wrapper],
+.cms-element-product-listing .sorting {
+    display: none !important;
+}
+
+/* Filter Bar - Exact Match to Reference */
+.raven-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    margin-bottom: 0;
+}
+
+.raven-filters-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+}
+
+.raven-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.125rem;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 9999px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', -apple-system, sans-serif;
+    white-space: nowrap;
+}
+
+.raven-filter-btn:hover {
+    background: #ebebeb;
+    border-color: #ccc;
+}
+
+.raven-filter-btn.active {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+.raven-filter-btn svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.7;
+}
+
+/* Sort Dropdown */
+.raven-sort-wrapper {
+    position: relative;
+}
+
+.raven-sort-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: transparent;
+    border: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.raven-sort-btn svg {
+    width: 14px;
+    height: 14px;
+    color: #D4A847;
+}
+
+.raven-sort-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    min-width: 180px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    z-index: 100;
+    display: none;
+    overflow: hidden;
+}
+
+.raven-sort-menu.show {
+    display: block;
+}
+
+.raven-sort-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.raven-sort-menu a:hover {
+    background: #f5f5f5;
+}
+
+.raven-sort-menu a.active {
+    background: #f0f0f0;
+    font-weight: 600;
+}
+
+/* Filter Dropdown Panel */
+.raven-filter-group {
+    position: relative;
+}
+
+.raven-filter-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    min-width: 260px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    z-index: 100;
+    display: none;
+    padding: 1rem;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.raven-filter-dropdown.show {
+    display: block;
+}
+
+.raven-filter-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+.raven-filter-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #D4A847;
+    cursor: pointer;
+}
+
+.raven-filter-option label {
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    flex: 1;
+}
+
+.raven-filter-option .count {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-left: auto;
+}
+
+.raven-price-inputs {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.raven-price-input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    width: 100px;
+}
+
+.raven-filter-apply {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.625rem 1rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.raven-filter-apply:hover {
+    background: #222;
+}
+
+/* Raven Right Controls - Sort only */
+.raven-right-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Pagination Row - Below filter bar, aligned right */
+.raven-pagination-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+}
+
+/* Style pagination in the row - MATCH BOTTOM PAGINATION STYLE */
+.raven-pagination-row nav.pagination,
+.raven-pagination-row .raven-inline-pagination {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.raven-pagination-row .pagination {
+    display: flex !important;
+    align-items: center;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.raven-pagination-row .page-item {
+    margin: 0 2px;
+}
+
+.raven-pagination-row .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+}
+
+.raven-pagination-row .page-link:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+/* Active page - gold pill button to match theme */
+.raven-pagination-row .page-item.active .page-link,
+.raven-pagination-row .page-item:has([aria-current="page"]) .page-link,
+.raven-pagination-row li:has(a[aria-current="page"]) a {
+    background: #D4A847 !important;
+    color: #111827 !important;
+    font-weight: 600;
+    border-radius: 8px !important;
+    min-width: 38px;
+    height: 38px;
+}
+
+/* Disabled pagination arrows */
+.raven-pagination-row .page-item.disabled .page-link {
+    color: #d1d5db;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* Position the first pagination BESIDE Neueste using the filter bar as context */
+.raven-filter-bar {
+    position: relative;
+}
+
+/* Style for cloned pagination in filter bar - MATCH BOTTOM PAGINATION */
+.raven-filter-bar .raven-inline-pagination {
+    display: flex !important;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.raven-filter-bar .raven-inline-pagination .page-item {
+    margin: 0 2px;
+}
+
+.raven-filter-bar .raven-inline-pagination .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+}
+
+.raven-filter-bar .raven-inline-pagination .page-link:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.raven-filter-bar .raven-inline-pagination .page-item.active .page-link,
+.raven-filter-bar .raven-inline-pagination li:has(a[aria-current="page"]) a {
+    background: #D4A847 !important;
+    color: #111827 !important;
+    font-weight: 600;
+    border-radius: 8px !important;
+    min-width: 38px;
+    height: 38px;
+}
+
+/* AGGRESSIVELY hide ALL pagination EXCEPT the one inside raven-right-controls */
+nav.pagination:not(.raven-inline-pagination) {
+    display: none !important;
+}
+
+/* But SHOW pagination inside raven-right-controls */
+.raven-right-controls nav.pagination,
+.raven-right-controls .raven-inline-pagination,
+nav.pagination.raven-inline-pagination {
+    display: flex !important;
+}
+
+/* Bottom pagination hidden - only top pagination visible */
+
+/* Style the cloned pagination inside right controls */
+.raven-right-controls nav.pagination.raven-inline-pagination,
+.raven-right-controls .raven-inline-pagination {
+    display: flex !important;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.raven-right-controls .raven-inline-pagination .pagination,
+.raven-inline-pagination .pagination {
+    display: flex !important;
+    align-items: center;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Individual page items in inline pagination - MATCH BOTTOM STYLE */
+.raven-inline-pagination .page-item {
+    margin: 0 2px;
+}
+
+.raven-inline-pagination .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+}
+
+.raven-inline-pagination .page-link:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+/* Active page - gold pill to match theme */
+.raven-inline-pagination .page-item.active .page-link,
+.raven-inline-pagination .page-item:has([aria-current="page"]) .page-link {
+    background: #D4A847 !important;
+    color: #111827 !important;
+    font-weight: 600;
+    border-radius: 8px !important;
+    min-width: 38px;
+    height: 38px;
+}
+
+/* Disabled pagination arrows */
+.raven-inline-pagination .page-item.disabled .page-link {
+    color: #d1d5db;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* Bottom pagination - HIDDEN (only show top pagination) */
+.cms-element-product-listing .product-listing + nav.pagination,
+.product-listing-wrapper nav.pagination:last-of-type,
+.listing-pagination-bottom,
+nav.pagination-nav.listing-pagination-bottom,
+.cms-element-product-listing-wrapper .listing-pagination-bottom,
+.cms-element-product-listing .listing-pagination-bottom,
+nav[aria-label="Pagination"].listing-pagination-bottom,
+.cms-element-product-listing-wrapper > nav.pagination:last-child,
+.product-listing-wrapper > nav.pagination:last-child {
+    display: none !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .raven-filters-left {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+    .raven-filter-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        min-width: 100%;
+        border-radius: 16px 16px 0 0;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    .raven-right-controls {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+}
+</style>
+
+{# Get listing data - works for both category pages and search results #}
+{% set listing = element.data.listing ?? searchResult ?? null %}
+{% set currentFilters = listing.currentFilters ?? {} %}
+{% set aggregations = listing.aggregations ?? null %}
+
+{# Custom Filter Bar - 100% Dynamic from Shopware #}
+<div class="raven-filter-bar" data-listing-url="{{ path('frontend.cms.navigation.page', { navigationId: page.header.navigation.active.id }) }}">
+    <div class="raven-filters-left">
+
+        {# ============================================= #}
+        {# DYNAMIC PROPERTY FILTERS (Color, etc.) #}
+        {# ============================================= #}
+        {% if aggregations %}
+            {% set propertyAggregation = aggregations.get('properties') %}
+            {% if propertyAggregation %}
+                {% set propertyGroups = propertyAggregation.entities ?? [] %}
+                {% for propertyGroup in propertyGroups %}
+                    {% if propertyGroup.options|length > 0 %}
+                    <div class="raven-filter-group">
+                        <button type="button" class="raven-filter-btn{% if currentFilters.properties is defined and currentFilters.properties|length > 0 %} active{% endif %}" data-filter-toggle="property-{{ propertyGroup.id }}">
+                            {{ propertyGroup.translated.name ?? propertyGroup.name }}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="property-{{ propertyGroup.id }}">
+                            {% for option in propertyGroup.options %}
+                                <div class="raven-filter-option">
+                                    <input type="checkbox"
+                                           id="prop-{{ option.id }}"
+                                           name="properties[]"
+                                           value="{{ option.id }}"
+                                           data-filter-property="{{ propertyGroup.id }}"
+                                           {% if currentFilters.properties is defined and option.id in currentFilters.properties %}checked{% endif %}>
+                                    <label for="prop-{{ option.id }}">{{ option.translated.name ?? option.name }}</label>
+                                </div>
+                            {% endfor %}
+                            <button type="button" class="raven-filter-apply" data-apply-filter="property">Anwenden</button>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+        {# ============================================= #}
+        {# DYNAMIC PRICE FILTER #}
+        {# ============================================= #}
+        {% if aggregations %}
+            {% set priceAggregation = aggregations.get('price') %}
+            {% if priceAggregation %}
+                {% set minPrice = priceAggregation.min ?? 0 %}
+                {% set maxPrice = priceAggregation.max ?? 10000 %}
+                <div class="raven-filter-group">
+                    <button type="button" class="raven-filter-btn{% if currentFilters['min-price'] is defined or currentFilters['max-price'] is defined %} active{% endif %}" data-filter-toggle="price">
+                        Preis
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="raven-filter-dropdown" data-filter-panel="price">
+                        <div class="raven-price-inputs">
+                            <input type="number"
+                                   class="raven-price-input"
+                                   id="raven-price-min"
+                                   name="min-price"
+                                   placeholder="{{ minPrice|round }}"
+                                   min="{{ minPrice }}"
+                                   max="{{ maxPrice }}"
+                                   value="{{ currentFilters['min-price'] ?? '' }}">
+                            <span style="color: #999;">–</span>
+                            <input type="number"
+                                   class="raven-price-input"
+                                   id="raven-price-max"
+                                   name="max-price"
+                                   placeholder="{{ maxPrice|round }}"
+                                   min="{{ minPrice }}"
+                                   max="{{ maxPrice }}"
+                                   value="{{ currentFilters['max-price'] ?? '' }}">
+                            <span style="color: #666; font-size: 0.875rem;">CHF</span>
+                        </div>
+                        <button type="button" class="raven-filter-apply" data-apply-filter="price">Anwenden</button>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {# ============================================= #}
+        {# DYNAMIC MANUFACTURER FILTER #}
+        {# ============================================= #}
+        {% if aggregations %}
+            {% set manufacturerAggregation = aggregations.get('manufacturer') %}
+            {% if manufacturerAggregation %}
+                {% set manufacturers = manufacturerAggregation.entities ?? [] %}
+                {% if manufacturers|length > 0 %}
+                <div class="raven-filter-group">
+                    <button type="button" class="raven-filter-btn{% if currentFilters.manufacturer is defined and currentFilters.manufacturer|length > 0 %} active{% endif %}" data-filter-toggle="manufacturer">
+                        Hersteller
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="raven-filter-dropdown" data-filter-panel="manufacturer">
+                        {% for manufacturer in manufacturers %}
+                            <div class="raven-filter-option">
+                                <input type="checkbox"
+                                       id="mfr-{{ manufacturer.id }}"
+                                       name="manufacturer[]"
+                                       value="{{ manufacturer.id }}"
+                                       data-filter-manufacturer
+                                       {% if currentFilters.manufacturer is defined and manufacturer.id in currentFilters.manufacturer %}checked{% endif %}>
+                                <label for="mfr-{{ manufacturer.id }}">{{ manufacturer.translated.name ?? manufacturer.name }}</label>
+                            </div>
+                        {% endfor %}
+                        <button type="button" class="raven-filter-apply" data-apply-filter="manufacturer">Anwenden</button>
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+        {# ============================================= #}
+        {# DYNAMIC SHIPPING FREE / ON SALE FILTER #}
+        {# ============================================= #}
+        {% if aggregations %}
+            {% set shippingFreeAggregation = aggregations.get('shipping-free') %}
+            {% if shippingFreeAggregation %}
+            <div class="raven-filter-group">
+                <button type="button" class="raven-filter-btn{% if currentFilters['shipping-free'] is defined and currentFilters['shipping-free'] %} active{% endif %}" data-filter-toggle="offer">
+                    Im Angebot
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="raven-filter-dropdown" data-filter-panel="offer">
+                    <div class="raven-filter-option">
+                        <input type="checkbox"
+                               id="offer-yes"
+                               name="shipping-free"
+                               value="1"
+                               data-filter-offer
+                               {% if currentFilters['shipping-free'] is defined and currentFilters['shipping-free'] %}checked{% endif %}>
+                        <label for="offer-yes">Nur Angebote anzeigen</label>
+                    </div>
+                    <button type="button" class="raven-filter-apply" data-apply-filter="offer">Anwenden</button>
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        {# ============================================= #}
+        {# STOCK STATUS FILTER (Rating Aggregation) #}
+        {# ============================================= #}
+        <div class="raven-filter-group">
+            <button type="button" class="raven-filter-btn{% if currentFilters['only-available'] is defined and currentFilters['only-available'] %} active{% endif %}" data-filter-toggle="stock">
+                Lagerstatus
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="raven-filter-dropdown" data-filter-panel="stock">
+                <div class="raven-filter-option">
+                    <input type="checkbox"
+                           id="stock-available"
+                           name="only-available"
+                           value="1"
+                           data-filter-stock
+                           {% if currentFilters['only-available'] is defined and currentFilters['only-available'] %}checked{% endif %}>
+                    <label for="stock-available">Nur verfügbare Artikel</label>
+                </div>
+                <button type="button" class="raven-filter-apply" data-apply-filter="stock">Anwenden</button>
+            </div>
+        </div>
+    </div>
+
+    {# Right side: Dynamic Sorting #}
+    <div class="raven-right-controls" id="raven-right-controls">
+        {# Sorting Dropdown - Dynamic from Shopware #}
+        <div class="raven-sort-wrapper">
+            {% set availableSortings = listing.availableSortings ?? [] %}
+            {% set currentSorting = listing.sorting ?? 'name-asc' %}
+
+            {# Get current sorting label #}
+            {% set currentSortLabel = 'Sortierung' %}
+            {% for sorting in availableSortings %}
+                {% if sorting.key == currentSorting %}
+                    {% set currentSortLabel = sorting.translated.label ?? sorting.label %}
+                {% endif %}
+            {% endfor %}
+
+            <button type="button" class="raven-sort-btn" data-sort-toggle>
+                <span data-sort-label>{{ currentSortLabel }}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="raven-sort-menu" data-sort-menu>
+                {% for sorting in availableSortings %}
+                    <a href="#"
+                       data-sort-value="{{ sorting.key }}"
+                       class="{% if sorting.key == currentSorting %}active{% endif %}">
+                        {{ sorting.translated.label ?? sorting.label }}
+                    </a>
+                {% else %}
+                    {# Fallback if no sortings available #}
+                    <a href="#" data-sort-value="name-asc" class="active">Name A-Z</a>
+                    <a href="#" data-sort-value="name-desc">Name Z-A</a>
+                    <a href="#" data-sort-value="price-asc">Preis aufsteigend</a>
+                    <a href="#" data-sort-value="price-desc">Preis absteigend</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Pagination row below filter bar #}
+<div class="raven-pagination-row" id="raven-pagination-row">
+    {# Pagination will be moved here via JavaScript #}
+</div>
+
+{# Render the parent product listing #}
+{{ parent() }}
+
+<script>
+(function() {
+    // Move pagination to row below filter bar
+    function movePagination() {
+        var paginationRow = document.getElementById('raven-pagination-row');
+
+        // Check if we already moved pagination
+        if (paginationRow && paginationRow.querySelector('.raven-inline-pagination')) {
+            console.log('Pagination already moved');
+            return;
+        }
+
+        // Find any pagination nav element on the page
+        var pagination = document.querySelector('nav.pagination');
+        if (!pagination) {
+            pagination = document.querySelector('[aria-label*="Pagination"]');
+        }
+        if (!pagination) {
+            pagination = document.querySelector('.pagination-nav');
+        }
+
+        console.log('Found pagination:', pagination);
+        console.log('Pagination row:', paginationRow);
+
+        if (pagination && paginationRow) {
+            // Clone the pagination
+            var paginationClone = pagination.cloneNode(true);
+            paginationClone.classList.add('raven-inline-pagination');
+            paginationClone.style.display = 'flex';
+
+            // Insert into pagination row (below filter bar)
+            paginationRow.appendChild(paginationClone);
+            console.log('Pagination moved to row below filter bar!');
+
+            // IMMEDIATELY hide the original pagination we cloned from
+            pagination.style.display = 'none';
+            pagination.style.visibility = 'hidden';
+            pagination.style.position = 'absolute';
+            pagination.style.pointerEvents = 'none';
+            console.log('Original pagination hidden');
+
+            // Also hide ALL other non-inline paginations between filter bar and products
+            document.querySelectorAll('nav.pagination:not(.raven-inline-pagination)').forEach(function(p) {
+                var parent = p.parentElement;
+                var isBottomPagination = false;
+
+                if (parent) {
+                    var prevSibling = p.previousElementSibling;
+                    if (prevSibling && (prevSibling.classList.contains('product-listing') ||
+                        prevSibling.classList.contains('cms-listing-row') ||
+                        prevSibling.querySelector('.product-listing'))) {
+                        isBottomPagination = true;
+                    }
+                }
+
+                if (!isBottomPagination) {
+                    p.style.display = 'none';
+                    p.style.visibility = 'hidden';
+                    console.log('Hidden non-inline pagination');
+                }
+            });
+        } else {
+            console.log('Could not move pagination - missing elements');
+        }
+    }
+
+    // Run multiple times with increasing delays to catch dynamically loaded content
+    function initPagination() {
+        movePagination();
+        setTimeout(movePagination, 300);
+        setTimeout(movePagination, 600);
+        setTimeout(movePagination, 1000);
+    }
+
+    // Run on DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPagination);
+    } else {
+        initPagination();
+    }
+
+    // Also try after window load
+    window.addEventListener('load', function() {
+        setTimeout(movePagination, 200);
+    });
+
+    // Fix bottom pagination alignment - run multiple times to catch dynamic content
+    function fixBottomPagination() {
+        var bottomPag = document.querySelector('.listing-pagination-bottom');
+        if (bottomPag) {
+            bottomPag.style.display = 'flex';
+            bottomPag.style.justifyContent = 'flex-end';
+            bottomPag.style.width = '100%';
+            var ul = bottomPag.querySelector('.pagination');
+            if (ul) {
+                ul.style.marginLeft = 'auto';
+                ul.style.marginRight = '0';
+            }
+        }
+    }
+
+    // Run on DOM ready, load, and multiple delays
+    document.addEventListener('DOMContentLoaded', fixBottomPagination);
+    window.addEventListener('load', fixBottomPagination);
+    setTimeout(fixBottomPagination, 500);
+    setTimeout(fixBottomPagination, 1000);
+    setTimeout(fixBottomPagination, 2000);
+
+    // =========================================
+    // DYNAMIC FILTER FUNCTIONALITY
+    // =========================================
+
+    // Build filter URL and navigate
+    function applyFilters() {
+        var url = new URL(window.location.href);
+
+        // Clear existing filter params
+        url.searchParams.delete('properties');
+        url.searchParams.delete('min-price');
+        url.searchParams.delete('max-price');
+        url.searchParams.delete('manufacturer');
+        url.searchParams.delete('shipping-free');
+        url.searchParams.delete('only-available');
+
+        // Collect property filters
+        var selectedProperties = [];
+        document.querySelectorAll('[data-filter-property]:checked').forEach(function(cb) {
+            selectedProperties.push(cb.value);
+        });
+        if (selectedProperties.length > 0) {
+            url.searchParams.set('properties', selectedProperties.join('|'));
+        }
+
+        // Collect price filters
+        var minPrice = document.getElementById('raven-price-min');
+        var maxPrice = document.getElementById('raven-price-max');
+        if (minPrice && minPrice.value) {
+            url.searchParams.set('min-price', minPrice.value);
+        }
+        if (maxPrice && maxPrice.value) {
+            url.searchParams.set('max-price', maxPrice.value);
+        }
+
+        // Collect manufacturer filters
+        var selectedManufacturers = [];
+        document.querySelectorAll('[data-filter-manufacturer]:checked').forEach(function(cb) {
+            selectedManufacturers.push(cb.value);
+        });
+        if (selectedManufacturers.length > 0) {
+            url.searchParams.set('manufacturer', selectedManufacturers.join('|'));
+        }
+
+        // Collect offer filter
+        var offerFilter = document.querySelector('[data-filter-offer]:checked');
+        if (offerFilter) {
+            url.searchParams.set('shipping-free', '1');
+        }
+
+        // Collect stock filter
+        var stockFilter = document.querySelector('[data-filter-stock]:checked');
+        if (stockFilter) {
+            url.searchParams.set('only-available', '1');
+        }
+
+        // Navigate to filtered URL
+        window.location.href = url.toString();
+    }
+
+    // Filter toggle
+    document.querySelectorAll('[data-filter-toggle]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var type = btn.getAttribute('data-filter-toggle');
+            var panel = document.querySelector('[data-filter-panel="' + type + '"]');
+            document.querySelectorAll('.raven-filter-dropdown.show').forEach(function(p) {
+                if (p !== panel) p.classList.remove('show');
+            });
+            document.querySelectorAll('.raven-sort-menu.show').forEach(function(m) {
+                m.classList.remove('show');
+            });
+            panel.classList.toggle('show');
+        });
+    });
+
+    // Sort toggle
+    var sortBtn = document.querySelector('[data-sort-toggle]');
+    var sortMenu = document.querySelector('[data-sort-menu]');
+    if (sortBtn && sortMenu) {
+        sortBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('.raven-filter-dropdown.show').forEach(function(p) {
+                p.classList.remove('show');
+            });
+            sortMenu.classList.toggle('show');
+        });
+
+        sortMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('[data-sort-label]').textContent = link.textContent;
+                sortMenu.querySelectorAll('a').forEach(function(a) { a.classList.remove('active'); });
+                link.classList.add('active');
+                sortMenu.classList.remove('show');
+                var url = new URL(window.location);
+                url.searchParams.set('order', link.getAttribute('data-sort-value'));
+                window.location.href = url.toString();
+            });
+        });
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.raven-filter-group') && !e.target.closest('.raven-sort-wrapper')) {
+            document.querySelectorAll('.raven-filter-dropdown.show').forEach(function(p) {
+                p.classList.remove('show');
+            });
+            if (sortMenu) sortMenu.classList.remove('show');
+        }
+    });
+
+    // Apply filters on button click
+    document.querySelectorAll('[data-apply-filter]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            applyFilters();
+        });
+    });
+})();
+</script>
+{% endblock %}
