@@ -575,6 +575,7 @@
             color: rgba(255,255,255,0.5);
             flex-wrap: wrap;
             gap: 0.5rem;
+            background: transparent !important;
         }
 
         .footer-links {
@@ -587,6 +588,22 @@
             text-decoration: none;
         }
         .footer-links a:hover { color: var(--gold); }
+
+        /* Hide any default footer elements that show as white box */
+        .raven-checkout-footer .footer-service-menu,
+        .raven-checkout-footer .footer-copyright,
+        .raven-checkout-footer .footer-payment-shipping,
+        .raven-checkout-footer .footer-vat,
+        .raven-checkout-footer .card,
+        .raven-checkout-footer .footer-main,
+        .footer-main,
+        .is-checkout-confirm .footer-main,
+        .is-checkout-confirm footer.footer-main,
+        .is-checkout-confirm .footer-service-menu,
+        .is-checkout-confirm .footer-payment-shipping,
+        .is-checkout-confirm .footer-copyright {
+            display: none !important;
+        }
 
         /* ============ HIDE DEFAULT ELEMENTS ============ */
         .checkout-main .card {
@@ -737,7 +754,7 @@
             background: var(--gray-50) !important;
         }
 
-        /* Selected/checked state */
+        /* Selected/checked state - subtle highlight only, no border/card */
         .accordion-inner .shipping-method.is-active,
         .accordion-inner .payment-method.is-active,
         .accordion-inner .shipping-method:has(input:checked),
@@ -747,6 +764,32 @@
         .accordion-inner .payment-method-radio:has(input:checked),
         .accordion-inner .shipping-method-radio:has(input:checked) {
             background: rgba(212, 168, 71, 0.08) !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        /* Remove any card styling from payment/shipping method wrappers */
+        .accordion-inner .payment-method-radio .card,
+        .accordion-inner .shipping-method-radio .card,
+        .accordion-inner .payment-method .card,
+        .accordion-inner .shipping-method .card,
+        .accordion-inner .confirm-payment-method .card,
+        .accordion-inner .confirm-shipping-method .card {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        /* Remove card body styling */
+        .accordion-inner .payment-method-radio .card-body,
+        .accordion-inner .shipping-method-radio .card-body,
+        .accordion-inner .payment-method .card-body,
+        .accordion-inner .shipping-method .card-body {
+            padding: 0 !important;
+            background: transparent !important;
         }
 
         /* Radio buttons - gold accent */
