@@ -2,10 +2,10 @@
 
 namespace RavenTheme\Controller;
 
-use Shopware\Core\Content\Product\SalesChannel\Listing\AbstractProductListingRoute;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\System\SalesChannel\Entity\SalesChannelRepository;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Storefront\Controller\StorefrontController;
 use Shopware\Storefront\Page\GenericPageLoaderInterface;
@@ -18,7 +18,7 @@ class ManufacturerPageController extends StorefrontController
 {
     public function __construct(
         private readonly EntityRepository $manufacturerRepository,
-        private readonly EntityRepository $productRepository,
+        private readonly SalesChannelRepository $productRepository,
         private readonly EntityRepository $categoryRepository,
         private readonly GenericPageLoaderInterface $genericPageLoader
     ) {
@@ -45,14 +45,15 @@ class ManufacturerPageController extends StorefrontController
         // Load base page (header, footer, etc.)
         $page = $this->genericPageLoader->load($request, $context);
 
-        // Load products for this manufacturer
+        // Load products for this manufacturer using SalesChannel repository for calculated prices
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('manufacturerId', $manufacturer->getId()));
         $criteria->addAssociation('cover.media');
         $criteria->addAssociation('manufacturer');
         $criteria->setLimit(100);
 
-        $products = $this->productRepository->search($criteria, $context->getContext());
+        // Use SalesChannelContext for price calculation
+        $products = $this->productRepository->search($criteria, $context);
 
         // Get unique categories from these products for the filter
         $categoryIds = [];

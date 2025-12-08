@@ -1173,23 +1173,23 @@
     <div class="raven-header-desktop hidden md:block bg-white" style="width: 100%; border-bottom: 1px solid #e5e7eb;">
         <div style="width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px;">
             {# Top Row: Logo, Search (centered), Account, Cart - Compact layout #}
-            <div style="display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 24px;">
+            <div style="display: flex; align-items: center; justify-content: center; height: 48px; gap: 20px;">
                 {# Left: Logo #}
                 <div style="flex-shrink: 0;">
                     <a href="{{ path('frontend.home.page') }}" class="raven-logo inline-flex items-center" aria-label="Raven Weapon home">
-                        <div style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:36px;width:160px;"></div>
+                        <div style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:32px;width:140px;"></div>
                     </a>
                 </div>
 
                 {# Center: Search Bar - Smaller and elegant #}
-                <div style="position: relative; flex: 1; max-width: 420px;">
+                <div style="position: relative; flex: 0 1 360px;">
                     {% block layout_header_search %}
                         <form action="{{ path('frontend.search.page') }}" method="get" class="raven-search-form" style="position: relative;">
                             <input type="search"
                                    name="search"
                                    placeholder="Produkte suchen..."
                                    class="raven-search-input"
-                                   style="width: 100%; height: 38px; border-radius: 9999px; background: #f3f4f6; padding-left: 40px; padding-right: 16px; font-size: 14px; color: #1f2937; border: 1px solid transparent; outline: none;"
+                                   style="width: 100%; height: 34px; border-radius: 9999px; background: #f3f4f6; padding-left: 36px; padding-right: 14px; font-size: 13px; color: #1f2937; border: 1px solid transparent; outline: none;"
                                    aria-label="Suche">
                             <button type="submit" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #9ca3af; background: none; border: none; cursor: pointer; padding: 0;" aria-label="Suchen">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px; display: block;">
