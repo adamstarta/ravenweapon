@@ -681,20 +681,23 @@
         }
 
         /* ============ SHIPPING & PAYMENT METHOD OPTIONS ============ */
-        /* Remove ugly default styling */
+        /* Clean compact list styling */
         .accordion-inner .shipping-method-list,
         .accordion-inner .payment-method-list,
         .accordion-inner .confirm-shipping-methods,
         .accordion-inner .confirm-payment-methods {
             display: flex !important;
             flex-direction: column !important;
-            gap: 0.5rem !important;
+            gap: 0 !important;
             margin-top: 0.5rem !important;
             padding: 0 !important;
-            border: none !important;
+            border: 1px solid var(--gray-200) !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
+            background: var(--white) !important;
         }
 
-        /* Individual method option cards */
+        /* Individual method option - clean list items */
         .accordion-inner .shipping-method,
         .accordion-inner .payment-method,
         .accordion-inner .confirm-shipping-method,
@@ -704,14 +707,25 @@
             display: flex !important;
             align-items: center !important;
             gap: 0.75rem !important;
-            padding: 0.875rem 1rem !important;
+            padding: 0.75rem 1rem !important;
             background: var(--white) !important;
-            border: 1.5px solid var(--gray-200) !important;
-            border-radius: 10px !important;
+            border: none !important;
+            border-bottom: 1px solid var(--gray-100) !important;
+            border-radius: 0 !important;
             cursor: pointer !important;
-            transition: all 0.15s ease !important;
+            transition: background 0.15s ease !important;
             margin: 0 !important;
             box-shadow: none !important;
+            width: 100% !important;
+        }
+
+        .accordion-inner .shipping-method:last-child,
+        .accordion-inner .payment-method:last-child,
+        .accordion-inner .confirm-shipping-method:last-child,
+        .accordion-inner .confirm-payment-method:last-child,
+        .accordion-inner .payment-method-radio:last-child,
+        .accordion-inner .shipping-method-radio:last-child {
+            border-bottom: none !important;
         }
 
         .accordion-inner .shipping-method:hover,
@@ -720,8 +734,7 @@
         .accordion-inner .confirm-payment-method:hover,
         .accordion-inner .payment-method-radio:hover,
         .accordion-inner .shipping-method-radio:hover {
-            border-color: var(--gold) !important;
-            background: rgba(212, 168, 71, 0.03) !important;
+            background: var(--gray-50) !important;
         }
 
         /* Selected/checked state */
@@ -733,12 +746,10 @@
         .accordion-inner .confirm-payment-method:has(input:checked),
         .accordion-inner .payment-method-radio:has(input:checked),
         .accordion-inner .shipping-method-radio:has(input:checked) {
-            border-color: var(--gold) !important;
-            background: rgba(212, 168, 71, 0.06) !important;
-            box-shadow: 0 2px 8px rgba(212, 168, 71, 0.15) !important;
+            background: rgba(212, 168, 71, 0.08) !important;
         }
 
-        /* Radio buttons */
+        /* Radio buttons - gold accent */
         .accordion-inner input[type="radio"] {
             width: 18px !important;
             height: 18px !important;
@@ -756,7 +767,7 @@
         .accordion-inner .confirm-payment-method label {
             display: flex !important;
             align-items: center !important;
-            gap: 0.75rem !important;
+            gap: 0.5rem !important;
             flex: 1 !important;
             cursor: pointer !important;
             margin: 0 !important;
@@ -773,6 +784,7 @@
             font-size: 0.875rem !important;
             font-weight: 500 !important;
             color: var(--gray-900) !important;
+            white-space: nowrap !important;
         }
 
         /* Method description */
@@ -788,8 +800,8 @@
         .accordion-inner .payment-method-image,
         .accordion-inner .shipping-method img,
         .accordion-inner .payment-method img {
-            width: 40px !important;
-            height: 28px !important;
+            width: 32px !important;
+            height: 22px !important;
             object-fit: contain !important;
         }
 
