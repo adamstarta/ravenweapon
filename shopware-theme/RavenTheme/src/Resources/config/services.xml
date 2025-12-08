@@ -12,7 +12,7 @@
 
         <service id="RavenTheme\Controller\ManufacturerPageController" public="true">
             <argument type="service" id="product_manufacturer.repository"/>
-            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="product.repository"/>
             <argument type="service" id="category.repository"/>
             <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader"/>
             <call method="setContainer">
