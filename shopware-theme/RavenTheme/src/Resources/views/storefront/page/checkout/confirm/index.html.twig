@@ -601,6 +601,252 @@
             box-shadow: none !important;
         }
 
+        /* ============ ACCORDION CONTENT STYLING ============ */
+        /* Remove ugly section headers with underlines */
+        .accordion-inner .confirm-address-header,
+        .accordion-inner .confirm-payment-header,
+        .accordion-inner .confirm-shipping-header,
+        .accordion-inner .card-title,
+        .accordion-inner h5,
+        .accordion-inner .h5 {
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            color: var(--gray-500) !important;
+            border: none !important;
+            border-bottom: none !important;
+            padding: 0 !important;
+            margin: 1rem 0 0.75rem !important;
+            background: transparent !important;
+        }
+
+        /* Address boxes styling */
+        .accordion-inner .address-box,
+        .accordion-inner .confirm-address,
+        .accordion-inner .address-editor-select,
+        .accordion-inner .card-body {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .accordion-inner .confirm-address-col {
+            background: var(--gray-50) !important;
+            border: 1px solid var(--gray-200) !important;
+            border-radius: 10px !important;
+            padding: 1rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .accordion-inner .confirm-address-col:hover {
+            border-color: var(--gold) !important;
+            background: rgba(212, 168, 71, 0.03) !important;
+        }
+
+        /* Address text styling */
+        .accordion-inner .confirm-address p,
+        .accordion-inner .address-editor-select p,
+        .accordion-inner address {
+            font-size: 0.875rem !important;
+            line-height: 1.6 !important;
+            color: var(--gray-700) !important;
+            margin: 0 !important;
+        }
+
+        /* Change address links */
+        .accordion-inner .confirm-address-btn,
+        .accordion-inner .address-editor-change,
+        .accordion-inner a[href*="address"] {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.25rem !important;
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--gold-dark) !important;
+            text-decoration: none !important;
+            margin-top: 0.75rem !important;
+            padding: 0.5rem 0.75rem !important;
+            background: transparent !important;
+            border: 1px solid var(--gold) !important;
+            border-radius: 6px !important;
+            transition: all 0.15s ease !important;
+        }
+
+        .accordion-inner .confirm-address-btn:hover,
+        .accordion-inner .address-editor-change:hover,
+        .accordion-inner a[href*="address"]:hover {
+            background: var(--gold) !important;
+            color: var(--dark) !important;
+        }
+
+        /* ============ SHIPPING & PAYMENT METHOD OPTIONS ============ */
+        /* Remove ugly default styling */
+        .accordion-inner .shipping-method-list,
+        .accordion-inner .payment-method-list,
+        .accordion-inner .confirm-shipping-methods,
+        .accordion-inner .confirm-payment-methods {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0.5rem !important;
+            margin-top: 0.5rem !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        /* Individual method option cards */
+        .accordion-inner .shipping-method,
+        .accordion-inner .payment-method,
+        .accordion-inner .confirm-shipping-method,
+        .accordion-inner .confirm-payment-method,
+        .accordion-inner .payment-method-radio,
+        .accordion-inner .shipping-method-radio {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            padding: 0.875rem 1rem !important;
+            background: var(--white) !important;
+            border: 1.5px solid var(--gray-200) !important;
+            border-radius: 10px !important;
+            cursor: pointer !important;
+            transition: all 0.15s ease !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+        }
+
+        .accordion-inner .shipping-method:hover,
+        .accordion-inner .payment-method:hover,
+        .accordion-inner .confirm-shipping-method:hover,
+        .accordion-inner .confirm-payment-method:hover,
+        .accordion-inner .payment-method-radio:hover,
+        .accordion-inner .shipping-method-radio:hover {
+            border-color: var(--gold) !important;
+            background: rgba(212, 168, 71, 0.03) !important;
+        }
+
+        /* Selected/checked state */
+        .accordion-inner .shipping-method.is-active,
+        .accordion-inner .payment-method.is-active,
+        .accordion-inner .shipping-method:has(input:checked),
+        .accordion-inner .payment-method:has(input:checked),
+        .accordion-inner .confirm-shipping-method:has(input:checked),
+        .accordion-inner .confirm-payment-method:has(input:checked),
+        .accordion-inner .payment-method-radio:has(input:checked),
+        .accordion-inner .shipping-method-radio:has(input:checked) {
+            border-color: var(--gold) !important;
+            background: rgba(212, 168, 71, 0.06) !important;
+            box-shadow: 0 2px 8px rgba(212, 168, 71, 0.15) !important;
+        }
+
+        /* Radio buttons */
+        .accordion-inner input[type="radio"] {
+            width: 18px !important;
+            height: 18px !important;
+            accent-color: var(--gold) !important;
+            margin: 0 !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* Method labels */
+        .accordion-inner .shipping-method label,
+        .accordion-inner .payment-method label,
+        .accordion-inner .shipping-method-label,
+        .accordion-inner .payment-method-label,
+        .accordion-inner .confirm-shipping-method label,
+        .accordion-inner .confirm-payment-method label {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            flex: 1 !important;
+            cursor: pointer !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Method name text */
+        .accordion-inner .shipping-method-name,
+        .accordion-inner .payment-method-name,
+        .accordion-inner .shipping-method strong,
+        .accordion-inner .payment-method strong,
+        .accordion-inner .confirm-shipping-method strong,
+        .accordion-inner .confirm-payment-method strong {
+            font-size: 0.875rem !important;
+            font-weight: 500 !important;
+            color: var(--gray-900) !important;
+        }
+
+        /* Method description */
+        .accordion-inner .shipping-method-description,
+        .accordion-inner .payment-method-description {
+            font-size: 0.75rem !important;
+            color: var(--gray-500) !important;
+            margin-top: 0.125rem !important;
+        }
+
+        /* Method images/icons */
+        .accordion-inner .shipping-method-image,
+        .accordion-inner .payment-method-image,
+        .accordion-inner .shipping-method img,
+        .accordion-inner .payment-method img {
+            width: 40px !important;
+            height: 28px !important;
+            object-fit: contain !important;
+        }
+
+        /* Remove any extra wrappers borders */
+        .accordion-inner .card,
+        .accordion-inner .confirm-address-container,
+        .accordion-inner .confirm-payment-container,
+        .accordion-inner .confirm-shipping-container,
+        .accordion-inner .payment-methods,
+        .accordion-inner .shipping-methods,
+        .accordion-inner .row {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Fix for Shopware default list styling */
+        .accordion-inner ul,
+        .accordion-inner ol {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        /* Remove left border lines from options */
+        .accordion-inner .payment-method-radio::before,
+        .accordion-inner .shipping-method-radio::before,
+        .accordion-inner .confirm-payment-method::before,
+        .accordion-inner .confirm-shipping-method::before {
+            display: none !important;
+        }
+
+        /* Price on shipping methods */
+        .accordion-inner .shipping-method-price {
+            font-size: 0.875rem !important;
+            font-weight: 600 !important;
+            color: var(--gray-900) !important;
+            margin-left: auto !important;
+        }
+
+        /* Two column address layout */
+        .accordion-inner .confirm-address-row,
+        .accordion-inner .row.confirm-address {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 1rem !important;
+        }
+
+        @media (max-width: 640px) {
+            .accordion-inner .confirm-address-row,
+            .accordion-inner .row.confirm-address {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
         /* Forms */
         .form-control, .form-select {
             padding: 0.75rem 1rem;
