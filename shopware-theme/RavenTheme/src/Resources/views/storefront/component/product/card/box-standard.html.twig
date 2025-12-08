@@ -50,7 +50,7 @@
     font-family: 'Inter', sans-serif;
 }
 .raven-manufacturer {
-    color: #1f2937;
+    color: #374151;
     font-size: 0.8125rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -158,8 +158,9 @@
                 {% block component_product_box_name %}
                 {% if product.manufacturer and product.manufacturer.translated.name %}
                 {% set manufacturerName = product.manufacturer.translated.name %}
-                {% set manufacturerSlug = manufacturerName|lower|replace({' ': '-', '.': '', ',': '', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'}) %}
-                <a href="/{{ manufacturerSlug }}" class="raven-manufacturer" style="text-decoration: none; color: #1f2937; display: block;">{{ manufacturerName }}</a>
+                {# Slugify: lowercase, spaces to hyphens, remove special chars #}
+                {% set manufacturerSlug = manufacturerName|lower|replace({' ': '-', '_': '-', '.': '', ',': '', '&': '', '(': '', ')': '', '/': '', '\\': '', "'": '', '"': '', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'}) %}
+                <a href="/{{ manufacturerSlug }}" class="raven-manufacturer" style="font-weight: 700; color: #374151; text-decoration: none; display: block;">{{ manufacturerName }}</a>
                 {% endif %}
                 <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}" class="raven-product-name">
                     {{ product.translated.name }}

@@ -1,0 +1,533 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_main_inner %}
+<style>
+/* Filter Bar - Reused from navigation page */
+.raven-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    margin-bottom: 1rem;
+}
+
+.raven-filters-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+}
+
+.raven-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.125rem;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 9999px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', -apple-system, sans-serif;
+    white-space: nowrap;
+}
+
+.raven-filter-btn:hover {
+    background: #ebebeb;
+    border-color: #ccc;
+}
+
+.raven-filter-btn.active {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+.raven-filter-btn svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.7;
+}
+
+/* Sort Dropdown */
+.raven-sort-wrapper {
+    position: relative;
+}
+
+.raven-sort-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: transparent;
+    border: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.raven-sort-btn svg {
+    width: 14px;
+    height: 14px;
+    color: #D4A847;
+}
+
+.raven-sort-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    min-width: 180px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    z-index: 100;
+    display: none;
+    overflow: hidden;
+}
+
+.raven-sort-menu.show {
+    display: block;
+}
+
+.raven-sort-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.raven-sort-menu a:hover {
+    background: #f5f5f5;
+}
+
+.raven-sort-menu a.active {
+    background: #f0f0f0;
+    font-weight: 600;
+}
+
+/* Filter Dropdown Panel */
+.raven-filter-group {
+    position: relative;
+}
+
+.raven-filter-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    min-width: 260px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    z-index: 100;
+    display: none;
+    padding: 1rem;
+}
+
+.raven-filter-dropdown.show {
+    display: block;
+}
+
+.raven-filter-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
+
+.raven-filter-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #D4A847;
+    cursor: pointer;
+}
+
+.raven-filter-option label {
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    flex: 1;
+}
+
+.raven-price-inputs {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.raven-price-input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    width: 100px;
+}
+
+.raven-filter-apply {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.625rem 1rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.raven-filter-apply:hover {
+    background: #222;
+}
+
+/* Right Controls */
+.raven-right-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Product Grid */
+@media (min-width: 640px) { .raven-product-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (min-width: 768px) { .raven-product-grid { grid-template-columns: repeat(4, 1fr) !important; } }
+
+.raven-product-card {
+    transition: all 0.3s ease;
+    position: relative;
+    background: white !important;
+}
+.raven-product-card:hover .product-img { transform: scale(1.05); }
+.product-img { transition: transform 0.3s ease; }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .raven-filters-left {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+    .raven-filter-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        min-width: 100%;
+        border-radius: 16px 16px 0 0;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
+</style>
+
+<main class="raven-manufacturer-page">
+    {# Header Section #}
+    <section style="background: #f5f5f5; padding: 2rem 0;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+            <h1 style="font-family: 'Inter', -apple-system, sans-serif; font-size: 2rem; font-weight: 700; color: #111; margin: 0;">
+                {{ manufacturer.translated.name }}
+            </h1>
+            <div style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
+                <a href="{{ path('frontend.home.page') }}" style="color: #666; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem;">|</span>
+                <span>{{ manufacturer.translated.name }}</span>
+            </div>
+            <p style="font-size: 0.9375rem; color: #666; margin-top: 0.5rem;">
+                {{ totalProducts }} Produkte
+            </p>
+        </div>
+    </section>
+
+    {# Products Section #}
+    <section style="background: white; padding: 1.5rem 0 4rem;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+
+            {# Filter Bar - Simplified for manufacturer page #}
+            <div class="raven-filter-bar">
+                <div class="raven-filters-left">
+                    {# Preis (Price) Filter #}
+                    <div class="raven-filter-group">
+                        <button type="button" class="raven-filter-btn" data-filter-toggle="price">
+                            Preis
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="price">
+                            <div class="raven-price-inputs">
+                                <input type="number" class="raven-price-input" id="price-min" placeholder="Min" min="0">
+                                <span style="color: #999;">–</span>
+                                <input type="number" class="raven-price-input" id="price-max" placeholder="Max" min="0">
+                                <span style="color: #666; font-size: 0.875rem;">CHF</span>
+                            </div>
+                            <button type="button" class="raven-filter-apply" data-apply-filter="price">Anwenden</button>
+                        </div>
+                    </div>
+
+                    {# Lagerstatus (Stock Status) Filter #}
+                    <div class="raven-filter-group">
+                        <button type="button" class="raven-filter-btn" data-filter-toggle="stock">
+                            Lagerstatus
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="stock">
+                            <div class="raven-filter-option">
+                                <input type="checkbox" id="stock-available" value="1" data-filter-stock>
+                                <label for="stock-available">Nur verfügbare Artikel</label>
+                            </div>
+                            <button type="button" class="raven-filter-apply" data-apply-filter="stock">Anwenden</button>
+                        </div>
+                    </div>
+
+                    {# Kategorie (Category) Filter #}
+                    {% if categories|length > 0 %}
+                    <div class="raven-filter-group">
+                        <button type="button" class="raven-filter-btn" data-filter-toggle="category">
+                            Kategorie
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-filter-dropdown" data-filter-panel="category">
+                            {% for category in categories %}
+                            <div class="raven-filter-option">
+                                <input type="checkbox" id="cat-{{ category.id }}" value="{{ category.id }}" data-filter-category>
+                                <label for="cat-{{ category.id }}">{{ category.translated.name }}</label>
+                            </div>
+                            {% endfor %}
+                            <button type="button" class="raven-filter-apply" data-apply-filter="category">Anwenden</button>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {# Right Side: Sorting #}
+                <div class="raven-right-controls">
+                    <div class="raven-sort-wrapper">
+                        <button type="button" class="raven-sort-btn" data-sort-toggle>
+                            <span data-sort-label>Neueste</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="raven-sort-menu" data-sort-menu>
+                            <a href="#" data-sort-value="newest" class="active">Neueste</a>
+                            <a href="#" data-sort-value="price-asc">Preis aufsteigend</a>
+                            <a href="#" data-sort-value="price-desc">Preis absteigend</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if products|length > 0 %}
+            {# Product Grid #}
+            <div class="raven-product-grid" id="product-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 2rem;">
+                {% for product in products %}
+                <article class="raven-product-card"
+                         data-product-id="{{ product.id }}"
+                         data-product-name="{{ product.translated.name|lower }}"
+                         data-product-price="{{ product.calculatedPrice.unitPrice }}"
+                         data-product-category="{{ product.categoryTree|join(',') }}"
+                         data-product-stock="{{ product.availableStock > 0 or product.isCloseout == false ? '1' : '0' }}">
+                    <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" style="text-decoration: none; color: inherit; display: block;">
+                        <div style="height: 18rem; background: white; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                            {% if product.cover.media %}
+                                <img class="product-img" src="{{ product.cover.media.url }}" alt="{{ product.translated.name }}" style="max-width: 100%; max-height: 100%; object-fit: contain; padding: 0.75rem;">
+                            {% else %}
+                                <div style="color: #d1d5db;">
+                                    {% sw_icon 'placeholder' style { 'size': 'lg' } %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </a>
+                    <div style="padding: 0.75rem 1rem 1rem;">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
+                            <div style="flex: 1;">
+                                <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">
+                                    {% if product.calculatedPrice %}
+                                        {% set priceValue = product.calculatedPrice.unitPrice %}
+                                        {% set cents = ((priceValue * 100) % 100)|round %}
+                                        CHF {% if cents == 0 %}{{ priceValue|number_format(0, '.', "'") }}{% else %}{{ priceValue|number_format(2, '.', "'") }}{% endif %}
+                                    {% endif %}
+                                </div>
+                                {% if product.ratingAverage and product.ratingAverage > 0 %}
+                                    {% set rating = product.ratingAverage|round %}
+                                    <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px;">
+                                        <div style="display: flex; gap: 2px;">
+                                            {% for i in 1..5 %}
+                                                {% if rating >= i %}
+                                                    <svg style="width: 14px; height: 14px; color: #D4A847;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                                {% else %}
+                                                    <svg style="width: 14px; height: 14px; color: #D1D5DB;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <span style="font-size: 0.75rem; color: #6b7280;">({{ product.ratingAverage|number_format(1) }})</span>
+                                    </div>
+                                {% endif %}
+                                <div style="color: #374151; font-size: 0.9375rem; margin-top: 0.25rem;">
+                                    <span style="font-weight: 700;">{{ manufacturer.translated.name }}</span> {{ product.translated.name }}
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                                <span style="width: 20px; height: 20px; border-radius: 50%; background: {% if product.availableStock > 0 or product.isCloseout == false %}#77C15A{% else %}#ef4444{% endif %}; display: inline-flex; align-items: center; justify-content: center;">
+                                    <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <form action="{{ path('frontend.checkout.line-item.add') }}" method="post" data-form-csrf-handler="true">
+                                    <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][id]" value="{{ product.id }}">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][quantity]" value="1">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][type]" value="product">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][referencedId]" value="{{ product.id }}">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][stackable]" value="1">
+                                    <input type="hidden" name="lineItems[{{ product.id }}][removable]" value="1">
+                                    <button type="submit" style="width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; color: #374151; cursor: pointer;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor" style="width: 22px; height: 22px;"><path d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/></svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            {% else %}
+            <div style="text-align: center; padding: 4rem 2rem;">
+                <h3 style="font-size: 1.5rem; font-weight: 600; color: #111; margin-bottom: 0.5rem;">Keine Produkte gefunden</h3>
+                <p style="color: #666; margin-bottom: 2rem;">Dieser Hersteller hat noch keine Produkte.</p>
+                <a href="{{ path('frontend.home.page') }}" style="display: inline-block; padding: 0.75rem 1.5rem; background: #D4A847; color: #111; font-weight: 600; border-radius: 6px; text-decoration: none;">
+                    Zur Startseite
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+
+<script>
+(function() {
+    // Filter toggle
+    document.querySelectorAll('[data-filter-toggle]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var type = btn.getAttribute('data-filter-toggle');
+            var panel = document.querySelector('[data-filter-panel="' + type + '"]');
+
+            // Close others
+            document.querySelectorAll('.raven-filter-dropdown.show').forEach(function(p) {
+                if (p !== panel) p.classList.remove('show');
+            });
+            document.querySelectorAll('.raven-sort-menu.show').forEach(function(m) {
+                m.classList.remove('show');
+            });
+
+            panel.classList.toggle('show');
+        });
+    });
+
+    // Sort toggle
+    var sortBtn = document.querySelector('[data-sort-toggle]');
+    var sortMenu = document.querySelector('[data-sort-menu]');
+    if (sortBtn && sortMenu) {
+        sortBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('.raven-filter-dropdown.show').forEach(function(p) {
+                p.classList.remove('show');
+            });
+            sortMenu.classList.toggle('show');
+        });
+
+        sortMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var value = link.getAttribute('data-sort-value');
+                document.querySelector('[data-sort-label]').textContent = link.textContent;
+                sortMenu.querySelectorAll('a').forEach(function(a) { a.classList.remove('active'); });
+                link.classList.add('active');
+                sortMenu.classList.remove('show');
+
+                // Apply client-side sort
+                applySorting(value);
+            });
+        });
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.raven-filter-group') && !e.target.closest('.raven-sort-wrapper')) {
+            document.querySelectorAll('.raven-filter-dropdown.show').forEach(function(p) {
+                p.classList.remove('show');
+            });
+            if (sortMenu) sortMenu.classList.remove('show');
+        }
+    });
+
+    // Apply filters (client-side filtering)
+    document.querySelectorAll('[data-apply-filter]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var panel = btn.closest('.raven-filter-dropdown');
+            panel.classList.remove('show');
+            applyAllFilters();
+        });
+    });
+
+    function applyAllFilters() {
+        var products = document.querySelectorAll('.raven-product-card');
+        var priceMin = document.getElementById('price-min') ? parseFloat(document.getElementById('price-min').value) || 0 : 0;
+        var priceMax = document.getElementById('price-max') ? parseFloat(document.getElementById('price-max').value) || Infinity : Infinity;
+        var stockOnly = document.getElementById('stock-available') ? document.getElementById('stock-available').checked : false;
+
+        var selectedCats = [];
+        document.querySelectorAll('[data-filter-category]:checked').forEach(function(cb) {
+            selectedCats.push(cb.value);
+        });
+
+        products.forEach(function(card) {
+            var price = parseFloat(card.getAttribute('data-product-price')) || 0;
+            var stock = card.getAttribute('data-product-stock') === '1';
+            var cats = card.getAttribute('data-product-category') || '';
+            var catArray = cats.split(',');
+
+            var show = true;
+
+            if (price < priceMin || price > priceMax) show = false;
+            if (stockOnly && !stock) show = false;
+            if (selectedCats.length > 0) {
+                var hasMatch = selectedCats.some(function(c) { return catArray.indexOf(c) !== -1; });
+                if (!hasMatch) show = false;
+            }
+
+            card.style.display = show ? '' : 'none';
+        });
+    }
+
+    function applySorting(sortValue) {
+        var grid = document.getElementById('product-grid');
+        var products = Array.from(grid.querySelectorAll('.raven-product-card'));
+
+        products.sort(function(a, b) {
+            var priceA = parseFloat(a.getAttribute('data-product-price')) || 0;
+            var priceB = parseFloat(b.getAttribute('data-product-price')) || 0;
+
+            if (sortValue === 'price-asc') {
+                return priceA - priceB;
+            } else if (sortValue === 'price-desc') {
+                return priceB - priceA;
+            }
+            return 0; // newest - keep original order
+        });
+
+        products.forEach(function(p) { grid.appendChild(p); });
+    }
+})();
+</script>
+{% endblock %}
