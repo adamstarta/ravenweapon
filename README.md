@@ -51,6 +51,26 @@ This is a complete e-commerce solution for RAVEN WEAPON AG, a Swiss firearms dea
 
 ---
 
+## Infrastructure Overview
+
+### Service Providers
+
+| Service | Provider | URL |
+|---------|----------|-----|
+| **Domain Registrar** | Hostpoint | https://admin.hostpoint.ch |
+| **DNS/CDN** | Cloudflare | https://dash.cloudflare.com |
+| **Server Hosting** | Hetzner | https://console.hetzner.cloud |
+
+### How Traffic Flows
+
+```
+User → Cloudflare (CDN/SSL) → Hetzner Server (77.42.19.154) → Docker Container → Shopware
+```
+
+**Important:** Cloudflare only supports standard ports (80/443). Custom ports like 8080 won't work through Cloudflare proxy.
+
+---
+
 ## Production Server
 
 ### Hetzner VPS Access
@@ -63,16 +83,27 @@ This is a complete e-commerce solution for RAVEN WEAPON AG, a Swiss firearms dea
 | **SSH Password** | 93cupECnm3xH |
 | **Domain** | ortak.ch |
 
-### Shopware Admin
+### Shopware Admin (Current - EUR)
 
 | Info | Value |
 |------|-------|
 | **Admin URL** | https://ortak.ch/admin |
 | **Username** | admin |
 | **Password** | shopware |
-| **Shopware Version** | 6.7.5.0 |
+| **Shopware Version** | 6.6.0.0 (dockware) |
+| **Base Currency** | EUR (problem - should be CHF) |
 
-### API Credentials (for scripts)
+### Shopware Admin (New - CHF) - IN PROGRESS
+
+| Info | Value |
+|------|-------|
+| **Admin URL** | http://new.ortak.ch/admin (needs DNS setup) |
+| **Username** | admin |
+| **Password** | shopware |
+| **Shopware Version** | 6.6.0.0 (dockware) |
+| **Base Currency** | CHF (correct!) |
+
+### API Credentials (for import scripts - EUR installation)
 
 ```
 Client ID: SWIAC3HJVHFJMHQYRWRUM1E1SG
@@ -82,10 +113,10 @@ Client Secret: RGtsN1Z2TklqU1ZZSVFTOFB6bWZXNWZNNk40V2h4RWY5Q2tPblg
 ### Docker Containers on Server
 
 ```bash
-# Main shop (EUR base - current production)
+# Main shop (EUR base - current production on ports 80/443)
 ravenweapon-shop    ports 80/443    dockware/dev:6.6.0.0
 
-# CHF installation (port 8080 - in progress)
+# CHF installation (NEW - ports 8080/8443)
 shopware-chf        ports 8080/8443  dockware/dev:6.6.0.0
 ```
 
@@ -95,12 +126,81 @@ shopware-chf        ports 8080/8443  dockware/dev:6.6.0.0
 # Connect to server
 ssh root@77.42.19.154
 
-# Enter main container
+# Enter main EUR container
 docker exec -it ravenweapon-shop bash
+
+# Enter new CHF container
+docker exec -it shopware-chf bash
 
 # Check container status
 docker ps
 ```
+
+---
+
+## DNS Setup for New CHF Installation
+
+### Problem
+The new CHF installation runs on port 8080, but Cloudflare doesn't support custom ports. We need a subdomain to access it.
+
+### Solution: Create Subdomain `new.ortak.ch`
+
+**Option A: If DNS is managed in Cloudflare**
+
+1. Go to https://dash.cloudflare.com
+2. Select ortak.ch → DNS → Records
+3. Add new record:
+   - **Type:** A
+   - **Name:** `new`
+   - **IPv4 address:** `77.42.19.154`
+   - **Proxy status:** **DNS only** (grey cloud, NOT orange!)
+   - **TTL:** Auto
+4. Save
+
+**Option B: If DNS is managed in Hostpoint**
+
+1. Go to https://admin.hostpoint.ch
+2. Find DNS settings for ortak.ch
+3. Add A record:
+   - **Subdomain:** `new`
+   - **Type:** A
+   - **Value:** `77.42.19.154`
+4. Save
+
+### After DNS Setup
+
+Access the new CHF shop at:
+- **Storefront:** http://new.ortak.ch:8080
+- **Admin:** http://new.ortak.ch:8080/admin
+
+Then update Shopware domain:
+```bash
+ssh root@77.42.19.154
+docker exec shopware-chf bash -c "mysql -u root -proot shopware -e \"UPDATE sales_channel_domain SET url='http://new.ortak.ch:8080' WHERE url LIKE '%ortak%'\""
+docker exec shopware-chf bash -c "cd /var/www/html && bin/console cache:clear"
+```
+
+### Final Migration (When Ready)
+
+When the new CHF installation is tested and ready:
+
+1. **Stop both containers:**
+   ```bash
+   docker stop ravenweapon-shop shopware-chf
+   ```
+
+2. **Swap the ports:**
+   ```bash
+   # Remove old containers
+   docker rm ravenweapon-shop shopware-chf
+
+   # Restart CHF container on main ports
+   docker run -d --name ravenweapon-shop-chf -p 80:80 -p 443:443 ... (from shopware-chf image)
+   ```
+
+3. **Update domain in Shopware to ortak.ch**
+
+4. **Test everything works**
 
 ---
 
