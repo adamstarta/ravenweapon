@@ -2,160 +2,408 @@
 
 Swiss firearms e-commerce platform built on Shopware 6 with custom RavenTheme.
 
-## Production Server (Hetzner)
+**Client:** RAVEN WEAPON AG (Swiss firearms dealer)
+**Domain:** ortak.ch (production)
+**Tech Stack:** Shopware 6.7.5.0, Docker (dockware), PHP 8.3, MySQL 8, Twig, SCSS
+
+---
+
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Production Server](#production-server)
+3. [Backup & Recovery](#backup--recovery)
+4. [Local Development](#local-development)
+5. [Project Structure](#project-structure)
+6. [Product Data & Import Scripts](#product-data--import-scripts)
+7. [Theme Development](#theme-development)
+8. [Branding Guidelines](#branding-guidelines)
+9. [Useful Commands](#useful-commands)
+10. [Troubleshooting](#troubleshooting)
+11. [Migration Notes](#migration-notes)
+
+---
+
+## Project Overview
+
+### What This Project Is
+
+This is a complete e-commerce solution for RAVEN WEAPON AG, a Swiss firearms dealer. The shop sells:
+- Tactical gear (Snigel brand - 193 products)
+- Firearms and accessories
+- Ammunition
+- Outdoor equipment
+
+### Current Status (December 2024)
+
+| Item | Status |
+|------|--------|
+| Products imported | 305 total (193 Snigel with images) |
+| Theme | RavenTheme (custom, gold/black design) |
+| Payment | Payrexx integration installed |
+| Base Currency | EUR (known issue - needs CHF) |
+| Sales Channel | CHF (customers see CHF prices) |
+
+### Known Issues
+
+1. **Base Currency is EUR** - Shopware was installed with EUR as base currency. This cannot be changed via UI. A fresh installation with CHF is planned.
+2. **2 products missing images** - "Belt closure pack" and "Weapon attachment side"
+
+---
+
+## Production Server
+
+### Hetzner VPS Access
 
 | Info | Value |
 |------|-------|
 | **Provider** | Hetzner |
 | **IP Address** | 77.42.19.154 |
 | **SSH User** | root |
+| **SSH Password** | 93cupECnm3xH |
 | **Domain** | ortak.ch |
-| **Shopware Version** | 6.7.5.0 |
-| **Admin URL** | https://ortak.ch/admin |
-| **Admin User** | admin |
-| **Admin Password** | shopware |
 
-### API Credentials
+### Shopware Admin
+
+| Info | Value |
+|------|-------|
+| **Admin URL** | https://ortak.ch/admin |
+| **Username** | admin |
+| **Password** | shopware |
+| **Shopware Version** | 6.7.5.0 |
+
+### API Credentials (for scripts)
+
 ```
 Client ID: SWIAC3HJVHFJMHQYRWRUM1E1SG
 Client Secret: RGtsN1Z2TklqU1ZZSVFTOFB6bWZXNWZNNk40V2h4RWY5Q2tPblg
 ```
 
-### Current Installation Status
-- **Base Currency**: EUR (set during installation - CANNOT be changed easily)
-- **Sales Channel Currency**: CHF (customers see CHF)
-- **Products**: 305 total (193 Snigel products)
-- **Theme**: RavenTheme (custom)
+### Docker Containers on Server
 
-### Known Issue
-The system base currency is EUR (hardcoded during installation). To properly have CHF as base currency, a fresh installation is needed.
+```bash
+# Main shop (EUR base - current production)
+ravenweapon-shop    ports 80/443    dockware/dev:6.6.0.0
+
+# CHF installation (port 8080 - in progress)
+shopware-chf        ports 8080/8443  dockware/dev:6.6.0.0
+```
+
+### SSH Quick Access
+
+```bash
+# Connect to server
+ssh root@77.42.19.154
+
+# Enter main container
+docker exec -it ravenweapon-shop bash
+
+# Check container status
+docker ps
+```
 
 ---
 
-## Quick Start (Windows)
+## Backup & Recovery
+
+### CRITICAL: Three Backup Locations
+
+All backups were created on **2024-12-11** before the CHF migration.
+
+#### 1. Server Backup (310MB)
+
+**Location:** `/var/backups/shopware-eur-20251211/`
+
+| File/Folder | Size | Description |
+|-------------|------|-------------|
+| `database.sql.gz` | 1.4MB | Full MySQL dump (305 products, customers, orders) |
+| `media/` | 206MB | 914 uploaded product images |
+| `RavenTheme/` | 29MB | Theme plugin (115 files) |
+| `PayrexxPaymentGatewaySW6/` | 1.3MB | Payment gateway plugin |
+| `bundles/` | 63MB | Compiled public assets |
+| `theme/` | 9.2MB | Compiled CSS/JS |
+| `files/` | 668KB | Import/export files |
+| `.env` | 1KB | Shopware configuration |
+
+**Restore database from server backup:**
+```bash
+ssh root@77.42.19.154
+docker exec -i ravenweapon-shop bash -c 'mysql -u root -proot shopware' < /var/backups/shopware-eur-20251211/database.sql
+```
+
+#### 2. GitHub Repository
+
+**URL:** https://github.com/adamstarta/ravenweapon
+**Commit:** `e6aa206` - "chore: complete backup before fresh CHF installation"
+
+Contains:
+- Theme source code (78 files)
+- All import/scraping scripts (18 scripts)
+- Product data JSON (390KB with all prices)
+- 2,599 product images (scraped from Snigel B2B)
+
+**Clone fresh:**
+```bash
+git clone https://github.com/adamstarta/ravenweapon.git
+```
+
+#### 3. Local Copy
+
+**Path:** `C:\Users\alama\Desktop\NIKOLA WORK\ravenweapon`
+
+Same as GitHub - synchronized via git.
+
+### How to Restore Everything
+
+**Option A: Quick restore from server backup**
+```bash
+# 1. Connect to server
+ssh root@77.42.19.154
+
+# 2. Restore database
+zcat /var/backups/shopware-eur-20251211/database.sql.gz | docker exec -i ravenweapon-shop mysql -u root -proot shopware
+
+# 3. Restore media
+docker cp /var/backups/shopware-eur-20251211/media/. ravenweapon-shop:/var/www/html/public/media/
+
+# 4. Restore theme
+docker cp /var/backups/shopware-eur-20251211/RavenTheme ravenweapon-shop:/var/www/html/custom/plugins/
+
+# 5. Clear cache
+docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console cache:clear"
+```
+
+**Option B: Full rebuild from git repo**
+```bash
+# 1. Clone repo
+git clone https://github.com/adamstarta/ravenweapon.git
+cd ravenweapon
+
+# 2. Start local Docker
+docker-compose up -d
+
+# 3. Install theme
+docker cp shopware-theme/RavenTheme ravenweapon-shop:/var/www/html/custom/plugins/
+docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console plugin:refresh && bin/console plugin:install RavenTheme --activate"
+
+# 4. Import products using scripts (see Product Data section)
+```
+
+---
+
+## Local Development
 
 ### Prerequisites
-- Docker Desktop for Windows
+
+- Docker Desktop (Windows/Mac/Linux)
 - Git
+- Node.js 18+ (for scraping scripts)
+- PHP 8.1+ (for import scripts)
 
-### Setup
+### Quick Start
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/adamstarta/ravenweapon.git
-   cd ravenweapon
-   ```
+```bash
+# 1. Clone repository
+git clone https://github.com/adamstarta/ravenweapon.git
+cd ravenweapon
 
-2. **Start Docker container**
-   ```bash
-   docker-compose up -d
-   ```
-   Wait ~2 minutes for Shopware to initialize.
+# 2. Start Docker container
+docker-compose up -d
+# Wait ~2 minutes for Shopware to initialize
 
-3. **Activate the RavenTheme**
-   ```bash
-   docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console plugin:refresh && bin/console plugin:install RavenTheme --activate && bin/console theme:change RavenTheme --all && bin/console cache:clear"
-   ```
+# 3. Activate RavenTheme
+docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console plugin:refresh && bin/console plugin:install RavenTheme --activate && bin/console theme:change RavenTheme --all && bin/console cache:clear"
 
-4. **Deploy homepage template and assets**
-   ```bash
-   # Create directories
-   docker exec -u root ravenweapon-shop mkdir -p /var/www/html/custom/plugins/RavenTheme/src/Resources/views/storefront/page/content
-   docker exec -u root ravenweapon-shop mkdir -p /var/www/html/custom/plugins/RavenTheme/src/Resources/public/assets
+# 4. Access the site
+# Storefront: http://localhost/
+# Admin: http://localhost/admin (admin / shopware)
+# Database: http://localhost:8888 (Adminer)
+```
 
-   # Copy template files
-   docker cp temp-homepage.html.twig ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/views/storefront/page/content/index.html.twig
-   docker cp temp-base.scss ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/app/storefront/src/scss/base.scss
+### Deploy Theme Changes
 
-   # Copy assets
-   docker cp "assets/wallpaper hero.png" ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/public/assets/hero-background.jpg
-   docker cp "assets/snigel logo.png" ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/public/assets/brand-snigel.png
-   docker cp "assets/zero tech logo.png" ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/public/assets/brand-zerotech.png
-   docker cp "assets/magpul logo.png" ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/public/assets/brand-magpul.png
-   docker cp "assets/lockhart logo.png" ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/public/assets/brand-lockhart.png
+```bash
+# Copy theme to container
+docker cp shopware-theme/RavenTheme ravenweapon-shop:/var/www/html/custom/plugins/
 
-   # Install assets and compile theme
-   docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console assets:install && bin/console theme:compile && bin/console cache:clear"
-   ```
+# Compile and clear cache
+docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
+```
 
-5. **Access the site**
-   - Storefront: http://localhost/
-   - Admin Panel: http://localhost/admin
-     - Username: `admin`
-     - Password: `shopware`
-   - Database (Adminer): http://localhost:8888
+---
 
 ## Project Structure
 
 ```
 ravenweapon/
-├── assets/                    # Product images and brand logos
-├── docs/plans/               # Design and implementation documentation
-├── import/                   # Product import CSV and scripts
-├── legacy/                   # Original HTML/CSS/JS (reference)
-│   ├── html/                # Static HTML pages
-│   ├── css/                 # Original stylesheets
-│   └── js/                  # Original JavaScript
-├── shopware-theme/          # Shopware plugin source
+├── assets/                         # Brand assets
+│   ├── Favicon/                   # Favicon files
+│   ├── wallpaper hero.png         # Homepage hero background
+│   ├── snigel logo.png            # Brand logos
+│   └── ...
+│
+├── scripts/                        # Import & scraping scripts
+│   ├── snigel-merged-products.json    # MAIN PRODUCT DATA (390KB)
+│   ├── shopware-import.php            # Import products to Shopware
+│   ├── shopware-update-prices.php     # Update product prices
+│   ├── shopware-upload-images.php     # Upload product images
+│   ├── snigel-b2b-*.js                # B2B price scraping scripts
+│   ├── snigel-data/                   # Scraped public product data
+│   │   └── images/                    # Product images (1,300+ files)
+│   └── snigel-b2b-data/               # B2B pricing data
+│       ├── images/                    # Additional images
+│       └── products-*.json            # Price data files
+│
+├── shopware-theme/                 # Shopware theme plugin
 │   └── RavenTheme/
 │       └── src/
 │           ├── Resources/
-│           │   ├── app/storefront/src/scss/  # SCSS styles
-│           │   ├── views/storefront/         # Twig templates
-│           │   └── theme.json               # Theme config
-│           └── RavenTheme.php
-├── temp-*.scss              # Development SCSS files
-├── temp-*.twig              # Development Twig templates
-├── docker-compose.yml       # Docker configuration
-└── README.md
+│           │   ├── app/storefront/src/scss/   # SCSS styles
+│           │   │   └── base.scss              # Main stylesheet
+│           │   ├── views/storefront/          # Twig templates
+│           │   │   ├── layout/                # Header, footer
+│           │   │   ├── page/                  # Page templates
+│           │   │   └── component/             # Reusable components
+│           │   └── theme.json                 # Theme configuration
+│           ├── Controller/                    # Custom controllers
+│           └── RavenTheme.php                 # Plugin main class
+│
+├── legacy/                         # Original static HTML (reference only)
+│   ├── html/                      # Static HTML pages
+│   ├── css/                       # Original CSS
+│   └── js/                        # Original JavaScript
+│
+├── docs/plans/                     # Design documentation
+├── docker-compose.yml              # Local Docker setup
+└── README.md                       # This file
 ```
 
-## Development Workflow
+---
 
-### Modifying Styles
-1. Edit `temp-base.scss`
-2. Copy to container:
+## Product Data & Import Scripts
+
+### Main Product Data File
+
+**Location:** `scripts/snigel-merged-products.json`
+
+This JSON file contains all 193 Snigel products with:
+- Product names (German)
+- Descriptions
+- B2B purchase prices (EUR)
+- Selling prices (calculated with 50% markup)
+- Image references
+- Article numbers
+
+### Import Scripts
+
+All scripts are in the `scripts/` folder and use the Shopware API.
+
+| Script | Purpose |
+|--------|---------|
+| `shopware-import.php` | Import products to Shopware |
+| `shopware-update-prices.php` | Update prices for all products |
+| `shopware-upload-images.php` | Upload product images |
+| `update-missing-prices.php` | Fix 6 products with missing prices |
+
+**Run import script:**
+```bash
+cd scripts
+php shopware-import.php
+```
+
+### Scraping Scripts (Node.js)
+
+These scripts scrape product data from Snigel's B2B portal.
+
+| Script | Purpose |
+|--------|---------|
+| `snigel-b2b-final.js` | Main B2B scraper (requires login) |
+| `scrape-missing-products.js` | Scrape specific missing products |
+| `extract-from-html.js` | Parse saved HTML for product data |
+
+**Snigel B2B Portal Credentials:**
+```
+URL: https://products.snigel.se
+Username: Raven Weapon AG
+Password: wVREVbRZfqT&Fba@f(^2UKOw
+```
+
+**Run scraper:**
+```bash
+cd scripts
+npm install
+node snigel-b2b-final.js
+```
+
+---
+
+## Theme Development
+
+### File Locations
+
+| What | Path |
+|------|------|
+| Main SCSS | `shopware-theme/RavenTheme/src/Resources/app/storefront/src/scss/base.scss` |
+| Homepage | `shopware-theme/RavenTheme/src/Resources/views/storefront/page/content/index.html.twig` |
+| Header | `shopware-theme/RavenTheme/src/Resources/views/storefront/layout/header/header.html.twig` |
+| Footer | `shopware-theme/RavenTheme/src/Resources/views/storefront/layout/footer/footer.html.twig` |
+| Product card | `shopware-theme/RavenTheme/src/Resources/views/storefront/component/product/card/box-standard.html.twig` |
+
+### Development Workflow
+
+1. **Edit files** in `shopware-theme/RavenTheme/`
+
+2. **Copy to container:**
    ```bash
-   docker cp temp-base.scss ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/app/storefront/src/scss/base.scss
+   docker cp shopware-theme/RavenTheme ravenweapon-shop:/var/www/html/custom/plugins/
    ```
-3. Compile:
+
+3. **Compile theme:**
    ```bash
    docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
    ```
 
-### Modifying Templates
-1. Edit `temp-homepage.html.twig` (or other temp-*.twig files)
-2. Copy to container:
-   ```bash
-   docker cp temp-homepage.html.twig ravenweapon-shop:/var/www/html/custom/plugins/RavenTheme/src/Resources/views/storefront/page/content/index.html.twig
-   ```
-3. Clear cache:
-   ```bash
-   docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console cache:clear"
-   ```
+### Key Templates
 
-## Branding
+| Template | Description |
+|----------|-------------|
+| `page/content/index.html.twig` | Homepage with hero, categories, brands |
+| `page/product-detail/index.html.twig` | Product detail page |
+| `page/checkout/confirm/index.html.twig` | Checkout confirmation |
+| `page/account/order/index.html.twig` | Order history |
+| `component/checkout/offcanvas-cart.html.twig` | Cart sidebar |
+
+---
+
+## Branding Guidelines
 
 ### Colors
-- **Gold Gradient**: `linear-gradient(135deg, #FDE047 0%, #F59E0B 50%, #D97706 100%)`
-- **Primary Gold**: `#F59E0B`
-- **Dark Text**: `#111827`
-- **Body Text**: `#374151`
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Gold Gradient | `linear-gradient(135deg, #FDE047 0%, #F59E0B 50%, #D97706 100%)` | Headlines, CTAs |
+| Primary Gold | `#F59E0B` | Buttons, accents |
+| Dark Background | `#111827` | Headers, cards |
+| Body Text | `#374151` | Paragraphs |
+| Light Background | `#F9FAFB` | Page backgrounds |
 
 ### Typography
-- Headings: Chakra Petch (hero), Inter (body)
-- Gold gradient text for H1 elements
 
-## Homepage Sections
+| Element | Font | Weight |
+|---------|------|--------|
+| Hero Headlines | Chakra Petch | 700 |
+| Body Text | Inter | 400/500 |
+| Buttons | Inter | 600 |
 
-1. **Hero** - Rifle background, gold title, CTAs
-2. **Beliebte Produkte** - Featured products (configure in Shopware CMS)
-3. **Kategorien** - 4 category cards (Waffen, Munition, Waffenzubehör, Ausrüstung)
-4. **Unsere Marken** - Brand logos (Snigel, ZeroTech, Magpul, Lockhart)
-5. **Video** - Cloudflare Stream embed with description
-6. **Footer** - Trust badges, newsletter, legal links
+### Logo
+
+Gold gradient text "RAVEN WEAPON" with tagline "PRÄZISION TRIFFT LEIDENSCHAFT"
+
+---
 
 ## Useful Commands
+
+### Docker Commands
 
 ```bash
 # View container logs
@@ -169,8 +417,12 @@ docker-compose restart
 
 # Stop container
 docker-compose down
+```
 
-# Clear all Shopware caches
+### Shopware Console Commands
+
+```bash
+# Clear all caches
 docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console cache:clear"
 
 # Recompile theme
@@ -178,22 +430,105 @@ docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console theme:comp
 
 # Refresh plugins
 docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console plugin:refresh"
+
+# Install assets
+docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console assets:install"
+
+# Database migrations
+docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console database:migrate --all"
 ```
+
+### MySQL Access
+
+```bash
+# Inside container
+mysql -u root -proot shopware
+
+# Product count
+SELECT COUNT(*) FROM product;
+
+# Check currencies
+SELECT iso_code, factor FROM currency;
+```
+
+---
 
 ## Troubleshooting
 
 ### Container won't start
-- Ensure Docker Desktop is running
-- Check if port 80 is already in use: `netstat -an | findstr :80`
+
+```bash
+# Check if port 80 is in use
+netstat -an | findstr :80
+
+# Check Docker status
+docker ps -a
+
+# View container logs
+docker logs ravenweapon-shop
+```
+
+### MySQL won't start in container
+
+```bash
+# Fix permissions and start
+docker exec -u root ravenweapon-shop bash -c 'chown -R mysql:mysql /var/lib/mysql && service mysql start'
+```
 
 ### Theme not showing
-- Run the theme activation commands from step 3
-- Clear browser cache
+
+```bash
+# Reinstall and activate theme
+docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console plugin:refresh && bin/console plugin:install RavenTheme --activate && bin/console theme:change RavenTheme --all && bin/console cache:clear"
+```
 
 ### Assets 404 errors
-- Run `bin/console assets:install` in container
-- Verify files exist in `/var/www/html/public/bundles/raventheme/assets/`
+
+```bash
+# Reinstall assets
+docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console assets:install && bin/console cache:clear"
+```
+
+### Products not showing prices
+
+- Check if prices exist in admin: `/admin#/sw/product/index`
+- Run price update script: `php scripts/shopware-update-prices.php`
+- Verify currency setup in Settings > Shop > Currencies
+
+---
+
+## Migration Notes
+
+### EUR to CHF Base Currency Migration (In Progress)
+
+**Problem:** Shopware was installed with EUR as base currency. This is hardcoded during installation and cannot be changed via UI.
+
+**Solution:** Fresh Shopware installation with CHF as base currency.
+
+**New container created:**
+```bash
+# CHF installation on port 8080
+docker run -d --name shopware-chf -p 8080:8080 -p 8443:443 dockware/dev:6.6.0.0
+
+# Install with CHF
+docker exec shopware-chf bash -c "cd /var/www/html && bin/console system:install --drop-database --create-database --basic-setup --shop-currency=CHF --shop-locale=de-CH --force"
+```
+
+**Migration steps:**
+1. Fresh install with CHF base currency
+2. Install RavenTheme
+3. Import products using scripts
+4. Upload images
+5. Configure Payrexx payment
+6. Test thoroughly
+7. Switch DNS to new installation
+
+---
 
 ## License
 
 Proprietary - RAVEN WEAPON AG
+
+---
+
+*Last updated: December 11, 2024*
