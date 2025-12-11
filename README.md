@@ -599,29 +599,105 @@ docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console assets:ins
 
 ## Migration Notes
 
-### EUR to CHF Base Currency Migration (In Progress)
+### EUR to CHF Base Currency Migration
 
 **Problem:** Shopware was installed with EUR as base currency. This is hardcoded during installation and cannot be changed via UI.
 
 **Solution:** Fresh Shopware installation with CHF as base currency.
 
-**New container created:**
-```bash
-# CHF installation on port 8080
-docker run -d --name shopware-chf -p 8080:8080 -p 8443:443 dockware/dev:6.6.0.0
+---
 
-# Install with CHF
-docker exec shopware-chf bash -c "cd /var/www/html && bin/console system:install --drop-database --create-database --basic-setup --shop-currency=CHF --shop-locale=de-CH --force"
+### Current Setup (December 2024)
+
+| Container | URL | Port | Currency | Status |
+|-----------|-----|------|----------|--------|
+| `ravenweapon-shop` | https://ortak.ch | 80/443 | EUR ❌ | OLD - Backup only |
+| `shopware-chf` | http://new.ortak.ch:8080 | 8080/8443 | CHF ✅ | NEW - Testing |
+
+---
+
+### MIGRATION PLAN
+
+#### PHASE 1: Setup & Testing (Current)
+- [x] Create fresh Shopware installation with CHF base currency
+- [x] Install RavenTheme
+- [x] Setup DNS subdomain `new.ortak.ch` (Cloudflare, DNS only mode)
+- [x] Configure Shopware domain for `http://new.ortak.ch:8080`
+- [ ] Create API credentials for CHF installation
+- [ ] Import 305 products using scripts
+- [ ] Upload product images
+- [ ] Test checkout flow
+- [ ] Configure Payrexx payment (requires Shopware upgrade to 6.6.5+)
+
+#### PHASE 2: Go Live - Swap Containers
+When testing is complete and everything works:
+
+```bash
+# 1. SSH to server
+ssh root@77.42.19.154
+
+# 2. Stop both containers
+docker stop ravenweapon-shop shopware-chf
+
+# 3. Change port mappings
+# Remove old containers (data persists in volumes)
+docker rm ravenweapon-shop shopware-chf
+
+# 4. Restart CHF container on main ports (80/443)
+cd /root
+docker-compose -f docker-compose-chf.yml down
+# Edit docker-compose-chf.yml: change 8080:80 to 80:80, 8443:443 to 443:443
+docker-compose -f docker-compose-chf.yml up -d
+
+# 5. Update Shopware domain to https://ortak.ch
+docker exec shopware-chf bash -c "mysql -u root -proot shopware -e \"UPDATE sales_channel_domain SET url='https://ortak.ch' WHERE url LIKE '%new.ortak.ch%'\""
+docker exec shopware-chf bash -c "sed -i 's|APP_URL=.*|APP_URL=https://ortak.ch|' /var/www/html/.env"
+docker exec shopware-chf bash -c "cd /var/www/html && bin/console cache:clear"
+
+# 6. Optionally start old EUR container on backup port
+docker-compose up -d  # This starts ravenweapon-shop on 8080
 ```
 
-**Migration steps:**
-1. Fresh install with CHF base currency
-2. Install RavenTheme
-3. Import products using scripts
-4. Upload images
-5. Configure Payrexx payment
-6. Test thoroughly
-7. Switch DNS to new installation
+#### PHASE 3: Cleanup
+After confirming everything works on the live site:
+
+1. **Delete DNS subdomain:**
+   - Go to Cloudflare → ortak.ch → DNS
+   - Delete the `new` A record
+
+2. **Keep or remove old EUR container:**
+   - Keep as backup: Leave running on port 8080
+   - Remove completely: `docker rm ravenweapon-shop`
+
+---
+
+### Final Result
+
+| What | URL | Description |
+|------|-----|-------------|
+| **Live Site** | https://ortak.ch | CHF installation (correct currency) |
+| **Admin** | https://ortak.ch/admin | Shopware admin panel |
+| **Backup** | http://77.42.19.154:8080 | Old EUR installation (optional) |
+
+---
+
+### Quick Commands for Migration Day
+
+```bash
+# Check container status
+docker ps
+
+# Check which container is on which port
+docker port ravenweapon-shop
+docker port shopware-chf
+
+# View logs if something goes wrong
+docker logs shopware-chf -f
+
+# Emergency rollback - restart old EUR container on main ports
+docker stop shopware-chf
+docker run -d --name ravenweapon-shop -p 80:80 -p 443:443 ... (from backup)
+```
 
 ---
 
