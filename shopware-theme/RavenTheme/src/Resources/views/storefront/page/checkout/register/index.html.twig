@@ -1,6 +1,18 @@
 {% sw_extends '@Storefront/storefront/page/checkout/register/index.html.twig' %}
 
+{# Redirect to login page - add meta refresh in head #}
+{% block base_head %}
+    {{ parent() }}
+    {% if not context.customer %}
+        <meta http-equiv="refresh" content="0;url={{ path('frontend.account.login.page') }}?redirectTo=frontend.checkout.confirm.page">
+    {% endif %}
+{% endblock %}
+
 {% block base_main_inner %}
+{# Also add JS redirect as backup #}
+{% if not context.customer %}
+    <script>window.location.replace('{{ path('frontend.account.login.page') }}?redirectTo=frontend.checkout.confirm.page');</script>
+{% else %}
 <div class="raven-checkout-register">
     <div class="checkout-wrapper">
         {# Logo Section #}
@@ -914,4 +926,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+{% endif %}
 {% endblock %}

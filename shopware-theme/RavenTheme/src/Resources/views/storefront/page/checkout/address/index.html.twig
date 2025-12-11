@@ -1,5 +1,15 @@
 {% sw_extends '@Storefront/storefront/page/checkout/address/index.html.twig' %}
 
+{# Redirect /checkout/register to login page #}
+{% block base_head %}
+    {{ parent() }}
+    {# Check if this is the checkout register route and user is not logged in #}
+    {% if app.request.attributes.get('_route') == 'frontend.checkout.register.page' and not context.customer %}
+        <meta http-equiv="refresh" content="0;url={{ path('frontend.account.login.page') }}?redirectTo=frontend.checkout.confirm.page">
+        <script>window.location.replace('{{ path('frontend.account.login.page') }}?redirectTo=frontend.checkout.confirm.page');</script>
+    {% endif %}
+{% endblock %}
+
 {% block base_header %}
     {# Custom minimal header for checkout #}
     <header class="raven-checkout-header">

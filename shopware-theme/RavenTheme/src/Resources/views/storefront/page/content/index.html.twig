@@ -162,8 +162,8 @@
                                         </div>
                                     </div>
                                     <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
-                                        <span style="width: 20px; height: 20px; border-radius: 50%; background: {% if product.availableStock > 0 or product.isCloseout == false %}#77C15A{% else %}#ef4444{% endif %}; display: inline-flex; align-items: center; justify-content: center;" title="{% if product.availableStock > 0 or product.isCloseout == false %}Verfügbar{% else %}Nicht verfügbar{% endif %}">
-                                            <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        <span style="width: 20px; height: 20px; border-radius: 50%; background: {% if product.availableStock > 0 or product.isCloseout == false %}linear-gradient(135deg, #22c55e 0%, #16a34a 100%){% else %}linear-gradient(135deg, #ef4444 0%, #dc2626 100%){% endif %}; display: inline-flex; align-items: center; justify-content: center;" title="{% if product.availableStock > 0 or product.isCloseout == false %}Verfügbar{% else %}Nicht verfügbar{% endif %}">
+                                            <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;">{% if product.availableStock > 0 or product.isCloseout == false %}<path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>{% else %}<path d="M6 18L18 6M6 6l12 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>{% endif %}</svg>
                                         </span>
                                         <form action="{{ path('frontend.checkout.line-item.add') }}" method="post" data-add-to-cart="true" class="add-to-cart-form">
                                             <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">
@@ -343,46 +343,128 @@
 (function() {
     'use strict';
 
-    // Direct offcanvas cart opener - doesn't rely on Shopware's plugin
-    function openOffcanvasCart() {
+    // Update cart item colors and images from localStorage
+    function updateCartColors() {
+        document.querySelectorAll('.raven-cart-item').forEach(function(item) {
+            var productId = item.getAttribute('data-product-id');
+            if (productId) {
+                var colorData = localStorage.getItem('raven_color_' + productId);
+                var colorSpan = item.querySelector('.raven-item-color');
+
+                if (colorData) {
+                    try {
+                        var data = JSON.parse(colorData);
+                        // Update color text
+                        if (colorSpan && data.color) {
+                            colorSpan.textContent = data.color;
+                        }
+                        // Update image if we have a stored image URL
+                        if (data.image) {
+                            var img = item.querySelector('.raven-item-image img, .raven-cart-item-img');
+                            if (img) {
+                                img.src = data.image;
+                            }
+                        }
+                    } catch(e) {}
+                } else {
+                    // Default to "Graphite Black" when no color is stored
+                    if (colorSpan && !colorSpan.textContent.trim()) {
+                        colorSpan.textContent = 'Graphite Black';
+                    }
+                }
+            }
+        });
+    }
+
+    // Direct offcanvas cart opener - shows immediately with loading state
+    function openOffcanvasCart(skipFetch) {
+        // Create backdrop first (show immediately)
+        var backdrop = document.getElementById('raven-offcanvas-backdrop');
+        if (!backdrop) {
+            backdrop = document.createElement('div');
+            backdrop.id = 'raven-offcanvas-backdrop';
+            backdrop.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.15s;';
+            backdrop.onclick = closeOffcanvasCart;
+            document.body.appendChild(backdrop);
+        }
+        backdrop.offsetHeight;
+        backdrop.style.opacity = '1';
+
+        // Create or get offcanvas (show immediately with loading)
+        var offcanvas = document.getElementById('raven-offcanvas-cart');
+        if (!offcanvas) {
+            offcanvas = document.createElement('div');
+            offcanvas.id = 'raven-offcanvas-cart';
+            offcanvas.className = 'offcanvas offcanvas-end';
+            var isMobile = window.innerWidth <= 480;
+            offcanvas.style.cssText = 'position:fixed;top:0;right:0;bottom:0;width:' + (isMobile ? '100%' : '420px') + ';max-width:100vw;z-index:1050;background:#fff;transform:translateX(100%);transition:transform 0.3s ease;box-shadow:-4px 0 15px rgba(0,0,0,0.1);';
+            document.body.appendChild(offcanvas);
+        }
+
+        // Always show loading state initially
+        offcanvas.innerHTML = '<div style="display:flex;flex-direction:column;height:100%;"><div style="padding:20px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;"><h2 style="font-size:18px;font-weight:600;margin:0;">Warenkorb</h2><button class="raven-cart-close" style="background:none;border:none;cursor:pointer;padding:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div style="flex:1;display:flex;align-items:center;justify-content:center;"><div style="text-align:center;"><div style="width:40px;height:40px;border:3px solid #e5e7eb;border-top-color:#f59e0b;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px;"></div><p style="color:#6b7280;font-size:14px;">Lädt...</p></div></div></div><style>@keyframes spin{to{transform:rotate(360deg)}}</style>';
+
+        // Force reflow and slide in immediately
+        offcanvas.offsetHeight;
+        offcanvas.style.transform = 'translateX(0)';
+        offcanvas.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+        // Attach close handler to loading state
+        var closeBtn = offcanvas.querySelector('.raven-cart-close');
+        if (closeBtn) {
+            closeBtn.onclick = function(e) {
+                e.preventDefault();
+                closeOffcanvasCart();
+            };
+        }
+
+        // Fetch actual content (unless skipFetch is true)
+        if (!skipFetch) {
+            fetch('/checkout/offcanvas', {
+                method: 'GET',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(function(response) { return response.text(); })
+            .then(function(html) {
+                offcanvas.innerHTML = '<div class="offcanvas-body p-0">' + html + '</div>';
+                // Attach close handlers to loaded content
+                offcanvas.querySelectorAll('[data-offcanvas-close], .js-offcanvas-close, .raven-cart-close').forEach(function(btn) {
+                    btn.onclick = function(e) {
+                        e.preventDefault();
+                        closeOffcanvasCart();
+                    };
+                });
+                // Update cart colors from localStorage
+                setTimeout(updateCartColors, 50);
+                setTimeout(updateCartColors, 150);
+                setTimeout(updateCartColors, 300);
+            });
+        }
+    }
+
+    // Update offcanvas content (for use after add-to-cart)
+    function updateOffcanvasContent() {
+        var offcanvas = document.getElementById('raven-offcanvas-cart');
+        if (!offcanvas || !offcanvas.classList.contains('show')) return;
+
         fetch('/checkout/offcanvas', {
             method: 'GET',
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
         .then(function(response) { return response.text(); })
         .then(function(html) {
-            var offcanvas = document.getElementById('raven-offcanvas-cart');
-            if (!offcanvas) {
-                offcanvas = document.createElement('div');
-                offcanvas.id = 'raven-offcanvas-cart';
-                offcanvas.className = 'offcanvas offcanvas-end';
-                var isMobile = window.innerWidth <= 480;
-                offcanvas.style.cssText = 'position:fixed;top:0;right:0;bottom:0;width:' + (isMobile ? '100%' : '420px') + ';max-width:100vw;z-index:1050;background:#fff;transform:translateX(100%);transition:transform 0.3s ease;box-shadow:-4px 0 15px rgba(0,0,0,0.1);';
-                document.body.appendChild(offcanvas);
-            }
             offcanvas.innerHTML = '<div class="offcanvas-body p-0">' + html + '</div>';
-            offcanvas.style.transform = 'translateX(0)';
-            offcanvas.classList.add('show');
-
-            // Create backdrop
-            var backdrop = document.getElementById('raven-offcanvas-backdrop');
-            if (!backdrop) {
-                backdrop = document.createElement('div');
-                backdrop.id = 'raven-offcanvas-backdrop';
-                backdrop.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.15s;';
-                backdrop.onclick = closeOffcanvasCart;
-                document.body.appendChild(backdrop);
-            }
-            setTimeout(function() { backdrop.style.opacity = '1'; }, 10);
-            document.body.style.overflow = 'hidden';
-
-            // Attach close handlers to any close buttons in the cart
             offcanvas.querySelectorAll('[data-offcanvas-close], .js-offcanvas-close, .raven-cart-close').forEach(function(btn) {
                 btn.onclick = function(e) {
                     e.preventDefault();
                     closeOffcanvasCart();
                 };
             });
+            // Update cart colors from localStorage
+            setTimeout(updateCartColors, 50);
+            setTimeout(updateCartColors, 150);
+            setTimeout(updateCartColors, 300);
         });
     }
 
@@ -417,6 +499,10 @@
                         closeOffcanvasCart();
                     };
                 });
+                // Update cart colors from localStorage
+                setTimeout(updateCartColors, 50);
+                setTimeout(updateCartColors, 150);
+                setTimeout(updateCartColors, 300);
             });
         }
     }
@@ -451,17 +537,51 @@
             e.preventDefault();
             e.stopImmediatePropagation();
             var formData = new FormData(form);
+
+            // Save default color "Graphite Black" to localStorage for homepage add-to-cart
+            // This ensures the cart sidebar and checkout show the color variant
+            var productIdInput = form.querySelector('input[name*="[id]"]');
+            if (productIdInput) {
+                var productId = productIdInput.value;
+                // Only set if no color is already saved for this product
+                if (!localStorage.getItem('raven_color_' + productId)) {
+                    localStorage.setItem('raven_color_' + productId, JSON.stringify({color: 'Graphite Black', image: ''}));
+                }
+            }
+
+            // Open sidebar IMMEDIATELY with loading state
+            openOffcanvasCart(true);
+
+            // Then add to cart and update content
             fetch(action, {
                 method: 'POST',
                 body: formData,
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
             }).then(function() {
-                // Directly open our custom offcanvas cart
-                openOffcanvasCart();
+                updateOffcanvasContent();
             });
             return false;
         }
     }, true);
+
+    // Save default color on add-to-cart button click (before Shopware handles it)
+    document.addEventListener('click', function(e) {
+        var addToCartBtn = e.target.closest('form[data-add-to-cart] button[type="submit"], form.add-to-cart-form button[type="submit"]');
+        if (addToCartBtn) {
+            var form = addToCartBtn.closest('form');
+            if (form) {
+                var productIdInput = form.querySelector('input[name*="[id]"]');
+                if (productIdInput) {
+                    var productId = productIdInput.value;
+                    // Save default color "Graphite Black" if no color already saved
+                    if (!localStorage.getItem('raven_color_' + productId)) {
+                        localStorage.setItem('raven_color_' + productId, JSON.stringify({color: 'Graphite Black', image: ''}));
+                        console.log('Saved default color Graphite Black for product:', productId);
+                    }
+                }
+            }
+        }
+    }, true); // Use capture phase to run BEFORE Shopware's handlers
 
     // Handle quantity and delete button clicks
     document.addEventListener('click', function(e) {

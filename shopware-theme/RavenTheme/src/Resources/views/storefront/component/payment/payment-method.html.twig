@@ -1,0 +1,70 @@
+{% sw_extends '@Storefront/storefront/component/payment/payment-method.html.twig' %}
+
+{# Override the payment method field to add collapsible content area #}
+{% block component_payment_method_field %}
+    {% if selectedPaymentMethodId is not defined %}
+        {% set selectedPaymentMethodId = context.paymentMethod.id %}
+    {% endif %}
+
+    {% set isSelected = payment.id is same as(selectedPaymentMethodId) %}
+
+    {# Determine if this is a redirect payment #}
+    {% set redirectPayments = ['twint', 'postfinance', 'paypal', 'eps', 'ideal', 'sofort', 'giropay', 'bancontact', 'kreditkarte'] %}
+    {% set paymentNameLower = payment.translated.name|lower %}
+    {% set isRedirectPayment = false %}
+    {% for redirectName in redirectPayments %}
+        {% if redirectName in paymentNameLower %}
+            {% set isRedirectPayment = true %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="payment-method-item{% if isSelected %} is-selected{% endif %}"
+         data-payment-method-id="{{ payment.id }}"
+         data-payment-method-name="{{ paymentNameLower|replace({' ': '-'}) }}">
+
+        {# Payment method header (radio + name + icon) #}
+        <div class="payment-method-header">
+            {{ parent() }}
+        </div>
+
+        {# Collapsible payment method content - shows when selected #}
+        <div class="payment-method-content{% if isSelected %} is-visible{% endif %}">
+            <div class="payment-method-content-inner">
+                {% if isRedirectPayment %}
+                    {# Redirect illustration and message #}
+                    <div class="payment-redirect-info">
+                        <div class="redirect-illustration">
+                            <svg width="120" height="60" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                {# Browser window icon #}
+                                <rect x="10" y="10" width="45" height="35" rx="3" stroke="#9CA3AF" stroke-width="1.5" fill="white"/>
+                                <rect x="10" y="10" width="45" height="8" rx="3" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
+                                <circle cx="17" cy="14" r="1.5" fill="#9CA3AF"/>
+                                <circle cx="22" cy="14" r="1.5" fill="#9CA3AF"/>
+                                <circle cx="27" cy="14" r="1.5" fill="#9CA3AF"/>
+
+                                {# Dotted arrow #}
+                                <line x1="60" y1="27" x2="75" y2="27" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="3 3"/>
+                                <polyline points="72,23 78,27 72,31" stroke="#9CA3AF" stroke-width="1.5" fill="none"/>
+
+                                {# Payment provider window #}
+                                <rect x="82" y="15" width="30" height="25" rx="3" stroke="#D4A847" stroke-width="1.5" fill="white"/>
+                                <rect x="86" y="22" width="22" height="3" rx="1" fill="#E5E7EB"/>
+                                <rect x="86" y="28" width="15" height="3" rx="1" fill="#E5E7EB"/>
+                            </svg>
+                        </div>
+                        <p class="redirect-message">
+                            Nach dem Klicken auf "Jetzt kaufen" wirst du zu {{ payment.translated.name }} weitergeleitet, um deinen Einkauf sicher abzuschliessen.
+                        </p>
+                    </div>
+                {% else %}
+                    {# Default: show description if available #}
+                    {% if payment.translated.description %}
+                        <div class="payment-description-text">
+                            {{ payment.translated.description|raw }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -45,29 +45,6 @@
             <div class="raven-filter-bar" style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; gap: 0.75rem; flex-wrap: wrap;">
                 {# Left side: Filter buttons - Same as category pages #}
                 <div class="raven-filters-left" style="display: flex; flex-wrap: wrap; gap: 0.625rem;">
-                    {# Farbe (Color) Filter #}
-                    <div class="raven-filter-group" style="position: relative;">
-                        <button type="button" class="raven-filter-btn" data-filter-toggle="color" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: #333; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;">
-                            Farbe
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.7;"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="raven-filter-dropdown" data-filter-panel="color" style="display: none; position: absolute; top: 100%; left: 0; margin-top: 8px; min-width: 260px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 100; padding: 1rem;">
-                            <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
-                                <input type="checkbox" id="color-black" value="black" data-filter-color style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
-                                <label for="color-black" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">Schwarz</label>
-                            </div>
-                            <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
-                                <input type="checkbox" id="color-fde" value="fde" data-filter-color style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
-                                <label for="color-fde" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">FDE / Tan</label>
-                            </div>
-                            <div class="raven-filter-option" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; cursor: pointer;">
-                                <input type="checkbox" id="color-odg" value="odg" data-filter-color style="width: 18px; height: 18px; accent-color: #D4A847; cursor: pointer;">
-                                <label for="color-odg" style="font-size: 0.875rem; color: #374151; cursor: pointer; flex: 1;">OD Green</label>
-                            </div>
-                            <button type="button" class="raven-filter-apply" data-apply-filter="color" style="width: 100%; margin-top: 1rem; padding: 0.625rem 1rem; background: #333; color: white; border: none; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer;">Anwenden</button>
-                        </div>
-                    </div>
-
                     {# Preis (Price) Filter #}
                     <div class="raven-filter-group" style="position: relative;">
                         <button type="button" class="raven-filter-btn" data-filter-toggle="price" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.125rem; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 9999px; font-size: 0.9375rem; font-weight: 500; color: #333; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;">
@@ -336,8 +313,8 @@
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; margin-top: -0.5rem;">
-                                <span style="width: 20px; height: 20px; border-radius: 50%; background: {% if product.availableStock > 0 or product.isCloseout == false %}#77C15A{% else %}#ef4444{% endif %}; display: inline-flex; align-items: center; justify-content: center;" title="{% if product.availableStock > 0 or product.isCloseout == false %}Verfügbar{% else %}Nicht verfügbar{% endif %}">
-                                    <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <span style="width: 20px; height: 20px; border-radius: 50%; background: {% if product.availableStock > 0 or product.isCloseout == false %}linear-gradient(135deg, #22c55e 0%, #16a34a 100%){% else %}linear-gradient(135deg, #ef4444 0%, #dc2626 100%){% endif %}; display: inline-flex; align-items: center; justify-content: center;" title="{% if product.availableStock > 0 or product.isCloseout == false %}Verfügbar{% else %}Nicht verfügbar{% endif %}">
+                                    <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;">{% if product.availableStock > 0 or product.isCloseout == false %}<path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>{% else %}<path d="M6 18L18 6M6 6l12 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>{% endif %}</svg>
                                 </span>
                                 <form action="{{ path('frontend.checkout.line-item.add') }}" method="post" data-form-csrf-handler="true">
                                     <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">

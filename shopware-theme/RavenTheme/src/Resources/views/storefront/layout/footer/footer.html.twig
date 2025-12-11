@@ -210,6 +210,40 @@
 <svg onload="(function(){function c(){fetch('/checkout/offcanvas',{method:'GET',headers:{'X-Requested-With':'XMLHttpRequest'}}).then(function(r){return r.text()}).then(function(h){var o=document.getElementById('raven-offcanvas-cart');if(!o){o=document.createElement('div');o.id='raven-offcanvas-cart';o.style.cssText='position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;z-index:1050;background:#fff;transform:translateX(100%);transition:transform 0.3s ease;box-shadow:-4px 0 15px rgba(0,0,0,0.1);';document.body.appendChild(o)}o.innerHTML=h;o.style.transform='translateX(0)';var b=document.getElementById('raven-offcanvas-backdrop');if(!b){b=document.createElement('div');b.id='raven-offcanvas-backdrop';b.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.15s;';b.onclick=d;document.body.appendChild(b)}setTimeout(function(){b.style.opacity='1'},10);document.body.style.overflow='hidden';o.querySelectorAll('[data-offcanvas-close],.raven-cart-close').forEach(function(x){x.onclick=d});if(window.PluginManager)window.PluginManager.initializePlugins()})}function d(){var o=document.getElementById('raven-offcanvas-cart'),b=document.getElementById('raven-offcanvas-backdrop');if(o)o.style.transform='translateX(100%)';if(b){b.style.opacity='0';setTimeout(function(){b.remove()},150)}document.body.style.overflow=''}window.ravenOpenCart=c;window.ravenCloseCart=d;document.addEventListener('click',function(e){if(e.target.closest('[data-offcanvas-cart]')){e.preventDefault();c()}})})();" style="display:none!important;position:absolute;width:0;height:0;overflow:hidden;"></svg>
 
 <script>
+// Raven Theme - Cart Color Updater (global)
+(function() {
+    function updateCartColors() {
+        document.querySelectorAll('.raven-cart-item').forEach(function(item) {
+            var productId = item.getAttribute('data-product-id');
+            if (productId) {
+                var colorData = localStorage.getItem('raven_color_' + productId);
+                if (colorData) {
+                    try {
+                        var data = JSON.parse(colorData);
+                        var colorSpan = item.querySelector('.raven-item-color');
+                        if (colorSpan && data.color && !colorSpan.textContent) {
+                            colorSpan.textContent = data.color;
+                        }
+                    } catch(e) {}
+                }
+            }
+        });
+    }
+
+    // Watch for cart items being added to DOM
+    if (typeof MutationObserver !== 'undefined') {
+        var observer = new MutationObserver(function(mutations) {
+            if (document.querySelector('.raven-cart-item')) {
+                updateCartColors();
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Also expose globally
+    window.updateCartColors = updateCartColors;
+})();
+
 // Raven Theme - Off-Canvas Cart Handler (backup)
 (function() {
     function ravenOpenCart() {

@@ -1,6 +1,36 @@
 # RAVEN WEAPON AG - Shopware E-Commerce
 
-Swiss firearms e-commerce platform built on Shopware 6.6 with custom RavenTheme.
+Swiss firearms e-commerce platform built on Shopware 6 with custom RavenTheme.
+
+## Production Server (Hetzner)
+
+| Info | Value |
+|------|-------|
+| **Provider** | Hetzner |
+| **IP Address** | 77.42.19.154 |
+| **SSH User** | root |
+| **Domain** | ortak.ch |
+| **Shopware Version** | 6.7.5.0 |
+| **Admin URL** | https://ortak.ch/admin |
+| **Admin User** | admin |
+| **Admin Password** | shopware |
+
+### API Credentials
+```
+Client ID: SWIAC3HJVHFJMHQYRWRUM1E1SG
+Client Secret: RGtsN1Z2TklqU1ZZSVFTOFB6bWZXNWZNNk40V2h4RWY5Q2tPblg
+```
+
+### Current Installation Status
+- **Base Currency**: EUR (set during installation - CANNOT be changed easily)
+- **Sales Channel Currency**: CHF (customers see CHF)
+- **Products**: 305 total (193 Snigel products)
+- **Theme**: RavenTheme (custom)
+
+### Known Issue
+The system base currency is EUR (hardcoded during installation). To properly have CHF as base currency, a fresh installation is needed.
+
+---
 
 ## Quick Start (Windows)
 

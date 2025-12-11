@@ -251,11 +251,12 @@ a[href=""].product-detail-manufacturer-link,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
-  width: 38px;
-  border-radius: 0.375rem;
-  border: 1px solid #d1d5db;
+  height: 42px;
+  width: 42px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
   color: #4b5563;
+  background: #ffffff;
   transition: background-color 150ms ease;
 
   &:hover {
@@ -269,22 +270,20 @@ a[href=""].product-detail-manufacturer-link,
 }
 
 .raven-cart-badge {
-  position: absolute;
-  top: -0.5rem;
-  right: -0.5rem;
-  background: linear-gradient(to right, #fde047, #f59e0b, #eab308);
-  color: #000000;
-  font-size: 10px;
-  line-height: 1;
-  width: 1.25rem;
-  height: 1.25rem;
-  border-radius: 9999px;
-  display: flex;
+  position: static;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  margin-left: 6px;
+  background: linear-gradient(135deg, #facc15, #f59e0b);
+  color: #000;
+  font-size: 11px;
   font-weight: 700;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid $gold-border;
+  border-radius: 11px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 .raven-search-input {

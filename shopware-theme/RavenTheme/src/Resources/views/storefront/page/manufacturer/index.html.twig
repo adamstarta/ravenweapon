@@ -378,8 +378,8 @@
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
-                                <span style="width: 20px; height: 20px; border-radius: 50%; background: {% if product.availableStock > 0 or product.isCloseout == false %}#77C15A{% else %}#ef4444{% endif %}; display: inline-flex; align-items: center; justify-content: center;">
-                                    <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <span style="width: 20px; height: 20px; border-radius: 50%; background: {% if product.availableStock > 0 or product.isCloseout == false %}linear-gradient(135deg, #22c55e 0%, #16a34a 100%){% else %}linear-gradient(135deg, #ef4444 0%, #dc2626 100%){% endif %}; display: inline-flex; align-items: center; justify-content: center;">
+                                    <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;">{% if product.availableStock > 0 or product.isCloseout == false %}<path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>{% else %}<path d="M6 18L18 6M6 6l12 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>{% endif %}</svg>
                                 </span>
                                 <form action="{{ path('frontend.checkout.line-item.add') }}" method="post" data-form-csrf-handler="true">
                                     <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">

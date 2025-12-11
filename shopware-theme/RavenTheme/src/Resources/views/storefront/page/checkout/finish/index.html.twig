@@ -1,20 +1,17 @@
 {% sw_extends '@Storefront/storefront/page/checkout/finish/index.html.twig' %}
 
-{% block base_header %}
-    {# Custom minimal header for checkout #}
+{% block base_esi_header %}
     <header class="raven-checkout-header">
         <div class="checkout-header-inner">
-            <a href="{{ path('frontend.home.page') }}" class="checkout-logo">
-                <div style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:40px;width:180px;"></div>
+            <a href="{{ path('frontend.home.page') }}" class="checkout-logo" aria-label="Raven Weapon home">
+                <div style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:36px;width:160px;"></div>
             </a>
-            <div class="checkout-contact">
-                <span>Fragen? <a href="tel:+41793561986">+41 79 356 19 86</a></span>
-            </div>
+            <a href="{{ path('frontend.home.page') }}" class="back-to-shop-link">Weiter einkaufen</a>
         </div>
     </header>
 {% endblock %}
 
-{% block base_footer %}
+{% block base_esi_footer %}
     <footer class="raven-checkout-footer">
         <div class="checkout-footer-inner">
             <div class="footer-trust">
@@ -27,16 +24,22 @@
                     Sicherer Checkout
                 </span>
             </div>
-            <p class="footer-copyright">© {{ 'now'|date('Y') }} Raven Weapon AG</p>
+            <p class="footer-copyright">&copy; {{ 'now'|date('Y') }} Raven Weapon AG</p>
         </div>
     </footer>
 {% endblock %}
 
-{% block page_checkout %}
+{% block page_checkout_finish %}
 <style>
-/* Raven Checkout Finish Styles */
-body {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+/* ============================================
+   RAVEN CHECKOUT FINISH - Professional E-commerce
+   ============================================ */
+
+* { box-sizing: border-box; }
+
+body.raven-checkout-finish {
+    background: #f8fafc !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
 /* Header */
@@ -47,7 +50,7 @@ body {
 }
 
 .checkout-header-inner {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 1.5rem;
     display: flex;
@@ -66,199 +69,465 @@ body {
     text-decoration: none;
 }
 
-.checkout-contact a:hover {
-    text-decoration: underline;
+.back-to-shop-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #F2B90D, #f59e0b);
+    color: #1f2937;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(242, 185, 13, 0.3);
+}
+
+.back-to-shop-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(242, 185, 13, 0.4);
+    color: #1f2937;
 }
 
 /* Progress Steps */
 .checkout-progress {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
 .progress-step {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
 }
 
 .step-number {
-    width: 44px !important;
-    height: 44px !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
-    border-radius: 50% !important;
-    background: #e5e7eb !important;
-    color: #6b7280 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    line-height: 1 !important;
-}
-
-.progress-step.active .step-number {
-    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 100%) !important;
-    color: #1f2937 !important;
-    box-shadow: 0 4px 12px rgba(242, 185, 13, 0.35) !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
 }
 
 .progress-step.completed .step-number {
-    background: #22c55e !important;
-    color: white !important;
+    background: #22c55e;
+    color: white;
+}
+
+.progress-step.active .step-number {
+    background: linear-gradient(135deg, #F2B90D, #f59e0b);
+    color: #1f2937;
+    box-shadow: 0 4px 12px rgba(242, 185, 13, 0.35);
 }
 
 .step-label {
-    display: block !important;
-    font-size: 0.8125rem !important;
-    color: #6b7280 !important;
-    font-weight: 500 !important;
-    text-align: center !important;
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
 }
 
 .progress-step.active .step-label,
 .progress-step.completed .step-label {
-    color: #111827 !important;
-    font-weight: 600 !important;
+    color: #111827;
+    font-weight: 600;
 }
 
 .progress-line {
-    flex: 1 !important;
-    height: 2px !important;
-    background: #e5e7eb !important;
-    margin: 0 1rem !important;
-    max-width: 80px;
-    margin-bottom: 1.75rem !important;
+    flex: 1;
+    height: 2px;
+    background: #e5e7eb;
+    margin: 0 0.75rem;
+    max-width: 60px;
+    margin-bottom: 1.5rem;
 }
 
 .progress-line.completed {
-    background: #22c55e !important;
+    background: #22c55e;
 }
 
-/* Success Message */
+/* Success Container */
 .raven-success-container {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
     text-align: center;
 }
 
 .raven-success-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
 }
 
 .raven-success-icon svg {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     color: white;
 }
 
 .raven-success-title {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: #111827;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.5rem 0;
 }
 
 .raven-success-subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: #6b7280;
-    margin-bottom: 2rem;
+    margin: 0 0 1.5rem 0;
 }
 
 .raven-order-number {
     display: inline-block;
-    background: #f3f4f6;
+    background: white;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
-    padding: 1rem 2rem;
-    margin-bottom: 2rem;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .raven-order-number-label {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     color: #6b7280;
     margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .raven-order-number-value {
     font-family: 'Chakra Petch', monospace;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #111827;
 }
 
-/* Order Summary Card */
-.raven-order-summary {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin: 2rem auto;
-    max-width: 600px;
+/* Bank Transfer Info */
+.raven-bank-transfer-info {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    border: 2px solid #F2B90D;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 0 auto 1.5rem;
+    max-width: 420px;
     text-align: left;
 }
 
-.raven-order-summary h3 {
+.raven-bank-transfer-info h3 {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #f3f4f6;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #92400e;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-/* Continue Shopping Button */
+.raven-bank-transfer-info h3 svg {
+    color: #f59e0b;
+}
+
+.bank-transfer-intro {
+    font-size: 0.875rem;
+    color: #78350f;
+    margin: 0 0 0.75rem 0;
+}
+
+.bank-details-grid {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #fcd34d;
+}
+
+.bank-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid #fef3c7;
+}
+
+.bank-detail-row:last-child {
+    border-bottom: none;
+}
+
+.bank-detail-row.highlight {
+    background: #fef3c7;
+}
+
+.bank-detail-label {
+    font-size: 0.8125rem;
+    color: #78350f;
+    font-weight: 500;
+}
+
+.bank-detail-value {
+    font-size: 0.8125rem;
+    color: #1f2937;
+    text-align: right;
+}
+
+.bank-detail-value strong {
+    font-weight: 700;
+    color: #111827;
+}
+
+.bank-transfer-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #92400e;
+    margin: 0.75rem 0 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px dashed #fcd34d;
+}
+
+/* Continue Button */
 .raven-continue-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 50%, #F2B90D 100%) !important;
-    background-size: 200% 100% !important;
-    color: #1f2937 !important;
-    font-weight: 700 !important;
-    border: none !important;
-    border-radius: 12px !important;
-    padding: 1rem 2rem !important;
-    font-size: 1rem !important;
-    text-decoration: none !important;
-    box-shadow: 0 4px 14px rgba(242, 185, 13, 0.35) !important;
-    transition: all 0.3s ease !important;
+    background: linear-gradient(135deg, #F2B90D, #f59e0b);
+    color: #1f2937;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(242, 185, 13, 0.35);
+    transition: all 0.2s ease;
+    margin-bottom: 2rem;
 }
 
 .raven-continue-btn:hover {
-    background-position: 100% 0 !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(242, 185, 13, 0.45) !important;
-    color: #1f2937 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(242, 185, 13, 0.45);
+    color: #1f2937;
+}
+
+/* ============================================
+   ORDER DETAILS SECTION
+   ============================================ */
+
+.raven-order-details {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    padding: 0 1.5rem;
+}
+
+/* Info Cards Row */
+.order-info-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 640px) {
+    .order-info-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.info-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.info-card-header {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: #6b7280;
+    background: #f9fafb;
+    padding: 0.625rem 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.info-card-body {
+    padding: 0.875rem;
+    font-size: 0.8125rem;
+    color: #374151;
+    line-height: 1.5;
+}
+
+.info-card-body strong {
+    color: #111827;
+    font-weight: 600;
+}
+
+/* Product Table */
+.order-products {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.order-products-header {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: #6b7280;
+    background: #f9fafb;
+    padding: 0.625rem 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e5e7eb;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 1rem;
+}
+
+.product-item {
+    display: grid;
+    grid-template-columns: 50px 1fr auto auto;
+    gap: 0.75rem;
+    padding: 0.875rem;
+    align-items: center;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
+.product-info {
+    min-width: 0;
+}
+
+.product-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-sku {
+    font-size: 0.6875rem;
+    color: #6b7280;
+}
+
+.product-qty {
+    font-size: 0.8125rem;
+    color: #374151;
+    text-align: center;
+    min-width: 40px;
+}
+
+.product-price {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111827;
+    text-align: right;
+    min-width: 90px;
+}
+
+/* Order Summary */
+.order-summary {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 320px;
+    margin-left: auto;
+}
+
+.order-summary-header {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #111827;
+    background: #f9fafb;
+    padding: 0.625rem 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.order-summary-body {
+    padding: 0.875rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.375rem 0;
+    font-size: 0.8125rem;
+}
+
+.summary-row .label {
+    color: #6b7280;
+}
+
+.summary-row .value {
+    color: #111827;
+    font-weight: 500;
+}
+
+.summary-row.total {
+    border-top: 2px solid #111827;
+    margin-top: 0.5rem;
+    padding-top: 0.625rem;
+}
+
+.summary-row.total .label,
+.summary-row.total .value {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #111827;
 }
 
 /* Footer */
 .raven-checkout-footer {
     background: white;
     border-top: 1px solid #e5e7eb;
-    padding: 1.5rem 0;
-    margin-top: 3rem;
+    padding: 1.25rem 0;
+    margin-top: 2rem;
 }
 
 .checkout-footer-inner {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 1.5rem;
     text-align: center;
@@ -267,15 +536,15 @@ body {
 .footer-trust {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1rem;
+    gap: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .trust-badge {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
+    gap: 0.375rem;
+    font-size: 0.75rem;
     color: #6b7280;
 }
 
@@ -284,38 +553,33 @@ body {
 }
 
 .footer-copyright {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     color: #9ca3af;
     margin: 0;
 }
 
-/* Override default styles */
-.finish-header {
+/* Hide default Shopware finish page elements */
+.finish-order-details,
+.checkout-finish-container,
+.checkout-aside {
     display: none !important;
-}
-
-.checkout-finish-container {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 </style>
 
-{# Progress Steps #}
-<div class="checkout-progress">
-    <div class="progress-step completed">
-        <span class="step-number">&#10003;</span>
-        <span class="step-label">Anmeldung</span>
+{% if page.order is not defined or page.order is null %}
+{# Fallback when order not found #}
+<div style="max-width: 500px; margin: 4rem auto; text-align: center; padding: 2rem;">
+    <div style="width: 70px; height: 70px; background: #f3f4f6; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
     </div>
-    <div class="progress-line completed"></div>
-    <div class="progress-step completed">
-        <span class="step-number">&#10003;</span>
-        <span class="step-label">Zahlung</span>
-    </div>
-    <div class="progress-line completed"></div>
-    <div class="progress-step active">
-        <span class="step-number">3</span>
-        <span class="step-label">Bestaetigung</span>
-    </div>
+    <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: 1.5rem; color: #111827; margin: 0 0 0.75rem 0;">Bestellung nicht gefunden</h2>
+    <p style="color: #6b7280; margin: 0 0 1.5rem 0;">Diese Bestellung ist nicht mehr verfuegbar oder der Link ist abgelaufen.</p>
+    <a href="{{ path('frontend.home.page') }}" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #F2B90D, #f59e0b); color: #1f2937; font-weight: 700; border-radius: 10px; padding: 0.875rem 1.5rem; text-decoration: none;">
+        Zur Startseite
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
 </div>
+{% else %}
 
 <div class="raven-success-container">
     {# Success Icon #}
@@ -327,19 +591,60 @@ body {
 
     {# Success Message #}
     <h1 class="raven-success-title">Vielen Dank fuer Ihre Bestellung!</h1>
-    <p class="raven-success-subtitle">Wir haben Ihre Bestellung erhalten und werden sie schnellstmoeglich bearbeiten.</p>
+    <p class="raven-success-subtitle">Bestellbestaetigung wurde an Ihre E-Mail gesendet.</p>
 
     {# Order Number #}
     {% if page.order.orderNumber is defined %}
     <div class="raven-order-number">
         <div class="raven-order-number-label">Bestellnummer</div>
-        <div class="raven-order-number-value">{{ page.order.orderNumber }}</div>
+        <div class="raven-order-number-value">#{{ page.order.orderNumber }}</div>
+    </div>
+    {% endif %}
+
+    {# Bank Transfer Details #}
+    {% set paymentMethod = page.order.transactions.first.paymentMethod %}
+    {% if paymentMethod and (paymentMethod.shortName == 'paid_in_advance' or paymentMethod.translated.name == 'Paid in advance' or paymentMethod.translated.name == 'Vorkasse') %}
+    <div class="raven-bank-transfer-info">
+        <h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+            Zahlungsinformationen
+        </h3>
+        <p class="bank-transfer-intro">Bitte ueberweisen Sie den Betrag auf folgendes Konto:</p>
+        <div class="bank-details-grid">
+            <div class="bank-detail-row">
+                <span class="bank-detail-label">Kontoinhaber</span>
+                <span class="bank-detail-value">Nikola Mitrovic</span>
+            </div>
+            <div class="bank-detail-row">
+                <span class="bank-detail-label">Bank</span>
+                <span class="bank-detail-value">PostFinance</span>
+            </div>
+            <div class="bank-detail-row">
+                <span class="bank-detail-label">IBAN</span>
+                <span class="bank-detail-value"><strong>CH6009000000165059892</strong></span>
+            </div>
+            <div class="bank-detail-row">
+                <span class="bank-detail-label">BIC/SWIFT</span>
+                <span class="bank-detail-value">POFICHBEXXX</span>
+            </div>
+            <div class="bank-detail-row highlight">
+                <span class="bank-detail-label">Verwendungszweck</span>
+                <span class="bank-detail-value"><strong>{{ page.order.orderNumber }}</strong></span>
+            </div>
+        </div>
+        <p class="bank-transfer-note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            Nach Zahlungseingang wird Ihre Bestellung bearbeitet.
+        </p>
     </div>
     {% endif %}
 
     {# Continue Shopping Button #}
     <a href="{{ path('frontend.home.page') }}" class="raven-continue-btn">
-        <span>Weiter einkaufen</span>
+        Weiter einkaufen
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -347,7 +652,101 @@ body {
     </a>
 </div>
 
-{{ parent() }}
+{# Custom Order Details #}
+<div class="raven-order-details">
+    {# Address & Info Row #}
+    <div class="order-info-row">
+        {# Shipping Address #}
+        <div class="info-card">
+            <div class="info-card-header">Lieferadresse</div>
+            <div class="info-card-body">
+                {% set delivery = page.order.deliveries.first %}
+                {% if delivery %}
+                    <strong>{{ delivery.shippingOrderAddress.firstName }} {{ delivery.shippingOrderAddress.lastName }}</strong><br>
+                    {{ delivery.shippingOrderAddress.street }}<br>
+                    {{ delivery.shippingOrderAddress.zipcode }} {{ delivery.shippingOrderAddress.city }}<br>
+                    {{ delivery.shippingOrderAddress.country.translated.name }}
+                {% endif %}
+            </div>
+        </div>
+
+        {# Billing Address #}
+        <div class="info-card">
+            <div class="info-card-header">Rechnungsadresse</div>
+            <div class="info-card-body">
+                {% set billingAddress = page.order.billingAddress %}
+                {% if billingAddress %}
+                    <strong>{{ billingAddress.firstName }} {{ billingAddress.lastName }}</strong><br>
+                    {{ billingAddress.street }}<br>
+                    {{ billingAddress.zipcode }} {{ billingAddress.city }}<br>
+                    {% if billingAddress.country %}{{ billingAddress.country.translated.name }}{% endif %}
+                {% elseif delivery %}
+                    <em>Gleich wie Lieferadresse</em>
+                {% endif %}
+            </div>
+        </div>
+
+        {# Payment & Shipping Info #}
+        <div class="info-card">
+            <div class="info-card-header">Informationen</div>
+            <div class="info-card-body">
+                <strong>Zahlung:</strong> {{ page.order.transactions.first.paymentMethod.translated.name }}<br>
+                <strong>Versand:</strong> {% if page.order.deliveries.first %}{{ page.order.deliveries.first.shippingMethod.translated.name }}{% else %}Standard{% endif %}
+            </div>
+        </div>
+    </div>
+
+    {# Products #}
+    <div class="order-products">
+        <div class="order-products-header">
+            <span>Produkt</span>
+            <span>Menge</span>
+            <span>Preis</span>
+        </div>
+        {% for lineItem in page.order.lineItems %}
+        <div class="product-item">
+            <img class="product-img" src="{% if lineItem.cover %}{{ lineItem.cover.url }}{% else %}{{ asset('bundles/storefront/assets/icon/default/placeholder.svg') }}{% endif %}" alt="{{ lineItem.label }}">
+            <div class="product-info">
+                <p class="product-name">{{ lineItem.label }}</p>
+                {% if lineItem.payload.productNumber is defined %}
+                <p class="product-sku">Art.Nr: {{ lineItem.payload.productNumber }}</p>
+                {% endif %}
+            </div>
+            <div class="product-qty">{{ lineItem.quantity }}</div>
+            <div class="product-price">CHF {{ lineItem.totalPrice|number_format(2, '.', "'") }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {# Order Summary #}
+    <div class="order-summary">
+        <div class="order-summary-header">Zusammenfassung</div>
+        <div class="order-summary-body">
+            <div class="summary-row">
+                <span class="label">Zwischensumme</span>
+                <span class="value">CHF {{ page.order.amountNet|number_format(2, '.', "'") }}</span>
+            </div>
+            {% for delivery in page.order.deliveries %}
+            <div class="summary-row">
+                <span class="label">Versand</span>
+                <span class="value">CHF {{ delivery.shippingCosts.totalPrice|number_format(2, '.', "'") }}</span>
+            </div>
+            {% endfor %}
+            {% for tax in page.order.price.calculatedTaxes %}
+            <div class="summary-row">
+                <span class="label">MwSt. {{ tax.taxRate }}%</span>
+                <span class="value">CHF {{ tax.tax|number_format(2, '.', "'") }}</span>
+            </div>
+            {% endfor %}
+            <div class="summary-row total">
+                <span class="label">Gesamtsumme</span>
+                <span class="value">CHF {{ page.order.amountTotal|number_format(2, '.', "'") }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}
 
 {% block base_body_classes %}{{ parent() }} raven-checkout-finish{% endblock %}

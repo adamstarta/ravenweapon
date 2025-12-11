@@ -144,6 +144,13 @@
     color: #374151;
 }
 
+.raven-item-color {
+    font-size: 0.75rem;
+    color: #6B7280;
+    font-weight: 500;
+    display: block;
+}
+
 .raven-item-price {
     font-weight: 700;
     color: #111827;
@@ -534,6 +541,51 @@
     {% set isCartNotEmpty = (page.cart.lineItems|length > 0) %}
 
     <div class="raven-offcanvas-cart">
+
+    {# JavaScript to update cart colors from localStorage #}
+    <script>
+    (function() {
+        function updateCartColors() {
+            document.querySelectorAll('.raven-cart-item').forEach(function(item) {
+                var productId = item.getAttribute('data-product-id');
+                if (productId) {
+                    var colorData = localStorage.getItem('raven_color_' + productId);
+                    if (colorData) {
+                        try {
+                            var data = JSON.parse(colorData);
+                            var colorSpan = item.querySelector('.raven-item-color');
+                            if (colorSpan && data.color) {
+                                colorSpan.textContent = data.color;
+                            }
+                            // Also update image if available
+                            if (data.image) {
+                                var img = item.querySelector('.raven-cart-item-img');
+                                if (img) {
+                                    img.src = data.image;
+                                }
+                            }
+                        } catch(e) {}
+                    }
+                }
+            });
+        }
+        // Run immediately
+        updateCartColors();
+        // Run after short delays to catch dynamic content
+        setTimeout(updateCartColors, 50);
+        setTimeout(updateCartColors, 150);
+        setTimeout(updateCartColors, 300);
+        // Also run when DOM changes (for dynamically loaded content)
+        if (typeof MutationObserver !== 'undefined') {
+            var observer = new MutationObserver(function(mutations) {
+                updateCartColors();
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+            // Stop observing after 2 seconds to prevent performance issues
+            setTimeout(function() { observer.disconnect(); }, 2000);
+        }
+    })();
+    </script>
         {# Header #}
         <div class="raven-cart-header">
             <div class="raven-cart-header-content">
@@ -554,11 +606,12 @@
             {# Cart Items #}
             <div class="raven-cart-items">
                 {% for lineItem in page.cart.lineItems %}
-                    <div class="raven-cart-item js-cart-item" data-line-item-id="{{ lineItem.id }}">
-                        {# Product Image #}
+                    <div class="raven-cart-item js-cart-item" data-line-item-id="{{ lineItem.id }}" data-product-id="{{ lineItem.referencedId }}">
+                        {# Product Image - will be updated by JS if color selection exists #}
+                        {% set itemImage = lineItem.cover.url|default('') %}
                         <div class="raven-item-image">
-                            {% if lineItem.cover.url is defined and lineItem.cover.url %}
-                                <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" loading="lazy">
+                            {% if itemImage %}
+                                <img src="{{ itemImage }}" alt="{{ lineItem.label }}" loading="lazy" class="raven-cart-item-img">
                             {% else %}
                                 <div class="raven-item-placeholder">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -575,6 +628,7 @@
                             <a href="{{ seoUrl('frontend.detail.page', {'productId': lineItem.referencedId}) }}" class="raven-item-name">
                                 {{ lineItem.label }}
                             </a>
+                            <span class="raven-item-color"></span>
                             <div class="raven-item-price">
                                 CHF {{ lineItem.price.unitPrice|number_format(2, '.', "'") }}
                             </div>
@@ -685,5 +739,6 @@
             </div>
         {% endif %}
     </div>
+
 {% endblock %}
 {% endblock %}

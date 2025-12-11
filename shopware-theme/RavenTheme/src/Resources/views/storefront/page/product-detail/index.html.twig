@@ -62,11 +62,26 @@
             </h1>
 
             {# Price - Swiss Format: CHF 3'150 #}
-            <div class="raven-product-price mb-6" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 600; font-size: 24px; line-height: 1.2; font-variant-numeric: tabular-nums;">
+            <div class="raven-product-price mb-2" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 600; font-size: 24px; line-height: 1.2; font-variant-numeric: tabular-nums;">
                 {% set detailPrice = page.product.calculatedPrice.unitPrice %}
                 {% set detailCents = ((detailPrice * 100) % 100)|round %}
                 CHF {% if detailCents == 0 %}{{ detailPrice|number_format(0, '.', "'") }}{% else %}{{ detailPrice|number_format(2, '.', "'") }}{% endif %}
             </div>
+
+            {# VAT included text #}
+            <p class="text-sm text-gray-500 mb-1" style="font-family: 'Inter', sans-serif;">
+                inkl. MwSt.
+            </p>
+
+            {# Category #}
+            {% if page.product.categories|length > 0 %}
+            <p class="text-sm text-gray-500 mb-6" style="font-family: 'Inter', sans-serif;">
+                Kategorie:
+                {% for category in page.product.categories %}
+                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: category.id }) }}" class="text-gray-700 hover:text-amber-600" style="text-decoration: none;">{{ category.translated.name }}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            {% endif %}
 
             {# Availability Status #}
             <div class="flex items-center gap-2 mb-6">

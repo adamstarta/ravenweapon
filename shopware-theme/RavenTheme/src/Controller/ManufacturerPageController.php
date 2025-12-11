@@ -25,6 +25,33 @@ class ManufacturerPageController extends StorefrontController
     }
 
     #[Route(
+        path: '/{manufacturerSlug}/{subcategorySlug}',
+        name: 'frontend.manufacturer.subcategory',
+        requirements: ['manufacturerSlug' => '[a-zA-Z0-9-]+', 'subcategorySlug' => '[a-zA-Z0-9-]+'],
+        defaults: ['_httpCache' => true],
+        methods: ['GET'],
+        priority: -999
+    )]
+    public function subcategory(string $manufacturerSlug, string $subcategorySlug, Request $request, SalesChannelContext $context): Response
+    {
+        // Load base page (header, footer, etc.)
+        $page = $this->genericPageLoader->load($request, $context);
+
+        // Find manufacturer by slugified name
+        $manufacturer = $this->findManufacturerBySlug(strtolower($manufacturerSlug), $context);
+
+        // Show "coming soon" page for subcategories
+        return $this->renderStorefront('@RavenTheme/storefront/page/manufacturer/coming-soon.html.twig', [
+            'page' => $page,
+            'manufacturerSlug' => $manufacturerSlug,
+            'manufacturerName' => $manufacturer ? ($manufacturer->getTranslation('name') ?? $manufacturer->getName()) : $this->unslugify($manufacturerSlug),
+            'subcategorySlug' => $subcategorySlug,
+            'subcategoryName' => $this->unslugify($subcategorySlug),
+            'manufacturer' => $manufacturer,
+        ]);
+    }
+
+    #[Route(
         path: '/{manufacturerSlug}',
         name: 'frontend.manufacturer.page',
         requirements: ['manufacturerSlug' => '[a-z0-9-]+'],
@@ -37,13 +64,17 @@ class ManufacturerPageController extends StorefrontController
         // Find manufacturer by slugified name
         $manufacturer = $this->findManufacturerBySlug($manufacturerSlug, $context);
 
-        if ($manufacturer === null) {
-            // Let Shopware handle 404
-            throw $this->createNotFoundException('Manufacturer not found');
-        }
-
         // Load base page (header, footer, etc.)
         $page = $this->genericPageLoader->load($request, $context);
+
+        if ($manufacturer === null) {
+            // Show "coming soon" page for unknown manufacturers
+            return $this->renderStorefront('@RavenTheme/storefront/page/manufacturer/coming-soon.html.twig', [
+                'page' => $page,
+                'manufacturerSlug' => $manufacturerSlug,
+                'manufacturerName' => $this->unslugify($manufacturerSlug),
+            ]);
+        }
 
         // Load products for this manufacturer using SalesChannel repository for calculated prices
         $criteria = new Criteria();
@@ -112,5 +143,11 @@ class ManufacturerPageController extends StorefrontController
 
         // Trim hyphens from start and end
         return trim($text, '-');
+    }
+
+    private function unslugify(string $slug): string
+    {
+        // Convert hyphens to spaces and capitalize each word
+        return ucwords(str_replace('-', ' ', $slug));
     }
 }

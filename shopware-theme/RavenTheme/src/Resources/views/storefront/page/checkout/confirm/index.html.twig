@@ -288,14 +288,16 @@
         .address-edit:hover { text-decoration: underline; }
 
         /* ============ PAYMENT & SHIPPING METHODS ============ */
-        .payment-methods, .shipping-methods {
+        /* NOTE: These styles are for non-accordion payment methods */
+        /* Accordion payment method styles are defined later with .accordion-inner prefix */
+        .shipping-methods {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
             margin-top: 1rem;
         }
 
-        .payment-method, .shipping-method {
+        .shipping-method {
             border: 1.5px solid var(--gray-200) !important;
             border-radius: 8px !important;
             overflow: hidden;
@@ -303,16 +305,16 @@
             background: var(--white) !important;
         }
 
-        .payment-method:hover, .shipping-method:hover {
+        .shipping-method:hover {
             border-color: var(--gold) !important;
         }
 
-        .payment-method.is-active, .shipping-method.is-active {
+        .shipping-method.is-active {
             border-color: var(--gold) !important;
             background: rgba(212, 168, 71, 0.04) !important;
         }
 
-        .payment-method-label, .shipping-method-label {
+        .shipping-method-label {
             padding: 0.875rem 1rem !important;
             display: flex !important;
             align-items: center !important;
@@ -710,16 +712,13 @@
             padding: 0 !important;
             border: 1px solid var(--gray-200) !important;
             border-radius: 10px !important;
-            overflow: hidden !important;
+            overflow: visible !important;
             background: var(--white) !important;
         }
 
         /* Individual method option - clean list items */
         .accordion-inner .shipping-method,
-        .accordion-inner .payment-method,
         .accordion-inner .confirm-shipping-method,
-        .accordion-inner .confirm-payment-method,
-        .accordion-inner .payment-method-radio,
         .accordion-inner .shipping-method-radio {
             display: flex !important;
             align-items: center !important;
@@ -734,6 +733,36 @@
             margin: 0 !important;
             box-shadow: none !important;
             width: 100% !important;
+        }
+
+        /* Payment methods - allow vertical expansion for content - NO PADDING */
+        /* Using multiple selectors for higher specificity */
+        .accordion-inner .payment-method,
+        .accordion-inner .confirm-payment-method,
+        .accordion-inner .payment-method-radio,
+        .accordion-section .accordion-inner .payment-method,
+        .accordion-section .accordion-content .accordion-inner .payment-method,
+        div.payment-method,
+        .payment-methods .payment-method {
+            display: block !important;
+            padding: 0 !important;
+            background: var(--white) !important;
+            border: none !important;
+            border-bottom: 1px solid var(--gray-100) !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            width: 100% !important;
+        }
+
+        /* Override any padding on selected payment method - high specificity */
+        .accordion-inner .payment-method.is-selected,
+        .accordion-inner .payment-method:has(input:checked),
+        .payment-methods .payment-method.is-selected,
+        .payment-methods .payment-method:has(input:checked),
+        div.payment-method.is-selected {
+            display: block !important;
+            padding: 0 !important;
         }
 
         .accordion-inner .shipping-method:last-child,
@@ -754,16 +783,23 @@
             background: var(--gray-50) !important;
         }
 
-        /* Selected/checked state - subtle highlight only, no border/card */
+        /* Selected/checked state for shipping - subtle highlight */
         .accordion-inner .shipping-method.is-active,
-        .accordion-inner .payment-method.is-active,
         .accordion-inner .shipping-method:has(input:checked),
-        .accordion-inner .payment-method:has(input:checked),
         .accordion-inner .confirm-shipping-method:has(input:checked),
-        .accordion-inner .confirm-payment-method:has(input:checked),
-        .accordion-inner .payment-method-radio:has(input:checked),
         .accordion-inner .shipping-method-radio:has(input:checked) {
             background: rgba(212, 168, 71, 0.08) !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        /* Payment methods don't get background on container - handled by payment-method-item */
+        .accordion-inner .payment-method.is-active,
+        .accordion-inner .payment-method:has(input:checked),
+        .accordion-inner .confirm-payment-method:has(input:checked),
+        .accordion-inner .payment-method-radio:has(input:checked) {
+            background: transparent !important;
             border: none !important;
             box-shadow: none !important;
             outline: none !important;
@@ -900,6 +936,235 @@
             .accordion-inner .row.confirm-address {
                 grid-template-columns: 1fr !important;
             }
+        }
+
+        /* ============ PAYMENT METHOD EXPANDABLE CONTENT ============ */
+        /* Payment method item container - CLEAN, no extra backgrounds */
+        .payment-method-item {
+            display: flex !important;
+            flex-direction: column !important;
+            background: transparent !important;
+            border: none !important;
+            border-bottom: 1px solid var(--gray-100) !important;
+            transition: background 0.15s ease !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .payment-method-item:last-child {
+            border-bottom: none !important;
+        }
+
+        .payment-method-item:hover {
+            background: var(--gray-50) !important;
+        }
+
+        .payment-method-item.is-selected {
+            background: transparent !important;
+        }
+
+        /* Payment method header (radio + name + icon) - no extra wrapper */
+        .payment-method-header {
+            display: block !important;
+            padding: 0 !important;
+            cursor: pointer !important;
+            background: transparent !important;
+        }
+
+        .payment-method-header .payment-form-group,
+        .payment-method-header .form-group {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .payment-method-header .form-check,
+        .payment-method-header .payment-method-radio {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            padding: 0.875rem 1rem !important;
+            margin: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .payment-method-header label {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            flex: 1 !important;
+            cursor: pointer !important;
+            margin: 0 !important;
+        }
+
+        /* Selected payment header - subtle gold background */
+        .payment-method-item.is-selected .payment-method-header .form-check,
+        .payment-method-item.is-selected .payment-method-header .payment-method-radio {
+            background: rgba(212, 168, 71, 0.08) !important;
+        }
+
+        /* Collapsible content area - FULL WIDTH to card edge */
+        .payment-method-content {
+            display: none !important;
+            background: #FAFAFA !important;
+            border-top: none !important;
+            width: 100% !important;
+        }
+
+        .payment-method-content.is-visible {
+            display: block !important;
+            border-top: 1px solid var(--gray-100) !important;
+        }
+
+        .payment-method-content-inner {
+            padding: 1.5rem 1.25rem !important;
+            width: 100% !important;
+        }
+
+        /* Ensure payment method item fills full width of container */
+        .payment-method-item {
+            width: 100% !important;
+            display: block !important;
+        }
+
+        .payment-method-item.is-selected {
+            overflow: visible !important;
+            width: 100% !important;
+        }
+
+        /* Make payment-method-header full width */
+        .payment-method-header {
+            width: 100% !important;
+            display: block !important;
+        }
+
+        /* Payment method header form elements - full width */
+        .payment-method-header .form-check,
+        .payment-method-header .payment-method-radio,
+        .payment-method-header label {
+            width: 100% !important;
+        }
+
+        /* Redirect payment info (TWINT, PostFinance, PayPal, etc.) - FULL WIDTH */
+        .payment-redirect-info {
+            text-align: center !important;
+            padding: 0.5rem 0 !important;
+            width: 100% !important;
+        }
+
+        .redirect-illustration {
+            margin-bottom: 1rem !important;
+        }
+
+        .redirect-illustration svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        .redirect-message {
+            font-size: 0.8125rem !important;
+            color: var(--gray-600) !important;
+            line-height: 1.5 !important;
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: none !important;
+        }
+
+        /* Credit card form styling */
+        .payment-credit-card-info {
+            padding: 0 !important;
+        }
+
+        .payment-credit-card-info .form-group,
+        .payment-credit-card-info .form-row {
+            margin-bottom: 0.75rem !important;
+        }
+
+        .payment-credit-card-info label {
+            font-size: 0.75rem !important;
+            font-weight: 500 !important;
+            color: var(--gray-600) !important;
+            margin-bottom: 0.375rem !important;
+            display: block !important;
+        }
+
+        .payment-credit-card-info input,
+        .payment-credit-card-info .form-control {
+            width: 100% !important;
+            padding: 0.75rem 1rem !important;
+            border: 1.5px solid var(--gray-200) !important;
+            border-radius: 8px !important;
+            font-size: 0.875rem !important;
+            background: var(--white) !important;
+            transition: border-color 0.15s, box-shadow 0.15s !important;
+        }
+
+        .payment-credit-card-info input:focus,
+        .payment-credit-card-info .form-control:focus {
+            border-color: var(--gold) !important;
+            box-shadow: 0 0 0 3px rgba(212, 168, 71, 0.1) !important;
+            outline: none !important;
+        }
+
+        /* Two column layout for expiry + cvv */
+        .payment-credit-card-info .card-expiry-cvv {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.75rem !important;
+        }
+
+        /* Checkbox styling for "use billing address" */
+        .payment-credit-card-info .form-check {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            margin-top: 0.75rem !important;
+        }
+
+        .payment-credit-card-info .form-check input[type="checkbox"] {
+            width: 16px !important;
+            height: 16px !important;
+            accent-color: var(--gold) !important;
+        }
+
+        .payment-credit-card-info .form-check label {
+            font-size: 0.8125rem !important;
+            color: var(--gray-700) !important;
+            margin: 0 !important;
+        }
+
+        /* Payment description text */
+        .payment-description-text {
+            font-size: 0.8125rem !important;
+            color: var(--gray-600) !important;
+            line-height: 1.5 !important;
+        }
+
+        /* Payrexx specific iframes/embeds */
+        .payment-method-content iframe {
+            border: none !important;
+            width: 100% !important;
+            min-height: 200px !important;
+        }
+
+        /* Card icon in header */
+        .payment-method-item .payment-method-image {
+            width: 40px !important;
+            height: 28px !important;
+            object-fit: contain !important;
+            margin-left: auto !important;
+        }
+
+        /* Multiple card icons container */
+        .payment-method-icons {
+            display: flex !important;
+            gap: 0.375rem !important;
+            margin-left: auto !important;
+        }
+
+        .payment-method-icons img {
+            height: 22px !important;
+            width: auto !important;
         }
 
         /* Forms */
@@ -1082,8 +1347,8 @@
                                form="confirmOrderForm"
                                name="tos">
                         <label for="tos">
-                            Ich habe die <a href="{{ path('frontend.cms.page', { id: config('core.basicInformation.tosPage') }) }}" target="_blank">AGB</a>
-                            und <a href="{{ path('frontend.cms.page', { id: config('core.basicInformation.privacyPage') }) }}" target="_blank">Datenschutzerklaerung</a> gelesen und akzeptiere diese.
+                            Ich habe die <a href="/agb" target="_blank">AGB</a>
+                            und <a href="/datenschutz" target="_blank">Datenschutzerklaerung</a> gelesen und akzeptiere diese.
                         </label>
                     </div>
                 </div>
@@ -1104,15 +1369,16 @@
 
             <div class="summary-items">
                 {% for lineItem in page.cart.lineItems %}
-                <div class="summary-item">
+                <div class="summary-item" data-product-id="{{ lineItem.referencedId }}">
                     <div class="summary-item-image">
                         {% if lineItem.cover %}
-                        <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}">
+                        <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" class="summary-item-img">
                         {% endif %}
                         <span class="summary-item-qty">{{ lineItem.quantity }}</span>
                     </div>
                     <div class="summary-item-details">
                         <p class="summary-item-name">{{ lineItem.label }}</p>
+                        <p class="summary-item-color" style="font-size: 0.75rem; color: #6b7280;"></p>
                         {% if lineItem.payload.options|length > 0 %}
                         <p class="summary-item-variant">
                             {% for option in lineItem.payload.options %}
@@ -1137,16 +1403,16 @@
                     <span>{{ delivery.shippingCosts.totalPrice|currency }}</span>
                 </div>
                 {% endfor %}
-                {% if page.cart.price.calculatedTaxes %}
-                <div class="summary-row">
-                    <span>inkl. MwSt.</span>
-                    <span>{{ page.cart.price.calculatedTaxes.amount|currency }}</span>
-                </div>
-                {% endif %}
                 <div class="summary-row total">
                     <span>Gesamtsumme</span>
                     <span>{{ page.cart.price.totalPrice|currency }}</span>
                 </div>
+                {% if page.cart.price.calculatedTaxes %}
+                <div class="summary-row" style="font-size: 0.75rem; color: var(--gray-500); padding-top: 0.5rem;">
+                    <span>{% for tax in page.cart.price.calculatedTaxes %}inkl. {{ tax.taxRate }}% MwSt. ({{ tax.tax|currency }}){% if not loop.last %}, {% endif %}{% endfor %}</span>
+                    <span></span>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -1166,13 +1432,143 @@ function toggleAccordion(sectionId) {
     targetSection.classList.toggle('is-open');
 }
 
-// Initialize - open first accordion by default
+// Initialize - open accordion (check sessionStorage for payment section after redirect)
 document.addEventListener('DOMContentLoaded', function() {
-    const firstSection = document.querySelector('.accordion-section');
-    if (firstSection) {
-        firstSection.classList.add('is-open');
+    const sections = document.querySelectorAll('.accordion-section');
+    const urlParams = new URLSearchParams(window.location.search);
+    const wasRedirected = urlParams.has('redirected') || sessionStorage.getItem('paymentAccordionOpen') === 'true';
+
+    // If we came from a payment method change, open the payment accordion (3rd section)
+    if (wasRedirected && sections.length >= 3) {
+        sections[2].classList.add('is-open'); // Payment section is 3rd (index 2)
+        sessionStorage.removeItem('paymentAccordionOpen');
+    } else {
+        // Default: open first accordion
+        const firstSection = document.querySelector('.accordion-section');
+        if (firstSection) {
+            firstSection.classList.add('is-open');
+        }
     }
+
+    // Payment method toggle functionality
+    initPaymentMethodToggle();
 });
+
+// Handle payment method selection and content toggle
+function initPaymentMethodToggle() {
+    const paymentMethods = document.querySelectorAll('.payment-method-item, .payment-method, .confirm-payment-method');
+
+    paymentMethods.forEach(method => {
+        const radio = method.querySelector('input[type="radio"]');
+        if (radio) {
+            // Initial state - show content for selected payment
+            if (radio.checked) {
+                showPaymentContent(method);
+            }
+
+            // Listen for changes - store state before form submits
+            radio.addEventListener('change', function() {
+                // Store that payment accordion should be open after redirect
+                sessionStorage.setItem('paymentAccordionOpen', 'true');
+
+                // Hide all payment contents
+                document.querySelectorAll('.payment-method-content').forEach(content => {
+                    content.classList.remove('is-visible');
+                });
+                document.querySelectorAll('.payment-method-item, .payment-method').forEach(m => {
+                    m.classList.remove('is-selected');
+                });
+
+                // Show selected payment content
+                if (this.checked) {
+                    showPaymentContent(method);
+                }
+            });
+        }
+    });
+
+    // Scroll to payment section if we came from a payment method change
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('redirected')) {
+        const paymentSection = document.querySelector('.accordion-section:nth-child(3)');
+        if (paymentSection) {
+            setTimeout(() => {
+                paymentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    }
+}
+
+function showPaymentContent(method) {
+    method.classList.add('is-selected');
+    const content = method.querySelector('.payment-method-content');
+    if (content) {
+        content.classList.add('is-visible');
+    }
+    // Force full-width styling on payment methods
+    forcePaymentMethodStyles();
+}
+
+// Force payment method styles to override Shopware defaults
+function forcePaymentMethodStyles() {
+    document.querySelectorAll('.payment-method').forEach(pm => {
+        pm.style.cssText = 'display: block !important; padding: 0 !important; width: 100% !important; border: none !important; border-bottom: 1px solid #e5e7eb !important; border-radius: 0 !important; margin: 0 !important; box-shadow: none !important; background: white !important;';
+    });
+    document.querySelectorAll('.payment-method-item').forEach(item => {
+        item.style.cssText = 'display: block !important; width: 100% !important;';
+    });
+}
+
+// Call immediately and on load (in case DOM is already ready)
+forcePaymentMethodStyles();
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', forcePaymentMethodStyles);
+} else {
+    forcePaymentMethodStyles();
+}
+// Also run after a short delay to catch any late-loading elements
+setTimeout(forcePaymentMethodStyles, 100);
+setTimeout(forcePaymentMethodStyles, 500);
+
+// ========== CHECKOUT COLOR UPDATE FUNCTIONALITY ==========
+// Read selected colors from localStorage and update checkout summary items
+(function() {
+    function updateCheckoutColors() {
+        document.querySelectorAll('.summary-item[data-product-id]').forEach(function(item) {
+            var productId = item.getAttribute('data-product-id');
+            if (!productId) return;
+            try {
+                var colorData = localStorage.getItem('raven_color_' + productId);
+                if (!colorData) return;
+                var data = JSON.parse(colorData);
+                // Update image
+                if (data.image) {
+                    var img = item.querySelector('.summary-item-img');
+                    if (img && img.src !== data.image) {
+                        img.src = data.image;
+                    }
+                }
+                // Update color name
+                if (data.color) {
+                    var colorSpan = item.querySelector('.summary-item-color');
+                    if (colorSpan && colorSpan.textContent !== data.color) {
+                        colorSpan.textContent = data.color;
+                    }
+                }
+            } catch(e) {
+                console.log('Error updating checkout color:', e);
+            }
+        });
+    }
+    // Run immediately and after DOM ready
+    updateCheckoutColors();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateCheckoutColors);
+    }
+    // Also run after short delays to catch any late rendering
+    setTimeout(updateCheckoutColors, 100);
+    setTimeout(updateCheckoutColors, 300);
+})();
 </script>
 {% endblock %}
 

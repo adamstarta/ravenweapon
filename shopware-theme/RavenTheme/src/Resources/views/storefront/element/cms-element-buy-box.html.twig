@@ -87,6 +87,19 @@
             {# Price - Swiss Format with CHF prefix in RED #}
             <div class="raven-price">CHF {{ formattedPrice }}</div>
 
+            {# VAT included text #}
+            <p class="raven-vat-info">inkl. MwSt.</p>
+
+            {# Category #}
+            {% if product.categories|length > 0 %}
+            <p class="raven-category-info">
+                Kategorie:
+                {% for category in product.categories %}
+                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: category.id }) }}">{{ category.translated.name }}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            {% endif %}
+
             {# Color Variants #}
             {% if colorMediaList|length > 0 %}
             <div class="raven-color-section">
@@ -107,7 +120,8 @@
                                 document.getElementById('raven-main-product-image').src='{{ media.media.url }}';
                                 document.getElementById('selected-color-name').textContent='{{ colorName }}';
                                 document.querySelectorAll('.raven-image-swatch').forEach(el => el.classList.remove('selected'));
-                                this.classList.add('selected');">
+                                this.classList.add('selected');
+                                try { localStorage.setItem('raven_color_{{ product.id }}', JSON.stringify({color: '{{ colorName }}', image: '{{ media.media.url }}'})); } catch(e) {}">
                         <img src="{{ media.media.url }}" alt="{{ colorName }}">
                     </button>
                     {% endif %}
@@ -120,7 +134,8 @@
             <form action="{{ path('frontend.checkout.line-item.add') }}"
                   method="post"
                   class="raven-buy-form buy-widget"
-                  data-add-to-cart="true">
+                  data-add-to-cart="true"
+                  id="raven-add-to-cart-form">
                 <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">
                 <input type="hidden" name="lineItems[{{ product.id }}][id]" value="{{ product.id }}">
                 <input type="hidden" name="lineItems[{{ product.id }}][type]" value="product">
@@ -413,7 +428,33 @@
         font-size: 24px;
         line-height: 1.2;
         font-variant-numeric: tabular-nums;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    /* VAT info text */
+    .raven-vat-info {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        color: #6B7280;
+        margin: 0 0 0.25rem 0;
+    }
+
+    /* Category info text */
+    .raven-category-info {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        color: #6B7280;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .raven-category-info a {
+        color: #374151;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .raven-category-info a:hover {
+        color: #D4A847;
     }
 
     /* Color section */
@@ -1222,6 +1263,56 @@
 </svg>
 
 <script>
+    // ========== CART COLOR UPDATE FUNCTIONALITY ==========
+    // This updates the cart sidebar to show selected color image and name
+    (function() {
+        function updateCartColors() {
+            document.querySelectorAll('.raven-cart-item[data-product-id]').forEach(function(item) {
+                var productId = item.getAttribute('data-product-id');
+                if (!productId) return;
+
+                try {
+                    var colorData = localStorage.getItem('raven_color_' + productId);
+                    if (!colorData) return;
+
+                    var data = JSON.parse(colorData);
+
+                    // Update image
+                    if (data.image) {
+                        var img = item.querySelector('.raven-cart-item-img');
+                        if (img && img.src !== data.image) {
+                            img.src = data.image;
+                        }
+                    }
+
+                    // Update color name
+                    if (data.color) {
+                        var colorSpan = item.querySelector('.raven-item-color');
+                        if (colorSpan && colorSpan.textContent !== data.color) {
+                            colorSpan.textContent = data.color;
+                        }
+                    }
+                } catch(e) {}
+            });
+        }
+
+        // Use MutationObserver to detect when cart offcanvas opens
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length) {
+                    // Small delay to let DOM settle
+                    setTimeout(updateCartColors, 50);
+                    setTimeout(updateCartColors, 200);
+                }
+            });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // Also run on page load in case cart is already visible
+        updateCartColors();
+    })();
+
     // ========== IMAGE ZOOM FUNCTIONALITY ==========
     (function() {
         function initImageZoom() {

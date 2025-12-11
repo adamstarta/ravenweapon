@@ -1,4 +1,5 @@
-{% sw_extends '@Storefront/storefront/page/account/order-history/index.html.twig' %}
+{# Order history template - extends _page.html.twig to avoid recursion when placed at order-history/index.html.twig #}
+{% sw_extends '@Storefront/storefront/page/account/_page.html.twig' %}
 
 {% block page_account_main_content %}
 <div class="raven-account-dashboard">
@@ -69,6 +70,162 @@
 
         {# Main Content #}
         <main class="account-main">
+            {% if page.deepLinkCode and page.orders.elements|length > 0 %}
+            {% set order = page.orders.elements|first %}
+            {# ============ SINGLE ORDER DETAIL VIEW ============ #}
+            <div class="page-header">
+                <a href="{{ path('frontend.account.order.page') }}" class="back-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    Zurück zu Bestellungen
+                </a>
+                <h1 class="page-title">Bestellung #{{ order.orderNumber }}</h1>
+                <p class="page-subtitle">{{ order.orderDateTime|format_datetime('full', 'short', locale='de') }}</p>
+            </div>
+
+            <div class="orders-section">
+                <div class="section-card">
+                    {# Order Status Header #}
+                    <div class="order-detail-header">
+                        <div class="order-status-info">
+                            {% set stateColor = 'default' %}
+                            {% set stateName = order.stateMachineState.translated.name|default('Unbekannt') %}
+                            {% set technicalName = order.stateMachineState.technicalName|default('') %}
+                            {% if technicalName == 'completed' or technicalName == 'done' %}
+                                {% set stateColor = 'success' %}
+                            {% elseif technicalName == 'cancelled' or technicalName == 'failed' %}
+                                {% set stateColor = 'error' %}
+                            {% elseif technicalName == 'in_progress' or technicalName == 'processing' %}
+                                {% set stateColor = 'warning' %}
+                            {% elseif technicalName == 'open' or technicalName == 'pending' %}
+                                {% set stateColor = 'info' %}
+                            {% elseif technicalName == 'paid' or technicalName == 'authorized' %}
+                                {% set stateColor = 'success' %}
+                            {% endif %}
+                            <span class="status-badge {{ stateColor }}">{{ stateName }}</span>
+                        </div>
+                    </div>
+
+                    {# Order Items #}
+                    <div class="order-detail-items">
+                        <h3 class="detail-section-title">Bestellte Artikel</h3>
+                        {% for lineItem in order.lineItems %}
+                        <div class="order-detail-item">
+                            <div class="item-image">
+                                {% if lineItem.cover %}
+                                    <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}">
+                                {% else %}
+                                    <div class="no-image">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                            <polyline points="21 15 16 10 5 21"></polyline>
+                                        </svg>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="item-details">
+                                <p class="item-name">{{ lineItem.label }}</p>
+                                <p class="item-quantity">Menge: {{ lineItem.quantity }}</p>
+                                {% if lineItem.payload.productNumber is defined %}
+                                <p class="item-sku">Art.-Nr.: {{ lineItem.payload.productNumber }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="item-prices">
+                                <span class="item-unit-price">{{ lineItem.unitPrice|currency }}</span>
+                                <span class="item-total-price">{{ lineItem.totalPrice|currency }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {# Order Summary #}
+                    <div class="order-detail-summary">
+                        <div class="summary-row">
+                            <span>Zwischensumme</span>
+                            <span>{{ order.price.positionPrice|currency }}</span>
+                        </div>
+                        {% for delivery in order.deliveries %}
+                        <div class="summary-row">
+                            <span>Versand ({{ delivery.shippingMethod.translated.name }})</span>
+                            <span>{{ delivery.shippingCosts.totalPrice|currency }}</span>
+                        </div>
+                        {% endfor %}
+                        {% if order.price.calculatedTaxes|length > 0 %}
+                        {% for tax in order.price.calculatedTaxes %}
+                        <div class="summary-row tax-row">
+                            <span>inkl. {{ tax.taxRate }}% MwSt.</span>
+                            <span>{{ tax.tax|currency }}</span>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="summary-row total-row">
+                            <span>Gesamtsumme</span>
+                            <span>{{ order.amountTotal|currency }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {# Addresses #}
+                <div class="order-detail-addresses">
+                    <div class="address-card">
+                        <h3 class="address-title">Rechnungsadresse</h3>
+                        <div class="address-content">
+                            <p>{{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}</p>
+                            {% if order.billingAddress.company %}
+                            <p>{{ order.billingAddress.company }}</p>
+                            {% endif %}
+                            <p>{{ order.billingAddress.street }}</p>
+                            <p>{{ order.billingAddress.zipcode }} {{ order.billingAddress.city }}</p>
+                            <p>{{ order.billingAddress.country.translated.name }}</p>
+                        </div>
+                    </div>
+                    {% for delivery in order.deliveries %}
+                    <div class="address-card">
+                        <h3 class="address-title">Lieferadresse</h3>
+                        <div class="address-content">
+                            <p>{{ delivery.shippingOrderAddress.firstName }} {{ delivery.shippingOrderAddress.lastName }}</p>
+                            {% if delivery.shippingOrderAddress.company %}
+                            <p>{{ delivery.shippingOrderAddress.company }}</p>
+                            {% endif %}
+                            <p>{{ delivery.shippingOrderAddress.street }}</p>
+                            <p>{{ delivery.shippingOrderAddress.zipcode }} {{ delivery.shippingOrderAddress.city }}</p>
+                            <p>{{ delivery.shippingOrderAddress.country.translated.name }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {# Payment & Shipping Info #}
+                <div class="order-detail-info-cards">
+                    <div class="info-card">
+                        <h3 class="info-title">Zahlungsart</h3>
+                        <p class="info-value">
+                            {% if order.transactions|length > 0 %}
+                                {{ order.transactions|last.paymentMethod.translated.name }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </p>
+                        {% if order.transactions|length > 0 %}
+                        <p class="info-status">
+                            Status: {{ order.transactions|last.stateMachineState.translated.name }}
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% for delivery in order.deliveries %}
+                    <div class="info-card">
+                        <h3 class="info-title">Versandart</h3>
+                        <p class="info-value">{{ delivery.shippingMethod.translated.name }}</p>
+                        <p class="info-status">Status: {{ delivery.stateMachineState.translated.name }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% else %}
+            {# ============ ORDERS LIST VIEW ============ #}
             <div class="page-header">
                 <h1 class="page-title">Meine Bestellungen</h1>
                 <p class="page-subtitle">Übersicht aller Ihrer Bestellungen</p>
@@ -94,16 +251,39 @@
                                 </div>
                                 <div class="order-status">
                                     {% set stateColor = 'default' %}
-                                    {% if order.stateMachineState.technicalName == 'completed' %}
+                                    {% set stateName = order.stateMachineState.translated.name|default('Unbekannt') %}
+                                    {% set technicalName = order.stateMachineState.technicalName|default('') %}
+
+                                    {# Order states #}
+                                    {% if technicalName == 'completed' or technicalName == 'done' %}
                                         {% set stateColor = 'success' %}
-                                    {% elseif order.stateMachineState.technicalName == 'cancelled' %}
+                                    {% elseif technicalName == 'cancelled' or technicalName == 'failed' %}
                                         {% set stateColor = 'error' %}
-                                    {% elseif order.stateMachineState.technicalName == 'in_progress' %}
+                                    {% elseif technicalName == 'in_progress' or technicalName == 'processing' %}
                                         {% set stateColor = 'warning' %}
-                                    {% elseif order.stateMachineState.technicalName == 'open' %}
+                                    {% elseif technicalName == 'open' or technicalName == 'pending' %}
                                         {% set stateColor = 'info' %}
+
+                                    {# Payment states #}
+                                    {% elseif technicalName == 'paid' or technicalName == 'authorized' %}
+                                        {% set stateColor = 'success' %}
+                                    {% elseif technicalName == 'refunded' or technicalName == 'partially_refunded' %}
+                                        {% set stateColor = 'warning' %}
+                                    {% elseif technicalName == 'partially_paid' or technicalName == 'reminded' %}
+                                        {% set stateColor = 'warning' %}
+                                    {% elseif technicalName == 'unconfirmed' %}
+                                        {% set stateColor = 'info' %}
+                                    {% elseif technicalName == 'chargeback' %}
+                                        {% set stateColor = 'error' %}
+
+                                    {# Delivery states #}
+                                    {% elseif technicalName == 'shipped' or technicalName == 'shipped_partially' %}
+                                        {% set stateColor = 'success' %}
+                                    {% elseif technicalName == 'returned' or technicalName == 'returned_partially' %}
+                                        {% set stateColor = 'warning' %}
                                     {% endif %}
-                                    <span class="status-badge {{ stateColor }}">{{ order.stateMachineState.translated.name }}</span>
+
+                                    <span class="status-badge {{ stateColor }}">{{ stateName }}</span>
                                 </div>
                             </div>
 
@@ -201,6 +381,7 @@
                     {% endif %}
                 </div>
             </div>
+            {% endif %}
         </main>
     </div>
 </div>
@@ -717,6 +898,195 @@
     min-height: 100vh;
 }
 
+/* ============ ORDER DETAIL VIEW ============ */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--raven-gray-500);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--raven-gold-dark);
+}
+
+.order-detail-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--raven-gray-100);
+}
+
+.order-status-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.order-detail-items {
+    padding: 1.5rem;
+}
+
+.detail-section-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.order-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--raven-gray-100);
+}
+
+.order-detail-item:last-child {
+    border-bottom: none;
+}
+
+.item-sku {
+    font-size: 0.6875rem;
+    color: var(--raven-gray-400);
+    margin: 0.25rem 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.item-prices {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+.item-unit-price {
+    font-size: 0.75rem;
+    color: var(--raven-gray-500);
+}
+
+.item-total-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--raven-charcoal);
+}
+
+/* Order Summary */
+.order-detail-summary {
+    padding: 1.5rem;
+    background: var(--raven-gray-50);
+    border-radius: 0 0 16px 16px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.9375rem;
+    color: var(--raven-gray-700);
+}
+
+.summary-row.tax-row {
+    font-size: 0.8125rem;
+    color: var(--raven-gray-500);
+}
+
+.summary-row.total-row {
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    border-top: 2px solid var(--raven-gray-200);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--raven-charcoal);
+}
+
+.summary-row.total-row span:last-child {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.375rem;
+}
+
+/* Addresses */
+.order-detail-addresses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.address-card {
+    background: var(--raven-white);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.address-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--raven-gray-100);
+}
+
+.address-content p {
+    margin: 0.25rem 0;
+    font-size: 0.9375rem;
+    color: var(--raven-gray-700);
+}
+
+.address-content p:first-child {
+    font-weight: 600;
+    color: var(--raven-charcoal);
+}
+
+/* Info Cards */
+.order-detail-info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.info-card {
+    background: var(--raven-white);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.info-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--raven-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem 0;
+}
+
+.info-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--raven-charcoal);
+    margin: 0 0 0.25rem 0;
+}
+
+.info-status {
+    font-size: 0.8125rem;
+    color: var(--raven-gray-500);
+    margin: 0;
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 640px) {
     .order-header {
@@ -740,6 +1110,19 @@
         padding: 0.75rem;
         background: var(--raven-gray-50);
         border-radius: 10px;
+    }
+
+    .order-detail-item {
+        flex-wrap: wrap;
+    }
+
+    .item-prices {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px dashed var(--raven-gray-200);
     }
 }
 </style>

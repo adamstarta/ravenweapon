@@ -447,6 +447,8 @@
     margin-bottom: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--raven-gray-100);
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .address-type {
@@ -487,6 +489,8 @@
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    margin-left: 0.5rem;
+    white-space: nowrap;
 }
 
 .address-content {
@@ -500,15 +504,23 @@
 
 .address-name {
     font-weight: 600;
-    color: var(--raven-charcoal);
+    color: #1A1A1A !important;
     margin: 0 0 0.5rem 0;
 }
 
 .address-line {
     font-size: 0.9375rem;
-    color: var(--raven-gray-700);
+    color: #374151 !important;
     margin: 0 0 0.25rem 0;
     line-height: 1.5;
+}
+
+.address-content p {
+    color: #374151 !important;
+}
+
+.address-content .address-name {
+    color: #1A1A1A !important;
 }
 
 .same-as-billing {

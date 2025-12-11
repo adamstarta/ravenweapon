@@ -2,20 +2,19 @@
 
 {% block layout_header_actions_cart %}
     {# Cart Button - Opens Off-Canvas Cart Sidebar using Shopware's built-in plugin #}
-    <div class="header-cart-wrapper" style="display: flex; align-items: center; gap: 6px;">
+    <div class="header-cart-wrapper" style="position: relative; display: inline-flex;">
         <button type="button"
-                class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                class="raven-icon-btn header-cart-btn"
                 data-off-canvas-cart="true"
                 data-url="{{ path('frontend.cart.offcanvas') }}"
                 aria-label="Warenkorb"
-                title="Warenkorb">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor" class="w-5 h-5"><path d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/></svg>
+                title="Warenkorb"
+                style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; border: 1px solid #e5e7eb; background: white; color: #6b7280;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         </button>
         {% set cartCount = page.cart.lineItems.count|default(0) %}
         {% if cartCount > 0 %}
-            <span class="raven-cart-badge-outside" style="display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 8px; background: linear-gradient(to right, #facc15, #f59e0b, #facc15); color: #000; font-size: 12px; font-weight: 700; border-radius: 9999px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
-                {{ cartCount }}
-            </span>
+            <span class="raven-cart-badge" style="position: absolute; top: -6px; right: -6px; display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; background: linear-gradient(135deg, #facc15, #f59e0b); color: #000; font-size: 11px; font-weight: 700; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">{{ cartCount }}</span>
         {% endif %}
     </div>
 {% endblock %}
@@ -352,14 +351,16 @@
 
             console.log('Cart badge update: ' + count + ' items');
 
-            // Update existing badges (now outside the button, in wrapper)
+            // Update existing badges (positioned at top-right of cart button)
             document.querySelectorAll('.header-cart-wrapper').forEach(function(wrapper) {
-                var badge = wrapper.querySelector('.raven-cart-badge-outside');
+                // Ensure wrapper has position relative for absolute positioning
+                wrapper.style.position = 'relative';
+                var badge = wrapper.querySelector('.raven-cart-badge');
                 if (count > 0) {
                     if (!badge) {
                         badge = document.createElement('span');
-                        badge.className = 'raven-cart-badge-outside';
-                        badge.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 8px;background:linear-gradient(to right,#facc15,#f59e0b,#facc15);color:#000;font-size:12px;font-weight:700;border-radius:9999px;box-shadow:0 1px 3px rgba(0,0,0,0.2);';
+                        badge.className = 'raven-cart-badge';
+                        badge.style.cssText = 'position:absolute;top:-6px;right:-6px;display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;background:linear-gradient(135deg,#facc15,#f59e0b);color:#000;font-size:11px;font-weight:700;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.15);';
                         wrapper.appendChild(badge);
                     }
                     badge.textContent = count;
@@ -369,6 +370,61 @@
                 }
             });
         });
+    }
+
+    // Update cart item colors and images from localStorage (global function)
+    window.updateCartColors = function() {
+        document.querySelectorAll('.raven-cart-item, [data-product-id]').forEach(function(item) {
+            var productId = item.getAttribute('data-product-id');
+            if (productId) {
+                var colorData = localStorage.getItem('raven_color_' + productId);
+                var colorSpan = item.querySelector('.raven-item-color');
+
+                if (colorData) {
+                    try {
+                        var data = JSON.parse(colorData);
+                        // Update color text
+                        if (colorSpan && data.color) {
+                            colorSpan.textContent = data.color;
+                        }
+                        // Update image if we have a stored image URL
+                        if (data.image) {
+                            var img = item.querySelector('.raven-item-image img, .raven-cart-item-img, img');
+                            if (img) {
+                                img.src = data.image;
+                            }
+                        }
+                    } catch(e) {}
+                } else {
+                    // Default to "Graphite Black" when no color is stored
+                    if (colorSpan && !colorSpan.textContent.trim()) {
+                        colorSpan.textContent = 'Graphite Black';
+                    }
+                }
+            }
+        });
+    };
+    var updateCartColors = window.updateCartColors;
+
+    // Watch for cart items being added to DOM and update their colors/images
+    if (typeof MutationObserver !== 'undefined') {
+        var cartObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length > 0) {
+                    // Check if any added nodes contain cart items
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1) { // Element node
+                            if (node.classList && (node.classList.contains('raven-cart-item') || node.hasAttribute('data-product-id'))) {
+                                setTimeout(updateCartColors, 50);
+                            } else if (node.querySelector && node.querySelector('.raven-cart-item, [data-product-id]')) {
+                                setTimeout(updateCartColors, 50);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        cartObserver.observe(document.body, { childList: true, subtree: true });
     }
 
     // Refresh cart content in any open offcanvas
@@ -389,6 +445,9 @@
             }
             // Update badge after refresh
             updateCartBadge();
+            // Update cart colors/images from localStorage
+            setTimeout(updateCartColors, 100);
+            setTimeout(updateCartColors, 300);
         });
     }
 
@@ -405,51 +464,153 @@
         .catch(function() { refreshOffcanvasCart(); });
     }
 
-    // Open cart offcanvas
-    function openOffcanvasCart() {
+    // Delete cart item with instant visual feedback
+    function deleteCartItemInstant(form, cartItem) {
+        var formData = new FormData(form);
+        var action = form.getAttribute('action');
+
+        // Store original styles for potential restore
+        var originalHeight = cartItem.offsetHeight + 'px';
+        var originalOpacity = '1';
+
+        // Instantly animate out the item
+        cartItem.style.transition = 'opacity 0.2s ease, height 0.3s ease, padding 0.3s ease, margin 0.3s ease';
+        cartItem.style.opacity = '0';
+        cartItem.style.overflow = 'hidden';
+
+        setTimeout(function() {
+            cartItem.style.height = '0';
+            cartItem.style.padding = '0';
+            cartItem.style.margin = '0';
+            cartItem.style.borderWidth = '0';
+        }, 150);
+
+        // Update cart count badge immediately (decrement by 1)
+        var badge = document.querySelector('.raven-cart-badge, .cart-badge, [data-cart-widget] .badge');
+        if (badge) {
+            var currentCount = parseInt(badge.textContent) || 0;
+            if (currentCount > 1) {
+                badge.textContent = currentCount - 1;
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        // Submit delete request in background
+        fetch(action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(function(response) {
+            if (!response.ok) throw new Error('Delete failed');
+            // After successful delete, refresh to get accurate totals
+            setTimeout(function() {
+                refreshOffcanvasCart();
+            }, 300);
+        })
+        .catch(function(error) {
+            console.error('Cart delete error:', error);
+            // Restore item on error
+            cartItem.style.transition = 'opacity 0.2s ease';
+            cartItem.style.opacity = originalOpacity;
+            cartItem.style.height = originalHeight;
+            cartItem.style.padding = '';
+            cartItem.style.margin = '';
+            cartItem.style.borderWidth = '';
+            cartItem.style.overflow = '';
+            // Refresh to get accurate state
+            refreshOffcanvasCart();
+        });
+    }
+
+    // Open cart offcanvas - shows immediately with loading state
+    function openOffcanvasCart(skipFetch) {
+        // Create backdrop first (show immediately)
+        var b = document.getElementById('raven-offcanvas-backdrop');
+        if (!b) {
+            b = document.createElement('div');
+            b.id = 'raven-offcanvas-backdrop';
+            b.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.2s ease;cursor:pointer;';
+            b.onclick = closeOffcanvasCart;
+            document.body.appendChild(b);
+        }
+        // Force reflow and show backdrop
+        b.offsetHeight;
+        b.style.opacity = '1';
+
+        // Create or get offcanvas (show immediately with loading)
+        var o = document.getElementById('raven-offcanvas-cart');
+        if (!o) {
+            o = document.createElement('div');
+            o.id = 'raven-offcanvas-cart';
+            o.style.cssText = 'position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;height:100%;z-index:1050;background:#fff;transform:translateX(100%);transition:transform 0.3s ease;box-shadow:-4px 0 15px rgba(0,0,0,0.1);overflow:hidden;';
+            document.body.appendChild(o);
+        }
+
+        // Always show loading state initially
+        o.innerHTML = '<div style="display:flex;flex-direction:column;height:100%;"><div style="padding:20px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;"><h2 style="font-size:18px;font-weight:600;margin:0;">Warenkorb</h2><button class="raven-cart-close" style="background:none;border:none;cursor:pointer;padding:8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div style="flex:1;display:flex;align-items:center;justify-content:center;"><div style="text-align:center;"><div style="width:40px;height:40px;border:3px solid #e5e7eb;border-top-color:#f59e0b;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px;"></div><p style="color:#6b7280;font-size:14px;">Lädt...</p></div></div></div><style>@keyframes spin{to{transform:rotate(360deg)}}</style>';
+
+        // Force reflow and slide in immediately
+        o.offsetHeight;
+        o.style.transform = 'translateX(0)';
+        o.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+        // Attach close handler to loading state close button
+        var closeBtn = o.querySelector('.raven-cart-close');
+        if (closeBtn) {
+            closeBtn.onclick = function(e) {
+                e.preventDefault();
+                closeOffcanvasCart();
+            };
+        }
+
+        // Fetch actual content (unless skipFetch is true)
+        if (!skipFetch) {
+            fetch('/checkout/offcanvas', {
+                method: 'GET',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(function(r) { return r.text(); })
+            .then(function(h) {
+                o.innerHTML = h;
+                // Attach close handlers to loaded content
+                o.querySelectorAll('[data-offcanvas-close],.js-offcanvas-close,.raven-cart-close').forEach(function(x) {
+                    x.onclick = function(e) {
+                        e.preventDefault();
+                        closeOffcanvasCart();
+                    };
+                });
+                if (window.PluginManager) window.PluginManager.initializePlugins();
+                // Update cart colors/images from localStorage
+                setTimeout(updateCartColors, 100);
+                setTimeout(updateCartColors, 300);
+            });
+        }
+    }
+
+    // Update offcanvas content (for use after add-to-cart)
+    function updateOffcanvasContent() {
+        var o = document.getElementById('raven-offcanvas-cart');
+        if (!o || !o.classList.contains('show')) return;
+
         fetch('/checkout/offcanvas', {
             method: 'GET',
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
         .then(function(r) { return r.text(); })
         .then(function(h) {
-            // Create backdrop first
-            var b = document.getElementById('raven-offcanvas-backdrop');
-            if (!b) {
-                b = document.createElement('div');
-                b.id = 'raven-offcanvas-backdrop';
-                b.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.2s ease;cursor:pointer;';
-                b.onclick = closeOffcanvasCart;
-                document.body.appendChild(b);
-            }
-            // Force reflow and show backdrop
-            b.offsetHeight;
-            b.style.opacity = '1';
-
-            // Create or update offcanvas
-            var o = document.getElementById('raven-offcanvas-cart');
-            if (!o) {
-                o = document.createElement('div');
-                o.id = 'raven-offcanvas-cart';
-                o.style.cssText = 'position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;height:100%;z-index:1050;background:#fff;transform:translateX(100%);transition:transform 0.3s ease;box-shadow:-4px 0 15px rgba(0,0,0,0.1);overflow:hidden;';
-                document.body.appendChild(o);
-            }
             o.innerHTML = h;
-
-            // Force reflow and slide in
-            o.offsetHeight;
-            o.style.transform = 'translateX(0)';
-            o.classList.add('show');
-
-            document.body.style.overflow = 'hidden';
-
-            // Attach close handlers
             o.querySelectorAll('[data-offcanvas-close],.js-offcanvas-close,.raven-cart-close').forEach(function(x) {
                 x.onclick = function(e) {
                     e.preventDefault();
                     closeOffcanvasCart();
                 };
             });
+            // Update cart colors/images from localStorage
+            setTimeout(updateCartColors, 100);
+            setTimeout(updateCartColors, 300);
             if (window.PluginManager) window.PluginManager.initializePlugins();
         });
     }
@@ -486,6 +647,9 @@
         if (action.indexOf('checkout/line-item/add') !== -1) {
             e.preventDefault();
             e.stopImmediatePropagation();
+            // Open sidebar IMMEDIATELY with loading state
+            openOffcanvasCart(true);
+            // Then add to cart and update content
             var formData = new FormData(form);
             fetch(action, {
                 method: 'POST',
@@ -493,7 +657,7 @@
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
             }).then(function() {
                 updateCartBadge();
-                openOffcanvasCart();
+                updateOffcanvasContent();
             });
             return false;
         }
@@ -542,7 +706,12 @@
             e.preventDefault();
             e.stopImmediatePropagation();
             var form = removeBtn.closest('form');
-            if (form) submitCartFormAjax(form);
+            var cartItem = removeBtn.closest('.raven-cart-item, .js-cart-item, [data-line-item-id]');
+            if (form && cartItem) {
+                deleteCartItemInstant(form, cartItem);
+            } else if (form) {
+                submitCartFormAjax(form);
+            }
             return;
         }
     }, true);
@@ -1139,22 +1308,17 @@
                         </div>
                     </div>
                     {# Cart Button Mobile - Opens Off-Canvas Cart Sidebar #}
-                    <div class="header-cart-wrapper" style="display: flex; align-items: center; gap: 4px;">
+                    <div class="header-cart-wrapper" style="position: relative; display: inline-flex;">
                         <button type="button"
-                                class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-10 w-10 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                                class="raven-icon-btn header-cart-btn"
                                 data-off-canvas-cart="true"
                                 data-url="{{ path('frontend.cart.offcanvas') }}"
-                                aria-label="Warenkorb">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                <circle cx="9" cy="21" r="1"/>
-                                <circle cx="20" cy="21" r="1"/>
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                            </svg>
+                                aria-label="Warenkorb"
+                                style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; border: 1px solid #e5e7eb; background: white;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                         </button>
                         {% if page.cart.lineItems.count > 0 %}
-                            <span class="raven-cart-badge-outside" style="display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; background: linear-gradient(to right, #facc15, #f59e0b, #facc15); color: #000; font-size: 11px; font-weight: 700; border-radius: 9999px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
-                                {{ page.cart.lineItems.count }}
-                            </span>
+                            <span class="raven-cart-badge" style="position: absolute; top: -6px; right: -6px; display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; background: linear-gradient(135deg, #facc15, #f59e0b); color: #000; font-size: 11px; font-weight: 700; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">{{ page.cart.lineItems.count }}</span>
                         {% endif %}
                     </div>
                     {# Mobile Menu Toggle #}
@@ -1210,9 +1374,10 @@
                     {# Account - With Dropdown Menu #}
                     <div class="raven-account-dropdown" style="position: relative;">
                         <button type="button"
-                                class="raven-icon-btn raven-account-btn relative inline-flex items-center justify-center h-8 w-8 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                                class="raven-icon-btn raven-account-btn"
                                 aria-label="Mein Konto"
-                                title="Mein Konto">
+                                title="Mein Konto"
+                                style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; border: 1px solid #e5e7eb; background: white; color: #6b7280;">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                                 <circle cx="12" cy="8" r="4"/>
                                 <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/>
@@ -1274,24 +1439,19 @@
                     </div>
 
                     {# Cart Button Desktop - Opens Off-Canvas Cart Sidebar #}
-                    <div class="header-cart-wrapper" style="display: flex; align-items: center; gap: 4px;">
+                    <div class="header-cart-wrapper" style="position: relative; display: inline-flex;">
                         <button type="button"
-                                class="raven-icon-btn header-cart-btn relative inline-flex items-center justify-center h-8 w-8 rounded-lg border border-gray-200 text-gray-500 bg-white"
+                                class="raven-icon-btn header-cart-btn"
                                 data-off-canvas-cart="true"
                                 data-url="{{ path('frontend.cart.offcanvas') }}"
                                 aria-label="Warenkorb"
-                                title="Warenkorb">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                <circle cx="9" cy="21" r="1"/>
-                                <circle cx="20" cy="21" r="1"/>
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                            </svg>
+                                title="Warenkorb"
+                                style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; border: 1px solid #e5e7eb; background: white;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                         </button>
                         {% set cartCount = page.cart.lineItems.count|default(0) %}
                         {% if cartCount > 0 %}
-                            <span class="raven-cart-badge-outside" style="display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; background: linear-gradient(to right, #facc15, #f59e0b, #facc15); color: #000; font-size: 11px; font-weight: 700; border-radius: 9999px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
-                                {{ cartCount }}
-                            </span>
+                            <span class="raven-cart-badge" style="position: absolute; top: -6px; right: -6px; display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; background: linear-gradient(135deg, #facc15, #f59e0b); color: #000; font-size: 11px; font-weight: 700; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">{{ cartCount }}</span>
                         {% endif %}
                     </div>
                 </div>
@@ -1309,8 +1469,8 @@
                                 <polyline points="6 9 12 15 18 9"/>
                             </svg>
                         </a>
-                        <div class="raven-mega-menu" style="min-width: 680px; padding: 20px;">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px;">
+                        <div class="raven-mega-menu" style="min-width: 880px; padding: 20px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 32px;">
                                 {# Column 1 - Waffen #}
                                 <div>
                                     <div style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px;">Waffen</div>
@@ -1381,6 +1541,30 @@
                                     <a href="/Waffenzubehoer/Muendung/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
                                         <span style="color: #9ca3af; font-size: 14px;">↳</span>
                                         Mündung
+                                    </a>
+                                </div>
+                                {# Column 4 - Snigel #}
+                                <div>
+                                    <div style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px;">Snigel</div>
+                                    <a href="/Snigel/Tactical-Gear/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
+                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
+                                        Tactical Gear
+                                    </a>
+                                    <a href="/Snigel/Vests-Chest-Rigs/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
+                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
+                                        Vests & Chest Rigs
+                                    </a>
+                                    <a href="/Snigel/Bags-Backpacks/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
+                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
+                                        Bags & Backpacks
+                                    </a>
+                                    <a href="/Snigel/Belts/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
+                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
+                                        Belts
+                                    </a>
+                                    <a href="/Snigel/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
+                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
+                                        Alle Snigel...
                                     </a>
                                 </div>
                             </div>
@@ -1486,6 +1670,98 @@
                                 <span style="color: #9ca3af;">↳</span>
                                 Mündung
                             </a>
+                        </div>
+                    </div>
+
+                    {# Snigel - WITH mega menu showing all categories #}
+                    <div class="raven-nav-item">
+                        <a href="/Snigel/"
+                           class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                            Snigel
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </a>
+                        <div class="raven-mega-menu" style="min-width: 600px; padding: 20px;">
+                            <div class="menu-header" style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e5e7eb;">Snigel Tactical Equipment</div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px 24px;">
+                                <a href="/Snigel/Tactical-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Tactical Gear
+                                </a>
+                                <a href="/Snigel/Vests-Chest-Rigs/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Vests & Chest Rigs
+                                </a>
+                                <a href="/Snigel/Bags-Backpacks/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Bags & Backpacks
+                                </a>
+                                <a href="/Snigel/Belts/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Belts
+                                </a>
+                                <a href="/Snigel/Holders-Pouches/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Holders & Pouches
+                                </a>
+                                <a href="/Snigel/Leg-Panels/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Leg Panels
+                                </a>
+                                <a href="/Snigel/Tactical-Clothing/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Tactical Clothing
+                                </a>
+                                <a href="/Snigel/Police-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Police Gear
+                                </a>
+                                <a href="/Snigel/Medical-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Medical Gear
+                                </a>
+                                <a href="/Snigel/Sniper-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Sniper Gear
+                                </a>
+                                <a href="/Snigel/K9-Units-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    K9 Units Gear
+                                </a>
+                                <a href="/Snigel/Covert-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Covert Gear
+                                </a>
+                                <a href="/Snigel/Ballistic-Protection/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Ballistic Protection
+                                </a>
+                                <a href="/Snigel/Slings-Holsters/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Slings & Holsters
+                                </a>
+                                <a href="/Snigel/Source-Hydration/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Source Hydration
+                                </a>
+                                <a href="/Snigel/Patches/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Patches
+                                </a>
+                                <a href="/Snigel/HighVis/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    HighVis
+                                </a>
+                                <a href="/Snigel/Multicam/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Multicam
+                                </a>
+                                <a href="/Snigel/Miscellaneous/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                    <span style="color: #9ca3af;">↳</span>
+                                    Miscellaneous
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </nav>
