@@ -618,8 +618,8 @@ docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console assets:ins
 
 | Container | URL | Port | Currency | Status |
 |-----------|-----|------|----------|--------|
-| `ravenweapon-shop` | https://ortak.ch | 80/443 | EUR ❌ | OLD - Backup only |
-| `shopware-chf` | http://new.ortak.ch:8080 | 8080/8443 | CHF ✅ | NEW - Testing |
+| `shopware-chf` | https://ortak.ch | 80/443 | CHF ✅ | **LIVE** |
+| `ravenweapon-shop` | - | - | EUR | **DELETED** (Dec 12, 2024) |
 
 ---
 
@@ -639,74 +639,54 @@ docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console assets:ins
 - [x] Upload Snigel product images (193 images uploaded successfully)
 - [ ] Configure Payrexx payment (requires Shopware upgrade to 6.6.5+)
 
-#### PHASE 2: Go Live - Swap Containers
-When testing is complete and everything works:
+#### PHASE 2: Go Live - Swap Containers ✅ COMPLETED (Dec 12, 2024)
+
+The CHF container was swapped to the main ports and the old EUR container was deleted.
 
 ```bash
-# 1. SSH to server
-ssh root@77.42.19.154
-
-# 2. Stop both containers
-docker stop ravenweapon-shop shopware-chf
-
-# 3. Change port mappings
-# Remove old containers (data persists in volumes)
-docker rm ravenweapon-shop shopware-chf
-
-# 4. Restart CHF container on main ports (80/443)
-cd /root
-docker-compose -f docker-compose-chf.yml down
-# Edit docker-compose-chf.yml: change 8080:80 to 80:80, 8443:443 to 443:443
-docker-compose -f docker-compose-chf.yml up -d
-
-# 5. Update Shopware domain to https://ortak.ch
-docker exec shopware-chf bash -c "mysql -u root -proot shopware -e \"UPDATE sales_channel_domain SET url='https://ortak.ch' WHERE url LIKE '%new.ortak.ch%'\""
-docker exec shopware-chf bash -c "sed -i 's|APP_URL=.*|APP_URL=https://ortak.ch|' /var/www/html/.env"
-docker exec shopware-chf bash -c "cd /var/www/html && bin/console cache:clear"
-
-# 6. Optionally start old EUR container on backup port
-docker-compose up -d  # This starts ravenweapon-shop on 8080
+# Commands that were executed:
+docker stop ravenweapon-shop      # Stop old EUR container
+docker rm ravenweapon-shop        # Delete old EUR container
+# shopware-chf is now running on ports 80/443
 ```
 
-#### PHASE 3: Cleanup
-After confirming everything works on the live site:
+#### PHASE 3: Cleanup ✅ COMPLETED (Dec 12, 2024)
 
-1. **Delete DNS subdomain:**
-   - Go to Cloudflare → ortak.ch → DNS
-   - Delete the `new` A record
-
-2. **Keep or remove old EUR container:**
-   - Keep as backup: Leave running on port 8080
-   - Remove completely: `docker rm ravenweapon-shop`
+1. **Old EUR container deleted** - `docker rm ravenweapon-shop`
+2. **Backup preserved** at `/var/backups/shopware-eur-20251211/`
+3. **DNS subdomain** - Can be deleted from Cloudflare if no longer needed
 
 ---
 
-### Final Result
+### Final Result ✅
 
 | What | URL | Description |
 |------|-----|-------------|
 | **Live Site** | https://ortak.ch | CHF installation (correct currency) |
 | **Admin** | https://ortak.ch/admin | Shopware admin panel |
-| **Backup** | http://77.42.19.154:8080 | Old EUR installation (optional) |
+| **Backup** | `/var/backups/shopware-eur-20251211/` | Database + media files (on server) |
 
 ---
 
-### Quick Commands for Migration Day
+### Quick Commands (Post-Migration)
 
 ```bash
 # Check container status
 docker ps
 
-# Check which container is on which port
-docker port ravenweapon-shop
-docker port shopware-chf
-
 # View logs if something goes wrong
 docker logs shopware-chf -f
 
-# Emergency rollback - restart old EUR container on main ports
-docker stop shopware-chf
-docker run -d --name ravenweapon-shop -p 80:80 -p 443:443 ... (from backup)
+# Clear cache
+docker exec shopware-chf bash -c "cd /var/www/html && bin/console cache:clear"
+
+# Emergency rollback from backup (if needed)
+# 1. Create new container
+docker run -d --name shopware-restore -p 80:80 -p 443:443 dockware/dev:6.6.0.0
+# 2. Restore database
+zcat /var/backups/shopware-eur-20251211/database.sql.gz | docker exec -i shopware-restore mysql -u root -proot shopware
+# 3. Restore media
+docker cp /var/backups/shopware-eur-20251211/media/. shopware-restore:/var/www/html/public/media/
 ```
 
 ---
