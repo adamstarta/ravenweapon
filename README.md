@@ -22,7 +22,8 @@ Swiss firearms e-commerce platform built on Shopware 6 with custom RavenTheme.
 10. [Troubleshooting](#troubleshooting)
 11. [Migration Notes](#migration-notes)
 12. [Snigel Product Images Upload](#snigel-product-images-upload)
-13. [Twig Injection Fix for Brand Pages](#twig-injection-fix-for-brand-pages)
+13. [Snigel Categories & Alle Produkte Fix](#snigel-categories--alle-produkte-fix)
+14. [Twig Injection Fix for Brand Pages](#twig-injection-fix-for-brand-pages)
 
 ---
 
@@ -721,6 +722,70 @@ ssh root@77.42.19.154 "docker cp /tmp/upload-snigel-images-v4.php shopware-chf:/
 - **193 out of 194** Snigel product images uploaded successfully
 - 1 product (`13-00110-01-000`) has no matching image in the downloaded set
 - All brand pages now display proper product images
+
+---
+
+## Snigel Categories & Alle Produkte Fix
+
+### Problem (Discovered December 12, 2024)
+After site check, several issues were found:
+
+1. **"Alle Produkte"** - Only showed 25 products (missing Snigel products)
+2. **Snigel English subcategories** - All INACTIVE (Tactical Gear, Bags & backpacks, etc.)
+3. **Snigel subcategories empty** - Showing "Produkte folgen in Kürze"
+
+### Root Cause
+- Products were assigned to **German subcategories** (Taschen & Rucksäcke) not English ones (Bags & backpacks)
+- English subcategories existed but were **INACTIVE**
+- Products weren't added to "Alle Produkte" category
+
+### Solution Applied
+Created `scripts/fix-snigel-categories.php` that:
+1. Activated all 21 English Snigel subcategories
+2. Added all 194 Snigel products to "Alle Produkte"
+
+```bash
+# Run the fix (already done Dec 12, 2024)
+ssh root@77.42.19.154 "docker cp /tmp/fix-snigel-categories.php shopware-chf:/tmp/ && docker exec shopware-chf php /tmp/fix-snigel-categories.php"
+```
+
+### Results
+- ✅ "Alle Produkte" now shows all 219+ products (5 pages)
+- ✅ 21 English subcategories activated
+- ⚠️ **Subcategories still empty** - Products need to be assigned
+
+### NEXT TASK: Assign Products to Subcategories
+
+The Snigel subcategories (Bags & backpacks, Medical gear, Tactical clothing, etc.) are **activated but empty** because products were never assigned to them.
+
+**What needs to be done:**
+1. Re-scrape B2B portal to get category assignments for ALL products
+2. Update Shopware products with proper subcategory assignments
+
+**Scripts available:**
+- `scripts/snigel-description-scraper-fast.js` - Scrapes categories from B2B portal
+- `scripts/shopware-update-descriptions.php` - Updates products with categories
+- `scripts/assign-products-to-english-subcats.php` - Maps German → English categories
+
+**Current category data:**
+- B2B scraper got categories for ~145 out of 203 products
+- Only ~19 products have subcategory assignments in Shopware
+
+**To fix subcategories completely:**
+```bash
+# 1. Re-run the B2B scraper to get ALL categories
+cd scripts
+node snigel-description-scraper-fast.js
+
+# 2. Copy the JSON to server
+scp scripts/snigel-data/products-with-descriptions.json root@77.42.19.154:/tmp/
+
+# 3. Run the update script
+ssh root@77.42.19.154 "docker cp /tmp/products-with-descriptions.json shopware-chf:/tmp/ && docker cp /tmp/shopware-update-descriptions.php shopware-chf:/tmp/ && docker exec shopware-chf php /tmp/shopware-update-descriptions.php"
+
+# 4. Map German to English categories
+ssh root@77.42.19.154 "docker cp /tmp/assign-products-to-english-subcats.php shopware-chf:/tmp/ && docker exec shopware-chf php /tmp/assign-products-to-english-subcats.php"
+```
 
 ---
 
