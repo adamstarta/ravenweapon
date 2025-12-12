@@ -38,16 +38,18 @@ This is a complete e-commerce solution for RAVEN WEAPON AG, a Swiss firearms dea
 
 | Item | Status |
 |------|--------|
-| Products imported | 305 total (193 Snigel with images) |
+| Products imported | 193 Snigel products with CHF prices |
 | Theme | RavenTheme (custom, gold/black design) |
-| Payment | Payrexx integration installed |
-| Base Currency | EUR (known issue - needs CHF) |
-| Sales Channel | CHF (customers see CHF prices) |
+| Payment | Payrexx (requires Shopware 6.6.5+ upgrade) |
+| Base Currency | **CHF ✅** (NEW installation) |
+| Sales Channel | CHF with proper visibility |
 
-### Known Issues
+### Active Installations
 
-1. **Base Currency is EUR** - Shopware was installed with EUR as base currency. This cannot be changed via UI. A fresh installation with CHF is planned.
-2. **2 products missing images** - "Belt closure pack" and "Weapon attachment side"
+| Installation | URL | Currency | Status |
+|-------------|-----|----------|--------|
+| **NEW (CHF)** | http://new.ortak.ch:8080 | CHF ✅ | Ready for Go-Live |
+| OLD (EUR) | https://ortak.ch | EUR | Backup only |
 
 ---
 
@@ -618,15 +620,16 @@ docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console assets:ins
 
 ### MIGRATION PLAN
 
-#### PHASE 1: Setup & Testing (Current)
+#### PHASE 1: Setup & Testing ✅ COMPLETED
 - [x] Create fresh Shopware installation with CHF base currency
 - [x] Install RavenTheme
 - [x] Setup DNS subdomain `new.ortak.ch` (Cloudflare, DNS only mode)
 - [x] Configure Shopware domain for `http://new.ortak.ch:8080`
-- [ ] Create API credentials for CHF installation
-- [ ] Import 305 products using scripts
-- [ ] Upload product images
-- [ ] Test checkout flow
+- [x] Create API credentials for CHF installation
+- [x] Import 193 Snigel products with CHF prices
+- [x] Upload product images (all 193 products)
+- [x] Fix product visibility on storefront
+- [x] Test site with Playwright (products showing, CHF prices visible)
 - [ ] Configure Payrexx payment (requires Shopware upgrade to 6.6.5+)
 
 #### PHASE 2: Go Live - Swap Containers
@@ -707,4 +710,4 @@ Proprietary - RAVEN WEAPON AG
 
 ---
 
-*Last updated: December 11, 2024*
+*Last updated: December 12, 2024*
