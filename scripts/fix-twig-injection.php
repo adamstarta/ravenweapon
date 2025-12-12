@@ -1,4 +1,12 @@
-<?xml version="1.0" ?>
+<?php
+/**
+ * Fix Twig injection in RavenTheme services.xml on the server
+ * This must be run via SSH on the server
+ */
+
+$servicesXmlPath = '/var/www/html/custom/plugins/RavenTheme/src/Resources/config/services.xml';
+
+$newContent = '<?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
@@ -49,3 +57,11 @@
     </services>
 
 </container>
+';
+
+if (file_put_contents($servicesXmlPath, $newContent)) {
+    echo "✅ services.xml updated successfully!\n";
+    echo "Now run: bin/console cache:clear\n";
+} else {
+    echo "❌ Failed to write services.xml\n";
+}

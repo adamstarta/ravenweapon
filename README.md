@@ -21,6 +21,8 @@ Swiss firearms e-commerce platform built on Shopware 6 with custom RavenTheme.
 9. [Useful Commands](#useful-commands)
 10. [Troubleshooting](#troubleshooting)
 11. [Migration Notes](#migration-notes)
+12. [Snigel Product Images Upload](#snigel-product-images-upload)
+13. [Twig Injection Fix for Brand Pages](#twig-injection-fix-for-brand-pages)
 
 ---
 
@@ -403,8 +405,11 @@ All scripts are in the `scripts/` folder and use the Shopware API.
 | Script | Purpose |
 |--------|---------|
 | `shopware-import.php` | Import products to Shopware |
+| `shopware-import-chf.php` | Import products to CHF Shopware installation |
 | `shopware-update-prices.php` | Update prices for all products |
 | `shopware-upload-images.php` | Upload product images |
+| `shopware-upload-images-chf.php` | Upload images to CHF installation |
+| `upload-snigel-images-v4.php` | Upload Snigel images (server-side, fixed) |
 | `update-missing-prices.php` | Fix 6 products with missing prices |
 
 **Run import script:**
@@ -630,6 +635,8 @@ docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console assets:ins
 - [x] Upload product images (all 193 products)
 - [x] Fix product visibility on storefront
 - [x] Test site with Playwright (products showing, CHF prices visible)
+- [x] Fix Twig injection error on "Unsere Marken" (brand) pages
+- [x] Upload Snigel product images (193 images uploaded successfully)
 - [ ] Configure Payrexx payment (requires Shopware upgrade to 6.6.5+)
 
 #### PHASE 2: Go Live - Swap Containers
@@ -701,6 +708,66 @@ docker logs shopware-chf -f
 docker stop shopware-chf
 docker run -d --name ravenweapon-shop -p 80:80 -p 443:443 ... (from backup)
 ```
+
+---
+
+## Snigel Product Images Upload
+
+### Problem
+After importing Snigel products to the CHF installation, the products had `coverId` references in the database but **no actual media files** uploaded. This caused placeholder icons to show instead of product images.
+
+### Solution
+Created `upload-snigel-images-v4.php` script that:
+1. Identifies products with cover associations but no actual media files (empty URL/path)
+2. Matches Shopware products to local image files via slug (SKU format: `SN-{slug}`)
+3. Creates new media entities and uploads actual image files
+4. Updates products with new cover media IDs
+
+### How to Run (if needed again)
+
+```bash
+# 1. Upload images to server (if not already there)
+scp -r scripts/snigel-data/images root@77.42.19.154:/tmp/snigel-images/
+scp scripts/snigel-data/products.json root@77.42.19.154:/tmp/
+
+# 2. Upload script to server
+scp scripts/upload-snigel-images-v4.php root@77.42.19.154:/tmp/
+
+# 3. Copy to container and run
+ssh root@77.42.19.154 "docker cp /tmp/upload-snigel-images-v4.php shopware-chf:/tmp/ && docker exec -w /tmp shopware-chf php upload-snigel-images-v4.php"
+```
+
+### Results (December 12, 2024)
+- **193 out of 194** Snigel product images uploaded successfully
+- 1 product (`13-00110-01-000`) has no matching image in the downloaded set
+- All brand pages now display proper product images
+
+---
+
+## Twig Injection Fix for Brand Pages
+
+### Problem
+"Unsere Marken" (Our Brands) pages were showing error:
+```
+Class RavenTheme\Controller\ManufacturerPageController does not have twig injected
+```
+
+### Solution
+Updated `shopware-theme/RavenTheme/src/Resources/config/services.xml` to add Twig service injection:
+
+```xml
+<service id="RavenTheme\Controller\ManufacturerPageController" public="true">
+    <!-- ... existing arguments ... -->
+    <call method="setContainer">
+        <argument type="service" id="service_container"/>
+    </call>
+    <call method="setTwig">
+        <argument type="service" id="twig"/>
+    </call>
+</service>
+```
+
+This is required for Shopware 6.6+ where Twig must be explicitly injected into controllers.
 
 ---
 

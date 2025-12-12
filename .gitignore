@@ -34,3 +34,4 @@ build/
 
 # Credentials (SENSITIVE)
 .server-credentials
+scripts/snigel-data/snigel-images.tar.gz
