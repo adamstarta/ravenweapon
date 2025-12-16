@@ -1,0 +1,2913 @@
+{
+    "timestamp": "2025-12-16 03:31:27",
+    "summary": {
+        "old_shop_total": 93,
+        "ortak_total": 336,
+        "exact_matches": 92,
+        "partial_matches": 1,
+        "not_found": 0
+    },
+    "exact_matches": [
+        {
+            "old": {
+                "name": "TRACE ED 1-10X24 FFP 34MM MRAD LPVO",
+                "price": "899.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-ed-1-10x24-ffp-34mm-mrad-lpvo-140085",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 831.6373728029603,
+                        "gross": 899,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-TRD-000-XX-00118",
+                "name": "TRACE ED 1-10X24 FFP 34MM MRAD LPVO",
+                "id": "019adf1a684d703daf17cf9958d24cf6",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 5-25X56 RMG FFP MRAD ZERO STOP",
+                "price": "574.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-5-25x56-rmg-ffp-mrad-zero-stop-5481",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 530.9898242368178,
+                        "gross": 574,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00066",
+                "name": "VENGEANCE 5-25X56 RMG FFP MRAD ZERO STOP",
+                "id": "019adf1738237ca5be58c07e86797556",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 4-20X50 PHR II",
+                "price": "371.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-4-20x50-phr-ii-5489",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 343.2007400555042,
+                        "gross": 371,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00074",
+                "name": "VENGEANCE 4-20X50 PHR II",
+                "id": "019adf0ed60170fea06b6a6c2110532c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE ADVANCED 4-24X50 FFP TREMOR 3 MRAD JAPAN",
+                "price": "1&#039;780.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-advanced-4-24x50-ffp-tremor-3-mrad-japan-5495",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 1646.6234967622572,
+                        "gross": 1780,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-TRA-000-XX-00080",
+                "name": "TRACE ADVANCED 4-24X50 FFP TREMOR 3 MRAD JAPAN",
+                "id": "019adf251c73710aa5f124ab5e7512eb",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE HALO ASPHERICAL ENCLOSED 3 MOA, Red Dot",
+                "price": "258.50",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-halo-aspherical-enclosed-3-moa-red-dot-5501",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 239.13043478260872,
+                        "gross": 258.5,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-TRC-000-XX-00091",
+                "name": "TRACE HALO ASPHERICAL ENCLOSED 3 MOA, Red Dot",
+                "id": "019adf49fa66726fa155d8542a1f2b8b",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE ASPHERICAL ENCLOSED RED DOT - HALO - FDE",
+                "price": "258.50",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-aspherical-enclosed-red-dot-halo-fde-5502",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 239.13043478260872,
+                        "gross": 258.5,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-TRC-000-FD-00092",
+                "name": "TRACE ASPHERICAL ENCLOSED RED DOT - HALO - FDE",
+                "id": "019adf49fb197111bc9df6f4a675ada3",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "RAS 1X25 DIGITAL RED DOT 2 MOA, HIGH &amp; LOW MOUNT",
+                "price": "172.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/ras-1x25-digital-red-dot-2-moa-high-low-mount-5503",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 159.11193339500463,
+                        "gross": 172,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-TRC-000-XX-00093",
+                "name": "RAS 1X25 DIGITAL RED DOT 2 MOA, HIGH & LOW MOUNT",
+                "id": "019adf49f95a73bca3e107413206014e",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "20-60X80 FFP OSR MRAD SPOTTING SCOPE",
+                "price": "1&#039;899.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/20-60x80-ffp-osr-mrad-spotting-scope-5504",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 1756.7067530064755,
+                        "gross": 1899,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-SSC-TRA-000-XX-00094",
+                "name": "20-60X80 FFP OSR MRAD SPOTTING SCOPE",
+                "id": "019adf49f7c97346af3c846a74bbf09d",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "20-60X85 TING SCOPE",
+                "price": "439.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/20-60x85-ting-scope-5505",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 406.1054579093432,
+                        "gross": 439,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-SSC-THR-000-XX-00095",
+                "name": "20-60X85 TING SCOPE",
+                "id": "019adf49f88a70579ac7387fc5856acd",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD 1-4X24 VARIABLE PRISM ILLUM RAPR RETICLE",
+                "price": "451.30",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-1-4x24-variable-prism-illum-rapr-reticle-5506",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 417.48381128584646,
+                        "gross": 451.3,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-THD-000-XX-00096",
+                "name": "THRIVE HD 1-4X24 VARIABLE PRISM ILLUM RAPR RETICLE",
+                "id": "019adf49ffef71659fdd66eaa9e3b2cd",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MICRO PRISM 1X20",
+                "price": "298.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/micro-prism-1x20-5507",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 275.67067530064753,
+                        "gross": 298,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-THD-000-XX-00097",
+                "name": "MICRO PRISM 1X20",
+                "id": "019adf49ff3773deb7e0d243fc574b5f",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD MULTI RETICLE HIGH REFLEX",
+                "price": "224.20",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-multi-reticle-high-reflex-5508",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 207.4005550416281,
+                        "gross": 224.2,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-THD-000-XX-00098",
+                "name": "THRIVE HD MULTI RETICLE HIGH REFLEX",
+                "id": "019adf49fe657281bdfd7ea8113eb3a9",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 1-6X24 SFP RAR MOA",
+                "price": "329.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-1-6x24-sfp-rar-moa-5512",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 304.34782608695656,
+                        "gross": 329,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00102",
+                "name": "VENGEANCE 1-6X24 SFP RAR MOA",
+                "id": "019adf04c4cc7093a010c1b37e039d84",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE 4.5-27X50 RMG FFP MOA",
+                "price": "799.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-45-27x50-rmg-ffp-moa-5519",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 739.1304347826087,
+                        "gross": 799,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-TRC-000-XX-00109",
+                "name": "TRACE 4.5-27X50 RMG FFP MOA",
+                "id": "019adf2030047b8a85d2a1e8eb92f453",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE 4.5-27X50 RMG FFP",
+                "price": "799.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-45-27x50-rmg-ffp-5520",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 739.1304347826087,
+                        "gross": 799,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-TRC-000-XX-00110",
+                "name": "TRACE 4.5-27X50 RMG FFP",
+                "id": "019adf1e53dc7982a0335c1499774aec",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE 4.5-27X50 R3 MOA",
+                "price": "599.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-45-27x50-r3-moa-5521",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 554.1165587419057,
+                        "gross": 599,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-TRC-000-XX-00111",
+                "name": "TRACE 4.5-27X50 R3 MOA",
+                "id": "019adf1cb5c07013945fcf2d2c4b630c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD 1-8X24 PHR 4 IR",
+                "price": "399.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-1-8x24-phr-4-ir-5522",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 369.1026827012026,
+                        "gross": 399,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THD-000-XX-00112",
+                "name": "THRIVE HD 1-8X24 PHR 4 IR",
+                "id": "019adf49f6f170d6b1d30bc36a167680",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD 1-8X24 G4 IR",
+                "price": "399.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-1-8x24-g4-ir-5523",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 369.1026827012026,
+                        "gross": 399,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THD-000-XX-00113",
+                "name": "THRIVE HD 1-8X24 G4 IR",
+                "id": "019adf49f62d73cdb98bd8aa28be8699",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD FFP 6-24X50 IR LR HUNTER MRAD",
+                "price": "724.40",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-ffp-6-24x50-ir-lr-hunter-mrad-5524",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 670.1202590194265,
+                        "gross": 724.4,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THD-000-XX-00114",
+                "name": "THRIVE HD FFP 6-24X50 IR LR HUNTER MRAD",
+                "id": "019adf49f53e73f08654c72f4ec7cfbe",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD 3-18X56 PHR II IR ILLUMINATED",
+                "price": "685.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-3-18x56-phr-ii-ir-illuminated-5525",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Thrive HD"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 633.672525439408,
+                        "gross": 685,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THD-000-XX-00115",
+                "name": "THRIVE HD 3-18X56 PHR II IR ILLUMINATED",
+                "id": "019adf3cd26d7107afeb9be94e639c5c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD 2.5-15X50 PHR II ILLUMINATED",
+                "price": "512.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-25-15x50-phr-ii-illuminated-5527",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Thrive HD"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 473.6355226641998,
+                        "gross": 512,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THD-000-XX-00117",
+                "name": "THRIVE HD 2.5-15X50 PHR II ILLUMINATED",
+                "id": "019adf38f696762894d6dfc0e8c833ad",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD 2.5-15X50 PHR II",
+                "price": "457.60",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-25-15x50-phr-ii-5526",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Thrive HD"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 423.3117483811286,
+                        "gross": 457.6,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THD-000-XX-00116",
+                "name": "THRIVE HD 2.5-15X50 PHR II",
+                "id": "019adf3ab45a7b2fb2d9e8aec3375d65",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 4-20X50 R3 ILLUM",
+                "price": "384.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-4-20x50-r3-illum-5486",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Vengeance"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 356.059204440333,
+                        "gross": 384.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00071",
+                "name": "VENGEANCE 4-20X50 R3 ILLUM",
+                "id": "019adf15aaba7850a27126e3550f2997",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 4-20X50 PHR II IR",
+                "price": "438.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-4-20x50-phr-ii-ir-5487",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Vengeance"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 406.0129509713228,
+                        "gross": 438.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00072",
+                "name": "VENGEANCE 4-20X50 PHR II IR",
+                "id": "019adf13d82d7d7bac0c2516f862300b",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 4-20X50 R3",
+                "price": "416.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-4-20x50-r3-5488",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Vengeance"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 385.6614246068455,
+                        "gross": 416.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00073",
+                "name": "VENGEANCE 4-20X50 R3",
+                "id": "019adf10dd627b24a50a84cc044b0e74",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 6-24X50 FFP RMG MRAD",
+                "price": "489.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-6-24x50-ffp-rmg-mrad-5490",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Vengeance"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 452.358926919519,
+                        "gross": 489,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00075",
+                "name": "VENGEANCE 6-24X50 FFP RMG MRAD",
+                "id": "019adf0d61537a90b8a06660f70cc02e",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 6-24X50 FFP RMG MOA",
+                "price": "512.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-6-24x50-ffp-rmg-moa-5491",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Vengeance"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 473.6355226641998,
+                        "gross": 512,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00076",
+                "name": "VENGEANCE 6-24X50 FFP RMG MOA",
+                "id": "019adf0b64ee7d898440769d24a84c17",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "VENGEANCE 3-12X40 ZEROPLEX",
+                "price": "223.40",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/vengeance-3-12x40-zeroplex-5492",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Vengeance"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 206.6604995374653,
+                        "gross": 223.4,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-VEN-000-XX-00077",
+                "name": "VENGEANCE 3-12X40 ZEROPLEX",
+                "id": "019adf08f3ae7e74ae3569539d79b890",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE 3-9X40 ZEROPLEX",
+                "price": "169.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-3-9x40-zeroplex-5513",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Thrive"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 156.33672525439408,
+                        "gross": 169,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THR-000-XX-00103",
+                "name": "THRIVE 3-9X40 ZEROPLEX",
+                "id": "019adf3515ca7263904d635909efad91",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE 3-9X40 PHR 4",
+                "price": "222.50",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-3-9x40-phr-4-5514",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Thrive"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 205.82793709528215,
+                        "gross": 222.5,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THR-000-XX-00104",
+                "name": "THRIVE 3-9X40 PHR 4",
+                "id": "019adf33856675b0b7e5668ef60380e5",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE 3-12X44 ZEROPLEX",
+                "price": "256.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-3-12x44-zeroplex-5515",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Thrive"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 236.8177613320999,
+                        "gross": 256,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THR-000-XX-00105",
+                "name": "THRIVE 3-12X44 ZEROPLEX",
+                "id": "019adf31f8eb7bd9b680ef241e96eb33",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE 4-16X50 PHR II",
+                "price": "375.30",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-4-16x50-phr-ii-5516",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Thrive"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 347.1785383903793,
+                        "gross": 375.3,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THR-000-XX-00106",
+                "name": "THRIVE 4-16X50 PHR II",
+                "id": "019adf30532f79db951c807fa676fe11",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE 4-16X50 ZEROPLEX",
+                "price": "360.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-4-16x50-zeroplex-5517",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Thrive"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 333.02497687326553,
+                        "gross": 360,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THR-000-XX-00107",
+                "name": "THRIVE 4-16X50 ZEROPLEX",
+                "id": "019adf2dd1737facae90d038e669a176",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE ADVANCED 5-30X56 T3 ED TREMOR 3",
+                "price": "2&#039;090.40",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-advanced-5-30x56-t3-ed-tremor-3-5493",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Trace ADV"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 1933.7650323774285,
+                        "gross": 2090.4,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-TRA-000-XX-00078",
+                "name": "TRACE ADVANCED 5-30X56 T3 ED TREMOR 3",
+                "id": "019adf2a22a971c383fcc0ac87a3a6b6",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE ADVANCED 5-30X56 RMG2 ED",
+                "price": "1&#039;999.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-advanced-5-30x56-rmg2-ed-5494",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Trace ADV"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 1849.213691026827,
+                        "gross": 1999,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-TRA-000-XX-00079",
+                "name": "TRACE ADVANCED 5-30X56 RMG2 ED",
+                "id": "019adf26c72274a7b6d85d9058409fa9",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TRACE ADVANCED 4-24X50 FFP RMG IR 0.1 MRAD JAPAN",
+                "price": "1&#039;650.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/trace-advanced-4-24x50-ffp-rmg-ir-01-mrad-japan-5496",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": "Trace ADV"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 1526.3644773358003,
+                        "gross": 1650,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-TRA-000-XX-00081",
+                "name": "TRACE ADVANCED 4-24X50 FFP RMG IR 0.1 MRAD JAPAN",
+                "id": "019adf2396b576cca60dc536b1aaed36",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD REFLEX GREEN DOT 3 MOA HIGH MOUNT",
+                "price": "224.20",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-reflex-green-dot-3-moa-high-mount-5509",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Red Dots",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 207.4005550416281,
+                        "gross": 224.2,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-THD-000-XX-00099",
+                "name": "THRIVE HD REFLEX GREEN DOT 3 MOA HIGH MOUNT",
+                "id": "019adf49fda47243917620013964dd24",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE HD REFLEX 3 MOA HIGH",
+                "price": "199.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-hd-reflex-3-moa-high-5510",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Red Dots",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 184.08880666049956,
+                        "gross": 199,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-THD-000-XX-00100",
+                "name": "THRIVE HD REFLEX 3 MOA HIGH",
+                "id": "019adf49fce673e1a028e2b14e560c4c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "THRIVE RED DOT 3 MOA",
+                "price": "105.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-red-dot-3-moa-5511",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Red Dots",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 97.1322849213691,
+                        "gross": 105,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-RV-THR-000-XX-00101",
+                "name": "THRIVE RED DOT 3 MOA",
+                "id": "019adf49fc17724f9bcca5b6c6875097",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "Flash Hider - Acheron HexaLug - 5.56",
+                "price": "129.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/flash-hider-acheron-hexalug-556-159052",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 119.33395004625348,
+                        "gross": 129,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ACH-ZBH-FSD-223-SW-00119",
+                "name": "Flash Hider - Acheron HexaLug - 5.56",
+                "id": "019adf4a30ec712387911bab131568e6",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "7.62 - Flash Hider - Acheron HexaLug",
+                "price": "129.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/762-flash-hider-acheron-hexalug-159053",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 119.33395004625348,
+                        "gross": 129,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ACH-ZBH-FSD-762-SW-00120",
+                "name": "7.62 - Flash Hider - Acheron HexaLug",
+                "id": "019adf4a3026731dbacbffe34f405969",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "5.56 - Acheron Hexalug - Muzzle brake",
+                "price": "129.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/556-acheron-hexalug-muzzle-brake-159055",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 119.33395004625348,
+                        "gross": 129,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ACH-ZBH-MDB-556-SW-00121",
+                "name": "5.56 - Acheron Hexalug - Muzzle brake",
+                "id": "019adf4a2f61721c9268d251761c4518",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "Magpul® Bipod for M-LOK®, FDE",
+                "price": "164.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/magpul-bipod-for-m-lok-fde-5480",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 152.54394079555968,
+                        "gross": 164.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-BPD-000-FD-00065",
+                "name": "Magpul® Bipod for M-LOK®, FDE",
+                "id": "019adf4a1ab472a48d0722ece1fe6c0f",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AIMPACT Scope Mount TP21 6061",
+                "price": "89.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/aimpact-scope-mount-tp21-6061-159145",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 82.33117483811286,
+                        "gross": 89,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "AIM-ZBH-SCM-XXX-BLK-00150",
+                "name": "AIMPACT Scope Mount TP21 6061",
+                "id": "019adf4a2ded7258b372d8c96151f7e3",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AIMPACT Scope Mount TP21 7075",
+                "price": "99.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/aimpact-scope-mount-tp21-7075-159146",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 91.58186864014802,
+                        "gross": 99,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "AIM-ZBH-SCM-XXX-BLK-00151",
+                "name": "AIMPACT Scope Mount TP21 7075",
+                "id": "019adf4a2d1d71839d3fd32efc22e1b0",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "Aimpact TP 18",
+                "price": "79.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/aimpact-tp-18-159147",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 73.08048103607771,
+                        "gross": 79,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "AIM-ZBH-SCM-XXX-BLK-00152",
+                "name": "Aimpact TP 18",
+                "id": "019adf4a2c39720f9cae24cd53e740b5",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "Aimpact TP 18 34mm",
+                "price": "82.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/aimpact-tp-18-34mm-159148",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 75.85568917668826,
+                        "gross": 82,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "AIM-ZBH-SCM-XXX-BLK-00153",
+                "name": "Aimpact TP 18 34mm",
+                "id": "019adf4a2b6b7099b023ab544dc6370b",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AIMPACT TP28 1.54&quot;, black",
+                "price": "114.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/aimpact-tp28-154-black-159149",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 105.45790934320074,
+                        "gross": 114,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "AIM-ZBH-SCM-XXX-BLK-00154",
+                "name": "AIMPACT TP28 1.54\", black",
+                "id": "019adf4a2a9c72c2ab009f710c2cf223",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AIMPACT TP28 1.54&quot;, Sandy Gold",
+                "price": "114.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/aimpact-tp28-154-sandy-gold-159150",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 105.45790934320074,
+                        "gross": 114,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "AIM-ZBH-SCM-XXX-SDG-00155",
+                "name": "AIMPACT TP28 1.54\", Sandy Gold",
+                "id": "019adf4a29077066af3f031116954b9c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AIMPACT TP28 1.93&quot;, black",
+                "price": "114.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/aimpact-tp28-193-black-159151",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 105.45790934320074,
+                        "gross": 114,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "AIM-ZBH-SCM-XXX-BLK-00156",
+                "name": "AIMPACT TP28 1.93\", black",
+                "id": "019adf4a29cf706a9e4c1cf42bd99a71",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AIMPACT TP28 1.93&quot;, Sandy Gold",
+                "price": "114.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/aimpact-tp28-193-sandy-gold-159152",
+                "category": "Accessories",
+                "subcategory": "All",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 105.45790934320074,
+                        "gross": 114,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "AIM-ZBH-SCM-XXX-SDG-00157",
+                "name": "AIMPACT TP28 1.93\", Sandy Gold",
+                "id": "019adf4a283a73a0b2e763e3ddd23978",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 40 AR\/M4 GEN M3®, 5.56x45",
+                "price": "32.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-40-arm4-gen-m3-556x45-5434",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 30.434782608695652,
+                        "gross": 32.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR40-223-SW-00088",
+                "name": "PMAG® 40 AR\/M4 GEN M3®, 5.56x45",
+                "id": "019adf4a1f4173bd8c108c27f0166dd2",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 30 AR\/M4 GEN M3® Window, 5.56x45",
+                "price": "24.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-30-arm4-gen-m3-window-556x45-5435",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 19.35,
+                        "gross": 20.92,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR30W-223-CT-00089",
+                "name": "PMAG® 30 AR\/M4 GEN M3® Window, 5.56x45",
+                "id": "019adf4a219b70509fda5b50a7aca5be",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 30 AR\/M4 GEN M3® Window, 5.56x45",
+                "price": "24.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-30-arm4-gen-m3-window-556x45-5436",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 19.35,
+                        "gross": 20.92,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR30W-223-CT-00089",
+                "name": "PMAG® 30 AR\/M4 GEN M3® Window, 5.56x45",
+                "id": "019adf4a219b70509fda5b50a7aca5be",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 30 AR\/M4 GEN M3®, 5.56x45",
+                "price": "20.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-30-arm4-gen-m3-556x45-5437",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 16.24,
+                        "gross": 17.56,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR30-223-CT-00087",
+                "name": "PMAG® 30 AR\/M4 GEN M3®, 5.56x45",
+                "id": "019adf4a24fe72c79da973eb2bc66d42",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 30 AR\/M4 GEN M3®, 5.56x45",
+                "price": "20.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-30-arm4-gen-m3-556x45-5438",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 16.24,
+                        "gross": 17.56,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR30-223-CT-00087",
+                "name": "PMAG® 30 AR\/M4 GEN M3®, 5.56x45",
+                "id": "019adf4a24fe72c79da973eb2bc66d42",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TMAG™ 30 AR\/M4 GEN M3®",
+                "price": "34.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/tmag-30-arm4-gen-m3-5439",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 32.28492136910268,
+                        "gross": 34.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR30-223-ODT-00026",
+                "name": "TMAG™ 30 AR\/M4 GEN M3®",
+                "id": "019adf4a24337385a26b91da645cdf4f",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 30 AR\/M4 GEN M2 MOE® Window, 5.56x45",
+                "price": "21.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-30-arm4-gen-m2-moe-window-556x45-5440",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 20.259019426456984,
+                        "gross": 21.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR30W-223-SW-00027",
+                "name": "PMAG® 30 AR\/M4 GEN M2 MOE® Window, 5.56x45",
+                "id": "019adf4a20cc71eaad79695db4129034",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 30 AR\/M4 GEN M2 MOE®, 5.56x45",
+                "price": "17.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-30-arm4-gen-m2-moe-556x45-5441",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 16.558741905642922,
+                        "gross": 17.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR30-223-SW-00028",
+                "name": "PMAG® 30 AR\/M4 GEN M2 MOE®, 5.56x45",
+                "id": "019adf4a236673f88bb93498d67176d0",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 20 AR\/M4 GEN M3®, 5.56x45",
+                "price": "21.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-20-arm4-gen-m3-556x45-5442",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 20.259019426456984,
+                        "gross": 21.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR20-223-SW-00029",
+                "name": "PMAG® 20 AR\/M4 GEN M3®, 5.56x45",
+                "id": "019adf4a25c37117bdfef5a59243178e",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "TMAG™ 20 AR\/M4 GEN M3®",
+                "price": "34.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/tmag-20-arm4-gen-m3-5443",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 32.28492136910268,
+                        "gross": 34.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR20-223-ODT-00030",
+                "name": "TMAG™ 20 AR\/M4 GEN M3®",
+                "id": "019adf4a268373c9a4b2bd73fa967f88",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "PMAG® 10 AR\/M4 GEN M3®, 5.56x45",
+                "price": "21.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/pmag-10-arm4-gen-m3-556x45-5444",
+                "category": "Accessories",
+                "subcategory": "Magazines",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 20.259019426456984,
+                        "gross": 21.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-MG-AR10-223-SW-00031",
+                "name": "PMAG® 10 AR\/M4 GEN M3®, 5.56x45",
+                "id": "019adf4a277570b1b7dc0855d79b0ce9",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+                "price": "52.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-fixed-carbine-stock-mil-spec-5445",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 41.12,
+                        "gross": 44.45,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00033",
+                "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+                "id": "019adf4a0f9c71a196a77a6465201440",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+                "price": "52.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-fixed-carbine-stock-mil-spec-5446",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 41.12,
+                        "gross": 44.45,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00033",
+                "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+                "id": "019adf4a0f9c71a196a77a6465201440",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+                "price": "52.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-fixed-carbine-stock-mil-spec-5447",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 41.12,
+                        "gross": 44.45,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00033",
+                "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+                "id": "019adf4a0f9c71a196a77a6465201440",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+                "price": "52.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-fixed-carbine-stock-mil-spec-5448",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 41.12,
+                        "gross": 44.45,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00033",
+                "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+                "id": "019adf4a0f9c71a196a77a6465201440",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE® Carbine Stock - Mil-Spec",
+                "price": "59.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-carbine-stock-mil-spec-5449",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 46.57,
+                        "gross": 50.34,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00037",
+                "name": "MOE® Carbine Stock - Mil-Spec",
+                "id": "019adf4a0eaf718983ff64bb61470321",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE® Carbine Stock - Mil-Spec",
+                "price": "59.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-carbine-stock-mil-spec-5450",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 46.57,
+                        "gross": 50.34,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00037",
+                "name": "MOE® Carbine Stock - Mil-Spec",
+                "id": "019adf4a0eaf718983ff64bb61470321",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE® Carbine Stock - Mil-Spec",
+                "price": "59.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-carbine-stock-mil-spec-5451",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 46.57,
+                        "gross": 50.34,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00037",
+                "name": "MOE® Carbine Stock - Mil-Spec",
+                "id": "019adf4a0eaf718983ff64bb61470321",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE® Carbine Stock - Mil-Spec",
+                "price": "59.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-carbine-stock-mil-spec-5452",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 46.57,
+                        "gross": 50.34,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00037",
+                "name": "MOE® Carbine Stock - Mil-Spec",
+                "id": "019adf4a0eaf718983ff64bb61470321",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE SL® Carbine Stock - Mil-Spec",
+                "price": "86.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-sl-carbine-stock-mil-spec-5453",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 67.56,
+                        "gross": 73.03,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00041",
+                "name": "MOE SL® Carbine Stock - Mil-Spec",
+                "id": "019adf4a0dcf72058e868d1412134f1d",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE SL® Carbine Stock - Mil-Spec",
+                "price": "86.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-sl-carbine-stock-mil-spec-5454",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 67.56,
+                        "gross": 73.03,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00041",
+                "name": "MOE SL® Carbine Stock - Mil-Spec",
+                "id": "019adf4a0dcf72058e868d1412134f1d",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE SL® Carbine Stock - Mil-Spec",
+                "price": "86.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-sl-carbine-stock-mil-spec-5455",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 67.56,
+                        "gross": 73.03,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00041",
+                "name": "MOE SL® Carbine Stock - Mil-Spec",
+                "id": "019adf4a0dcf72058e868d1412134f1d",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "MOE SL® Carbine Stock - Mil-Spec",
+                "price": "86.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/moe-sl-carbine-stock-mil-spec-5456",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 67.56,
+                        "gross": 73.03,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-STK-000-FD-00041",
+                "name": "MOE SL® Carbine Stock - Mil-Spec",
+                "id": "019adf4a0dcf72058e868d1412134f1d",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AFG® - Angled Fore Grip",
+                "price": "46.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/afg-angled-fore-grip-5465",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 36.46,
+                        "gross": 39.41,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-FD-00053",
+                "name": "AFG® - Angled Fore Grip",
+                "id": "019adf4a190b738c83147000e2a72f9c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AFG® - Angled Fore Grip",
+                "price": "46.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/afg-angled-fore-grip-5466",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 36.46,
+                        "gross": 39.41,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-FD-00053",
+                "name": "AFG® - Angled Fore Grip",
+                "id": "019adf4a190b738c83147000e2a72f9c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AFG® - Angled Fore Grip",
+                "price": "46.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/afg-angled-fore-grip-5467",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 36.46,
+                        "gross": 39.41,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-FD-00053",
+                "name": "AFG® - Angled Fore Grip",
+                "id": "019adf4a190b738c83147000e2a72f9c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "AFG® - Angled Fore Grip",
+                "price": "46.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/afg-angled-fore-grip-5468",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 36.46,
+                        "gross": 39.41,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-FD-00053",
+                "name": "AFG® - Angled Fore Grip",
+                "id": "019adf4a190b738c83147000e2a72f9c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "RVG® - Rail Vertical Grip - black",
+                "price": "30.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/rvg-rail-vertical-grip-black-5469",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 28.58464384828862,
+                        "gross": 30.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-SW-00056",
+                "name": "RVG® - Rail Vertical Grip - black",
+                "id": "019adf4a1128738c92224e96f7f23914",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "RVG® - Rail Vertical Grip, FDE",
+                "price": "30.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/rvg-rail-vertical-grip-fde-5470",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 28.58464384828862,
+                        "gross": 30.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-FD-00057",
+                "name": "RVG® - Rail Vertical Grip, FDE",
+                "id": "019adf4a1844732fb6bcd980a3cad898",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "RVG® - Rail Vertical Grip, Sniper Grey",
+                "price": "30.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/rvg-rail-vertical-grip-sniper-grey-5471",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 28.58464384828862,
+                        "gross": 30.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-SG-00058",
+                "name": "RVG® - Rail Vertical Grip, Sniper Grey",
+                "id": "019adf4a1368726d8e34c2b97227e5a3",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "RVG® - Rail Vertical Grip. OD-Green",
+                "price": "30.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/rvg-rail-vertical-grip-od-green-5472",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 28.58464384828862,
+                        "gross": 30.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-OD-00059",
+                "name": "RVG® - Rail Vertical Grip. OD-Green",
+                "id": "019adf4a15e671d39ca3679dc0c01865",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "M-LOK® MVG® - MOE® Vertical Grip, black",
+                "price": "26.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/m-lok-mvg-moe-vertical-grip-black-5482",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 24.88436632747456,
+                        "gross": 26.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-SW-00067",
+                "name": "M-LOK® MVG® - MOE® Vertical Grip, black",
+                "id": "019adf4a10787014b57bea447802eb7b",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "M-LOK® MVG® - MOE® Vertical Grip, FDE",
+                "price": "26.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/m-lok-mvg-moe-vertical-grip-fde-5483",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 24.88436632747456,
+                        "gross": 26.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-FD-00068",
+                "name": "M-LOK® MVG® - MOE® Vertical Grip, FDE",
+                "id": "019adf4a177a717aa6c5c63b8ba88170",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "M-LOK® MVG® - MOE® Vertical Grip, Sniper Grey",
+                "price": "26.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/m-lok-mvg-moe-vertical-grip-sniper-grey-5484",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 24.88436632747456,
+                        "gross": 26.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-SG-00069",
+                "name": "M-LOK® MVG® - MOE® Vertical Grip, Sniper Grey",
+                "id": "019adf4a12a37081baa2892365b1e5b5",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "M-LOK® MVG® - MOE® Vertical Grip",
+                "price": "26.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/m-lok-mvg-moe-vertical-grip-5485",
+                "category": "Accessories",
+                "subcategory": "Sticks & handles",
+                "childCategory": "Handles"
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 24.88436632747456,
+                        "gross": 26.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-GRP-000-OD-00070",
+                "name": "M-LOK® MVG® - MOE® Vertical Grip",
+                "id": "019adf4a151271ab9cfb5f0a235ab23c",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "XTM® Hand Stop Kit, black",
+                "price": "27.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/xtm-hand-stop-kit-black-5473",
+                "category": "Accessories",
+                "subcategory": "Rails and Accessories",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 25.809435707678077,
+                        "gross": 27.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-ACS-000-SW-00060",
+                "name": "XTM® Hand Stop Kit, black",
+                "id": "019adf4a1b8a72618c0b38b7d11b6e70",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "XTM® Hand Stop Kit",
+                "price": "27.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/xtm-hand-stop-kit-5474",
+                "category": "Accessories",
+                "subcategory": "Rails and Accessories",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 25.809435707678077,
+                        "gross": 27.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-ACS-000-FD-00061",
+                "name": "XTM® Hand Stop Kit",
+                "id": "019adf4a1e5c73ddbb183b32b7291f61",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "XTM® Hand Stop Kit, Sniper Grey",
+                "price": "27.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/xtm-hand-stop-kit-sniper-grey-5475",
+                "category": "Accessories",
+                "subcategory": "Rails and Accessories",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 25.809435707678077,
+                        "gross": 27.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-ACS-000-SG-00062",
+                "name": "XTM® Hand Stop Kit, Sniper Grey",
+                "id": "019adf4a1c6b72a1b558faf2b42c75f5",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "XTM® Hand Stop Kit, OD-Green",
+                "price": "27.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/xtm-hand-stop-kit-od-green-5476",
+                "category": "Accessories",
+                "subcategory": "Rails and Accessories",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 25.809435707678077,
+                        "gross": 27.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-ACS-000-OD-00063",
+                "name": "XTM® Hand Stop Kit, OD-Green",
+                "id": "019adf4a1d8571e28024b3f54b43a75b",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "Magpul® Bipod for M-LOK®, black",
+                "price": "164.90",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/magpul-bipod-for-m-lok-black-5479",
+                "category": "Accessories",
+                "subcategory": "Bipods",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 152.54394079555968,
+                        "gross": 164.9,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "MGP-ZBH-BPD-000-SW-00064",
+                "name": "Magpul® Bipod for M-LOK®, black",
+                "id": "019adf4a19cc7077ae980ff893964664",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        },
+        {
+            "old": {
+                "name": "7.62 - Acheron Hexalug - Muzzle brake",
+                "price": "129.00",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/762-acheron-hexalug-muzzle-brake-159056",
+                "category": "Accessories",
+                "subcategory": "Muzzle attachments",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 119.33395004625348,
+                        "gross": 129,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ACH-ZBH-MDB-762-SW-00122",
+                "name": "7.62 - Acheron Hexalug - Muzzle brake",
+                "id": "019adf4a2ea870f49acaeecf267fd1f9",
+                "apiAlias": "product"
+            },
+            "match": "exact"
+        }
+    ],
+    "partial_matches": [
+        {
+            "old": {
+                "name": "THRIVE 4-16X50 MILDOT",
+                "price": "380.50",
+                "url": "https:\/\/shop.ravenweapon.ch\/en\/products\/thrive-4-16x50-mildot-5518",
+                "category": "Aiming aids, optics & accessories",
+                "subcategory": "Riflescopes",
+                "childCategory": ""
+            },
+            "ortak": {
+                "active": true,
+                "price": [
+                    {
+                        "extensions": [],
+                        "currencyId": "0191c12cf40d718a8a3439b74a6f083c",
+                        "net": 347.1785383903793,
+                        "gross": 375.3,
+                        "linked": false,
+                        "listPrice": null,
+                        "percentage": null,
+                        "regulationPrice": null,
+                        "apiAlias": "price"
+                    }
+                ],
+                "productNumber": "ZRT-ZF-THR-000-XX-00106",
+                "name": "THRIVE 4-16X50 PHR II",
+                "id": "019adf30532f79db951c807fa676fe11",
+                "apiAlias": "product"
+            },
+            "score": 75,
+            "match": "partial"
+        }
+    ],
+    "not_found": [],
+    "category_stats": {
+        "Aiming aids, optics & accessories": {
+            "total": 40,
+            "found": 39,
+            "partial": 1,
+            "missing": 0
+        },
+        "Accessories": {
+            "total": 53,
+            "found": 53,
+            "partial": 0,
+            "missing": 0
+        }
+    }
+}

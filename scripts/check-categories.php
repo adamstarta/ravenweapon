@@ -1,196 +1,74 @@
 <?php
-/**
- * Check Shopware Category Structure - JSON:API format
- */
+$pdo = new PDO("mysql:host=127.0.0.1;dbname=shopware", "root", "root");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$config = [
-    'shopware_url' => 'http://localhost',
-    'api_user' => 'admin',
-    'api_password' => 'shopware',
-];
-
-function getToken($config) {
-    $ch = curl_init();
-    curl_setopt_array($ch, [
-        CURLOPT_URL => $config['shopware_url'] . '/api/oauth/token',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST => true,
-        CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
-        CURLOPT_POSTFIELDS => json_encode([
-            'grant_type' => 'password',
-            'client_id' => 'administration',
-            'username' => $config['api_user'],
-            'password' => $config['api_password'],
-        ]),
-    ]);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    return json_decode($response, true)['access_token'] ?? null;
+echo "=== NAVBAR (Level 2) ===\n";
+$stmt = $pdo->query("
+    SELECT ct.name, c.visible,
+           (SELECT COUNT(*) FROM category child WHERE child.parent_id = c.id) as children
+    FROM category c
+    JOIN category_translation ct ON c.id = ct.category_id
+    WHERE c.level = 2 ORDER BY c.auto_increment
+");
+while ($r = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo $r["name"] . " (vis:" . $r["visible"] . ", kids:" . $r["children"] . ")\n";
 }
 
-function apiRequest($token, $config, $endpoint, $data = [], $headers = []) {
-    $ch = curl_init();
-    $defaultHeaders = [
-        'Authorization: Bearer ' . $token,
-        'Content-Type: application/json',
-        'Accept: application/json',  // Force standard JSON format
-    ];
-    curl_setopt_array($ch, [
-        CURLOPT_URL => $config['shopware_url'] . '/api/' . ltrim($endpoint, '/'),
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POST => true,
-        CURLOPT_HTTPHEADER => array_merge($defaultHeaders, $headers),
-        CURLOPT_POSTFIELDS => json_encode($data),
-    ]);
-    $result = curl_exec($ch);
-    curl_close($ch);
-    return json_decode($result, true);
+echo "\n=== SNIGEL SUBCATEGORIES ===\n";
+$stmt = $pdo->query("
+    SELECT ct.name, c.visible FROM category c
+    JOIN category_translation ct ON c.id = ct.category_id
+    WHERE c.parent_id IN (SELECT c2.id FROM category c2
+        JOIN category_translation ct2 ON c2.id = ct2.category_id WHERE ct2.name LIKE \"%Snigel%\")
+    ORDER BY ct.name
+");
+while ($r = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "  " . $r["name"] . " (vis:" . $r["visible"] . ")\n";
 }
 
-echo "\n=== SHOPWARE CATEGORY STRUCTURE ===\n\n";
-
-$token = getToken($config);
-if (!$token) {
-    die("Auth failed!\n");
-}
-echo "Authenticated OK\n\n";
-
-// Get all categories
-$result = apiRequest($token, $config, '/search/category', [
-    'limit' => 200,
-]);
-
-$categories = $result['data'] ?? [];
-echo "Found " . count($categories) . " categories\n\n";
-
-// Debug first one
-if (!empty($categories[0])) {
-    echo "First category keys: " . implode(', ', array_keys($categories[0])) . "\n";
-    echo "First category name: " . ($categories[0]['name'] ?? 'NULL') . "\n";
-    echo "First category translated.name: " . ($categories[0]['translated']['name'] ?? 'NULL') . "\n\n";
+echo "\n=== WAFFEN SUBCATEGORIES ===\n";
+$stmt = $pdo->query("
+    SELECT ct.name, c.visible FROM category c
+    JOIN category_translation ct ON c.id = ct.category_id
+    WHERE c.parent_id IN (SELECT c2.id FROM category c2
+        JOIN category_translation ct2 ON c2.id = ct2.category_id WHERE ct2.name = \"Waffen\")
+    ORDER BY ct.name
+");
+while ($r = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "  " . $r["name"] . " (vis:" . $r["visible"] . ")\n";
 }
 
-// Build index
-$byId = [];
-$byParent = [];
-foreach ($categories as $cat) {
-    $name = $cat['translated']['name'] ?? $cat['name'] ?? 'UNNAMED';
-    $cat['_name'] = $name;
-    $byId[$cat['id']] = $cat;
-
-    $parentId = $cat['parentId'] ?? 'ROOT';
-    if (!isset($byParent[$parentId])) {
-        $byParent[$parentId] = [];
-    }
-    $byParent[$parentId][] = $cat;
+echo "\n=== WAFFENZUBEHOR SUBCATEGORIES ===\n";
+$stmt = $pdo->query("
+    SELECT ct.name, c.visible FROM category c
+    JOIN category_translation ct ON c.id = ct.category_id
+    WHERE c.parent_id IN (SELECT c2.id FROM category c2
+        JOIN category_translation ct2 ON c2.id = ct2.category_id WHERE ct2.name LIKE \"%Waffenzubeh%\")
+    ORDER BY ct.name
+");
+while ($r = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "  " . $r["name"] . " (vis:" . $r["visible"] . ")\n";
 }
 
-// Print tree function
-function printTree($parentId, $byParent, $indent = 0) {
-    $children = $byParent[$parentId] ?? [];
-    foreach ($children as $cat) {
-        $status = ($cat['active'] ?? false) ? '✓' : '✗';
-        $name = $cat['_name'];
-        echo str_repeat('  ', $indent) . "$status $name [" . substr($cat['id'], 0, 8) . "...]\n";
-        printTree($cat['id'], $byParent, $indent + 1);
-    }
+echo "\n=== ALLE PRODUKTE SUBCATEGORIES ===\n";
+$stmt = $pdo->query("
+    SELECT ct.name, c.visible FROM category c
+    JOIN category_translation ct ON c.id = ct.category_id
+    WHERE c.parent_id IN (SELECT c2.id FROM category c2
+        JOIN category_translation ct2 ON c2.id = ct2.category_id WHERE ct2.name = \"Alle Produkte\")
+    ORDER BY ct.name
+");
+while ($r = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "  " . $r["name"] . " (vis:" . $r["visible"] . ")\n";
 }
 
-// Find main navigation root
-echo "=== CATEGORY TREE ===\n\n";
-foreach ($categories as $cat) {
-    // Look for Hauptnavigation or root
-    if ($cat['_name'] === 'Hauptnavigation' || ($cat['level'] ?? 0) == 1) {
-        echo "Navigation Root: {$cat['_name']}\n";
-        printTree($cat['id'], $byParent, 1);
-        echo "\n";
-    }
+echo "\n=== MUNITION SEARCH ===\n";
+$stmt = $pdo->query("
+    SELECT ct.name, c.level, c.visible FROM category c
+    JOIN category_translation ct ON c.id = ct.category_id
+    WHERE ct.name LIKE \"%Munition%\"
+");
+while ($r = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "  " . $r["name"] . " (level:" . $r["level"] . ", vis:" . $r["visible"] . ")\n";
 }
 
-// Find Snigel specifically
-echo "\n=== SNIGEL DETAILS ===\n\n";
-$snigelCat = null;
-foreach ($categories as $cat) {
-    if ($cat['_name'] === 'Snigel') {
-        $snigelCat = $cat;
-        echo "Snigel Category: {$cat['id']}\n";
-        echo "Parent ID: " . ($cat['parentId'] ?? 'NONE') . "\n";
-        echo "Active: " . ($cat['active'] ? 'Yes' : 'No') . "\n\n";
-
-        echo "Snigel Subcategories:\n";
-        $children = $byParent[$cat['id']] ?? [];
-        foreach ($children as $child) {
-            echo "  - {$child['_name']} [{$child['id']}]\n";
-        }
-        break;
-    }
-}
-
-// Check products
-echo "\n=== PRODUCT CHECK ===\n\n";
-
-// Get ALL products
-$result = apiRequest($token, $config, '/search/product', [
-    'limit' => 500,
-    'associations' => [
-        'categories' => [],
-    ],
-]);
-
-$products = $result['data'] ?? [];
-echo "Total products: " . count($products) . "\n\n";
-
-// Count by category assignment
-$inSnigel = 0;
-$inAlleProdukte = 0;
-$sampleNoCategory = [];
-
-foreach ($products as $prod) {
-    $name = $prod['translated']['name'] ?? $prod['name'] ?? 'UNNAMED';
-    $cats = $prod['categories'] ?? [];
-    $catIds = array_column($cats, 'id');
-
-    $hasSnigel = false;
-    $hasAlleProdukte = false;
-
-    foreach ($catIds as $cid) {
-        $catName = $byId[$cid]['_name'] ?? '';
-        if ($catName === 'Snigel' || ($byId[$cid]['parentId'] ?? '') === ($snigelCat['id'] ?? '')) {
-            $hasSnigel = true;
-        }
-        if (stripos($catName, 'Alle Produkte') !== false) {
-            $hasAlleProdukte = true;
-        }
-    }
-
-    if ($hasSnigel) $inSnigel++;
-    if ($hasAlleProdukte) $inAlleProdukte++;
-
-    // Sample products without Snigel or Alle Produkte
-    if (stripos($name, 'Snigel') !== false && count($sampleNoCategory) < 5) {
-        $sampleNoCategory[] = [
-            'name' => $name,
-            'categories' => array_map(fn($c) => $byId[$c]['_name'] ?? $c, $catIds),
-        ];
-    }
-}
-
-echo "Products in Snigel category: $inSnigel\n";
-echo "Products in 'Alle Produkte': $inAlleProdukte\n\n";
-
-echo "Sample Snigel-named products and their categories:\n";
-foreach ($sampleNoCategory as $p) {
-    echo "  {$p['name']}\n";
-    echo "    Categories: " . implode(', ', $p['categories']) . "\n";
-}
-
-// Find Alle Produkte category
-echo "\n=== ALLE PRODUKTE CATEGORY ===\n\n";
-foreach ($categories as $cat) {
-    if (stripos($cat['_name'], 'Alle Produkte') !== false) {
-        echo "Found: {$cat['_name']} [{$cat['id']}]\n";
-        echo "Active: " . ($cat['active'] ? 'Yes' : 'No') . "\n";
-    }
-}
-
-echo "\n";

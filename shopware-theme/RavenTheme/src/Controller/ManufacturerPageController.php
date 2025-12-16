@@ -25,12 +25,11 @@ class ManufacturerPageController extends StorefrontController
     }
 
     #[Route(
-        path: '/{manufacturerSlug}/{subcategorySlug}',
+        path: '/hersteller/{manufacturerSlug}/{subcategorySlug}',
         name: 'frontend.manufacturer.subcategory',
         requirements: ['manufacturerSlug' => '[a-zA-Z0-9-]+', 'subcategorySlug' => '[a-zA-Z0-9-]+'],
         defaults: ['_httpCache' => true],
-        methods: ['GET'],
-        priority: -999
+        methods: ['GET']
     )]
     public function subcategory(string $manufacturerSlug, string $subcategorySlug, Request $request, SalesChannelContext $context): Response
     {
@@ -52,12 +51,11 @@ class ManufacturerPageController extends StorefrontController
     }
 
     #[Route(
-        path: '/{manufacturerSlug}',
+        path: '/hersteller/{manufacturerSlug}',
         name: 'frontend.manufacturer.page',
         requirements: ['manufacturerSlug' => '[a-z0-9-]+'],
         defaults: ['_httpCache' => true],
-        methods: ['GET'],
-        priority: -1000
+        methods: ['GET']
     )]
     public function index(string $manufacturerSlug, Request $request, SalesChannelContext $context): Response
     {
@@ -81,7 +79,7 @@ class ManufacturerPageController extends StorefrontController
         $criteria->addFilter(new EqualsFilter('manufacturerId', $manufacturer->getId()));
         $criteria->addAssociation('cover.media');
         $criteria->addAssociation('manufacturer');
-        $criteria->setLimit(100);
+        $criteria->setLimit(500); // Show all products (no practical limit)
 
         // Use SalesChannelContext for price calculation
         $products = $this->productRepository->search($criteria, $context);

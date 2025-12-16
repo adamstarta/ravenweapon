@@ -17,7 +17,7 @@
             <div class="footer-trust">
                 <span class="trust-badge">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    SSL-verschluesselt
+                    SSL-verschlüsselt
                 </span>
                 <span class="trust-badge">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
@@ -573,7 +573,7 @@ body.raven-checkout-finish {
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
     </div>
     <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: 1.5rem; color: #111827; margin: 0 0 0.75rem 0;">Bestellung nicht gefunden</h2>
-    <p style="color: #6b7280; margin: 0 0 1.5rem 0;">Diese Bestellung ist nicht mehr verfuegbar oder der Link ist abgelaufen.</p>
+    <p style="color: #6b7280; margin: 0 0 1.5rem 0;">Diese Bestellung ist nicht mehr verfügbar oder der Link ist abgelaufen.</p>
     <a href="{{ path('frontend.home.page') }}" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #F2B90D, #f59e0b); color: #1f2937; font-weight: 700; border-radius: 10px; padding: 0.875rem 1.5rem; text-decoration: none;">
         Zur Startseite
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -590,8 +590,8 @@ body.raven-checkout-finish {
     </div>
 
     {# Success Message #}
-    <h1 class="raven-success-title">Vielen Dank fuer Ihre Bestellung!</h1>
-    <p class="raven-success-subtitle">Bestellbestaetigung wurde an Ihre E-Mail gesendet.</p>
+    <h1 class="raven-success-title">Vielen Dank für Ihre Bestellung!</h1>
+    <p class="raven-success-subtitle">Bestellbestätigung wurde an Ihre E-Mail gesendet.</p>
 
     {# Order Number #}
     {% if page.order.orderNumber is defined %}
@@ -612,11 +612,11 @@ body.raven-checkout-finish {
             </svg>
             Zahlungsinformationen
         </h3>
-        <p class="bank-transfer-intro">Bitte ueberweisen Sie den Betrag auf folgendes Konto:</p>
+        <p class="bank-transfer-intro">Bitte überweisen Sie den Betrag auf folgendes Konto:</p>
         <div class="bank-details-grid">
             <div class="bank-detail-row">
                 <span class="bank-detail-label">Kontoinhaber</span>
-                <span class="bank-detail-value">Nikola Mitrovic</span>
+                <span class="bank-detail-value">Raven Weapon AG</span>
             </div>
             <div class="bank-detail-row">
                 <span class="bank-detail-label">Bank</span>
@@ -690,7 +690,8 @@ body.raven-checkout-finish {
         <div class="info-card">
             <div class="info-card-header">Informationen</div>
             <div class="info-card-body">
-                <strong>Zahlung:</strong> {{ page.order.transactions.first.paymentMethod.translated.name }}<br>
+                {% set paymentName = page.order.transactions.first.paymentMethod.translated.name %}
+                <strong>Zahlung:</strong> {{ paymentName == 'Paid in advance' ? 'Vorkasse' : paymentName }}<br>
                 <strong>Versand:</strong> {% if page.order.deliveries.first %}{{ page.order.deliveries.first.shippingMethod.translated.name }}{% else %}Standard{% endif %}
             </div>
         </div>
@@ -732,12 +733,7 @@ body.raven-checkout-finish {
                 <span class="value">CHF {{ delivery.shippingCosts.totalPrice|number_format(2, '.', "'") }}</span>
             </div>
             {% endfor %}
-            {% for tax in page.order.price.calculatedTaxes %}
-            <div class="summary-row">
-                <span class="label">MwSt. {{ tax.taxRate }}%</span>
-                <span class="value">CHF {{ tax.tax|number_format(2, '.', "'") }}</span>
-            </div>
-            {% endfor %}
+            {# Tax breakdown hidden - GROSS pricing like Lee-Sport #}
             <div class="summary-row total">
                 <span class="label">Gesamtsumme</span>
                 <span class="value">CHF {{ page.order.amountTotal|number_format(2, '.', "'") }}</span>

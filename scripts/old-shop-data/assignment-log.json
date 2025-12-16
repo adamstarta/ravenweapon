@@ -1,0 +1,646 @@
+[
+    {
+        "product": "VENGEANCE 1-6X24 SFP RAR MOA",
+        "productId": "019adf04c4cc7093a010c1b37e039d84",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "VENGEANCE 3-12X40 ZEROPLEX",
+        "productId": "019adf08f3ae7e74ae3569539d79b890",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "VENGEANCE 6-24X50 FFP RMG MOA",
+        "productId": "019adf0b64ee7d898440769d24a84c17",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "VENGEANCE 6-24X50 FFP RMG MRAD",
+        "productId": "019adf0d61537a90b8a06660f70cc02e",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "VENGEANCE 4-20X50 PHR II",
+        "productId": "019adf0ed60170fea06b6a6c2110532c",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "VENGEANCE 4-20X50 R3",
+        "productId": "019adf10dd627b24a50a84cc044b0e74",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "VENGEANCE 4-20X50 PHR II IR",
+        "productId": "019adf13d82d7d7bac0c2516f862300b",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "VENGEANCE 4-20X50 R3 ILLUM",
+        "productId": "019adf15aaba7850a27126e3550f2997",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "VENGEANCE 5-25X56 RMG FFP MRAD ZERO STOP",
+        "productId": "019adf1738237ca5be58c07e86797556",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE ED 1-10X24 FFP 34MM MRAD LPVO",
+        "productId": "019adf1a684d703daf17cf9958d24cf6",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE 4.5-27X50 R3 MOA",
+        "productId": "019adf1cb5c07013945fcf2d2c4b630c",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE 4.5-27X50 RMG FFP",
+        "productId": "019adf1e53dc7982a0335c1499774aec",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE 4.5-27X50 RMG FFP MOA",
+        "productId": "019adf2030047b8a85d2a1e8eb92f453",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE ADVANCED 4-24X50 FFP RMG IR 0.1 MRAD JAPAN",
+        "productId": "019adf2396b576cca60dc536b1aaed36",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE ADVANCED 4-24X50 FFP TREMOR 3 MRAD JAPAN",
+        "productId": "019adf251c73710aa5f124ab5e7512eb",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE ADVANCED 5-30X56 RMG2 ED",
+        "productId": "019adf26c72274a7b6d85d9058409fa9",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE ADVANCED 5-30X56 T3 ED TREMOR 3",
+        "productId": "019adf2a22a971c383fcc0ac87a3a6b6",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE 4-16X50 ZEROPLEX",
+        "productId": "019adf2dd1737facae90d038e669a176",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE 4-16X50 PHR II",
+        "productId": "019adf30532f79db951c807fa676fe11",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE 3-12X44 ZEROPLEX",
+        "productId": "019adf31f8eb7bd9b680ef241e96eb33",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE 3-9X40 PHR 4",
+        "productId": "019adf33856675b0b7e5668ef60380e5",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE 3-9X40 ZEROPLEX",
+        "productId": "019adf3515ca7263904d635909efad91",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD 2.5-15X50 PHR II ILLUMINATED",
+        "productId": "019adf38f696762894d6dfc0e8c833ad",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD 2.5-15X50 PHR II",
+        "productId": "019adf3ab45a7b2fb2d9e8aec3375d65",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD 3-18X56 PHR II IR ILLUMINATED",
+        "productId": "019adf3cd26d7107afeb9be94e639c5c",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD FFP 6-24X50 IR LR HUNTER MRAD",
+        "productId": "019adf49f53e73f08654c72f4ec7cfbe",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD 1-8X24 G4 IR",
+        "productId": "019adf49f62d73cdb98bd8aa28be8699",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD 1-8X24 PHR 4 IR",
+        "productId": "019adf49f6f170d6b1d30bc36a167680",
+        "oldCategory": "Riflescopes",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "20-60X80 FFP OSR MRAD SPOTTING SCOPE",
+        "productId": "019adf49f7c97346af3c846a74bbf09d",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "20-60X85 TING SCOPE",
+        "productId": "019adf49f88a70579ac7387fc5856acd",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "RAS 1X25 DIGITAL RED DOT 2 MOA, HIGH & LOW MOUNT",
+        "productId": "019adf49f95a73bca3e107413206014e",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE HALO ASPHERICAL ENCLOSED 3 MOA, Red Dot",
+        "productId": "019adf49fa66726fa155d8542a1f2b8b",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TRACE ASPHERICAL ENCLOSED RED DOT - HALO - FDE",
+        "productId": "019adf49fb197111bc9df6f4a675ada3",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE RED DOT 3 MOA",
+        "productId": "019adf49fc17724f9bcca5b6c6875097",
+        "oldCategory": "Red Dots",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD REFLEX 3 MOA HIGH",
+        "productId": "019adf49fce673e1a028e2b14e560c4c",
+        "oldCategory": "Red Dots",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD REFLEX GREEN DOT 3 MOA HIGH MOUNT",
+        "productId": "019adf49fda47243917620013964dd24",
+        "oldCategory": "Red Dots",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD MULTI RETICLE HIGH REFLEX",
+        "productId": "019adf49fe657281bdfd7ea8113eb3a9",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MICRO PRISM 1X20",
+        "productId": "019adf49ff3773deb7e0d243fc574b5f",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "THRIVE HD 1-4X24 VARIABLE PRISM ILLUM RAPR RETICLE",
+        "productId": "019adf49ffef71659fdd66eaa9e3b2cd",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE SL® Carbine Stock - Mil-Spec",
+        "productId": "019adf4a02397007903307e3c63c11a4",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE® Carbine Stock - Mil-Spec",
+        "productId": "019adf4a031d732d89baf297b0260c75",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE® Fixed Carbine Stock - Mil-Spec",
+        "productId": "019adf4a03f4708eae4dc89fad020f3d",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE SL® Carbine Stock - Mil-Spec",
+        "productId": "019adf4a06507367980b07c9e341d7da",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE® Carbine Stock - Mil-Spec",
+        "productId": "019adf4a070f71c4b957eb9820b3251a",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE® Fixed Carbine Stock - Mil-Spec",
+        "productId": "019adf4a07cc707c8f19eafbb63aad9f",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE SL® Carbine Stock - Mil-Spec",
+        "productId": "019adf4a09fa7354bfae4a6cfae7dc1f",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE® Carbine Stock - Mil-Spec",
+        "productId": "019adf4a0ac371b099d1a52206285ae4",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE® Fixed Carbine Stock - Mil-Spec",
+        "productId": "019adf4a0b7471f5b4b696f82441a05d",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE SL® Carbine Stock - Mil-Spec",
+        "productId": "019adf4a0dcf72058e868d1412134f1d",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE® Carbine Stock - Mil-Spec",
+        "productId": "019adf4a0eaf718983ff64bb61470321",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "MOE® Fixed Carbine Stock - Mil-Spec",
+        "productId": "019adf4a0f9c71a196a77a6465201440",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "M-LOK® MVG® - MOE® Vertical Grip, black",
+        "productId": "019adf4a10787014b57bea447802eb7b",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "RVG® - Rail Vertical Grip - black",
+        "productId": "019adf4a1128738c92224e96f7f23914",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AFG® - Angled Fore Grip",
+        "productId": "019adf4a11d4731cabb454ee8d10cdd1",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "M-LOK® MVG® - MOE® Vertical Grip, Sniper Grey",
+        "productId": "019adf4a12a37081baa2892365b1e5b5",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "RVG® - Rail Vertical Grip, Sniper Grey",
+        "productId": "019adf4a1368726d8e34c2b97227e5a3",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AFG® - Angled Fore Grip",
+        "productId": "019adf4a144172b5879ec64dbe45f6e9",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "M-LOK® MVG® - MOE® Vertical Grip",
+        "productId": "019adf4a151271ab9cfb5f0a235ab23c",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "RVG® - Rail Vertical Grip. OD-Green",
+        "productId": "019adf4a15e671d39ca3679dc0c01865",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AFG® - Angled Fore Grip",
+        "productId": "019adf4a16af70ceba47deb1a58d19eb",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "M-LOK® MVG® - MOE® Vertical Grip, FDE",
+        "productId": "019adf4a177a717aa6c5c63b8ba88170",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "RVG® - Rail Vertical Grip, FDE",
+        "productId": "019adf4a1844732fb6bcd980a3cad898",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AFG® - Angled Fore Grip",
+        "productId": "019adf4a190b738c83147000e2a72f9c",
+        "oldCategory": "Sticks & handles",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "Magpul® Bipod for M-LOK®, black",
+        "productId": "019adf4a19cc7077ae980ff893964664",
+        "oldCategory": "Bipods",
+        "newCategory": "Scharfschützen-Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "Magpul® Bipod for M-LOK®, FDE",
+        "productId": "019adf4a1ab472a48d0722ece1fe6c0f",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "XTM® Hand Stop Kit, black",
+        "productId": "019adf4a1b8a72618c0b38b7d11b6e70",
+        "oldCategory": "Rails and Accessories",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "XTM® Hand Stop Kit, Sniper Grey",
+        "productId": "019adf4a1c6b72a1b558faf2b42c75f5",
+        "oldCategory": "Rails and Accessories",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "XTM® Hand Stop Kit, OD-Green",
+        "productId": "019adf4a1d8571e28024b3f54b43a75b",
+        "oldCategory": "Rails and Accessories",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "XTM® Hand Stop Kit",
+        "productId": "019adf4a1e5c73ddbb183b32b7291f61",
+        "oldCategory": "Rails and Accessories",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 40 AR\/M4 GEN M3®, 5.56x45",
+        "productId": "019adf4a1f4173bd8c108c27f0166dd2",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 30 AR\/M4 GEN M3® Window, 5.56x45",
+        "productId": "019adf4a1ffc732aa038f50835f56d0f",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 30 AR\/M4 GEN M2 MOE® Window, 5.56x45",
+        "productId": "019adf4a20cc71eaad79695db4129034",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 30 AR\/M4 GEN M3® Window, 5.56x45",
+        "productId": "019adf4a219b70509fda5b50a7aca5be",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 30 AR\/M4 GEN M3®, 5.56x45",
+        "productId": "019adf4a228470be921ed46c5fe86656",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 30 AR\/M4 GEN M2 MOE®, 5.56x45",
+        "productId": "019adf4a236673f88bb93498d67176d0",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TMAG™ 30 AR\/M4 GEN M3®",
+        "productId": "019adf4a24337385a26b91da645cdf4f",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 30 AR\/M4 GEN M3®, 5.56x45",
+        "productId": "019adf4a24fe72c79da973eb2bc66d42",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 20 AR\/M4 GEN M3®, 5.56x45",
+        "productId": "019adf4a25c37117bdfef5a59243178e",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "TMAG™ 20 AR\/M4 GEN M3®",
+        "productId": "019adf4a268373c9a4b2bd73fa967f88",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "PMAG® 10 AR\/M4 GEN M3®, 5.56x45",
+        "productId": "019adf4a277570b1b7dc0855d79b0ce9",
+        "oldCategory": "Magazines",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AIMPACT TP28 1.93\", Sandy Gold",
+        "productId": "019adf4a283a73a0b2e763e3ddd23978",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AIMPACT TP28 1.54\", Sandy Gold",
+        "productId": "019adf4a29077066af3f031116954b9c",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AIMPACT TP28 1.93\", black",
+        "productId": "019adf4a29cf706a9e4c1cf42bd99a71",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AIMPACT TP28 1.54\", black",
+        "productId": "019adf4a2a9c72c2ab009f710c2cf223",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "Aimpact TP 18 34mm",
+        "productId": "019adf4a2b6b7099b023ab544dc6370b",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "Aimpact TP 18",
+        "productId": "019adf4a2c39720f9cae24cd53e740b5",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AIMPACT Scope Mount TP21 7075",
+        "productId": "019adf4a2d1d71839d3fd32efc22e1b0",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "AIMPACT Scope Mount TP21 6061",
+        "productId": "019adf4a2ded7258b372d8c96151f7e3",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "7.62 - Acheron Hexalug - Muzzle brake",
+        "productId": "019adf4a2ea870f49acaeecf267fd1f9",
+        "oldCategory": "Muzzle attachments",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "5.56 - Acheron Hexalug - Muzzle brake",
+        "productId": "019adf4a2f61721c9268d251761c4518",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "7.62 - Flash Hider - Acheron HexaLug",
+        "productId": "019adf4a3026731dbacbffe34f405969",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    },
+    {
+        "product": "Flash Hider - Acheron HexaLug - 5.56",
+        "productId": "019adf4a30ec712387911bab131568e6",
+        "oldCategory": "All",
+        "newCategory": "Taktische Ausrüstung",
+        "status": "success"
+    }
+]

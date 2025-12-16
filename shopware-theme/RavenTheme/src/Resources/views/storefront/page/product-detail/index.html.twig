@@ -1,16 +1,75 @@
-{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+{% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
 
 {% block base_main_inner %}
-<div class="raven-product-detail container py-4 md:py-6">
-    {# Breadcrumb #}
-    <nav class="text-sm text-gray-500 mb-3" aria-label="Breadcrumb">
-        <a href="{{ path('frontend.home.page') }}" class="hover:text-gray-700">Home</a>
-        <span class="mx-2">/</span>
-        <a href="{{ path('frontend.navigation.page', { navigationId: page.header.navigation.active.id }) }}" class="hover:text-gray-700">Shop</a>
-        <span class="mx-2">/</span>
-        <span class="text-gray-900">
-            {% if page.product.categories|first %}{{ page.product.categories|first.translated.name }}{% else %}Produkt{% endif %}
-        </span>
+<div class="raven-product-detail container py-5 md:py-8">
+    {# Breadcrumb - Extract category hierarchy from URL path #}
+    {# URL format: /ParentCategory/SubCategory/product-slug #}
+    {% set urlPath = app.request.pathInfo|default('') %}
+    {% set pathParts = urlPath|trim('/')|split('/') %}
+    {% set parentSlug = pathParts|length >= 1 ? pathParts[0] : null %}
+    {% set subCategorySlug = pathParts|length >= 2 ? pathParts[1] : null %}
+
+    {# Parent category slug to display name mapping #}
+    {% set parentCategoryNames = {
+        'Ausruestung': 'Ausrüstung',
+        'Zubehoer': 'Zubehör',
+        'Zielhilfen-Optik-Zubehoer': 'Zielhilfen, Optik & Zubehör',
+        'Waffenzubehoer': 'Waffenzubehör',
+        'Raven-Weapons': 'Raven Weapons',
+        'Munition': 'Munition'
+    } %}
+
+    {# Subcategory slug to display name mapping #}
+    {% set subCategoryNames = {
+        'Zielfernrohre': 'Zielfernrohre',
+        'Rotpunktvisiere': 'Rotpunktvisiere',
+        'Spektive': 'Spektive',
+        'Fernglaeser': 'Ferngläser',
+        'Magazine': 'Magazine',
+        'Zweibeine': 'Zweibeine',
+        'Schienen-Zubehoer': 'Schienen-Zubehör',
+        'Zielfernrohrmontagen': 'Zielfernrohrmontagen',
+        'Griffe-Handschutz': 'Griffe & Handschutz',
+        'Muendungsaufsaetze': 'Mündungsaufsätze',
+        'taschen-und-rucksaecke': 'Taschen & Rucksäcke',
+        'Taschen-Rucksaecke': 'Taschen & Rucksäcke',
+        'guertel': 'Gürtel',
+        'polizeiausruestung': 'Polizeiausrüstung',
+        'medizinische-ausruestung': 'Medizinische Ausrüstung',
+        'k9-ausruestung': 'K9 Ausrüstung',
+        'scharfschuetzen-ausruestung': 'Scharfschützen-Ausrüstung',
+        'ballistischer-schutz': 'Ballistischer Schutz',
+        'Halter-Taschen': 'Halter & Taschen',
+        'Westen-Chest-Rigs': 'Westen & Chest Rigs',
+        'taktische-ausruestung': 'Taktische Ausrüstung',
+        'taktische-bekleidung': 'Taktische Bekleidung',
+        'Tragegurte-Holster': 'Tragegurte & Holster',
+        'verdeckte-ausruestung': 'Verdeckte Ausrüstung',
+        'verschiedenes': 'Verschiedenes',
+        'verwaltungsausruestung': 'Verwaltungsausrüstung',
+        'warnschutz': 'Warnschutz',
+        'multicam': 'Multicam',
+        'patches': 'Patches',
+        'source-hydration': 'Source Hydration',
+        'beinpaneele': 'Beinpaneele'
+    } %}
+
+    {% set parentDisplayName = parentCategoryNames[parentSlug]|default(null) %}
+    {% set subCategoryDisplayName = subCategoryNames[subCategorySlug]|default(null) %}
+
+    <!-- DEBUG: pathInfo=[{{ urlPath }}] parts=[{{ pathParts|join(',') }}] parent=[{{ parentSlug }}] sub=[{{ subCategorySlug }}] parentName=[{{ parentDisplayName }}] subName=[{{ subCategoryDisplayName }}] -->
+    <nav class="breadcrumb-nav text-sm text-gray-500 mb-5" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif;">
+        <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
+        {% if parentDisplayName %}
+            <span class="mx-2 text-gray-400">/</span>
+            <a href="/{{ parentSlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ parentDisplayName }}</a>
+        {% endif %}
+        {% if subCategoryDisplayName %}
+            <span class="mx-2 text-gray-400">/</span>
+            <a href="/{{ parentSlug }}/{{ subCategorySlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ subCategoryDisplayName }}</a>
+        {% endif %}
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-gray-700 font-medium">{{ page.product.translated.name|slice(0, 50) }}{% if page.product.translated.name|length > 50 %}...{% endif %}</span>
     </nav>
 
     {# Product Grid: Image Left, Info Right #}
@@ -38,12 +97,49 @@
                      class="w-full h-auto object-contain">
                 {% endif %}
             </div>
+
+            {# Thumbnail Gallery Slider #}
+            <!-- DEBUG: Media count = {{ page.product.media|length|default(0) }} -->
+            {% if page.product.media|length > 1 %}
+            <div class="product-gallery-slider">
+                <button type="button" class="gallery-nav gallery-nav-prev" id="gallery-prev" aria-label="Vorheriges Bild">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="gallery-thumbnails-wrapper" id="gallery-wrapper">
+                    <div class="gallery-thumbnails" id="gallery-thumbnails">
+                        {# Cover image first #}
+                        {% if page.product.cover.media %}
+                        <button type="button" class="gallery-thumb active" data-image-url="{{ page.product.cover.media.url }}" aria-label="Bild 1">
+                            <img src="{{ page.product.cover.media.thumbnails|first.url|default(page.product.cover.media.url) }}" alt="Thumbnail 1">
+                        </button>
+                        {% endif %}
+                        {# Other images #}
+                        {% set thumbIndex = 2 %}
+                        {% for media in page.product.media %}
+                            {% if media.media.id != page.product.cover.media.id %}
+                            <button type="button" class="gallery-thumb" data-image-url="{{ media.media.url }}" aria-label="Bild {{ thumbIndex }}">
+                                <img src="{{ media.media.thumbnails|first.url|default(media.media.url) }}" alt="Thumbnail {{ thumbIndex }}">
+                            </button>
+                            {% set thumbIndex = thumbIndex + 1 %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <button type="button" class="gallery-nav gallery-nav-next" id="gallery-next" aria-label="Nächstes Bild">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            {% endif %}
         </div>
 
         {# RIGHT: Product Info #}
         <div class="product-info-section">
             {# Manufacturer Name #}
-            <p class="cat-label text-sm text-gray-500 mb-2">
+            <p class="cat-label text-sm text-gray-400 mb-1 uppercase tracking-wider" style="font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.05em;">
                 {% if page.product.manufacturer.translated.name %}
                     {{ page.product.manufacturer.translated.name }}
                 {% else %}
@@ -57,52 +153,27 @@
             {% if manufacturerName and productName starts with manufacturerName %}
                 {% set productName = productName|slice(manufacturerName|length)|trim %}
             {% endif %}
-            <h1 class="prod-title text-3xl md:text-4xl text-gray-900 mb-4" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700;">
+            <h1 class="prod-title text-gray-900 mb-5" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700; font-size: 2rem; line-height: 1.2;">
                 {{ productName }}
             </h1>
 
             {# Price - Swiss Format: CHF 3'150 #}
-            <div class="raven-product-price mb-2" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 600; font-size: 24px; line-height: 1.2; font-variant-numeric: tabular-nums;">
+            <div class="raven-product-price mb-1" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 700; font-size: 1.75rem; line-height: 1.2; font-variant-numeric: tabular-nums;">
                 {% set detailPrice = page.product.calculatedPrice.unitPrice %}
                 {% set detailCents = ((detailPrice * 100) % 100)|round %}
                 CHF {% if detailCents == 0 %}{{ detailPrice|number_format(0, '.', "'") }}{% else %}{{ detailPrice|number_format(2, '.', "'") }}{% endif %}
             </div>
 
             {# VAT included text #}
-            <p class="text-sm text-gray-500 mb-1" style="font-family: 'Inter', sans-serif;">
+            <p class="text-xs text-gray-400 mb-5" style="font-family: 'Inter', sans-serif;">
                 inkl. MwSt.
             </p>
 
-            {# Category #}
-            {% if page.product.categories|length > 0 %}
-            <p class="text-sm text-gray-500 mb-6" style="font-family: 'Inter', sans-serif;">
-                Kategorie:
-                {% for category in page.product.categories %}
-                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: category.id }) }}" class="text-gray-700 hover:text-amber-600" style="text-decoration: none;">{{ category.translated.name }}</a>{% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-            {% endif %}
-
-            {# Availability Status #}
-            <div class="flex items-center gap-2 mb-6">
-                {% if page.product.availableStock > 0 %}
-                <span class="raven-avail-dot" style="width: 20px; height: 20px; border-radius: 9999px; background: #77C15A; display: inline-flex; align-items: center; justify-content: center;">
-                    <svg viewBox="0 0 24 24" fill="none" style="width: 12px; height: 12px;">
-                        <path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
-                <span class="text-green-600 font-medium">Verfügbar</span>
-                {% else %}
-                <span class="w-5 h-5 rounded-full bg-red-500"></span>
-                <span class="text-red-600 font-medium">Nicht verfügbar</span>
-                {% endif %}
-            </div>
-
             {# Color Variants - using product media images #}
             {% if page.product.media|length > 1 %}
-            <div class="mb-6">
-                <p class="text-base text-gray-600 mb-3" style="font-family: 'Inter', sans-serif;">
-                    Farbe : <span id="selected-color-name" class="font-bold text-gray-900">Graphite Black</span>
+            <div class="mb-5">
+                <p class="text-sm text-gray-600 mb-3" style="font-family: 'Inter', sans-serif;">
+                    Farbe : <span id="selected-color-name" class="font-semibold text-gray-900">Black</span>
                 </p>
                 <div class="flex flex-wrap gap-2">
                     {% set colorNames = ['Graphite Black', 'Flat Dark Earth', 'Northern Lights', 'Olive Drab Green', 'Sniper Grey'] %}
@@ -128,10 +199,10 @@
             </div>
             {% endif %}
 
-            {# Add to Cart Form - data-add-to-cart triggers off-canvas cart #}
+            {# Quantity Selector and Add to Cart #}
             <form action="{{ path('frontend.checkout.line-item.add') }}"
                   method="post"
-                  class="mb-8"
+                  class="mb-6"
                   data-add-to-cart="true"
                   data-form-csrf-handler="true">
                 {{ sw_csrf('frontend.checkout.line-item.add') }}
@@ -142,8 +213,8 @@
                 <input type="hidden" name="lineItems[{{ page.product.id }}][removable]" value="1">
 
                 {# Quantity Selector #}
-                <div class="mb-6">
-                    <div class="flex items-center gap-3">
+                <div class="mb-4">
+                    <div class="flex items-center gap-2">
                         <button type="button"
                                 id="qty-decrease"
                                 class="quantity-btn"
@@ -203,13 +274,11 @@
             </div>
             {% endif %}
 
-            {# Manufacturer section removed per request #}
-
             {# Product Number #}
             {% if page.product.productNumber %}
-            <div class="mt-4">
-                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
-                    Artikelnummer: <span class="font-medium text-gray-700">{{ page.product.productNumber }}</span>
+            <div class="mt-5 pt-5 border-t border-gray-100">
+                <p class="text-xs text-gray-400" style="font-family: 'Inter', sans-serif;">
+                    Artikelnummer: <span class="font-medium text-gray-500">{{ page.product.productNumber }}</span>
                 </p>
             </div>
             {% endif %}
@@ -416,6 +485,91 @@
     @media (max-width: 1200px) {
         .zoom-result {
             display: none !important;
+        }
+    }
+
+    /* ========== GALLERY SLIDER STYLES ========== */
+    .product-gallery-slider {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .gallery-nav {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6B7280;
+        transition: all 0.2s ease;
+    }
+
+    .gallery-nav:hover {
+        border-color: #9CA3AF;
+        color: #374151;
+        background: #F9FAFB;
+    }
+
+    .gallery-nav:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    .gallery-thumbnails-wrapper {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .gallery-thumbnails {
+        display: flex;
+        gap: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-thumb {
+        flex-shrink: 0;
+        width: 70px;
+        height: 70px;
+        border: 2px solid #E5E7EB;
+        border-radius: 8px;
+        padding: 4px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        overflow: hidden;
+    }
+
+    .gallery-thumb:hover {
+        border-color: #9CA3AF;
+    }
+
+    .gallery-thumb.active {
+        border-color: #D4A847;
+        border-width: 2px;
+    }
+
+    .gallery-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+        .gallery-thumb {
+            width: 56px;
+            height: 56px;
+        }
+        .gallery-nav {
+            width: 32px;
+            height: 32px;
         }
     }
 
@@ -660,6 +814,115 @@
         }
     })();
 
+    // ========== GALLERY SLIDER FUNCTIONALITY ==========
+    (function() {
+        function initGallerySlider() {
+            const mainImage = document.getElementById('product-main-image');
+            const zoomResultImg = document.getElementById('zoom-result-img');
+            const thumbnailsContainer = document.getElementById('gallery-thumbnails');
+            const wrapper = document.getElementById('gallery-wrapper');
+            const prevBtn = document.getElementById('gallery-prev');
+            const nextBtn = document.getElementById('gallery-next');
+
+            if (!thumbnailsContainer || !mainImage) return;
+
+            const thumbnails = thumbnailsContainer.querySelectorAll('.gallery-thumb');
+            if (thumbnails.length === 0) return;
+
+            let currentIndex = 0;
+            const thumbWidth = 78; // 70px + 8px gap
+            let visibleThumbs = 5;
+
+            function updateVisibleThumbs() {
+                if (wrapper) {
+                    visibleThumbs = Math.floor(wrapper.offsetWidth / thumbWidth);
+                    if (visibleThumbs < 1) visibleThumbs = 1;
+                }
+            }
+
+            function updateSliderPosition() {
+                const maxScroll = Math.max(0, thumbnails.length - visibleThumbs);
+                let scrollIndex = Math.min(currentIndex, maxScroll);
+                if (scrollIndex < 0) scrollIndex = 0;
+
+                thumbnailsContainer.style.transform = `translateX(-${scrollIndex * thumbWidth}px)`;
+
+                // Update nav buttons
+                if (prevBtn) prevBtn.disabled = (scrollIndex === 0);
+                if (nextBtn) nextBtn.disabled = (scrollIndex >= maxScroll);
+            }
+
+            function selectThumbnail(index) {
+                // Update active state
+                thumbnails.forEach((thumb, i) => {
+                    thumb.classList.toggle('active', i === index);
+                });
+
+                // Update main image
+                const imageUrl = thumbnails[index].dataset.imageUrl;
+                if (imageUrl && mainImage) {
+                    mainImage.src = imageUrl;
+                    if (zoomResultImg) zoomResultImg.src = imageUrl;
+                }
+
+                currentIndex = index;
+
+                // Auto-scroll to show active thumbnail
+                const scrollStart = parseInt(thumbnailsContainer.style.transform.replace(/[^0-9-]/g, '')) || 0;
+                const scrollIndex = Math.abs(scrollStart) / thumbWidth;
+
+                if (index < scrollIndex) {
+                    currentIndex = index;
+                    updateSliderPosition();
+                } else if (index >= scrollIndex + visibleThumbs) {
+                    currentIndex = index - visibleThumbs + 1;
+                    updateSliderPosition();
+                }
+            }
+
+            // Click handlers for thumbnails
+            thumbnails.forEach((thumb, index) => {
+                thumb.addEventListener('click', () => selectThumbnail(index));
+            });
+
+            // Nav button handlers
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateSliderPosition();
+                    }
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const maxScroll = Math.max(0, thumbnails.length - visibleThumbs);
+                    if (currentIndex < maxScroll) {
+                        currentIndex++;
+                        updateSliderPosition();
+                    }
+                });
+            }
+
+            // Initialize
+            updateVisibleThumbs();
+            updateSliderPosition();
+
+            // Update on resize
+            window.addEventListener('resize', () => {
+                updateVisibleThumbs();
+                updateSliderPosition();
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initGallerySlider);
+        } else {
+            initGallerySlider();
+        }
+    })();
+
     // ========== SEE MORE / LESS FUNCTIONALITY ==========
     (function() {
         function initSeeMore() {
@@ -782,7 +1045,7 @@
                 const originalText = btn.innerHTML;
 
                 btn.disabled = true;
-                btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg class="animate-spin" style="width:20px;height:20px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg> Wird hinzugefuegt...</span>';
+                btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg class="animate-spin" style="width:20px;height:20px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg> Wird hinzugefügt...</span>';
 
                 fetch(form.action, {
                     method: 'POST',
@@ -881,7 +1144,7 @@
             return false;
         }
         if (!email || !email.includes('@')) {
-            alert('Bitte geben Sie eine gueltige E-Mail-Adresse ein');
+            alert('Bitte geben Sie eine gültige E-Mail-Adresse ein');
             return false;
         }
 
@@ -915,7 +1178,7 @@
         .then(response => {
             if (response.ok) {
                 // Show success message
-                form.innerHTML = '<div style="text-align: center; padding: 2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#77C15A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 1rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><h3 style="font-family: Chakra Petch, sans-serif; font-size: 1.5rem; font-weight: 600; color: #111827; margin-bottom: 0.5rem;">Vielen Dank!</h3><p style="color: #6b7280;">Ihre Bewertung wurde erfolgreich eingereicht und wird nach Pruefung veroeffentlicht.</p></div>';
+                form.innerHTML = '<div style="text-align: center; padding: 2rem;"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#77C15A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 1rem;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><h3 style="font-family: Chakra Petch, sans-serif; font-size: 1.5rem; font-weight: 600; color: #111827; margin-bottom: 0.5rem;">Vielen Dank!</h3><p style="color: #6b7280;">Ihre Bewertung wurde erfolgreich eingereicht und wird nach Prüfung veröffentlicht.</p></div>';
                 setTimeout(closeReviewModal, 3000);
             } else {
                 throw new Error('Review submission failed');
@@ -1003,7 +1266,7 @@
                 <div class="review-field">
                     <label for="review-email" class="review-label">E-Mail <span style="color: #ef4444;">*</span></label>
                     <input type="email" id="review-email" class="review-input" placeholder="ihre.email@beispiel.ch" required>
-                    <p style="font-size: 0.75rem; color: #9ca3af; margin-top: 0.25rem;">Wird nicht veroeffentlicht, nur zur Verifizierung</p>
+                    <p style="font-size: 0.75rem; color: #9ca3af; margin-top: 0.25rem;">Wird nicht veröffentlicht, nur zur Verifizierung</p>
                 </div>
             </div>
 

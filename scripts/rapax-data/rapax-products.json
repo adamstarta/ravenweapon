@@ -1,0 +1,1112 @@
+{
+  "scrapedAt": "2025-12-16T01:52:33.992Z",
+  "source": "https://shop.ravenweapon.ch",
+  "categories": [
+    {
+      "name": "RX Sport",
+      "path": "Weapons > RAPAX > RAPAX > RX Sport",
+      "url": "https://shop.ravenweapon.ch/en/categories/weapons-1754/rapax-1768/rapax-1836/rx-sport-1837",
+      "productCount": 6
+    },
+    {
+      "name": "RX Tactical",
+      "path": "Weapons > RAPAX > RAPAX > RX Tactical",
+      "url": "https://shop.ravenweapon.ch/en/categories/weapons-1754/rapax-1768/rapax-1836/rx-tactical-1838",
+      "productCount": 6
+    },
+    {
+      "name": "RX Compact",
+      "path": "Weapons > RAPAX > RAPAX > RX Compact",
+      "url": "https://shop.ravenweapon.ch/en/categories/weapons-1754/rapax-1768/rapax-1836/rx-compact-1839",
+      "productCount": 6
+    },
+    {
+      "name": "LYNX SPORT",
+      "path": "Weapons > RAPAX > Caracal Lynx > LYNX SPORT",
+      "url": "https://shop.ravenweapon.ch/en/categories/weapons-1754/rapax-1768/caracal-lynx-1840/lynx-sport-1841",
+      "productCount": 6
+    },
+    {
+      "name": "LYNX OPEN",
+      "path": "Weapons > RAPAX > Caracal Lynx > LYNX OPEN",
+      "url": "https://shop.ravenweapon.ch/en/categories/weapons-1754/rapax-1768/caracal-lynx-1840/lynx-open-1842",
+      "productCount": 0
+    },
+    {
+      "name": "LYNX COMPACT",
+      "path": "Weapons > RAPAX > Caracal Lynx > LYNX COMPACT",
+      "url": "https://shop.ravenweapon.ch/en/categories/weapons-1754/rapax-1768/caracal-lynx-1840/lynx-compact-1843",
+      "productCount": 3
+    }
+  ],
+  "products": [
+    {
+      "name": "RAPAX Sport Black Oxide",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAZINE: 20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)\n\nBARREL: 127 mm.\n\nSIGHT: ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT\n\nFRAME: ERGAL 7075\n\nFINISHES: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1024 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "magazine": "20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)",
+        "barrel": "127 mm.",
+        "sight": "ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT",
+        "frame": "ERGAL 7075",
+        "finishes": "BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)",
+        "weight": "1024 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPS-9mm-BLO-00123",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45323/Rapax-Sport-Black-1.jpg?v=1760644491"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-sport-black-oxide-159110",
+      "category": "Weapons > RAPAX > RAPAX > RX Sport",
+      "scrapedAt": "2025-12-16T01:52:40.467Z"
+    },
+    {
+      "name": "RAPAX Sport Duotone / Partial Cerakote",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAZINE: 20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)\n\nBARREL: 127 mm.\n\nSIGHT: ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT\n\nFRAME: ERGAL 7075\n\nFINISHES: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1024 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "magazine": "20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)",
+        "barrel": "127 mm.",
+        "sight": "ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT",
+        "frame": "ERGAL 7075",
+        "finishes": "BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)",
+        "weight": "1024 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPS-9mm-DPC-00125",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-sport-duotone-partial-cerakote-159112",
+      "category": "Weapons > RAPAX > RAPAX > RX Sport",
+      "scrapedAt": "2025-12-16T01:52:44.650Z"
+    },
+    {
+      "name": "RAPAX Sport Complete Cerakote",
+      "price": "3'150.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAZINE: 20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)\n\nBARREL: 127 mm.\n\nSIGHT: ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT\n\nFRAME: ERGAL 7075\n\nFINISHES: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1024 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "magazine": "20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)",
+        "barrel": "127 mm.",
+        "sight": "ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT",
+        "frame": "ERGAL 7075",
+        "finishes": "BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)",
+        "weight": "1024 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPS-9mm-CPC-00126",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-sport-complete-cerakote-159113",
+      "category": "Weapons > RAPAX > RAPAX > RX Sport",
+      "scrapedAt": "2025-12-16T01:52:48.854Z"
+    },
+    {
+      "name": "RAPAX Sport Partial DLC",
+      "price": "3'300.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAZINE: 20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)\n\nBARREL: 127 mm.\n\nSIGHT: ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT\n\nFRAME: ERGAL 7075\n\nFINISHES: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1024 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "magazine": "20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)",
+        "barrel": "127 mm.",
+        "sight": "ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT",
+        "frame": "ERGAL 7075",
+        "finishes": "BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)",
+        "weight": "1024 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPS-9mm-PDL-00127",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-sport-partial-dlc-159114",
+      "category": "Weapons > RAPAX > RAPAX > RX Sport",
+      "scrapedAt": "2025-12-16T01:52:53.111Z"
+    },
+    {
+      "name": "RAPAX Sport Total DLC",
+      "price": "3'500.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAZINE: 20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)\n\nBARREL: 127 mm.\n\nSIGHT: ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT\n\nFRAME: ERGAL 7075\n\nFINISHES: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1024 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "magazine": "20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)",
+        "barrel": "127 mm.",
+        "sight": "ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT",
+        "frame": "ERGAL 7075",
+        "finishes": "BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)",
+        "weight": "1024 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPS-9mm-TDL-00128",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-sport-total-dlc-159115",
+      "category": "Weapons > RAPAX > RAPAX > RX Sport",
+      "scrapedAt": "2025-12-16T01:52:57.333Z"
+    },
+    {
+      "name": "RAPAX Sport Black Nickel",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAZINE: 20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)\n\nBARREL: 127 mm.\n\nSIGHT: ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT\n\nFRAME: ERGAL 7075\n\nFINISHES: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1024 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "magazine": "20/17 (9x19 Luger - 9x21 - .357 SIG) - 17/15 (.40 S&W)",
+        "barrel": "127 mm.",
+        "sight": "ADJUSTABLE REAR SIGHT, FIBER OPTIC INSERT FRONT SIGHT",
+        "frame": "ERGAL 7075",
+        "finishes": "BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)",
+        "weight": "1024 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPS-9mm-BLN-00124",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45324/Rapax-Sport-Black-Nickel-Black-1.jpg?v=1760645993",
+        "https://makaris-prod-public.s3.ewstorage.ch/45325/Rapax-Sport-Black-Nickel-Black-2.jpg?v=1760646002",
+        "https://makaris-prod-public.s3.ewstorage.ch/45326/Rapax-Sport-Black-Nickel-Black-3.jpg?v=1760646011"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-sport-black-nickel-159111",
+      "category": "Weapons > RAPAX > RAPAX > RX Sport",
+      "scrapedAt": "2025-12-16T01:53:01.622Z"
+    },
+    {
+      "name": "RAPAX Tactical Complete Cerakote",
+      "price": "3'150.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 127 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1095 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "127 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "1095 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPT-9mm-CPC-00132",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-tactical-complete-cerakote-159120",
+      "category": "Weapons > RAPAX > RAPAX > RX Tactical",
+      "scrapedAt": "2025-12-16T01:53:08.526Z"
+    },
+    {
+      "name": "RAPAX Tactical Partial DLC",
+      "price": "3'300.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 127 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1095 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "127 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "1095 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPT-9mm-PDL-00133",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-tactical-partial-dlc-159121",
+      "category": "Weapons > RAPAX > RAPAX > RX Tactical",
+      "scrapedAt": "2025-12-16T01:53:12.731Z"
+    },
+    {
+      "name": "RAPAX Tactical Total DLC",
+      "price": "3'500.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 127 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1095 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "127 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "1095 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPT-9mm-TDL-00134",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-tactical-total-dlc-159122",
+      "category": "Weapons > RAPAX > RAPAX > RX Tactical",
+      "scrapedAt": "2025-12-16T01:53:16.889Z"
+    },
+    {
+      "name": "RAPAX Tactical Black Oxide",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 127 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1095 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "127 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "1095 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPT-9mm-BLO-00129",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45518/_MG_8689-DLC-maschera.jpg?v=1760992950"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-tactical-black-oxide-159117",
+      "category": "Weapons > RAPAX > RAPAX > RX Tactical",
+      "scrapedAt": "2025-12-16T01:53:21.195Z"
+    },
+    {
+      "name": "RAPAX Tactical Black Nickel",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 127 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1095 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "127 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "1095 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPT-9mm-BLN-00130",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-tactical-black-nickel-159118",
+      "category": "Weapons > RAPAX > RAPAX > RX Tactical",
+      "scrapedAt": "2025-12-16T01:53:25.529Z"
+    },
+    {
+      "name": "RAPAX Tactical Duotone / Partial Cerakote",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 127 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 1095 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "127 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "1095 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPT-9mm-DPC-00131",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-tactical-duotone-partial-cerakote-159119",
+      "category": "Weapons > RAPAX > RAPAX > RX Tactical",
+      "scrapedAt": "2025-12-16T01:53:29.755Z"
+    },
+    {
+      "name": "RAPAX II COMPACT Black Oxide",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 110 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 950 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "110 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "950 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPC-9mm-BLO-00135",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/product.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-ii-compact-black-oxide-159123",
+      "category": "Weapons > RAPAX > RAPAX > RX Compact",
+      "scrapedAt": "2025-12-16T01:53:36.683Z"
+    },
+    {
+      "name": "RAPAX II COMPACT Black Nickel",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 110 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 950 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "110 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "950 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPC-9mm-BLN-00136",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-ii-compact-black-nickel-159124",
+      "category": "Weapons > RAPAX > RAPAX > RX Compact",
+      "scrapedAt": "2025-12-16T01:53:40.964Z"
+    },
+    {
+      "name": "RAPAX II COMPACT Black Oxide",
+      "price": "2'950.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 110 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 950 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "110 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "950 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPC-9mm-DPC-00137",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-ii-compact-black-oxide-159125",
+      "category": "Weapons > RAPAX > RAPAX > RX Compact",
+      "scrapedAt": "2025-12-16T01:53:45.180Z"
+    },
+    {
+      "name": "RAPAX II COMPACT Complete Cerakote",
+      "price": "3'150.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 110 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 950 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "110 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "950 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPC-9mm-CPC-00138",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-ii-compact-complete-cerakote-159126",
+      "category": "Weapons > RAPAX > RAPAX > RX Compact",
+      "scrapedAt": "2025-12-16T01:53:49.378Z"
+    },
+    {
+      "name": "RAPAX II COMPACT Partial DLC",
+      "price": "3'300.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 110 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 950 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "110 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "950 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPC-9mm-PDL-00139",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-ii-compact-partial-dlc-159127",
+      "category": "Weapons > RAPAX > RAPAX > RX Compact",
+      "scrapedAt": "2025-12-16T01:53:53.646Z"
+    },
+    {
+      "name": "RAPAX II COMPACT Total DLC",
+      "price": "3'500.00",
+      "description": "CALIBER: 9x19 Luger - 9x21 - .357 SIG - .40 S&W\n\nMAGAGE: 15 (9x19 Luger - 9x21 - .357 SIG) - 13 (.40 S&W)\n\nBARREL: 110 mm\n\nSight: FIXED SIGHT\n\nFrame: ERGAL 7075\n\nFINISHs: BLACK NICKEL - BLACK OXYDE - DESERT TAN - OLIVE DRAB - DLC - DUOTONE - SLIDE FINISH MATT OR POLISHED (DLC)\n\nWEIGHT: 950 Gr.",
+      "specifications": {
+        "caliber": "9x19 Luger - 9x21 - .357 SIG - .40 S&W",
+        "barrel": "110 mm",
+        "sight": "FIXED SIGHT",
+        "frame": "ERGAL 7075",
+        "weight": "950 Gr."
+      },
+      "articleNumber": "DEX-PIS-RPC-9mm-TDL-00140",
+      "variants": [
+        {
+          "name": "BLACK OXIDE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "BLACK NICKEL",
+          "price": "2,950.00"
+        },
+        {
+          "name": "DUOTONE CERAKOTE PARZIALE",
+          "price": "2,950.00"
+        },
+        {
+          "name": "CERAKOTE INTEGRALE",
+          "price": "3,150.00"
+        },
+        {
+          "name": "DLC PARZIALE",
+          "price": "3,300.00"
+        },
+        {
+          "name": "DLC TOTALE",
+          "price": "3,500.00"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/variant.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/rapax-ii-compact-total-dlc-159128",
+      "category": "Weapons > RAPAX > RAPAX > RX Compact",
+      "scrapedAt": "2025-12-16T01:53:57.868Z"
+    },
+    {
+      "name": "CARACAL Lynx Sport Black Cerakote Grip (Gold)",
+      "price": "3'972.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 210 mm\nTOTAL HEIGHT 152 mm\nBARREL 12.7 cm\nWEIGHT 1250 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "12.7 cm",
+        "weight": "1250 g"
+      },
+      "articleNumber": "DEX-PIS-CRS-9mm-BLG-00144",
+      "variants": [],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://app.makaris.ch/custom/img/layout/shared/placeholder/en/product.png"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-sport-black-cerakote-grip-gold-159135",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX SPORT",
+      "scrapedAt": "2025-12-16T01:54:04.808Z"
+    },
+    {
+      "name": "CARACAL Lynx Sport Duotone Desert-Black",
+      "price": "3'575.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 210 mm\nTOTAL HEIGHT 152 mm\nBARREL 12.7 cm\nWEIGHT 1250 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "12.7 cm",
+        "weight": "1250 g"
+      },
+      "articleNumber": "DEX-PIS-CRS-9mm-DDB-00145",
+      "variants": [],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45353/Caracal-Sport-Duotone-Desert-Black.jpg?v=1760698803"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-sport-duotone-desert-black-159136",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX SPORT",
+      "scrapedAt": "2025-12-16T01:54:08.993Z"
+    },
+    {
+      "name": "CARACAL Lynx Sport Duotone Gold Black",
+      "price": "3'675.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 210 mm\nTOTAL HEIGHT 152 mm\nBARREL 12.7 cm\nWEIGHT 1250 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "12.7 cm",
+        "weight": "1250 g"
+      },
+      "articleNumber": "DEX-PIS-CRS-9mm-DGB-00146",
+      "variants": [],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45355/2011-IDEX23-GOLD-BLACK1.jpg?v=1760698966"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-sport-duotone-gold-black-159138",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX SPORT",
+      "scrapedAt": "2025-12-16T01:54:13.202Z"
+    },
+    {
+      "name": "CARACAL Lynx Sport Black Nickel",
+      "price": "3'500.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 210 mm\nTOTAL HEIGHT 152 mm\nBARREL 12.7 cm\nWEIGHT 1250 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "12.7 cm",
+        "weight": "1250 g"
+      },
+      "articleNumber": "DEX-PIS-CRS-9mm-BLN-00147",
+      "variants": [],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45356/Caracal-Sport-Black-Nickel-Black-1.jpg?v=1760699059"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-sport-black-nickel-159139",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX SPORT",
+      "scrapedAt": "2025-12-16T01:54:17.456Z"
+    },
+    {
+      "name": "CARACAL Lynx Sport Black Oxyde",
+      "price": "3'500.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 210 mm\nTOTAL HEIGHT 152 mm\nBARREL 12.7 cm\nWEIGHT 1250 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "12.7 cm",
+        "weight": "1250 g"
+      },
+      "articleNumber": "DEX-PIS-CRS-9mm-BLO-00148",
+      "variants": [],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45359/Caracal-Sport-Black-1.jpg?v=1760699233",
+        "https://makaris-prod-public.s3.ewstorage.ch/45360/Caracal-Sport-Black-2.jpg?v=1760699238",
+        "https://makaris-prod-public.s3.ewstorage.ch/45361/Caracal-Sport-Black-3.jpg?v=1760699243"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-sport-black-oxyde-159140",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX SPORT",
+      "scrapedAt": "2025-12-16T01:54:21.645Z"
+    },
+    {
+      "name": "CARACAL Lynx Sport Desert Tan",
+      "price": "4'200.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 210 mm\nTOTAL HEIGHT 152 mm\nBARREL 12.7 cm\nWEIGHT 1250 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "12.7 cm",
+        "weight": "1250 g"
+      },
+      "articleNumber": "DEX-PIS-CRS-9mm-DET-00149",
+      "variants": [],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45363/Caracal-Sport-Desert-Tan.jpg?v=1760699344",
+        "https://makaris-prod-public.s3.ewstorage.ch/45364/Caracal-Sport-Desert-Tan-2.jpg?v=1760699349"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-sport-desert-tan-159142",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX SPORT",
+      "scrapedAt": "2025-12-16T01:54:25.860Z"
+    },
+    {
+      "name": "CARACAL Lynx Compact Black Oxyde",
+      "price": "3'500.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 190 mm\nTOTAL HEIGHT 152 mm\nBARREL 10.16 cm\nWEIGHT 1150 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "10.16 cm",
+        "weight": "1150 g"
+      },
+      "articleNumber": "DEX-PIS-CRC-9mm-BLO-00141",
+      "variants": [
+        {
+          "name": "BARREL",
+          "price": "10.16"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45342/Caracal-Compact-Black-Oxyde-2.jpg?v=1760697908"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-compact-black-oxyde-159130",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX COMPACT",
+      "scrapedAt": "2025-12-16T01:54:35.465Z"
+    },
+    {
+      "name": "CARACAL Lynx Compact Black Oxyde",
+      "price": "3'500.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 190 mm\nTOTAL HEIGHT 152 mm\nBARREL 10.16 cm\nWEIGHT 1150 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "10.16 cm",
+        "weight": "1150 g"
+      },
+      "articleNumber": "DEX-PIS-CRC-9mm-BLN-00142",
+      "variants": [
+        {
+          "name": "BARREL",
+          "price": "10.16"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45345/2011-IDEX-COMPACTBN-1.jpg?v=1760698283"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-compact-black-oxyde-159131",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX COMPACT",
+      "scrapedAt": "2025-12-16T01:54:39.732Z"
+    },
+    {
+      "name": "CARACAL Lynx Compact Duotone",
+      "price": "3'575.00",
+      "description": "TECHNICAL SPECIFICATIONS CARACAL LYNX 2011\nCALIBER 9x19 Luger / 9x21 / 38 S.A. /40 S&W\nTOTAL LENGHT 190 mm\nTOTAL HEIGHT 152 mm\nBARREL 10.16 cm\nWEIGHT 1150 g\nMAGAZINE CAPACITY 17",
+      "specifications": {
+        "caliber": "9x19 Luger / 9x21 / 38 S.A. /40 S&W",
+        "magazine": "CAPACITY 17",
+        "barrel": "10.16 cm",
+        "weight": "1150 g"
+      },
+      "articleNumber": "DEX-PIS-CRC-9mm-DUO-00143",
+      "variants": [
+        {
+          "name": "BARREL",
+          "price": "10.16"
+        }
+      ],
+      "images": [
+        "https://makaris-prod-public.s3.ewstorage.ch/26210/raven-logo.png?v=1752587053",
+        "https://makaris-prod-public.s3.ewstorage.ch/45344/Caracal-Compact-Duotone.jpg?v=1760698204"
+      ],
+      "breadcrumb": [],
+      "url": "https://shop.ravenweapon.ch/en/products/caracal-lynx-compact-duotone-159132",
+      "category": "Weapons > RAPAX > Caracal Lynx > LYNX COMPACT",
+      "scrapedAt": "2025-12-16T01:54:43.925Z"
+    }
+  ],
+  "totalProducts": 27
+}

@@ -35,3 +35,12 @@ build/
 # Credentials (SENSITIVE)
 .server-credentials
 scripts/snigel-data/snigel-images.tar.gz
+scripts/snigel-data/snigel-images.tar
+
+# Temporary files
+temp-*.twig
+temp-*.scss
+*.png.bak
+
+# ZIP archives (theme backups)
+shopware-theme/*.zip

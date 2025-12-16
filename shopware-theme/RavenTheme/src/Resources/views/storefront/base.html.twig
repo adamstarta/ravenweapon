@@ -20,7 +20,46 @@
         .alert.alert-success {
             display: none !important;
         }
+        /* Hide dark CMS "coming soon" blocks - we use clean version */
+        .raven-hide-dark-cms {
+            display: none !important;
+        }
     </style>
+    <script>
+    /* Hide dark "SOON" CMS blocks globally */
+    (function() {
+        function hideDarkSoonBlocks() {
+            // Target cms-element-text with dark backgrounds containing "Bald verfügbar"
+            document.querySelectorAll('.cms-element-text').forEach(function(el) {
+                var text = el.textContent || '';
+                if (text.indexOf('Bald verfügbar') !== -1) {
+                    // Look for dark background inline styles (#1a1a1a, #2xxx, #3xxx, etc)
+                    var darkDiv = el.querySelector('[style*="background:#1"]') ||
+                                  el.querySelector('[style*="background: #1"]') ||
+                                  el.querySelector('[style*="background:#2"]') ||
+                                  el.querySelector('[style*="background: #2"]');
+                    if (darkDiv) {
+                        el.style.display = 'none';
+                    }
+                }
+            });
+            // Also target parent cms-block if it contains dark coming soon
+            document.querySelectorAll('.cms-block-text').forEach(function(el) {
+                var darkDiv = el.querySelector('[style*="background:#1a"]');
+                if (darkDiv && el.textContent.indexOf('Bald verfügbar') !== -1) {
+                    el.style.display = 'none';
+                }
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', hideDarkSoonBlocks);
+        } else {
+            hideDarkSoonBlocks();
+        }
+        setTimeout(hideDarkSoonBlocks, 50);
+        setTimeout(hideDarkSoonBlocks, 200);
+    })();
+    </script>
 {% endblock %}
 
 {% block base_body_script %}
@@ -36,7 +75,30 @@
         .alert.alert-success {
             display: none !important;
         }
+        /* Hide dark CMS "coming soon" blocks via CSS */
+        .cms-element-text > div[style*="background:#1a"],
+        .cms-element-text > div[style*="background: #1a"],
+        .cms-element-text > div[style*="background:#2"],
+        .cms-element-text > div[style*="background: #2"] {
+            display: none !important;
+        }
+        /* Also hide parent text block if it has dark child */
+        .cms-block-text:has(div[style*="background:#1a"]) {
+            display: none !important;
+        }
     </style>
+
+    {# Hide dark CMS blocks - inject CSS via JS since direct CSS isn't loading #}
+    <script>
+    (function() {
+        var css = '.cms-element-text > div[style*="background:#1a"],' +
+                  '.cms-element-text > div[style*="background: #1a"],' +
+                  '.cms-block-text:has(div[style*="background:#1a"]) { display: none !important; }';
+        var style = document.createElement('style');
+        style.textContent = css;
+        document.head.appendChild(style);
+    })();
+    </script>
 
     {# Raven Cart AJAX handler - MUST load BEFORE Shopware's scripts #}
     <script>

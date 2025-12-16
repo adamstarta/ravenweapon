@@ -41,7 +41,7 @@
             <div class="progress-line"></div>
             <div class="progress-step">
                 <span class="step-number">4</span>
-                <span class="step-label">Bestaetigung</span>
+                <span class="step-label">Bestätigung</span>
             </div>
         </div>
 
@@ -53,7 +53,7 @@
                 <div class="form-card login-section" id="loginCollapse">
                     <div class="card-header">
                         <h2>Bereits Kunde?</h2>
-                        <p>Melden Sie sich an fuer einen schnelleren Checkout</p>
+                        <p>Melden Sie sich an für einen schnelleren Checkout</p>
                     </div>
 
                     <form action="{{ path('frontend.account.login') }}"
@@ -121,7 +121,7 @@
 
                         {# Personal Details #}
                         <div class="form-section">
-                            <h3 class="section-title">Persoenliche Daten</h3>
+                            <h3 class="section-title">Persönliche Daten</h3>
 
                             <div class="form-row">
                                 <div class="form-group">
@@ -209,7 +209,7 @@
                                     <input type="text"
                                            name="billingAddress[city]"
                                            id="addressCity"
-                                           placeholder="Zuerich"
+                                           placeholder="Zürich"
                                            required>
                                 </div>
                             </div>
@@ -238,8 +238,8 @@
                         <div class="form-section">
                             <div class="privacy-notice">
                                 <p>
-                                    Mit dem Klick auf "Weiter zur Zahlung" bestaetigen Sie, dass Sie unsere
-                                    <a href="{{ path('frontend.cms.page', { id: 'privacy' }) }}" target="_blank">Datenschutzerklaerung</a>
+                                    Mit dem Klick auf "Weiter zur Zahlung" bestätigen Sie, dass Sie unsere
+                                    <a href="{{ path('frontend.cms.page', { id: 'privacy' }) }}" target="_blank">Datenschutzerklärung</a>
                                     gelesen haben und unsere
                                     <a href="{{ path('frontend.cms.page', { id: 'tos' }) }}" target="_blank">AGB</a>
                                     akzeptieren.
@@ -261,7 +261,7 @@
             {# Right Side - Order Summary #}
             <div class="checkout-summary">
                 <div class="summary-card">
-                    <h3 class="summary-title">Bestelluebersicht</h3>
+                    <h3 class="summary-title">Bestellübersicht</h3>
 
                     {# Cart Items #}
                     <div class="summary-items">
@@ -305,10 +305,7 @@
                             <span>Gesamtsumme</span>
                             <span>CHF {{ page.cart.price.totalPrice|number_format(2, '.', "'") }}</span>
                         </div>
-                        <div class="total-row tax-info">
-                            <span>inkl. MwSt.</span>
-                            <span>CHF {{ page.cart.price.calculatedTaxes.amount|number_format(2, '.', "'") }}</span>
-                        </div>
+                        {# Tax breakdown hidden - GROSS pricing like Lee-Sport #}
                     </div>
 
                     {# Edit Cart Link #}
@@ -325,7 +322,7 @@
                 <div class="checkout-trust">
                     <div class="trust-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        <span>SSL-verschluesselt</span>
+                        <span>SSL-verschlüsselt</span>
                     </div>
                     <div class="trust-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
@@ -342,7 +339,7 @@
                     <line x1="19" y1="12" x2="5" y2="12"></line>
                     <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
-                Zurueck zum Shop
+                Zurück zum Shop
             </a>
         </div>
     </div>

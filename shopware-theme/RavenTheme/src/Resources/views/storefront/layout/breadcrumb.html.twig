@@ -1,5 +1,6 @@
 {% sw_extends '@Storefront/storefront/layout/breadcrumb.html.twig' %}
 
-{# Hide breadcrumb on category pages - shows redundant info #}
+{# Hide the default Shopware breadcrumb on category pages - JS breadcrumb in header.html.twig handles it #}
 {% block layout_breadcrumb_inner %}
+    {# Don't show default breadcrumb - JS creates custom one after header #}
 {% endblock %}

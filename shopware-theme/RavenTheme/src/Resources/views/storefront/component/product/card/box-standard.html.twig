@@ -1,6 +1,40 @@
 {% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
 
 {% block component_product_box %}
+{# Dynamic breadcrumb: JavaScript captures current category path and appends to product links #}
+
+<script>
+(function() {
+    // Only run once per page
+    if (window.ravenCategoryLinksInitialized) return;
+    window.ravenCategoryLinksInitialized = true;
+
+    document.addEventListener('click', function(e) {
+        // Find if clicked element or parent is a product link
+        var link = e.target.closest('.raven-card-image, .raven-product-name');
+        if (!link) return;
+
+        // Get current page path (the category path)
+        var currentPath = window.location.pathname;
+
+        // Only add ?from= for category pages (contain 'Ausruestung' or other known category patterns)
+        if (currentPath && currentPath.length > 1 && !currentPath.includes('/detail/')) {
+            e.preventDefault();
+            var href = link.getAttribute('href');
+
+            // Remove any existing ?from= parameter
+            href = href.split('?')[0];
+
+            // Add the category path as from parameter
+            var separator = href.includes('?') ? '&' : '?';
+            var newHref = href + separator + 'from=' + encodeURIComponent(currentPath);
+
+            window.location.href = newHref;
+        }
+    });
+})();
+</script>
+
 <style>
 .raven-card {
     background: white;

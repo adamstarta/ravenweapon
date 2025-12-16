@@ -290,17 +290,12 @@
 </style>
 
 <main class="raven-category-page">
-    {# Header Section #}
-    <section style="background: #f5f5f5; padding: 2rem 0;">
+    {# Header Section - Title only, breadcrumb is in header.html.twig #}
+    <section style="background: #f5f5f5; padding: 1.5rem 0;">
         <div class="max-w-7xl mx-auto px-6 lg:px-24">
             <h1 style="font-family: 'Inter', -apple-system, sans-serif; font-size: 2rem; font-weight: 700; color: #111; margin: 0;">
                 {{ page.header.navigation.active.translated.name }}
             </h1>
-            <div style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">
-                <a href="{{ path('frontend.home.page') }}" style="color: #666; text-decoration: none;">Home</a>
-                <span style="margin: 0 0.5rem;">|</span>
-                <span>{{ page.header.navigation.active.translated.name }}</span>
-            </div>
         </div>
     </section>
 

@@ -199,8 +199,10 @@
                 Kategorien
             </h2>
 
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;" class="md:!grid-cols-{{ page.extensions.homepageCategories|length > 4 ? 4 : page.extensions.homepageCategories|length }}">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;" class="md:!grid-cols-4">
                 {% for category in page.extensions.homepageCategories %}
+                    {# Skip "Alle Produkte" and "Munition" categories #}
+                    {% if category.translated.name not in ['Alle Produkte', 'Munition'] %}
                     <a href="{{ seoUrl('frontend.navigation.page', { navigationId: category.id }) }}"
                        style="display: block; padding: 1.5rem 1rem; text-align: center; border: 1px solid #e5e7eb; border-radius: 0.75rem; background: white; text-decoration: none; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"
                        onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
@@ -222,6 +224,7 @@
                             <div style="font-size: 0.875rem; color: #6b7280; line-height: 1.4;">{{ category.translated.description|striptags|slice(0, 50) }}{% if category.translated.description|length > 50 %}...{% endif %}</div>
                         {% endif %}
                     </a>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -244,7 +247,7 @@
 
             <div class="raven-brands-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                 {# Brand 1: Lockhart Tactical #}
-                <a href="/lockhart-tactical"
+                <a href="/hersteller/lockhart-tactical"
                    style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
@@ -253,7 +256,7 @@
                 </a>
 
                 {# Brand 2: Magpul #}
-                <a href="/magpul"
+                <a href="/hersteller/magpul"
                    style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
@@ -262,7 +265,7 @@
                 </a>
 
                 {# Brand 3: Snigel #}
-                <a href="/snigel"
+                <a href="/hersteller/snigel"
                    style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
@@ -271,7 +274,7 @@
                 </a>
 
                 {# Brand 4: Zerotech #}
-                <a href="/zero-tolerance"
+                <a href="/hersteller/zerotech"
                    style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"

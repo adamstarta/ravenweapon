@@ -24,6 +24,10 @@ Swiss firearms e-commerce platform built on Shopware 6 with custom RavenTheme.
 12. [Snigel Product Images Upload](#snigel-product-images-upload)
 13. [Snigel Categories & Alle Produkte Fix](#snigel-categories--alle-produkte-fix)
 14. [Twig Injection Fix for Brand Pages](#twig-injection-fix-for-brand-pages)
+15. [Snigel Variants & Subcategories Scraper Update](#snigel-variants--subcategories-scraper-update)
+16. [CHF Currency Fix & Price Sync](#chf-currency-fix--price-sync-december-15-2024)
+17. [German Language Guidelines](#german-language-guidelines-important)
+18. [Navigation Dropdown Fix](#navigation-dropdown-fix-december-16-2024)
 
 ---
 
@@ -88,25 +92,16 @@ User → Cloudflare (CDN/SSL) → Hetzner Server (77.42.19.154) → Docker Conta
 | **SSH Password** | 93cupECnm3xH |
 | **Domain** | ortak.ch |
 
-### Shopware Admin (Current - EUR)
+### Shopware Admin (Live - CHF)
 
 | Info | Value |
 |------|-------|
 | **Admin URL** | https://ortak.ch/admin |
-| **Username** | admin |
-| **Password** | shopware |
+| **Username** | Micro the CEO |
+| **Password** | 100%Ravenweapon... |
 | **Shopware Version** | 6.6.0.0 (dockware) |
-| **Base Currency** | EUR (problem - should be CHF) |
-
-### Shopware Admin (New - CHF) - IN PROGRESS
-
-| Info | Value |
-|------|-------|
-| **Admin URL** | http://new.ortak.ch/admin (needs DNS setup) |
-| **Username** | admin |
-| **Password** | shopware |
-| **Shopware Version** | 6.6.0.0 (dockware) |
-| **Base Currency** | CHF (correct!) |
+| **Base Currency** | CHF ✅ |
+| **Admin Language** | German (de-DE) |
 
 ### API Credentials (for import scripts - EUR installation)
 
@@ -816,10 +811,399 @@ This is required for Shopware 6.6+ where Twig must be explicitly injected into c
 
 ---
 
+## Snigel Variants & Subcategories Scraper Update
+
+### Problem (December 13, 2024)
+The original Snigel scraper had issues:
+1. **Fake "Graphite Black" property** - When products had multiple images, the system auto-created a fake "Farbe: Graphite Black" property even for products without color variants
+2. **Missing subcategories** - Products were all dumped into main "Snigel" category instead of proper subcategories
+3. **Missing color data** - Actual color information from product pages wasn't being scraped
+
+### Solution
+Created `snigel-variants-scraper.js` that visits each product page and:
+1. **Detects color dropdowns** - If product has variant selector, scrapes all color options
+2. **Scrapes Category** - Gets category from product meta (e.g., "Bags & backpacks", "Medical gear")
+3. **Scrapes Colour** - Gets fixed colour for simple products (e.g., "Grey", "Black")
+
+### Scripts Created
+
+| Script | Purpose |
+|--------|---------|
+| `snigel-variants-scraper.js` | Main scraper - detects variants, scrapes category/colour |
+| `snigel-retry-errors.js` | Retries failed products with longer timeouts |
+| `check-data.js` | Verifies data completeness |
+
+### Data Output
+
+**File:** `scripts/snigel-data/products-with-variants.json`
+
+**Data Structure:**
+```json
+{
+  "name": "Product Name",
+  "hasColorVariants": true/false,
+  "colorOptions": [
+    { "name": "Black", "value": "black" },
+    { "name": "Grey", "value": "grey" }
+  ],
+  "category": "Bags & backpacks",
+  "colour": "Grey",
+  "galleryImages": ["url1", "url2"],
+  "local_images": ["file1.jpg", "file2.jpg"]
+}
+```
+
+### Results (December 13, 2024)
+
+| Metric | Count | Percentage |
+|--------|-------|------------|
+| Total products | 193 | 100% |
+| With images | 193 | 100% |
+| With category | 193 | 100% |
+| With colour | 178 | 92% |
+| With color variants | 92 | 48% |
+| With description | 71 | 37% |
+
+### Categories Scraped (20 total)
+
+```
+Holders & pouches: 39 products
+Patches: 21 products
+Medical gear: 18 products
+Ballistic protection: 15 products
+Bags & backpacks: 13 products
+Belts: 13 products
+Tactical clothing: 12 products
+Slings & holsters: 11 products
+Tactical gear: 10 products
+Police gear: 9 products
+Admin products: 7 products
+Miscellaneous products: 6 products
+Vests & Chest rigs: 4 products
+Leg panels: 3 products
+Multicam: 3 products
+Sniper gear: 3 products
+Source® hydration: 3 products
+Covert gear: 1 product
+K9-units gear: 1 product
+The Brand: 1 product
+```
+
+### How to Run Scraper
+
+```bash
+cd scripts
+
+# Run main scraper (has resume capability)
+node snigel-variants-scraper.js
+
+# If there are errors, retry them
+node snigel-retry-errors.js
+
+# Check data completeness
+node check-data.js
+```
+
+### Local Images
+
+**Location:** `scripts/snigel-data/images/`
+**Count:** 2,491 images
+
+---
+
+## CHF Currency Fix & Price Sync (December 15, 2024)
+
+### Problem
+After migration, the Shopware instance had:
+1. **EUR as system default currency** - Even though CHF was set as factor 1, EUR was still marked as "isSystemDefault" in Shopware's `Defaults.php`
+2. **101 products with only EUR prices** - These showed "No price found for currency Swiss francs" error
+3. **Incorrect CHF prices** - Some products had EUR values stored as CHF (wrong conversion)
+
+### Solution Applied
+
+#### 1. Fixed System Default Currency
+Changed Shopware's default currency from EUR to CHF by editing the core Defaults.php file:
+
+```bash
+# SSH into server and update Defaults.php
+ssh root@77.42.19.154
+docker exec shopware-chf bash -c "sed -i \"s/public const CURRENCY = 'b7d2554b0ce847cd82f3ac9bd1c0dfca'/public const CURRENCY = '0191c12cf40d718a8a3439b74a6f083c'/g\" /var/www/html/vendor/shopware/core/Defaults.php"
+docker exec shopware-chf bash -c "cd /var/www/html && bin/console cache:clear"
+```
+
+**Currency IDs:**
+- CHF: `0191c12cf40d718a8a3439b74a6f083c` (now default)
+- EUR: `b7d2554b0ce847cd82f3ac9bd1c0dfca` (was default)
+
+#### 2. Synced Prices from Old Shop
+Created `scripts/sync-prices-from-old-shop.js` to:
+1. Scrape all products from shop.ravenweapon.ch (old shop)
+2. Match products with ortak.ch by name
+3. Update CHF prices to match old shop exactly
+
+**Results:**
+- 101 products updated with correct CHF prices
+- 89 products verified as matching old shop prices
+- 47 products not found (different names in old vs new shop)
+
+### Scripts Created
+
+| Script | Purpose |
+|--------|---------|
+| `sync-prices-from-old-shop.js` | Sync CHF prices from old shop to ortak.ch |
+| `compare-shop-prices.js` | Compare prices between old shop and ortak.ch |
+
+### How to Run Price Sync Again
+
+```bash
+cd scripts
+
+# Compare prices between shops (excludes Snigel products)
+node compare-shop-prices.js
+
+# Sync prices from old shop to ortak.ch
+node sync-prices-from-old-shop.js
+```
+
+### Verification
+
+After running the sync, prices should match:
+```
+Same prices: 89
+Different prices: 1 (product mismatch - MILDOT vs ZEROPLEX)
+Not found: 47
+```
+
+---
+
+## German Language Guidelines (IMPORTANT!)
+
+### ALWAYS Use Proper German Umlauts
+
+**CRITICAL:** When writing German text in templates, ALWAYS use proper umlauts (ö, ä, ü) - NEVER use ASCII replacements (oe, ae, ue).
+
+| ❌ WRONG | ✅ CORRECT |
+|----------|-----------|
+| fuer | für |
+| Bestellbestaetigung | Bestellbestätigung |
+| ueberweisen | überweisen |
+| verfuegbar | verfügbar |
+| Bestelluebersicht | Bestellübersicht |
+| Zurueck | Zurück |
+| Zuerich | Zürich |
+| Persoenliche | Persönliche |
+| Datenschutzerklaerung | Datenschutzerklärung |
+| SSL-verschluesselt | SSL-verschlüsselt |
+| Kaeufer | Käufer |
+| erhoehen | erhöhen |
+| hinzugefuegt | hinzugefügt |
+| gueltige | gültige |
+| veroeffentlicht | veröffentlicht |
+| Pruefung | Prüfung |
+
+### Common German Words with Umlauts
+
+| German Word | Meaning |
+|-------------|---------|
+| für | for |
+| Bestätigung | confirmation |
+| überweisen | to transfer |
+| verfügbar | available |
+| Übersicht | overview |
+| zurück | back |
+| Zürich | Zurich (city) |
+| persönlich | personal |
+| Datenschutzerklärung | privacy policy |
+| verschlüsselt | encrypted |
+| Käufer | buyer |
+| erhöhen | to increase |
+| hinzugefügt | added |
+| gültig | valid |
+| veröffentlicht | published |
+| Prüfung | review/check |
+| schließen | to close |
+| fügen | to add |
+
+### How to Type Umlauts
+
+**Windows:**
+- ä = Alt + 0228
+- ö = Alt + 0246
+- ü = Alt + 0252
+- Ä = Alt + 0196
+- Ö = Alt + 0214
+- Ü = Alt + 0220
+- ß = Alt + 0223
+
+**Alternative:** Copy-paste from this document or use a German keyboard layout.
+
+### Files to Check for Umlaut Issues
+
+If you need to verify umlauts are correct, check these template files:
+
+```
+shopware-theme/RavenTheme/src/Resources/views/storefront/
+├── page/checkout/finish/index.html.twig
+├── page/checkout/register/index.html.twig
+├── page/checkout/confirm/index.html.twig
+├── page/checkout/address/index.html.twig
+├── page/product-detail/index.html.twig
+└── component/checkout/offcanvas-cart.html.twig
+```
+
+### Quick Search for Umlaut Issues
+
+```bash
+# Find potential umlaut replacements in twig files
+grep -rE "(fuer|ue[rn]|ae|oe[^s])" --include="*.twig" shopware-theme/
+```
+
+---
+
+## Navigation Dropdown Fix (December 16, 2024)
+
+### Problem
+The navigation dropdown on hover for "Raven Weapons" was not showing the full RAPAX subcategory structure. It only showed 2 items instead of the complete nested hierarchy:
+
+**Expected:**
+```
+Raven Weapons
+└── RAPAX
+    ├── RAPAX (sub)
+    │   ├── RX Sport
+    │   ├── RX Tactical
+    │   └── RX Compact
+    └── Caracal Lynx
+        ├── LYNX SPORT
+        ├── LYNX OPEN
+        └── LYNX COMPACT
+```
+
+**Actual:** Only showed hardcoded fallback navigation (Sturmgewehre, RAPAX)
+
+### Root Cause
+Two issues were identified:
+
+1. **Wrong Twig variable** - Template was using `page.header.navigation.tree` but the correct variable in Shopware 6 header context is `header.navigation.tree`
+
+2. **Navigation depth too shallow** - Shopware's `navigationCategoryDepth` was set to 3, but RAPAX categories go 5 levels deep
+
+### Solution Applied
+
+#### 1. Fixed Template Variable
+Updated `shopware-theme/RavenTheme/src/Resources/views/storefront/layout/header/header.html.twig`:
+
+```twig
+{# WRONG - page variable not available in header context #}
+{% if page.header.navigation.tree is defined %}
+
+{# CORRECT - header variable is available #}
+{% if header.navigation.tree is defined %}
+```
+
+#### 2. Increased Navigation Depth
+Updated Shopware Sales Channel settings via API:
+
+```php
+// Set navigation depth to 5 (was 3)
+apiPatch($config, $token, "sales-channel/$salesChannelId", [
+    'navigationCategoryDepth' => 5
+]);
+```
+
+#### 3. Added 4-Level Nesting Support in Template
+The template now supports 4 levels of nested categories in the dropdown:
+
+| Level | Symbol | Example |
+|-------|--------|---------|
+| 1 | (main) | Raven Weapons |
+| 2 | ↳ | RAPAX |
+| 3 | • | Caracal Lynx, RAPAX (sub) |
+| 4 | - | LYNX SPORT, RX Sport |
+
+**Template structure:**
+```twig
+{% for treeItem in header.navigation.tree %}
+    {# Level 1: Main category #}
+    {{ category.translated.name }}
+
+    {% for childItem in treeItem.children %}
+        {# Level 2: Children (↳) #}
+        ↳ {{ childCat.translated.name }}
+
+        {% for grandChildItem in childItem.children %}
+            {# Level 3: Grandchildren (•) #}
+            • {{ grandChildCat.translated.name }}
+
+            {% for greatGrandChildItem in grandChildItem.children %}
+                {# Level 4: Great-grandchildren (-) #}
+                - {{ greatGrandChildCat.translated.name }}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+```
+
+### Scripts Created
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/fix-nav-depth-5.php` | Set navigation depth to 5 via API |
+| `scripts/debug-nav-categories.php` | Debug category tree structure |
+| `scripts/check-nav-tree-api.php` | Check Store API navigation tree |
+
+### How to Deploy Navigation Changes
+
+```bash
+# 1. Copy updated header template to server
+scp shopware-theme/RavenTheme/src/Resources/views/storefront/layout/header/header.html.twig root@77.42.19.154:/tmp/
+
+# 2. Deploy to Docker container
+ssh root@77.42.19.154 "docker cp /tmp/header.html.twig shopware-chf:/var/www/html/custom/plugins/RavenTheme/src/Resources/views/storefront/layout/header/header.html.twig"
+
+# 3. Clear cache
+ssh root@77.42.19.154 "docker exec shopware-chf php bin/console cache:clear"
+```
+
+### Category Structure Reference
+
+**Raven Weapons Categories (with IDs):**
+
+| Category | Level | ID |
+|----------|-------|-----|
+| Raven Weapons | 2 | `a61f19c9cb4b11f0b4074aca3d279c31` |
+| RAPAX (main) | 3 | `1f36ebeb19da4fc6bc9cb3c3acfadafd` |
+| RAPAX (sub) | 4 | `95a7cf1575ddc0219d8f11484ab0cbeb` |
+| Caracal Lynx | 4 | `2b3fdb3f3dcc00eacf9c9683d5d22c6a` |
+| RX Sport | 5 | `34c00eca0b38ba3aa4ae483722859b4e` |
+| RX Tactical | 5 | `fa470225519fd7d666f28d89caf25c8d` |
+| RX Compact | 5 | `ea2e04075bc0d5c50cfb0a4b52930401` |
+| LYNX SPORT | 5 | `66ed5338a8574c803e01da3cb9e1f2d4` |
+| LYNX OPEN | 5 | `7048c95bf71dd4802adb7846617b4503` |
+| LYNX COMPACT | 5 | `da98c38ad3e48c6965ff0e93769115d4` |
+
+### Result
+Navigation dropdown now shows full RAPAX structure on hover:
+
+```
+Raven Weapons
+↳ RAPAX
+  • Caracal Lynx
+    - LYNX SPORT
+    - LYNX OPEN
+    - LYNX COMPACT
+  • RAPAX
+    - RX Sport
+    - RX Compact
+    - RX Tactical
+```
+
+---
+
 ## License
 
 Proprietary - RAVEN WEAPON AG
 
 ---
 
-*Last updated: December 12, 2024*
+*Last updated: December 16, 2024*

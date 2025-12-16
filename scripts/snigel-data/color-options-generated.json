@@ -1,0 +1,3676 @@
+[
+    {
+        "product_id": "214C083B0D590D5502453DBE3AA594C1",
+        "product_number": "SN-10-20l-all-pack-16-17",
+        "product_name": "15-20L All pack",
+        "image_count": 41,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/43\/39\/4339915BDDBDB3294DA107CEFB96AC1D\/29-00363C09_1473.jpg",
+                "mediaId": "4339915BDDBDB3294DA107CEFB96AC1D",
+                "filename": "29-00363C09_1473"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/06\/0A\/060A95870398C8CFD9623B93DCD50DDE\/27-02752A20_.jpg",
+                "mediaId": "060A95870398C8CFD9623B93DCD50DDE",
+                "filename": "27-02752A20_"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "005B5746CAE18BE461A61B3D1E96C89A",
+        "product_number": "SN-100l-backpack-2-0",
+        "product_name": "100L Backpack 2.0",
+        "image_count": 41,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/41\/AE\/41AE93C9097C3FB85EF68CDEA1CE18B0\/29-01161C09_3880.jpg",
+                "mediaId": "41AE93C9097C3FB85EF68CDEA1CE18B0",
+                "filename": "29-01161C09_3880"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "9C269BF705DFD16B89B4086EAB718A2B",
+        "product_number": "SN-10l-multi-purpose-bag-15",
+        "product_name": "10L Multi-purpose bag",
+        "image_count": 40,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/38\/8F\/388F7A78BDF8978A914AD7A65D1ABEEC\/28-00271-09-000_5.jpg",
+                "mediaId": "388F7A78BDF8978A914AD7A65D1ABEEC",
+                "filename": "28-00271-09-000_5"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "B780E78F5E893B95099C912C0E5EEE7C",
+        "product_number": "SN-120l-dry-bag-12",
+        "product_name": "Dry bag set 1.0",
+        "image_count": 12,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "BBFE43D6715083C259DD5AD7BFCB7F94",
+        "product_number": "SN-15l-princess-backpack-17",
+        "product_name": "15L Princess backpack  -17",
+        "image_count": 16,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/1F\/45\/1F4578411930D68974D9A7F23D7B3889\/29-01067-01-000_2.jpg",
+                "mediaId": "1F4578411930D68974D9A7F23D7B3889",
+                "filename": "29-01067-01-000_2"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "23D9C1920EAFAD419177AD77D0DA1FA9",
+        "product_number": "SN-1l-bottle-pouch-18",
+        "product_name": "1L Bottle pouch -18",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/62\/BD\/62BD32B5B85CE49D0E9E238ABB0FDBD4\/21-01590A09-000.jpg",
+                "mediaId": "62BD32B5B85CE49D0E9E238ABB0FDBD4",
+                "filename": "21-01590A09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "BDF1A051D0E66F5F3E206B71D883CD8C",
+        "product_number": "SN-1l-kangaroo-hydration-bladder",
+        "product_name": "1L Kangaroo hydration bladder",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Clear",
+                "value": "clear",
+                "code": "05",
+                "imageUrl": "\/media\/1E\/26\/1E2687C5AF334B7E76DCC00ADC75BE18\/46-00536-05-000-1e2687c5.jpg",
+                "mediaId": "1E2687C5AF334B7E76DCC00ADC75BE18",
+                "filename": "46-00536-05-000-1e2687c5"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "16172771A4BA70610BEDD3659EF96FBD",
+        "product_number": "SN-230-roller-bag-15",
+        "product_name": "230 Roller bag -15",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/73\/02\/7302EE4EEF24E64EE1A6FFBC0EACD53F\/28-00851-09-000-7302ee4e.jpg",
+                "mediaId": "7302EE4EEF24E64EE1A6FFBC0EACD53F",
+                "filename": "28-00851-09-000-7302ee4e"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "43B17419072632C0E06DFFF726198F5D",
+        "product_number": "SN-25-30l-specialist-backpack-14",
+        "product_name": "30L Specialist backpack",
+        "image_count": 72,
+        "color_count": 3,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/EF\/30\/EF30852C885BE7FA755C210A8E0FEE2C\/29-00026-01-030_3.jpg",
+                "mediaId": "EF30852C885BE7FA755C210A8E0FEE2C",
+                "filename": "29-00026-01-030_3"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/6A\/30\/6A30810179FCF5F0D2C93EDBAB2B3A25\/29-00026-09-030_1713.jpg",
+                "mediaId": "6A30810179FCF5F0D2C93EDBAB2B3A25",
+                "filename": "29-00026-09-030_1713"
+            },
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/7A\/7C\/7A7C9952C0E4A761315F2B384D3DB6E4\/29-00026-17-030_2700.jpg",
+                "mediaId": "7A7C9952C0E4A761315F2B384D3DB6E4",
+                "filename": "29-00026-17-030_2700"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "A03A48DF6BDE56FD0AC3CEB84CCD4C27",
+        "product_number": "SN-25l-hydration-cover-16",
+        "product_name": "2,5L hydration cover -16",
+        "image_count": 13,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/BA\/24\/BA24270495B4A826A50B310DB0393061\/44-01305-01-000_DEFAULT-ba242704.jpg",
+                "mediaId": "BA24270495B4A826A50B310DB0393061",
+                "filename": "44-01305-01-000_DEFAULT-ba242704"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "EA985CD77C00973A443FEBA502AF02F5",
+        "product_number": "SN-25l-insert-wall-10",
+        "product_name": "30L insert wall -10",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/D0\/3E\/D03EA0F6FB1B42B12A6B5FCA59688C62\/27-00569-09-000_5.jpg",
+                "mediaId": "D03EA0F6FB1B42B12A6B5FCA59688C62",
+                "filename": "27-00569-09-000_5"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "FE016346B6991E5152FC494AD28253A6",
+        "product_number": "SN-25l-protective-insert-bag-15",
+        "product_name": "30L protective insert 1.1",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/13\/B6\/13B6508271DBBD3701101A99F5535E84\/27-00076B09-000_1539.jpg",
+                "mediaId": "13B6508271DBBD3701101A99F5535E84",
+                "filename": "27-00076B09-000_1539"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "538F5EACFBCD5C5AC99D193220B9DC6E",
+        "product_number": "SN-30-40l-combat-backpack-1-0",
+        "product_name": "30-40L Combat backpack 1.0",
+        "image_count": 35,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/37\/AD\/37AD7A8F11BA546E9744212C2D5F51C3\/29-01410A01_8713.jpg",
+                "mediaId": "37AD7A8F11BA546E9744212C2D5F51C3",
+                "filename": "29-01410A01_8713"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/A1\/A3\/A1A38F3069AA56A3C0A5F48340857C09\/29-01410AA09_8962.jpg",
+                "mediaId": "A1A38F3069AA56A3C0A5F48340857C09",
+                "filename": "29-01410AA09_8962"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "7CCA1A75952EB0D203C6BE22D29E4ABF",
+        "product_number": "SN-30l-mission-backpack-16",
+        "product_name": "30L Mission backpack 1.1",
+        "image_count": 27,
+        "color_count": 3,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/8E\/65\/8E658A8CBFC868C3BC90290D2EFC741C\/29-00394B01_IMG_1255.jpg",
+                "mediaId": "8E658A8CBFC868C3BC90290D2EFC741C",
+                "filename": "29-00394B01_IMG_1255"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/67\/4D\/674DCD3D60EBE30C0EA68A04AB7392DD\/29-00394B09_IMG_1244.jpg",
+                "mediaId": "674DCD3D60EBE30C0EA68A04AB7392DD",
+                "filename": "29-00394B09_IMG_1244"
+            },
+            {
+                "name": "Multicam",
+                "value": "multicam",
+                "code": "56",
+                "imageUrl": "\/media\/9D\/2D\/9D2D6E12A531097C3691ACF315305BF5\/29-00394B56-B8277.jpg",
+                "mediaId": "9D2D6E12A531097C3691ACF315305BF5",
+                "filename": "29-00394B56-B8277"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "530BBF906137506A64FD802B8BE229DB",
+        "product_number": "SN-30l-waterproof-mission-backpack-1-0",
+        "product_name": "30L Waterproof mission backpack 1.0",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/76\/A6\/76A60D7066499AAD85EEAE968E528E8A\/29-01754A09-000.jpg",
+                "mediaId": "76A60D7066499AAD85EEAE968E528E8A",
+                "filename": "29-01754A09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "961CD3369177CBFAA98407E545047EEE",
+        "product_number": "SN-30x61-cm-weapon-bag-13",
+        "product_name": "30\u00d761 cm Weapon bag -13",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/64\/52\/64521E09ED4EC19F3D1EA9EC712DB161\/28-00251-01-000-64521e09.jpg",
+                "mediaId": "64521E09ED4EC19F3D1EA9EC712DB161",
+                "filename": "28-00251-01-000-64521e09"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "CB6E947DC8B0833690DE4B2666A33AB3",
+        "product_number": "SN-34x100-cm-dual-weapon-bag-11",
+        "product_name": "34\u00d7100 cm dual Weapon bag -11",
+        "image_count": 16,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/35\/F5\/35F5834DAB2CFCAEAA777752F1B7F9E0\/28-00054-01-000-35f5834d.jpg",
+                "mediaId": "35F5834DAB2CFCAEAA777752F1B7F9E0",
+                "filename": "28-00054-01-000-35f5834d"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "835D0405C0183C484E55D9F44DFA299A",
+        "product_number": "SN-34x64-cm-dual-weapon-bag-11",
+        "product_name": "34\u00d764 cm dual Weapon bag -11",
+        "image_count": 16,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/7D\/EB\/7DEB406ED030F283B03EE055B15EFA6B\/28-00055-01-000-7deb406e.jpg",
+                "mediaId": "7DEB406ED030F283B03EE055B15EFA6B",
+                "filename": "28-00055-01-000-7deb406e"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "FB632D1EFB4F536DF5E602483ECD0BD4",
+        "product_number": "SN-3l-multipurpose-bag-15",
+        "product_name": "3L Multipurpose bag -15",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/9F\/F8\/9FF80BAAD4519CF917D030F2CC3357D4\/28-00100-01-000-9ff80baa.jpg",
+                "mediaId": "9FF80BAAD4519CF917D030F2CC3357D4",
+                "filename": "28-00100-01-000-9ff80baa"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "EC4EBB7CFFF358A9F1147F834E3563AC",
+        "product_number": "SN-40l-insert-wall-10",
+        "product_name": "40L insert wall",
+        "image_count": 7,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/82\/C7\/82C7D680B7DF2BA7F8D91194491C5538\/27-00568-20-000_8202.jpg",
+                "mediaId": "82C7D680B7DF2BA7F8D91194491C5538",
+                "filename": "27-00568-20-000_8202"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "6504217929EAB543CD40A04F09760EBA",
+        "product_number": "SN-40l-protective-insert-12",
+        "product_name": "40L protective insert",
+        "image_count": 12,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/51\/F0\/51F0523ED47E35B232C6CBE89474A2D4\/27-00105-09-000_1516.jpg",
+                "mediaId": "51F0523ED47E35B232C6CBE89474A2D4",
+                "filename": "27-00105-09-000_1516"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "66FB8DF86644FAC3190ED89CB6069797",
+        "product_number": "SN-40l-specialist-backpack-14",
+        "product_name": "40L Specialist backpack",
+        "image_count": 33,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/4D\/63\/4D63AF3FACCD3C9FFDE7BB063F74F7A0\/29-00026-01-000_2.jpg",
+                "mediaId": "4D63AF3FACCD3C9FFDE7BB063F74F7A0",
+                "filename": "29-00026-01-000_2"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "EB716501CF0858BB3A2D431D4A6C85A5",
+        "product_number": "SN-40l-velcro-and-webbing-panel-10",
+        "product_name": "40L Velcro and webbing  panel -10",
+        "image_count": 5,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/9D\/9E\/9D9E792435BE49C92C09527C51F2F44E\/27-01028-09-000.jpg",
+                "mediaId": "9D9E792435BE49C92C09527C51F2F44E",
+                "filename": "27-01028-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "27ED0B0FBAB2BFA7C2BAF70839689376",
+        "product_number": "SN-50-mm-buckle-adapter-set",
+        "product_name": "50 mm buckle adapter set",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/31\/A8\/31A856E994C0991FD904B64F9CD053D8\/40-00102-01-000.jpg",
+                "mediaId": "31A856E994C0991FD904B64F9CD053D8",
+                "filename": "40-00102-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5E484AC2AA6AA6236E4F7AC03641BE3C",
+        "product_number": "SN-50l-mission-backpack-2-0",
+        "product_name": "50L Mission backpack 2.0",
+        "image_count": 33,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/5E\/F2\/5EF2ADC4A9EE4E543EBD85DABD10CB25\/29-00160B09_3665.jpg",
+                "mediaId": "5EF2ADC4A9EE4E543EBD85DABD10CB25",
+                "filename": "29-00160B09_3665"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "6AD0E1372029418F8A31BE317B902F4D",
+        "product_number": "SN-55l-duffel-bag-17",
+        "product_name": "55L Duffel bag -17",
+        "image_count": 15,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/0C\/31\/0C318A9E281CC4B94172B61A5858C321\/28-01350A01-900_0197-2.jpg",
+                "mediaId": "0C318A9E281CC4B94172B61A5858C321",
+                "filename": "28-01350A01-900_0197-2"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/3E\/B3\/3EB3475294FD1313A27168409A654859\/28-01350A09-055_9998-1-3eb34752.jpg",
+                "mediaId": "3EB3475294FD1313A27168409A654859",
+                "filename": "28-01350A09-055_9998-1-3eb34752"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "E061C0172F18F2E2BC775FF50F7EA8FB",
+        "product_number": "SN-6l-funny-pack-18",
+        "product_name": "6L Funny pack",
+        "image_count": 35,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/B1\/DF\/B1DF3592553980FDC357A4EA86D25083\/28-01291-01-000_7.jpg",
+                "mediaId": "B1DF3592553980FDC357A4EA86D25083",
+                "filename": "28-01291-01-000_7"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/32\/01\/32015CAC07422A4AD5678DB7B8F3A923\/28-01291-09-_3852.jpg",
+                "mediaId": "32015CAC07422A4AD5678DB7B8F3A923",
+                "filename": "28-01291-09-_3852"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "D3B81FC68BC4EDA38C4D3EB0D6D2CFB7",
+        "product_number": "SN-8x19-pouch-14",
+        "product_name": "8\u00d719 pouch -14",
+        "image_count": 12,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/AB\/62\/AB62707174DA4B179648D2979CC4EB92\/21-00349-01-000_6.jpg",
+                "mediaId": "AB62707174DA4B179648D2979CC4EB92",
+                "filename": "21-00349-01-000_6"
+            },
+            {
+                "name": "Multicam",
+                "value": "multicam",
+                "code": "56",
+                "imageUrl": "\/media\/28\/16\/281613E6E52E317C370A56F3685AF846\/21-00349A56_7829.jpg",
+                "mediaId": "281613E6E52E317C370A56F3685AF846",
+                "filename": "21-00349A56_7829"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "BC8C79B948381984C107DEF82950DA07",
+        "product_number": "SN-90l-duffel-bag-1-0",
+        "product_name": "90L Duffel bag 1.0",
+        "image_count": 24,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/CE\/FA\/CEFAE0AD7F681F7280390595B7824FEC\/28-01350-01-000_4.jpg",
+                "mediaId": "CEFAE0AD7F681F7280390595B7824FEC",
+                "filename": "28-01350-01-000_4"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/BD\/FC\/BDFC35DAB112755B3696E06A469DE728\/28-01350A09-055_9933-bdfc35da.jpg",
+                "mediaId": "BDFC35DAB112755B3696E06A469DE728",
+                "filename": "28-01350A09-055_9933-bdfc35da"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "58364640EE39DC0B6C3F93ADB0D60DCB",
+        "product_number": "SN-a3-commanders-aid-1-0",
+        "product_name": "A3 Commander\u2019s aid 1.0",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/0C\/12\/0C1238EAC62F2C560211AFA6873D8467\/52-01558A09-000-0c1238ea.jpg",
+                "mediaId": "0C1238EAC62F2C560211AFA6873D8467",
+                "filename": "52-01558A09-000-0c1238ea"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "6A582412AF8FC23446C5D31AF036F7D8",
+        "product_number": "SN-a5-field-binder-07",
+        "product_name": "A5 Field binder",
+        "image_count": 13,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/18\/05\/1805B717AE0A8104954BE8A1E2C26C99\/52-00506-01-000_3.jpg",
+                "mediaId": "1805B717AE0A8104954BE8A1E2C26C99",
+                "filename": "52-00506-01-000_3"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "F5937E8BCAB8395463523D69F785A180",
+        "product_number": "SN-admin-case-14",
+        "product_name": "Admin case",
+        "image_count": 11,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/94\/6A\/946AB8FD23C2AE4B2A6A5C4E705ABE5A\/52-00140B01_2544-946ab8fd.jpg",
+                "mediaId": "946AB8FD23C2AE4B2A6A5C4E705ABE5A",
+                "filename": "52-00140B01_2544-946ab8fd"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/7E\/6E\/7E6E8E28021C749AAA349A51BC45D786\/52-00140B09_6736.jpg",
+                "mediaId": "7E6E8E28021C749AAA349A51BC45D786",
+                "filename": "52-00140B09_6736"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "D28FFC48B2E62EF108B30CC58F7D246D",
+        "product_number": "SN-backpack-belt-12",
+        "product_name": "Backpack belt-12",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/0E\/9C\/0E9CB0664183FAA4D9D74904FFEF34FC\/26-00910-09-001.jpg",
+                "mediaId": "0E9CB0664183FAA4D9D74904FFEF34FC",
+                "filename": "26-00910-09-001"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "655DD41AA0080A3761E3A7B29A63E3A3",
+        "product_number": "SN-badge-holder-16",
+        "product_name": "Badge holder -16",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/6D\/0B\/6D0B9F4A03299947C0C67FB088A754F2\/52-01347-09-000-6d0b9f4a.jpg",
+                "mediaId": "6D0B9F4A03299947C0C67FB088A754F2",
+                "filename": "52-01347-09-000-6d0b9f4a"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "EC0DB6550F08654610BEB5D833C7AB6C",
+        "product_number": "SN-ballistic-nijiiia-blanket-15",
+        "product_name": "Micro dump pouch 2.0",
+        "image_count": 14,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/7C\/C3\/7CC37A9CF42E978A3F65EF3832254033\/22-02066B01_1522.jpg",
+                "mediaId": "7CC37A9CF42E978A3F65EF3832254033",
+                "filename": "22-02066B01_1522"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/3A\/C2\/3AC268A4637CE54BC92E93748B08E239\/22-02066B09_1533.jpg",
+                "mediaId": "3AC268A4637CE54BC92E93748B08E239",
+                "filename": "22-02066B09_1533"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "9EC2A3424CD82A2F0ABE78653A2E8F15",
+        "product_number": "SN-ballistic-thigh-protection-15",
+        "product_name": "Ballistic thigh protection -15",
+        "image_count": 25,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/76\/29\/76296BD050BA55C32E9ACA4DEA22DE06\/17-01865APA209_3506.jpg",
+                "mediaId": "76296BD050BA55C32E9ACA4DEA22DE06",
+                "filename": "17-01865APA209_3506"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "33AE8FCB810C99F86C8AC26C7778DD88",
+        "product_number": "SN-basic-equipment-belt",
+        "product_name": "Basic Equipment belt",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/66\/2A\/662AA5F79CAFDE08331DA9B517551E33\/12-00507-01-011.jpg",
+                "mediaId": "662AA5F79CAFDE08331DA9B517551E33",
+                "filename": "12-00507-01-011"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "1060E9371DE7602127A15119CB2FC63F",
+        "product_number": "SN-belt-adjuster-09",
+        "product_name": "Belt adjuster -09",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/84\/FD\/84FDAA3C38E5A58B22920C5DC41B07F0\/10-00486-01-000.jpg",
+                "mediaId": "84FDAA3C38E5A58B22920C5DC41B07F0",
+                "filename": "10-00486-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D1A61C0E26C58A4B38658F14E2D9D0F4",
+        "product_number": "SN-belt-attachment-11",
+        "product_name": "Belt attachment -11",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/BD\/AB\/BDAB34471E893736D683418BA3E418AF\/26-00598-01-000.jpg",
+                "mediaId": "BDAB34471E893736D683418BA3E418AF",
+                "filename": "26-00598-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "B28AB7288AB348791C4BBB87D5DEBDE3",
+        "product_number": "SN-belt-closure-pack-5-11",
+        "product_name": "Belt closure pack  (5) -11",
+        "image_count": 6,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/9B\/65\/9B65FB884615760CD278C55A92679F72\/13-00110-01-000-9b65fb88.jpg",
+                "mediaId": "9B65FB884615760CD278C55A92679F72",
+                "filename": "13-00110-01-000-9b65fb88"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "612566ABF3DFA77F65DB815446D300F6",
+        "product_number": "SN-binder-mechanism",
+        "product_name": "Binder mechanism",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/3C\/BB\/3CBB4F24058EAFB9CF61C257F725D761\/50-00019-01-000.jpg",
+                "mediaId": "3CBB4F24058EAFB9CF61C257F725D761",
+                "filename": "50-00019-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "6484D1B367961DB566E93A6532B4409C",
+        "product_number": "SN-braces-12",
+        "product_name": "Braces",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/B4\/87\/B4871586690B4D614A007229344BD629\/10-00215B09_1185.jpg",
+                "mediaId": "B4871586690B4D614A007229344BD629",
+                "filename": "10-00215B09_1185"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A2F73489768FB837342A8807836B5C2C",
+        "product_number": "SN-cal-50-magazine-pouch-10",
+        "product_name": "Cal 50 Magazine pouch -10",
+        "image_count": 6,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/2B\/07\/2B07A0F3B7574800FD53D051E4F1AC5F\/22-00510-09-000.jpg",
+                "mediaId": "2B07A0F3B7574800FD53D051E4F1AC5F",
+                "filename": "22-00510-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "8928EA154DEE3CBABDCA3918613F0580",
+        "product_number": "SN-canister-pouch-15",
+        "product_name": "Canister pouch -15",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/66\/FD\/66FDF228FDC163FA342E2D28CEEA37D7\/21-01101-01-000.jpg",
+                "mediaId": "66FDF228FDC163FA342E2D28CEEA37D7",
+                "filename": "21-01101-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "446D45462FDE3501A86EDE03E9E37093",
+        "product_number": "SN-carrier-pouch-16",
+        "product_name": "Carrier pouch -16",
+        "image_count": 21,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/42\/81\/42810DE614AFBC9313495CEF3450384D\/23-01165-09-000-42810de6.jpg",
+                "mediaId": "42810DE614AFBC9313495CEF3450384D",
+                "filename": "23-01165-09-000-42810de6"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/FB\/CE\/FBCE7F6E2D22E4119C2B9B6AAE64F475\/17-01865APA209_3506.jpg",
+                "mediaId": "FBCE7F6E2D22E4119C2B9B6AAE64F475",
+                "filename": "17-01865APA209_3506"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "35232483F3275865E085B60C12F985D3",
+        "product_number": "SN-carry-cord-10",
+        "product_name": "Ribs Chest rig 1.0",
+        "image_count": 2,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/D5\/FF\/D5FFFFE931A4E3A61D9B4BEC39E45C6E\/17-01865APA209_3488-d5ffffe9.jpg",
+                "mediaId": "D5FFFFE931A4E3A61D9B4BEC39E45C6E",
+                "filename": "17-01865APA209_3488-d5ffffe9"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E798B16FE83BB3B1572EC29402C79BEA",
+        "product_number": "SN-combat-belt-harness-14",
+        "product_name": "Combat belt harness -14",
+        "image_count": 16,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/39\/24\/39242BE57EBDF530E7DAF9859A0D1611\/15-01029-01-000_DEFAULT.jpg",
+                "mediaId": "39242BE57EBDF530E7DAF9859A0D1611",
+                "filename": "15-01029-01-000_DEFAULT"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "C9BD9E4A930076CCE119211A23BCEEF3",
+        "product_number": "SN-combination-glove-holder-09",
+        "product_name": "Combination glove holder -09",
+        "image_count": 18,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/AD\/09\/AD095D04EBC9CE1814314251D48A073D\/20-00531-01-000.jpg",
+                "mediaId": "AD095D04EBC9CE1814314251D48A073D",
+                "filename": "20-00531-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "C4E49EC587D15C76A641A3032EAFB806",
+        "product_number": "SN-comfort-belt-13",
+        "product_name": "Comfort belt-13",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/0E\/03\/0E0351788CCA1D92CCADA3204EDD2783\/13-00327-01-010.jpg",
+                "mediaId": "0E0351788CCA1D92CCADA3204EDD2783",
+                "filename": "13-00327-01-010"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "17783C42A0D1E99D18D4F9B8CB2D0004",
+        "product_number": "SN-covert-backpack-12",
+        "product_name": "Covert backpack -21",
+        "image_count": 22,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/E5\/3D\/E53D71C0F2FFA069DCB7C2F70F54538E\/29-00155-01-000_2.jpg",
+                "mediaId": "E53D71C0F2FFA069DCB7C2F70F54538E",
+                "filename": "29-00155-01-000_2"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "ED0CB9CDC4BB152E98457417EAC75D8D",
+        "product_number": "SN-covert-elastic-equipment-belt-2-0",
+        "product_name": "Covert elastic equipment belt 2.0",
+        "image_count": 10,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "7375D5C78F89FA8F2884D63F9BDD1E94",
+        "product_number": "SN-covert-equipment-belt-17",
+        "product_name": "Covert equipment belt -17",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/51\/7D\/517DFFA67D58C077F735C809F1B589BC\/11-01426-01-011.jpg",
+                "mediaId": "517DFFA67D58C077F735C809F1B589BC",
+                "filename": "11-01426-01-011"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "824D6A33EAA1E8A00231D409AC70D594",
+        "product_number": "SN-covert-equipment-vest-12",
+        "product_name": "Covert equipment vest -12",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/25\/B9\/25B91B322C9C84C620F345201428C5C2\/16-00095-09-001.jpg",
+                "mediaId": "25B91B322C9C84C620F345201428C5C2",
+                "filename": "16-00095-09-001"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "275C0B3D7155DD241CA55EFDD57A3F17",
+        "product_number": "SN-covert-stretch-vest-16",
+        "product_name": "Covert stretch vest -16",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/44\/CA\/44CAE567EA12D4F53A0E3DDF14D1437D\/19-01098-01-000.jpg",
+                "mediaId": "44CAE567EA12D4F53A0E3DDF14D1437D",
+                "filename": "19-01098-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "60536C1E69289D2C4EB15B09E9B13D4C",
+        "product_number": "SN-covert-surveillance-equipment-vest-05",
+        "product_name": "Covert surveillance vest -05",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/3E\/21\/3E21E5E37E35A2CA66A87F8383E6AC48\/18-00484-01-001.jpg",
+                "mediaId": "3E21E5E37E35A2CA66A87F8383E6AC48",
+                "filename": "18-00484-01-001"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "27CB617E037AB297D19B9F3286F0F987",
+        "product_number": "SN-covert-telescopic-baton-wrist-holder-08",
+        "product_name": "Covert Telescopic baton wrist holder -08",
+        "image_count": 10,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "13BB98B832E07A0B0C7D2B4FD1773466",
+        "product_number": "SN-cross-patch-small-12",
+        "product_name": "Cross patch, Small -12",
+        "image_count": 7,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/2A\/63\/2A63DDCF4D2DD52464D33D30885E6C22\/30-00323-09-00_DEFAULT-2a63ddcf.jpg",
+                "mediaId": "2A63DDCF4D2DD52464D33D30885E6C22",
+                "filename": "30-00323-09-00_DEFAULT-2a63ddcf"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D2DFAD54043CBAFB1F50368E333E77AC",
+        "product_number": "SN-crotch-pistol-holster-11",
+        "product_name": "Crotch pistol holster 2.0",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/B5\/7A\/B57A2CD39D1231F16E6BAE1A09965C9C\/35-00605BB01_4118-b57a2cd3.jpg",
+                "mediaId": "B57A2CD39D1231F16E6BAE1A09965C9C",
+                "filename": "35-00605BB01_4118-b57a2cd3"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "78C9EA649CAD616F5EFB209D4ADB5B1F",
+        "product_number": "SN-dog-patch-12",
+        "product_name": "Dog patch -12",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/22\/7B\/227BED15300BED1C10AB85F2285C298C\/30-00187-09-00_DEFAULT-227bed15.jpg",
+                "mediaId": "227BED15300BED1C10AB85F2285C298C",
+                "filename": "30-00187-09-00_DEFAULT-227bed15"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "0611E450D2BE662BCA40D1E8CBD4AA7E",
+        "product_number": "SN-dual-holder-insert-12",
+        "product_name": "Dual holder insert -12",
+        "image_count": 13,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/F4\/AE\/F4AE26CCE6273AC53A2420BDE9599B5C\/25-00307-09-000.jpg",
+                "mediaId": "F4AE26CCE6273AC53A2420BDE9599B5C",
+                "filename": "25-00307-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E82AABDA0B4B070871E79D244D811A5D",
+        "product_number": "SN-dual-magazine-pouch-15",
+        "product_name": "Dual Magazine pouch -18",
+        "image_count": 14,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/09\/87\/0987D46C4F6C447F3EE59BD15DB5DBFA\/20-00248-01-000_4.jpg",
+                "mediaId": "0987D46C4F6C447F3EE59BD15DB5DBFA",
+                "filename": "20-00248-01-000_4"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "16F07E3DF003F22ED9D269FBD0FA7631",
+        "product_number": "SN-dual-side-covert-equipment-harness-11",
+        "product_name": "Dual side covert equipment harness -11",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/65\/AE\/65AEF3BD1EAA4BCA4C6EC958822C2BDA\/15-00492-01-000.jpg",
+                "mediaId": "65AEF3BD1EAA4BCA4C6EC958822C2BDA",
+                "filename": "15-00492-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "EE29BAE7E1E4A693BAB18630E38C3BB7",
+        "product_number": "SN-duffel-strap-12",
+        "product_name": "Duffel Strap-12",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/C2\/AD\/C2AD105C3E710D54450037A1509A7C72\/26-00428-09-000.jpg",
+                "mediaId": "C2AD105C3E710D54450037A1509A7C72",
+                "filename": "26-00428-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "FAB6ED66AE20F84CBC305B0DEA9261EC",
+        "product_number": "SN-elastic-40-mm-t-bar-set-12",
+        "product_name": "Elastic 40 mm T-bar set -12",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/95\/EA\/95EA4D3358E3E447724A3ACF118F2749\/26-00280-01-000.jpg",
+                "mediaId": "95EA4D3358E3E447724A3ACF118F2749",
+                "filename": "26-00280-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "8979C9C895E1212412FA7AAF40E6BC14",
+        "product_number": "SN-elastic-cumber-band-w-compartments-1-0",
+        "product_name": "Elastic cumber band w compartments 1.0",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/26\/04\/26042F96490A78BE1E01F6345A660934\/86-01948A09.jpg",
+                "mediaId": "26042F96490A78BE1E01F6345A660934",
+                "filename": "86-01948A09"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "834DABE45DAAF962AF45E85B0FD7604B",
+        "product_number": "SN-elastic-glove-holder-05",
+        "product_name": "Elastic glove holder -05",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/08\/AB\/08AB68C27D46D56FFCDFF2F2139BF87F\/20-00530-01-000.jpg",
+                "mediaId": "08AB68C27D46D56FFCDFF2F2139BF87F",
+                "filename": "20-00530-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "B57515745A3C5A8375DE5CE6C8F5C16F",
+        "product_number": "SN-elastic-insert-stripes-6-10",
+        "product_name": "Elastic insert stripes (6) -10",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/B8\/2C\/B82CAEF02AD06E0BB5EE80C35C994094\/27-00520-09-000.jpg",
+                "mediaId": "B82CAEF02AD06E0BB5EE80C35C994094",
+                "filename": "27-00520-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "117BE57789D4190C810C8F61421B67CF",
+        "product_number": "SN-elastic-pouch-1-0",
+        "product_name": "Elastic pouch 1.0",
+        "image_count": 54,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/7C\/68\/7C68487BCDB8E5353B85AC4D1BA7EE5B\/21-01701A01-556.jpg",
+                "mediaId": "7C68487BCDB8E5353B85AC4D1BA7EE5B",
+                "filename": "21-01701A01-556"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/63\/12\/63126F7BA8AB8F4A4F3244D1B564C0B9\/21-01701A09-556_0541.jpg",
+                "mediaId": "63126F7BA8AB8F4A4F3244D1B564C0B9",
+                "filename": "21-01701A09-556_0541"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "BD2749095ABDA69AC883CCCC22DAC4F6",
+        "product_number": "SN-elastic-trousers-belt-16",
+        "product_name": "Elastic trousers belt 1.1",
+        "image_count": 6,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D225DD1DAE77B56A1C06FD51E5792B19",
+        "product_number": "SN-elbow-pads-2-0",
+        "product_name": "Elbow pads 2.0",
+        "image_count": 4,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "25BBB5C416A4F27B7126BCDC0907F918",
+        "product_number": "SN-featherweight-stretcher-09",
+        "product_name": "Featherweight stretcher -09",
+        "image_count": 13,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "7A7C93F65894A9014AC9881BF18194DA",
+        "product_number": "SN-fin-patch-small-12",
+        "product_name": "Fin patch, Small -12",
+        "image_count": 5,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/D4\/4F\/D44F8AE63F15BED2B0474FE930D7E12C\/30-00217-09-00-d44f8ae6.jpg",
+                "mediaId": "D44F8AE63F15BED2B0474FE930D7E12C",
+                "filename": "30-00217-09-00-d44f8ae6"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "0F96C9C7FAE55D9D3B840997803337DA",
+        "product_number": "SN-fin-patch-small-w-velcro-12",
+        "product_name": "Blue and yellow patch -16",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Ranger Green",
+                "value": "ranger green",
+                "code": "27",
+                "imageUrl": "\/media\/96\/02\/9602B1B27E4660608C1E8FD49CB273F6\/30-01301-27-000-9602b1b2.jpg",
+                "mediaId": "9602B1B27E4660608C1E8FD49CB273F6",
+                "filename": "30-01301-27-000-9602b1b2"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "AF29F53040063BDEFFFA0FD050EE2FC1",
+        "product_number": "SN-fleece-jacket-1-0",
+        "product_name": "Fleece jacket 1.0",
+        "image_count": 11,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/49\/24\/49242A61CC905CF881983AE37F9DB44E\/07-01927A09_3423.jpg",
+                "mediaId": "49242A61CC905CF881983AE37F9DB44E",
+                "filename": "07-01927A09_3423"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "0F5DB12D7AF56D497C0EA93C20D9CD8F",
+        "product_number": "SN-flight-suit-other-09",
+        "product_name": "Flight suit other -09",
+        "image_count": 16,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Coyote",
+                "value": "coyote",
+                "code": "14",
+                "imageUrl": "\/media\/BF\/D8\/BFD872E7CE6502A6242B511F4241914E\/08-00523-14-XXX_DEFAULT.jpg",
+                "mediaId": "BFD872E7CE6502A6242B511F4241914E",
+                "filename": "08-00523-14-XXX_DEFAULT"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A159CD1D42C8D3A834177C0FAF7B78D6",
+        "product_number": "SN-flight-suit-pilot-09",
+        "product_name": "Flight suit, Pilot -09",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Coyote",
+                "value": "coyote",
+                "code": "14",
+                "imageUrl": "\/media\/8C\/2C\/8C2CA0AEFDDB92C1DB4D5F156E82EBD7\/08-00522-14-XXX_DEFAULT.jpg",
+                "mediaId": "8C2CA0AEFDDB92C1DB4D5F156E82EBD7",
+                "filename": "08-00522-14-XXX_DEFAULT"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5F46120DA40B4BD96184F0F0397652CD",
+        "product_number": "SN-foldable-drinking-cup-13",
+        "product_name": "Foldable drinking cup",
+        "image_count": 3,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/90\/BE\/90BE08ADDEFB71C40EED53EC28A14D5B\/48-00819A20_0147-90be08ad.jpg",
+                "mediaId": "90BE08ADDEFB71C40EED53EC28A14D5B",
+                "filename": "48-00819A20_0147-90be08ad"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "357736D2BD6A64447E1551C62FE52B00",
+        "product_number": "SN-forhandlar-patch-12",
+        "product_name": "F\u00f6rhandlar patch -12",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/AF\/86\/AF86264A080FB95E57250F38EF08BEE9\/30-00190-09-00-af86264a.jpg",
+                "mediaId": "AF86264A080FB95E57250F38EF08BEE9",
+                "filename": "30-00190-09-00-af86264a"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E50FA58A36EAE2C43EB7BAFD82B9078F",
+        "product_number": "SN-fr-annaclava-1-0",
+        "product_name": "FR Annaclava 1.0",
+        "image_count": 18,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/FF\/D2\/FFD20257C4D665D8BF6799FAADDCB60D\/09-00409A09_1261.jpg",
+                "mediaId": "FFD20257C4D665D8BF6799FAADDCB60D",
+                "filename": "09-00409A09_1261"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "F64B0CD75B4FD5E2A7FD5DCD71445E9E",
+        "product_number": "SN-fr-beanie-17",
+        "product_name": "FR Beanie",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/10\/26\/102669B9FDB531B481E66A97B8EFC948\/09-01352-09-000_7.jpg",
+                "mediaId": "102669B9FDB531B481E66A97B8EFC948",
+                "filename": "09-01352-09-000_7"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A8FB19602471BC4069E3DC3B199D0AA3",
+        "product_number": "SN-fr-neck-gaiter-17",
+        "product_name": "FR Neck gaiter -17",
+        "image_count": 20,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/DD\/55\/DD55997ED962DC78863E723C201901A0\/09-01353A09_3575.jpg",
+                "mediaId": "DD55997ED962DC78863E723C201901A0",
+                "filename": "09-01353A09_3575"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "90B04DF5BE93C5F8C1BB16BDB34C8575",
+        "product_number": "SN-gas-mask-bag-11",
+        "product_name": "Gas mask bag -11",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/8A\/37\/8A371B28240DF49AE7E49C152B95DB20\/23-00571-01-000-8a371b28.jpg",
+                "mediaId": "8A371B28240DF49AE7E49C152B95DB20",
+                "filename": "23-00571-01-000-8a371b28"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "13DD82B42B49866981C6A527863DD938",
+        "product_number": "SN-glove-holder-05",
+        "product_name": "Glove holder -05",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/EE\/54\/EE54C27A120270300EC832BD96255691\/20-00500-01-000.jpg",
+                "mediaId": "EE54C27A120270300EC832BD96255691",
+                "filename": "20-00500-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "88C49F70862FB96E82A9C1EAB86DFF5C",
+        "product_number": "SN-gp-pouch-2-12",
+        "product_name": "GP pouch 2",
+        "image_count": 23,
+        "color_count": 3,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/69\/30\/693091CD2DD698E9ADC42ACC8B261E03\/21-00167-01-000_11.jpg",
+                "mediaId": "693091CD2DD698E9ADC42ACC8B261E03",
+                "filename": "21-00167-01-000_11"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/C3\/CA\/C3CA55F91E16D286B942FE94C3EFEE98\/21-01855A09-002_6706.jpg",
+                "mediaId": "C3CA55F91E16D286B942FE94C3EFEE98",
+                "filename": "21-01855A09-002_6706"
+            },
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/90\/E9\/90E969C28F6AF1A419357426E2BBDFE5\/21-01855A17-003_1608.jpg",
+                "mediaId": "90E969C28F6AF1A419357426E2BBDFE5",
+                "filename": "21-01855A17-003_1608"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "977BAE90DC0DE91F3E2315ED1A9B7EE3",
+        "product_number": "SN-gp-pouch-2-long",
+        "product_name": "GP pouch 2 long",
+        "image_count": 29,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/60\/FC\/60FCC6A31DAF015D39FB803F837488EB\/21-00493-01-000_12.jpg",
+                "mediaId": "60FCC6A31DAF015D39FB803F837488EB",
+                "filename": "21-00493-01-000_12"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "189F766C24AEA79B2152BF85106725A7",
+        "product_number": "SN-gp-pouch-3",
+        "product_name": "GP pouch 3",
+        "image_count": 44,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/52\/AC\/52AC40B370DE8C3953F33D25C902E30C\/21-01855A01-003_6656.jpg",
+                "mediaId": "52AC40B370DE8C3953F33D25C902E30C",
+                "filename": "21-01855A01-003_6656"
+            },
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/B5\/18\/B518A178A86BF0E7C27F94FE87CA5A0C\/21-01855A17-003_1607.jpg",
+                "mediaId": "B518A178A86BF0E7C27F94FE87CA5A0C",
+                "filename": "21-01855A17-003_1607"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "FB32BE1C0B56A6E73608BA4D478B9D3F",
+        "product_number": "SN-gp-pouch-3-long-12",
+        "product_name": "GP pouch 3 long",
+        "image_count": 30,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/D8\/15\/D8154A758E080E236986EC6744CAAF00\/21-01855A01-013_1612.jpg",
+                "mediaId": "D8154A758E080E236986EC6744CAAF00",
+                "filename": "21-01855A01-013_1612"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D56D99CB2904788CCB4F96A1F258C46C",
+        "product_number": "SN-grenade-pouch-10",
+        "product_name": "Grenade pouch -10",
+        "image_count": 14,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/13\/81\/1381012ECC73C92F3ED75E5EDECE7A0F\/22-00527-09-000_DEFAULT.jpg",
+                "mediaId": "1381012ECC73C92F3ED75E5EDECE7A0F",
+                "filename": "22-00527-09-000_DEFAULT"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "FC825B2B0080F21AFA07ECC46C30533A",
+        "product_number": "SN-handcuff-pouch-09",
+        "product_name": "Handcuff pouch -09",
+        "image_count": 18,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/7F\/CF\/7FCF4010FE41E57915FC10480D315782\/21-00485-01-000.jpg",
+                "mediaId": "7FCF4010FE41E57915FC10480D315782",
+                "filename": "21-00485-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A60B203680D2F26C94308535226A0234",
+        "product_number": "SN-herma-25-mm-buckle-pair",
+        "product_name": "Herma 25 mm buckle",
+        "image_count": 2,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "331F38F2AE6D0FF8E20EDFD5C908E16C",
+        "product_number": "SN-herma-i-bar-set-1-0",
+        "product_name": "Herma I-bar set 1.0",
+        "image_count": 22,
+        "color_count": 4,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/41\/02\/4102968922A205B8B98A958ECF28B505\/26-00487B01_1583.jpg",
+                "mediaId": "4102968922A205B8B98A958ECF28B505",
+                "filename": "26-00487B01_1583"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/94\/A5\/94A533A30DD094AF14F329F2751C5773\/26-00487B09_1577.jpg",
+                "mediaId": "94A533A30DD094AF14F329F2751C5773",
+                "filename": "26-00487B09_1577"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/64\/86\/6486DCCA8930D777A4D74BC05CE87F51\/17-01865APA209_3506.jpg",
+                "mediaId": "6486DCCA8930D777A4D74BC05CE87F51",
+                "filename": "17-01865APA209_3506"
+            },
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/7C\/D0\/7CD011D1D7F315C94BDC235D22296920\/26-00487B17_1581.jpg",
+                "mediaId": "7CD011D1D7F315C94BDC235D22296920",
+                "filename": "26-00487B17_1581"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "76E4BF4DFD0BD7B352C5A736CE47F702",
+        "product_number": "SN-herma-t-bar-set-1-0",
+        "product_name": "Herma T-bar set 1.0",
+        "image_count": 10,
+        "color_count": 3,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/F3\/B3\/F3B39F3786A3FC84CD60AB750A1FB7D3\/26-00491-01-000_12.jpg",
+                "mediaId": "F3B39F3786A3FC84CD60AB750A1FB7D3",
+                "filename": "26-00491-01-000_12"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/8D\/0C\/8D0CF96B27592F3D55D16C00993C99C5\/26-00491B09_1575.jpg",
+                "mediaId": "8D0CF96B27592F3D55D16C00993C99C5",
+                "filename": "26-00491B09_1575"
+            },
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/BD\/FA\/BDFA38C1784A2418811F32617D38A462\/26-00491B17_1554.jpg",
+                "mediaId": "BDFA38C1784A2418811F32617D38A462",
+                "filename": "26-00491B17_1554"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "EF5E8A0D9FD66AD62056B8D218C184D7",
+        "product_number": "SN-hypothermal-bag-1-1",
+        "product_name": "Hypothermal bag 1.1",
+        "image_count": 14,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "9245650F5E0159381AD24AD1EBD24618",
+        "product_number": "SN-i-bar-set-10",
+        "product_name": "I-Bar set -10",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/93\/E5\/93E505CE471AD3D2BC16BDA39294ED4A\/26-00487-01-000.jpg",
+                "mediaId": "93E505CE471AD3D2BC16BDA39294ED4A",
+                "filename": "26-00487-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "09E598D99FC43030F736BDE702449FFA",
+        "product_number": "SN-instructor-patch-small-12",
+        "product_name": "Instructor patch, Small -12",
+        "image_count": 3,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/9C\/D6\/9CD6835EB71FD8E7C9C325DBD422A4C8\/30-00866-09-00-9cd6835e.jpg",
+                "mediaId": "9CD6835EB71FD8E7C9C325DBD422A4C8",
+                "filename": "30-00866-09-00-9cd6835e"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5D81686652B08563A2D3C453106E055F",
+        "product_number": "SN-k9-patch-small-12",
+        "product_name": "K9 patch, Small -12",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/22\/0B\/220BA467204E1E9F515808A33BA40246\/30-00196-09-00-220ba467.jpg",
+                "mediaId": "220BA467204E1E9F515808A33BA40246",
+                "filename": "30-00196-09-00-220ba467"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "99488CC4B1FAC0CC700EA573319B88F4",
+        "product_number": "SN-knee-pads-2-0",
+        "product_name": "Knee pads 2.0",
+        "image_count": 3,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E4ECBA08EB3288508FF52FA9919EB4F7",
+        "product_number": "SN-large-hammer-holder-14",
+        "product_name": "Large hammer holder -14",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/AE\/B9\/AEB9C473D3DD61AD770A3B5C70894B3C\/20-00966-09-000.jpg",
+                "mediaId": "AEB9C473D3DD61AD770A3B5C70894B3C",
+                "filename": "20-00966-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "9DA4EC52976619108A56C3D5A89DCE8C",
+        "product_number": "SN-large-insert-pouch-1-0",
+        "product_name": "Large insert pouch 1.0",
+        "image_count": 14,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/0B\/9F\/0B9FC19917F342ACF2EF95FD0BA4765F\/27-02537A09_9322.jpg",
+                "mediaId": "0B9FC19917F342ACF2EF95FD0BA4765F",
+                "filename": "27-02537A09_9322"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/1E\/F5\/1EF5795DC28E5E60A1E6949B167C8857\/27-02538A20_9353.jpg",
+                "mediaId": "1EF5795DC28E5E60A1E6949B167C8857",
+                "filename": "27-02538A20_9353"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "F989395B72F4FE49629C6358E7AE44DF",
+        "product_number": "SN-large-key-silencer-05",
+        "product_name": "Large key silencer-05",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/64\/6F\/646F749BB61D62EA2E2CAD5FFF7254B6\/20-00561-01-000.jpg",
+                "mediaId": "646F749BB61D62EA2E2CAD5FFF7254B6",
+                "filename": "20-00561-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "1F76CF4AC143197A896622CC4D65B902",
+        "product_number": "SN-leg-attachment-light-10",
+        "product_name": "Leg attachment light -10",
+        "image_count": 17,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "8471B8C54C1D31A3428299BD20E77B0C",
+        "product_number": "SN-leg-strap-11",
+        "product_name": "Leg strap -11",
+        "image_count": 5,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A107F5692472DC14A1720F2C50476F67",
+        "product_number": "SN-light-combat-belt-1-0",
+        "product_name": "Light combat belt 1.0",
+        "image_count": 24,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/F0\/10\/F010185333185F88B82EFC89C11C5AD2\/13-01897A09_2438.jpg",
+                "mediaId": "F010185333185F88B82EFC89C11C5AD2",
+                "filename": "13-01897A09_2438"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "310CE4AB320A435927C98BC2CD758FE6",
+        "product_number": "SN-light-field-blanket-1-0",
+        "product_name": "Light field blanket 1.0",
+        "image_count": 12,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/60\/FD\/60FDC4AD71DDBFFEA370194E16B87F1B\/53-02172A09_3570-60fdc4ad.jpg",
+                "mediaId": "60FDC4AD71DDBFFEA370194E16B87F1B",
+                "filename": "53-02172A09_3570-60fdc4ad"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "237B40B434E1A1AAE1EC8E65B12D7B63",
+        "product_number": "SN-litet-hundforarmarke-11",
+        "product_name": "HUNDF\u00d6RARE, Dog handler patch, small",
+        "image_count": 7,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/9C\/E1\/9CE11C4CA21977EFBA6F9AD01061CC42\/30-00324-09-00-9ce11c4c.jpg",
+                "mediaId": "9CE11C4CA21977EFBA6F9AD01061CC42",
+                "filename": "30-00324-09-00-9ce11c4c"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "00795706989E639DF6FF6CE804D65B54",
+        "product_number": "SN-litet-instrukt%c2%9arsm%c2%8arke-11",
+        "product_name": "Small instruktors patch -11",
+        "image_count": 5,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/1A\/2E\/1A2E54CAD2231D6A2370800A7CD5EE23\/30-00181-09-00-1a2e54ca.jpg",
+                "mediaId": "1A2E54CAD2231D6A2370800A7CD5EE23",
+                "filename": "30-00181-09-00-1a2e54ca"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "42A180E29A4DF44D7FE7B2BC62C26263",
+        "product_number": "SN-machine-gun-sling-16",
+        "product_name": "Machine gun sling  -16",
+        "image_count": 16,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/D1\/99\/D199136C29D00BADCCD60F39EDB410B3\/34-00539-09-000-d199136c.jpg",
+                "mediaId": "D199136C29D00BADCCD60F39EDB410B3",
+                "filename": "34-00539-09-000-d199136c"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/A6\/4D\/A64D13C5CE603B81CD3B6CEAD75DC55A\/E-Sk-20-1792.jpg",
+                "mediaId": "A64D13C5CE603B81CD3B6CEAD75DC55A",
+                "filename": "E-Sk-20-1792"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "8353077BB58A1A939A74FA5301267BF2",
+        "product_number": "SN-malefemale-rep-buckle-stealth",
+        "product_name": "Herma 25 mm repair buckle",
+        "image_count": 3,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/7B\/2F\/7B2F705618EECD0A201908E15EBB797C\/25-01034-09-000_4.jpg",
+                "mediaId": "7B2F705618EECD0A201908E15EBB797C",
+                "filename": "25-01034-09-000_4"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5D0B7EF0A5973E437FFBB321F3B97A58",
+        "product_number": "SN-medic-patch-small-16",
+        "product_name": "Medic patch, small -16",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/2E\/6F\/2E6FA301F14299CF3375C493612DA5FC\/30-01422-09-000-2e6fa301.jpg",
+                "mediaId": "2E6FA301F14299CF3375C493612DA5FC",
+                "filename": "30-01422-09-000-2e6fa301"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "CDDB73912000BBDD06403100180B67FC",
+        "product_number": "SN-medic-patch-w-velcro",
+        "product_name": "Medic patch w Velcro",
+        "image_count": 6,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/C6\/76\/C676CFE936B8CB2F21737811F0D12DDC\/30-00888-09-000-c676cfe9.jpg",
+                "mediaId": "C676CFE936B8CB2F21737811F0D12DDC",
+                "filename": "30-00888-09-000-c676cfe9"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "96105F4CDC193F0EAE6F7D498DB041C9",
+        "product_number": "SN-medium-admin-pouch-18",
+        "product_name": "Medium Admin pouch -18",
+        "image_count": 22,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/A3\/C1\/A3C1CA52BB3B4F0CB748DC4BF6C1DE34\/23-00420-01-000_DEFAULT.jpg",
+                "mediaId": "A3C1CA52BB3B4F0CB748DC4BF6C1DE34",
+                "filename": "23-00420-01-000_DEFAULT"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/B4\/75\/B475DCF5E2528DD4DFD9DE41BDF8473B\/23-00420B09_4423.jpg",
+                "mediaId": "B475DCF5E2528DD4DFD9DE41BDF8473B",
+                "filename": "23-00420B09_4423"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "A3B91D6A8930216FC4654EAC588376D2",
+        "product_number": "SN-medium-insert-pouches-10",
+        "product_name": "Medium insert pouches",
+        "image_count": 12,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/F7\/9F\/F79F19F4F31F7EC29F7C6B2513DD35C7\/29-00138-09-030_1514.jpg",
+                "mediaId": "F79F19F4F31F7EC29F7C6B2513DD35C7",
+                "filename": "29-00138-09-030_1514"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "92E01F3C81E22D2755F78F1EE2456EAC",
+        "product_number": "SN-medium-notebook-cover-07",
+        "product_name": "Medium Notebook cover",
+        "image_count": 18,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/88\/BA\/88BA2B5906DFA6F56998FD549F6976AA\/52-00489-01-012_DEFAULT.jpg",
+                "mediaId": "88BA2B5906DFA6F56998FD549F6976AA",
+                "filename": "52-00489-01-012_DEFAULT"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/8B\/95\/8B95DE4491AE3E9B6514B6A460D45D42\/52-00489B09-012_0599-8b95de44.jpg",
+                "mediaId": "8B95DE4491AE3E9B6514B6A460D45D42",
+                "filename": "52-00489B09-012_0599-8b95de44"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "E969217DD74E78DC127A1E39B0829A3D",
+        "product_number": "SN-medium-schwung-bag-17",
+        "product_name": "Medium Schwung bag 1.1",
+        "image_count": 7,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/90\/1E\/901EFFE5CF39481537275D03DE851DE8\/28-00073-01-000_2.jpg",
+                "mediaId": "901EFFE5CF39481537275D03DE851DE8",
+                "filename": "28-00073-01-000_2"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/6C\/5F\/6C5FF3584F6236E7F03EDED44B97D7B9\/28-00073B09_9642-6c5ff358.jpg",
+                "mediaId": "6C5FF3584F6236E7F03EDED44B97D7B9",
+                "filename": "28-00073B09_9642-6c5ff358"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "B2F45D0E5AD7FBB23F0718FC4A509685",
+        "product_number": "SN-memo-board-14",
+        "product_name": "Memo board -14",
+        "image_count": 21,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/05\/3D\/053DF1701C1DB41CEE3172DA43CBE70F\/52-00411-09-000-053df170.jpg",
+                "mediaId": "053DF1701C1DB41CEE3172DA43CBE70F",
+                "filename": "52-00411-09-000-053df170"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/C8\/CA\/C8CAE59AF184F3EE485DC7C625E76E2E\/E-Sk-20-4552.jpg",
+                "mediaId": "C8CAE59AF184F3EE485DC7C625E76E2E",
+                "filename": "E-Sk-20-4552"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "2C558FF20EAE1FA2E23AB2124E2AFF18",
+        "product_number": "SN-mg-ammunition-pouch-09",
+        "product_name": "MG Ammunition pouch  -09",
+        "image_count": 16,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/E3\/A7\/E3A799F6A27066F28D3252BBA8A82169\/22-00511-09-000_DEFAULT.jpg",
+                "mediaId": "E3A799F6A27066F28D3252BBA8A82169",
+                "filename": "22-00511-09-000_DEFAULT"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E484EEA02DFF40969275F08F8946A04F",
+        "product_number": "SN-mini-wallet-15",
+        "product_name": "Mini wallet",
+        "image_count": 14,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/8B\/28\/8B28EB394D87879EFC3B82118592D582\/52-00090-01-000_DEFAULT.jpg",
+                "mediaId": "8B28EB394D87879EFC3B82118592D582",
+                "filename": "52-00090-01-000_DEFAULT"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "55F9EB24C5C524D96AD5A491688E6110",
+        "product_number": "SN-modular-key-holder-05",
+        "product_name": "Modular Key holder -05",
+        "image_count": 7,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/9F\/F7\/9FF7F4D13C0D356D395D3A4920850DB3\/20-00494-01-000_4.jpg",
+                "mediaId": "9FF7F4D13C0D356D395D3A4920850DB3",
+                "filename": "20-00494-01-000_4"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "8D7A541E6571350508D381DD9EF7A975",
+        "product_number": "SN-multi-insert-panel-1-0",
+        "product_name": "Multi insert panel 1.0",
+        "image_count": 19,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/24\/A3\/24A3765A8755154E9395C2A8277E6244\/27-01973A09-030_4663.jpg",
+                "mediaId": "24A3765A8755154E9395C2A8277E6244",
+                "filename": "27-01973A09-030_4663"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "9D3D936123CA28D6BA6A7377265DB2A1",
+        "product_number": "SN-multi-tarp-1-0",
+        "product_name": "Multi-tarp 1.0",
+        "image_count": 5,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/47\/6E\/476E79551823AB3FFF45F2887B6F46A5\/51-02472A09_3331B-476e7955.jpg",
+                "mediaId": "476E79551823AB3FFF45F2887B6F46A5",
+                "filename": "51-02472A09_3331B-476e7955"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "7200B4241F3851E97090700D2A860E0C",
+        "product_number": "SN-name-card-holder-11",
+        "product_name": "Name card holder -11",
+        "image_count": 13,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/CE\/2D\/CE2D25F36F29BF020123386DA2ED8628\/26-00547-01-000.jpg",
+                "mediaId": "CE2D25F36F29BF020123386DA2ED8628",
+                "filename": "26-00547-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "C3AE6B5DF97C88CC1D6CB61CF2AA5FA1",
+        "product_number": "SN-organized-bag-11",
+        "product_name": "Organized bag -11",
+        "image_count": 29,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/31\/B5\/31B53391917F4D430D10197BF89DA92C\/28-00501-01-000_14.jpg",
+                "mediaId": "31B53391917F4D430D10197BF89DA92C",
+                "filename": "28-00501-01-000_14"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A989AD42B8333F7CAEA7D890B93DD87C",
+        "product_number": "SN-oyster-pouch-1-0",
+        "product_name": "Oyster pouch 1.0",
+        "image_count": 41,
+        "color_count": 3,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/DA\/42\/DA42D09C638CD66616E857B85A1C645D\/21-01774A01-002_5714.jpg",
+                "mediaId": "DA42D09C638CD66616E857B85A1C645D",
+                "filename": "21-01774A01-002_5714"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/B9\/6C\/B96CDA6A466665190CBD324D5669C632\/21-01774A09-000_3413.jpg",
+                "mediaId": "B96CDA6A466665190CBD324D5669C632",
+                "filename": "21-01774A09-000_3413"
+            },
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/1F\/B1\/1FB1547DA1A3A175063D110098D71BD5\/21-01774A17-002_5700.jpg",
+                "mediaId": "1FB1547DA1A3A175063D110098D71BD5",
+                "filename": "21-01774A17-002_5700"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "79213FBAF6FF913036F3295BD3DD0A48",
+        "product_number": "SN-padded-pouch-12",
+        "product_name": "Padded pouch -12",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/94\/9C\/949C168946CE602EA8178A01680B0D3C\/24-00350-09-000.jpg",
+                "mediaId": "949C168946CE602EA8178A01680B0D3C",
+                "filename": "24-00350-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "2860A65901AED4FB6E0A70AA5176A33E",
+        "product_number": "SN-pancake-holster-16",
+        "product_name": "Pancake holster -16",
+        "image_count": 15,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/54\/F8\/54F8D67E5EEAA21FA0A40D57DF82EB8C\/35-00809-01-000_4.jpg",
+                "mediaId": "54F8D67E5EEAA21FA0A40D57DF82EB8C",
+                "filename": "35-00809-01-000_4"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5ED1B3248F4027A1EBCE2D5E58255245",
+        "product_number": "SN-plastic-bag-ziplock-a6-09-10-pack",
+        "product_name": "Plastic bag, ziplock A6 -09, 10 pack",
+        "image_count": 14,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/2A\/C0\/2AC05AE611EA86E4F376516D558010E7\/PBA6-09-2ac05ae6.jpg",
+                "mediaId": "2AC05AE611EA86E4F376516D558010E7",
+                "filename": "PBA6-09-2ac05ae6"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5C939995A2EC83EDE4F8F141AD9BCBD6",
+        "product_number": "SN-plate-carrier-strap-on-14",
+        "product_name": "Plate carrier, Strap on -14",
+        "image_count": 22,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/48\/98\/4898B4C5D00159E93410F7EA5A734212\/17-01020-09-000_4.jpg",
+                "mediaId": "4898B4C5D00159E93410F7EA5A734212",
+                "filename": "17-01020-09-000_4"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E052AC82F79940193D170E33FC02CE54",
+        "product_number": "SN-plate-carrier-strap-on-df-13",
+        "product_name": "Plate carrier, Strap on DF -13",
+        "image_count": 27,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/5F\/27\/5F2799523F89222258A98BD2D26FCBBF\/17-00642-01-000_DEFAULT.jpg",
+                "mediaId": "5F2799523F89222258A98BD2D26FCBBF",
+                "filename": "17-00642-01-000_DEFAULT"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "60E3B64261FB763FDAF01AE6DB4CD989",
+        "product_number": "SN-police-equipment-belt-09",
+        "product_name": "Police Equipment belt -09",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/EF\/9D\/EF9DE9138A61D0B63C095B5E7CDEC230\/13-00483-01-010.jpg",
+                "mediaId": "EF9DE9138A61D0B63C095B5E7CDEC230",
+                "filename": "13-00483-01-010"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "8570FD31E5885D7B24D2DFC363DD2A37",
+        "product_number": "SN-police-notebook-cover-10",
+        "product_name": "Police Notebook cover-10",
+        "image_count": 5,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/09\/41\/09412E8467D8C0A182BE4BA91B5FC601\/52-00490-01-000_3-09412e84.jpg",
+                "mediaId": "09412E8467D8C0A182BE4BA91B5FC601",
+                "filename": "52-00490-01-000_3-09412e84"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "59CC6D1407D3F7A55D9C4A4677569DBF",
+        "product_number": "SN-police-swe-patch-12",
+        "product_name": "Police-Swe patch -12",
+        "image_count": 8,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/0E\/95\/0E952F6A0A71F59EFAD5610BDFB05054\/30-00240-09-00-0e952f6a.jpg",
+                "mediaId": "0E952F6A0A71F59EFAD5610BDFB05054",
+                "filename": "30-00240-09-00-0e952f6a"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "182B51CC69B23A24FC48AE96484A7FD2",
+        "product_number": "SN-polis-patch-large-11",
+        "product_name": "Polis patch, Large -11",
+        "image_count": 7,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/18\/1F\/181F3819280978223DB02FEC23BE93F6\/30-00185-09-00-181f3819.jpg",
+                "mediaId": "181F3819280978223DB02FEC23BE93F6",
+                "filename": "30-00185-09-00-181f3819"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "3F8EB7A06205F27E66A1F8BE4FD85D3A",
+        "product_number": "SN-polis-patch-small-11",
+        "product_name": "Polis patch, Small -11",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/2C\/B6\/2CB6A43CFB87CBBC0E34D3CD2E325E8D\/30-00191-09-00-2cb6a43c.jpg",
+                "mediaId": "2CB6A43CFB87CBBC0E34D3CD2E325E8D",
+                "filename": "30-00191-09-00-2cb6a43c"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "93946A8370B4FF04D2A982F1F2845C8C",
+        "product_number": "SN-radio-pouch-06-15",
+        "product_name": "Radio pouch -15",
+        "image_count": 18,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/D0\/8A\/D08A2CBAA51ECDE5D172D824C8876D8C\/21-00270-01-900.jpg",
+                "mediaId": "D08A2CBAA51ECDE5D172D824C8876D8C",
+                "filename": "21-00270-01-900"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "7BC95C05DC70ACD77AD08498CF4463CC",
+        "product_number": "SN-regular-key-silencer-05",
+        "product_name": "Regular Key silencer -05",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/6D\/7E\/6D7EDC2D0BD90070B33EC1024ADB642D\/20-00560-01-000.jpg",
+                "mediaId": "6D7EDC2D0BD90070B33EC1024ADB642D",
+                "filename": "20-00560-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D6C99A8CAF0D7C5B921BFA173C0D0FAF",
+        "product_number": "SN-restraint-sling-06",
+        "product_name": "Restraint sling -06",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/06\/17\/061747116116A2386EBD52D594834ABC\/34-01199-01-000-06174711.jpg",
+                "mediaId": "061747116116A2386EBD52D594834ABC",
+                "filename": "34-01199-01-000-06174711"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E10B35DFA081E47473687DA602638918",
+        "product_number": "SN-ribs-combat-belt-1-0",
+        "product_name": "Ribs combat belt 1.0",
+        "image_count": 6,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/A7\/0A\/A70A7E2C4C9A69E43AD930974F0C2876\/13-01864AB09_3477.jpg",
+                "mediaId": "A70A7E2C4C9A69E43AD930974F0C2876",
+                "filename": "13-01864AB09_3477"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "9D8ADAFD71999088BD1B7AF915B8F27F",
+        "product_number": "SN-rifle-sling-w-attachment-09",
+        "product_name": "Rifle sling w attachment -09",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/6F\/96\/6F96357B89384C039C37A47CF9287596\/34-00580-09-000-6f96357b.jpg",
+                "mediaId": "6F96357B89384C039C37A47CF9287596",
+                "filename": "34-00580-09-000-6f96357b"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A6862006F8AE472616E8D71CF15DDDE1",
+        "product_number": "SN-rigid-trouser-belt-05",
+        "product_name": "Rigid trouser belt -05",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/DA\/6E\/DA6EC0EC54EEF706E71B1928A15C71D7\/11-00498-01-000.jpg",
+                "mediaId": "DA6EC0EC54EEF706E71B1928A15C71D7",
+                "filename": "11-00498-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E34E6518CB1E964FAB2FCB62CB8E5E59",
+        "product_number": "SN-rope-bag-05",
+        "product_name": "Rope bag -05",
+        "image_count": 10,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "DDBABA38E13E6D57F82EFB0EC7899000",
+        "product_number": "SN-shotgun-holder-1-0",
+        "product_name": "Shotgun holder 1.0",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/46\/AB\/46AB2879CFEDC426918C630CB025C177\/36-01076-09-000-46ab2879.jpg",
+                "mediaId": "46AB2879CFEDC426918C630CB025C177",
+                "filename": "36-01076-09-000-46ab2879"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "EFC362890D1B4EC58B9F2DC68FCC79D0",
+        "product_number": "SN-shoulder-pad-set-15",
+        "product_name": "Shoulder pad set -15",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/E0\/89\/E08995BA2E8E88109C6980DEE2F90996\/26-00623-09-000.jpg",
+                "mediaId": "E08995BA2E8E88109C6980DEE2F90996",
+                "filename": "26-00623-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "BC0F10DED998222E8A3DAE4446D1BC9B",
+        "product_number": "SN-side-pockets-pair-2-0",
+        "product_name": "Side pockets pair 2.0",
+        "image_count": 13,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/06\/CE\/06CE57338541746CDB7F532690348DB4\/29-00160B09_3679.jpg",
+                "mediaId": "06CE57338541746CDB7F532690348DB4",
+                "filename": "29-00160B09_3679"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "14F414CFEC8635C9514ED47EBB65C61F",
+        "product_number": "SN-single-side-covert-equipment-harness-11",
+        "product_name": "Single side covert equipment harness -11",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/2A\/54\/2A54B8317968ADF445F0991D9DB76449\/15-00602-01-000.jpg",
+                "mediaId": "2A54B8317968ADF445F0991D9DB76449",
+                "filename": "15-00602-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "C5AA9208CED5C5930A0EFEB094487B7B",
+        "product_number": "SN-sleeping-bag-cover-with-hood-2-0",
+        "product_name": "Sleeping bag cover with hood 2.0",
+        "image_count": 11,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/6D\/EE\/6DEEBD0AC68DABC76901B0D42FD7F701\/53-02494A09_3693-6deebd0a.jpg",
+                "mediaId": "6DEEBD0AC68DABC76901B0D42FD7F701",
+                "filename": "53-02494A09_3693-6deebd0a"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "410C5CE6A2DFA086A51E2E26499D9DB9",
+        "product_number": "SN-small-admin-pouch-12",
+        "product_name": "Small Admin pouch",
+        "image_count": 18,
+        "color_count": 3,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/F2\/7C\/F27C8FF7EEA54C18460A9230A7C3833E\/21-00309B01_6694.jpg",
+                "mediaId": "F27C8FF7EEA54C18460A9230A7C3833E",
+                "filename": "21-00309B01_6694"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/11\/4C\/114C7BD61ED50DA9B475FE2C9212335A\/21-00309B09_6644.jpg",
+                "mediaId": "114C7BD61ED50DA9B475FE2C9212335A",
+                "filename": "21-00309B09_6644"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/F2\/38\/F238B4F1631B62A01802B75F4DEA8E7C\/EF-Sk-20-2166.jpg",
+                "mediaId": "F238B4F1631B62A01802B75F4DEA8E7C",
+                "filename": "EF-Sk-20-2166"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "7AFC0BDBA351F1052B506532965B0B67",
+        "product_number": "SN-small-blank-patch-13",
+        "product_name": "Small blank patch-13",
+        "image_count": 5,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/DE\/C9\/DEC9A4AA9C74A9762B96150FCDB78775\/30-00658-09-000-dec9a4aa.jpg",
+                "mediaId": "DEC9A4AA9C74A9762B96150FCDB78775",
+                "filename": "30-00658-09-000-dec9a4aa"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "3C41F35AEF691300C176837CFE5AA096",
+        "product_number": "SN-small-dump-pouch-2-0",
+        "product_name": "Small dump pouch 2.0",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/7C\/C4\/7CC4B47EE2F003469086DF6DDA03A383\/22-00301BA09_4732.jpg",
+                "mediaId": "7CC4B47EE2F003469086DF6DDA03A383",
+                "filename": "22-00301BA09_4732"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5B20D0718ECF588838BB18D9A77ACA41",
+        "product_number": "SN-small-insert-pouches-10",
+        "product_name": "Small Insert pouches 2.0",
+        "image_count": 12,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "3BD2B92149FF1A3D28BFF2381CC02662",
+        "product_number": "SN-small-leg-panel-12",
+        "product_name": "Small leg panel -12",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/71\/AE\/71AE0A8C0240267CD8930C871CF751E0\/14-00101-01-000_11.jpg",
+                "mediaId": "71AE0A8C0240267CD8930C871CF751E0",
+                "filename": "14-00101-01-000_11"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "193D5B3E2E9961DA544F7D1AF9080441",
+        "product_number": "SN-small-notebook-cover-07",
+        "product_name": "Small Notebook cover",
+        "image_count": 13,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/AA\/E1\/AAE1EEAC764C0DC001508563EDEA4046\/52-00489B01-011_0645-aae1eeac.jpg",
+                "mediaId": "AAE1EEAC764C0DC001508563EDEA4046",
+                "filename": "52-00489B01-011_0645-aae1eeac"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "0BD35B43177EE1AA517966E1E9364921",
+        "product_number": "SN-smg-magazine-pouch-00-14",
+        "product_name": "SMG Magazine pouch 14",
+        "image_count": 13,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/CB\/9B\/CB9B9305E83C6942B413E627D3136EDB\/22-00452-01-000.jpg",
+                "mediaId": "CB9B9305E83C6942B413E627D3136EDB",
+                "filename": "22-00452-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "E31097ACB3E6EC6834F1A3221EADEE19",
+        "product_number": "SN-snigel-patch-w-velcro",
+        "product_name": "SNIGEL patch w Velcro",
+        "image_count": 4,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D4D8900E7B4DDCEA0A121972644B6878",
+        "product_number": "SN-snigel-t-shirt-2-0",
+        "product_name": "Snigel T-shirt 2.0",
+        "image_count": 5,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Coyote",
+                "value": "coyote",
+                "code": "14",
+                "imageUrl": "\/media\/EB\/FA\/EBFA18E9EEE46DC5D612E48D38FA0017\/05-01962A14_9699.jpg",
+                "mediaId": "EBFA18E9EEE46DC5D612E48D38FA0017",
+                "filename": "05-01962A14_9699"
+            },
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/38\/16\/3816497A3C53CDDB1533371E615A3871\/05-01962A17_1323.jpg",
+                "mediaId": "3816497A3C53CDDB1533371E615A3871",
+                "filename": "05-01962A17_1323"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "0D916C743A1D08A8B7A2A79D4B6F398B",
+        "product_number": "SN-sniper-patch-small-12",
+        "product_name": "Sniper patch, Small -12",
+        "image_count": 6,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/9B\/D2\/9BD2CAAEAFDD6882BF5977DFF98C5D8A\/30-00186-09-00-9bd2caae.jpg",
+                "mediaId": "9BD2CAAEAFDD6882BF5977DFF98C5D8A",
+                "filename": "30-00186-09-00-9bd2caae"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "C25782D05BCE2E06AA8BA13F47848995",
+        "product_number": "SN-source-low-profile-3l-hydration-bladder",
+        "product_name": "Low profile 3L hydration bladder",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/C6\/16\/C6164C210D559403281BA5E608712C33\/46-00585-09-000-c6164c21.jpg",
+                "mediaId": "C6164C210D559403281BA5E608712C33",
+                "filename": "46-00585-09-000-c6164c21"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "B1161FF99CE3DFF1C95327A6FF9B3EFB",
+        "product_number": "SN-speed-magazine-pouch-2-0",
+        "product_name": "Speed magazine pouch 2.0",
+        "image_count": 25,
+        "color_count": 3,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/79\/DE\/79DE57012E2BE589D15772827E51E478\/22-01888B01_0583-3.jpg",
+                "mediaId": "79DE57012E2BE589D15772827E51E478",
+                "filename": "22-01888B01_0583-3"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/67\/4E\/674EA78F08E626E177A95FB17A64E3FE\/22-01888B09_0568-1.jpg",
+                "mediaId": "674EA78F08E626E177A95FB17A64E3FE",
+                "filename": "22-01888B09_0568-1"
+            },
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/7C\/81\/7C81A53047B59D3CD44C4C0C8E6281FD\/22-01888B17_0588-2.jpg",
+                "mediaId": "7C81A53047B59D3CD44C4C0C8E6281FD",
+                "filename": "22-01888B17_0588-2"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "03A42E27E4A3DFD922E8C8432A5E59E8",
+        "product_number": "SN-spotting-scope-cover",
+        "product_name": "Spotting Scope cover",
+        "image_count": 14,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/91\/AC\/91AC56F21428431EB7C2ED368D831BD2\/40-01416-09-000-91ac56f2.jpg",
+                "mediaId": "91AC56F21428431EB7C2ED368D831BD2",
+                "filename": "40-01416-09-000-91ac56f2"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "B044F1A17FDC110C7ED94D6123C51BF7",
+        "product_number": "SN-squeeze-3-row-cummerbund-1-0",
+        "product_name": "3 row cummerbund 1.0",
+        "image_count": 17,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/CC\/6C\/CC6CE12493D819E2674FC43561D7DD53\/26-02012A09_9934.jpg",
+                "mediaId": "CC6CE12493D819E2674FC43561D7DD53",
+                "filename": "26-02012A09_9934"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/74\/C9\/74C918CBFA9CB24452FDC808BF995240\/17-01865APA209_3506.jpg",
+                "mediaId": "74C918CBFA9CB24452FDC808BF995240",
+                "filename": "17-01865APA209_3506"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "5D3A7C8481A47CED002341A6197962EF",
+        "product_number": "SN-squeeze-ballistic-front-and-back-1-3-s2",
+        "product_name": "Squeeze ballistic front and back 1.3 S2",
+        "image_count": 21,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/C2\/25\/C225E665581D4F2C5AE5A446B42202BA\/17-02813A09_1182.jpg",
+                "mediaId": "C225E665581D4F2C5AE5A446B42202BA",
+                "filename": "17-02813A09_1182"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A10CFBF08E0514ACED6402C8EDBC3976",
+        "product_number": "SN-squeeze-buckle-closure-1-0",
+        "product_name": "Squeeze buckle closure 1.0",
+        "image_count": 28,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/A7\/F0\/A7F0F462E55B624EFD0DC11CEEE6A8F5\/17-01865APA209_3506.jpg",
+                "mediaId": "A7F0F462E55B624EFD0DC11CEEE6A8F5",
+                "filename": "17-01865APA209_3506"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "2E67D9C75F7554B8D992B3B4D8FF4482",
+        "product_number": "SN-squeeze-molle-front-panel-1-0",
+        "product_name": "Squeeze MOLLE front panel 1.0",
+        "image_count": 8,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/F0\/11\/F011E2C1A84DBE938F9DE1C10997442F\/26-02027A09_3411.jpg",
+                "mediaId": "F011E2C1A84DBE938F9DE1C10997442F",
+                "filename": "26-02027A09_3411"
+            },
+            {
+                "name": "Multicam",
+                "value": "multicam",
+                "code": "56",
+                "imageUrl": "\/media\/5C\/BD\/5CBDD9C2C0B7B9C3A8FF1E577A4E7767\/26-02027A56_3094.jpg",
+                "mediaId": "5CBDD9C2C0B7B9C3A8FF1E577A4E7767",
+                "filename": "26-02027A56_3094"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "10E4A80E0D56D5132CA1C6B7588A345C",
+        "product_number": "SN-squeeze-quick-adjust-17",
+        "product_name": "Squeeze quick adjust -17",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/7D\/FA\/7DFA04C0F9469441C7ED4B5BF970DBD2\/26-01102-01-000.jpg",
+                "mediaId": "7DFA04C0F9469441C7ED4B5BF970DBD2",
+                "filename": "26-01102-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "54191F8F194AF2AB86661BC5D2F7ACE9",
+        "product_number": "SN-squeeze-side-panel-pouch-set-17",
+        "product_name": "Squeeze side panel pouch set -18",
+        "image_count": 18,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/12\/76\/12768B4822C695169DE8F3A80D73E21E\/84-00984-01-007_2.jpg",
+                "mediaId": "12768B4822C695169DE8F3A80D73E21E",
+                "filename": "84-00984-01-007_2"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/CC\/9A\/CC9AAAFE838351AE97F30FD44D91F5A4\/84-00984A09_8918.jpg",
+                "mediaId": "CC9AAAFE838351AE97F30FD44D91F5A4",
+                "filename": "84-00984A09_8918"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "C16E0530A337DB2F884B5B05E2BD9606",
+        "product_number": "SN-squeeze-vest-plate-carrier-17",
+        "product_name": "Squeeze vest\/plate carrier",
+        "image_count": 35,
+        "color_count": 3,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/A2\/3B\/A23B525A50BA775C652F30E6258C5813\/17-00944-01-001_3.jpg",
+                "mediaId": "A23B525A50BA775C652F30E6258C5813",
+                "filename": "17-00944-01-001_3"
+            },
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/FF\/1B\/FF1BAB5A70D9F3D7F8848D3454571D50\/17-00944-09-001_3337.jpg",
+                "mediaId": "FF1BAB5A70D9F3D7F8848D3454571D50",
+                "filename": "17-00944-09-001_3337"
+            },
+            {
+                "name": "Multicam",
+                "value": "multicam",
+                "code": "56",
+                "imageUrl": "\/media\/27\/00\/270042D275E822B0F17EB8BB965EB745\/17-00944-56-003_3435.jpg",
+                "mediaId": "270042D275E822B0F17EB8BB965EB745",
+                "filename": "17-00944-56-003_3435"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "C5E7F8510AF3AB31FA77B8FE4AE06E49",
+        "product_number": "SN-squeeze-zipper-closure-17",
+        "product_name": "Squeeze zipper closure -17",
+        "image_count": 27,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/E3\/B8\/E3B8F7CB012A6EBE3C85F44BB5B4A51B\/86-01487-01-000_DEFAULT.jpg",
+                "mediaId": "E3B8F7CB012A6EBE3C85F44BB5B4A51B",
+                "filename": "86-01487-01-000_DEFAULT"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/CC\/4F\/CC4F23D3F4EBFB454092CB01A4466928\/17-01865APA209_3506.jpg",
+                "mediaId": "CC4F23D3F4EBFB454092CB01A4466928",
+                "filename": "17-01865APA209_3506"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "34821D2A6B614FF5FB49993BAD6D833A",
+        "product_number": "SN-stort-instruktorsmarke-11",
+        "product_name": "Stort Instrukt\u00f6rsm\u00e4rke -11",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/46\/21\/46219864F1C7BAFDD6D2C4C2914FBCDF\/30-00192-09-00-46219864.jpg",
+                "mediaId": "46219864F1C7BAFDD6D2C4C2914FBCDF",
+                "filename": "30-00192-09-00-46219864"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "DAA4DA5D4315FC1F0666CF52535D09F5",
+        "product_number": "SN-swe-patch-small-12",
+        "product_name": "Swe patch, Small -12",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/A3\/45\/A3457EC99B13B145832E77DA1937F55A\/30-00189-01-00-a3457ec9.jpg",
+                "mediaId": "A3457EC99B13B145832E77DA1937F55A",
+                "filename": "30-00189-01-00-a3457ec9"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "4918317CC4D0D4400FED526CA527D95B",
+        "product_number": "SN-swedish-flag-16",
+        "product_name": "Swedish flag -16",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Coyote",
+                "value": "coyote",
+                "code": "14",
+                "imageUrl": "\/media\/0F\/DD\/0FDDA4DA984F774BC430105675D7E35A\/30-01423-14-000-0fdda4da.jpg",
+                "mediaId": "0FDDA4DA984F774BC430105675D7E35A",
+                "filename": "30-01423-14-000-0fdda4da"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "3A9AC700DA1A1672FBF490C5DCD18DF9",
+        "product_number": "SN-t-bar-set-12",
+        "product_name": "T-bar set -12",
+        "image_count": 28,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/A7\/99\/A79992AD390434CDEAA902AD9B7A7A42\/26-00491-01-000.jpg",
+                "mediaId": "A79992AD390434CDEAA902AD9B7A7A42",
+                "filename": "26-00491-01-000"
+            },
+            {
+                "name": "Khaki",
+                "value": "khaki",
+                "code": "20",
+                "imageUrl": "\/media\/10\/01\/1001993522BDEFE388A57CBFFE3F1B1B\/17-01865APA209_3506.jpg",
+                "mediaId": "1001993522BDEFE388A57CBFFE3F1B1B",
+                "filename": "17-01865APA209_3506"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "0B0EB1C11F15BB0DCEA7DD6F6DF083DA",
+        "product_number": "SN-t-tape-holder-1-0",
+        "product_name": "T-Tape holder 1.0",
+        "image_count": 6,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/03\/F0\/03F08838191E89D4612CC5D7AD2C9AA8\/20-02045A0909_4449.jpg",
+                "mediaId": "03F08838191E89D4612CC5D7AD2C9AA8",
+                "filename": "20-02045A0909_4449"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "9AB23B619ACB921A9A9998730380DE39",
+        "product_number": "SN-tactical-coverall-09f-complete",
+        "product_name": "Tactical coverall 09F",
+        "image_count": 15,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Coyote",
+                "value": "coyote",
+                "code": "14",
+                "imageUrl": "\/media\/DC\/35\/DC3508A2E79C122A6C4A075BD29B44C3\/08-00707-14-7XX.jpg",
+                "mediaId": "DC3508A2E79C122A6C4A075BD29B44C3",
+                "filename": "08-00707-14-7XX"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D2659BBBC52245BCD05CD0E539C99D3B",
+        "product_number": "SN-tactical-coverall-10jk",
+        "product_name": "Tactical coverall 09F Briefs",
+        "image_count": 5,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Coyote",
+                "value": "coyote",
+                "code": "14",
+                "imageUrl": "\/media\/8A\/E2\/8AE2A7C3C51A307F1EB155925616CD7E\/08-00707-14-9XX.jpg",
+                "mediaId": "8AE2A7C3C51A307F1EB155925616CD7E",
+                "filename": "08-00707-14-9XX"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A662C1FD857B36BF3B571B8E311EC7D9",
+        "product_number": "SN-tactical-coverall-bg-10f",
+        "product_name": "Tactical coverall BG -10F",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Olive",
+                "value": "olive",
+                "code": "17",
+                "imageUrl": "\/media\/96\/B4\/96B40676165BFD3AA825DB44D37E3A21\/08-00699-17-XXX_2.jpg",
+                "mediaId": "96B40676165BFD3AA825DB44D37E3A21",
+                "filename": "08-00699-17-XXX_2"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D2BB3D52CA910F5244E8B8405DDC0B4B",
+        "product_number": "SN-tactical-coverall-digi-09f",
+        "product_name": "Tactical coverall, Digi  -09F",
+        "image_count": 17,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A944B4B604F7349515506FD576465294",
+        "product_number": "SN-tactical-vest-16",
+        "product_name": "Equipment vest -16",
+        "image_count": 27,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/15\/2D\/152DEB51C2E68FE93B7B2F5FD8550999\/18-01162-01-001.jpg",
+                "mediaId": "152DEB51C2E68FE93B7B2F5FD8550999",
+                "filename": "18-01162-01-001"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "418CC004E098E5818452A73640340787",
+        "product_number": "SN-technical-equipment-vest-11",
+        "product_name": "Technical equipment vest 2.0",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/32\/FC\/32FC2CDFBCEB314A4D6A79500C932151\/18-00575B01_017.jpg",
+                "mediaId": "32FC2CDFBCEB314A4D6A79500C932151",
+                "filename": "18-00575B01_017"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "BF7CAE37F86A147894130115603B74A6",
+        "product_number": "SN-tekniker-patch-small-12",
+        "product_name": "Tekniker patch, small -12",
+        "image_count": 7,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/B2\/4D\/B24D4493077DB3AA17C06CC22AEFBBD3\/30-00182-09-00-b24d4493.jpg",
+                "mediaId": "B24D4493077DB3AA17C06CC22AEFBBD3",
+                "filename": "30-00182-09-00-b24d4493"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "1AA99C7A735B80BC5496B196D5472A38",
+        "product_number": "SN-telescopic-baton-holder-08",
+        "product_name": "Telescopic baton holder -08",
+        "image_count": 18,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/99\/57\/9957C80F778B27BD29C618F56A6496C1\/20-00499-01-000.jpg",
+                "mediaId": "9957C80F778B27BD29C618F56A6496C1",
+                "filename": "20-00499-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "DF2E89B346CF5E977E2445A0361B19D8",
+        "product_number": "SN-topless-handcuff-pouch-06",
+        "product_name": "Topless Handcuff pouch 06",
+        "image_count": 17,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/6E\/79\/6E7971C8C832750663EA22278692DEF9\/21-00495-01-000_DEFAULT.jpg",
+                "mediaId": "6E7971C8C832750663EA22278692DEF9",
+                "filename": "21-00495-01-000_DEFAULT"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "80D0EA2FBD1E87BC8A1F00274AE5A79F",
+        "product_number": "SN-trauma-pouch-17",
+        "product_name": "Trauma pouch -17",
+        "image_count": 20,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/C2\/91\/C2914F41E532DF27B275153AFAA43BFC\/21-01166-01-000.jpg",
+                "mediaId": "C2914F41E532DF27B275153AFAA43BFC",
+                "filename": "21-01166-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "F1F972E1E55F848C3C548DF95F290C99",
+        "product_number": "SN-trauma-pouch-insert-17",
+        "product_name": "Trauma pouch insert -17",
+        "image_count": 12,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/C9\/4D\/C94D2503880B5C81FFEC84B2D8DC2041\/25-01167-09-000.jpg",
+                "mediaId": "C94D2503880B5C81FFEC84B2D8DC2041",
+                "filename": "25-01167-09-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5B94AFBBE7165DFFC0CE3263FD76FF76",
+        "product_number": "SN-trauma-shears-holder-1-0",
+        "product_name": "Trauma shears holder 1.0",
+        "image_count": 11,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/AD\/8A\/AD8A1CC1CB0AC0B1C94298C3ECF1DB98\/20-02044A09_4446.jpg",
+                "mediaId": "AD8A1CC1CB0AC0B1C94298C3ECF1DB98",
+                "filename": "20-02044A09_4446"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "D0909C96AE94619390EBDA6A263B6C57",
+        "product_number": "SN-twin-handcuff-pouch-11",
+        "product_name": "Double handcuff pouch -11",
+        "image_count": 14,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/06\/07\/06079DB011F79612E889C3CA198E526D\/21-00057-01-000.jpg",
+                "mediaId": "06079DB011F79612E889C3CA198E526D",
+                "filename": "21-00057-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "5880CD4F323B751114154A088810654A",
+        "product_number": "SN-virve-pouch-basic-11",
+        "product_name": "VIRVE pouch, Basic-11",
+        "image_count": 14,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/5C\/22\/5C227FEB2622782A1FEF01EEF8F105C7\/21-00144-01-000.jpg",
+                "mediaId": "5C227FEB2622782A1FEF01EEF8F105C7",
+                "filename": "21-00144-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "945FD29003A08AECAFF9A9F7B28E0718",
+        "product_number": "SN-virve-radio-pouch-10",
+        "product_name": "Virve radio pouch -10",
+        "image_count": 10,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/CF\/44\/CF440B840C74DE5589B3930AFECF18F5\/21-01078-01-000.jpg",
+                "mediaId": "CF440B840C74DE5589B3930AFECF18F5",
+                "filename": "21-01078-01-000"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "54F0E2624851CA84B89AEB3035B29AE7",
+        "product_number": "SN-wallet-10",
+        "product_name": "Wallet",
+        "image_count": 12,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/66\/E8\/66E82E5C538575D4F0344D4F94E7FF57\/52-00563-01-000_2.jpg",
+                "mediaId": "66E82E5C538575D4F0344D4F94E7FF57",
+                "filename": "52-00563-01-000_2"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "F4C0A639E577AE1B342F235F2CDD5449",
+        "product_number": "SN-weapon-attachment-back-02",
+        "product_name": "Back holder 2.0",
+        "image_count": 4,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/53\/87\/53870D0DB8B9F8C4E7909D2B8607838E\/36-00631A09_2064-53870d0d.jpg",
+                "mediaId": "53870D0DB8B9F8C4E7909D2B8607838E",
+                "filename": "36-00631A09_2064-53870d0d"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "9FDACB151B9E26C6064116C5AE14B87E",
+        "product_number": "SN-weapon-attachment-side-00",
+        "product_name": "Weapon attachment, side -00",
+        "image_count": 5,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/D3\/83\/D3835535D119BD554FA111F851534ED7\/36-00579-01-000_2.jpg",
+                "mediaId": "D3835535D119BD554FA111F851534ED7",
+                "filename": "36-00579-01-000_2"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "BFC6B527704121BD8C8EB2E6768C7965",
+        "product_number": "SN-weapon-hook-10",
+        "product_name": "Weapon hook -10",
+        "image_count": 3,
+        "color_count": 0,
+        "colorOptions": [],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "A6108082665E2CCBB00DDBE562C64AF6",
+        "product_number": "SN-weapon-sling-system-1-0",
+        "product_name": "Weapon sling system 1.0",
+        "image_count": 36,
+        "color_count": 2,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/61\/AC\/61AC03CE5C55ED45CD0D59681A8F5349\/34-01586A01-000_2.jpg",
+                "mediaId": "61AC03CE5C55ED45CD0D59681A8F5349",
+                "filename": "34-01586A01-000_2"
+            },
+            {
+                "name": "Multicam",
+                "value": "multicam",
+                "code": "56",
+                "imageUrl": "\/media\/60\/69\/6069055663A2A30E7D20962ED021D5F6\/34-01586A56_3815-60690556.jpg",
+                "mediaId": "6069055663A2A30E7D20962ED021D5F6",
+                "filename": "34-01586A56_3815-60690556"
+            }
+        ],
+        "hasColorVariants": true
+    },
+    {
+        "product_id": "1F04A128843F7353D57E22E5272E18DE",
+        "product_number": "SN-xl-snipers-support-bag-03",
+        "product_name": "XL Snipers support bag -03",
+        "image_count": 9,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Grey",
+                "value": "grey",
+                "code": "09",
+                "imageUrl": "\/media\/DF\/B4\/DFB4FB957608CEF36AA6CCE48A3F69D4\/33-00652-09-000-dfb4fb95.jpg",
+                "mediaId": "DFB4FB957608CEF36AA6CCE48A3F69D4",
+                "filename": "33-00652-09-000-dfb4fb95"
+            }
+        ],
+        "hasColorVariants": false
+    },
+    {
+        "product_id": "6EDE8DF0C0B6C18A2FA226AAAB356B76",
+        "product_number": "SN-zipped-dump-bag-10",
+        "product_name": "Zipped dump bag -10",
+        "image_count": 30,
+        "color_count": 1,
+        "colorOptions": [
+            {
+                "name": "Black",
+                "value": "black",
+                "code": "01",
+                "imageUrl": "\/media\/B1\/4E\/B14E173C4D4A2996CB9E1CC60260CCFD\/22-00519-01-000_2.jpg",
+                "mediaId": "B14E173C4D4A2996CB9E1CC60260CCFD",
+                "filename": "22-00519-01-000_2"
+            }
+        ],
+        "hasColorVariants": false
+    }
+]

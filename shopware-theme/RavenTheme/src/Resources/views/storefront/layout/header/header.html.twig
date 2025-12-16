@@ -21,6 +21,14 @@
 
 {% block layout_header %}
 <style>
+    /* Hide dark CMS "coming soon" blocks - clean template is used instead */
+    .cms-element-text > div[style*="background:#1a"],
+    .cms-element-text > div[style*="background: #1a"],
+    .cms-element-text > div[style*="background:#2"],
+    .cms-element-text > div[style*="background: #2"] {
+        display: none !important;
+    }
+
     /* Hide manufacturer name ONLY on Waffenzubehör page */
     body.page-waffenzubehoer .raven-manufacturer {
         display: none !important;
@@ -56,6 +64,7 @@
     .raven-nav-link {
         position: relative;
         transition: color 0.2s ease;
+        white-space: nowrap;
     }
     .raven-nav-link::after {
         content: '';
@@ -1248,6 +1257,83 @@
     } else {
         initLiveSearch();
     }
+
+    // ============================================================
+    // SNIGEL COLOR SWATCH - Save selected color to localStorage
+    // This works for ALL Snigel products dynamically
+    // ============================================================
+    function initSnigelColorSave() {
+        // Only run on product detail pages
+        var colorSwatches = document.querySelectorAll('.color-tag');
+        if (colorSwatches.length === 0) return;
+
+        // Get product ID from the add-to-cart form
+        function getProductId() {
+            var form = document.querySelector('form[data-add-to-cart]');
+            if (form) {
+                var idInput = form.querySelector('input[name*="[id]"]');
+                if (idInput) return idInput.value;
+            }
+            return null;
+        }
+
+        var productId = getProductId();
+        if (!productId) {
+            console.log('Snigel Color Save: No product ID found');
+            return;
+        }
+
+        console.log('Snigel Color Save: Initializing for product', productId);
+
+        // Attach click handlers to all color swatches
+        colorSwatches.forEach(function(swatch) {
+            swatch.addEventListener('click', function() {
+                var colorName = this.getAttribute('data-color-name');
+                var imageUrl = this.getAttribute('data-image-url') || '';
+
+                if (colorName) {
+                    var colorData = {
+                        color: colorName,
+                        image: imageUrl
+                    };
+                    localStorage.setItem('raven_color_' + productId, JSON.stringify(colorData));
+                    console.log('Snigel Color Save: Saved', colorName, 'for product', productId);
+                }
+            });
+        });
+
+        // Also save the initial/default color on page load
+        var activeColor = document.querySelector('.color-tag.active, .color-tag.selected');
+        if (activeColor) {
+            var colorName = activeColor.getAttribute('data-color-name');
+            var imageUrl = activeColor.getAttribute('data-image-url') || '';
+            if (colorName) {
+                localStorage.setItem('raven_color_' + productId, JSON.stringify({
+                    color: colorName,
+                    image: imageUrl
+                }));
+                console.log('Snigel Color Save: Saved initial color', colorName);
+            }
+        } else if (colorSwatches.length > 0) {
+            // Save the first color as default if no active one
+            var firstSwatch = colorSwatches[0];
+            var colorName = firstSwatch.getAttribute('data-color-name');
+            var imageUrl = firstSwatch.getAttribute('data-image-url') || '';
+            if (colorName) {
+                localStorage.setItem('raven_color_' + productId, JSON.stringify({
+                    color: colorName,
+                    image: imageUrl
+                }));
+                console.log('Snigel Color Save: Saved first color as default', colorName);
+            }
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSnigelColorSave);
+    } else {
+        initSnigelColorSave();
+    }
 })();
 </script>
 
@@ -1457,313 +1543,191 @@
                 </div>
             </div>
 
-            {# Navigation Row - Categories with Dropdowns #}
-            <div class="pb-3">
-                <nav id="raven-main-nav" class="flex items-center justify-center gap-8">
-                    {# Alle Produkte - WITH 2-column mega menu #}
-                    <div class="raven-nav-item">
-                        <a href="/Alle-Produkte/"
-                           class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                            Alle Produkte
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;">
-                                <polyline points="6 9 12 15 18 9"/>
-                            </svg>
-                        </a>
-                        <div class="raven-mega-menu" style="min-width: 880px; padding: 20px;">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 32px;">
-                                {# Column 1 - Waffen #}
-                                <div>
-                                    <div style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px;">Waffen</div>
-                                    <a href="/.223-RAVEN/RAVEN-223" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        .223 RAVEN
-                                    </a>
-                                    <a href="/9mm-RAVEN/RAVEN-9MM" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        9mm RAVEN
-                                    </a>
-                                    <a href="/.22-LR-RAVEN/RAVEN-22-LR" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        .22 LR RAVEN
-                                    </a>
-                                    <a href="/300-AAC-RAVEN/RAVEN-300AAC" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        300 AAC RAVEN
-                                    </a>
-                                    <a href="/7.62x39-RAVEN/RAVEN-762" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        7.62x39 RAVEN
-                                    </a>
+            {# Navigation Row - Dynamic Categories from Shopware #}
+            {# SEO URL mapping for main categories - fixes navigation links #}
+            {% set mainCategorySeoUrls = {
+                '019aee0f487c79a1a8814377c46e0c10': '/Alle-Produkte/',
+                'a61f19c9cb4b11f0b4074aca3d279c31': '/Waffen/',
+                'a61f1ec3cb4b11f0b4074aca3d279c31': '/Raven-Caliber-Kit/',
+                '019adeff65f97225927586968691dc02': '/Zielhilfen-Optik-Zubehoer/',
+                '2f40311624aea6de289c770f0bfd0ff9': '/Munition/',
+                '604131c6ae1646c98623da4fe61a739b': '/Zubehoer/',
+                '019b0857613474e6a799cfa07d143c76': '/Ausruestung/'
+            } %}
+            <div class="pb-3" style="margin-top: 20px;">
+                <nav id="raven-main-nav" class="flex items-center justify-center" style="gap: 40px;">
+                    {% if header.navigation.tree is defined and header.navigation.tree|length > 0 %}
+                        {% for treeItem in header.navigation.tree %}
+                            {% set category = treeItem.category %}
+                            {% set hasChildren = treeItem.children|length > 0 %}
+                            {% set categoryUrl = mainCategorySeoUrls[category.id] ?? seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
+                            <div class="raven-nav-item">
+                                <a href="{{ categoryUrl }}"
+                                   class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                                    {{ category.translated.name }}
+                                    {% if hasChildren %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;">
+                                        <polyline points="6 9 12 15 18 9"/>
+                                    </svg>
+                                    {% endif %}
+                                </a>
+                                {% if hasChildren %}
+                                {# Check if any children have grandchildren for layout decision #}
+                                {% set hasAnyGrandChildren = false %}
+                                {% for childItem in treeItem.children %}
+                                    {% if childItem.children|length > 0 %}
+                                        {% set hasAnyGrandChildren = true %}
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if hasAnyGrandChildren %}
+                                {# Multi-column layout for categories with grandchildren (like Raven Weapons) #}
+                                <div class="raven-mega-menu" style="min-width: {% if treeItem.children|length > 2 %}600px{% else %}320px{% endif %}; padding: 16px 20px;">
+                                    <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+                                    {% for childItem in treeItem.children %}
+                                        {% set childCat = childItem.category %}
+                                        {% set hasGrandChildren = childItem.children|length > 0 %}
+                                        <div style="min-width: 140px; flex: 1;">
+                                            {# Sturmgewehre links to parent Raven Weapons page #}
+                                            {% set childUrl = childCat.translated.name == 'Sturmgewehre' ? seoUrl('frontend.navigation.page', { navigationId: category.id }) : seoUrl('frontend.navigation.page', { navigationId: childCat.id }) %}
+                                            <a href="{{ childUrl }}" style="display: flex; align-items: center; gap: 8px; padding: 8px 0 8px 0; color: #c9a227; font-size: 14px; text-decoration: none; font-weight: 600; border-bottom: 1px solid #f3f4f6; margin-bottom: 8px;">
+                                                {{ childCat.translated.name }}
+                                            </a>
+                                            {% if hasGrandChildren %}
+                                                {% for grandChildItem in childItem.children %}
+                                                    {% set grandChildCat = grandChildItem.category %}
+                                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: grandChildCat.id }) }}" style="display: flex; align-items: center; gap: 6px; padding: 5px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                                        <span style="color: #c9a227;">↳</span>
+                                                        {{ grandChildCat.translated.name }}
+                                                    </a>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                    </div>
                                 </div>
-                                {# Column 2 - Kaliber Kits #}
-                                <div>
-                                    <div style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px;">Kaliber Kits</div>
-                                    <a href="/.223-CALIBER-KIT/KIT-223" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        .223 Caliber Kit
-                                    </a>
-                                    <a href="/9mm-CALIBER-KIT/KIT-9MM" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        9mm Caliber Kit
-                                    </a>
-                                    <a href="/.22LR-CALIBER-KIT/KIT-22LR" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        .22 LR Caliber Kit
-                                    </a>
-                                    <a href="/300-AAC-CALIBER-KIT/KIT-300AAC" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        300 AAC Caliber Kit
-                                    </a>
-                                    <a href="/7.62x39-CALIBER-KIT/KIT-762" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        7.62x39 Caliber Kit
-                                    </a>
+                                {% else %}
+                                {# Simple list layout for categories without grandchildren (like Zielhilfen) #}
+                                <div class="raven-mega-menu" style="min-width: 280px; padding: 16px 20px;">
+                                    {% for childItem in treeItem.children %}
+                                        {% set childCat = childItem.category %}
+                                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: childCat.id }) }}" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                            <span style="color: #c9a227;">↳</span>
+                                            {{ childCat.translated.name }}
+                                        </a>
+                                    {% endfor %}
                                 </div>
-                                {# Column 3 - Waffenzubehör #}
-                                <div>
-                                    <div style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px;">Waffenzubehör</div>
-                                    <a href="/Waffenzubehoer/Griffe/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Griffe
-                                    </a>
-                                    <a href="/Waffenzubehoer/Optik/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Optik
-                                    </a>
-                                    <a href="/Waffenzubehoer/Montagen/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Montagen
-                                    </a>
-                                    <a href="/Waffenzubehoer/Zweibein/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Zweibein
-                                    </a>
-                                    <a href="/Waffenzubehoer/Muendung/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Mündung
-                                    </a>
-                                </div>
-                                {# Column 4 - Snigel #}
-                                <div>
-                                    <div style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px;">Snigel</div>
-                                    <a href="/Snigel/Tactical-Gear/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Tactical Gear
-                                    </a>
-                                    <a href="/Snigel/Vests-Chest-Rigs/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Vests & Chest Rigs
-                                    </a>
-                                    <a href="/Snigel/Bags-Backpacks/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Bags & Backpacks
-                                    </a>
-                                    <a href="/Snigel/Belts/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Belts
-                                    </a>
-                                    <a href="/Snigel/" style="display: flex; align-items: center; gap: 10px; padding: 8px 0; color: #6b7280; font-size: 14px; text-decoration: none; transition: color 0.15s;">
-                                        <span style="color: #9ca3af; font-size: 14px;">↳</span>
-                                        Alle Snigel...
-                                    </a>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {# Fallback - navigation with dropdowns #}
+                        <div class="raven-nav-item">
+                            <a href="/Alle-Produkte/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">Alle Produkte</a>
+                        </div>
+                        <div class="raven-nav-item">
+                            <a href="/Raven-Weapons/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                                Raven Weapons
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                            </a>
+                            <div class="raven-mega-menu">
+                                <div class="menu-header">Raven Weapons</div>
+                                <a href="/Raven-Weapons/Sturmgewehre/"><span style="color: #9ca3af;">↳</span> Sturmgewehre</a>
+                                <a href="/Raven-Weapons/RAPAX/"><span style="color: #9ca3af;">↳</span> RAPAX</a>
+                            </div>
+                        </div>
+                        <div class="raven-nav-item">
+                            <a href="/Raven-Caliber-Kit/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">Raven Caliber Kit</a>
+                        </div>
+                        <div class="raven-nav-item">
+                            <a href="/Waffenzubehoer/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                                Zielhilfen, Optik & Zubehör
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                            </a>
+                            <div class="raven-mega-menu">
+                                <div class="menu-header">Zielhilfen, Optik & Zubehör</div>
+                                <a href="/Waffenzubehoer/Zielfernrohre/"><span style="color: #9ca3af;">↳</span> Zielfernrohre</a>
+                                <a href="/Waffenzubehoer/Rotpunktvisiere/"><span style="color: #9ca3af;">↳</span> Rotpunktvisiere</a>
+                                <a href="/Waffenzubehoer/Spektive/"><span style="color: #9ca3af;">↳</span> Spektive</a>
+                                <a href="/Waffenzubehoer/Fernglaeser/"><span style="color: #9ca3af;">↳</span> Ferngläser</a>
+                            </div>
+                        </div>
+                        <div class="raven-nav-item">
+                            <a href="/Zubehoer/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                                Zubehör
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                            </a>
+                            <div class="raven-mega-menu">
+                                <div class="menu-header">Zubehör</div>
+                                <a href="/Zubehoer/Magazine/"><span style="color: #9ca3af;">↳</span> Magazine</a>
+                                <a href="/Zubehoer/Griffe-Handschutz/"><span style="color: #9ca3af;">↳</span> Griffe & Handschutz</a>
+                                <a href="/Zubehoer/Schienen-Zubehoer/"><span style="color: #9ca3af;">↳</span> Schienen & Zubehör</a>
+                                <a href="/Zubehoer/Zweibeine/"><span style="color: #9ca3af;">↳</span> Zweibeine</a>
+                                <a href="/Zubehoer/Muendungsaufsaetze/"><span style="color: #9ca3af;">↳</span> Mündungsaufsätze</a>
+                                <a href="/Zubehoer/Zielfernrohrmontagen/"><span style="color: #9ca3af;">↳</span> Zielfernrohrmontagen</a>
+                            </div>
+                        </div>
+                        <div class="raven-nav-item">
+                            <a href="/Ausruestung/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                                Ausrüstung
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                            </a>
+                            <div class="raven-mega-menu" style="min-width: 800px; padding: 24px;">
+                                <div class="menu-header" style="margin-bottom: 16px; font-size: 15px; font-weight: 600; color: #1f2937;">Taktische Ausrüstung</div>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                                    <!-- Körperschutz -->
+                                    <div>
+                                        <a href="/koerperschutz/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Körperschutz</a>
+                                        <a href="/Ausruestung/Ballistischer-Schutz/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Ballistischer Schutz</a>
+                                        <a href="/Ausruestung/Westen-Chest-Rigs/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Westen & Chest Rigs</a>
+                                    </div>
+                                    <!-- Taschen & Transport -->
+                                    <div>
+                                        <a href="/taschen-transport/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Taschen & Transport</a>
+                                        <a href="/Ausruestung/Taschen-Rucksaecke/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Taschen & Rucksäcke</a>
+                                        <a href="/Ausruestung/Halter-Taschen/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Halter & Taschen</a>
+                                    </div>
+                                    <!-- Bekleidung & Tragen -->
+                                    <div>
+                                        <a href="/bekleidung-tragen/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Bekleidung & Tragen</a>
+                                        <a href="/Ausruestung/Taktische-Bekleidung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Taktische Bekleidung</a>
+                                        <a href="/Ausruestung/Guertel/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Gürtel</a>
+                                        <a href="/Ausruestung/Tragegurte-Holster/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Tragegurte & Holster</a>
+                                        <a href="/Ausruestung/Beinpaneele/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Beinpaneele</a>
+                                    </div>
+                                    <!-- Spezialausrüstung -->
+                                    <div>
+                                        <a href="/spezialausruestung/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Spezialausrüstung</a>
+                                        <a href="/Ausruestung/Medizinische-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Medizinische Ausrüstung</a>
+                                        <a href="/Ausruestung/K9-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">K9 Ausrüstung</a>
+                                        <a href="/Ausruestung/Scharfschuetzen-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Scharfschützen-Ausrüstung</a>
+                                        <a href="/Ausruestung/Verdeckte-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Verdeckte Ausrüstung</a>
+                                    </div>
+                                    <!-- Behörden & Dienst -->
+                                    <div>
+                                        <a href="/behoerden-dienst/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Behörden & Dienst</a>
+                                        <a href="/Ausruestung/Polizeiausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Polizeiausrüstung</a>
+                                        <a href="/Ausruestung/Verwaltungsausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Verwaltungsausrüstung</a>
+                                        <a href="/Ausruestung/Dienstausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Dienstausrüstung</a>
+                                    </div>
+                                    <!-- Zubehör & Sonstiges -->
+                                    <div>
+                                        <a href="/zubehoer-sonstiges/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Zubehör & Sonstiges</a>
+                                        <a href="/Ausruestung/Taktische-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Taktische Ausrüstung</a>
+                                        <a href="/Ausruestung/Patches/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Patches</a>
+                                        <a href="/Ausruestung/Source-Hydration/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Source Hydration</a>
+                                        <a href="/Ausruestung/Verschiedenes/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Verschiedenes</a>
+                                        <a href="/Ausruestung/Multicam/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Multicam</a>
+                                        <a href="/Ausruestung/Warnschutz/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Warnschutz</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    {# Waffen - WITH dropdown submenu #}
-                    <div class="raven-nav-item">
-                        <a href="/Raven-Weapons/"
-                           class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                            Waffen
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;">
-                                <polyline points="6 9 12 15 18 9"/>
-                            </svg>
-                        </a>
-                        <div class="raven-mega-menu">
-                            <div class="menu-header">Waffen</div>
-                            <a href="/.223-RAVEN/RAVEN-223">
-                                <span style="color: #9ca3af;">↳</span>
-                                .223 RAVEN
-                            </a>
-                            <a href="/9mm-RAVEN/RAVEN-9MM">
-                                <span style="color: #9ca3af;">↳</span>
-                                9mm RAVEN
-                            </a>
-                            <a href="/.22-LR-RAVEN/RAVEN-22-LR">
-                                <span style="color: #9ca3af;">↳</span>
-                                .22 LR RAVEN
-                            </a>
-                            <a href="/300-AAC-RAVEN/RAVEN-300AAC">
-                                <span style="color: #9ca3af;">↳</span>
-                                300 AAC RAVEN
-                            </a>
-                            <a href="/7.62x39-RAVEN/RAVEN-762">
-                                <span style="color: #9ca3af;">↳</span>
-                                7.62x39 RAVEN
-                            </a>
+                        <div class="raven-nav-item">
+                            <a href="/Munition/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">Munition</a>
                         </div>
-                    </div>
-
-                    {# Kaliber Kits - WITH dropdown submenu #}
-                    <div class="raven-nav-item">
-                        <a href="/Raven-Caliber-Kit/"
-                           class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                            Kaliber Kits
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;">
-                                <polyline points="6 9 12 15 18 9"/>
-                            </svg>
-                        </a>
-                        <div class="raven-mega-menu">
-                            <div class="menu-header">Kaliber Kits</div>
-                            <a href="/.223-CALIBER-KIT/KIT-223">
-                                <span style="color: #9ca3af;">↳</span>
-                                .223 Caliber Kit
-                            </a>
-                            <a href="/9mm-CALIBER-KIT/KIT-9MM">
-                                <span style="color: #9ca3af;">↳</span>
-                                9mm Caliber Kit
-                            </a>
-                            <a href="/.22LR-CALIBER-KIT/KIT-22LR">
-                                <span style="color: #9ca3af;">↳</span>
-                                .22 LR Caliber Kit
-                            </a>
-                            <a href="/300-AAC-CALIBER-KIT/KIT-300AAC">
-                                <span style="color: #9ca3af;">↳</span>
-                                300 AAC Caliber Kit
-                            </a>
-                            <a href="/7.62x39-CALIBER-KIT/KIT-762">
-                                <span style="color: #9ca3af;">↳</span>
-                                7.62x39 Caliber Kit
-                            </a>
-                        </div>
-                    </div>
-
-                    {# Zubehoer - WITH submenu showing categories #}
-                    <div class="raven-nav-item">
-                        <a href="/Waffenzubehoer/"
-                           class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                            Waffenzubehör
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;">
-                                <polyline points="6 9 12 15 18 9"/>
-                            </svg>
-                        </a>
-                        <div class="raven-mega-menu">
-                            <div class="menu-header">Waffenzubehör</div>
-                            <a href="/Waffenzubehoer/Griffe/">
-                                <span style="color: #9ca3af;">↳</span>
-                                Griffe
-                            </a>
-                            <a href="/Waffenzubehoer/Optik/">
-                                <span style="color: #9ca3af;">↳</span>
-                                Optik
-                            </a>
-                            <a href="/Waffenzubehoer/Montagen/">
-                                <span style="color: #9ca3af;">↳</span>
-                                Montagen
-                            </a>
-                            <a href="/Waffenzubehoer/Zweibein/">
-                                <span style="color: #9ca3af;">↳</span>
-                                Zweibein
-                            </a>
-                            <a href="/Waffenzubehoer/Muendung/">
-                                <span style="color: #9ca3af;">↳</span>
-                                Mündung
-                            </a>
-                        </div>
-                    </div>
-
-                    {# Snigel - WITH mega menu showing all categories #}
-                    <div class="raven-nav-item">
-                        <a href="/Snigel/"
-                           class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                            Snigel
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;">
-                                <polyline points="6 9 12 15 18 9"/>
-                            </svg>
-                        </a>
-                        <div class="raven-mega-menu" style="min-width: 600px; padding: 20px;">
-                            <div class="menu-header" style="font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e5e7eb;">Snigel Tactical Equipment</div>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px 24px;">
-                                <a href="/Snigel/Tactical-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Tactical Gear
-                                </a>
-                                <a href="/Snigel/Vests-Chest-Rigs/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Vests & Chest Rigs
-                                </a>
-                                <a href="/Snigel/Bags-Backpacks/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Bags & Backpacks
-                                </a>
-                                <a href="/Snigel/Belts/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Belts
-                                </a>
-                                <a href="/Snigel/Holders-Pouches/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Holders & Pouches
-                                </a>
-                                <a href="/Snigel/Leg-Panels/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Leg Panels
-                                </a>
-                                <a href="/Snigel/Tactical-Clothing/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Tactical Clothing
-                                </a>
-                                <a href="/Snigel/Police-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Police Gear
-                                </a>
-                                <a href="/Snigel/Medical-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Medical Gear
-                                </a>
-                                <a href="/Snigel/Sniper-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Sniper Gear
-                                </a>
-                                <a href="/Snigel/K9-Units-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    K9 Units Gear
-                                </a>
-                                <a href="/Snigel/Covert-Gear/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Covert Gear
-                                </a>
-                                <a href="/Snigel/Ballistic-Protection/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Ballistic Protection
-                                </a>
-                                <a href="/Snigel/Slings-Holsters/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Slings & Holsters
-                                </a>
-                                <a href="/Snigel/Source-Hydration/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Source Hydration
-                                </a>
-                                <a href="/Snigel/Patches/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Patches
-                                </a>
-                                <a href="/Snigel/HighVis/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    HighVis
-                                </a>
-                                <a href="/Snigel/Multicam/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Multicam
-                                </a>
-                                <a href="/Snigel/Miscellaneous/" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                    <span style="color: #9ca3af;">↳</span>
-                                    Miscellaneous
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endif %}
                 </nav>
             </div>
         </div>
@@ -1791,4 +1755,51 @@
 </header>
 
 <!-- Second cart handler removed - using main handler from above -->
+
+{# Breadcrumb for category pages - injected via JavaScript #}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Only show breadcrumb on category/navigation pages (not homepage, not product detail)
+    const path = window.location.pathname.toLowerCase();
+    if (path === '/' || path.includes('/detail/') || path.includes('/checkout/') || path.includes('/account/')) {
+        return;
+    }
+
+    let breadcrumbHtml = '<a href="/" style="color: #666; text-decoration: none;">Home</a>';
+
+    // Parse URL path into segments for ALL categories (including Raven Weapons)
+    const segments = window.location.pathname.replace(/^\/|\/$/g, '').split('/').filter(s => s);
+    if (segments.length === 0) return;
+
+    let buildPath = '';
+    segments.forEach((segment, index) => {
+        buildPath += '/' + segment;
+        // Format display name: replace hyphens with spaces and capitalize words
+        const displayName = segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+        if (index === segments.length - 1) {
+            // Last segment - current page (not clickable)
+            breadcrumbHtml += '<span style="color: #999; margin: 0 0.5rem;">/</span>';
+            breadcrumbHtml += '<span style="color: #333; font-weight: 500;">' + displayName + '</span>';
+        } else {
+            // Parent segments - clickable links
+            breadcrumbHtml += '<span style="color: #999; margin: 0 0.5rem;">/</span>';
+            breadcrumbHtml += '<a href="' + buildPath + '/" style="color: #666; text-decoration: none;">' + displayName + '</a>';
+        }
+    });
+
+    // Create breadcrumb container
+    const breadcrumbNav = document.createElement('nav');
+    breadcrumbNav.setAttribute('aria-label', 'Breadcrumb');
+    breadcrumbNav.className = 'raven-breadcrumb';
+    breadcrumbNav.style.cssText = 'font-size: 0.875rem; color: #666; padding: 0.75rem 1.5rem; background: #f8f8f8; border-bottom: 1px solid #eee;';
+    breadcrumbNav.innerHTML = '<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center;">' + breadcrumbHtml + '</div>';
+
+    // Insert after header
+    const header = document.querySelector('header');
+    if (header && header.parentNode) {
+        header.parentNode.insertBefore(breadcrumbNav, header.nextSibling);
+    }
+});
+</script>
 {% endblock %}

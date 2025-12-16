@@ -342,19 +342,50 @@
     height: 38px;
 }
 
-/* AGGRESSIVELY hide ALL pagination EXCEPT the one inside raven-right-controls */
-nav.pagination:not(.raven-inline-pagination) {
+/* Hide top pagination row - we only want bottom pagination */
+.raven-pagination-row {
     display: none !important;
 }
 
-/* But SHOW pagination inside raven-right-controls */
-.raven-right-controls nav.pagination,
-.raven-right-controls .raven-inline-pagination,
+/* Hide cloned inline pagination */
 nav.pagination.raven-inline-pagination {
-    display: flex !important;
+    display: none !important;
 }
 
-/* Bottom pagination hidden - only top pagination visible */
+/* AGGRESSIVE: Hide ALL top/first pagination - keep only bottom */
+.cms-element-product-listing-wrapper > nav.pagination:first-of-type,
+.raven-filter-bar + nav.pagination,
+.raven-filter-bar ~ nav.pagination:not(:last-of-type),
+.cms-element-product-listing > .row > nav.pagination:first-of-type,
+nav.pagination + .cms-listing-row,
+.raven-right-controls ~ nav.pagination:not(:last-of-type),
+.cms-element-product-listing .row > nav.pagination:first-child,
+.cms-element-product-listing .row > .col-12 > nav.pagination:first-of-type,
+.product-listing-wrapper > nav.pagination:first-of-type,
+.cms-element-product-listing nav.pagination:not(:last-of-type),
+.row > .col-12 > nav.pagination:first-of-type {
+    display: none !important;
+}
+
+/* Target Shopware's default first pagination placement */
+.cms-element-product-listing-wrapper .row:first-child nav.pagination,
+.cms-element-product-listing > .row:first-of-type > .col-12 > nav.pagination {
+    display: none !important;
+}
+
+/* Make sure only the LAST pagination (bottom) shows */
+.cms-element-product-listing nav.pagination {
+    display: none !important;
+}
+
+.cms-element-product-listing nav.pagination:last-of-type,
+.cms-element-product-listing-wrapper nav.pagination:last-of-type,
+.product-listing ~ nav.pagination,
+.cms-listing-row ~ nav.pagination {
+    display: flex !important;
+    justify-content: flex-end !important;
+    margin-top: 2rem !important;
+}
 
 /* Style the cloned pagination inside right controls */
 .raven-right-controls nav.pagination.raven-inline-pagination,
@@ -420,7 +451,7 @@ nav.pagination.raven-inline-pagination {
     background: transparent;
 }
 
-/* Bottom pagination - HIDDEN (only show top pagination) */
+/* Bottom pagination - SHOW and style nicely */
 .cms-element-product-listing .product-listing + nav.pagination,
 .product-listing-wrapper nav.pagination:last-of-type,
 .listing-pagination-bottom,
@@ -430,7 +461,43 @@ nav.pagination-nav.listing-pagination-bottom,
 nav[aria-label="Pagination"].listing-pagination-bottom,
 .cms-element-product-listing-wrapper > nav.pagination:last-child,
 .product-listing-wrapper > nav.pagination:last-child {
-    display: none !important;
+    display: flex !important;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+
+/* Style bottom pagination items */
+.cms-element-product-listing nav.pagination .page-item .page-link,
+.product-listing + nav.pagination .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+}
+
+.cms-element-product-listing nav.pagination .page-link:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+/* Active page - gold pill */
+.cms-element-product-listing nav.pagination .page-item.active .page-link,
+.cms-element-product-listing nav.pagination li:has(a[aria-current="page"]) a {
+    background: #D4A847 !important;
+    color: #111827 !important;
+    font-weight: 600;
+    border-radius: 8px !important;
 }
 
 /* Mobile responsive */
@@ -672,91 +739,60 @@ nav[aria-label="Pagination"].listing-pagination-bottom,
 
 <script>
 (function() {
-    // Move pagination to row below filter bar
-    function movePagination() {
-        var paginationRow = document.getElementById('raven-pagination-row');
+    // ==============================================
+    // HIDE TOP PAGINATION - KEEP ONLY BOTTOM
+    // ==============================================
+    function hideTopPagination() {
+        // Find all pagination elements
+        var allPaginations = document.querySelectorAll('nav.pagination, .pagination-nav, nav[aria-label="pagination"], nav[aria-label="Pagination"]');
 
-        // Check if we already moved pagination
-        if (paginationRow && paginationRow.querySelector('.raven-inline-pagination')) {
-            console.log('Pagination already moved');
-            return;
-        }
+        if (allPaginations.length <= 1) return; // Only one pagination, nothing to hide
 
-        // Find any pagination nav element on the page
-        var pagination = document.querySelector('nav.pagination');
-        if (!pagination) {
-            pagination = document.querySelector('[aria-label*="Pagination"]');
-        }
-        if (!pagination) {
-            pagination = document.querySelector('.pagination-nav');
-        }
+        // Find the product grid/listing
+        var productGrid = document.querySelector('.cms-listing-row, .product-listing, .cms-element-product-listing .row > .col');
+        if (!productGrid) return;
 
-        console.log('Found pagination:', pagination);
-        console.log('Pagination row:', paginationRow);
+        var productGridTop = productGrid.getBoundingClientRect().top + window.scrollY;
 
-        if (pagination && paginationRow) {
-            // Clone the pagination
-            var paginationClone = pagination.cloneNode(true);
-            paginationClone.classList.add('raven-inline-pagination');
-            paginationClone.style.display = 'flex';
+        // Hide any pagination that appears BEFORE the product grid
+        allPaginations.forEach(function(pag) {
+            var pagTop = pag.getBoundingClientRect().top + window.scrollY;
 
-            // Insert into pagination row (below filter bar)
-            paginationRow.appendChild(paginationClone);
-            console.log('Pagination moved to row below filter bar!');
-
-            // IMMEDIATELY hide the original pagination we cloned from
-            pagination.style.display = 'none';
-            pagination.style.visibility = 'hidden';
-            pagination.style.position = 'absolute';
-            pagination.style.pointerEvents = 'none';
-            console.log('Original pagination hidden');
-
-            // Also hide ALL other non-inline paginations between filter bar and products
-            document.querySelectorAll('nav.pagination:not(.raven-inline-pagination)').forEach(function(p) {
-                var parent = p.parentElement;
-                var isBottomPagination = false;
-
-                if (parent) {
-                    var prevSibling = p.previousElementSibling;
-                    if (prevSibling && (prevSibling.classList.contains('product-listing') ||
-                        prevSibling.classList.contains('cms-listing-row') ||
-                        prevSibling.querySelector('.product-listing'))) {
-                        isBottomPagination = true;
-                    }
-                }
-
-                if (!isBottomPagination) {
-                    p.style.display = 'none';
-                    p.style.visibility = 'hidden';
-                    console.log('Hidden non-inline pagination');
-                }
-            });
-        } else {
-            console.log('Could not move pagination - missing elements');
-        }
+            // If pagination is above the product grid, hide it
+            if (pagTop < productGridTop) {
+                pag.style.display = 'none';
+                pag.style.visibility = 'hidden';
+                pag.classList.add('raven-hidden-pagination');
+            } else {
+                // Show bottom pagination
+                pag.style.display = 'flex';
+                pag.style.visibility = 'visible';
+                pag.classList.remove('raven-hidden-pagination');
+            }
+        });
     }
 
-    // Run multiple times with increasing delays to catch dynamically loaded content
-    function initPagination() {
-        movePagination();
-        setTimeout(movePagination, 300);
-        setTimeout(movePagination, 600);
-        setTimeout(movePagination, 1000);
+    // Alternative: Hide first pagination, show last
+    function hideFirstPaginationShowLast() {
+        var wrapper = document.querySelector('.cms-element-product-listing-wrapper, .cms-element-product-listing');
+        if (!wrapper) return;
+
+        var paginations = wrapper.querySelectorAll('nav.pagination, nav[aria-label="pagination"], nav[aria-label="Pagination"]');
+
+        paginations.forEach(function(pag, index) {
+            if (index < paginations.length - 1) {
+                // Hide all but the last one
+                pag.style.display = 'none !important';
+                pag.style.setProperty('display', 'none', 'important');
+            } else {
+                // Show only the last one
+                pag.style.setProperty('display', 'flex', 'important');
+                pag.style.justifyContent = 'flex-end';
+            }
+        });
     }
 
-    // Run on DOM ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initPagination);
-    } else {
-        initPagination();
-    }
-
-    // Also try after window load
-    window.addEventListener('load', function() {
-        setTimeout(movePagination, 200);
-    });
-
-    // Fix bottom pagination alignment - run multiple times to catch dynamic content
+    // Fix bottom pagination alignment
     function fixBottomPagination() {
         var bottomPag = document.querySelector('.listing-pagination-bottom');
         if (bottomPag) {
@@ -771,12 +807,20 @@ nav[aria-label="Pagination"].listing-pagination-bottom,
         }
     }
 
+    // Run all fixes
+    function runAllFixes() {
+        hideTopPagination();
+        hideFirstPaginationShowLast();
+        fixBottomPagination();
+    }
+
     // Run on DOM ready, load, and multiple delays
-    document.addEventListener('DOMContentLoaded', fixBottomPagination);
-    window.addEventListener('load', fixBottomPagination);
-    setTimeout(fixBottomPagination, 500);
-    setTimeout(fixBottomPagination, 1000);
-    setTimeout(fixBottomPagination, 2000);
+    document.addEventListener('DOMContentLoaded', runAllFixes);
+    window.addEventListener('load', runAllFixes);
+    setTimeout(runAllFixes, 100);
+    setTimeout(runAllFixes, 500);
+    setTimeout(runAllFixes, 1000);
+    setTimeout(runAllFixes, 2000);
 
     // =========================================
     // DYNAMIC FILTER FUNCTIONALITY
