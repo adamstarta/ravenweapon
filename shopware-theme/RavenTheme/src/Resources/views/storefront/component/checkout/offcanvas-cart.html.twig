@@ -628,7 +628,11 @@
                             <a href="{{ seoUrl('frontend.detail.page', {'productId': lineItem.referencedId}) }}" class="raven-item-name">
                                 {{ lineItem.label }}
                             </a>
-                            <span class="raven-item-color"></span>
+                            {% if lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
+                                <span class="raven-item-color">Farbe: {{ lineItem.payload.selectedColor }}</span>
+                            {% else %}
+                                <span class="raven-item-color"></span>
+                            {% endif %}
                             <div class="raven-item-price">
                                 CHF {{ lineItem.price.unitPrice|number_format(2, '.', "'") }}
                             </div>

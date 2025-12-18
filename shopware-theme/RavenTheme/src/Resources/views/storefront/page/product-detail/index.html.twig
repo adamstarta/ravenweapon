@@ -2,71 +2,52 @@
 
 {% block base_main_inner %}
 <div class="raven-product-detail container py-5 md:py-8">
-    {# Breadcrumb - Extract category hierarchy from URL path #}
-    {# URL format: /ParentCategory/SubCategory/product-slug #}
-    {% set urlPath = app.request.pathInfo|default('') %}
-    {% set pathParts = urlPath|trim('/')|split('/') %}
-    {% set parentSlug = pathParts|length >= 1 ? pathParts[0] : null %}
-    {% set subCategorySlug = pathParts|length >= 2 ? pathParts[1] : null %}
+    {# Visible DEBUG for troubleshooting #}
+    <div style="background:#fef3c7;padding:10px;margin-bottom:10px;font-size:12px;border:1px solid #f59e0b;border-radius:4px;">
+        <strong>DEBUG:</strong>
+        breadcrumbCategories={{ page.extensions.breadcrumbCategories is defined ? 'yes' : 'no' }}
+        count={{ page.extensions.breadcrumbCategories|length|default(0) }} |
+        seoCategory={{ page.product.seoCategory ? page.product.seoCategory.translated.name : 'NULL' }} |
+        seoCategoryLevel={{ page.product.seoCategory ? page.product.seoCategory.level : 'N/A' }} |
+        breadcrumb={{ page.product.seoCategory and page.product.seoCategory.breadcrumb ? page.product.seoCategory.breadcrumb|join(' > ') : 'NULL' }}
+    </div>
 
-    {# Parent category slug to display name mapping #}
-    {% set parentCategoryNames = {
-        'Ausruestung': 'Ausrüstung',
-        'Zubehoer': 'Zubehör',
-        'Zielhilfen-Optik-Zubehoer': 'Zielhilfen, Optik & Zubehör',
-        'Waffenzubehoer': 'Waffenzubehör',
-        'Raven-Weapons': 'Raven Weapons',
-        'Munition': 'Munition'
-    } %}
-
-    {# Subcategory slug to display name mapping #}
-    {% set subCategoryNames = {
-        'Zielfernrohre': 'Zielfernrohre',
-        'Rotpunktvisiere': 'Rotpunktvisiere',
-        'Spektive': 'Spektive',
-        'Fernglaeser': 'Ferngläser',
-        'Magazine': 'Magazine',
-        'Zweibeine': 'Zweibeine',
-        'Schienen-Zubehoer': 'Schienen-Zubehör',
-        'Zielfernrohrmontagen': 'Zielfernrohrmontagen',
-        'Griffe-Handschutz': 'Griffe & Handschutz',
-        'Muendungsaufsaetze': 'Mündungsaufsätze',
-        'taschen-und-rucksaecke': 'Taschen & Rucksäcke',
-        'Taschen-Rucksaecke': 'Taschen & Rucksäcke',
-        'guertel': 'Gürtel',
-        'polizeiausruestung': 'Polizeiausrüstung',
-        'medizinische-ausruestung': 'Medizinische Ausrüstung',
-        'k9-ausruestung': 'K9 Ausrüstung',
-        'scharfschuetzen-ausruestung': 'Scharfschützen-Ausrüstung',
-        'ballistischer-schutz': 'Ballistischer Schutz',
-        'Halter-Taschen': 'Halter & Taschen',
-        'Westen-Chest-Rigs': 'Westen & Chest Rigs',
-        'taktische-ausruestung': 'Taktische Ausrüstung',
-        'taktische-bekleidung': 'Taktische Bekleidung',
-        'Tragegurte-Holster': 'Tragegurte & Holster',
-        'verdeckte-ausruestung': 'Verdeckte Ausrüstung',
-        'verschiedenes': 'Verschiedenes',
-        'verwaltungsausruestung': 'Verwaltungsausrüstung',
-        'warnschutz': 'Warnschutz',
-        'multicam': 'Multicam',
-        'patches': 'Patches',
-        'source-hydration': 'Source Hydration',
-        'beinpaneele': 'Beinpaneele'
-    } %}
-
-    {% set parentDisplayName = parentCategoryNames[parentSlug]|default(null) %}
-    {% set subCategoryDisplayName = subCategoryNames[subCategorySlug]|default(null) %}
-
-    <!-- DEBUG: pathInfo=[{{ urlPath }}] parts=[{{ pathParts|join(',') }}] parent=[{{ parentSlug }}] sub=[{{ subCategorySlug }}] parentName=[{{ parentDisplayName }}] subName=[{{ subCategoryDisplayName }}] -->
+    {# Breadcrumb - Using Shopware's breadcrumbCategories from ProductDetailSubscriber #}
     <nav class="breadcrumb-nav text-sm text-gray-500 mb-5" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
-        {% if parentDisplayName %}
-            <span class="mx-2 text-gray-400">/</span>
-            <a href="/{{ parentSlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ parentDisplayName }}</a>
-        {% endif %}
-        {% if subCategoryDisplayName %}
-            <span class="mx-2 text-gray-400">/</span>
-            <a href="/{{ parentSlug }}/{{ subCategorySlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ subCategoryDisplayName }}</a>
+        {% if page.extensions.breadcrumbCategories is defined and page.extensions.breadcrumbCategories|length > 0 %}
+            {% for category in page.extensions.breadcrumbCategories %}
+                {# Skip root category (level 1) #}
+                {% if category.level >= 2 %}
+                    {% set categoryUrl = null %}
+                    {# Get canonical SEO URL for this category #}
+                    {% if category.seoUrls is defined and category.seoUrls|length > 0 %}
+                        {% for seoUrl in category.seoUrls %}
+                            {% if seoUrl.isCanonical %}
+                                {% set categoryUrl = '/' ~ seoUrl.seoPathInfo %}
+                            {% endif %}
+                        {% endfor %}
+                        {# Fallback to first SEO URL if no canonical found #}
+                        {% if categoryUrl is null %}
+                            {% set categoryUrl = '/' ~ category.seoUrls|first.seoPathInfo %}
+                        {% endif %}
+                    {% endif %}
+                    <span class="mx-2 text-gray-400">/</span>
+                    {% if categoryUrl %}
+                        <a href="{{ categoryUrl }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ category.translated.name }}</a>
+                    {% else %}
+                        <span>{{ category.translated.name }}</span>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {# Fallback: Use product's seoCategory seoBreadcrumb #}
+            {% if page.product.seoCategory and page.product.seoCategory.breadcrumb %}
+                {% for breadcrumbName in page.product.seoCategory.breadcrumb|slice(1) %}
+                    <span class="mx-2 text-gray-400">/</span>
+                    <span>{{ breadcrumbName }}</span>
+                {% endfor %}
+            {% endif %}
         {% endif %}
         <span class="mx-2 text-gray-400">/</span>
         <span class="text-gray-700 font-medium">{{ page.product.translated.name|slice(0, 50) }}{% if page.product.translated.name|length > 50 %}...{% endif %}</span>

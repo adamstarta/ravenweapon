@@ -81,19 +81,8 @@
                       class="raven-address-form"
                       data-form-csrf-handler="true">
 
-                    {# Salutation #}
-                    <div class="form-row">
-                        <div class="form-group full-width">
-                            <label class="form-label">Anrede</label>
-                            <select name="address[salutationId]" class="form-select">
-                                {% for salutation in page.salutations %}
-                                    <option value="{{ salutation.id }}" {{ page.address.salutationId == salutation.id ? 'selected' : '' }}>
-                                        {{ salutation.translated.displayName }}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
+                    {# Hidden salutation - use existing or first available #}
+                    <input type="hidden" name="address[salutationId]" value="{{ page.address.salutationId ?: page.salutations|first.id }}">
 
                     {# Name Fields #}
                     <div class="form-row two-columns">
@@ -112,24 +101,6 @@
                                    value="{{ page.address.lastName }}"
                                    class="form-input"
                                    required>
-                        </div>
-                    </div>
-
-                    {# Company Fields #}
-                    <div class="form-row two-columns">
-                        <div class="form-group">
-                            <label class="form-label">Firma</label>
-                            <input type="text"
-                                   name="address[company]"
-                                   value="{{ page.address.company }}"
-                                   class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Abteilung</label>
-                            <input type="text"
-                                   name="address[department]"
-                                   value="{{ page.address.department }}"
-                                   class="form-input">
                         </div>
                     </div>
 

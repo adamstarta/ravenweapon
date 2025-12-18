@@ -502,6 +502,43 @@ node snigel-b2b-final.js
 
 Gold gradient text "RAVEN WEAPON" with tagline "PRÄZISION TRIFFT LEIDENSCHAFT"
 
+### Logo on Login/Register Pages (IMPORTANT!)
+
+The `raven-logo.png` file is A4-sized (4000x4000px) with the actual logo centered in the image but surrounded by significant whitespace.
+
+**⚠️ DO NOT simply set width/height on the image** - the logo will appear tiny because most of the image is whitespace.
+
+**✅ CORRECT APPROACH: CSS Overflow Cropping**
+
+Use a container with `overflow: hidden` to show only the logo content:
+
+```html
+<div style="height: 60px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <a href="{{ path('frontend.home.page') }}" style="display: flex; align-items: center; justify-content: center;">
+        <img src="{{ asset('bundles/raventheme/assets/raven-logo.png') }}"
+             alt="Raven Weapon"
+             style="height: 200px; width: auto; object-fit: contain; display: block; margin: 0 auto;">
+    </a>
+</div>
+```
+
+**How it works:**
+| Element | Style | Purpose |
+|---------|-------|---------|
+| Container | `height: 60px; overflow: hidden` | Creates a "window" that shows only 60px height |
+| Container | `display: flex; align-items: center; justify-content: center` | Centers the content |
+| Image | `height: 200px` | Makes image large so actual logo content fills the visible window |
+| Image | `margin: 0 auto; display: block` | Additional centering |
+
+**Logo position:** Inside the auth card, above the heading ("Willkommen zurück" / "Konto erstellen")
+
+**Files:**
+| File | Path |
+|------|------|
+| PNG Logo (source) | `assets/raven-logo.png` |
+| Login template | `shopware-theme/.../views/storefront/page/account/login/index.html.twig` |
+| Register template | `shopware-theme/.../views/storefront/page/account/register/index.html.twig` |
+
 ---
 
 ## Useful Commands

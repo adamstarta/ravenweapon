@@ -1,0 +1,1242 @@
+{
+  "matched": [],
+  "priceMismatch": [],
+  "missingInShopware": [
+    {
+      "name": "Belt closure pack  (5) -11",
+      "slug": "belt-closure-pack-5-11",
+      "b2bEur": 30.22,
+      "expectedChf": 48.74
+    },
+    {
+      "name": "Featherweight stretcher -09",
+      "slug": "featherweight-stretcher-09",
+      "b2bEur": 122.99,
+      "expectedChf": 198.37
+    },
+    {
+      "name": "Foldable drinking cup",
+      "slug": "foldable-drinking-cup-13",
+      "b2bEur": 4.34,
+      "expectedChf": 7
+    },
+    {
+      "name": "Plastic bag, ziplock A6 -09, 10 pack",
+      "slug": "plastic-bag-ziplock-a6-09-10-pack",
+      "b2bEur": 3.52,
+      "expectedChf": 5.68
+    },
+    {
+      "name": "Sleeping bag cover with hood 2.0",
+      "slug": "sleeping-bag-cover-with-hood-2-0",
+      "b2bEur": 120.43,
+      "expectedChf": 194.24
+    },
+    {
+      "name": "Light field blanket 1.0",
+      "slug": "light-field-blanket-1-0",
+      "b2bEur": 40.28,
+      "expectedChf": 64.97
+    },
+    {
+      "name": "Multi-tarp 1.0",
+      "slug": "multi-tarp-1-0",
+      "b2bEur": 160.39,
+      "expectedChf": 258.69
+    },
+    {
+      "name": "Hypothermal bag 1.1",
+      "slug": "hypothermal-bag-1-1",
+      "b2bEur": 335.07,
+      "expectedChf": 540.44
+    },
+    {
+      "name": "A3 Commander’s aid 1.0",
+      "slug": "a3-commanders-aid-1-0",
+      "b2bEur": 30.07,
+      "expectedChf": 48.5
+    },
+    {
+      "name": "A5 Field binder",
+      "slug": "a5-field-binder-07",
+      "b2bEur": 51.51,
+      "expectedChf": 83.08
+    },
+    {
+      "name": "Police Notebook cover-10",
+      "slug": "police-notebook-cover-10",
+      "b2bEur": 16.29,
+      "expectedChf": 26.27
+    },
+    {
+      "name": "Medium Notebook cover",
+      "slug": "medium-notebook-cover-07",
+      "b2bEur": 16.29,
+      "expectedChf": 26.27
+    },
+    {
+      "name": "Small Notebook cover",
+      "slug": "small-notebook-cover-07",
+      "b2bEur": 15.26,
+      "expectedChf": 24.61
+    },
+    {
+      "name": "Memo board -14",
+      "slug": "memo-board-14",
+      "b2bEur": 22.92,
+      "expectedChf": 36.97
+    },
+    {
+      "name": "Badge holder -16",
+      "slug": "badge-holder-16",
+      "b2bEur": 17.99,
+      "expectedChf": 29.02
+    },
+    {
+      "name": "Wallet",
+      "slug": "wallet-10",
+      "b2bEur": 18.84,
+      "expectedChf": 30.39
+    },
+    {
+      "name": "Mini wallet",
+      "slug": "mini-wallet-15",
+      "b2bEur": 14.15,
+      "expectedChf": 22.82
+    },
+    {
+      "name": "Spotting Scope cover",
+      "slug": "spotting-scope-cover",
+      "b2bEur": 173.58,
+      "expectedChf": 279.97
+    },
+    {
+      "name": "XL Snipers support bag -03",
+      "slug": "xl-snipers-support-bag-03",
+      "b2bEur": 200.84,
+      "expectedChf": 323.94
+    },
+    {
+      "name": "Low profile 3L hydration bladder",
+      "slug": "source-low-profile-3l-hydration-bladder",
+      "b2bEur": 58.6,
+      "expectedChf": 94.52
+    },
+    {
+      "name": "1L Kangaroo hydration bladder",
+      "slug": "1l-kangaroo-hydration-bladder",
+      "b2bEur": 29.05,
+      "expectedChf": 46.85
+    },
+    {
+      "name": "2,5L hydration cover -16",
+      "slug": "25l-hydration-cover-16",
+      "b2bEur": 67.09,
+      "expectedChf": 108.21
+    },
+    {
+      "name": "Restraint sling -06",
+      "slug": "restraint-sling-06",
+      "b2bEur": 12.71,
+      "expectedChf": 20.5
+    },
+    {
+      "name": "Ribs Chest rig 1.0",
+      "slug": "carry-cord-10",
+      "b2bEur": 218.36,
+      "expectedChf": 352.19
+    },
+    {
+      "name": "Pancake holster -16",
+      "slug": "pancake-holster-16",
+      "b2bEur": 38.75,
+      "expectedChf": 62.5
+    },
+    {
+      "name": "Crotch pistol holster 2.0",
+      "slug": "crotch-pistol-holster-11",
+      "b2bEur": 43.34,
+      "expectedChf": 69.9
+    },
+    {
+      "name": "Shotgun holder 1.0",
+      "slug": "shotgun-holder-1-0",
+      "b2bEur": 105.59,
+      "expectedChf": 170.31
+    },
+    {
+      "name": "Weapon attachment, side -00",
+      "slug": "weapon-attachment-side-00",
+      "b2bEur": 21.04,
+      "expectedChf": 33.94
+    },
+    {
+      "name": "Back holder 2.0",
+      "slug": "weapon-attachment-back-02",
+      "b2bEur": 114.31,
+      "expectedChf": 184.37
+    },
+    {
+      "name": "Machine gun sling  -16",
+      "slug": "machine-gun-sling-16",
+      "b2bEur": 40.55,
+      "expectedChf": 65.4
+    },
+    {
+      "name": "Weapon sling system 1.0",
+      "slug": "weapon-sling-system-1-0",
+      "b2bEur": 68.87,
+      "expectedChf": 111.08
+    },
+    {
+      "name": "Rifle sling w attachment -09",
+      "slug": "rifle-sling-w-attachment-09",
+      "b2bEur": 34.66,
+      "expectedChf": 55.9
+    },
+    {
+      "name": "Weapon hook -10",
+      "slug": "weapon-hook-10",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Leg strap -11",
+      "slug": "leg-strap-11",
+      "b2bEur": 10.67,
+      "expectedChf": 17.21
+    },
+    {
+      "name": "Sniper patch, Small -12",
+      "slug": "sniper-patch-small-12",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Förhandlar patch -12",
+      "slug": "forhandlar-patch-12",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Tekniker patch, small -12",
+      "slug": "tekniker-patch-small-12",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Instructor patch, Small -12",
+      "slug": "instructor-patch-small-12",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Small instruktors patch -11",
+      "slug": "litet-instrukt%c2%9arsm%c2%8arke-11",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Stort Instruktörsmärke -11",
+      "slug": "stort-instruktorsmarke-11",
+      "b2bEur": 5.05,
+      "expectedChf": 8.15
+    },
+    {
+      "name": "Police-Swe patch -12",
+      "slug": "police-swe-patch-12",
+      "b2bEur": 5.05,
+      "expectedChf": 8.15
+    },
+    {
+      "name": "Polis patch, Large -11",
+      "slug": "polis-patch-large-11",
+      "b2bEur": 7.61,
+      "expectedChf": 12.27
+    },
+    {
+      "name": "Polis patch, Small -11",
+      "slug": "polis-patch-small-11",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Medic patch, small -16",
+      "slug": "medic-patch-small-16",
+      "b2bEur": 3.01,
+      "expectedChf": 4.85
+    },
+    {
+      "name": "Medic patch w Velcro",
+      "slug": "medic-patch-w-velcro",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Cross patch, Small -12",
+      "slug": "cross-patch-small-12",
+      "b2bEur": 2.3,
+      "expectedChf": 3.71
+    },
+    {
+      "name": "Fin patch, Small -12",
+      "slug": "fin-patch-small-12",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Blue and yellow patch -16",
+      "slug": "fin-patch-small-w-velcro-12",
+      "b2bEur": 3.52,
+      "expectedChf": 5.68
+    },
+    {
+      "name": "Swedish flag -16",
+      "slug": "swedish-flag-16",
+      "b2bEur": 3.98,
+      "expectedChf": 6.42
+    },
+    {
+      "name": "Swe patch, Small -12",
+      "slug": "swe-patch-small-12",
+      "b2bEur": 3.98,
+      "expectedChf": 6.42
+    },
+    {
+      "name": "Dog patch -12",
+      "slug": "dog-patch-12",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "K9 patch, Small -12",
+      "slug": "k9-patch-small-12",
+      "b2bEur": 2.45,
+      "expectedChf": 3.95
+    },
+    {
+      "name": "HUNDFÖRARE, Dog handler patch, small",
+      "slug": "litet-hundforarmarke-11",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "Small blank patch-13",
+      "slug": "small-blank-patch-13",
+      "b2bEur": 4.03,
+      "expectedChf": 6.5
+    },
+    {
+      "name": "SNIGEL patch w Velcro",
+      "slug": "snigel-patch-w-velcro",
+      "b2bEur": 3.98,
+      "expectedChf": 6.42
+    },
+    {
+      "name": "Admin case",
+      "slug": "admin-case-14",
+      "b2bEur": 65.3,
+      "expectedChf": 105.32
+    },
+    {
+      "name": "Gas mask bag -11",
+      "slug": "gas-mask-bag-11",
+      "b2bEur": 52.03,
+      "expectedChf": 83.92
+    },
+    {
+      "name": "Medium Schwung bag 1.1",
+      "slug": "medium-schwung-bag-17",
+      "b2bEur": 196.5,
+      "expectedChf": 316.94
+    },
+    {
+      "name": "Rope bag -05",
+      "slug": "rope-bag-05",
+      "b2bEur": 28.59,
+      "expectedChf": 46.11
+    },
+    {
+      "name": "Carrier pouch -16",
+      "slug": "carrier-pouch-16",
+      "b2bEur": 62.74,
+      "expectedChf": 101.19
+    },
+    {
+      "name": "3L Multipurpose bag -15",
+      "slug": "3l-multipurpose-bag-15",
+      "b2bEur": 85.72,
+      "expectedChf": 138.26
+    },
+    {
+      "name": "6L Funny pack",
+      "slug": "6l-funny-pack-18",
+      "b2bEur": 58.15,
+      "expectedChf": 93.79
+    },
+    {
+      "name": "10L Multi-purpose bag",
+      "slug": "10l-multi-purpose-bag-15",
+      "b2bEur": 146.47,
+      "expectedChf": 236.24
+    },
+    {
+      "name": "30×61 cm Weapon bag -13",
+      "slug": "30x61-cm-weapon-bag-13",
+      "b2bEur": 309.55,
+      "expectedChf": 499.27
+    },
+    {
+      "name": "34×64 cm dual Weapon bag -11",
+      "slug": "34x64-cm-dual-weapon-bag-11",
+      "b2bEur": 48.95,
+      "expectedChf": 78.95
+    },
+    {
+      "name": "34×100 cm dual Weapon bag -11",
+      "slug": "34x100-cm-dual-weapon-bag-11",
+      "b2bEur": 335.7,
+      "expectedChf": 541.45
+    },
+    {
+      "name": "Organized bag -11",
+      "slug": "organized-bag-11",
+      "b2bEur": 211.31,
+      "expectedChf": 340.82
+    },
+    {
+      "name": "55L Duffel bag -17",
+      "slug": "55l-duffel-bag-17",
+      "b2bEur": 90.82,
+      "expectedChf": 146.48
+    },
+    {
+      "name": "90L Duffel bag 1.0",
+      "slug": "90l-duffel-bag-1-0",
+      "b2bEur": 122.48,
+      "expectedChf": 197.55
+    },
+    {
+      "name": "230 Roller bag -15",
+      "slug": "230-roller-bag-15",
+      "b2bEur": 494.04,
+      "expectedChf": 796.84
+    },
+    {
+      "name": "15L Princess backpack  -17",
+      "slug": "15l-princess-backpack-17",
+      "b2bEur": 61.72,
+      "expectedChf": 99.55
+    },
+    {
+      "name": "30-40L Combat backpack 1.0",
+      "slug": "30-40l-combat-backpack-1-0",
+      "b2bEur": 199.57,
+      "expectedChf": 321.89
+    },
+    {
+      "name": "15-20L All pack",
+      "slug": "10-20l-all-pack-16-17",
+      "b2bEur": 107.11,
+      "expectedChf": 172.76
+    },
+    {
+      "name": "30L Waterproof mission backpack 1.0",
+      "slug": "30l-waterproof-mission-backpack-1-0",
+      "b2bEur": 97.48,
+      "expectedChf": 157.23
+    },
+    {
+      "name": "30L Mission backpack 1.1",
+      "slug": "30l-mission-backpack-16",
+      "b2bEur": 135.24,
+      "expectedChf": 218.13
+    },
+    {
+      "name": "30L Specialist backpack",
+      "slug": "25-30l-specialist-backpack-14",
+      "b2bEur": 160.76,
+      "expectedChf": 259.29
+    },
+    {
+      "name": "30L insert wall -10",
+      "slug": "25l-insert-wall-10",
+      "b2bEur": 61.97,
+      "expectedChf": 99.95
+    },
+    {
+      "name": "Multi insert panel 1.0",
+      "slug": "multi-insert-panel-1-0",
+      "b2bEur": 28.54,
+      "expectedChf": 46.03
+    },
+    {
+      "name": "Small Insert pouches 2.0",
+      "slug": "small-insert-pouches-10",
+      "b2bEur": 39.77,
+      "expectedChf": 64.15
+    },
+    {
+      "name": "30L protective insert 1.1",
+      "slug": "25l-protective-insert-bag-15",
+      "b2bEur": 227.55,
+      "expectedChf": 367.02
+    },
+    {
+      "name": "Elastic insert stripes (6) -10",
+      "slug": "elastic-insert-stripes-6-10",
+      "b2bEur": 20.37,
+      "expectedChf": 32.85
+    },
+    {
+      "name": "40L Specialist backpack",
+      "slug": "40l-specialist-backpack-14",
+      "b2bEur": 209.27,
+      "expectedChf": 337.53
+    },
+    {
+      "name": "Large insert pouch 1.0",
+      "slug": "large-insert-pouch-1-0",
+      "b2bEur": 34.28,
+      "expectedChf": 55.29
+    },
+    {
+      "name": "Medium insert pouches",
+      "slug": "medium-insert-pouches-10",
+      "b2bEur": 43.85,
+      "expectedChf": 70.73
+    },
+    {
+      "name": "40L Velcro and webbing  panel -10",
+      "slug": "40l-velcro-and-webbing-panel-10",
+      "b2bEur": 91.12,
+      "expectedChf": 146.97
+    },
+    {
+      "name": "40L insert wall",
+      "slug": "40l-insert-wall-10",
+      "b2bEur": 47.43,
+      "expectedChf": 76.5
+    },
+    {
+      "name": "40L protective insert",
+      "slug": "40l-protective-insert-12",
+      "b2bEur": 298.75,
+      "expectedChf": 481.85
+    },
+    {
+      "name": "50L Mission backpack 2.0",
+      "slug": "50l-mission-backpack-2-0",
+      "b2bEur": 244.49,
+      "expectedChf": 394.34
+    },
+    {
+      "name": "Side pockets pair 2.0",
+      "slug": "side-pockets-pair-2-0",
+      "b2bEur": 72.44,
+      "expectedChf": 116.84
+    },
+    {
+      "name": "100L Backpack 2.0",
+      "slug": "100l-backpack-2-0",
+      "b2bEur": 430.84,
+      "expectedChf": 694.9
+    },
+    {
+      "name": "Backpack belt-12",
+      "slug": "backpack-belt-12",
+      "b2bEur": 132.12,
+      "expectedChf": 213.1
+    },
+    {
+      "name": "Dry bag set 1.0",
+      "slug": "120l-dry-bag-12",
+      "b2bEur": 52.02,
+      "expectedChf": 83.9
+    },
+    {
+      "name": "Covert backpack -21",
+      "slug": "covert-backpack-12",
+      "b2bEur": 636.13,
+      "expectedChf": 1026.02
+    },
+    {
+      "name": "Binder mechanism",
+      "slug": "binder-mechanism",
+      "b2bEur": 6.58,
+      "expectedChf": 10.61
+    },
+    {
+      "name": "Herma 25 mm buckle",
+      "slug": "herma-25-mm-buckle-pair",
+      "b2bEur": 1.41,
+      "expectedChf": 2.27
+    },
+    {
+      "name": "Herma 25 mm repair buckle",
+      "slug": "malefemale-rep-buckle-stealth",
+      "b2bEur": 0.92,
+      "expectedChf": 1.48
+    },
+    {
+      "name": "Shoulder pad set -15",
+      "slug": "shoulder-pad-set-15",
+      "b2bEur": 27.35,
+      "expectedChf": 44.11
+    },
+    {
+      "name": "Herma I-bar set 1.0",
+      "slug": "herma-i-bar-set-1-0",
+      "b2bEur": 5.56,
+      "expectedChf": 8.97
+    },
+    {
+      "name": "I-Bar set -10",
+      "slug": "i-bar-set-10",
+      "b2bEur": 5.56,
+      "expectedChf": 8.97
+    },
+    {
+      "name": "Herma T-bar set 1.0",
+      "slug": "herma-t-bar-set-1-0",
+      "b2bEur": 6.08,
+      "expectedChf": 9.81
+    },
+    {
+      "name": "T-bar set -12",
+      "slug": "t-bar-set-12",
+      "b2bEur": 8.42,
+      "expectedChf": 13.58
+    },
+    {
+      "name": "Duffel Strap-12",
+      "slug": "duffel-strap-12",
+      "b2bEur": 7.66,
+      "expectedChf": 12.35
+    },
+    {
+      "name": "Name card holder -11",
+      "slug": "name-card-holder-11",
+      "b2bEur": 5.56,
+      "expectedChf": 8.97
+    },
+    {
+      "name": "T-Tape holder 1.0",
+      "slug": "t-tape-holder-1-0",
+      "b2bEur": 7,
+      "expectedChf": 11.29
+    },
+    {
+      "name": "Trauma shears holder 1.0",
+      "slug": "trauma-shears-holder-1-0",
+      "b2bEur": 28.2,
+      "expectedChf": 45.48
+    },
+    {
+      "name": "Large hammer holder -14",
+      "slug": "large-hammer-holder-14",
+      "b2bEur": 57.73,
+      "expectedChf": 93.11
+    },
+    {
+      "name": "Padded pouch -12",
+      "slug": "padded-pouch-12",
+      "b2bEur": 15.78,
+      "expectedChf": 25.45
+    },
+    {
+      "name": "1L Bottle pouch -18",
+      "slug": "1l-bottle-pouch-18",
+      "b2bEur": 25.53,
+      "expectedChf": 41.18
+    },
+    {
+      "name": "8×19 pouch -14",
+      "slug": "8x19-pouch-14",
+      "b2bEur": 29.07,
+      "expectedChf": 46.89
+    },
+    {
+      "name": "Oyster pouch 1.0",
+      "slug": "oyster-pouch-1-0",
+      "b2bEur": 27.51,
+      "expectedChf": 44.37
+    },
+    {
+      "name": "Trauma pouch insert -17",
+      "slug": "trauma-pouch-insert-17",
+      "b2bEur": 21.39,
+      "expectedChf": 34.5
+    },
+    {
+      "name": "Trauma pouch -17",
+      "slug": "trauma-pouch-17",
+      "b2bEur": 23.43,
+      "expectedChf": 37.79
+    },
+    {
+      "name": "Medium Admin pouch -18",
+      "slug": "medium-admin-pouch-18",
+      "b2bEur": 39.26,
+      "expectedChf": 63.32
+    },
+    {
+      "name": "Small Admin pouch",
+      "slug": "small-admin-pouch-12",
+      "b2bEur": 23.43,
+      "expectedChf": 37.79
+    },
+    {
+      "name": "Virve radio pouch -10",
+      "slug": "virve-radio-pouch-10",
+      "b2bEur": 24.97,
+      "expectedChf": 40.27
+    },
+    {
+      "name": "VIRVE pouch, Basic-11",
+      "slug": "virve-pouch-basic-11",
+      "b2bEur": 73.45,
+      "expectedChf": 118.47
+    },
+    {
+      "name": "Radio pouch -15",
+      "slug": "radio-pouch-06-15",
+      "b2bEur": 19.35,
+      "expectedChf": 31.21
+    },
+    {
+      "name": "Canister pouch -15",
+      "slug": "canister-pouch-15",
+      "b2bEur": 48.7,
+      "expectedChf": 78.55
+    },
+    {
+      "name": "Zipped dump bag -10",
+      "slug": "zipped-dump-bag-10",
+      "b2bEur": 35.18,
+      "expectedChf": 56.74
+    },
+    {
+      "name": "Micro dump pouch 2.0",
+      "slug": "ballistic-nijiiia-blanket-15",
+      "b2bEur": 33.13,
+      "expectedChf": 53.44
+    },
+    {
+      "name": "Small dump pouch 2.0",
+      "slug": "small-dump-pouch-2-0",
+      "b2bEur": 30.58,
+      "expectedChf": 49.32
+    },
+    {
+      "name": "MG Ammunition pouch  -09",
+      "slug": "mg-ammunition-pouch-09",
+      "b2bEur": 45.39,
+      "expectedChf": 73.21
+    },
+    {
+      "name": "Cal 50 Magazine pouch -10",
+      "slug": "cal-50-magazine-pouch-10",
+      "expectedChf": null
+    },
+    {
+      "name": "Dual Magazine pouch -18",
+      "slug": "dual-magazine-pouch-15",
+      "b2bEur": 33.64,
+      "expectedChf": 54.26
+    },
+    {
+      "name": "Dual holder insert -12",
+      "slug": "dual-holder-insert-12",
+      "b2bEur": 8.76,
+      "expectedChf": 14.13
+    },
+    {
+      "name": "Speed magazine pouch 2.0",
+      "slug": "speed-magazine-pouch-2-0",
+      "b2bEur": 22.93,
+      "expectedChf": 36.98
+    },
+    {
+      "name": "Elastic pouch 1.0",
+      "slug": "elastic-pouch-1-0",
+      "b2bEur": 19.35,
+      "expectedChf": 31.21
+    },
+    {
+      "name": "SMG Magazine pouch 14",
+      "slug": "smg-magazine-pouch-00-14",
+      "b2bEur": 22.92,
+      "expectedChf": 36.97
+    },
+    {
+      "name": "Grenade pouch -10",
+      "slug": "grenade-pouch-10",
+      "b2bEur": 21.91,
+      "expectedChf": 35.34
+    },
+    {
+      "name": "Covert Telescopic baton wrist holder -08",
+      "slug": "covert-telescopic-baton-wrist-holder-08",
+      "b2bEur": 44.36,
+      "expectedChf": 71.55
+    },
+    {
+      "name": "Double handcuff pouch -11",
+      "slug": "twin-handcuff-pouch-11",
+      "b2bEur": 48.73,
+      "expectedChf": 78.6
+    },
+    {
+      "name": "Handcuff pouch -09",
+      "slug": "handcuff-pouch-09",
+      "b2bEur": 12.33,
+      "expectedChf": 19.89
+    },
+    {
+      "name": "Topless Handcuff pouch 06",
+      "slug": "topless-handcuff-pouch-06",
+      "b2bEur": 13.73,
+      "expectedChf": 22.15
+    },
+    {
+      "name": "GP pouch 3 long",
+      "slug": "gp-pouch-3-long-12",
+      "b2bEur": 14.76,
+      "expectedChf": 23.81
+    },
+    {
+      "name": "GP pouch 3",
+      "slug": "gp-pouch-3",
+      "b2bEur": 12.04,
+      "expectedChf": 19.42
+    },
+    {
+      "name": "GP pouch 2 long",
+      "slug": "gp-pouch-2-long",
+      "b2bEur": 13.73,
+      "expectedChf": 22.15
+    },
+    {
+      "name": "GP pouch 2",
+      "slug": "gp-pouch-2-12",
+      "b2bEur": 13.22,
+      "expectedChf": 21.32
+    },
+    {
+      "name": "Telescopic baton holder -08",
+      "slug": "telescopic-baton-holder-08",
+      "b2bEur": 16.29,
+      "expectedChf": 26.27
+    },
+    {
+      "name": "Large key silencer-05",
+      "slug": "large-key-silencer-05",
+      "b2bEur": 16.29,
+      "expectedChf": 26.27
+    },
+    {
+      "name": "Regular Key silencer -05",
+      "slug": "regular-key-silencer-05",
+      "b2bEur": 14.24,
+      "expectedChf": 22.97
+    },
+    {
+      "name": "Combination glove holder -09",
+      "slug": "combination-glove-holder-09",
+      "b2bEur": 12.71,
+      "expectedChf": 20.5
+    },
+    {
+      "name": "Elastic glove holder -05",
+      "slug": "elastic-glove-holder-05",
+      "b2bEur": 5.56,
+      "expectedChf": 8.97
+    },
+    {
+      "name": "Glove holder -05",
+      "slug": "glove-holder-05",
+      "b2bEur": 6.59,
+      "expectedChf": 10.63
+    },
+    {
+      "name": "Modular Key holder -05",
+      "slug": "modular-key-holder-05",
+      "b2bEur": 8.12,
+      "expectedChf": 13.1
+    },
+    {
+      "name": "Ballistic thigh protection -15",
+      "slug": "ballistic-thigh-protection-15",
+      "b2bEur": 512.42,
+      "expectedChf": 826.48
+    },
+    {
+      "name": "Squeeze buckle closure 1.0",
+      "slug": "squeeze-buckle-closure-1-0",
+      "b2bEur": 57.64,
+      "expectedChf": 92.97
+    },
+    {
+      "name": "Squeeze zipper closure -17",
+      "slug": "squeeze-zipper-closure-17",
+      "b2bEur": 57.64,
+      "expectedChf": 92.97
+    },
+    {
+      "name": "Squeeze quick adjust -17",
+      "slug": "squeeze-quick-adjust-17",
+      "b2bEur": 63.77,
+      "expectedChf": 102.85
+    },
+    {
+      "name": "3 row cummerbund 1.0",
+      "slug": "squeeze-3-row-cummerbund-1-0",
+      "b2bEur": 68.87,
+      "expectedChf": 111.08
+    },
+    {
+      "name": "Elastic cumber band w compartments 1.0",
+      "slug": "elastic-cumber-band-w-compartments-1-0",
+      "b2bEur": 57.64,
+      "expectedChf": 92.97
+    },
+    {
+      "name": "Squeeze side panel pouch set -18",
+      "slug": "squeeze-side-panel-pouch-set-17",
+      "b2bEur": 133.71,
+      "expectedChf": 215.66
+    },
+    {
+      "name": "Squeeze ballistic front and back 1.3 S2",
+      "slug": "squeeze-ballistic-front-and-back-1-3-s2",
+      "b2bEur": 191.4,
+      "expectedChf": 308.71
+    },
+    {
+      "name": "Squeeze vest/plate carrier",
+      "slug": "squeeze-vest-plate-carrier-17",
+      "b2bEur": 216.92,
+      "expectedChf": 349.87
+    },
+    {
+      "name": "Squeeze MOLLE front panel 1.0",
+      "slug": "squeeze-molle-front-panel-1-0",
+      "b2bEur": 35.18,
+      "expectedChf": 56.74
+    },
+    {
+      "name": "Elastic 40 mm T-bar set -12",
+      "slug": "elastic-40-mm-t-bar-set-12",
+      "b2bEur": 14.54,
+      "expectedChf": 23.45
+    },
+    {
+      "name": "Plate carrier, Strap on DF -13",
+      "slug": "plate-carrier-strap-on-df-13",
+      "b2bEur": 333.33,
+      "expectedChf": 537.63
+    },
+    {
+      "name": "Plate carrier, Strap on -14",
+      "slug": "plate-carrier-strap-on-14",
+      "b2bEur": 318.01,
+      "expectedChf": 512.92
+    },
+    {
+      "name": "Equipment vest -16",
+      "slug": "tactical-vest-16",
+      "b2bEur": 119.41,
+      "expectedChf": 192.6
+    },
+    {
+      "name": "Covert equipment vest -12",
+      "slug": "covert-equipment-vest-12",
+      "b2bEur": 163.32,
+      "expectedChf": 263.42
+    },
+    {
+      "name": "Technical equipment vest 2.0",
+      "slug": "technical-equipment-vest-11",
+      "b2bEur": 119.41,
+      "expectedChf": 192.6
+    },
+    {
+      "name": "Covert equipment vest -12 FIN",
+      "slug": "covert-equipment-vest-12-fin",
+      "b2bEur": 127.07,
+      "expectedChf": 204.95
+    },
+    {
+      "name": "Covert surveillance vest -05",
+      "slug": "covert-surveillance-equipment-vest-05",
+      "b2bEur": 129.62,
+      "expectedChf": 209.06
+    },
+    {
+      "name": "Covert stretch vest -16",
+      "slug": "covert-stretch-vest-16",
+      "b2bEur": 73.46,
+      "expectedChf": 118.48
+    },
+    {
+      "name": "Dual side covert equipment harness -11",
+      "slug": "dual-side-covert-equipment-harness-11",
+      "b2bEur": 67.85,
+      "expectedChf": 109.44
+    },
+    {
+      "name": "Single side covert equipment harness -11",
+      "slug": "single-side-covert-equipment-harness-11",
+      "b2bEur": 44.88,
+      "expectedChf": 72.39
+    },
+    {
+      "name": "Small leg panel -12",
+      "slug": "small-leg-panel-12",
+      "b2bEur": 32.11,
+      "expectedChf": 51.79
+    },
+    {
+      "name": "50 mm buckle adapter set",
+      "slug": "50-mm-buckle-adapter-set",
+      "b2bEur": 6.27,
+      "expectedChf": 10.11
+    },
+    {
+      "name": "Leg attachment light -10",
+      "slug": "leg-attachment-light-10",
+      "b2bEur": 32.45,
+      "expectedChf": 52.34
+    },
+    {
+      "name": "Belt attachment -11",
+      "slug": "belt-attachment-11",
+      "b2bEur": 8.12,
+      "expectedChf": 13.1
+    },
+    {
+      "name": "Covert elastic equipment belt 2.0",
+      "slug": "covert-elastic-equipment-belt-2-0",
+      "b2bEur": 76.02,
+      "expectedChf": 122.61
+    },
+    {
+      "name": "Combat belt harness -14",
+      "slug": "combat-belt-harness-14",
+      "b2bEur": 33.64,
+      "expectedChf": 54.26
+    },
+    {
+      "name": "Light combat belt 1.0",
+      "slug": "light-combat-belt-1-0",
+      "b2bEur": 75.51,
+      "expectedChf": 121.79
+    },
+    {
+      "name": "Ribs combat belt 1.0",
+      "slug": "ribs-combat-belt-1-0",
+      "b2bEur": 103.58,
+      "expectedChf": 167.06
+    },
+    {
+      "name": "Comfort belt-13",
+      "slug": "comfort-belt-13",
+      "b2bEur": 78.06,
+      "expectedChf": 125.9
+    },
+    {
+      "name": "Equipment belt harness -10",
+      "slug": "equipment-belt-harness-10",
+      "b2bEur": 30.58,
+      "expectedChf": 49.32
+    },
+    {
+      "name": "Belt adjuster -09",
+      "slug": "belt-adjuster-09",
+      "b2bEur": 4.54,
+      "expectedChf": 7.32
+    },
+    {
+      "name": "Police Equipment belt -09",
+      "slug": "police-equipment-belt-09",
+      "b2bEur": 60.7,
+      "expectedChf": 97.9
+    },
+    {
+      "name": "Basic Equipment belt",
+      "slug": "basic-equipment-belt",
+      "b2bEur": 25.99,
+      "expectedChf": 41.92
+    },
+    {
+      "name": "Braces",
+      "slug": "braces-12",
+      "b2bEur": 21.91,
+      "expectedChf": 35.34
+    },
+    {
+      "name": "Covert equipment belt -17",
+      "slug": "covert-equipment-belt-17",
+      "b2bEur": 39.26,
+      "expectedChf": 63.32
+    },
+    {
+      "name": "Rigid trouser belt -05",
+      "slug": "rigid-trouser-belt-05",
+      "b2bEur": 14.76,
+      "expectedChf": 23.81
+    },
+    {
+      "name": "Elastic trousers belt 1.1",
+      "slug": "elastic-trousers-belt-16",
+      "b2bEur": 11.69,
+      "expectedChf": 18.85
+    },
+    {
+      "name": "Tactical coverall, Digi  -09F",
+      "slug": "tactical-coverall-digi-09f",
+      "b2bEur": 429.71,
+      "expectedChf": 693.08
+    },
+    {
+      "name": "Tactical coverall 09F",
+      "slug": "tactical-coverall-09f-complete",
+      "b2bEur": 159.05,
+      "expectedChf": 256.53
+    },
+    {
+      "name": "Tactical coverall 09F Briefs",
+      "slug": "tactical-coverall-10jk",
+      "b2bEur": 51.19,
+      "expectedChf": 82.56
+    },
+    {
+      "name": "Flight suit other -09",
+      "slug": "flight-suit-other-09",
+      "b2bEur": 309.79,
+      "expectedChf": 499.66
+    },
+    {
+      "name": "Tactical coverall BG -10F",
+      "slug": "tactical-coverall-bg-10f",
+      "b2bEur": 955.89,
+      "expectedChf": 1541.76
+    },
+    {
+      "name": "Flight suit, Pilot -09",
+      "slug": "flight-suit-pilot-09",
+      "b2bEur": 200.23,
+      "expectedChf": 322.95
+    },
+    {
+      "name": "Fleece jacket 1.0",
+      "slug": "fleece-jacket-1-0",
+      "b2bEur": 95.93,
+      "expectedChf": 154.73
+    },
+    {
+      "name": "Elbow pads 2.0",
+      "slug": "elbow-pads-2-0",
+      "b2bEur": 12.2,
+      "expectedChf": 19.68
+    },
+    {
+      "name": "Knee pads 2.0",
+      "slug": "knee-pads-2-0",
+      "b2bEur": 16.29,
+      "expectedChf": 26.27
+    },
+    {
+      "name": "Snigel T-shirt 2.0",
+      "slug": "snigel-t-shirt-2-0",
+      "b2bEur": 17.31,
+      "expectedChf": 27.92
+    },
+    {
+      "name": "FR Annaclava 1.0",
+      "slug": "fr-annaclava-1-0",
+      "b2bEur": 33.13,
+      "expectedChf": 53.44
+    },
+    {
+      "name": "FR Beanie",
+      "slug": "fr-beanie-17",
+      "b2bEur": 22.92,
+      "expectedChf": 36.97
+    },
+    {
+      "name": "FR Neck gaiter -17",
+      "slug": "fr-neck-gaiter-17",
+      "b2bEur": 23.43,
+      "expectedChf": 37.79
+    }
+  ],
+  "missingInSnigel": [],
+  "localVsLiveMismatch": [
+    {
+      "name": "Tactical coverall BG -10F",
+      "slug": "tactical-coverall-bg-10f",
+      "liveB2bEur": 955.89,
+      "localB2bEur": 159.05,
+      "diff": 796.8399999999999,
+      "percentDiff": "501.0"
+    },
+    {
+      "name": "Fleece jacket 1.0",
+      "slug": "fleece-jacket-1-0",
+      "liveB2bEur": 95.93,
+      "localB2bEur": 429.71,
+      "diff": -333.78,
+      "percentDiff": "77.7"
+    },
+    {
+      "name": "34×64 cm dual Weapon bag -11",
+      "slug": "34x64-cm-dual-weapon-bag-11",
+      "liveB2bEur": 48.95,
+      "localB2bEur": 335.7,
+      "diff": -286.75,
+      "percentDiff": "85.4"
+    },
+    {
+      "name": "34×100 cm dual Weapon bag -11",
+      "slug": "34x100-cm-dual-weapon-bag-11",
+      "liveB2bEur": 335.7,
+      "localB2bEur": 48.95,
+      "diff": 286.75,
+      "percentDiff": "585.8"
+    },
+    {
+      "name": "Flight suit other -09",
+      "slug": "flight-suit-other-09",
+      "liveB2bEur": 309.79,
+      "localB2bEur": 33.13,
+      "diff": 276.66,
+      "percentDiff": "835.1"
+    },
+    {
+      "name": "Flight suit, Pilot -09",
+      "slug": "flight-suit-pilot-09",
+      "liveB2bEur": 200.23,
+      "localB2bEur": 23.43,
+      "diff": 176.79999999999998,
+      "percentDiff": "754.6"
+    },
+    {
+      "name": "Tactical coverall 09F Briefs",
+      "slug": "tactical-coverall-10jk",
+      "liveB2bEur": 51.19,
+      "localB2bEur": 95.93,
+      "diff": -44.74000000000001,
+      "percentDiff": "46.6"
+    },
+    {
+      "name": "Dual Magazine pouch -18",
+      "slug": "dual-magazine-pouch-15",
+      "liveB2bEur": 33.64,
+      "localB2bEur": 12.71,
+      "diff": 20.93,
+      "percentDiff": "164.7"
+    }
+  ]
+}

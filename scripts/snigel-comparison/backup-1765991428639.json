@@ -1,0 +1,752 @@
+[
+  {
+    "productId": "d2659bbbc52245bcd05cd0e539c99d3b",
+    "name": "Tactical coverall 09F Briefs",
+    "oldPrice": 82.15,
+    "newPrice": 1249.75
+  },
+  {
+    "productId": "a159cd1d42c8d3a834177c0faf7b78d6",
+    "name": "Flight suit, Pilot -09",
+    "oldPrice": 321.35,
+    "newPrice": 1426.93
+  },
+  {
+    "productId": "0f5db12d7af56d497c0ea93c20d9cd8f",
+    "name": "Flight suit other -09",
+    "oldPrice": 497.2,
+    "newPrice": 1557.2
+  },
+  {
+    "productId": "a662c1fd857b36bf3b571b8e311ec7d9",
+    "name": "Tactical coverall BG -10F",
+    "oldPrice": 1534.2,
+    "newPrice": 2325.33
+  },
+  {
+    "productId": "cb6e947dc8b0833690de4b2666a33ab3",
+    "name": "34&#215;64 cm dual Weapon bag -11",
+    "oldPrice": 538.8,
+    "newPrice": 1247.09
+  },
+  {
+    "productId": "9ec2a3424cd82a2f0abe78653a2e8f15",
+    "name": "Ballistic thigh protection -15",
+    "oldPrice": 822.45,
+    "newPrice": 548.29
+  },
+  {
+    "productId": "17783c42a0d1e99d18d4f9b8cb2d0004",
+    "name": "Covert backpack -21",
+    "oldPrice": 1021,
+    "newPrice": 756.29
+  },
+  {
+    "productId": "005b5746cae18be461a61b3d1e96c89a",
+    "name": "100L Backpack 2.0",
+    "oldPrice": 691.5,
+    "newPrice": 461
+  },
+  {
+    "productId": "d2bb3d52ca910f5244e8b8405ddc0b4b",
+    "name": "Tactical coverall, Digi  -09F",
+    "oldPrice": 689.7,
+    "newPrice": 459.79
+  },
+  {
+    "productId": "16172771a4ba70610bedd3659ef96fbd",
+    "name": "230 Roller bag -15",
+    "oldPrice": 792.95,
+    "newPrice": 587.37
+  },
+  {
+    "productId": "ef5e8a0d9fd66ad62056b8d218c184d7",
+    "name": "Hypothermal bag 1.1",
+    "oldPrice": 537.8,
+    "newPrice": 358.52
+  },
+  {
+    "productId": "e052ac82f79940193d170e33fc02ce54",
+    "name": "Plate carrier, Strap on DF -13",
+    "oldPrice": 535,
+    "newPrice": 356.66
+  },
+  {
+    "productId": "d28ffc48b2e62ef108b30cc58f7d246d",
+    "name": "Belt closure pack  (5) -11",
+    "oldPrice": 212.05,
+    "newPrice": 49.76
+  },
+  {
+    "productId": "cb6e947dc8b0833690de4b2666a33ab3",
+    "name": "34&#215;100 cm dual Weapon bag -11",
+    "oldPrice": 538.8,
+    "newPrice": 399.11
+  },
+  {
+    "productId": "5e484ac2aa6aa6236e4f7ac03641be3c",
+    "name": "50L Mission backpack 2.0",
+    "oldPrice": 392.4,
+    "newPrice": 261.6
+  },
+  {
+    "productId": "961cd3369177cbfaa98407e545047eee",
+    "name": "30&#215;61 cm Weapon bag -13",
+    "oldPrice": 496.85,
+    "newPrice": 368.02
+  },
+  {
+    "productId": "6504217929eab543cd40a04f09760eba",
+    "name": "40L protective insert",
+    "oldPrice": 479.5,
+    "newPrice": 355.18
+  },
+  {
+    "productId": "c16e0530a337db2f884b5b05e2bd9606",
+    "name": "Squeeze vest/plate carrier",
+    "oldPrice": 348.15,
+    "newPrice": 232.1
+  },
+  {
+    "productId": "c3ae6b5df97c88cc1d6cb61cf2aa5fa1",
+    "name": "Organized bag -11",
+    "oldPrice": 339.15,
+    "newPrice": 226.1
+  },
+  {
+    "productId": "66fb8df86644fac3190ed89cb6069797",
+    "name": "40L Specialist backpack",
+    "oldPrice": 335.9,
+    "newPrice": 223.92
+  },
+  {
+    "productId": "538f5eacfbcd5c5ac99d193220b9dc6e",
+    "name": "30-40L Combat backpack 1.0",
+    "oldPrice": 320.3,
+    "newPrice": 213.54
+  },
+  {
+    "productId": "e969217dd74e78dc127a1e39b0829a3d",
+    "name": "Medium Schwung bag 1.1",
+    "oldPrice": 315.4,
+    "newPrice": 210.26
+  },
+  {
+    "productId": "5d3a7c8481a47ced002341a6197962ef",
+    "name": "Squeeze ballistic front and back 1.3 S2",
+    "oldPrice": 307.2,
+    "newPrice": 204.8
+  },
+  {
+    "productId": "fe016346b6991e5152fc494ad28253a6",
+    "name": "30L protective insert 1.1",
+    "oldPrice": 365.2,
+    "newPrice": 270.53
+  },
+  {
+    "productId": "03a42e27e4a3dfd922e8c8432a5e59e8",
+    "name": "Spotting Scope cover",
+    "oldPrice": 278.6,
+    "newPrice": 185.73
+  },
+  {
+    "productId": "35232483f3275865e085b60c12f985d3",
+    "name": "Ribs Chest rig 1.0",
+    "oldPrice": 350.45,
+    "newPrice": 259.6
+  },
+  {
+    "productId": "43b17419072632c0e06dfff726198f5d",
+    "name": "30L Specialist backpack",
+    "oldPrice": 258,
+    "newPrice": 172.01
+  },
+  {
+    "productId": "9ab23b619acb921a9a9998730380de39",
+    "name": "Tactical coverall 09F",
+    "oldPrice": 255.3,
+    "newPrice": 170.18
+  },
+  {
+    "productId": "7cca1a75952eb0d203c6be22d29e4abf",
+    "name": "30L Mission backpack 1.1",
+    "oldPrice": 217.05,
+    "newPrice": 144.71
+  },
+  {
+    "productId": "54191f8f194af2ab86661bc5d2f7ace9",
+    "name": "Squeeze side panel pouch set -18",
+    "oldPrice": 214.6,
+    "newPrice": 143.07
+  },
+  {
+    "productId": "60536c1e69289d2c4eb15b09e9b13d4c",
+    "name": "Covert surveillance vest -05",
+    "oldPrice": 208.05,
+    "newPrice": 138.69
+  },
+  {
+    "productId": "824d6a33eaa1e8a00231d409ac70d594",
+    "name": "Covert equipment vest -12 FIN",
+    "oldPrice": 203.95,
+    "newPrice": 135.96
+  },
+  {
+    "productId": "9d3d936123ca28d6ba6a7377265db2a1",
+    "name": "Multi-tarp 1.0",
+    "oldPrice": 257.45,
+    "newPrice": 190.68
+  },
+  {
+    "productId": "bc8c79b948381984c107def82950da07",
+    "name": "90L Duffel bag 1.0",
+    "oldPrice": 196.6,
+    "newPrice": 131.05
+  },
+  {
+    "productId": "a944b4b604f7349515506fd576465294",
+    "name": "Equipment vest -16",
+    "oldPrice": 191.65,
+    "newPrice": 127.77
+  },
+  {
+    "productId": "418cc004e098e5818452a73640340787",
+    "name": "Technical equipment vest 2.0",
+    "oldPrice": 191.65,
+    "newPrice": 127.77
+  },
+  {
+    "productId": "f4c0a639e577ae1b342f235f2cdd5449",
+    "name": "Back holder 2.0",
+    "oldPrice": 183.45,
+    "newPrice": 122.31
+  },
+  {
+    "productId": "214c083b0d590d5502453dbe3aa594c1",
+    "name": "15-20L All pack",
+    "oldPrice": 171.9,
+    "newPrice": 114.61
+  },
+  {
+    "productId": "ddbaba38e13e6d57f82efb0ec7899000",
+    "name": "Shotgun holder 1.0",
+    "oldPrice": 169.45,
+    "newPrice": 112.98
+  },
+  {
+    "productId": "e10b35dfa081e47473687da602638918",
+    "name": "Ribs combat belt 1.0",
+    "oldPrice": 166.25,
+    "newPrice": 110.83
+  },
+  {
+    "productId": "d28ffc48b2e62ef108b30cc58f7d246d",
+    "name": "Backpack belt-12",
+    "oldPrice": 212.05,
+    "newPrice": 157.08
+  },
+  {
+    "productId": "af29f53040063bdefffa0fd050ee2fc1",
+    "name": "Fleece jacket 1.0",
+    "oldPrice": 153.95,
+    "newPrice": 102.65
+  },
+  {
+    "productId": "6ad0e1372029418f8a31be317b902f4d",
+    "name": "55L Duffel bag -17",
+    "oldPrice": 145.75,
+    "newPrice": 97.18
+  },
+  {
+    "productId": "fb632d1efb4f536df5e602483ecd0bd4",
+    "name": "3L Multipurpose bag -15",
+    "oldPrice": 137.6,
+    "newPrice": 91.72
+  },
+  {
+    "productId": "c4e49ec587d15c76a641a3032eafb806",
+    "name": "Comfort belt-13",
+    "oldPrice": 125.3,
+    "newPrice": 83.52
+  },
+  {
+    "productId": "530bbf906137506a64fd802b8be229db",
+    "name": "30L Waterproof mission backpack 1.0",
+    "oldPrice": 156.45,
+    "newPrice": 115.89
+  },
+  {
+    "productId": "a107f5692472dc14a1720f2c50476f67",
+    "name": "Light combat belt 1.0",
+    "oldPrice": 121.2,
+    "newPrice": 80.8
+  },
+  {
+    "productId": "5880cd4f323b751114154a088810654a",
+    "name": "VIRVE pouch, Basic-11",
+    "oldPrice": 117.9,
+    "newPrice": 78.59
+  },
+  {
+    "productId": "275c0b3d7155dd241ca55efdd57a3f17",
+    "name": "Covert stretch vest -16",
+    "oldPrice": 117.9,
+    "newPrice": 78.6
+  },
+  {
+    "productId": "bc0f10ded998222e8a3dae4446d1bc9b",
+    "name": "Side pockets pair 2.0",
+    "oldPrice": 116.25,
+    "newPrice": 77.51
+  },
+  {
+    "productId": "eb716501cf0858bb3a2d431d4a6c85a5",
+    "name": "40L Velcro and webbing  panel -10",
+    "oldPrice": 146.25,
+    "newPrice": 108.33
+  },
+  {
+    "productId": "b044f1a17fdc110c7ed94d6123c51bf7",
+    "name": "3 row cummerbund 1.0",
+    "oldPrice": 110.55,
+    "newPrice": 73.69
+  },
+  {
+    "productId": "a6108082665e2ccbb00ddbe562c64af6",
+    "name": "Weapon sling system 1.0",
+    "oldPrice": 110.55,
+    "newPrice": 73.69
+  },
+  {
+    "productId": "a03a48df6bde56fd0ac3ceb84ccd4c27",
+    "name": "2,5L hydration cover -16",
+    "oldPrice": 107.7,
+    "newPrice": 71.79
+  },
+  {
+    "productId": "f5937e8bcab8395463523d69f785a180",
+    "name": "Admin case",
+    "oldPrice": 104.8,
+    "newPrice": 69.87
+  },
+  {
+    "productId": "10e4a80e0d56d5132ca1c6b7588a345c",
+    "name": "Squeeze quick adjust -17",
+    "oldPrice": 102.35,
+    "newPrice": 68.23
+  },
+  {
+    "productId": "bbfe43d6715083c259dd5ad7bfcb7f94",
+    "name": "15L Princess backpack  -17",
+    "oldPrice": 99.05,
+    "newPrice": 66.04
+  },
+  {
+    "productId": "60e3b64261fb763fdaf01ae6db4cd989",
+    "name": "Police Equipment belt -09",
+    "oldPrice": 97.4,
+    "newPrice": 64.95
+  },
+  {
+    "productId": "e061c0172f18f2e2bc775ff50f7ea8fb",
+    "name": "6L Funny pack",
+    "oldPrice": 93.35,
+    "newPrice": 62.22
+  },
+  {
+    "productId": "8979c9c895e1212412fa7aaf40e6bc14",
+    "name": "Elastic cumber band w compartments 1.0",
+    "oldPrice": 92.5,
+    "newPrice": 61.67
+  },
+  {
+    "productId": "a10cfbf08e0514aced6402c8edbc3976",
+    "name": "Squeeze buckle closure 1.0",
+    "oldPrice": 92.5,
+    "newPrice": 61.67
+  },
+  {
+    "productId": "c5e7f8510af3ab31fa77b8fe4ae06e49",
+    "name": "Squeeze zipper closure -17",
+    "oldPrice": 92.5,
+    "newPrice": 61.67
+  },
+  {
+    "productId": "824d6a33eaa1e8a00231d409ac70d594",
+    "name": "Covert equipment vest -12",
+    "oldPrice": 203.95,
+    "newPrice": 174.75
+  },
+  {
+    "productId": "90b04df5be93c5f8c1bb16bdb34c8575",
+    "name": "Gas mask bag -11",
+    "oldPrice": 83.5,
+    "newPrice": 55.67
+  },
+  {
+    "productId": "6a582412af8fc23446c5d31af036f7d8",
+    "name": "A5 Field binder",
+    "oldPrice": 82.65,
+    "newPrice": 55.12
+  },
+  {
+    "productId": "a2f73489768fb837342a8807836b5c2c",
+    "name": "Cal 50 Magazine pouch -10",
+    "oldPrice": 46.85,
+    "newPrice": 20.7
+  },
+  {
+    "productId": "ea985cd77c00973a443feba502af02f5",
+    "name": "30L insert wall -10",
+    "oldPrice": 99.45,
+    "newPrice": 73.68
+  },
+  {
+    "productId": "c25782d05bce2e06aa8ba13f47848995",
+    "name": "Low profile 3L hydration bladder",
+    "oldPrice": 94.05,
+    "newPrice": 69.67
+  },
+  {
+    "productId": "96105f4cdc193f0eae6f7d498db041c9",
+    "name": "Medium Admin pouch -18",
+    "oldPrice": 63,
+    "newPrice": 42.01
+  },
+  {
+    "productId": "7375d5c78f89fa8f2884d63f9bdd1e94",
+    "name": "Covert equipment belt -17",
+    "oldPrice": 63,
+    "newPrice": 42.01
+  },
+  {
+    "productId": "2860a65901aed4fb6e0a70aa5176a33e",
+    "name": "Pancake holster -16",
+    "oldPrice": 62.2,
+    "newPrice": 41.46
+  },
+  {
+    "productId": "d0909c96ae94619390ebda6a263b6c57",
+    "name": "Double handcuff pouch -11",
+    "oldPrice": 78.2,
+    "newPrice": 57.94
+  },
+  {
+    "productId": "8928ea154dee3cbabdca3918613f0580",
+    "name": "Canister pouch -15",
+    "oldPrice": 78.15,
+    "newPrice": 57.91
+  },
+  {
+    "productId": "2e67d9c75f7554b8d992b3b4d8ff4482",
+    "name": "Squeeze MOLLE front panel 1.0",
+    "oldPrice": 56.45,
+    "newPrice": 37.64
+  },
+  {
+    "productId": "6ede8df0c0b6c18a2fa226aaab356b76",
+    "name": "Zipped dump bag -10",
+    "oldPrice": 56.45,
+    "newPrice": 37.64
+  },
+  {
+    "productId": "9d8adafd71999088bd1b7af915b8f27f",
+    "name": "Rifle sling w attachment -09",
+    "oldPrice": 55.65,
+    "newPrice": 37.09
+  },
+  {
+    "productId": "27cb617e037ab297d19b9f3286f0f987",
+    "name": "Covert Telescopic baton wrist holder -08",
+    "oldPrice": 71.2,
+    "newPrice": 52.74
+  },
+  {
+    "productId": "9da4ec52976619108a56c3d5a89dce8c",
+    "name": "Large insert pouch 1.0",
+    "oldPrice": 55,
+    "newPrice": 36.68
+  },
+  {
+    "productId": "e82aabda0b4b070871e79d244d811a5d",
+    "name": "Dual Magazine pouch -18",
+    "oldPrice": 54,
+    "newPrice": 35.99
+  },
+  {
+    "productId": "e798b16fe83bb3b1572ec29402c79bea",
+    "name": "Combat belt harness -14",
+    "oldPrice": 54,
+    "newPrice": 35.99
+  },
+  {
+    "productId": "ec0db6550f08654610beb5d833c7ab6c",
+    "name": "Micro dump pouch 2.0",
+    "oldPrice": 53.15,
+    "newPrice": 35.45
+  },
+  {
+    "productId": "1f76cf4ac143197a896622cc4d65b902",
+    "name": "Leg attachment light -10",
+    "oldPrice": 52.1,
+    "newPrice": 34.72
+  },
+  {
+    "productId": "3bd2b92149ff1a3d28bff2381cc02662",
+    "name": "Small leg panel -12",
+    "oldPrice": 51.55,
+    "newPrice": 34.36
+  },
+  {
+    "productId": "3c41f35aef691300c176837cfe5aa096",
+    "name": "Small dump pouch 2.0",
+    "oldPrice": 49.1,
+    "newPrice": 32.72
+  },
+  {
+    "productId": "d3b81fc68bc4eda38c4d3eb0d6d2cfb7",
+    "name": "8&#215;19 pouch -14",
+    "oldPrice": 46.65,
+    "newPrice": 31.1
+  },
+  {
+    "productId": "e34e6518cb1e964fab2fcb62cb8e5e59",
+    "name": "Rope bag -05",
+    "oldPrice": 45.9,
+    "newPrice": 30.59
+  },
+  {
+    "productId": "8d7a541e6571350508d381dd9ef7a975",
+    "name": "Multi insert panel 1.0",
+    "oldPrice": 45.8,
+    "newPrice": 30.54
+  },
+  {
+    "productId": "a989ad42b8333f7caea7d890b93dd87c",
+    "name": "Oyster pouch 1.0",
+    "oldPrice": 44.15,
+    "newPrice": 29.44
+  },
+  {
+    "productId": "efc362890d1b4ec58b9f2dc68fcc79d0",
+    "name": "Shoulder pad set -15",
+    "oldPrice": 43.9,
+    "newPrice": 29.26
+  },
+  {
+    "productId": "33ae8fcb810c99f86c8ac26c7778dd88",
+    "name": "Basic Equipment belt",
+    "oldPrice": 41.7,
+    "newPrice": 27.81
+  },
+  {
+    "productId": "945fd29003a08aecaff9a9f7b28e0718",
+    "name": "Virve radio pouch -10",
+    "oldPrice": 40.1,
+    "newPrice": 26.72
+  },
+  {
+    "productId": "80d0ea2fbd1e87bc8a1f00274ae5a79f",
+    "name": "Trauma pouch -17",
+    "oldPrice": 37.6,
+    "newPrice": 25.07
+  },
+  {
+    "productId": "410c5ce6a2dfa086a51e2e26499d9db9",
+    "name": "Small Admin pouch",
+    "oldPrice": 37.6,
+    "newPrice": 25.07
+  },
+  {
+    "productId": "b1161ff99ce3dff1c95327a6ff9b3efb",
+    "name": "Speed magazine pouch 2.0",
+    "oldPrice": 36.8,
+    "newPrice": 24.54
+  },
+  {
+    "productId": "5b94afbbe7165dffc0ce3263fd76ff76",
+    "name": "Trauma shears holder 1.0",
+    "oldPrice": 45.25,
+    "newPrice": 33.53
+  },
+  {
+    "productId": "d56d99cb2904788ccb4f96a1f258c46c",
+    "name": "Grenade pouch -10",
+    "oldPrice": 35.15,
+    "newPrice": 23.44
+  },
+  {
+    "productId": "6484d1b367961db566e93a6532b4409c",
+    "name": "Braces",
+    "oldPrice": 35.15,
+    "newPrice": 23.44
+  },
+  {
+    "productId": "117be57789d4190c810c8f61421b67cf",
+    "name": "Elastic pouch 1.0",
+    "oldPrice": 31.05,
+    "newPrice": 20.7
+  },
+  {
+    "productId": "93946a8370b4ff04d2a982f1f2845c8c",
+    "name": "Radio pouch -15",
+    "oldPrice": 31.05,
+    "newPrice": 20.7
+  },
+  {
+    "productId": "54f0e2624851ca84b89aeb3035b29ae7",
+    "name": "Wallet",
+    "oldPrice": 30.25,
+    "newPrice": 20.16
+  },
+  {
+    "productId": "655dd41aa0080a3761e3a7b29a63e3a3",
+    "name": "Badge holder -16",
+    "oldPrice": 28.85,
+    "newPrice": 19.25
+  },
+  {
+    "productId": "d4d8900e7b4ddcea0a121972644b6878",
+    "name": "Snigel T-shirt 2.0",
+    "oldPrice": 27.8,
+    "newPrice": 18.52
+  },
+  {
+    "productId": "92e01f3c81e22d2755f78f1ee2456eac",
+    "name": "Medium Notebook cover",
+    "oldPrice": 26.15,
+    "newPrice": 17.43
+  },
+  {
+    "productId": "1aa99c7a735b80bc5496b196d5472a38",
+    "name": "Telescopic baton holder -08",
+    "oldPrice": 26.15,
+    "newPrice": 17.43
+  },
+  {
+    "productId": "33ae8fcb810c99f86c8ac26c7778dd88",
+    "name": "Equipment belt harness -10",
+    "oldPrice": 41.7,
+    "newPrice": 50.34
+  },
+  {
+    "productId": "193d5b3e2e9961da544f7d1af9080441",
+    "name": "Small Notebook cover",
+    "oldPrice": 24.5,
+    "newPrice": 16.33
+  },
+  {
+    "productId": "fb32be1c0b56a6e73608ba4d478b9d3f",
+    "name": "GP pouch 3 long",
+    "oldPrice": 23.7,
+    "newPrice": 15.79
+  },
+  {
+    "productId": "a6862006f8ae472616e8d71cf15ddde1",
+    "name": "Rigid trouser belt -05",
+    "oldPrice": 23.7,
+    "newPrice": 15.79
+  },
+  {
+    "productId": "977bae90dc0de91f3e2315ed1a9b7ee3",
+    "name": "GP pouch 2 long",
+    "oldPrice": 22.05,
+    "newPrice": 14.69
+  },
+  {
+    "productId": "88c49f70862fb96e82a9c1eab86dff5c",
+    "name": "GP pouch 2",
+    "oldPrice": 21.2,
+    "newPrice": 14.15
+  },
+  {
+    "productId": "c9bd9e4a930076cce119211a23bceef3",
+    "name": "Combination glove holder -09",
+    "oldPrice": 20.4,
+    "newPrice": 13.6
+  },
+  {
+    "productId": "fc825b2b0080f21afa07ecc46c30533a",
+    "name": "Handcuff pouch -09",
+    "oldPrice": 19.8,
+    "newPrice": 13.19
+  },
+  {
+    "productId": "189f766c24aea79b2152bf85106725a7",
+    "name": "GP pouch 3",
+    "oldPrice": 19.3,
+    "newPrice": 12.88
+  },
+  {
+    "productId": "8471b8c54c1d31a3428299bd20e77b0c",
+    "name": "Leg strap -11",
+    "oldPrice": 17.15,
+    "newPrice": 11.42
+  },
+  {
+    "productId": "3a9ac700da1a1672fbf490c5dcd18df9",
+    "name": "T-bar set -12",
+    "oldPrice": 13.5,
+    "newPrice": 9.01
+  },
+  {
+    "productId": "612566abf3dfa77f65db815446d300f6",
+    "name": "Binder mechanism",
+    "oldPrice": 10.55,
+    "newPrice": 7.04
+  },
+  {
+    "productId": "76e4bf4dfd0bd7b352c5a736ce47f702",
+    "name": "Herma T-bar set 1.0",
+    "oldPrice": 9.75,
+    "newPrice": 6.51
+  },
+  {
+    "productId": "331f38f2ae6d0ff8e20edfd5c908e16c",
+    "name": "Herma I-bar set 1.0",
+    "oldPrice": 8.9,
+    "newPrice": 5.95
+  },
+  {
+    "productId": "7200b4241f3851e97090700d2a860e0c",
+    "name": "Name card holder -11",
+    "oldPrice": 8.9,
+    "newPrice": 5.95
+  },
+  {
+    "productId": "9245650f5e0159381ad24ad1ebd24618",
+    "name": "I-Bar set -10",
+    "oldPrice": 8.9,
+    "newPrice": 5.95
+  },
+  {
+    "productId": "0b0eb1c11f15bb0dcea7dd6f6df083da",
+    "name": "T-Tape holder 1.0",
+    "oldPrice": 11.25,
+    "newPrice": 8.32
+  },
+  {
+    "productId": "cddb73912000bbdd06403100180b67fc",
+    "name": "Medic patch w Velcro",
+    "oldPrice": 6.45,
+    "newPrice": 4.31
+  },
+  {
+    "productId": "5f46120da40b4bd96184f0f0397652cd",
+    "name": "Foldable drinking cup",
+    "oldPrice": 6.95,
+    "newPrice": 5.17
+  },
+  {
+    "productId": "a60b203680d2f26c94308535226a0234",
+    "name": "Herma 25 mm buckle",
+    "oldPrice": 2.25,
+    "newPrice": 1.51
+  },
+  {
+    "productId": "8353077bb58a1a939a74fa5301267bf2",
+    "name": "Herma 25 mm repair buckle",
+    "oldPrice": 1.5,
+    "newPrice": 0.98
+  }
+]

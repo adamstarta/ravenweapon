@@ -1,6 +1,62 @@
 {% sw_extends '@Storefront/storefront/layout/breadcrumb.html.twig' %}
 
-{# Hide the default Shopware breadcrumb on category pages - JS breadcrumb in header.html.twig handles it #}
+{# Custom Raven Weapon breadcrumb - matches product detail page style #}
 {% block layout_breadcrumb_inner %}
-    {# Don't show default breadcrumb - JS creates custom one after header #}
+    {% if category %}
+        {% set breadcrumbCategories = sw_breadcrumb_full(category, context) %}
+        {% set categoryId = category.id %}
+    {% elseif categoryId %}
+        {% set breadcrumbCategories = sw_breadcrumb_full_by_id(categoryId, context) %}
+    {% else %}
+        {% return %}
+    {% endif %}
+
+    {% if breadcrumbCategories|length > 0 %}
+        <style>
+            /* Hide category description paragraphs but keep headings visible */
+            .cms-section .category-description,
+            .cms-block .category-description {
+                display: none !important;
+            }
+
+            /* Hide description paragraphs after h1 on category pages */
+            .cms-listing-col h1 + p,
+            .cms-element-text p:not(:first-child) {
+                display: none !important;
+            }
+
+            /* Style the category heading */
+            .cms-element-text h1 {
+                font-family: 'Chakra Petch', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                color: #111827 !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            /* Add spacing between breadcrumb and content */
+            .product-detail-breadcrumb {
+                margin-bottom: 1.5rem !important;
+            }
+        </style>
+        {# Build breadcrumb URLs directly from category names #}
+        {% set urlPath = '' %}
+        <nav aria-label="Breadcrumb" class="product-detail-breadcrumb">
+            <a href="{{ path('frontend.home.page') }}">Home</a>
+            {% for breadcrumbCategory in breadcrumbCategories %}
+                {# Build slug from category name #}
+                {% set catName = breadcrumbCategory.translated.name %}
+                {% set slug = catName|lower|replace({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', ' & ': '-', '&': '-', ' ': '-', ',': '', '/': '-', '(': '', ')': '', "'": '', '"': ''})|replace({'--': '-'})|trim('-') %}
+                {% set urlPath = urlPath ~ '/' ~ slug %}
+
+                <span class="breadcrumb-separator">/</span>
+                {% if loop.last %}
+                    <span class="breadcrumb-current">{{ catName }}</span>
+                {% else %}
+                    <a href="{{ urlPath }}/">{{ catName }}</a>
+                {% endif %}
+            {% endfor %}
+        </nav>
+    {% endif %}
 {% endblock %}

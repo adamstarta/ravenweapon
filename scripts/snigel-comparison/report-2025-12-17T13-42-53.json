@@ -1,0 +1,15 @@
+{
+  "matched": [
+    {
+      "name": "Featherweight stretcher -09",
+      "storeName": "Featherweight stretcher -09",
+      "rrpEur": 189.21,
+      "expectedChf": 202.45,
+      "actualChf": 197.4,
+      "diff": -5.049999999999983,
+      "percentDiff": "-2.5"
+    }
+  ],
+  "mismatched": [],
+  "missing": []
+}

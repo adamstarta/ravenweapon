@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 471">
+  <rect width="750" height="471" rx="40" ry="40" fill="#000"/>
+  <text x="375" y="260" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="120" font-weight="bold">TWINT</text>
+  <rect x="100" y="180" width="80" height="8" rx="4" fill="#00A0E1"/>
+  <rect x="100" y="200" width="60" height="8" rx="4" fill="#00A0E1"/>
+  <rect x="100" y="220" width="70" height="8" rx="4" fill="#00A0E1"/>
+  <rect x="570" y="240" width="80" height="8" rx="4" fill="#E20074"/>
+  <rect x="590" y="260" width="60" height="8" rx="4" fill="#E20074"/>
+  <rect x="580" y="280" width="70" height="8" rx="4" fill="#E20074"/>
+</svg>

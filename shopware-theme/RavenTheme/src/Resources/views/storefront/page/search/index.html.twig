@@ -286,9 +286,7 @@
                             <div style="flex: 1;">
                                 <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">
                                     {% if product.calculatedPrice %}
-                                        {% set priceValue = product.calculatedPrice.unitPrice %}
-                                        {% set cents = ((priceValue * 100) % 100)|round %}
-                                        CHF {% if cents == 0 %}{{ priceValue|number_format(0, '.', "'") }}{% else %}{{ priceValue|number_format(2, '.', "'") }}{% endif %}
+                                        CHF {{ product.calculatedPrice.unitPrice|number_format(2, '.', "'") }}
                                     {% endif %}
                                 </div>
                                 {# Star Ratings - Use ratingAverage which is available in listings #}

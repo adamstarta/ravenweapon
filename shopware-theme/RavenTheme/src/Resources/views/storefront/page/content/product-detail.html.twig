@@ -14,47 +14,117 @@
     }
 </style>
 <div class="raven-product-detail container py-5 md:py-8">
-    {# Breadcrumb - Dynamic based on where user came from #}
-    {# Priority: 1) 'from' query parameter, 2) product's canonical SEO URL #}
+    {# Breadcrumb - Dynamic based on URL path #}
+    {# Priority: 1) sw-original-request-uri (actual SEO URL), 2) product seoUrls, 3) seoCategory breadcrumb #}
+    {# Note: We ignore 'from' query param because it may have different category structure #}
     {% set seoUrl = '' %}
 
-    {# First check for 'from' parameter (category path user came from) #}
-    {% set fromParam = app.request.query.get('from')|default('') %}
-    {% if fromParam %}
-        {# Use the 'from' parameter as the category path (already URL-decoded by Symfony) #}
-        {% set seoUrl = fromParam|trim('/') %}
+    {# BEST: Shopware stores original SEO URL in sw-original-request-uri attribute #}
+    {% set originalUri = app.request.attributes.get('sw-original-request-uri')|default('') %}
+    {% if originalUri and originalUri != '/' and originalUri[:8] != '/detail/' %}
+        {% set seoUrl = originalUri|split('?')|first|trim('/') %}
     {% endif %}
 
-    {# Fallback: use product's canonical SEO URL #}
+    {# Try resolved SEO path from Shopware's request #}
+    {% if not seoUrl %}
+        {% set resolvedUri = app.request.attributes.get('resolved-uri')|default('') %}
+        {% if resolvedUri and resolvedUri != '/' and resolvedUri[:8] != '/detail/' %}
+            {% set seoUrl = resolvedUri|split('?')|first|trim('/') %}
+        {% endif %}
+    {% endif %}
+
+    {# Fallback: use product's canonical SEO URL from seoUrls association #}
     {% if not seoUrl and page.product.seoUrls is defined and page.product.seoUrls|length > 0 %}
         {% for seo in page.product.seoUrls %}
             {% if seo.isCanonical %}
-                {% set seoUrl = seo.seoPathInfo|default('') %}
+                {% set seoUrl = seo.seoPathInfo|default('')|trim('/') %}
             {% endif %}
         {% endfor %}
-    {% endif %}
-    {# Fallback: try the resolved canonical URL #}
-    {% if not seoUrl and page.product.translated.customFields.resolved_seo_url is defined %}
-        {% set seoUrl = page.product.translated.customFields.resolved_seo_url %}
-    {% endif %}
-    {# Last resort: use HTTP_X_ORIGINAL_URL header if available (some servers set this) #}
-    {% if not seoUrl %}
-        {% set seoUrl = app.request.headers.get('x-original-url')|default('') %}
-    {% endif %}
-    {# If still no SEO URL, try to use the category path from seoCategory #}
-    {% if not seoUrl and page.product.seoCategory is defined %}
-        {% set mainCategory = page.product.seoCategory %}
-        {% set categoryPath = '' %}
-        {% if mainCategory.breadcrumb is defined %}
-            {% for breadcrumbItem in mainCategory.breadcrumb|slice(1) %}
-                {% set categoryPath = categoryPath ~ '/' ~ breadcrumbItem %}
+        {# If no canonical found, use first one #}
+        {% if not seoUrl %}
+            {% for seo in page.product.seoUrls %}
+                {% set seoUrl = seo.seoPathInfo|default('')|trim('/') %}
             {% endfor %}
         {% endif %}
-        {% set seoUrl = categoryPath %}
+    {% endif %}
+
+    {# Last resort: build from seoCategory breadcrumb (uses display names, need to slugify) #}
+    {% if not seoUrl and page.product.seoCategory is defined and page.product.seoCategory.breadcrumb is defined %}
+        {% set mainCategory = page.product.seoCategory %}
+        {% set categoryPath = '' %}
+        {% for breadcrumbItem in mainCategory.breadcrumb|slice(1) %}
+            {# Simple slugify: lowercase and replace spaces/special chars with hyphens #}
+            {% set slug = breadcrumbItem|lower|replace({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', ' ': '-', '&': '', ',': ''})|trim('-') %}
+            {% set categoryPath = categoryPath ~ '/' ~ slug %}
+        {% endfor %}
+        {% set productSlug = page.product.translated.name|lower|replace({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', ' ': '-', '&': '', ',': ''})|trim('-') %}
+        {% set seoUrl = (categoryPath ~ '/' ~ productSlug)|trim('/') %}
     {% endif %}
 
     {% set urlPath = seoUrl|default('') %}
     {% set pathParts = urlPath|trim('/')|split('/') %}
+    {# Remove the last part (product slug) to get only category slugs #}
+    {% set categoryParts = pathParts|slice(0, -1) %}
+
+    {# Slug to display name mapping - combines all category levels #}
+    {% set categoryNames = {
+        'ausruestung': 'Ausrüstung',
+        'Ausruestung': 'Ausrüstung',
+        'zubehoer': 'Zubehör',
+        'Zubehoer': 'Zubehör',
+        'zubehoer-sonstiges': 'Zubehör & Sonstiges',
+        'taschen-transport': 'Taschen & Transport',
+        'spezialausruestung': 'Spezialausrüstung',
+        'halter-taschen': 'Halter & Taschen',
+        'multicam': 'Multicam',
+        'zielhilfen-optik-zubehoer': 'Zielhilfen, Optik & Zubehör',
+        'Zielhilfen-Optik-Zubehoer': 'Zielhilfen, Optik & Zubehör',
+        'waffenzubehoer': 'Waffenzubehör',
+        'Waffenzubehoer': 'Waffenzubehör',
+        'waffen': 'Waffen',
+        'Waffen': 'Waffen',
+        'munition': 'Munition',
+        'Munition': 'Munition',
+        'raven-caliber-kit': 'Raven Caliber Kit',
+        'Raven-Caliber-Kit': 'Raven Caliber Kit',
+        'koerperschutz': 'Körperschutz',
+        'Koerperschutz': 'Körperschutz',
+        'westen-chest-rigs': 'Westen & Chest Rigs',
+        'Westen-Chest-Rigs': 'Westen & Chest Rigs',
+        'halter-und-taschen': 'Halter & Taschen',
+        'Halter-Taschen': 'Halter & Taschen',
+        'taschen-rucksaecke': 'Taschen & Rucksäcke',
+        'Taschen-Rucksaecke': 'Taschen & Rucksäcke',
+        'guertel': 'Gürtel',
+        'Guertel': 'Gürtel',
+        'bekleidung-tragen': 'Bekleidung & Tragen',
+        'tragegurte-und-holster': 'Tragegurte & Holster',
+        'taktische-bekleidung': 'Taktische Bekleidung',
+        'polizeiausruestung': 'Polizeiausrüstung',
+        'medizinische-ausruestung': 'Medizinische Ausrüstung',
+        'k9-ausruestung': 'K9 Ausrüstung',
+        'scharfschuetzen-ausruestung': 'Scharfschützen-Ausrüstung',
+        'ballistischer-schutz': 'Ballistischer Schutz',
+        'verwaltungsausruestung': 'Verwaltungsausrüstung',
+        'verschiedenes': 'Verschiedenes',
+        'warnschutz': 'Warnschutz',
+        'beinpaneele': 'Beinpaneele',
+        'source-hydration': 'Source Hydration',
+        'patches': 'Patches',
+        'zielfernrohre': 'Zielfernrohre',
+        'rotpunktvisiere': 'Rotpunktvisiere',
+        'spektive': 'Spektive',
+        'fernglaeser': 'Ferngläser',
+        'magazine': 'Magazine',
+        'zweibeine': 'Zweibeine',
+        'schienen-zubehoer': 'Schienen-Zubehör',
+        'zielfernrohrmontagen': 'Zielfernrohrmontagen',
+        'griffe-handschutz': 'Griffe & Handschutz',
+        'muendungsaufsaetze': 'Mündungsaufsätze',
+        'schaeftung': 'Schäftung'
+    } %}
+
+    {# Legacy variables for backward compatibility #}
     {% set parentSlug = pathParts|length >= 1 ? pathParts[0] : null %}
     {% set subCategorySlug = pathParts|length >= 2 ? pathParts[1] : null %}
 
@@ -157,13 +227,22 @@
 
     <nav class="breadcrumb-nav text-sm text-gray-500 mb-5" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
-        {% if parentDisplayName %}
+        {# Dynamic breadcrumb: loop through all category parts #}
+        {% set breadcrumbPath = '' %}
+        {% for slug in categoryParts %}
+            {% set breadcrumbPath = breadcrumbPath ~ '/' ~ slug %}
+            {% set displayName = categoryNames[slug]|default(slug|replace({'-': ' '})|title) %}
+            <span class="mx-2 text-gray-400">/</span>
+            <a href="{{ breadcrumbPath }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ displayName }}</a>
+        {% endfor %}
+        {# Fallback for Lockhart products that may not have SEO URL path #}
+        {% if categoryParts|length == 0 and parentDisplayName %}
             <span class="mx-2 text-gray-400">/</span>
             <a href="/{{ parentSlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ parentDisplayName }}</a>
-        {% endif %}
-        {% if subCategoryDisplayName %}
-            <span class="mx-2 text-gray-400">/</span>
-            <a href="/{{ parentSlug }}/{{ subCategorySlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ subCategoryDisplayName }}</a>
+            {% if subCategoryDisplayName %}
+                <span class="mx-2 text-gray-400">/</span>
+                <a href="/{{ parentSlug }}/{{ subCategorySlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ subCategoryDisplayName }}</a>
+            {% endif %}
         {% endif %}
         <span class="mx-2 text-gray-400">/</span>
         <span class="text-gray-700 font-medium">{{ page.product.translated.name|slice(0, 50) }}{% if page.product.translated.name|length > 50 %}...{% endif %}</span>

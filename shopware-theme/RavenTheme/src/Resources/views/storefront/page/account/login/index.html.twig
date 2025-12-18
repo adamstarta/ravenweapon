@@ -3,17 +3,16 @@
 {% block base_content %}
 <div class="raven-login-page">
     <div class="login-wrapper">
-        {# Logo Section #}
-        <div class="login-logo animate-fade-in">
-            <a href="{{ path('frontend.home.page') }}">
-                <div class="logo-image" style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:left;background-repeat:no-repeat;height:50px;width:220px;"></div>
-            </a>
-        </div>
-
         {# Main Content - Two Column Layout #}
         <div class="login-content">
             {# Left Side - Login Form #}
             <div class="login-card animate-fade-in-up">
+                {# Logo inside card #}
+                <div class="login-logo" style="margin-bottom: 0.5rem; height: 60px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;">
+                    <a href="{{ path('frontend.home.page') }}" style="display: flex; align-items: center; justify-content: center;">
+                        <img src="{{ asset('bundles/raventheme/assets/raven-logo.png') }}" alt="Raven Weapon" style="height: 200px; width: auto; object-fit: contain; display: block; margin: 0 auto;">
+                    </a>
+                </div>
                 <div class="card-header">
                     <h1>Willkommen zurück</h1>
                     <p>Melden Sie sich bei Ihrem Konto an</p>

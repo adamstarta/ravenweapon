@@ -1,0 +1,12 @@
+{% block sw_order_line_items_grid_grid_columns %}
+    {% parent %}
+
+    <template #column-payload.selectedColor="{ item }">
+        <span v-if="item.payload && item.payload.selectedColor" class="sw-order-line-items-grid__color">
+            {{ item.payload.selectedColor }}
+        </span>
+        <span v-else class="sw-order-line-items-grid__color--empty">
+            -
+        </span>
+    </template>
+{% endblock %}

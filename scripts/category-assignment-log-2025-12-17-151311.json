@@ -1,0 +1,319 @@
+{
+    "timestamp": "2025-12-17 15:13:11",
+    "dryRun": false,
+    "changes": [
+        {
+            "productName": "SNIGEL patch w Velcro",
+            "shopwareProduct": {
+                "id": "e31097acb3e6ec6834f1a3221eadee19",
+                "name": "SNIGEL patch w Velcro",
+                "productNumber": "SN-snigel-patch-w-velcro",
+                "currentCategories": [
+                    "3516b9f976d106b5c5a8f528e753d8c9",
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76"
+                ]
+            },
+            "snigelCategories": [
+                "Patches"
+            ],
+            "selectedCategory": "Patches",
+            "germanCategory": "Patches",
+            "shopwareCategoryId": "3516b9f976d106b5c5a8f528e753d8c9",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Patches"
+        },
+        {
+            "productName": "Small leg panel -12",
+            "shopwareProduct": {
+                "id": "3bd2b92149ff1a3d28bff2381cc02662",
+                "name": "Small leg panel -12",
+                "productNumber": "SN-small-leg-panel-12",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "b4a2175dce5c7718a80824a6f3a59448"
+                ]
+            },
+            "snigelCategories": [
+                "Leg Panels"
+            ],
+            "selectedCategory": "Leg Panels",
+            "germanCategory": "Beinpaneele",
+            "shopwareCategoryId": "b4a2175dce5c7718a80824a6f3a59448",
+            "categoryPath": "Ausr\u00fcstung > Bekleidung & Tragen > Beinpaneele"
+        },
+        {
+            "productName": "50 mm buckle adapter set",
+            "shopwareProduct": {
+                "id": "27ed0b0fbab2bfa7c2baf70839689376",
+                "name": "50 mm buckle adapter set",
+                "productNumber": "SN-50-mm-buckle-adapter-set",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "b4a2175dce5c7718a80824a6f3a59448",
+                    "98c2913fa110d18b3f9b5a2ed78aa918"
+                ]
+            },
+            "snigelCategories": [
+                "Leg Panels",
+                "Miscellaneous"
+            ],
+            "selectedCategory": "Leg Panels",
+            "germanCategory": "Beinpaneele",
+            "shopwareCategoryId": "b4a2175dce5c7718a80824a6f3a59448",
+            "categoryPath": "Ausr\u00fcstung > Bekleidung & Tragen > Beinpaneele"
+        },
+        {
+            "productName": "Belt attachment -11",
+            "shopwareProduct": {
+                "id": "d1a61c0e26c58a4b38658f14e2d9d0f4",
+                "name": "Belt attachment -11",
+                "productNumber": "SN-belt-attachment-11",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "b4a2175dce5c7718a80824a6f3a59448",
+                    "98c2913fa110d18b3f9b5a2ed78aa918"
+                ]
+            },
+            "snigelCategories": [
+                "Leg Panels",
+                "Miscellaneous"
+            ],
+            "selectedCategory": "Leg Panels",
+            "germanCategory": "Beinpaneele",
+            "shopwareCategoryId": "b4a2175dce5c7718a80824a6f3a59448",
+            "categoryPath": "Ausr\u00fcstung > Bekleidung & Tragen > Beinpaneele"
+        },
+        {
+            "productName": "Spotting Scope cover",
+            "shopwareProduct": {
+                "id": "03a42e27e4a3dfd922e8c8432a5e59e8",
+                "name": "Spotting Scope cover",
+                "productNumber": "SN-spotting-scope-cover",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "96e5cc0d8f63df5c8a52a64cfddaa2ed"
+                ]
+            },
+            "snigelCategories": [
+                "Sniper Gear"
+            ],
+            "selectedCategory": "Sniper Gear",
+            "germanCategory": "Scharfsch\u00fctzen-Ausr\u00fcstung",
+            "shopwareCategoryId": "96e5cc0d8f63df5c8a52a64cfddaa2ed",
+            "categoryPath": "Ausr\u00fcstung > Spezialausr\u00fcstung > Scharfsch\u00fctzen-Ausr\u00fcstung"
+        },
+        {
+            "productName": "XL Snipers support bag -03",
+            "shopwareProduct": {
+                "id": "1f04a128843f7353d57e22e5272e18de",
+                "name": "XL Snipers support bag -03",
+                "productNumber": "SN-xl-snipers-support-bag-03",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "96e5cc0d8f63df5c8a52a64cfddaa2ed"
+                ]
+            },
+            "snigelCategories": [
+                "Sniper Gear"
+            ],
+            "selectedCategory": "Sniper Gear",
+            "germanCategory": "Scharfsch\u00fctzen-Ausr\u00fcstung",
+            "shopwareCategoryId": "96e5cc0d8f63df5c8a52a64cfddaa2ed",
+            "categoryPath": "Ausr\u00fcstung > Spezialausr\u00fcstung > Scharfsch\u00fctzen-Ausr\u00fcstung"
+        },
+        {
+            "productName": "Low profile 3L hydration bladder",
+            "shopwareProduct": {
+                "id": "c25782d05bce2e06aa8ba13f47848995",
+                "name": "Low profile 3L hydration bladder",
+                "productNumber": "SN-source-low-profile-3l-hydration-bladder",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "5fb58b6aa5a32fa17148d519cb4d8fe2"
+                ]
+            },
+            "snigelCategories": [
+                "Source Hydration"
+            ],
+            "selectedCategory": "Source Hydration",
+            "germanCategory": "Source Hydration",
+            "shopwareCategoryId": "5fb58b6aa5a32fa17148d519cb4d8fe2",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Source Hydration"
+        },
+        {
+            "productName": "1L Kangaroo hydration bladder",
+            "shopwareProduct": {
+                "id": "bdf1a051d0e66f5f3e206b71d883cd8c",
+                "name": "1L Kangaroo hydration bladder",
+                "productNumber": "SN-1l-kangaroo-hydration-bladder",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "5fb58b6aa5a32fa17148d519cb4d8fe2"
+                ]
+            },
+            "snigelCategories": [
+                "Source Hydration"
+            ],
+            "selectedCategory": "Source Hydration",
+            "germanCategory": "Source Hydration",
+            "shopwareCategoryId": "5fb58b6aa5a32fa17148d519cb4d8fe2",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Source Hydration"
+        },
+        {
+            "productName": "2,5L hydration cover -16",
+            "shopwareProduct": {
+                "id": "a03a48df6bde56fd0ac3ceb84ccd4c27",
+                "name": "2,5L hydration cover -16",
+                "productNumber": "SN-25l-hydration-cover-16",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "5fb58b6aa5a32fa17148d519cb4d8fe2"
+                ]
+            },
+            "snigelCategories": [
+                "Source Hydration"
+            ],
+            "selectedCategory": "Source Hydration",
+            "germanCategory": "Source Hydration",
+            "shopwareCategoryId": "5fb58b6aa5a32fa17148d519cb4d8fe2",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Source Hydration"
+        },
+        {
+            "productName": "Foldable drinking cup",
+            "shopwareProduct": {
+                "id": "5f46120da40b4bd96184f0f0397652cd",
+                "name": "Foldable drinking cup",
+                "productNumber": "SN-foldable-drinking-cup-13",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "98c2913fa110d18b3f9b5a2ed78aa918"
+                ]
+            },
+            "snigelCategories": [
+                "Miscellaneous"
+            ],
+            "selectedCategory": "Miscellaneous",
+            "germanCategory": "Verschiedenes",
+            "shopwareCategoryId": "98c2913fa110d18b3f9b5a2ed78aa918",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Verschiedenes"
+        },
+        {
+            "productName": "Plastic bag, ziplock A6 -09, 10 pack",
+            "shopwareProduct": {
+                "id": "5ed1b3248f4027a1ebce2d5e58255245",
+                "name": "Plastic bag, ziplock A6 -09, 10 pack",
+                "productNumber": "SN-plastic-bag-ziplock-a6-09-10-pack",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "98c2913fa110d18b3f9b5a2ed78aa918"
+                ]
+            },
+            "snigelCategories": [
+                "Miscellaneous"
+            ],
+            "selectedCategory": "Miscellaneous",
+            "germanCategory": "Verschiedenes",
+            "shopwareCategoryId": "98c2913fa110d18b3f9b5a2ed78aa918",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Verschiedenes"
+        },
+        {
+            "productName": "Sleeping bag cover with hood 2.0",
+            "shopwareProduct": {
+                "id": "c5aa9208ced5c5930a0efeb094487b7b",
+                "name": "Sleeping bag cover with hood 2.0",
+                "productNumber": "SN-sleeping-bag-cover-with-hood-2-0",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "98c2913fa110d18b3f9b5a2ed78aa918"
+                ]
+            },
+            "snigelCategories": [
+                "Miscellaneous"
+            ],
+            "selectedCategory": "Miscellaneous",
+            "germanCategory": "Verschiedenes",
+            "shopwareCategoryId": "98c2913fa110d18b3f9b5a2ed78aa918",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Verschiedenes"
+        },
+        {
+            "productName": "Light field blanket 1.0",
+            "shopwareProduct": {
+                "id": "310ce4ab320a435927c98bc2cd758fe6",
+                "name": "Light field blanket 1.0",
+                "productNumber": "SN-light-field-blanket-1-0",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "98c2913fa110d18b3f9b5a2ed78aa918"
+                ]
+            },
+            "snigelCategories": [
+                "Miscellaneous"
+            ],
+            "selectedCategory": "Miscellaneous",
+            "germanCategory": "Verschiedenes",
+            "shopwareCategoryId": "98c2913fa110d18b3f9b5a2ed78aa918",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Verschiedenes"
+        },
+        {
+            "productName": "Multi-tarp 1.0",
+            "shopwareProduct": {
+                "id": "9d3d936123ca28d6ba6a7377265db2a1",
+                "name": "Multi-tarp 1.0",
+                "productNumber": "SN-multi-tarp-1-0",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "98c2913fa110d18b3f9b5a2ed78aa918"
+                ]
+            },
+            "snigelCategories": [
+                "Miscellaneous"
+            ],
+            "selectedCategory": "Miscellaneous",
+            "germanCategory": "Verschiedenes",
+            "shopwareCategoryId": "98c2913fa110d18b3f9b5a2ed78aa918",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Verschiedenes"
+        },
+        {
+            "productName": "Hypothermal bag 1.1",
+            "shopwareProduct": {
+                "id": "ef5e8a0d9fd66ad62056b8d218c184d7",
+                "name": "Hypothermal bag 1.1",
+                "productNumber": "SN-hypothermal-bag-1-1",
+                "currentCategories": [
+                    "019aee0f487c79a1a8814377c46e0c10",
+                    "019b0857613474e6a799cfa07d143c76",
+                    "98c2913fa110d18b3f9b5a2ed78aa918"
+                ]
+            },
+            "snigelCategories": [
+                "Miscellaneous"
+            ],
+            "selectedCategory": "Miscellaneous",
+            "germanCategory": "Verschiedenes",
+            "shopwareCategoryId": "98c2913fa110d18b3f9b5a2ed78aa918",
+            "categoryPath": "Ausr\u00fcstung > Zubeh\u00f6r & Sonstiges > Verschiedenes"
+        }
+    ],
+    "summary": {
+        "totalMapping": 194,
+        "totalShopware": 313,
+        "toUpdate": 15,
+        "notFound": 1,
+        "skipped": 0,
+        "updated": 15,
+        "errors": 0
+    }
+}

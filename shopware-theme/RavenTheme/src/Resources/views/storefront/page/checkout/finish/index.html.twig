@@ -712,6 +712,9 @@ body.raven-checkout-finish {
                 {% if lineItem.payload.productNumber is defined %}
                 <p class="product-sku">Art.Nr: {{ lineItem.payload.productNumber }}</p>
                 {% endif %}
+                {% if lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
+                <p class="product-color" style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0.25rem 0 0 0;">Farbe: {{ lineItem.payload.selectedColor }}</p>
+                {% endif %}
             </div>
             <div class="product-qty">{{ lineItem.quantity }}</div>
             <div class="product-price">CHF {{ lineItem.totalPrice|number_format(2, '.', "'") }}</div>
@@ -725,7 +728,7 @@ body.raven-checkout-finish {
         <div class="order-summary-body">
             <div class="summary-row">
                 <span class="label">Zwischensumme</span>
-                <span class="value">CHF {{ page.order.amountNet|number_format(2, '.', "'") }}</span>
+                <span class="value">CHF {{ page.order.positionPrice|number_format(2, '.', "'") }}</span>
             </div>
             {% for delivery in page.order.deliveries %}
             <div class="summary-row">

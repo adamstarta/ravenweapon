@@ -34,6 +34,12 @@
             <argument type="service" id="category.repository"/>
             <tag name="kernel.event_subscriber"/>
         </service>
+
+        <!-- Cart Line Item Subscriber - saves selected color to line item -->
+        <service id="RavenTheme\Subscriber\CartLineItemSubscriber">
+            <argument type="service" id="request_stack"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
     </services>
 
 </container>

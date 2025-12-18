@@ -20,16 +20,15 @@
     </a>
 
     <div class="auth-wrapper{% if isRegisterPage %} register-mode{% endif %}">
-        {# Logo Section #}
-        <div class="auth-logo">
-            <a href="{{ path('frontend.home.page') }}">
-                <div class="logo-image" style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:center;background-repeat:no-repeat;height:50px;width:220px;"></div>
-            </a>
-        </div>
-
         {% if isRegisterPage %}
         {# ========== REGISTER CARD ========== #}
         <div class="auth-card">
+            {# Logo inside card #}
+            <div class="auth-logo" style="margin-bottom: 0.5rem; height: 60px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;">
+                <a href="{{ path('frontend.home.page') }}" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="{{ asset('bundles/raventheme/assets/raven-logo.png') }}" alt="Raven Weapon" style="height: 200px; width: auto; object-fit: contain; display: block; margin: 0 auto;">
+                </a>
+            </div>
             <div class="card-header">
                 <h1>Konto erstellen</h1>
                 <p>Registrieren Sie sich fur ein exklusives Einkaufserlebnis</p>
@@ -212,6 +211,12 @@
         {% else %}
         {# ========== LOGIN CARD ========== #}
         <div class="auth-card">
+            {# Logo inside card #}
+            <div class="auth-logo" style="margin-bottom: 0.5rem; height: 60px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;">
+                <a href="{{ path('frontend.home.page') }}" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="{{ asset('bundles/raventheme/assets/raven-logo.png') }}" alt="Raven Weapon" style="height: 200px; width: auto; object-fit: contain; display: block; margin: 0 auto;">
+                </a>
+            </div>
             <div class="card-header">
                 <h1>Willkommen zuruck</h1>
                 <p>Melden Sie sich bei Ihrem Konto an</p>

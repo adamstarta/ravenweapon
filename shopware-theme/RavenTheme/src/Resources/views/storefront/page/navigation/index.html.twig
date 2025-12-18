@@ -1,7 +1,18 @@
 {% sw_extends '@Storefront/storefront/page/navigation/index.html.twig' %}
 
+{# Hide Shopware's default CMS breadcrumb - we use the header breadcrumb only #}
+{% block cms_breadcrumb %}{% endblock %}
+
 {% block base_main_inner %}
 <style>
+/* Hide the duplicate breadcrumb inside the main content area - keep only the header breadcrumb */
+.cms-breadcrumb,
+.product-detail-breadcrumb,
+main .cms-breadcrumb,
+main nav[aria-label="Breadcrumb"] {
+    display: none !important;
+}
+
 /* Filter Bar - Exact Match to Reference */
 .raven-filter-bar {
     display: flex;
@@ -290,11 +301,15 @@
 </style>
 
 <main class="raven-category-page">
-    {# Header Section - Title only, breadcrumb is in header.html.twig #}
-    <section style="background: #f5f5f5; padding: 1.5rem 0;">
+    {% set activeCategory = page.header.navigation.active %}
+    {% set breadcrumbNames = activeCategory.translated.breadcrumb|default(activeCategory.breadcrumb)|default([]) %}
+
+    {# Category Title Section - Breadcrumb uses Shopware's default (no duplicate) #}
+    <section style="background: white; padding: 1.5rem 0 0;">
         <div class="max-w-7xl mx-auto px-6 lg:px-24">
-            <h1 style="font-family: 'Inter', -apple-system, sans-serif; font-size: 2rem; font-weight: 700; color: #111; margin: 0;">
-                {{ page.header.navigation.active.translated.name }}
+            {# Category Title #}
+            <h1 class="prod-title text-gray-900 mb-6" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700; font-size: 2rem; line-height: 1.2;">
+                {{ activeCategory.translated.name }}
             </h1>
         </div>
     </section>
@@ -401,36 +416,8 @@
                     </div>
                 </div>
 
-                {# Right Side: Pagination + Sorting together #}
+                {# Right Side: Sorting only (pagination moved to bottom only) #}
                 <div class="raven-right-controls">
-                    {# Inline Pagination - beside Neueste #}
-                    {% if page.listing.pages > 1 %}
-                    <div class="raven-inline-pagination">
-                        {% set currentPage = page.listing.page|default(1) %}
-                        {% set totalPages = page.listing.pages %}
-
-                        <a href="?p=1" class="raven-page-arrow {% if currentPage == 1 %}disabled{% endif %}">&laquo;</a>
-                        {% if currentPage > 1 %}
-                        <a href="?p={{ currentPage - 1 }}" class="raven-page-arrow">&lt;</a>
-                        {% else %}
-                        <span class="raven-page-arrow disabled">&lt;</span>
-                        {% endif %}
-
-                        {% for i in 1..totalPages %}
-                            {% if i <= 5 %}
-                            <a href="?p={{ i }}" class="raven-page-num {% if i == currentPage %}active{% endif %}">{{ i }}</a>
-                            {% endif %}
-                        {% endfor %}
-
-                        {% if currentPage < totalPages %}
-                        <a href="?p={{ currentPage + 1 }}" class="raven-page-arrow">&gt;</a>
-                        {% else %}
-                        <span class="raven-page-arrow disabled">&gt;</span>
-                        {% endif %}
-                        <a href="?p={{ totalPages }}" class="raven-page-arrow {% if currentPage == totalPages %}disabled{% endif %}">&raquo;</a>
-                    </div>
-                    {% endif %}
-
                     {# Sorting Dropdown #}
                     <div class="raven-sort-wrapper">
                         <button type="button" class="raven-sort-btn" data-sort-toggle>
@@ -475,8 +462,7 @@
                                 <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">
                                     {% if product.calculatedPrice %}
                                         {% set priceValue = product.calculatedPrice.unitPrice %}
-                                        {% set cents = ((priceValue * 100) % 100)|round %}
-                                        CHF {% if cents == 0 %}{{ priceValue|number_format(0, '.', "'") }}{% else %}{{ priceValue|number_format(2, '.', "'") }}{% endif %}
+                                        CHF {{ priceValue|number_format(2, '.', "'") }}
                                     {% endif %}
                                 </div>
                                 {% if product.ratingAverage and product.ratingAverage > 0 %}

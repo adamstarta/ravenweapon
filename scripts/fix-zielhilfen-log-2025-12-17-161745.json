@@ -1,0 +1,599 @@
+{
+    "timestamp": "2025-12-17 16:17:45",
+    "dryRun": false,
+    "productsToFix": {
+        "019adf4a00b771508c44fc6073242e05": {
+            "id": "019adf4a00b771508c44fc6073242e05",
+            "name": "PRS® GEN3 Precision-Adjustable Stock",
+            "sku": "MGP-ZBH-STK-000-SW-00048",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a017470628979d6d0c7597197": {
+            "id": "019adf4a017470628979d6d0c7597197",
+            "name": "MOE® SL-S™ Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-SW-00044",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a02397007903307e3c63c11a4": {
+            "id": "019adf4a02397007903307e3c63c11a4",
+            "name": "MOE SL® Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-SW-00040",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a031d732d89baf297b0260c75": {
+            "id": "019adf4a031d732d89baf297b0260c75",
+            "name": "MOE® Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-SW-00036",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a03f4708eae4dc89fad020f3d": {
+            "id": "019adf4a03f4708eae4dc89fad020f3d",
+            "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-SW-00032",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a04be72af86db7c3ddb4f466a": {
+            "id": "019adf4a04be72af86db7c3ddb4f466a",
+            "name": "PRS® GEN3 Precision-Adjustable Stock",
+            "sku": "MGP-ZBH-STK-000-SG-00050",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a0588702e85863fbdddbb1670": {
+            "id": "019adf4a0588702e85863fbdddbb1670",
+            "name": "MOE® SL-S™ Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-SG-00046",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a06507367980b07c9e341d7da": {
+            "id": "019adf4a06507367980b07c9e341d7da",
+            "name": "MOE SL® Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-SG-00042",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a070f71c4b957eb9820b3251a": {
+            "id": "019adf4a070f71c4b957eb9820b3251a",
+            "name": "MOE® Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-SG-00038",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a07cc707c8f19eafbb63aad9f": {
+            "id": "019adf4a07cc707c8f19eafbb63aad9f",
+            "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-SG-00034",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a087573d1828e6c641fe0ff08": {
+            "id": "019adf4a087573d1828e6c641fe0ff08",
+            "name": "PRS® GEN3 Precision-Adjustable Stock",
+            "sku": "MGP-ZBH-STK-000-OD-00051",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a093573d8a0f14c861b04b348": {
+            "id": "019adf4a093573d8a0f14c861b04b348",
+            "name": "MOE® SL-S™ Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-OD-00047",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a09fa7354bfae4a6cfae7dc1f": {
+            "id": "019adf4a09fa7354bfae4a6cfae7dc1f",
+            "name": "MOE SL® Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-OD-00043",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a0ac371b099d1a52206285ae4": {
+            "id": "019adf4a0ac371b099d1a52206285ae4",
+            "name": "MOE® Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-OD-00039",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a0b7471f5b4b696f82441a05d": {
+            "id": "019adf4a0b7471f5b4b696f82441a05d",
+            "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-OD-00035",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a0c477214b6865ccc105bcde1": {
+            "id": "019adf4a0c477214b6865ccc105bcde1",
+            "name": "PRS® GEN3 Precision-Adjustable Stock",
+            "sku": "MGP-ZBH-STK-000-FD-00049",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a0d007112a12e014de1d46220": {
+            "id": "019adf4a0d007112a12e014de1d46220",
+            "name": "MOE® SL-S™ Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-FD-00045",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a0dcf72058e868d1412134f1d": {
+            "id": "019adf4a0dcf72058e868d1412134f1d",
+            "name": "MOE SL® Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-FD-00041",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a0eaf718983ff64bb61470321": {
+            "id": "019adf4a0eaf718983ff64bb61470321",
+            "name": "MOE® Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-FD-00037",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a0f9c71a196a77a6465201440": {
+            "id": "019adf4a0f9c71a196a77a6465201440",
+            "name": "MOE® Fixed Carbine Stock - Mil-Spec",
+            "sku": "MGP-ZBH-STK-000-FD-00033",
+            "reason": "Stock → Schienen & Zubehör",
+            "correctCategory": {
+                "id": "2d9fa9cea22f4d8e8c80fc059f8fc47d",
+                "name": "Schienen & Zubehör",
+                "path": "Zubehör > Schienen & Zubehör"
+            }
+        },
+        "019adf4a10787014b57bea447802eb7b": {
+            "id": "019adf4a10787014b57bea447802eb7b",
+            "name": "M-LOK® MVG® - MOE® Vertical Grip, black",
+            "sku": "MGP-ZBH-GRP-000-SW-00067",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a1128738c92224e96f7f23914": {
+            "id": "019adf4a1128738c92224e96f7f23914",
+            "name": "RVG® - Rail Vertical Grip - black",
+            "sku": "MGP-ZBH-GRP-000-SW-00056",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a11d4731cabb454ee8d10cdd1": {
+            "id": "019adf4a11d4731cabb454ee8d10cdd1",
+            "name": "AFG® - Angled Fore Grip",
+            "sku": "MGP-ZBH-GRP-000-SW-00052",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a12a37081baa2892365b1e5b5": {
+            "id": "019adf4a12a37081baa2892365b1e5b5",
+            "name": "M-LOK® MVG® - MOE® Vertical Grip, Sniper Grey",
+            "sku": "MGP-ZBH-GRP-000-SG-00069",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a1368726d8e34c2b97227e5a3": {
+            "id": "019adf4a1368726d8e34c2b97227e5a3",
+            "name": "RVG® - Rail Vertical Grip, Sniper Grey",
+            "sku": "MGP-ZBH-GRP-000-SG-00058",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a144172b5879ec64dbe45f6e9": {
+            "id": "019adf4a144172b5879ec64dbe45f6e9",
+            "name": "AFG® - Angled Fore Grip",
+            "sku": "MGP-ZBH-GRP-000-SG-00054",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a151271ab9cfb5f0a235ab23c": {
+            "id": "019adf4a151271ab9cfb5f0a235ab23c",
+            "name": "M-LOK® MVG® - MOE® Vertical Grip",
+            "sku": "MGP-ZBH-GRP-000-OD-00070",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a15e671d39ca3679dc0c01865": {
+            "id": "019adf4a15e671d39ca3679dc0c01865",
+            "name": "RVG® - Rail Vertical Grip. OD-Green",
+            "sku": "MGP-ZBH-GRP-000-OD-00059",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a16af70ceba47deb1a58d19eb": {
+            "id": "019adf4a16af70ceba47deb1a58d19eb",
+            "name": "AFG® - Angled Fore Grip",
+            "sku": "MGP-ZBH-GRP-000-OD-00055",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a177a717aa6c5c63b8ba88170": {
+            "id": "019adf4a177a717aa6c5c63b8ba88170",
+            "name": "M-LOK® MVG® - MOE® Vertical Grip, FDE",
+            "sku": "MGP-ZBH-GRP-000-FD-00068",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a1844732fb6bcd980a3cad898": {
+            "id": "019adf4a1844732fb6bcd980a3cad898",
+            "name": "RVG® - Rail Vertical Grip, FDE",
+            "sku": "MGP-ZBH-GRP-000-FD-00057",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a190b738c83147000e2a72f9c": {
+            "id": "019adf4a190b738c83147000e2a72f9c",
+            "name": "AFG® - Angled Fore Grip",
+            "sku": "MGP-ZBH-GRP-000-FD-00053",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a19cc7077ae980ff893964664": {
+            "id": "019adf4a19cc7077ae980ff893964664",
+            "name": "Magpul® Bipod for M-LOK®, black",
+            "sku": "MGP-ZBH-BPD-000-SW-00064",
+            "reason": "Bipod",
+            "correctCategory": {
+                "id": "17d31faee72a4f0eb9863adf8bab9b00",
+                "name": "Zweibeine",
+                "path": "Zubehör > Zweibeine"
+            }
+        },
+        "019adf4a1ab472a48d0722ece1fe6c0f": {
+            "id": "019adf4a1ab472a48d0722ece1fe6c0f",
+            "name": "Magpul® Bipod for M-LOK®, FDE",
+            "sku": "MGP-ZBH-BPD-000-FD-00065",
+            "reason": "Bipod",
+            "correctCategory": {
+                "id": "17d31faee72a4f0eb9863adf8bab9b00",
+                "name": "Zweibeine",
+                "path": "Zubehör > Zweibeine"
+            }
+        },
+        "019adf4a1b8a72618c0b38b7d11b6e70": {
+            "id": "019adf4a1b8a72618c0b38b7d11b6e70",
+            "name": "XTM® Hand Stop Kit, black",
+            "sku": "MGP-ZBH-ACS-000-SW-00060",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a1c6b72a1b558faf2b42c75f5": {
+            "id": "019adf4a1c6b72a1b558faf2b42c75f5",
+            "name": "XTM® Hand Stop Kit, Sniper Grey",
+            "sku": "MGP-ZBH-ACS-000-SG-00062",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a1d8571e28024b3f54b43a75b": {
+            "id": "019adf4a1d8571e28024b3f54b43a75b",
+            "name": "XTM® Hand Stop Kit, OD-Green",
+            "sku": "MGP-ZBH-ACS-000-OD-00063",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a1e5c73ddbb183b32b7291f61": {
+            "id": "019adf4a1e5c73ddbb183b32b7291f61",
+            "name": "XTM® Hand Stop Kit",
+            "sku": "MGP-ZBH-ACS-000-FD-00061",
+            "reason": "Grip \/ Hand Stop",
+            "correctCategory": {
+                "id": "6aa33f0f12e543fbb28d2bd7ede4dbf2",
+                "name": "Griffe & Handschutz",
+                "path": "Zubehör > Griffe & Handschutz"
+            }
+        },
+        "019adf4a1f4173bd8c108c27f0166dd2": {
+            "id": "019adf4a1f4173bd8c108c27f0166dd2",
+            "name": "PMAG® 40 AR\/M4 GEN M3®, 5.56x45",
+            "sku": "MGP-MG-AR40-223-SW-00088",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a1ffc732aa038f50835f56d0f": {
+            "id": "019adf4a1ffc732aa038f50835f56d0f",
+            "name": "PMAG® 30 AR\/M4 GEN M3® Window, 5.56x45",
+            "sku": "MGP-MG-AR30W-223-SW-00086",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a20cc71eaad79695db4129034": {
+            "id": "019adf4a20cc71eaad79695db4129034",
+            "name": "PMAG® 30 AR\/M4 GEN M2 MOE® Window, 5.56x45",
+            "sku": "MGP-MG-AR30W-223-SW-00027",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a219b70509fda5b50a7aca5be": {
+            "id": "019adf4a219b70509fda5b50a7aca5be",
+            "name": "PMAG® 30 AR\/M4 GEN M3® Window, 5.56x45",
+            "sku": "MGP-MG-AR30W-223-CT-00089",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a228470be921ed46c5fe86656": {
+            "id": "019adf4a228470be921ed46c5fe86656",
+            "name": "PMAG® 30 AR\/M4 GEN M3®, 5.56x45",
+            "sku": "MGP-MG-AR30-223-SW-00090",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a236673f88bb93498d67176d0": {
+            "id": "019adf4a236673f88bb93498d67176d0",
+            "name": "PMAG® 30 AR\/M4 GEN M2 MOE®, 5.56x45",
+            "sku": "MGP-MG-AR30-223-SW-00028",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a24337385a26b91da645cdf4f": {
+            "id": "019adf4a24337385a26b91da645cdf4f",
+            "name": "TMAG™ 30 AR\/M4 GEN M3®",
+            "sku": "MGP-MG-AR30-223-ODT-00026",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a24fe72c79da973eb2bc66d42": {
+            "id": "019adf4a24fe72c79da973eb2bc66d42",
+            "name": "PMAG® 30 AR\/M4 GEN M3®, 5.56x45",
+            "sku": "MGP-MG-AR30-223-CT-00087",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a25c37117bdfef5a59243178e": {
+            "id": "019adf4a25c37117bdfef5a59243178e",
+            "name": "PMAG® 20 AR\/M4 GEN M3®, 5.56x45",
+            "sku": "MGP-MG-AR20-223-SW-00029",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a268373c9a4b2bd73fa967f88": {
+            "id": "019adf4a268373c9a4b2bd73fa967f88",
+            "name": "TMAG™ 20 AR\/M4 GEN M3®",
+            "sku": "MGP-MG-AR20-223-ODT-00030",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a277570b1b7dc0855d79b0ce9": {
+            "id": "019adf4a277570b1b7dc0855d79b0ce9",
+            "name": "PMAG® 10 AR\/M4 GEN M3®, 5.56x45",
+            "sku": "MGP-MG-AR10-223-SW-00031",
+            "reason": "Magazine",
+            "correctCategory": {
+                "id": "00a19869155b4c0d9508dfcfeeaf93d7",
+                "name": "Magazine",
+                "path": "Zubehör > Magazine"
+            }
+        },
+        "019adf4a2ea870f49acaeecf267fd1f9": {
+            "id": "019adf4a2ea870f49acaeecf267fd1f9",
+            "name": "7.62 - Acheron Hexalug - Muzzle brake",
+            "sku": "ACH-ZBH-MDB-762-SW-00122",
+            "reason": "Muzzle attachment",
+            "correctCategory": {
+                "id": "b2f4bafcda154b899c22bfb74496d140",
+                "name": "Mündungsaufsätze",
+                "path": "Zubehör > Mündungsaufsätze"
+            }
+        },
+        "019adf4a2f61721c9268d251761c4518": {
+            "id": "019adf4a2f61721c9268d251761c4518",
+            "name": "5.56 - Acheron Hexalug - Muzzle brake",
+            "sku": "ACH-ZBH-MDB-556-SW-00121",
+            "reason": "Muzzle attachment",
+            "correctCategory": {
+                "id": "b2f4bafcda154b899c22bfb74496d140",
+                "name": "Mündungsaufsätze",
+                "path": "Zubehör > Mündungsaufsätze"
+            }
+        },
+        "019adf4a3026731dbacbffe34f405969": {
+            "id": "019adf4a3026731dbacbffe34f405969",
+            "name": "7.62 - Flash Hider - Acheron HexaLug",
+            "sku": "ACH-ZBH-FSD-762-SW-00120",
+            "reason": "Muzzle attachment",
+            "correctCategory": {
+                "id": "b2f4bafcda154b899c22bfb74496d140",
+                "name": "Mündungsaufsätze",
+                "path": "Zubehör > Mündungsaufsätze"
+            }
+        },
+        "019adf4a30ec712387911bab131568e6": {
+            "id": "019adf4a30ec712387911bab131568e6",
+            "name": "Flash Hider - Acheron HexaLug - 5.56",
+            "sku": "ACH-ZBH-FSD-223-SW-00119",
+            "reason": "Muzzle attachment",
+            "correctCategory": {
+                "id": "b2f4bafcda154b899c22bfb74496d140",
+                "name": "Mündungsaufsätze",
+                "path": "Zubehör > Mündungsaufsätze"
+            }
+        }
+    },
+    "summary": {
+        "total": 53,
+        "byCategory": {
+            "Schienen & Zubehör": 20,
+            "Griffe & Handschutz": 16,
+            "Zweibeine": 2,
+            "Magazine": 11,
+            "Mündungsaufsätze": 4
+        }
+    }
+}
