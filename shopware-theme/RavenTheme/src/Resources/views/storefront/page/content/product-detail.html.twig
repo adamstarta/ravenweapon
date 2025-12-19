@@ -1,9 +1,8 @@
 {% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
 
 {% block base_main_inner %}
-{# CSS to hide Shopware's default breadcrumb on product detail - we have our own custom one #}
+{# CSS to hide Shopware's default breadcrumb on product detail - we have our own styled one #}
 <style>
-    /* Hide the default Shopware breadcrumb on product detail pages */
     body .breadcrumb-container,
     body > .container > nav.breadcrumb,
     header + nav[aria-label="Breadcrumb"],
@@ -14,281 +13,57 @@
     }
 </style>
 <div class="raven-product-detail container py-5 md:py-8">
-    {# Breadcrumb - Dynamic based on URL path #}
-    {# Priority: 1) sw-original-request-uri (actual SEO URL), 2) product seoUrls, 3) seoCategory breadcrumb #}
-    {# Note: We ignore 'from' query param because it may have different category structure #}
-    {% set seoUrl = '' %}
-
-    {# BEST: Shopware stores original SEO URL in sw-original-request-uri attribute #}
-    {% set originalUri = app.request.attributes.get('sw-original-request-uri')|default('') %}
-    {% if originalUri and originalUri != '/' and originalUri[:8] != '/detail/' %}
-        {% set seoUrl = originalUri|split('?')|first|trim('/') %}
-    {% endif %}
-
-    {# Try resolved SEO path from Shopware's request #}
-    {% if not seoUrl %}
-        {% set resolvedUri = app.request.attributes.get('resolved-uri')|default('') %}
-        {% if resolvedUri and resolvedUri != '/' and resolvedUri[:8] != '/detail/' %}
-            {% set seoUrl = resolvedUri|split('?')|first|trim('/') %}
-        {% endif %}
-    {% endif %}
-
-    {# Fallback: use product's canonical SEO URL from seoUrls association #}
-    {% if not seoUrl and page.product.seoUrls is defined and page.product.seoUrls|length > 0 %}
-        {% for seo in page.product.seoUrls %}
-            {% if seo.isCanonical %}
-                {% set seoUrl = seo.seoPathInfo|default('')|trim('/') %}
-            {% endif %}
-        {% endfor %}
-        {# If no canonical found, use first one #}
-        {% if not seoUrl %}
-            {% for seo in page.product.seoUrls %}
-                {% set seoUrl = seo.seoPathInfo|default('')|trim('/') %}
-            {% endfor %}
-        {% endif %}
-    {% endif %}
-
-    {# Last resort: build from seoCategory breadcrumb (uses display names, need to slugify) #}
-    {% if not seoUrl and page.product.seoCategory is defined and page.product.seoCategory.breadcrumb is defined %}
-        {% set mainCategory = page.product.seoCategory %}
-        {% set categoryPath = '' %}
-        {% for breadcrumbItem in mainCategory.breadcrumb|slice(1) %}
-            {# Simple slugify: lowercase and replace spaces/special chars with hyphens #}
-            {% set slug = breadcrumbItem|lower|replace({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', ' ': '-', '&': '', ',': ''})|trim('-') %}
-            {% set categoryPath = categoryPath ~ '/' ~ slug %}
-        {% endfor %}
-        {% set productSlug = page.product.translated.name|lower|replace({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', ' ': '-', '&': '', ',': ''})|trim('-') %}
-        {% set seoUrl = (categoryPath ~ '/' ~ productSlug)|trim('/') %}
-    {% endif %}
-
-    {% set urlPath = seoUrl|default('') %}
-    {% set pathParts = urlPath|trim('/')|split('/') %}
-    {# Remove the last part (product slug) to get only category slugs #}
-    {% set categoryParts = pathParts|slice(0, -1) %}
-
-    {# Slug to display name mapping - combines all category levels #}
-    {% set categoryNames = {
-        'ausruestung': 'Ausrüstung',
-        'Ausruestung': 'Ausrüstung',
-        'zubehoer': 'Zubehör',
-        'Zubehoer': 'Zubehör',
-        'zubehoer-sonstiges': 'Zubehör & Sonstiges',
-        'taschen-transport': 'Taschen & Transport',
-        'spezialausruestung': 'Spezialausrüstung',
-        'halter-taschen': 'Halter & Taschen',
-        'multicam': 'Multicam',
-        'zielhilfen-optik-zubehoer': 'Zielhilfen, Optik & Zubehör',
-        'Zielhilfen-Optik-Zubehoer': 'Zielhilfen, Optik & Zubehör',
-        'waffenzubehoer': 'Waffenzubehör',
-        'Waffenzubehoer': 'Waffenzubehör',
-        'waffen': 'Waffen',
-        'Waffen': 'Waffen',
-        'munition': 'Munition',
-        'Munition': 'Munition',
-        'raven-caliber-kit': 'Raven Caliber Kit',
-        'Raven-Caliber-Kit': 'Raven Caliber Kit',
-        'koerperschutz': 'Körperschutz',
-        'Koerperschutz': 'Körperschutz',
-        'westen-chest-rigs': 'Westen & Chest Rigs',
-        'Westen-Chest-Rigs': 'Westen & Chest Rigs',
-        'halter-und-taschen': 'Halter & Taschen',
-        'Halter-Taschen': 'Halter & Taschen',
-        'taschen-rucksaecke': 'Taschen & Rucksäcke',
-        'Taschen-Rucksaecke': 'Taschen & Rucksäcke',
-        'guertel': 'Gürtel',
-        'Guertel': 'Gürtel',
-        'bekleidung-tragen': 'Bekleidung & Tragen',
-        'tragegurte-und-holster': 'Tragegurte & Holster',
-        'taktische-bekleidung': 'Taktische Bekleidung',
-        'polizeiausruestung': 'Polizeiausrüstung',
-        'medizinische-ausruestung': 'Medizinische Ausrüstung',
-        'k9-ausruestung': 'K9 Ausrüstung',
-        'scharfschuetzen-ausruestung': 'Scharfschützen-Ausrüstung',
-        'ballistischer-schutz': 'Ballistischer Schutz',
-        'verwaltungsausruestung': 'Verwaltungsausrüstung',
-        'verschiedenes': 'Verschiedenes',
-        'warnschutz': 'Warnschutz',
-        'beinpaneele': 'Beinpaneele',
-        'source-hydration': 'Source Hydration',
-        'patches': 'Patches',
-        'zielfernrohre': 'Zielfernrohre',
-        'rotpunktvisiere': 'Rotpunktvisiere',
-        'spektive': 'Spektive',
-        'fernglaeser': 'Ferngläser',
-        'magazine': 'Magazine',
-        'zweibeine': 'Zweibeine',
-        'schienen-zubehoer': 'Schienen-Zubehör',
-        'zielfernrohrmontagen': 'Zielfernrohrmontagen',
-        'griffe-handschutz': 'Griffe & Handschutz',
-        'muendungsaufsaetze': 'Mündungsaufsätze',
-        'schaeftung': 'Schäftung'
-    } %}
-
-    {# Legacy variables for backward compatibility #}
-    {% set parentSlug = pathParts|length >= 1 ? pathParts[0] : null %}
-    {% set subCategorySlug = pathParts|length >= 2 ? pathParts[1] : null %}
-
-    {# Parent category slug to display name mapping - includes both German and ASCII versions #}
-    {% set parentCategoryNames = {
-        'Ausruestung': 'Ausrüstung',
-        'Ausrüstung': 'Ausrüstung',
-        'Zubehoer': 'Zubehör',
-        'Zubehör': 'Zubehör',
-        'Zielhilfen-Optik-Zubehoer': 'Zielhilfen, Optik & Zubehör',
-        'Zielhilfen, Optik & Zubehör': 'Zielhilfen, Optik & Zubehör',
-        'Waffenzubehoer': 'Waffenzubehör',
-        'Waffenzubehör': 'Waffenzubehör',
-        'Raven-Weapons': 'Raven Weapons',
-        'Raven Weapons': 'Raven Weapons',
-        'Raven-Caliber-Kit': 'Raven Caliber Kit',
-        'Raven Caliber Kit': 'Raven Caliber Kit',
-        'Munition': 'Munition'
-    } %}
-
-    {# Subcategory slug to display name mapping - includes both German and ASCII versions #}
-    {% set subCategoryNames = {
-        'Zielfernrohre': 'Zielfernrohre',
-        'Rotpunktvisiere': 'Rotpunktvisiere',
-        'Spektive': 'Spektive',
-        'Fernglaeser': 'Ferngläser',
-        'Ferngläser': 'Ferngläser',
-        'Magazine': 'Magazine',
-        'Zweibeine': 'Zweibeine',
-        'Schienen-Zubehoer': 'Schienen-Zubehör',
-        'Schienen-Zubehör': 'Schienen-Zubehör',
-        'Zielfernrohrmontagen': 'Zielfernrohrmontagen',
-        'Griffe-Handschutz': 'Griffe & Handschutz',
-        'Griffe & Handschutz': 'Griffe & Handschutz',
-        'Muendungsaufsaetze': 'Mündungsaufsätze',
-        'Mündungsaufsätze': 'Mündungsaufsätze',
-        'taschen-und-rucksaecke': 'Taschen & Rucksäcke',
-        'Taschen-Rucksaecke': 'Taschen & Rucksäcke',
-        'taschen-rucksaecke': 'Taschen & Rucksäcke',
-        'Taschen & Rucksäcke': 'Taschen & Rucksäcke',
-        'guertel': 'Gürtel',
-        'Gürtel': 'Gürtel',
-        'polizeiausruestung': 'Polizeiausrüstung',
-        'Polizeiausrüstung': 'Polizeiausrüstung',
-        'medizinische-ausruestung': 'Medizinische Ausrüstung',
-        'Medizinische Ausrüstung': 'Medizinische Ausrüstung',
-        'k9-ausruestung': 'K9 Ausrüstung',
-        'K9-Ausruestung': 'K9 Ausrüstung',
-        'K9 Ausrüstung': 'K9 Ausrüstung',
-        'scharfschuetzen-ausruestung': 'Scharfschützen-Ausrüstung',
-        'Scharfschützen-Ausrüstung': 'Scharfschützen-Ausrüstung',
-        'ballistischer-schutz': 'Ballistischer Schutz',
-        'Ballistischer Schutz': 'Ballistischer Schutz',
-        'Halter-Taschen': 'Halter & Taschen',
-        'Halter & Taschen': 'Halter & Taschen',
-        'Westen-Chest-Rigs': 'Westen & Chest Rigs',
-        'Westen & Chest Rigs': 'Westen & Chest Rigs',
-        'taktische-ausruestung': 'Taktische Ausrüstung',
-        'Taktische Ausrüstung': 'Taktische Ausrüstung',
-        'taktische-bekleidung': 'Taktische Bekleidung',
-        'Taktische Bekleidung': 'Taktische Bekleidung',
-        'Tragegurte-Holster': 'Tragegurte & Holster',
-        'Tragegurte & Holster': 'Tragegurte & Holster',
-        'verdeckte-ausruestung': 'Verdeckte Ausrüstung',
-        'Verdeckte Ausrüstung': 'Verdeckte Ausrüstung',
-        'verschiedenes': 'Verschiedenes',
-        'Verschiedenes': 'Verschiedenes',
-        'verwaltungsausruestung': 'Verwaltungsausrüstung',
-        'Verwaltungsausrüstung': 'Verwaltungsausrüstung',
-        'warnschutz': 'Warnschutz',
-        'Warnschutz': 'Warnschutz',
-        'multicam': 'Multicam',
-        'Multicam': 'Multicam',
-        'patches': 'Patches',
-        'Patches': 'Patches',
-        'source-hydration': 'Source Hydration',
-        'Source Hydration': 'Source Hydration',
-        'beinpaneele': 'Beinpaneele',
-        'Beinpaneele': 'Beinpaneele'
-    } %}
-
-    {% set parentDisplayName = parentCategoryNames[parentSlug]|default(null) %}
-    {% set subCategoryDisplayName = subCategoryNames[subCategorySlug]|default(null) %}
-
-    {# Special handling for Lockhart Tactical products (Raven Weapons & Caliber Kits) #}
-    {# If parent category is not recognized, force correct category based on product name #}
-    {% set isLockhartProduct = page.product.manufacturer.translated.name|default('')|lower == 'lockhart tactical' %}
-    {% if isLockhartProduct and not parentDisplayName %}
-        {% set productNameLower = page.product.translated.name|lower %}
-        {% if 'caliber kit' in productNameLower or 'kit' in productNameLower %}
-            {% set parentSlug = 'Raven-Caliber-Kit' %}
-            {% set parentDisplayName = 'Raven Caliber Kit' %}
-        {% else %}
-            {% set parentSlug = 'Raven-Weapons' %}
-            {% set parentDisplayName = 'Raven Weapons' %}
-        {% endif %}
-        {# Clear subcategory for these products - they don't have subcategories #}
-        {% set subCategoryDisplayName = null %}
-    {% endif %}
-
+    {# NATIVE BREADCRUMB: Uses data from ProductDetailSubscriber (breadcrumbCategories extension) #}
+    {# Each category has seoUrls loaded - NO hardcoded mappings needed #}
     <nav class="breadcrumb-nav text-sm text-gray-500 mb-5" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
-        {# Dynamic breadcrumb: loop through all category parts #}
-        {% set breadcrumbPath = '' %}
-        {% for slug in categoryParts %}
-            {% set breadcrumbPath = breadcrumbPath ~ '/' ~ slug %}
-            {% set displayName = categoryNames[slug]|default(slug|replace({'-': ' '})|title) %}
-            <span class="mx-2 text-gray-400">/</span>
-            <a href="{{ breadcrumbPath }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ displayName }}</a>
-        {% endfor %}
-        {# Fallback for Lockhart products that may not have SEO URL path #}
-        {% if categoryParts|length == 0 and parentDisplayName %}
-            <span class="mx-2 text-gray-400">/</span>
-            <a href="/{{ parentSlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ parentDisplayName }}</a>
-            {% if subCategoryDisplayName %}
-                <span class="mx-2 text-gray-400">/</span>
-                <a href="/{{ parentSlug }}/{{ subCategorySlug }}/" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ subCategoryDisplayName }}</a>
-            {% endif %}
+        {% if page.extensions.breadcrumbCategories is defined and page.extensions.breadcrumbCategories|length > 0 %}
+            {% for cat in page.extensions.breadcrumbCategories %}
+                {# Skip root category (level 1 = Catalogue #1) #}
+                {% if cat.level is defined and cat.level > 1 %}
+                    <span class="mx-2 text-gray-400">/</span>
+                    {# Get category URL from seoUrls (generated by our script) #}
+                    {% set catUrl = '' %}
+                    {% if cat.seoUrls is defined and cat.seoUrls|length > 0 %}
+                        {% for seo in cat.seoUrls %}
+                            {% if seo.isCanonical and catUrl == '' %}
+                                {% set catUrl = '/' ~ seo.seoPathInfo|trim('/') ~ '/' %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if catUrl == '' %}
+                            {% set catUrl = '/' ~ cat.seoUrls|first.seoPathInfo|trim('/') ~ '/' %}
+                        {% endif %}
+                    {% endif %}
+                    {# Fallback to navigation route if no SEO URL #}
+                    {% if catUrl == '' %}
+                        {% set catUrl = path('frontend.navigation.page', { navigationId: cat.id }) %}
+                    {% endif %}
+                    <a href="{{ catUrl }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">{{ cat.translated.name|default(cat.name) }}</a>
+                {% endif %}
+            {% endfor %}
         {% endif %}
         <span class="mx-2 text-gray-400">/</span>
         <span class="text-gray-700 font-medium">{{ page.product.translated.name|slice(0, 50) }}{% if page.product.translated.name|length > 50 %}...{% endif %}</span>
     </nav>
 
-    {# Check if Lockhart Tactical product (Raven/Caliber Kit) - MUST be defined before main image #}
-    {% set isLockhartTactical = page.product.manufacturer.translated.name|default('')|lower == 'lockhart tactical' %}
+    {# ========== UNIFIED VARIANT OPTIONS - Dynamic from custom fields ========== #}
+    {# Check both raven_variant_options (Raven/Lockhart products) and snigel_color_options (Snigel products) #}
+    {% set hasVariants =
+        page.product.translated.customFields.raven_has_variants|default(false) or
+        page.product.translated.customFields.snigel_has_color_variants|default(false)
+    %}
+    {% set variantOptionsRaw =
+        page.product.translated.customFields.raven_variant_options|default(
+            page.product.translated.customFields.snigel_color_options|default([])
+        )
+    %}
+    {# Parse JSON if string, otherwise use as-is #}
+    {% set variantOptions = variantOptionsRaw is iterable ? variantOptionsRaw : [] %}
 
-    {# Build Raven colors array EARLY so we can use first color as initial image #}
-    {% set ravenColors = [] %}
-    {% if isLockhartTactical and page.product.media|length > 1 %}
-        {% set colorDefinitions = [
-            { name: 'Graphite Black', patterns: ['graphite', 'black'] },
-            { name: 'Flat Dark Earth', patterns: ['flat dark earth', 'earth', 'fde'] },
-            { name: 'Northern Lights', patterns: ['northenlights', 'northern', 'lights'] },
-            { name: 'Olive Drab Green', patterns: ['olive drab green', 'olive', 'green'] },
-            { name: 'Sniper Grey', patterns: ['sniper', 'grey', 'gray', 'silver'] }
-        ] %}
-        {% for colorDef in colorDefinitions %}
-            {% set colorImageUrl = '' %}
-            {% set colorThumbUrl = '' %}
-            {% for media in page.product.media %}
-                {% set fileName = media.media.fileName|lower %}
-                {% if not colorImageUrl %}
-                    {% for pattern in colorDef.patterns %}
-                        {% if pattern in fileName and not colorImageUrl %}
-                            {% set colorImageUrl = media.media.url %}
-                            {% set colorThumbUrl = media.media.thumbnails|first.url|default(media.media.url) %}
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-            {% if colorImageUrl %}
-                {% set ravenColors = ravenColors|merge([{
-                    name: colorDef.name,
-                    imageUrl: colorImageUrl,
-                    thumbUrl: colorThumbUrl
-                }]) %}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-
-    {# Determine initial main image - use first color for Lockhart Tactical, cover for others #}
+    {# Determine initial main image - use first variant if available, otherwise cover #}
     {% set initialMainImage = page.product.cover.media.url|default('') %}
-    {% if isLockhartTactical and ravenColors|length > 0 %}
-        {% set initialMainImage = ravenColors[0].imageUrl %}
+    {% if hasVariants and variantOptions|length > 0 and variantOptions[0].imageUrl is defined %}
+        {% set initialMainImage = variantOptions[0].imageUrl %}
     {% endif %}
 
     {# Product Grid: Image Left, Info Right #}
@@ -317,8 +92,8 @@
                 {% endif %}
             </div>
 
-            {# Thumbnail Gallery Slider - Hide for Lockhart Tactical products (they use color buttons instead) #}
-            {% if page.product.media|length > 1 and not isLockhartTactical %}
+            {# Thumbnail Gallery Slider - Hide for products with variant buttons (they use variant thumbnails instead) #}
+            {% if page.product.media|length > 1 and not hasVariants %}
             <div class="product-gallery-slider">
                 <button type="button" class="gallery-nav gallery-nav-prev" id="gallery-prev" aria-label="Vorheriges Bild">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -383,44 +158,26 @@
                 <span class="text-sm text-gray-500 font-normal ml-2">inkl. MwSt.</span>
             </div>
 
-            {# Color Variants for Lockhart Tactical (Raven/Caliber Kit) products - IMAGE THUMBNAILS #}
-            {% if isLockhartTactical and ravenColors|length > 0 %}
+            {# ========== UNIFIED VARIANT SELECTOR - "Variante:" label ========== #}
+            {# Uses variantOptions defined at top of template (supports both Raven and Snigel products) #}
+            {% if hasVariants and variantOptions|length > 0 %}
             <div class="mb-8">
                 <p class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em;">
-                    Farbe: <span id="selected-color-name" class="font-semibold text-gray-800">{{ ravenColors[0].name }}</span>
+                    Variante: <span id="selected-variant-name" class="font-semibold text-gray-800">{{ variantOptions[0].name|default('Standard') }}</span>
                 </p>
-                <div class="raven-color-swatches" id="color-swatches" data-product-id="{{ page.product.id }}">
-                    {% for colorData in ravenColors %}
-                        <button type="button"
-                                class="raven-color-thumb {% if loop.first %}selected{% endif %}"
-                                data-color-name="{{ colorData.name }}"
-                                data-image-url="{{ colorData.imageUrl }}"
-                                title="{{ colorData.name }}">
-                            <img src="{{ colorData.thumbUrl }}" alt="{{ colorData.name }}">
-                        </button>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
+                <div class="raven-variant-swatches" id="variant-swatches" data-product-id="{{ page.product.id }}">
+                    {% for variantData in variantOptions %}
+                        {% set variantName = variantData.name|default('Variante ' ~ loop.index) %}
+                        {% set variantImageUrl = variantData.imageUrl|default('') %}
+                        {% set variantThumbUrl = variantData.thumbUrl|default(variantImageUrl) %}
 
-            {# Color Variants - DYNAMIC from custom fields (TEXT BUTTONS + THUMBNAIL FILTERING) #}
-            {% set snigelColors = page.product.translated.customFields.snigel_color_options|default([]) %}
-            {% set hasColorVariants = page.product.translated.customFields.snigel_has_color_variants|default(false) %}
-
-            {% if hasColorVariants and snigelColors|length > 1 %}
-            <div class="mb-8">
-                <p class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em;">
-                    Farbe: <span id="selected-color-name" class="font-semibold text-gray-800">{{ snigelColors[0].name|default('Standard') }}</span>
-                </p>
-                <div class="flex flex-wrap gap-3" id="color-swatches" data-product-id="{{ page.product.id }}">
-                    {% for colorData in snigelColors %}
-                        {% if colorData.imageUrl %}
+                        {% if variantImageUrl %}
                         <button type="button"
-                                class="color-tag {% if loop.first %}selected{% endif %}"
-                                data-color-name="{{ colorData.name }}"
-                                data-image-url="{{ colorData.imageUrl }}"
-                                title="{{ colorData.name }}">
-                            {{ colorData.name }}
+                                class="raven-variant-thumb {% if loop.first %}selected{% endif %}"
+                                data-variant-name="{{ variantName }}"
+                                data-image-url="{{ variantImageUrl }}"
+                                title="{{ variantName }}">
+                            <img src="{{ variantThumbUrl }}" alt="{{ variantName }}">
                         </button>
                         {% endif %}
                     {% endfor %}
@@ -428,17 +185,30 @@
             </div>
             {% endif %}
 
-            {# Size Variants - DYNAMIC from custom fields (rendered via JavaScript) #}
+            {# Size/Parts Variants - DYNAMIC from custom fields (rendered via JavaScript) #}
             {% set rawSnigelSizes = page.product.translated.customFields.snigel_size_options|default('') %}
             {% set hasSizeVariants = page.product.translated.customFields.snigel_has_sizes|default(false) %}
+            {% set snigelVariants = page.product.translated.customFields.snigel_variants|default('') %}
+            {% set snigelVariantType = page.product.translated.customFields.snigel_variant_type|default('GRÖSSE') %}
 
             {% if hasSizeVariants and rawSnigelSizes %}
-            <div class="mb-8" id="size-variant-container" data-sizes="{{ rawSnigelSizes|e('html_attr') }}">
+            {# Determine variant label based on type #}
+            {% set variantLabel = 'Grösse' %}
+            {% if snigelVariantType == 'TEILE' or snigelVariantType == 'Parts' %}
+                {% set variantLabel = 'Teile' %}
+            {% elseif snigelVariantType == 'FARBE' or snigelVariantType == 'Color' %}
+                {% set variantLabel = 'Farbe' %}
+            {% endif %}
+
+            <div class="mb-8" id="size-variant-container"
+                 data-sizes="{{ rawSnigelSizes|e('html_attr') }}"
+                 data-variants="{{ snigelVariants|e('html_attr') }}"
+                 data-variant-type="{{ snigelVariantType|e('html_attr') }}">
                 <p class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em;">
-                    Grösse: <span id="selected-size-name" class="font-semibold text-gray-800">Standard</span>
+                    {{ variantLabel }}: <span id="selected-size-name" class="font-semibold text-gray-800">Standard</span>
                 </p>
                 <div class="flex flex-wrap gap-3" id="size-swatches">
-                    {# Size buttons will be rendered by JavaScript #}
+                    {# Size/Parts buttons will be rendered by JavaScript #}
                 </div>
             </div>
             {% endif %}
@@ -453,6 +223,10 @@
                 <input type="hidden" name="lineItems[{{ page.product.id }}][referencedId]" value="{{ page.product.id }}">
                 <input type="hidden" name="lineItems[{{ page.product.id }}][stackable]" value="1">
                 <input type="hidden" name="lineItems[{{ page.product.id }}][removable]" value="1">
+
+                {# Hidden inputs for selected variant - updated by JavaScript #}
+                <input type="hidden" name="selectedSize" id="selected-size-input" value="">
+                <input type="hidden" name="selectedSizePrice" id="selected-size-price-input" value="">
 
                 {# Quantity and Add to Cart in Row #}
                 <div class="flex items-center gap-4">
@@ -701,14 +475,14 @@
         font-weight: 600;
     }
 
-    /* Raven/Caliber Kit color image thumbnails */
-    .raven-color-swatches {
+    /* Unified Variant image thumbnails (Variante selector) */
+    .raven-variant-swatches {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
     }
 
-    .raven-color-thumb {
+    .raven-variant-thumb {
         width: 60px;
         height: 60px;
         padding: 3px;
@@ -720,18 +494,18 @@
         overflow: hidden;
     }
 
-    .raven-color-thumb:hover {
+    .raven-variant-thumb:hover {
         border-color: #9CA3AF;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .raven-color-thumb.selected {
+    .raven-variant-thumb.selected {
         border-color: #D4A847;
         border-width: 2px;
         box-shadow: 0 0 0 2px rgba(212, 168, 71, 0.3);
     }
 
-    .raven-color-thumb img {
+    .raven-variant-thumb img {
         width: 100%;
         height: 100%;
         object-fit: contain;
@@ -739,7 +513,7 @@
     }
 
     @media (max-width: 768px) {
-        .raven-color-thumb {
+        .raven-variant-thumb {
             width: 52px;
             height: 52px;
         }
@@ -1245,17 +1019,17 @@
             return null;
         }
 
-        function initColorSwatches() {
-            const swatchContainer = document.getElementById('color-swatches');
+        function initVariantSwatches() {
+            const swatchContainer = document.getElementById('variant-swatches');
             const mainImage = document.getElementById('product-main-image');
             const zoomResultImg = document.getElementById('zoom-result-img');
-            const selectedColorName = document.getElementById('selected-color-name');
+            const selectedVariantName = document.getElementById('selected-variant-name');
             const thumbnailsContainer = document.getElementById('gallery-thumbnails');
 
             if (!swatchContainer || !mainImage) return;
 
-            // Support all color swatch types: .raven-color-thumb, .color-tag
-            const swatches = swatchContainer.querySelectorAll('.raven-color-thumb, .color-tag');
+            // Support variant swatch thumbnails
+            const swatches = swatchContainer.querySelectorAll('.raven-variant-thumb');
             if (swatches.length === 0) return;
 
             // Get all thumbnails
@@ -1303,10 +1077,10 @@
                     swatches.forEach(s => s.classList.remove('selected'));
                     this.classList.add('selected');
 
-                    // Update color name display
-                    const colorName = this.dataset.colorName;
-                    if (colorName && selectedColorName) {
-                        selectedColorName.textContent = colorName;
+                    // Update variant name display
+                    const variantName = this.dataset.variantName;
+                    if (variantName && selectedVariantName) {
+                        selectedVariantName.textContent = variantName;
                     }
 
                     // Filter thumbnails by color code and get first matching thumbnail URL
@@ -1328,20 +1102,20 @@
                         if (zoomResultImg) zoomResultImg.src = actualImageUrl;
                     }
 
-                    // Save selected color to localStorage for cart display
-                    if (productId && colorName) {
-                        localStorage.setItem('raven_color_' + productId, JSON.stringify({
-                            color: colorName,
+                    // Save selected variant to localStorage for cart display
+                    if (productId && variantName) {
+                        localStorage.setItem('raven_variant_' + productId, JSON.stringify({
+                            variant: variantName,
                             image: actualImageUrl || swatchImageUrl
                         }));
                     }
                 });
             });
 
-            // On initial load, filter thumbnails for the first selected color
+            // On initial load, filter thumbnails for the first selected variant
             const selectedSwatch = swatchContainer.querySelector('.selected');
             if (selectedSwatch) {
-                const initialColorName = selectedSwatch.dataset.colorName;
+                const initialVariantName = selectedSwatch.dataset.variantName;
                 const initialImageUrl = selectedSwatch.dataset.imageUrl;
                 let actualInitialUrl = initialImageUrl;
 
@@ -1360,10 +1134,10 @@
                     }
                 }
 
-                // Save initial selected color to localStorage
-                if (productId && initialColorName) {
-                    localStorage.setItem('raven_color_' + productId, JSON.stringify({
-                        color: initialColorName,
+                // Save initial selected variant to localStorage
+                if (productId && initialVariantName) {
+                    localStorage.setItem('raven_variant_' + productId, JSON.stringify({
+                        variant: initialVariantName,
                         image: actualInitialUrl || initialImageUrl
                     }));
                 }
@@ -1371,13 +1145,13 @@
         }
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initColorSwatches);
+            document.addEventListener('DOMContentLoaded', initVariantSwatches);
         } else {
-            initColorSwatches();
+            initVariantSwatches();
         }
     })();
 
-    // ========== SIZE SWATCH FUNCTIONALITY ==========
+    // ========== SIZE/PARTS SWATCH FUNCTIONALITY WITH DYNAMIC PRICING ==========
     (function() {
         // Get product ID from the form (already rendered by Shopware)
         function getProductId() {
@@ -1389,10 +1163,21 @@
             return null;
         }
 
+        // Format price Swiss style: CHF 2'977.35 or CHF 240
+        function formatSwissPrice(price) {
+            const cents = Math.round((price * 100) % 100);
+            if (cents === 0) {
+                return 'CHF ' + Math.floor(price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+            } else {
+                return 'CHF ' + price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, "'").replace('.', '.');
+            }
+        }
+
         function initSizeSwatches() {
             const container = document.getElementById('size-variant-container');
             const swatchContainer = document.getElementById('size-swatches');
             const selectedSizeName = document.getElementById('selected-size-name');
+            const priceDisplay = document.querySelector('.raven-product-price');
 
             if (!container || !swatchContainer) return;
 
@@ -1410,7 +1195,29 @@
 
             if (!sizeOptions || sizeOptions.length === 0) return;
 
-            // Render size buttons
+            // Parse variant prices from data attribute (from snigel_variants custom field)
+            let variantPrices = [];
+            const variantsJson = container.dataset.variants;
+            if (variantsJson) {
+                try {
+                    variantPrices = JSON.parse(variantsJson);
+                } catch (e) {
+                    console.error('Failed to parse variant prices:', e);
+                }
+            }
+
+            // Create a map for quick price lookup by variant name
+            const priceMap = {};
+            variantPrices.forEach(v => {
+                if (v.name && v.sellingPriceCHF) {
+                    // Store with both original name and lowercase for flexible matching
+                    priceMap[v.name] = v.sellingPriceCHF;
+                    priceMap[v.name.toLowerCase()] = v.sellingPriceCHF;
+                    priceMap[v.name.toUpperCase()] = v.sellingPriceCHF;
+                }
+            });
+
+            // Render size/parts buttons
             sizeOptions.forEach((sizeData, index) => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
@@ -1419,12 +1226,26 @@
                 btn.dataset.sizeValue = sizeData.value || sizeData.name.toLowerCase();
                 btn.title = sizeData.name;
                 btn.textContent = sizeData.name;
+
+                // Check if this variant has a specific price
+                const variantPrice = priceMap[sizeData.name] || priceMap[sizeData.name.toLowerCase()] || priceMap[sizeData.name.toUpperCase()];
+                if (variantPrice) {
+                    btn.dataset.price = variantPrice;
+                }
+
                 swatchContainer.appendChild(btn);
             });
 
-            // Update initial selected size name
+            // Update initial selected size name and price
             if (sizeOptions.length > 0 && selectedSizeName) {
                 selectedSizeName.textContent = sizeOptions[0].name;
+
+                // Update price for first variant if available
+                const firstVariantPrice = priceMap[sizeOptions[0].name] || priceMap[sizeOptions[0].name.toLowerCase()];
+                if (firstVariantPrice && priceDisplay) {
+                    const priceText = formatSwissPrice(firstVariantPrice);
+                    priceDisplay.innerHTML = priceText + '<span class="text-sm text-gray-500 font-normal ml-2">inkl. MwSt.</span>';
+                }
             }
 
             // Get product ID from form
@@ -1446,22 +1267,44 @@
                         selectedSizeName.textContent = sizeName;
                     }
 
-                    // Save selected size to localStorage for cart display
+                    // *** DYNAMIC PRICE UPDATE ***
+                    const variantPrice = priceMap[sizeName] || priceMap[sizeName.toLowerCase()] || priceMap[sizeName.toUpperCase()];
+                    if (variantPrice && priceDisplay) {
+                        const priceText = formatSwissPrice(variantPrice);
+                        priceDisplay.innerHTML = priceText + '<span class="text-sm text-gray-500 font-normal ml-2">inkl. MwSt.</span>';
+                    }
+
+                    // *** UPDATE HIDDEN FORM INPUTS for cart ***
+                    const sizeInput = document.getElementById('selected-size-input');
+                    const priceInput = document.getElementById('selected-size-price-input');
+                    if (sizeInput) sizeInput.value = sizeName;
+                    if (priceInput && variantPrice) priceInput.value = variantPrice.toString();
+
+                    // Save selected variant to localStorage for cart display
                     if (productId && sizeName) {
                         localStorage.setItem('raven_size_' + productId, JSON.stringify({
                             size: sizeName,
-                            value: sizeValue
+                            value: sizeValue,
+                            price: variantPrice || null
                         }));
                     }
                 });
             });
 
-            // On initial load, save the first selected size to localStorage
+            // On initial load, save the first selected size to localStorage AND set hidden inputs
             if (productId && sizeOptions.length > 0) {
+                const firstPrice = priceMap[sizeOptions[0].name] || priceMap[sizeOptions[0].name.toLowerCase()];
                 localStorage.setItem('raven_size_' + productId, JSON.stringify({
                     size: sizeOptions[0].name,
-                    value: sizeOptions[0].value || sizeOptions[0].name.toLowerCase()
+                    value: sizeOptions[0].value || sizeOptions[0].name.toLowerCase(),
+                    price: firstPrice || null
                 }));
+
+                // Set initial hidden input values
+                const sizeInput = document.getElementById('selected-size-input');
+                const priceInput = document.getElementById('selected-size-price-input');
+                if (sizeInput) sizeInput.value = sizeOptions[0].name;
+                if (priceInput && firstPrice) priceInput.value = firstPrice.toString();
             }
         }
 
