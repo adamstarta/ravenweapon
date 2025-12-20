@@ -9,7 +9,7 @@ export default class RavenOffcanvasCartPlugin extends Plugin {
     }
 
     _registerEvents() {
-        // Handle clicks on cart buttons
+        // Handle clicks on cart buttons (header cart icon) - only for manual cart open
         document.addEventListener('click', (e) => {
             const cartButton = e.target.closest('[data-offcanvas-cart]');
             if (cartButton) {
@@ -19,41 +19,29 @@ export default class RavenOffcanvasCartPlugin extends Plugin {
             }
         });
 
-        // Intercept add to cart form submissions
-        document.addEventListener('submit', (e) => {
-            const form = e.target;
-            if (form.getAttribute('action')?.includes('checkout/line-item/add')) {
-                e.preventDefault();
-                this._addToCartAjax(form);
-            }
-        });
-    }
-
-    _addToCartAjax(form) {
-        const formData = new FormData(form);
-        const action = form.getAttribute('action');
-
-        fetch(action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-        .then(response => {
-            // After adding to cart, open the sidebar
-            this.openCart();
-        })
-        .catch(error => {
-            console.error('Add to cart error:', error);
-            this.openCart();
-        });
+        // Let Shopware's native AddToCart plugin handle form submissions
+        // Our CartLineItemSubscriber will capture the selectedColor and variantenDisplay
+        // and Shopware's OffCanvasCart will display using our offcanvas-cart.html.twig template
     }
 
     openCart() {
-        fetch('/checkout/offcanvas', {
+        // Remove any existing offcanvas first to prevent stale content
+        const existingOffcanvas = document.getElementById('raven-offcanvas-cart');
+        if (existingOffcanvas) {
+            existingOffcanvas.remove();
+        }
+        const existingBackdrop = document.getElementById('raven-offcanvas-backdrop');
+        if (existingBackdrop) {
+            existingBackdrop.remove();
+        }
+
+        // Fetch fresh cart content with cache-busting
+        fetch('/checkout/offcanvas?_=' + Date.now(), {
             method: 'GET',
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Cache-Control': 'no-cache'
+            }
         })
         .then(response => response.text())
         .then(html => {
@@ -62,9 +50,12 @@ export default class RavenOffcanvasCartPlugin extends Plugin {
     }
 
     refreshCart() {
-        fetch('/checkout/offcanvas', {
+        fetch('/checkout/offcanvas?_=' + Date.now(), {
             method: 'GET',
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Cache-Control': 'no-cache'
+            }
         })
         .then(response => response.text())
         .then(html => {
@@ -77,29 +68,24 @@ export default class RavenOffcanvasCartPlugin extends Plugin {
     }
 
     _renderCart(html) {
-        let offcanvas = document.getElementById('raven-offcanvas-cart');
-        if (!offcanvas) {
-            offcanvas = document.createElement('div');
-            offcanvas.id = 'raven-offcanvas-cart';
-            offcanvas.className = 'offcanvas offcanvas-end';
-            // Responsive width: 100% on mobile (<480px), 420px on larger screens
-            const isMobile = window.innerWidth <= 480;
-            const cartWidth = isMobile ? '100%' : '420px';
-            offcanvas.style.cssText = `position:fixed;top:0;right:0;bottom:0;width:${cartWidth};max-width:100vw;z-index:1050;background:#fff;transform:translateX(100%);transition:transform 0.3s ease;box-shadow:-4px 0 15px rgba(0,0,0,0.1);`;
-            document.body.appendChild(offcanvas);
-        }
+        // Create fresh offcanvas element
+        const offcanvas = document.createElement('div');
+        offcanvas.id = 'raven-offcanvas-cart';
+        offcanvas.className = 'offcanvas offcanvas-end show';
+        // Responsive width: 100% on mobile (<480px), 420px on larger screens
+        const isMobile = window.innerWidth <= 480;
+        const cartWidth = isMobile ? '100%' : '420px';
+        offcanvas.style.cssText = `position:fixed;top:0;right:0;bottom:0;width:${cartWidth};max-width:100vw;z-index:1050;background:#fff;transform:translateX(0);transition:transform 0.3s ease;box-shadow:-4px 0 15px rgba(0,0,0,0.1);`;
         offcanvas.innerHTML = '<div class="offcanvas-body p-0">' + html + '</div>';
-        offcanvas.style.transform = 'translateX(0)';
-        offcanvas.classList.add('show');
+        document.body.appendChild(offcanvas);
 
-        let backdrop = document.getElementById('raven-offcanvas-backdrop');
-        if (!backdrop) {
-            backdrop = document.createElement('div');
-            backdrop.id = 'raven-offcanvas-backdrop';
-            backdrop.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.15s;';
-            backdrop.onclick = () => this.closeCart();
-            document.body.appendChild(backdrop);
-        }
+        // Create backdrop
+        const backdrop = document.createElement('div');
+        backdrop.id = 'raven-offcanvas-backdrop';
+        backdrop.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1040;opacity:0;transition:opacity 0.15s;';
+        backdrop.onclick = () => this.closeCart();
+        document.body.appendChild(backdrop);
+
         setTimeout(() => { backdrop.style.opacity = '1'; }, 10);
         document.body.style.overflow = 'hidden';
 
@@ -196,6 +182,7 @@ export default class RavenOffcanvasCartPlugin extends Plugin {
         if (offcanvas) {
             offcanvas.style.transform = 'translateX(100%)';
             offcanvas.classList.remove('show');
+            setTimeout(() => offcanvas.remove(), 300);
         }
         if (backdrop) {
             backdrop.style.opacity = '0';

@@ -1,6 +1,14 @@
 {% sw_extends '@Storefront/storefront/utilities/flash-messages.html.twig' %}
 
-{# Hide all flash messages - cart messages handled via AJAX #}
+{# Flash messages - rendered hidden, intercepted by RavenToast plugin #}
 {% block utilities_flash_messages %}
-{# Disabled - no flash messages shown #}
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}" role="alert" data-raven-flash="{{ type }}">
+                <div class="alert-content">
+                    {{ message|trans|sw_sanitize }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
 {% endblock %}

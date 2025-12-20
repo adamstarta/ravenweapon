@@ -35,26 +35,69 @@
                 margin-bottom: 1.5rem !important;
             }
 
-            /* Add spacing between breadcrumb and content */
+            /* Simple breadcrumb styling - no background */
             .product-detail-breadcrumb {
-                margin-bottom: 1.5rem !important;
+                font-size: 0.875rem;
+                font-family: 'Inter', -apple-system, sans-serif;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            .product-detail-breadcrumb a {
+                color: #666;
+                text-decoration: none;
+            }
+            .product-detail-breadcrumb a:hover {
+                color: #333;
+            }
+            .product-detail-breadcrumb .breadcrumb-separator {
+                color: #999;
+                margin: 0 0.5rem;
+            }
+            .product-detail-breadcrumb .breadcrumb-current {
+                color: #333;
+                font-weight: 500;
             }
         </style>
-        {# Build breadcrumb URLs directly from category names #}
-        {% set urlPath = '' %}
+        {# Build breadcrumb using Shopware's seoUrl function for proper URLs #}
+        {# First, collect all category names for building fallback URLs #}
+        {% set breadcrumbPath = [] %}
         <nav aria-label="Breadcrumb" class="product-detail-breadcrumb">
             <a href="{{ path('frontend.home.page') }}">Home</a>
             {% for breadcrumbCategory in breadcrumbCategories %}
-                {# Build slug from category name #}
                 {% set catName = breadcrumbCategory.translated.name %}
-                {% set slug = catName|lower|replace({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', ' & ': '-', '&': '-', ' ': '-', ',': '', '/': '-', '(': '', ')': '', "'": '', '"': ''})|replace({'--': '-'})|trim('-') %}
-                {% set urlPath = urlPath ~ '/' ~ slug %}
+                {# Add slugified name to path for building full URL #}
+                {% set slugifiedName = catName|lower|replace({' & ': '-', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', '&': '-', ' ': '-', ',': '', '.': '', '/': '-'})|replace({'--': '-'})|replace({'--': '-'})|trim('-') %}
+                {% set breadcrumbPath = breadcrumbPath|merge([slugifiedName]) %}
+
+                {# Try to get SEO URL from the category's seoUrls association first #}
+                {% set categoryUrl = null %}
+
+                {# Check if category has seoUrls loaded and use the canonical one #}
+                {% if breadcrumbCategory.seoUrls is defined and breadcrumbCategory.seoUrls|length > 0 %}
+                    {% for seoUrlEntity in breadcrumbCategory.seoUrls %}
+                        {% if seoUrlEntity.isCanonical %}
+                            {% set categoryUrl = '/' ~ seoUrlEntity.seoPathInfo %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                {# Fallback to seoUrl function #}
+                {% if categoryUrl is null %}
+                    {% set categoryUrl = seoUrl('frontend.navigation.page', { navigationId: breadcrumbCategory.id }) %}
+                {% endif %}
+
+                {# If still getting technical URL (contains /navigation/), build from full path #}
+                {% if '/navigation/' in categoryUrl %}
+                    {% set categoryUrl = '/' ~ breadcrumbPath|join('/') ~ '/' %}
+                {% endif %}
 
                 <span class="breadcrumb-separator">/</span>
                 {% if loop.last %}
                     <span class="breadcrumb-current">{{ catName }}</span>
                 {% else %}
-                    <a href="{{ urlPath }}/">{{ catName }}</a>
+                    <a href="{{ categoryUrl }}">{{ catName }}</a>
                 {% endif %}
             {% endfor %}
         </nav>

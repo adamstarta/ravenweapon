@@ -1,11 +1,11 @@
 {% block sw_order_line_items_grid_grid_columns %}
     {% parent %}
 
-    <template #column-payload.selectedColor="{ item }">
-        <span v-if="item.payload && item.payload.selectedColor" class="sw-order-line-items-grid__color">
-            {{ item.payload.selectedColor }}
+    <template #column-payload.variantenDisplay="{ item }">
+        <span v-if="item.payload && (item.payload.variantenDisplay || item.payload.selectedColor || item.payload.selectedSize)" class="sw-order-line-items-grid__variant">
+            {{ item.payload.variantenDisplay || (item.payload.selectedColor && item.payload.selectedSize ? item.payload.selectedColor + ' / ' + item.payload.selectedSize : (item.payload.selectedColor || item.payload.selectedSize)) }}
         </span>
-        <span v-else class="sw-order-line-items-grid__color--empty">
+        <span v-else class="sw-order-line-items-grid__variant--empty">
             -
         </span>
     </template>

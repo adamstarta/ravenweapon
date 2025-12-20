@@ -1,15 +1,62 @@
 {% sw_extends '@Storefront/storefront/page/navigation/index.html.twig' %}
 
-{# Hide Shopware's default CMS breadcrumb - we use the header breadcrumb only #}
+{# Hide CMS breadcrumb block - we use base_breadcrumb styled as gray bar #}
 {% block cms_breadcrumb %}{% endblock %}
+
+{# Style the Shopware breadcrumb as a gray bar below the header #}
+{% block base_breadcrumb %}
+<nav class="raven-category-breadcrumb" aria-label="Breadcrumb" style="font-size: 0.875rem; color: #666; padding: 0.75rem 1.5rem; background: #f8f8f8; border-bottom: 1px solid #eee; font-family: 'Inter', -apple-system, sans-serif;">
+    <div class="breadcrumb-inner" style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center;">
+        <a href="{{ path('frontend.home.page') }}" style="color: #666; text-decoration: none;">Home</a>
+        {% set breadcrumbCategories = sw_breadcrumb_full(page.header.navigation.active, context) %}
+        {% for breadcrumbCategory in breadcrumbCategories %}
+            <span class="separator" style="color: #999; margin: 0 0.5rem;">/</span>
+            {% if loop.last %}
+                <span class="current" style="color: #333; font-weight: 500;">{{ breadcrumbCategory.translated.name }}</span>
+            {% else %}
+                <a href="{{ seoUrl('frontend.navigation.page', { navigationId: breadcrumbCategory.id }) }}" style="color: #666; text-decoration: none;">{{ breadcrumbCategory.translated.name }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</nav>
+{% endblock %}
 
 {% block base_main_inner %}
 <style>
-/* Hide the duplicate breadcrumb inside the main content area - keep only the header breadcrumb */
-.cms-breadcrumb,
-.product-detail-breadcrumb,
-main .cms-breadcrumb,
-main nav[aria-label="Breadcrumb"] {
+/* Breadcrumb Gray Bar Styling */
+.raven-category-breadcrumb {
+    font-size: 0.875rem;
+    color: #666;
+    padding: 0.75rem 1.5rem;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+.raven-category-breadcrumb .breadcrumb-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.raven-category-breadcrumb a {
+    color: #666;
+    text-decoration: none;
+}
+.raven-category-breadcrumb a:hover {
+    color: #333;
+}
+.raven-category-breadcrumb .separator {
+    color: #999;
+    margin: 0 0.5rem;
+}
+.raven-category-breadcrumb .current {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Hide any other breadcrumbs that might appear */
+main nav[aria-label="Breadcrumb"]:not(.raven-category-breadcrumb) {
     display: none !important;
 }
 
@@ -297,6 +344,31 @@ main nav[aria-label="Breadcrumb"] {
         max-height: 70vh;
         overflow-y: auto;
     }
+}
+
+/* Hide category descriptions from CMS - we only want the h1 title */
+/* Hide cms-element-text that comes after another cms-element-text (description block) */
+.cms-element-text + .cms-element-text {
+    display: none !important;
+}
+
+/* Hide cms-element-text that doesn't have h1 (modern browsers) */
+.cms-element-text:not(:has(h1)):not(:has(h2)) {
+    display: none !important;
+}
+
+/* Fallback: hide paragraphs and standalone text in cms-element-text */
+.cms-element-text p,
+.cms-element-text .category-description,
+.category-description,
+.cms-block-text-on-image p {
+    display: none !important;
+}
+
+/* Keep h1 headings visible */
+.cms-element-text h1,
+.cms-element-text h2 {
+    display: block !important;
 }
 </style>
 
@@ -627,6 +699,26 @@ main nav[aria-label="Breadcrumb"] {
             card.style.display = show ? '' : 'none';
         });
     }
+
+    // Hide category description (text after h1)
+    function hideCategoryDescription() {
+        var h1 = document.querySelector('h1');
+        if (h1) {
+            var sibling = h1.nextElementSibling;
+            // Check if the sibling is NOT the filter bar (doesn't have buttons)
+            if (sibling && !sibling.querySelector('button') && !sibling.querySelector('.raven-filter-bar')) {
+                // This is likely the description - hide it
+                sibling.style.display = 'none';
+            }
+        }
+        // Also hide any cms-element-text that doesn't contain h1
+        document.querySelectorAll('.cms-element-text').forEach(function(el) {
+            if (!el.querySelector('h1') && !el.querySelector('h2')) {
+                el.style.display = 'none';
+            }
+        });
+    }
+    hideCategoryDescription();
 })();
 </script>
 {% endblock %}

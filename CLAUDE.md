@@ -6,9 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Swiss firearms e-commerce platform for RAVEN WEAPON AG built on Shopware 6.6/6.7 with custom RavenTheme.
 
-- **Production:** https://ortak.ch (CHF currency)
+- **Production:** https://ravenweapon.ch / https://shop.ravenweapon.ch (CHF currency)
+- **CDN/SSL:** Cloudflare (Full strict SSL mode)
 - **Tech Stack:** Shopware 6.6.0.0, Docker (dockware), PHP 8.3, MySQL 8, Twig, SCSS
 - **Products:** 193+ Snigel tactical gear products, firearms, ammunition
+- **Server:** Hetzner (77.42.19.154) - Helsinki datacenter
+
+> **Note:** Domain migrated from ortak.ch to ravenweapon.ch on 2025-12-19. Do NOT use ortak.ch anymore.
 
 ## Development Commands
 
@@ -106,6 +110,14 @@ Registered in `services.xml`:
 - Off-canvas cart sidebar (fixed position, 420px desktop / 100% mobile)
 - Exposed methods: `window.ravenOpenCart()`, `ravenCloseCart()`, `ravenRefreshCart()`
 
+**RavenToastPlugin** (`plugin/raven-toast.plugin.js`)
+- Modern toast notifications appearing in top-right corner
+- 4 types: `success` (gold), `error` (red), `warning` (yellow), `info` (blue)
+- Auto-dismiss with configurable duration, pause on hover
+- Usage: `window.ravenToast('success', 'Message here')`
+- **IMPORTANT:** Login/Register pages use custom templates that don't load Shopware's PluginManager. Toast script is inlined directly in those templates (see `page/account/login/index.html.twig` and `page/account/register/index.html.twig`)
+- To intercept Shopware flash messages site-wide, the plugin looks for `.alert` elements
+
 ### Twig Template Inheritance
 
 Use `{% sw_extends %}` to extend Shopware base templates:
@@ -200,6 +212,122 @@ Container `height: 60px` with `overflow: hidden` acts as a window; image `height
 | Brand pages | `page/manufacturer/index.html.twig` |
 | Category/navigation | `page/navigation/index.html.twig` |
 
+## SEO URLs & Breadcrumbs (CRITICAL!)
+
+### Language Configuration (VERY IMPORTANT!)
+
+The sales channel uses **English language** but with **German category slugs**:
+
+| Setting | Value |
+|---------|-------|
+| Sales Channel ID | `0191c12dd4b970949e9aeec40433be3e` |
+| Sales Channel Language | **English** (`2fbb5fe2e29a4d70aa5854ce7ce3e20b`) |
+| Category SEO Slugs | **German** (e.g., `taschen-rucksaecke` NOT `bags-backpacks`) |
+
+**CRITICAL:** All SEO URLs in `seo_url` table MUST use the **English language ID** to work correctly. If you create SEO URLs with German language ID, they will NOT be found by Shopware's `seoUrl()` function.
+
+### Correct SEO URL Examples
+
+```
+Category: /ausruestung/taschen-transport/taschen-rucksaecke/
+Product:  /ausruestung/taschen-transport/taschen-rucksaecke/100l-backpack-20
+```
+
+### Regenerating Product SEO URLs
+
+When products are imported via API or SEO URLs are broken, use the fixed script:
+
+```bash
+# Copy script to server and run
+scp scripts/generate-product-seo-urls-fixed.php root@77.42.19.154:/tmp/
+ssh root@77.42.19.154 "docker cp /tmp/generate-product-seo-urls-fixed.php shopware-chf:/tmp/"
+ssh root@77.42.19.154 "docker exec shopware-chf php /tmp/generate-product-seo-urls-fixed.php"
+ssh root@77.42.19.154 "docker exec shopware-chf bash -c 'cd /var/www/html && bin/console cache:clear'"
+```
+
+The script `generate-product-seo-urls-fixed.php`:
+- Uses **English language ID** (`2fbb5fe2e29a4d70aa5854ce7ce3e20b`)
+- Builds paths from category hierarchy using `path` field
+- Creates SEO URLs like: `/ausruestung/taschen-transport/taschen-rucksaecke/product-name`
+
+### The Right Way: Use Shopware's Native Systems
+
+**DO NOT** build URLs manually or hardcode category mappings. Let Shopware handle it:
+
+```twig
+{# CORRECT: Use Shopware's native seoUrl function #}
+{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}
+{{ seoUrl('frontend.navigation.page', {'navigationId': category.id}) }}
+
+{# WRONG: Manual URL building #}
+/{{ category.name|lower|replace({' ': '-'}) }}/{{ product.name|slugify }}/
+```
+
+### Requirements for Native SEO URLs to Work
+
+1. **main_category must be set** for every product (determines breadcrumb path)
+2. **seo_url entries must exist** in database with **English language ID**
+3. **SEO URL template** configured in Admin → Settings → SEO
+
+### Setting main_category for Products
+
+Every product needs a `main_category` entry to determine its canonical category for breadcrumbs:
+
+```sql
+-- Check products without main_category
+SELECT p.product_number, pt.name
+FROM product p
+JOIN product_translation pt ON p.id = pt.product_id
+LEFT JOIN main_category mc ON p.id = mc.product_id
+WHERE mc.product_id IS NULL AND p.parent_id IS NULL;
+```
+
+### Debugging SEO/Breadcrumb Issues
+
+```sql
+-- Check if product has SEO URL with CORRECT language
+SELECT seo_path_info, is_canonical, LOWER(HEX(language_id)) as lang_id
+FROM seo_url
+WHERE LOWER(HEX(foreign_key)) = '<product_id>'
+AND route_name = 'frontend.detail.page';
+
+-- Verify language is English (2fbb5fe2e29a4d70aa5854ce7ce3e20b)
+-- If it shows German language ID, the URL won't work!
+
+-- Check product's main_category
+SELECT ct.name FROM main_category mc
+JOIN category_translation ct ON mc.category_id = ct.category_id
+WHERE LOWER(HEX(mc.product_id)) = '<product_id>';
+
+-- Count products with correct SEO URLs
+SELECT COUNT(*) FROM seo_url
+WHERE route_name = 'frontend.detail.page'
+AND is_canonical = 1 AND is_deleted = 0
+AND LOWER(HEX(language_id)) = '2fbb5fe2e29a4d70aa5854ce7ce3e20b';
+```
+
+### Common Issues & Fixes
+
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| `/detail/uuid` URLs | Missing seo_url entries OR wrong language ID | Run `generate-product-seo-urls-fixed.php` |
+| 404 on breadcrumb links | Category SEO URLs missing or wrong language | Check seo_url table for correct language |
+| Wrong category in breadcrumb | main_category not set | Set main_category for product |
+| SEO URLs exist but not working | Created with German language ID instead of English | Regenerate with correct English language ID |
+
+### ProductDetailSubscriber for Breadcrumbs
+
+The `ProductDetailSubscriber` loads breadcrumb categories with SEO URLs filtered by current language:
+
+```php
+// Filter seoUrls by current language to get correct SEO paths
+$criteria->getAssociation('seoUrls')
+    ->addFilter(new EqualsFilter('languageId', $context->getContext()->getLanguageId()))
+    ->addFilter(new EqualsFilter('isCanonical', true));
+```
+
+This means SEO URLs MUST exist with the sales channel's language ID (English) to appear in breadcrumbs.
+
 ### PHP Classes
 | Purpose | Path |
 |---------|------|
@@ -210,3 +338,52 @@ Container `height: 60px` with `overflow: hidden` acts as a window; image `height
 ## Testing
 
 No automated tests in this codebase. Manual browser testing is primary method. Use Playwright scripts in `scripts/` for scraping verification.
+
+## Domain & Hosting Configuration
+
+### Production Domain
+- **Primary:** https://ravenweapon.ch
+- **Alternate:** https://shop.ravenweapon.ch
+- **Old domain (deprecated):** ortak.ch - DO NOT USE
+
+### Cloudflare Setup
+- **SSL Mode:** Full (strict)
+- **DNS Records:**
+  - A `@` → 77.42.19.154 (Proxied)
+  - A `www` → 77.42.19.154 (Proxied)
+  - A `shop` → 77.42.19.154 (Proxied)
+  - MX `@` → mta-gw.infomaniak.ch (DNS only - for email)
+
+### Domain Registrar
+- **Provider:** Infomaniak
+- **Nameservers:** Cloudflare (carla.ns.cloudflare.com, tom.ns.cloudflare.com)
+
+### Server (Hetzner)
+- **IP:** 77.42.19.154
+- **Location:** Helsinki
+- **Container:** shopware-chf (dockware)
+
+### Shopware Sales Channel Domains
+```sql
+-- Current configured domains:
+https://ravenweapon.ch
+https://shop.ravenweapon.ch
+http://shop.ravenweapon.ch
+http://77.42.19.154
+```
+
+### SSL Certificate
+- **CDN SSL:** Cloudflare (auto-managed, auto-renewing)
+- **Origin SSL:** Let's Encrypt (inside container at /etc/apache2/ssl/)
+
+### APP_URL Configuration
+The `.env` file in the container should have:
+```
+APP_URL=https://shop.ravenweapon.ch
+```
+
+### Backups
+Pre-migration backups stored in: `backups/2025-12-19-pre-domain-migration/`
+- Database dump (47MB)
+- Theme backup
+- Domain configuration docs

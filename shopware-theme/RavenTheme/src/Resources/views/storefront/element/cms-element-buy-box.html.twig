@@ -40,7 +40,7 @@
 
     {# Breadcrumb #}
     <nav class="raven-breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a>
+        <a href="{{ path('frontend.home.page') }}">Home</a>
         <span class="raven-breadcrumb-sep">/</span>
         {% if product.categories|first %}
             <a href="{{ seoUrl('frontend.navigation.page', { navigationId: product.categories|first.id }) }}">{{ product.categories|first.translated.name }}</a>
@@ -76,7 +76,7 @@
             {# Manufacturer Name Label - Clickable with SEO URL #}
             {% if manufacturerName %}
                 {% set manufacturerSlug = manufacturerName|lower|replace({' ': '-', '.': '', ',': '', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'}) %}
-                <a href="/{{ manufacturerSlug }}" class="raven-category" style="text-decoration: none;">{{ manufacturerName }}</a>
+                <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: manufacturerSlug}) }}" class="raven-category" style="text-decoration: none;">{{ manufacturerName }}</a>
             {% else %}
                 <p class="raven-category">Produkt</p>
             {% endif %}
@@ -100,81 +100,44 @@
             </p>
             {% endif %}
 
-            {# Color Variants Logic - DYNAMIC from custom fields #}
-            {% set snigelHasVariants = product.translated.customFields.snigel_has_color_variants|default(false) %}
-            {% set snigelColorOptions = product.translated.customFields.snigel_color_options|default([]) %}
-            {% set isSnigelProduct = manufacturerName == 'Snigel' %}
+            {# ========== UNIFIED VARIANT SELECTOR - "Variante:" label ========== #}
+            {# Supports both Raven (raven_variant_options) and Snigel (snigel_color_options) products #}
+            {% set hasVariants = product.translated.customFields.raven_has_variants|default(false) or product.translated.customFields.snigel_has_color_variants|default(false) %}
+            {% set variantOptions = product.translated.customFields.raven_variant_options|default(product.translated.customFields.snigel_color_options|default([])) %}
 
-            {% if isSnigelProduct and snigelHasVariants and snigelColorOptions|length > 1 %}
-                {# ===== SNIGEL PRODUCTS WITH MULTIPLE COLORS ===== #}
-                <div class="raven-color-section">
-                    <p class="raven-color-label">
-                        Farbe: <span id="selected-color-name" class="raven-color-value">{{ snigelColorOptions[0].name|default('Standard') }}</span>
+            {% if hasVariants and variantOptions|length > 1 %}
+                <div class="raven-variant-section">
+                    <p class="raven-variant-label">
+                        Variante: <span id="selected-variant-name" class="raven-variant-value">{{ variantOptions[0].name|default('Standard') }}</span>
                     </p>
-                    <div class="raven-color-swatches">
-                        {% for colorOption in snigelColorOptions %}
-                        {% set colorName = colorOption.name|default('Standard') %}
-                        {% set colorImageUrl = colorOption.imageUrl|default('') %}
+                    <div class="raven-variant-swatches">
+                        {% for variantOption in variantOptions %}
+                        {% set variantName = variantOption.name|default('Variante ' ~ loop.index) %}
+                        {% set variantImageUrl = variantOption.imageUrl|default('') %}
 
-                        {# imageUrl is already a full path from custom fields - just prepend domain if needed #}
-                        {% if colorImageUrl %}
+                        {% if variantImageUrl %}
                         <button class="raven-image-swatch {% if loop.first %}selected{% endif %}"
-                                data-color-name="{{ colorName }}"
-                                data-image-url="{{ colorImageUrl }}"
-                                title="{{ colorName }}"
+                                data-variant-name="{{ variantName }}"
+                                data-image-url="{{ variantImageUrl }}"
+                                title="{{ variantName }}"
                                 onclick="
-                                    document.getElementById('raven-main-product-image').src='{{ colorImageUrl }}';
-                                    document.getElementById('raven-zoom-result-img').src='{{ colorImageUrl }}';
-                                    document.getElementById('selected-color-name').textContent='{{ colorName }}';
+                                    document.getElementById('raven-main-product-image').src='{{ variantImageUrl }}';
+                                    document.getElementById('raven-zoom-result-img').src='{{ variantImageUrl }}';
+                                    document.getElementById('selected-variant-name').textContent='{{ variantName }}';
                                     document.querySelectorAll('.raven-image-swatch').forEach(el => el.classList.remove('selected'));
                                     this.classList.add('selected');
-                                    try { localStorage.setItem('raven_color_{{ product.id }}', JSON.stringify({color: '{{ colorName }}', image: '{{ colorImageUrl }}'})); } catch(e) {}">
-                            <img src="{{ colorImageUrl }}" alt="{{ colorName }}">
+                                    // Update hidden form inputs for cart submission
+                                    var colorInput = document.getElementById('raven-selected-color');
+                                    var displayInput = document.getElementById('raven-varianten-display');
+                                    if(colorInput) colorInput.value = '{{ variantName }}';
+                                    if(displayInput) displayInput.value = '{{ variantName }}';
+                                    try { localStorage.setItem('raven_variant_{{ product.id }}', JSON.stringify({variant: '{{ variantName }}', image: '{{ variantImageUrl }}'})); } catch(e) {}">
+                            <img src="{{ variantImageUrl }}" alt="{{ variantName }}">
                         </button>
                         {% endif %}
                         {% endfor %}
                     </div>
                 </div>
-            {% elseif isSnigelProduct %}
-                {# Snigel product with single color - no selector shown #}
-            {% else %}
-                {# ===== NON-SNIGEL PRODUCTS (Raven rifles, caliber kits, etc): Use media-based color detection ===== #}
-                {% if colorMediaList|length > 0 %}
-                <div class="raven-color-section">
-                    <p class="raven-color-label">
-                        Farbe: <span id="selected-color-name" class="raven-color-value">
-                            {# Extract color name from first media filename #}
-                            {% set firstFileName = colorMediaList|first.media.fileName|default('Standard') %}
-                            {# Remove common prefixes and clean up the name #}
-                            {% set colorDisplayName = firstFileName|replace({'rifle': '', 'Rifle': '', 'caliber': '', 'Caliber': '', '_': ' ', '-': ' '})|trim|default('Standard') %}
-                            {{ colorDisplayName }}
-                        </span>
-                    </p>
-                    <div class="raven-color-swatches">
-                        {% for mediaItem in colorMediaList %}
-                        {% set mediaUrl = mediaItem.media.url %}
-                        {% set mediaFileName = mediaItem.media.fileName|default('Variant') %}
-                        {# Extract color name from filename - remove common prefixes #}
-                        {% set extractedColor = mediaFileName|replace({'rifle': '', 'Rifle': '', 'caliber': '', 'Caliber': '', '_': ' ', '-': ' '})|trim %}
-                        {% set colorName = extractedColor|default('Variante ' ~ loop.index) %}
-
-                        <button class="raven-image-swatch {% if loop.first %}selected{% endif %}"
-                                data-color-name="{{ colorName }}"
-                                data-image-url="{{ mediaUrl }}"
-                                title="{{ colorName }}"
-                                onclick="
-                                    document.getElementById('raven-main-product-image').src='{{ mediaUrl }}';
-                                    document.getElementById('raven-zoom-result-img').src='{{ mediaUrl }}';
-                                    document.getElementById('selected-color-name').textContent='{{ colorName }}';
-                                    document.querySelectorAll('.raven-image-swatch').forEach(el => el.classList.remove('selected'));
-                                    this.classList.add('selected');
-                                    try { localStorage.setItem('raven_color_{{ product.id }}', JSON.stringify({color: '{{ colorName }}', image: '{{ mediaUrl }}'})); } catch(e) {}">
-                            <img src="{{ mediaUrl }}" alt="{{ colorName }}">
-                        </button>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endif %}
             {% endif %}
 
             {# Quantity and Add to Cart Form #}
@@ -189,6 +152,12 @@
                 <input type="hidden" name="lineItems[{{ product.id }}][referencedId]" value="{{ product.id }}">
                 <input type="hidden" name="lineItems[{{ product.id }}][stackable]" value="1">
                 <input type="hidden" name="lineItems[{{ product.id }}][removable]" value="1">
+
+                {# Hidden inputs for variant selection - INSIDE form so they get submitted #}
+                {% if hasVariants and variantOptions|length > 0 %}
+                    <input type="hidden" name="selectedColor" id="raven-selected-color" value="{{ variantOptions[0].name|default('') }}">
+                    <input type="hidden" name="variantenDisplay" id="raven-varianten-display" value="{{ variantOptions[0].name|default('') }}">
+                {% endif %}
 
                 {# Quantity Selector #}
                 <div class="raven-quantity-row">
@@ -504,12 +473,12 @@
         color: #D4A847;
     }
 
-    /* Color section */
-    .raven-color-section {
+    /* Variant section (Variante selector) */
+    .raven-variant-section {
         margin-bottom: 1.5rem;
     }
 
-    .raven-color-label {
+    .raven-variant-label {
         font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: 600;
@@ -517,12 +486,12 @@
         margin-bottom: 0.75rem;
     }
 
-    .raven-color-value {
+    .raven-variant-value {
         font-weight: 700;
     }
 
-    /* Color swatches - horizontal row, all 5 in one line */
-    .raven-color-swatches {
+    /* Variant swatches - horizontal row */
+    .raven-variant-swatches {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;

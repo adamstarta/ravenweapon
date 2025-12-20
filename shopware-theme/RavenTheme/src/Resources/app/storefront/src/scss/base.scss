@@ -49,12 +49,9 @@ a[href=""].product-detail-manufacturer-link,
   display: none !important;
 }
 
-// Hide flash messages / alerts (cart handled via AJAX)
-.alert-content,
-.alert.alert-info,
-.alert.alert-success {
-  display: none !important;
-}
+// Flash messages / alerts - handled by RavenToast plugin
+// Toast styles are imported below
+@import 'toast';
 
 // =============================================================================
 // UTILITY CLASSES (Tailwind-like)

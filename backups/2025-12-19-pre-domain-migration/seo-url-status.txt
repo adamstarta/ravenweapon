@@ -1,0 +1,36 @@
+# SEO URL Status Report
+# Date: 2025-12-19
+# Purpose: Pre-migration SEO audit
+
+## Current SEO URL Statistics
+| Type | Count |
+|------|-------|
+| Category SEO URLs | 85 |
+| Product SEO URLs | 0 (!) |
+| Total Products | 337 |
+
+## WARNING: No Product SEO URLs!
+Products are currently using UUID-based URLs like:
+/detail/0191c12dd4b970949e9aeec40433be3e
+
+This should be fixed after domain migration by running:
+```bash
+docker exec shopware-chf bash -c "cd /var/www/html && \
+  bin/console dal:refresh:index && \
+  bin/console cache:clear"
+```
+
+## Category SEO URLs (Sample)
+- waffen/raven-weapons/
+- spezialausruestung/verdeckte-ausruestung/
+- taschen-transport/taschen-rucksaecke/
+- koerperschutz/westen-chest-rigs/
+- bekleidung-tragen/guertel/
+- behoerden-dienst/polizeiausruestung/
+
+## Post-Migration Tasks
+1. Add ravenweapon.ch domains to sales channel
+2. Regenerate all SEO URLs (especially products!)
+3. Clear cache
+4. Test category and product URLs
+5. Remove old ortak.ch domains (after verification)

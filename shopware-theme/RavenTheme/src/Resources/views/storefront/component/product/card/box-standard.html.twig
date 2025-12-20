@@ -1,39 +1,7 @@
 {% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
 
 {% block component_product_box %}
-{# Dynamic breadcrumb: JavaScript captures current category path and appends to product links #}
-
-<script>
-(function() {
-    // Only run once per page
-    if (window.ravenCategoryLinksInitialized) return;
-    window.ravenCategoryLinksInitialized = true;
-
-    document.addEventListener('click', function(e) {
-        // Find if clicked element or parent is a product link
-        var link = e.target.closest('.raven-card-image, .raven-product-name');
-        if (!link) return;
-
-        // Get current page path (the category path)
-        var currentPath = window.location.pathname;
-
-        // Only add ?from= for category pages (contain 'Ausruestung' or other known category patterns)
-        if (currentPath && currentPath.length > 1 && !currentPath.includes('/detail/')) {
-            e.preventDefault();
-            var href = link.getAttribute('href');
-
-            // Remove any existing ?from= parameter
-            href = href.split('?')[0];
-
-            // Add the category path as from parameter
-            var separator = href.includes('?') ? '&' : '?';
-            var newHref = href + separator + 'from=' + encodeURIComponent(currentPath);
-
-            window.location.href = newHref;
-        }
-    });
-})();
-</script>
+{# Raven Weapon product card - clean URLs without ?from= parameter #}
 
 <style>
 .raven-card {
@@ -208,7 +176,7 @@
                 {% set manufacturerName = product.manufacturer.translated.name %}
                 {# Slugify: lowercase, spaces to hyphens, remove special chars #}
                 {% set manufacturerSlug = manufacturerName|lower|replace({' ': '-', '_': '-', '.': '', ',': '', '&': '', '(': '', ')': '', '/': '', '\\': '', "'": '', '"': '', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'}) %}
-                <a href="/{{ manufacturerSlug }}" class="raven-manufacturer" style="font-weight: 700; color: #374151; text-decoration: none; display: block;">{{ manufacturerName }}</a>
+                <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: manufacturerSlug}) }}" class="raven-manufacturer" style="font-weight: 700; color: #374151; text-decoration: none; display: block;">{{ manufacturerName }}</a>
                 {% endif %}
                 <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}" class="raven-product-name">
                     {{ product.translated.name }}

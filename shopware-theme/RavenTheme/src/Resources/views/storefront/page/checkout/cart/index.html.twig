@@ -1,26 +1,44 @@
 {% sw_extends '@Storefront/storefront/page/checkout/cart/index.html.twig' %}
 
+{# Hide the default Shopware summary sidebar #}
+{% block page_checkout_cart_container_summary %}{% endblock %}
+
 {% block page_checkout_cart %}
+<style>
+/* Hide the entire Shopware default Summary sidebar - we have our own */
+.checkout-aside,
+.checkout-aside-container,
+.col-lg-4.checkout-aside-container,
+.checkout-aside-summary,
+.checkout-aside-action,
+[class*="checkout-aside"] {
+    display: none !important;
+}
+
+/* Make main cart area full width */
+.checkout-main,
+.col-lg-8 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+
+/* Hide number input spinner arrows and center text */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+input[type="number"] {
+    -moz-appearance: textfield !important;
+    text-align: center !important;
+}
+</style>
 <div class="raven-cart" style="max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem;">
     {# Cart Header #}
-    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem;">
+    <div style="margin-bottom: 1.5rem;">
         <h1 style="font-family: 'Chakra Petch', sans-serif; font-size: 2rem; font-weight: 700; color: #111827; margin: 0;">
             Ihr Warenkorb
         </h1>
-        {% if page.cart.lineItems.count > 0 %}
-        <div style="font-size: 0.875rem; color: #374151;">
-            {% set freeShippingThreshold = 59 %}
-            {% set subtotal = page.cart.price.netPrice %}
-            {% set remaining = freeShippingThreshold - subtotal %}
-            {% if remaining > 0 %}
-                {% set remainCents = ((remaining * 100) % 100)|round %}
-                Nur {% if remainCents == 0 %}{{ remaining|number_format(0, '.', '') }}{% else %}{{ remaining|number_format(2, '.', '') }}{% endif %} mehr, um kostenlosen Versand zu erhalten!
-                <a href="{{ path('frontend.home.page') }}" style="color: #2563EB; font-weight: 500;">Weiter einkaufen</a>
-            {% else %}
-                <span style="font-weight: 600; color: #047857;">Kostenloser Versand!</span>
-            {% endif %}
-        </div>
-        {% endif %}
     </div>
 
     {# Login Requirement Notice for Guest Users #}
@@ -52,50 +70,62 @@
     {# Cart Items #}
     <div id="cart-rows" style="border-top: 1px solid #E5E7EB;">
         {% for lineItem in page.cart.lineItems %}
-        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #E5E7EB;">
-            {# Product Image #}
-            <div style="width: 80px; height: 80px; min-width: 80px; background: white; border: 1px solid #E5E7EB; border-radius: 0.5rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center;">
-                {% if lineItem.cover %}
-                <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-                {% else %}
-                <div style="width: 100%; height: 100%; background: #F3F4F6;"></div>
-                {% endif %}
-            </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid #E5E7EB;">
+            {# Top Row: Image + Info + Remove #}
+            <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                {# Product Image #}
+                <div style="width: 100px; height: 100px; min-width: 100px; background: white; border: 1px solid #E5E7EB; border-radius: 0.75rem; padding: 0.5rem; display: flex; align-items: center; justify-content: center;">
+                    {% if lineItem.cover %}
+                    <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    {% else %}
+                    <div style="width: 100%; height: 100%; background: #F3F4F6; border-radius: 0.5rem;"></div>
+                    {% endif %}
+                </div>
 
-            {# Product Info #}
-            <div style="flex: 1; min-width: 0;">
-                <p style="font-weight: 600; color: #111827; margin: 0 0 0.25rem 0;">{{ lineItem.label }}</p>
-                {% if lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
-                <p style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0 0 0.25rem 0;">Farbe: {{ lineItem.payload.selectedColor }}</p>
-                {% endif %}
-                {% set unitP = lineItem.price.unitPrice %}
-                {% set unitCents = ((unitP * 100) % 100)|round %}
-                <p style="font-size: 0.875rem; color: #6B7280; margin: 0;">{% if unitCents == 0 %}{{ unitP|number_format(0, '.', '') }}{% else %}{{ unitP|number_format(2, '.', '') }}{% endif %}</p>
-            </div>
+                {# Product Info #}
+                <div style="flex: 1; min-width: 0;">
+                    <p style="font-weight: 700; color: #111827; margin: 0 0 0.5rem 0; font-size: 1.125rem;">{{ lineItem.label }}</p>
+                    {% if lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
+                    <p style="font-size: 0.875rem; color: #D97706; font-weight: 600; margin: 0 0 0.5rem 0;">Variante: {{ lineItem.payload.variantenDisplay }}</p>
+                    {% elseif lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
+                    <p style="font-size: 0.875rem; color: #D97706; font-weight: 600; margin: 0 0 0.5rem 0;">Variante: {{ lineItem.payload.selectedColor }}</p>
+                    {% elseif lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %}
+                    <p style="font-size: 0.875rem; color: #D97706; font-weight: 600; margin: 0 0 0.5rem 0;">Variante: {{ lineItem.payload.selectedSize }}</p>
+                    {% endif %}
+                    {% set unitP = lineItem.price.unitPrice %}
+                    <p style="font-size: 1rem; color: #6B7280; margin: 0;">Stückpreis: CHF {{ unitP|number_format(2, '.', "'") }}</p>
+                </div>
 
-            {# Quantity Controls #}
-            <div style="display: flex; align-items: center;">
-                <form action="{{ path('frontend.checkout.line-item.change-quantity', { id: lineItem.id }) }}" method="post" style="display: inline-flex; border: 1px solid #D1D5DB; border-radius: 0.375rem; overflow: hidden;" data-form-csrf-handler="true">
-                    <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
-                    <button type="button" onclick="var input = this.nextElementSibling; if(input.value > 1) { input.value--; this.closest('form').submit(); }" style="width: 32px; height: 32px; background: white; border: none; color: #6B7280; cursor: pointer;" aria-label="Menge verringern">−</button>
-                    <input type="number" name="quantity" value="{{ lineItem.quantity }}" min="1" max="99" readonly style="width: 48px; height: 32px; text-align: center; border: none; border-left: 1px solid #D1D5DB; border-right: 1px solid #D1D5DB; font-weight: 500;">
-                    <button type="button" onclick="var input = this.previousElementSibling; input.value++; this.closest('form').submit();" style="width: 32px; height: 32px; background: white; border: none; color: #6B7280; cursor: pointer;" aria-label="Menge erhöhen">+</button>
-                </form>
-            </div>
-
-            {# Price and Remove #}
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                {% set totalP = lineItem.price.totalPrice %}
-                {% set totalCents = ((totalP * 100) % 100)|round %}
-                <span style="font-weight: 600; color: #111827; min-width: 80px; text-align: right;">{% if totalCents == 0 %}{{ totalP|number_format(0, '.', '') }}{% else %}{{ totalP|number_format(2, '.', '') }}{% endif %}</span>
+                {# Remove Button #}
                 <form action="{{ path('frontend.checkout.line-item.delete', { id: lineItem.id }) }}" method="post" data-form-csrf-handler="true">
                     <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
-                    <button type="submit" style="padding: 0.25rem; background: transparent; border: none; color: #9CA3AF; cursor: pointer;" aria-label="Entfernen">
+                    <button type="submit" style="padding: 0.5rem; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 0.5rem; color: #EF4444; cursor: pointer;" aria-label="Entfernen">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 20px; height: 20px;">
                             <path fill="currentColor" d="M18.3 5.71a1 1 0 00-1.42 0L12 10.59 7.12 5.71A1 1 0 005.7 7.13L10.59 12l-4.9 4.88a1 1 0 101.42 1.42L12 13.41l4.88 4.89a1 1 0 001.42-1.42L13.41 12l4.89-4.88a1 1 0 000-1.41z"/>
                         </svg>
                     </button>
                 </form>
+            </div>
+
+            {# Bottom Row: Quantity Controls + Total Price #}
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: #F9FAFB; border-radius: 0.75rem; margin-top: 0.5rem;">
+                {# Quantity Controls #}
+                <div style="display: flex; flex-direction: row; align-items: center; gap: 0.75rem;">
+                    <span style="font-size: 0.875rem; color: #6B7280; font-weight: 500;">Menge:</span>
+                    <form action="{{ path('frontend.checkout.line-item.change-quantity', { id: lineItem.id }) }}" method="post" style="display: flex; flex-direction: row; align-items: center; border: 1px solid #D1D5DB; border-radius: 0.5rem; overflow: hidden; background: white;" data-form-csrf-handler="true">
+                        <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
+                        <button type="button" onclick="var input = this.nextElementSibling; if(input.value > 1) { input.value--; this.closest('form').submit(); }" style="width: 44px; height: 44px; background: white; border: none; color: #374151; cursor: pointer; font-size: 1.5rem; font-weight: 400; display: flex; align-items: center; justify-content: center;" aria-label="Menge verringern">−</button>
+                        <input type="number" name="quantity" value="{{ lineItem.quantity }}" min="1" max="99" readonly style="width: 50px; height: 44px; text-align: center; border: none; border-left: 1px solid #E5E7EB; border-right: 1px solid #E5E7EB; font-weight: 700; font-size: 1.125rem; color: #111827; background: white; -moz-appearance: textfield; -webkit-appearance: none; appearance: none; padding: 0; margin: 0;">
+                        <button type="button" onclick="var input = this.previousElementSibling; input.value++; this.closest('form').submit();" style="width: 44px; height: 44px; background: white; border: none; color: #374151; cursor: pointer; font-size: 1.5rem; font-weight: 400; display: flex; align-items: center; justify-content: center;" aria-label="Menge erhöhen">+</button>
+                    </form>
+                </div>
+
+                {# Total Price #}
+                {% set totalP = lineItem.price.totalPrice %}
+                <div style="text-align: right;">
+                    <span style="font-size: 0.75rem; color: #6B7280; display: block;">Gesamt</span>
+                    <span style="font-weight: 700; color: #111827; font-size: 1.25rem;">CHF {{ totalP|number_format(2, '.', "'") }}</span>
+                </div>
             </div>
         </div>
         {% endfor %}
@@ -108,8 +138,7 @@
                 <div style="font-size: 1.25rem; font-weight: 600; color: #111827; display: flex; align-items: baseline; gap: 0.5rem;">
                     <span>Zwischensumme</span>
                     {% set subP = page.cart.price.totalPrice %}
-                    {% set subCents = ((subP * 100) % 100)|round %}
-                    <span style="font-weight: 700;">{% if subCents == 0 %}{{ subP|number_format(0, '.', '') }}{% else %}{{ subP|number_format(2, '.', '') }}{% endif %}</span>
+                    <span style="font-weight: 700;">CHF {{ subP|number_format(2, '.', "'") }}</span>
                 </div>
                 <p style="font-size: 0.875rem; color: #6B7280; margin: 0.25rem 0 0 0;">Inklusive Steuer. Versandkosten werden an der Kasse berechnet.</p>
             </div>

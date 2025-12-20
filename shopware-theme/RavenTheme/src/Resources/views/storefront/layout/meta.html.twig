@@ -8,3 +8,9 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
 {% endblock %}
+
+{% block layout_head_javascript_prod %}
+    {{ parent() }}
+    {# Load RavenTheme plugin bundle #}
+    <script type="text/javascript" src="{{ asset('js/raven-theme/raven-theme.js', 'theme') }}" defer></script>
+{% endblock %}

@@ -1378,13 +1378,19 @@
                     </div>
                     <div class="summary-item-details">
                         <p class="summary-item-name">{{ lineItem.label }}</p>
-                        <p class="summary-item-color" style="font-size: 0.75rem; color: #6b7280;"></p>
-                        {% if lineItem.payload.options|length > 0 %}
-                        <p class="summary-item-variant">
-                            {% for option in lineItem.payload.options %}
-                                {{ option.option }}{% if not loop.last %}, {% endif %}
-                            {% endfor %}
-                        </p>
+                        {# Display combined variantenDisplay, or fall back to individual fields #}
+                        {% if lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
+                            <p class="summary-item-variant" style="font-size: 0.75rem; color: #6b7280;">{{ lineItem.payload.variantenDisplay }}</p>
+                        {% elseif lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
+                            <p class="summary-item-variant" style="font-size: 0.75rem; color: #6b7280;">{{ lineItem.payload.selectedColor }}{% if lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %} / {{ lineItem.payload.selectedSize }}{% endif %}</p>
+                        {% elseif lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %}
+                            <p class="summary-item-variant" style="font-size: 0.75rem; color: #6b7280;">{{ lineItem.payload.selectedSize }}</p>
+                        {% elseif lineItem.payload.options|length > 0 %}
+                            <p class="summary-item-variant" style="font-size: 0.75rem; color: #6b7280;">
+                                {% for option in lineItem.payload.options %}
+                                    {{ option.option }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
                         {% endif %}
                     </div>
                     <div class="summary-item-price">{{ lineItem.price.totalPrice|currency }}</div>

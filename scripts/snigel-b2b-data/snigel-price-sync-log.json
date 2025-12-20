@@ -1,0 +1,5647 @@
+[
+  {
+    "timestamp": "2025-12-19T00:15:55.229Z",
+    "productId": "a6862006f8ae472616e8d71cf15ddde1",
+    "name": "Rigid trouser belt -05",
+    "variants": [
+      {
+        "name": "Black / XS/S",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "xs-s",
+            "name": "XS/S"
+          }
+        ],
+        "b2bPriceEUR": 14.75,
+        "purchasePriceCHF": 13.8,
+        "sellingPriceCHF": 22.3,
+        "colour": "Black",
+        "sizes": "XS/S"
+      },
+      {
+        "name": "Black / M/L",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "m-l",
+            "name": "M/L"
+          }
+        ],
+        "b2bPriceEUR": 14.75,
+        "purchasePriceCHF": 13.8,
+        "sellingPriceCHF": 22.3,
+        "colour": "Black",
+        "sizes": "M/L"
+      },
+      {
+        "name": "Olive / M/L",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "olive",
+            "name": "Olive"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "m-l",
+            "name": "M/L"
+          }
+        ],
+        "b2bPriceEUR": 14.75,
+        "purchasePriceCHF": 13.8,
+        "sellingPriceCHF": 22.3,
+        "colour": "Olive",
+        "sizes": "M/L"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:15:56.844Z",
+    "productId": "b28ab7288ab348791c4bbb87d5debde3",
+    "name": "Belt closure pack  (5) -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 30.22,
+        "purchasePriceCHF": 28.25,
+        "sellingPriceCHF": 45.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:15:58.333Z",
+    "productId": "25bbb5c416a4f27b7126bcdc0907f918",
+    "name": "Featherweight stretcher -09",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 122.99,
+        "purchasePriceCHF": 114.85,
+        "sellingPriceCHF": 186.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:00.168Z",
+    "productId": "5f46120da40b4bd96184f0f0397652cd",
+    "name": "Foldable drinking cup",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.34,
+        "purchasePriceCHF": 4.05,
+        "sellingPriceCHF": 6.55
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:01.612Z",
+    "productId": "5ed1b3248f4027a1ebce2d5e58255245",
+    "name": "Plastic bag, ziplock A6 -09, 10 pack",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 3.52,
+        "purchasePriceCHF": 3.3,
+        "sellingPriceCHF": 5.35
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:03.119Z",
+    "productId": "c5aa9208ced5c5930a0efeb094487b7b",
+    "name": "Sleeping bag cover with hood 2.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 120.43,
+        "purchasePriceCHF": 112.5,
+        "sellingPriceCHF": 182.2
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:04.728Z",
+    "productId": "310ce4ab320a435927c98bc2cd758fe6",
+    "name": "Light field blanket 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 40.28,
+        "purchasePriceCHF": 37.6,
+        "sellingPriceCHF": 60.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:06.275Z",
+    "productId": "9d3d936123ca28d6ba6a7377265db2a1",
+    "name": "Multi-tarp 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 160.39,
+        "purchasePriceCHF": 149.8,
+        "sellingPriceCHF": 242.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:07.821Z",
+    "productId": "ef5e8a0d9fd66ad62056b8d218c184d7",
+    "name": "Hypothermal bag 1.1",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 335.07,
+        "purchasePriceCHF": 312.95,
+        "sellingPriceCHF": 507
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:09.398Z",
+    "productId": "58364640ee39dc0b6c3f93adb0d60dcb",
+    "name": "A3 Commander’s aid 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 30.07,
+        "purchasePriceCHF": 28.1,
+        "sellingPriceCHF": 45.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:10.807Z",
+    "productId": "6a582412af8fc23446c5d31af036f7d8",
+    "name": "A5 Field binder",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 51.51,
+        "purchasePriceCHF": 48.1,
+        "sellingPriceCHF": 77.95
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 51.51,
+        "purchasePriceCHF": 48.1,
+        "sellingPriceCHF": 77.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:12.370Z",
+    "productId": "daa4da5d4315fc1f0666cf52535d09f5",
+    "name": "Swe patch, Small -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 3.98,
+        "purchasePriceCHF": 3.7,
+        "sellingPriceCHF": 6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:13.759Z",
+    "productId": "78c9ea649cad616f5efb209d4adb5b1f",
+    "name": "Dog patch -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:15.256Z",
+    "productId": "10e4a80e0d56d5132ca1c6b7588a345c",
+    "name": "Squeeze quick adjust -17",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 63.77,
+        "purchasePriceCHF": 59.55,
+        "sellingPriceCHF": 96.5
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 63.77,
+        "purchasePriceCHF": 59.55,
+        "sellingPriceCHF": 96.5
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 63.77,
+        "purchasePriceCHF": 59.55,
+        "sellingPriceCHF": 96.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:16.864Z",
+    "productId": "9245650f5e0159381ad24ad1ebd24618",
+    "name": "I-Bar set -10",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:18.498Z",
+    "productId": "5d81686652b08563a2d3c453106e055f",
+    "name": "K9 patch, Small -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 2.45,
+        "purchasePriceCHF": 2.3,
+        "sellingPriceCHF": 3.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:20.125Z",
+    "productId": "b044f1a17fdc110c7ed94d6123c51bf7",
+    "name": "3 row cummerbund 1.0",
+    "variants": [
+      {
+        "name": "Grey / 008",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "008",
+            "name": "008"
+          }
+        ],
+        "b2bPriceEUR": 68.87,
+        "purchasePriceCHF": 64.3,
+        "sellingPriceCHF": 104.2,
+        "colour": "Grey",
+        "panel-sizes": "008"
+      },
+      {
+        "name": "Grey / 010",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "010",
+            "name": "010"
+          }
+        ],
+        "b2bPriceEUR": 68.87,
+        "purchasePriceCHF": 64.3,
+        "sellingPriceCHF": 104.2,
+        "colour": "Grey",
+        "panel-sizes": "010"
+      },
+      {
+        "name": "Multicam / 008",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "008",
+            "name": "008"
+          }
+        ],
+        "b2bPriceEUR": 70.91,
+        "purchasePriceCHF": 66.25,
+        "sellingPriceCHF": 107.3,
+        "colour": "Multicam",
+        "panel-sizes": "008"
+      },
+      {
+        "name": "Multicam / 010",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "010",
+            "name": "010"
+          }
+        ],
+        "b2bPriceEUR": 70.91,
+        "purchasePriceCHF": 66.25,
+        "sellingPriceCHF": 107.3,
+        "colour": "Multicam",
+        "panel-sizes": "010"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:21.649Z",
+    "productId": "237b40b434e1a1aae1ec8e65b12d7b63",
+    "name": "HUNDFÖRARE, Dog handler patch, small",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:23.292Z",
+    "productId": "76e4bf4dfd0bd7b352c5a736ce47f702",
+    "name": "Herma T-bar set 1.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 6.08,
+        "purchasePriceCHF": 5.7,
+        "sellingPriceCHF": 9.2
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 6.08,
+        "purchasePriceCHF": 5.7,
+        "sellingPriceCHF": 9.2
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 6.08,
+        "purchasePriceCHF": 5.7,
+        "sellingPriceCHF": 9.2
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:24.818Z",
+    "productId": "7afc0bdba351f1052b506532965b0b67",
+    "name": "Small blank patch-13",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:26.257Z",
+    "productId": "8979c9c895e1212412fa7aaf40e6bc14",
+    "name": "Elastic cumber band w compartments 1.0",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 57.64,
+        "purchasePriceCHF": 53.85,
+        "sellingPriceCHF": 87.2
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:27.688Z",
+    "productId": "3a9ac700da1a1672fbf490c5dcd18df9",
+    "name": "T-bar set -12",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 8.41,
+        "purchasePriceCHF": 7.85,
+        "sellingPriceCHF": 12.75
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 8.41,
+        "purchasePriceCHF": 7.85,
+        "sellingPriceCHF": 12.75
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 8.41,
+        "purchasePriceCHF": 7.85,
+        "sellingPriceCHF": 12.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:29.109Z",
+    "productId": "e31097acb3e6ec6834f1a3221eadee19",
+    "name": "SNIGEL patch w Velcro",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 3.98,
+        "purchasePriceCHF": 3.7,
+        "sellingPriceCHF": 6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:30.759Z",
+    "productId": "54191f8f194af2ab86661bc5d2f7ace9",
+    "name": "Squeeze side panel pouch set -18",
+    "variants": [
+      {
+        "name": "Black / 007",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "007",
+            "name": "007"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Black",
+        "panel-sizes": "007"
+      },
+      {
+        "name": "Black / 009",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "009",
+            "name": "009"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Black",
+        "panel-sizes": "009"
+      },
+      {
+        "name": "Black / 011",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "011",
+            "name": "011"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Black",
+        "panel-sizes": "011"
+      },
+      {
+        "name": "Grey / 007",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "007",
+            "name": "007"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Grey",
+        "panel-sizes": "007"
+      },
+      {
+        "name": "Grey / 009",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "009",
+            "name": "009"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Grey",
+        "panel-sizes": "009"
+      },
+      {
+        "name": "Grey / 011",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "011",
+            "name": "011"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Grey",
+        "panel-sizes": "011"
+      },
+      {
+        "name": "Multicam / 007",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "007",
+            "name": "007"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Multicam",
+        "panel-sizes": "007"
+      },
+      {
+        "name": "Multicam / 009",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "009",
+            "name": "009"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Multicam",
+        "panel-sizes": "009"
+      },
+      {
+        "name": "Multicam / 011",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "panel-sizes",
+            "label": "GRÖSSE",
+            "value": "011",
+            "name": "011"
+          }
+        ],
+        "b2bPriceEUR": 133.71,
+        "purchasePriceCHF": 124.9,
+        "sellingPriceCHF": 202.3,
+        "colour": "Multicam",
+        "panel-sizes": "011"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:32.169Z",
+    "productId": "ee29bae7e1e4a693bab18630e38c3bb7",
+    "name": "Duffel Strap-12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 7.66,
+        "purchasePriceCHF": 7.15,
+        "sellingPriceCHF": 11.6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:33.587Z",
+    "productId": "7200b4241f3851e97090700d2a860e0c",
+    "name": "Name card holder -11",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:35.221Z",
+    "productId": "5d3a7c8481a47ced002341a6197962ef",
+    "name": "Squeeze ballistic front and back 1.3 S2",
+    "variants": [
+      {
+        "name": "Grey / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 191.4,
+        "purchasePriceCHF": 178.75,
+        "sellingPriceCHF": 289.6,
+        "colour": "Grey",
+        "v-size": "Size 2"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:36.852Z",
+    "productId": "f5937e8bcab8395463523d69f785a180",
+    "name": "Admin case",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 65.3,
+        "purchasePriceCHF": 61,
+        "sellingPriceCHF": 98.8
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 65.3,
+        "purchasePriceCHF": 61,
+        "sellingPriceCHF": 98.8
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:38.298Z",
+    "productId": "0b0eb1c11f15bb0dcea7dd6f6df083da",
+    "name": "T-Tape holder 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 7,
+        "purchasePriceCHF": 6.55,
+        "sellingPriceCHF": 10.6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:40.031Z",
+    "productId": "c16e0530a337db2f884b5b05e2bd9606",
+    "name": "Squeeze vest/plate carrier",
+    "variants": [
+      {
+        "name": "Black / Size 1",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-1",
+            "name": "Size 1"
+          }
+        ],
+        "b2bPriceEUR": 282.68,
+        "purchasePriceCHF": 264,
+        "sellingPriceCHF": 427.7,
+        "colour": "Black",
+        "v-size": "Size 1"
+      },
+      {
+        "name": "Black / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 216.92,
+        "purchasePriceCHF": 202.6,
+        "sellingPriceCHF": 328.2,
+        "colour": "Black",
+        "v-size": "Size 2"
+      },
+      {
+        "name": "Black / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 216.92,
+        "purchasePriceCHF": 202.6,
+        "sellingPriceCHF": 328.2,
+        "colour": "Black",
+        "v-size": "Size 3"
+      },
+      {
+        "name": "Grey / Size 1",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-1",
+            "name": "Size 1"
+          }
+        ],
+        "b2bPriceEUR": 282.68,
+        "purchasePriceCHF": 264,
+        "sellingPriceCHF": 427.7,
+        "colour": "Grey",
+        "v-size": "Size 1"
+      },
+      {
+        "name": "Grey / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 300.36,
+        "purchasePriceCHF": 280.55,
+        "sellingPriceCHF": 454.45,
+        "colour": "Grey",
+        "v-size": "Size 2"
+      },
+      {
+        "name": "Grey / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 300.36,
+        "purchasePriceCHF": 280.55,
+        "sellingPriceCHF": 454.45,
+        "colour": "Grey",
+        "v-size": "Size 3"
+      },
+      {
+        "name": "Multicam / Size 1",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-1",
+            "name": "Size 1"
+          }
+        ],
+        "b2bPriceEUR": 282.68,
+        "purchasePriceCHF": 264,
+        "sellingPriceCHF": 427.7,
+        "colour": "Multicam",
+        "v-size": "Size 1"
+      },
+      {
+        "name": "Multicam / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 300.36,
+        "purchasePriceCHF": 280.55,
+        "sellingPriceCHF": 454.45,
+        "colour": "Multicam",
+        "v-size": "Size 2"
+      },
+      {
+        "name": "Multicam / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 300.36,
+        "purchasePriceCHF": 280.55,
+        "sellingPriceCHF": 454.45,
+        "colour": "Multicam",
+        "v-size": "Size 3"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:41.432Z",
+    "productId": "90b04df5be93c5f8c1bb16bdb34c8575",
+    "name": "Gas mask bag -11",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 52.02,
+        "purchasePriceCHF": 48.6,
+        "sellingPriceCHF": 78.7
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 116.86,
+        "purchasePriceCHF": 109.15,
+        "sellingPriceCHF": 176.8
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:43.013Z",
+    "productId": "5b94afbbe7165dffc0ce3263fd76ff76",
+    "name": "Trauma shears holder 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 28.2,
+        "purchasePriceCHF": 26.35,
+        "sellingPriceCHF": 42.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:44.525Z",
+    "productId": "2e67d9c75f7554b8d992b3b4d8ff4482",
+    "name": "Squeeze MOLLE front panel 1.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 35.18,
+        "purchasePriceCHF": 32.85,
+        "sellingPriceCHF": 53.25
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 35.18,
+        "purchasePriceCHF": 32.85,
+        "sellingPriceCHF": 53.25
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 38.24,
+        "purchasePriceCHF": 35.7,
+        "sellingPriceCHF": 57.85
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:46.050Z",
+    "productId": "e969217dd74e78dc127a1e39b0829a3d",
+    "name": "Medium Schwung bag 1.1",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 196.5,
+        "purchasePriceCHF": 183.55,
+        "sellingPriceCHF": 297.3
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 196.5,
+        "purchasePriceCHF": 183.55,
+        "sellingPriceCHF": 297.3
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:47.480Z",
+    "productId": "e4ecba08eb3288508ff52fa9919eb4f7",
+    "name": "Large hammer holder -14",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 57.73,
+        "purchasePriceCHF": 53.9,
+        "sellingPriceCHF": 87.35
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:49.074Z",
+    "productId": "fab6ed66ae20f84cbc305b0dea9261ec",
+    "name": "Elastic 40 mm T-bar set -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 14.54,
+        "purchasePriceCHF": 13.6,
+        "sellingPriceCHF": 22
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:50.590Z",
+    "productId": "e34e6518cb1e964fab2fcb62cb8e5e59",
+    "name": "Rope bag -05",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 50.49,
+        "purchasePriceCHF": 47.15,
+        "sellingPriceCHF": 76.4
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 28.59,
+        "purchasePriceCHF": 26.7,
+        "sellingPriceCHF": 43.25
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:52.065Z",
+    "productId": "79213fbaf6ff913036f3295bd3dd0a48",
+    "name": "Padded pouch -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 15.78,
+        "purchasePriceCHF": 14.75,
+        "sellingPriceCHF": 23.9
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:53.572Z",
+    "productId": "e052ac82f79940193d170e33fc02ce54",
+    "name": "Plate carrier, Strap on DF -13",
+    "variants": [
+      {
+        "name": "Black / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 355.27,
+        "purchasePriceCHF": 331.8,
+        "sellingPriceCHF": 537.55,
+        "colour": "Black",
+        "v-size": "Size 3"
+      },
+      {
+        "name": "Grey / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 355.27,
+        "purchasePriceCHF": 331.8,
+        "sellingPriceCHF": 537.55,
+        "colour": "Grey",
+        "v-size": "Size 3"
+      },
+      {
+        "name": "Multicam / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "multicam",
+            "name": "Multicam"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 333.33,
+        "purchasePriceCHF": 311.35,
+        "sellingPriceCHF": 504.35,
+        "colour": "Multicam",
+        "v-size": "Size 3"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:55.132Z",
+    "productId": "446d45462fde3501a86ede03e9e37093",
+    "name": "Carrier pouch -16",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 62.74,
+        "purchasePriceCHF": 58.6,
+        "sellingPriceCHF": 94.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:56.670Z",
+    "productId": "23d9c1920eafad419177ad77d0da1fa9",
+    "name": "1L Bottle pouch -18",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 25.53,
+        "purchasePriceCHF": 23.85,
+        "sellingPriceCHF": 38.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:58.148Z",
+    "productId": "5c939995a2ec83ede4f8f141ad9bcbd6",
+    "name": "Plate carrier, Strap on -14",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 318.01,
+        "purchasePriceCHF": 297,
+        "sellingPriceCHF": 481.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:16:59.511Z",
+    "productId": "fb632d1efb4f536df5e602483ecd0bd4",
+    "name": "3L Multipurpose bag -15",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 85.72,
+        "purchasePriceCHF": 80.05,
+        "sellingPriceCHF": 129.7
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 85.72,
+        "purchasePriceCHF": 80.05,
+        "sellingPriceCHF": 129.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:01.130Z",
+    "productId": "d3b81fc68bc4eda38c4d3eb0d6d2cfb7",
+    "name": "8×19 pouch -14",
+    "variants": [
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 29.07,
+        "purchasePriceCHF": 27.15,
+        "sellingPriceCHF": 44
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:02.820Z",
+    "productId": "a944b4b604f7349515506fd576465294",
+    "name": "Equipment vest -16",
+    "variants": [
+      {
+        "name": "Black / Size 1",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-1",
+            "name": "Size 1"
+          }
+        ],
+        "b2bPriceEUR": 119.41,
+        "purchasePriceCHF": 111.55,
+        "sellingPriceCHF": 180.7,
+        "colour": "Black",
+        "v-size": "Size 1"
+      },
+      {
+        "name": "Black / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 119.41,
+        "purchasePriceCHF": 111.55,
+        "sellingPriceCHF": 180.7,
+        "colour": "Black",
+        "v-size": "Size 2"
+      },
+      {
+        "name": "Black / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 119.41,
+        "purchasePriceCHF": 111.55,
+        "sellingPriceCHF": 180.7,
+        "colour": "Black",
+        "v-size": "Size 3"
+      },
+      {
+        "name": "Black / Size 4",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-4",
+            "name": "Size 4"
+          }
+        ],
+        "b2bPriceEUR": 119.41,
+        "purchasePriceCHF": 111.55,
+        "sellingPriceCHF": 180.7,
+        "colour": "Black",
+        "v-size": "Size 4"
+      },
+      {
+        "name": "HighVis yellow / Size 1",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "highvis-yellow",
+            "name": "HighVis yellow"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-1",
+            "name": "Size 1"
+          }
+        ],
+        "b2bPriceEUR": 129.11,
+        "purchasePriceCHF": 120.6,
+        "sellingPriceCHF": 195.35,
+        "colour": "HighVis yellow",
+        "v-size": "Size 1"
+      },
+      {
+        "name": "HighVis yellow / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "highvis-yellow",
+            "name": "HighVis yellow"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 129.11,
+        "purchasePriceCHF": 120.6,
+        "sellingPriceCHF": 195.35,
+        "colour": "HighVis yellow",
+        "v-size": "Size 2"
+      },
+      {
+        "name": "HighVis yellow / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "highvis-yellow",
+            "name": "HighVis yellow"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 129.11,
+        "purchasePriceCHF": 120.6,
+        "sellingPriceCHF": 195.35,
+        "colour": "HighVis yellow",
+        "v-size": "Size 3"
+      },
+      {
+        "name": "HighVis yellow / Size 4",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "highvis-yellow",
+            "name": "HighVis yellow"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-4",
+            "name": "Size 4"
+          }
+        ],
+        "b2bPriceEUR": 129.11,
+        "purchasePriceCHF": 120.6,
+        "sellingPriceCHF": 195.35,
+        "colour": "HighVis yellow",
+        "v-size": "Size 4"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:04.376Z",
+    "productId": "e061c0172f18f2e2bc775ff50f7ea8fb",
+    "name": "6L Funny pack",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 58.15,
+        "purchasePriceCHF": 54.3,
+        "sellingPriceCHF": 88
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 74.49,
+        "purchasePriceCHF": 69.55,
+        "sellingPriceCHF": 112.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:05.947Z",
+    "productId": "8570fd31e5885d7b24d2dfc363dd2a37",
+    "name": "Police Notebook cover-10",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 16.29,
+        "purchasePriceCHF": 15.2,
+        "sellingPriceCHF": 24.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:07.452Z",
+    "productId": "a989ad42b8333f7caea7d890b93dd87c",
+    "name": "Oyster pouch 1.0",
+    "variants": [
+      {
+        "name": "Black / Small",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "small",
+            "name": "Small"
+          }
+        ],
+        "b2bPriceEUR": 27.52,
+        "purchasePriceCHF": 25.7,
+        "sellingPriceCHF": 41.65,
+        "colour": "Black",
+        "sizes": "Small"
+      },
+      {
+        "name": "Black / Medium",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "medium",
+            "name": "Medium"
+          }
+        ],
+        "b2bPriceEUR": 31.6,
+        "purchasePriceCHF": 29.5,
+        "sellingPriceCHF": 47.8,
+        "colour": "Black",
+        "sizes": "Medium"
+      },
+      {
+        "name": "Grey / XSmall",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "xsmall",
+            "name": "XSmall"
+          }
+        ],
+        "b2bPriceEUR": 27.52,
+        "purchasePriceCHF": 25.7,
+        "sellingPriceCHF": 41.65,
+        "colour": "Grey",
+        "sizes": "XSmall"
+      },
+      {
+        "name": "Grey / Small",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "small",
+            "name": "Small"
+          }
+        ],
+        "b2bPriceEUR": 27.52,
+        "purchasePriceCHF": 25.7,
+        "sellingPriceCHF": 41.65,
+        "colour": "Grey",
+        "sizes": "Small"
+      },
+      {
+        "name": "Grey / Medium",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "medium",
+            "name": "Medium"
+          }
+        ],
+        "b2bPriceEUR": 31.6,
+        "purchasePriceCHF": 29.5,
+        "sellingPriceCHF": 47.8,
+        "colour": "Grey",
+        "sizes": "Medium"
+      },
+      {
+        "name": "Grey / Large",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "large",
+            "name": "Large"
+          }
+        ],
+        "b2bPriceEUR": 33.13,
+        "purchasePriceCHF": 30.95,
+        "sellingPriceCHF": 50.15,
+        "colour": "Grey",
+        "sizes": "Large"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:09.001Z",
+    "productId": "824d6a33eaa1e8a00231d409ac70d594",
+    "name": "Covert equipment vest -12",
+    "variants": [
+      {
+        "name": "Size 1",
+        "value": "size-1",
+        "originalText": "Size 1",
+        "v-size": "Size 1",
+        "b2bPriceEUR": 163.32,
+        "purchasePriceCHF": 152.55,
+        "sellingPriceCHF": 247.1
+      },
+      {
+        "name": "Size 2",
+        "value": "size-2",
+        "originalText": "Size 2",
+        "v-size": "Size 2",
+        "b2bPriceEUR": 163.32,
+        "purchasePriceCHF": 152.55,
+        "sellingPriceCHF": 247.1
+      },
+      {
+        "name": "Size 3",
+        "value": "size-3",
+        "originalText": "Size 3",
+        "v-size": "Size 3",
+        "b2bPriceEUR": 163.32,
+        "purchasePriceCHF": 152.55,
+        "sellingPriceCHF": 247.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:10.408Z",
+    "productId": "9c269bf705dfd16b89b4086eab718a2b",
+    "name": "10L Multi-purpose bag",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 146.47,
+        "purchasePriceCHF": 136.8,
+        "sellingPriceCHF": 221.6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:12.025Z",
+    "productId": "92e01f3c81e22d2755f78f1ee2456eac",
+    "name": "Medium Notebook cover",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 20.88,
+        "purchasePriceCHF": 19.5,
+        "sellingPriceCHF": 31.6
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 16.29,
+        "purchasePriceCHF": 15.2,
+        "sellingPriceCHF": 24.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:13.656Z",
+    "productId": "f1f972e1e55f848c3c548df95f290c99",
+    "name": "Trauma pouch insert -17",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 21.39,
+        "purchasePriceCHF": 20,
+        "sellingPriceCHF": 32.35
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:15.290Z",
+    "productId": "418cc004e098e5818452a73640340787",
+    "name": "Technical equipment vest 2.0",
+    "variants": [
+      {
+        "name": "M-XXL",
+        "value": "m-xxl",
+        "originalText": "M-XXL",
+        "sizes": "M-XXL",
+        "b2bPriceEUR": 119.41,
+        "purchasePriceCHF": 111.55,
+        "sellingPriceCHF": 180.7
+      },
+      {
+        "name": "XS-M",
+        "value": "xs-m",
+        "originalText": "XS-M",
+        "sizes": "XS-M",
+        "b2bPriceEUR": 119.41,
+        "purchasePriceCHF": 111.55,
+        "sellingPriceCHF": 180.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:16.694Z",
+    "productId": "961cd3369177cbfaa98407e545047eee",
+    "name": "30×61 cm Weapon bag -13",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 309.55,
+        "purchasePriceCHF": 289.1,
+        "sellingPriceCHF": 468.35
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:18.095Z",
+    "productId": "193d5b3e2e9961da544f7d1af9080441",
+    "name": "Small Notebook cover",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 15.26,
+        "purchasePriceCHF": 14.25,
+        "sellingPriceCHF": 23.1
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 15.26,
+        "purchasePriceCHF": 14.25,
+        "sellingPriceCHF": 23.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:19.710Z",
+    "productId": "80d0ea2fbd1e87bc8a1f00274ae5a79f",
+    "name": "Trauma pouch -17",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 23.43,
+        "purchasePriceCHF": 21.9,
+        "sellingPriceCHF": 35.45
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 23.43,
+        "purchasePriceCHF": 21.9,
+        "sellingPriceCHF": 35.45
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:21.212Z",
+    "productId": "60536c1e69289d2c4eb15b09e9b13d4c",
+    "name": "Covert surveillance vest -05",
+    "variants": [
+      {
+        "name": "Size 1",
+        "value": "size-1",
+        "originalText": "Size 1",
+        "v-size": "Size 1",
+        "b2bPriceEUR": 129.62,
+        "purchasePriceCHF": 121.05,
+        "sellingPriceCHF": 196.15
+      },
+      {
+        "name": "Size 2",
+        "value": "size-2",
+        "originalText": "Size 2",
+        "v-size": "Size 2",
+        "b2bPriceEUR": 129.62,
+        "purchasePriceCHF": 121.05,
+        "sellingPriceCHF": 196.15
+      },
+      {
+        "name": "Size 3",
+        "value": "size-3",
+        "originalText": "Size 3",
+        "v-size": "Size 3",
+        "b2bPriceEUR": 129.62,
+        "purchasePriceCHF": 121.05,
+        "sellingPriceCHF": 196.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:22.789Z",
+    "productId": "835d0405c0183c484e55d9f44dfa299a",
+    "name": "34×64 cm dual Weapon bag -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 1048.95,
+        "purchasePriceCHF": 979.7,
+        "sellingPriceCHF": 1587.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:24.335Z",
+    "productId": "b2f45d0e5ad7fbb23f0718fc4a509685",
+    "name": "Memo board -14",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 22.92,
+        "purchasePriceCHF": 21.4,
+        "sellingPriceCHF": 34.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:25.823Z",
+    "productId": "96105f4cdc193f0eae6f7d498db041c9",
+    "name": "Medium Admin pouch -18",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 39.26,
+        "purchasePriceCHF": 36.65,
+        "sellingPriceCHF": 59.4
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 39.26,
+        "purchasePriceCHF": 36.65,
+        "sellingPriceCHF": 59.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:27.347Z",
+    "productId": "275c0b3d7155dd241ca55efdd57a3f17",
+    "name": "Covert stretch vest -16",
+    "variants": [
+      {
+        "name": "Black / Size 1,5",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-15",
+            "name": "Size 1,5"
+          }
+        ],
+        "b2bPriceEUR": 73.47,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15,
+        "colour": "Black",
+        "v-size": "Size 1,5"
+      },
+      {
+        "name": "Black / Size 1",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-1",
+            "name": "Size 1"
+          }
+        ],
+        "b2bPriceEUR": 73.47,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15,
+        "colour": "Black",
+        "v-size": "Size 1"
+      },
+      {
+        "name": "Black / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 73.47,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15,
+        "colour": "Black",
+        "v-size": "Size 2"
+      },
+      {
+        "name": "Black / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 73.47,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15,
+        "colour": "Black",
+        "v-size": "Size 3"
+      },
+      {
+        "name": "White / Size 1",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "white",
+            "name": "White"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-1",
+            "name": "Size 1"
+          }
+        ],
+        "b2bPriceEUR": 73.47,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15,
+        "colour": "White",
+        "v-size": "Size 1"
+      },
+      {
+        "name": "White / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "white",
+            "name": "White"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 73.47,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15,
+        "colour": "White",
+        "v-size": "Size 2"
+      },
+      {
+        "name": "White / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "white",
+            "name": "White"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 73.47,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15,
+        "colour": "White",
+        "v-size": "Size 3"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:28.813Z",
+    "productId": "cb6e947dc8b0833690de4b2666a33ab3",
+    "name": "34×100 cm dual Weapon bag -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 335.7,
+        "purchasePriceCHF": 313.55,
+        "sellingPriceCHF": 507.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:30.450Z",
+    "productId": "655dd41aa0080a3761e3a7b29a63e3a3",
+    "name": "Badge holder -16",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 17.99,
+        "purchasePriceCHF": 16.8,
+        "sellingPriceCHF": 27.2
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:32.114Z",
+    "productId": "410c5ce6a2dfa086a51e2e26499d9db9",
+    "name": "Small Admin pouch",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 23.43,
+        "purchasePriceCHF": 21.9,
+        "sellingPriceCHF": 35.45
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 23.43,
+        "purchasePriceCHF": 21.9,
+        "sellingPriceCHF": 35.45
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:33.735Z",
+    "productId": "16f07e3df003f22ed9d269fbd0fa7631",
+    "name": "Dual side covert equipment harness -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 67.85,
+        "purchasePriceCHF": 63.35,
+        "sellingPriceCHF": 102.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:35.208Z",
+    "productId": "c3ae6b5df97c88cc1d6cb61cf2aa5fa1",
+    "name": "Organized bag -11",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 211.31,
+        "purchasePriceCHF": 197.35,
+        "sellingPriceCHF": 319.75
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 211.31,
+        "purchasePriceCHF": 197.35,
+        "sellingPriceCHF": 319.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:36.818Z",
+    "productId": "54f0e2624851ca84b89aeb3035b29ae7",
+    "name": "Wallet",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 18.84,
+        "purchasePriceCHF": 17.6,
+        "sellingPriceCHF": 28.5
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 18.84,
+        "purchasePriceCHF": 17.6,
+        "sellingPriceCHF": 28.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:38.376Z",
+    "productId": "945fd29003a08aecaff9a9f7b28e0718",
+    "name": "Virve radio pouch -10",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 24.96,
+        "purchasePriceCHF": 23.3,
+        "sellingPriceCHF": 37.75
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 24.96,
+        "purchasePriceCHF": 23.3,
+        "sellingPriceCHF": 37.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:39.730Z",
+    "productId": "14f414cfec8635c9514ed47ebb65c61f",
+    "name": "Single side covert equipment harness -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 44.88,
+        "purchasePriceCHF": 41.9,
+        "sellingPriceCHF": 67.9
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:41.138Z",
+    "productId": "6ad0e1372029418f8a31be317b902f4d",
+    "name": "55L Duffel bag -17",
+    "variants": [
+      {
+        "name": "Black / 55L",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "backpack-size",
+            "label": "GRÖSSE",
+            "value": "55l",
+            "name": "55L"
+          }
+        ],
+        "b2bPriceEUR": 90.82,
+        "purchasePriceCHF": 84.85,
+        "sellingPriceCHF": 137.4,
+        "colour": "Black",
+        "backpack-size": "55L"
+      },
+      {
+        "name": "Grey / 55L",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "backpack-size",
+            "label": "GRÖSSE",
+            "value": "55l",
+            "name": "55L"
+          }
+        ],
+        "b2bPriceEUR": 90.82,
+        "purchasePriceCHF": 84.85,
+        "sellingPriceCHF": 137.4,
+        "colour": "Grey",
+        "backpack-size": "55L"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:42.728Z",
+    "productId": "e484eea02dff40969275f08f8946a04f",
+    "name": "Mini wallet",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 14.15,
+        "purchasePriceCHF": 13.2,
+        "sellingPriceCHF": 21.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:44.219Z",
+    "productId": "5880cd4f323b751114154a088810654a",
+    "name": "VIRVE pouch, Basic-11",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 73.45,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 73.45,
+        "purchasePriceCHF": 68.6,
+        "sellingPriceCHF": 111.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:45.683Z",
+    "productId": "3bd2b92149ff1a3d28bff2381cc02662",
+    "name": "Small leg panel -12",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 32.11,
+        "purchasePriceCHF": 30,
+        "sellingPriceCHF": 48.6
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 32.11,
+        "purchasePriceCHF": 30,
+        "sellingPriceCHF": 48.6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:47.252Z",
+    "productId": "bc8c79b948381984c107def82950da07",
+    "name": "90L Duffel bag 1.0",
+    "variants": [
+      {
+        "name": "Black / 90L",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "backpack-size",
+            "label": "GRÖSSE",
+            "value": "90l",
+            "name": "90L"
+          }
+        ],
+        "b2bPriceEUR": 122.48,
+        "purchasePriceCHF": 114.4,
+        "sellingPriceCHF": 185.3,
+        "colour": "Black",
+        "backpack-size": "90L"
+      },
+      {
+        "name": "Grey / 90L",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "backpack-size",
+            "label": "GRÖSSE",
+            "value": "90l",
+            "name": "90L"
+          }
+        ],
+        "b2bPriceEUR": 122.48,
+        "purchasePriceCHF": 114.4,
+        "sellingPriceCHF": 185.3,
+        "colour": "Grey",
+        "backpack-size": "90L"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:48.612Z",
+    "productId": "03a42e27e4a3dfd922e8c8432a5e59e8",
+    "name": "Spotting Scope cover",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 173.58,
+        "purchasePriceCHF": 162.1,
+        "sellingPriceCHF": 262.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:50.235Z",
+    "productId": "93946a8370b4ff04d2a982f1f2845c8c",
+    "name": "Radio pouch -15",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 19.35,
+        "purchasePriceCHF": 18.05,
+        "sellingPriceCHF": 29.3
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 19.35,
+        "purchasePriceCHF": 18.05,
+        "sellingPriceCHF": 29.3
+      },
+      {
+        "name": "HighVis yellow",
+        "value": "highvis-yellow",
+        "originalText": "HighVis yellow",
+        "colour": "HighVis yellow",
+        "b2bPriceEUR": 19.35,
+        "purchasePriceCHF": 18.05,
+        "sellingPriceCHF": 29.3
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:51.813Z",
+    "productId": "27ed0b0fbab2bfa7c2baf70839689376",
+    "name": "50 mm buckle adapter set",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 6.27,
+        "purchasePriceCHF": 5.85,
+        "sellingPriceCHF": 9.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:53.372Z",
+    "productId": "16172771a4ba70610bedd3659ef96fbd",
+    "name": "230 Roller bag -15",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 494.04,
+        "purchasePriceCHF": 461.45,
+        "sellingPriceCHF": 747.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:54.869Z",
+    "productId": "1f04a128843f7353d57e22e5272e18de",
+    "name": "XL Snipers support bag -03",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 200.84,
+        "purchasePriceCHF": 187.6,
+        "sellingPriceCHF": 303.9
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:56.265Z",
+    "productId": "8928ea154dee3cbabdca3918613f0580",
+    "name": "Canister pouch -15",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 48.7,
+        "purchasePriceCHF": 45.5,
+        "sellingPriceCHF": 73.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:57.841Z",
+    "productId": "1f76cf4ac143197a896622cc4d65b902",
+    "name": "Leg attachment light -10",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 32.45,
+        "purchasePriceCHF": 30.3,
+        "sellingPriceCHF": 49.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:17:59.429Z",
+    "productId": "bbfe43d6715083c259dd5ad7bfcb7f94",
+    "name": "15L Princess backpack  -17",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 61.72,
+        "purchasePriceCHF": 57.65,
+        "sellingPriceCHF": 93.4
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 61.72,
+        "purchasePriceCHF": 57.65,
+        "sellingPriceCHF": 93.4
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 86.74,
+        "purchasePriceCHF": 81,
+        "sellingPriceCHF": 131.25
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:01.051Z",
+    "productId": "c25782d05bce2e06aa8ba13f47848995",
+    "name": "Low profile 3L hydration bladder",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 58.6,
+        "purchasePriceCHF": 54.75,
+        "sellingPriceCHF": 88.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:02.683Z",
+    "productId": "6ede8df0c0b6c18a2fa226aaab356b76",
+    "name": "Zipped dump bag -10",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 35.18,
+        "purchasePriceCHF": 32.85,
+        "sellingPriceCHF": 53.25
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 35.18,
+        "purchasePriceCHF": 32.85,
+        "sellingPriceCHF": 53.25
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:04.149Z",
+    "productId": "d1a61c0e26c58a4b38658f14e2d9d0f4",
+    "name": "Belt attachment -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 8.12,
+        "purchasePriceCHF": 7.6,
+        "sellingPriceCHF": 12.3
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:05.676Z",
+    "productId": "538f5eacfbcd5c5ac99d193220b9dc6e",
+    "name": "30-40L Combat backpack 1.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 199.57,
+        "purchasePriceCHF": 186.4,
+        "sellingPriceCHF": 301.95
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 199.57,
+        "purchasePriceCHF": 186.4,
+        "sellingPriceCHF": 301.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:07.237Z",
+    "productId": "bdf1a051d0e66f5f3e206b71d883cd8c",
+    "name": "1L Kangaroo hydration bladder",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 29.05,
+        "purchasePriceCHF": 27.15,
+        "sellingPriceCHF": 43.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:08.726Z",
+    "productId": "ec0db6550f08654610beb5d833c7ab6c",
+    "name": "Micro dump pouch 2.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 33.13,
+        "purchasePriceCHF": 30.95,
+        "sellingPriceCHF": 50.15
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 33.13,
+        "purchasePriceCHF": 30.95,
+        "sellingPriceCHF": 50.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:10.134Z",
+    "productId": "ed0cb9cdc4bb152e98457417eac75d8d",
+    "name": "Covert elastic equipment belt 2.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 76.02,
+        "purchasePriceCHF": 71,
+        "sellingPriceCHF": 115
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:11.657Z",
+    "productId": "214c083b0d590d5502453dbe3aa594c1",
+    "name": "15-20L All pack",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 107.12,
+        "purchasePriceCHF": 100.05,
+        "sellingPriceCHF": 162.1
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 107.16,
+        "purchasePriceCHF": 100.1,
+        "sellingPriceCHF": 162.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:13.105Z",
+    "productId": "a03a48df6bde56fd0ac3ceb84ccd4c27",
+    "name": "2,5L hydration cover -16",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 67.08,
+        "purchasePriceCHF": 62.65,
+        "sellingPriceCHF": 101.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:14.734Z",
+    "productId": "3c41f35aef691300c176837cfe5aa096",
+    "name": "Small dump pouch 2.0",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 30.58,
+        "purchasePriceCHF": 28.55,
+        "sellingPriceCHF": 46.25
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:16.097Z",
+    "productId": "e798b16fe83bb3b1572ec29402c79bea",
+    "name": "Combat belt harness -14",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 33.73,
+        "purchasePriceCHF": 31.5,
+        "sellingPriceCHF": 51.05
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 33.64,
+        "purchasePriceCHF": 31.4,
+        "sellingPriceCHF": 50.9
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 33.64,
+        "purchasePriceCHF": 31.4,
+        "sellingPriceCHF": 50.9
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:17.643Z",
+    "productId": "530bbf906137506a64fd802b8be229db",
+    "name": "30L Waterproof mission backpack 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 97.48,
+        "purchasePriceCHF": 91.05,
+        "sellingPriceCHF": 147.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:19.081Z",
+    "productId": "d6c99a8caf0d7c5b921bfa173c0d0faf",
+    "name": "Restraint sling -06",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 12.71,
+        "purchasePriceCHF": 11.85,
+        "sellingPriceCHF": 19.25
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:20.620Z",
+    "productId": "2c558ff20eae1fa2e23ab2124e2aff18",
+    "name": "MG Ammunition pouch  -09",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 45.39,
+        "purchasePriceCHF": 42.4,
+        "sellingPriceCHF": 68.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:22.243Z",
+    "productId": "a107f5692472dc14a1720f2c50476f67",
+    "name": "Light combat belt 1.0",
+    "variants": [
+      {
+        "name": "Grey / Size 1",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-1",
+            "name": "Size 1"
+          }
+        ],
+        "b2bPriceEUR": 75.51,
+        "purchasePriceCHF": 70.55,
+        "sellingPriceCHF": 114.25,
+        "colour": "Grey",
+        "v-size": "Size 1"
+      },
+      {
+        "name": "Grey / Size 2",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-2",
+            "name": "Size 2"
+          }
+        ],
+        "b2bPriceEUR": 75.51,
+        "purchasePriceCHF": 70.55,
+        "sellingPriceCHF": 114.25,
+        "colour": "Grey",
+        "v-size": "Size 2"
+      },
+      {
+        "name": "Grey / Size 3",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          },
+          {
+            "type": "v-size",
+            "label": "V-GRÖSSE",
+            "value": "size-3",
+            "name": "Size 3"
+          }
+        ],
+        "b2bPriceEUR": 75.51,
+        "purchasePriceCHF": 70.55,
+        "sellingPriceCHF": 114.25,
+        "colour": "Grey",
+        "v-size": "Size 3"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:23.567Z",
+    "productId": "7cca1a75952eb0d203c6be22d29e4abf",
+    "name": "30L Mission backpack 1.1",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 135.24,
+        "purchasePriceCHF": 126.3,
+        "sellingPriceCHF": 204.65
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 135.24,
+        "purchasePriceCHF": 126.3,
+        "sellingPriceCHF": 204.65
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 166.89,
+        "purchasePriceCHF": 155.9,
+        "sellingPriceCHF": 252.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:25.159Z",
+    "productId": "a2f73489768fb837342a8807836b5c2c",
+    "name": "Cal 50 Magazine pouch -10",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 21.91,
+        "purchasePriceCHF": 20.45,
+        "sellingPriceCHF": 33.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:26.710Z",
+    "productId": "e10b35dfa081e47473687da602638918",
+    "name": "Ribs combat belt 1.0",
+    "variants": [
+      {
+        "name": "Size 1",
+        "value": "size-1",
+        "originalText": "Size 1",
+        "v-size": "Size 1",
+        "b2bPriceEUR": 103.59,
+        "purchasePriceCHF": 96.75,
+        "sellingPriceCHF": 156.75
+      },
+      {
+        "name": "Size 2",
+        "value": "size-2",
+        "originalText": "Size 2",
+        "v-size": "Size 2",
+        "b2bPriceEUR": 103.59,
+        "purchasePriceCHF": 96.75,
+        "sellingPriceCHF": 156.75
+      },
+      {
+        "name": "Size 3",
+        "value": "size-3",
+        "originalText": "Size 3",
+        "v-size": "Size 3",
+        "b2bPriceEUR": 103.59,
+        "purchasePriceCHF": 96.75,
+        "sellingPriceCHF": 156.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:28.256Z",
+    "productId": "e82aabda0b4b070871e79d244d811a5d",
+    "name": "Dual Magazine pouch -18",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 33.64,
+        "purchasePriceCHF": 31.4,
+        "sellingPriceCHF": 50.9
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 33.64,
+        "purchasePriceCHF": 31.4,
+        "sellingPriceCHF": 50.9
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:29.839Z",
+    "productId": "c4e49ec587d15c76a641a3032eafb806",
+    "name": "Comfort belt-13",
+    "variants": [
+      {
+        "name": "Black / XSmall",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "xsmall",
+            "name": "XSmall"
+          }
+        ],
+        "b2bPriceEUR": 105.63,
+        "purchasePriceCHF": 98.65,
+        "sellingPriceCHF": 159.85,
+        "colour": "Black",
+        "sizes": "XSmall"
+      },
+      {
+        "name": "Black / Small",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "small",
+            "name": "Small"
+          }
+        ],
+        "b2bPriceEUR": 78.06,
+        "purchasePriceCHF": 72.9,
+        "sellingPriceCHF": 118.1,
+        "colour": "Black",
+        "sizes": "Small"
+      },
+      {
+        "name": "Black / Medium",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "medium",
+            "name": "Medium"
+          }
+        ],
+        "b2bPriceEUR": 78.06,
+        "purchasePriceCHF": 72.9,
+        "sellingPriceCHF": 118.1,
+        "colour": "Black",
+        "sizes": "Medium"
+      },
+      {
+        "name": "Black / Large",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "large",
+            "name": "Large"
+          }
+        ],
+        "b2bPriceEUR": 78.06,
+        "purchasePriceCHF": 72.9,
+        "sellingPriceCHF": 118.1,
+        "colour": "Black",
+        "sizes": "Large"
+      },
+      {
+        "name": "Black / XLarge",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "xlarge",
+            "name": "XLarge"
+          }
+        ],
+        "b2bPriceEUR": 78.06,
+        "purchasePriceCHF": 72.9,
+        "sellingPriceCHF": 118.1,
+        "colour": "Black",
+        "sizes": "XLarge"
+      },
+      {
+        "name": "Black / XXL",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "xxl",
+            "name": "XXL"
+          }
+        ],
+        "b2bPriceEUR": 105.63,
+        "purchasePriceCHF": 98.65,
+        "sellingPriceCHF": 159.85,
+        "colour": "Black",
+        "sizes": "XXL"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:31.475Z",
+    "productId": "0611e450d2be662bca40d1e8cbd4aa7e",
+    "name": "Dual holder insert -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 8.76,
+        "purchasePriceCHF": 8.2,
+        "sellingPriceCHF": 13.25
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:32.881Z",
+    "productId": "1060e9371de7602127a15119cb2fc63f",
+    "name": "Belt adjuster -09",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.54,
+        "purchasePriceCHF": 4.25,
+        "sellingPriceCHF": 6.85
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:34.290Z",
+    "productId": "60e3b64261fb763fdaf01ae6db4cd989",
+    "name": "Police Equipment belt -09",
+    "variants": [
+      {
+        "name": "XSmall",
+        "value": "xsmall",
+        "originalText": "XSmall",
+        "sizes": "XSmall",
+        "b2bPriceEUR": 60.7,
+        "purchasePriceCHF": 56.7,
+        "sellingPriceCHF": 91.85
+      },
+      {
+        "name": "Small",
+        "value": "small",
+        "originalText": "Small",
+        "sizes": "Small",
+        "b2bPriceEUR": 60.7,
+        "purchasePriceCHF": 56.7,
+        "sellingPriceCHF": 91.85
+      },
+      {
+        "name": "Medium",
+        "value": "medium",
+        "originalText": "Medium",
+        "sizes": "Medium",
+        "b2bPriceEUR": 60.7,
+        "purchasePriceCHF": 56.7,
+        "sellingPriceCHF": 91.85
+      },
+      {
+        "name": "Large",
+        "value": "large",
+        "originalText": "Large",
+        "sizes": "Large",
+        "b2bPriceEUR": 60.7,
+        "purchasePriceCHF": 56.7,
+        "sellingPriceCHF": 91.85
+      },
+      {
+        "name": "XLarge",
+        "value": "xlarge",
+        "originalText": "XLarge",
+        "sizes": "XLarge",
+        "b2bPriceEUR": 60.7,
+        "purchasePriceCHF": 56.7,
+        "sellingPriceCHF": 91.85
+      },
+      {
+        "name": "XXL",
+        "value": "xxl",
+        "originalText": "XXL",
+        "sizes": "XXL",
+        "b2bPriceEUR": 60.7,
+        "purchasePriceCHF": 56.7,
+        "sellingPriceCHF": 91.85
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:35.933Z",
+    "productId": "b1161ff99ce3dff1c95327a6ff9b3efb",
+    "name": "Speed magazine pouch 2.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 22.92,
+        "purchasePriceCHF": 21.4,
+        "sellingPriceCHF": 34.7
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 22.92,
+        "purchasePriceCHF": 21.4,
+        "sellingPriceCHF": 34.7
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 22.92,
+        "purchasePriceCHF": 21.4,
+        "sellingPriceCHF": 34.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:37.472Z",
+    "productId": "35232483f3275865e085b60c12f985d3",
+    "name": "Ribs Chest rig 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 218.36,
+        "purchasePriceCHF": 203.95,
+        "sellingPriceCHF": 330.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:38.848Z",
+    "productId": "33ae8fcb810c99f86c8ac26c7778dd88",
+    "name": "Basic Equipment belt",
+    "variants": [
+      {
+        "name": "Small",
+        "value": "small",
+        "originalText": "Small",
+        "sizes": "Small",
+        "b2bPriceEUR": 25.99,
+        "purchasePriceCHF": 24.25,
+        "sellingPriceCHF": 39.3
+      },
+      {
+        "name": "Medium",
+        "value": "medium",
+        "originalText": "Medium",
+        "sizes": "Medium",
+        "b2bPriceEUR": 25.99,
+        "purchasePriceCHF": 24.25,
+        "sellingPriceCHF": 39.3
+      },
+      {
+        "name": "Large",
+        "value": "large",
+        "originalText": "Large",
+        "sizes": "Large",
+        "b2bPriceEUR": 25.99,
+        "purchasePriceCHF": 24.25,
+        "sellingPriceCHF": 39.3
+      },
+      {
+        "name": "XLarge",
+        "value": "xlarge",
+        "originalText": "XLarge",
+        "sizes": "XLarge",
+        "b2bPriceEUR": 25.99,
+        "purchasePriceCHF": 24.25,
+        "sellingPriceCHF": 39.3
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:40.416Z",
+    "productId": "43b17419072632c0e06dfff726198f5d",
+    "name": "30L Specialist backpack",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 160.77,
+        "purchasePriceCHF": 150.15,
+        "sellingPriceCHF": 243.25
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 160.77,
+        "purchasePriceCHF": 150.15,
+        "sellingPriceCHF": 243.25
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 160.77,
+        "purchasePriceCHF": 150.15,
+        "sellingPriceCHF": 243.25
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:41.987Z",
+    "productId": "6484d1b367961db566e93a6532b4409c",
+    "name": "Braces",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 21.9,
+        "purchasePriceCHF": 20.45,
+        "sellingPriceCHF": 33.15
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 21.9,
+        "purchasePriceCHF": 20.45,
+        "sellingPriceCHF": 33.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:43.515Z",
+    "productId": "117be57789d4190c810c8f61421b67cf",
+    "name": "Elastic pouch 1.0",
+    "variants": [
+      {
+        "name": "5.56 / Black",
+        "combination": [
+          {
+            "type": "mag-size",
+            "label": "GRÖSSE",
+            "value": "5-56",
+            "name": "5.56"
+          },
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          }
+        ],
+        "b2bPriceEUR": 19.35,
+        "purchasePriceCHF": 18.05,
+        "sellingPriceCHF": 29.3,
+        "mag-size": "5.56",
+        "colour": "Black"
+      },
+      {
+        "name": "5.56 / Grey",
+        "combination": [
+          {
+            "type": "mag-size",
+            "label": "GRÖSSE",
+            "value": "5-56",
+            "name": "5.56"
+          },
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          }
+        ],
+        "b2bPriceEUR": 19.35,
+        "purchasePriceCHF": 18.05,
+        "sellingPriceCHF": 29.3,
+        "mag-size": "5.56",
+        "colour": "Grey"
+      },
+      {
+        "name": "7.62 / Black",
+        "combination": [
+          {
+            "type": "mag-size",
+            "label": "GRÖSSE",
+            "value": "7-62",
+            "name": "7.62"
+          },
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "black",
+            "name": "Black"
+          }
+        ],
+        "b2bPriceEUR": 19.35,
+        "purchasePriceCHF": 18.05,
+        "sellingPriceCHF": 29.3,
+        "mag-size": "7.62",
+        "colour": "Black"
+      },
+      {
+        "name": "7.62 / Grey",
+        "combination": [
+          {
+            "type": "mag-size",
+            "label": "GRÖSSE",
+            "value": "7-62",
+            "name": "7.62"
+          },
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "grey",
+            "name": "Grey"
+          }
+        ],
+        "b2bPriceEUR": 19.35,
+        "purchasePriceCHF": 18.05,
+        "sellingPriceCHF": 29.3,
+        "mag-size": "7.62",
+        "colour": "Grey"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:44.858Z",
+    "productId": "2860a65901aed4fb6e0a70aa5176a33e",
+    "name": "Pancake holster -16",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 38.75,
+        "purchasePriceCHF": 36.2,
+        "sellingPriceCHF": 58.65
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 38.75,
+        "purchasePriceCHF": 36.2,
+        "sellingPriceCHF": 58.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:46.309Z",
+    "productId": "ea985cd77c00973a443feba502af02f5",
+    "name": "30L insert wall -10",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 61.97,
+        "purchasePriceCHF": 57.9,
+        "sellingPriceCHF": 93.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:47.677Z",
+    "productId": "7375d5c78f89fa8f2884d63f9bdd1e94",
+    "name": "Covert equipment belt -17",
+    "variants": [
+      {
+        "name": "Small",
+        "value": "small",
+        "originalText": "Small",
+        "sizes": "Small",
+        "b2bPriceEUR": 39.26,
+        "purchasePriceCHF": 36.65,
+        "sellingPriceCHF": 59.4
+      },
+      {
+        "name": "Medium",
+        "value": "medium",
+        "originalText": "Medium",
+        "sizes": "Medium",
+        "b2bPriceEUR": 39.26,
+        "purchasePriceCHF": 36.65,
+        "sellingPriceCHF": 59.4
+      },
+      {
+        "name": "Large",
+        "value": "large",
+        "originalText": "Large",
+        "sizes": "Large",
+        "b2bPriceEUR": 39.26,
+        "purchasePriceCHF": 36.65,
+        "sellingPriceCHF": 59.4
+      },
+      {
+        "name": "XLarge",
+        "value": "xlarge",
+        "originalText": "XLarge",
+        "sizes": "XLarge",
+        "b2bPriceEUR": 39.26,
+        "purchasePriceCHF": 36.65,
+        "sellingPriceCHF": 59.4
+      },
+      {
+        "name": "XXL",
+        "value": "xxl",
+        "originalText": "XXL",
+        "sizes": "XXL",
+        "b2bPriceEUR": 39.26,
+        "purchasePriceCHF": 36.65,
+        "sellingPriceCHF": 59.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:49.320Z",
+    "productId": "0bd35b43177ee1aa517966e1e9364921",
+    "name": "SMG Magazine pouch 14",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 22.92,
+        "purchasePriceCHF": 21.4,
+        "sellingPriceCHF": 34.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:50.906Z",
+    "productId": "d2dfad54043cbafb1f50368e333e77ac",
+    "name": "Crotch pistol holster 2.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 43.34,
+        "purchasePriceCHF": 40.5,
+        "sellingPriceCHF": 65.6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:52.527Z",
+    "productId": "8d7a541e6571350508d381dd9ef7a975",
+    "name": "Multi insert panel 1.0",
+    "variants": [
+      {
+        "name": "30L",
+        "value": "30l",
+        "originalText": "30L",
+        "backpack-size": "30L",
+        "b2bPriceEUR": 28.54,
+        "purchasePriceCHF": 26.65,
+        "sellingPriceCHF": 43.2
+      },
+      {
+        "name": "40L",
+        "value": "40l",
+        "originalText": "40L",
+        "backpack-size": "40L",
+        "b2bPriceEUR": 32.11,
+        "purchasePriceCHF": 30,
+        "sellingPriceCHF": 48.6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:54.136Z",
+    "productId": "d56d99cb2904788ccb4f96a1f258c46c",
+    "name": "Grenade pouch -10",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 21.9,
+        "purchasePriceCHF": 20.45,
+        "sellingPriceCHF": 33.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:55.683Z",
+    "productId": "ddbaba38e13e6d57f82efb0ec7899000",
+    "name": "Shotgun holder 1.0",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 105.59,
+        "purchasePriceCHF": 98.6,
+        "sellingPriceCHF": 159.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:57.083Z",
+    "productId": "5b20d0718ecf588838bb18d9a77aca41",
+    "name": "Small Insert pouches 2.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 39.77,
+        "purchasePriceCHF": 37.15,
+        "sellingPriceCHF": 60.2
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:18:58.611Z",
+    "productId": "bd2749095abda69ac883cccc22dac4f6",
+    "name": "Elastic trousers belt 1.1",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 11.69,
+        "purchasePriceCHF": 10.9,
+        "sellingPriceCHF": 17.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:00.210Z",
+    "productId": "27cb617e037ab297d19b9f3286f0f987",
+    "name": "Covert Telescopic baton wrist holder -08",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 44.36,
+        "purchasePriceCHF": 41.45,
+        "sellingPriceCHF": 67.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:01.662Z",
+    "productId": "9fdacb151b9e26c6064116c5ae14b87e",
+    "name": "Weapon attachment, side -00",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 21.04,
+        "purchasePriceCHF": 19.65,
+        "sellingPriceCHF": 31.85
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:03.078Z",
+    "productId": "fe016346b6991e5152fc494ad28253a6",
+    "name": "30L protective insert 1.1",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 227.55,
+        "purchasePriceCHF": 212.55,
+        "sellingPriceCHF": 344.3
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:04.655Z",
+    "productId": "d2bb3d52ca910f5244e8b8405ddc0b4b",
+    "name": "Tactical coverall, Digi  -09F",
+    "variants": [
+      {
+        "name": "241",
+        "value": "241",
+        "originalText": "241",
+        "variant": "241",
+        "b2bPriceEUR": 429.72,
+        "purchasePriceCHF": 401.35,
+        "sellingPriceCHF": 650.2
+      },
+      {
+        "name": "242",
+        "value": "242",
+        "originalText": "242",
+        "variant": "242",
+        "b2bPriceEUR": 429.72,
+        "purchasePriceCHF": 401.35,
+        "sellingPriceCHF": 650.2
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:06.237Z",
+    "productId": "d0909c96ae94619390ebda6a263b6c57",
+    "name": "Double handcuff pouch -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 48.73,
+        "purchasePriceCHF": 45.5,
+        "sellingPriceCHF": 73.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:07.633Z",
+    "productId": "f4c0a639e577ae1b342f235f2cdd5449",
+    "name": "Back holder 2.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 114.31,
+        "purchasePriceCHF": 106.75,
+        "sellingPriceCHF": 172.95
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 114.31,
+        "purchasePriceCHF": 106.75,
+        "sellingPriceCHF": 172.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:09.130Z",
+    "productId": "b57515745a3c5a8375de5ce6c8f5c16f",
+    "name": "Elastic insert stripes (6) -10",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 20.37,
+        "purchasePriceCHF": 19.05,
+        "sellingPriceCHF": 30.8
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:10.685Z",
+    "productId": "9ab23b619acb921a9a9998730380de39",
+    "name": "Tactical coverall 09F",
+    "variants": [
+      {
+        "name": "Briefs",
+        "value": "briefs",
+        "originalText": "Briefs",
+        "parts": "Briefs",
+        "b2bPriceEUR": 159.05,
+        "purchasePriceCHF": 148.55,
+        "sellingPriceCHF": 240.65
+      },
+      {
+        "name": "COMPLETE",
+        "value": "complete",
+        "originalText": "COMPLETE",
+        "parts": "COMPLETE",
+        "b2bPriceEUR": 1955.18,
+        "purchasePriceCHF": 1826.15,
+        "sellingPriceCHF": 2958.35
+      },
+      {
+        "name": "Coverall",
+        "value": "coverall",
+        "originalText": "Coverall",
+        "parts": "Coverall",
+        "b2bPriceEUR": 1408.76,
+        "purchasePriceCHF": 1315.8,
+        "sellingPriceCHF": 2131.55
+      },
+      {
+        "name": "Vest",
+        "value": "vest",
+        "originalText": "Vest",
+        "parts": "Vest",
+        "b2bPriceEUR": 495.46,
+        "purchasePriceCHF": 462.75,
+        "sellingPriceCHF": 749.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:12.255Z",
+    "productId": "fc825b2b0080f21afa07ecc46c30533a",
+    "name": "Handcuff pouch -09",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 12.33,
+        "purchasePriceCHF": 11.5,
+        "sellingPriceCHF": 18.65
+      },
+      {
+        "name": "HighVis yellow",
+        "value": "highvis-yellow",
+        "originalText": "HighVis yellow",
+        "colour": "HighVis yellow",
+        "b2bPriceEUR": 19.35,
+        "purchasePriceCHF": 18.05,
+        "sellingPriceCHF": 29.3
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:13.874Z",
+    "productId": "42a180e29a4df44d7fe7b2bc62c26263",
+    "name": "Machine gun sling  -16",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 40.55,
+        "purchasePriceCHF": 37.85,
+        "sellingPriceCHF": 61.35
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:15.395Z",
+    "productId": "66fb8df86644fac3190ed89cb6069797",
+    "name": "40L Specialist backpack",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 209.27,
+        "purchasePriceCHF": 195.45,
+        "sellingPriceCHF": 316.65
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 209.27,
+        "purchasePriceCHF": 195.45,
+        "sellingPriceCHF": 316.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:16.773Z",
+    "productId": "d2659bbbc52245bcd05cd0e539c99d3b",
+    "name": "Tactical coverall 09F Briefs",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 1051.19,
+        "purchasePriceCHF": 981.8,
+        "sellingPriceCHF": 1590.55
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:18.171Z",
+    "productId": "df2e89b346cf5e977e2445a0361b19d8",
+    "name": "Topless Handcuff pouch 06",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 13.73,
+        "purchasePriceCHF": 12.8,
+        "sellingPriceCHF": 20.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:19.790Z",
+    "productId": "a6108082665e2ccbb00ddbe562c64af6",
+    "name": "Weapon sling system 1.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 68.87,
+        "purchasePriceCHF": 64.3,
+        "sellingPriceCHF": 104.2
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 68.87,
+        "purchasePriceCHF": 64.3,
+        "sellingPriceCHF": 104.2
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 71.93,
+        "purchasePriceCHF": 67.2,
+        "sellingPriceCHF": 108.85
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:21.144Z",
+    "productId": "9d8adafd71999088bd1b7af915b8f27f",
+    "name": "Rifle sling w attachment -09",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 34.67,
+        "purchasePriceCHF": 32.4,
+        "sellingPriceCHF": 52.45
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:22.551Z",
+    "productId": "bfc6b527704121bd8c8eb2e6768c7965",
+    "name": "Weapon hook -10",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:24.106Z",
+    "productId": "9da4ec52976619108a56c3d5a89dce8c",
+    "name": "Large insert pouch 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 34.28,
+        "purchasePriceCHF": 32,
+        "sellingPriceCHF": 51.85
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:25.463Z",
+    "productId": "8471b8c54c1d31a3428299bd20e77b0c",
+    "name": "Leg strap -11",
+    "variants": [
+      {
+        "name": "XSmall",
+        "value": "xsmall",
+        "originalText": "XSmall",
+        "sizes": "XSmall",
+        "b2bPriceEUR": 10.67,
+        "purchasePriceCHF": 9.95,
+        "sellingPriceCHF": 16.15
+      },
+      {
+        "name": "Small",
+        "value": "small",
+        "originalText": "Small",
+        "sizes": "Small",
+        "b2bPriceEUR": 10.67,
+        "purchasePriceCHF": 9.95,
+        "sellingPriceCHF": 16.15
+      },
+      {
+        "name": "Medium",
+        "value": "medium",
+        "originalText": "Medium",
+        "sizes": "Medium",
+        "b2bPriceEUR": 10.67,
+        "purchasePriceCHF": 9.95,
+        "sellingPriceCHF": 16.15
+      },
+      {
+        "name": "Large",
+        "value": "large",
+        "originalText": "Large",
+        "sizes": "Large",
+        "b2bPriceEUR": 10.67,
+        "purchasePriceCHF": 9.95,
+        "sellingPriceCHF": 16.15
+      },
+      {
+        "name": "XLarge",
+        "value": "xlarge",
+        "originalText": "XLarge",
+        "sizes": "XLarge",
+        "b2bPriceEUR": 10.67,
+        "purchasePriceCHF": 9.95,
+        "sellingPriceCHF": 16.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:26.905Z",
+    "productId": "0f5db12d7af56d497c0ea93c20d9cd8f",
+    "name": "Flight suit other -09",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 1309.79,
+        "purchasePriceCHF": 1223.35,
+        "sellingPriceCHF": 1981.8
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:28.381Z",
+    "productId": "0d916c743a1d08a8b7a2a79d4b6f398b",
+    "name": "Sniper patch, Small -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:30.039Z",
+    "productId": "357736d2bd6a64447e1551c62fe52b00",
+    "name": "Förhandlar patch -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:31.489Z",
+    "productId": "bf7cae37f86a147894130115603b74a6",
+    "name": "Tekniker patch, small -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:32.928Z",
+    "productId": "09e598d99fc43030f736bde702449ffa",
+    "name": "Instructor patch, Small -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:34.573Z",
+    "productId": "00795706989e639df6ff6ce804d65b54",
+    "name": "Small instruktors patch -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:36.206Z",
+    "productId": "fb32be1c0b56a6e73608ba4d478b9d3f",
+    "name": "GP pouch 3 long",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 14.75,
+        "purchasePriceCHF": 13.8,
+        "sellingPriceCHF": 22.3
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 14.75,
+        "purchasePriceCHF": 13.8,
+        "sellingPriceCHF": 22.3
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 14.75,
+        "purchasePriceCHF": 13.8,
+        "sellingPriceCHF": 22.3
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:37.647Z",
+    "productId": "34821d2a6b614ff5fb49993bad6d833a",
+    "name": "Stort Instruktörsmärke -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 5.05,
+        "purchasePriceCHF": 4.7,
+        "sellingPriceCHF": 7.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:39.192Z",
+    "productId": "59cc6d1407d3f7a55d9c4a4677569dbf",
+    "name": "Police-Swe patch -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 5.05,
+        "purchasePriceCHF": 4.7,
+        "sellingPriceCHF": 7.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:40.674Z",
+    "productId": "182b51cc69b23a24fc48ae96484a7fd2",
+    "name": "Polis patch, Large -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 7.61,
+        "purchasePriceCHF": 7.1,
+        "sellingPriceCHF": 11.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:42.110Z",
+    "productId": "3f8eb7a06205f27e66a1f8be4fd85d3a",
+    "name": "Polis patch, Small -11",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:43.724Z",
+    "productId": "a3b91d6a8930216fc4654eac588376d2",
+    "name": "Medium insert pouches",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 43.85,
+        "purchasePriceCHF": 40.95,
+        "sellingPriceCHF": 66.35
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:45.192Z",
+    "productId": "a662c1fd857b36bf3b571b8e311ec7d9",
+    "name": "Tactical coverall BG -10F",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 1955.89,
+        "purchasePriceCHF": 1826.8,
+        "sellingPriceCHF": 2959.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:46.580Z",
+    "productId": "5d0b7ef0a5973e437ffbb321f3b97a58",
+    "name": "Medic patch, small -16",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 3.01,
+        "purchasePriceCHF": 2.8,
+        "sellingPriceCHF": 4.55
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:48.004Z",
+    "productId": "cddb73912000bbdd06403100180b67fc",
+    "name": "Medic patch w Velcro",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:49.607Z",
+    "productId": "13bb98b832e07a0b0c7d2b4fd1773466",
+    "name": "Cross patch, Small -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 2.3,
+        "purchasePriceCHF": 2.15,
+        "sellingPriceCHF": 3.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:51.131Z",
+    "productId": "7a7c93f65894a9014ac9881bf18194da",
+    "name": "Fin patch, Small -12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 4.03,
+        "purchasePriceCHF": 3.75,
+        "sellingPriceCHF": 6.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:52.554Z",
+    "productId": "0f96c9c7fae55d9d3b840997803337da",
+    "name": "Blue and yellow patch -16",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 3.52,
+        "purchasePriceCHF": 3.3,
+        "sellingPriceCHF": 5.35
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:54.097Z",
+    "productId": "4918317cc4d0d4400fed526ca527d95b",
+    "name": "Swedish flag -16",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 3.98,
+        "purchasePriceCHF": 3.7,
+        "sellingPriceCHF": 6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:55.529Z",
+    "productId": "189f766c24aea79b2152bf85106725a7",
+    "name": "GP pouch 3",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 13.73,
+        "purchasePriceCHF": 12.8,
+        "sellingPriceCHF": 20.75
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 13.73,
+        "purchasePriceCHF": 12.8,
+        "sellingPriceCHF": 20.75
+      },
+      {
+        "name": "HighVis yellow",
+        "value": "highvis-yellow",
+        "originalText": "HighVis yellow",
+        "colour": "HighVis yellow",
+        "b2bPriceEUR": 12.04,
+        "purchasePriceCHF": 11.25,
+        "sellingPriceCHF": 18.2
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 13.73,
+        "purchasePriceCHF": 12.8,
+        "sellingPriceCHF": 20.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:57.021Z",
+    "productId": "eb716501cf0858bb3a2d431d4a6c85a5",
+    "name": "40L Velcro and webbing  panel -10",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 91.12,
+        "purchasePriceCHF": 85.1,
+        "sellingPriceCHF": 137.85
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:19:58.670Z",
+    "productId": "a159cd1d42c8d3a834177c0faf7b78d6",
+    "name": "Flight suit, Pilot -09",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 1200.23,
+        "purchasePriceCHF": 1121,
+        "sellingPriceCHF": 1816.05
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:00.251Z",
+    "productId": "977bae90dc0de91f3e2315ed1a9b7ee3",
+    "name": "GP pouch 2 long",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 13.73,
+        "purchasePriceCHF": 12.8,
+        "sellingPriceCHF": 20.75
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 13.73,
+        "purchasePriceCHF": 12.8,
+        "sellingPriceCHF": 20.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:01.872Z",
+    "productId": "ec4ebb7cfff358a9f1147f834e3563ac",
+    "name": "40L insert wall",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 47.43,
+        "purchasePriceCHF": 44.3,
+        "sellingPriceCHF": 71.75
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:03.542Z",
+    "productId": "af29f53040063bdefffa0fd050ee2fc1",
+    "name": "Fleece jacket 1.0",
+    "variants": [
+      {
+        "name": "IJ3= Small short",
+        "value": "ij3-small-short",
+        "originalText": "IJ3= Small short",
+        "sizes-double-all": "IJ3= Small short",
+        "b2bPriceEUR": 95.93,
+        "purchasePriceCHF": 89.6,
+        "sellingPriceCHF": 145.15
+      },
+      {
+        "name": "KL4= Medium regular",
+        "value": "kl4-medium-regular",
+        "originalText": "KL4= Medium regular",
+        "sizes-double-all": "KL4= Medium regular",
+        "b2bPriceEUR": 95.93,
+        "purchasePriceCHF": 89.6,
+        "sellingPriceCHF": 145.15
+      },
+      {
+        "name": "MN4= Large regular",
+        "value": "mn4-large-regular",
+        "originalText": "MN4= Large regular",
+        "sizes-double-all": "MN4= Large regular",
+        "b2bPriceEUR": 95.93,
+        "purchasePriceCHF": 89.6,
+        "sellingPriceCHF": 145.15
+      },
+      {
+        "name": "OP4= XL regular",
+        "value": "op4-xl-regular",
+        "originalText": "OP4= XL regular",
+        "sizes-double-all": "OP4= XL regular",
+        "b2bPriceEUR": 95.93,
+        "purchasePriceCHF": 89.6,
+        "sellingPriceCHF": 145.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:04.929Z",
+    "productId": "88c49f70862fb96e82a9c1eab86dff5c",
+    "name": "GP pouch 2",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 13.22,
+        "purchasePriceCHF": 12.35,
+        "sellingPriceCHF": 20
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 13.22,
+        "purchasePriceCHF": 12.35,
+        "sellingPriceCHF": 20
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 18.75,
+        "purchasePriceCHF": 17.5,
+        "sellingPriceCHF": 28.35
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 13.22,
+        "purchasePriceCHF": 12.35,
+        "sellingPriceCHF": 20
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:06.282Z",
+    "productId": "6504217929eab543cd40a04f09760eba",
+    "name": "40L protective insert",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 298.75,
+        "purchasePriceCHF": 279.05,
+        "sellingPriceCHF": 452.05
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:07.825Z",
+    "productId": "d225dd1dae77b56a1c06fd51e5792b19",
+    "name": "Elbow pads 2.0",
+    "variants": [
+      {
+        "name": "Standard",
+        "b2bPriceEUR": 12.2,
+        "purchasePriceCHF": 11.35,
+        "sellingPriceCHF": 18.38
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:09.325Z",
+    "productId": "1aa99c7a735b80bc5496b196d5472a38",
+    "name": "Telescopic baton holder -08",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 16.29,
+        "purchasePriceCHF": 15.2,
+        "sellingPriceCHF": 24.65
+      },
+      {
+        "name": "HighVis yellow",
+        "value": "highvis-yellow",
+        "originalText": "HighVis yellow",
+        "colour": "HighVis yellow",
+        "b2bPriceEUR": 17.82,
+        "purchasePriceCHF": 16.65,
+        "sellingPriceCHF": 26.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:10.756Z",
+    "productId": "5e484ac2aa6aa6236e4f7ac03641be3c",
+    "name": "50L Mission backpack 2.0",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 244.49,
+        "purchasePriceCHF": 228.35,
+        "sellingPriceCHF": 369.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:12.092Z",
+    "productId": "99488cc4b1fac0cc700ea573319b88f4",
+    "name": "Knee pads 2.0",
+    "variants": [
+      {
+        "name": "Standard",
+        "b2bPriceEUR": 16.29,
+        "purchasePriceCHF": 15.15,
+        "sellingPriceCHF": 24.54
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:13.545Z",
+    "productId": "f989395b72f4fe49629c6358e7ae44df",
+    "name": "Large key silencer-05",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 16.29,
+        "purchasePriceCHF": 15.2,
+        "sellingPriceCHF": 24.65
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:14.983Z",
+    "productId": "bc0f10ded998222e8a3dae4446d1bc9b",
+    "name": "Side pockets pair 2.0",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 72.44,
+        "purchasePriceCHF": 67.65,
+        "sellingPriceCHF": 109.6
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:16.538Z",
+    "productId": "d4d8900e7b4ddcea0a121972644b6878",
+    "name": "Snigel T-shirt 2.0",
+    "variants": [
+      {
+        "name": "Navy / Small",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "navy",
+            "name": "Navy"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "small",
+            "name": "Small"
+          }
+        ],
+        "b2bPriceEUR": 17.31,
+        "purchasePriceCHF": 16.15,
+        "sellingPriceCHF": 26.2,
+        "colour": "Navy",
+        "sizes": "Small"
+      },
+      {
+        "name": "Navy / Medium",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "navy",
+            "name": "Navy"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "medium",
+            "name": "Medium"
+          }
+        ],
+        "b2bPriceEUR": 17.31,
+        "purchasePriceCHF": 16.15,
+        "sellingPriceCHF": 26.2,
+        "colour": "Navy",
+        "sizes": "Medium"
+      },
+      {
+        "name": "Navy / Large",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "navy",
+            "name": "Navy"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "large",
+            "name": "Large"
+          }
+        ],
+        "b2bPriceEUR": 17.31,
+        "purchasePriceCHF": 16.15,
+        "sellingPriceCHF": 26.2,
+        "colour": "Navy",
+        "sizes": "Large"
+      },
+      {
+        "name": "Navy / XLarge",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "navy",
+            "name": "Navy"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "xlarge",
+            "name": "XLarge"
+          }
+        ],
+        "b2bPriceEUR": 17.31,
+        "purchasePriceCHF": 16.15,
+        "sellingPriceCHF": 26.2,
+        "colour": "Navy",
+        "sizes": "XLarge"
+      },
+      {
+        "name": "Olive / Small",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "olive",
+            "name": "Olive"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "small",
+            "name": "Small"
+          }
+        ],
+        "b2bPriceEUR": 17.31,
+        "purchasePriceCHF": 16.15,
+        "sellingPriceCHF": 26.2,
+        "colour": "Olive",
+        "sizes": "Small"
+      },
+      {
+        "name": "Olive / Medium",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "olive",
+            "name": "Olive"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "medium",
+            "name": "Medium"
+          }
+        ],
+        "b2bPriceEUR": 17.31,
+        "purchasePriceCHF": 16.15,
+        "sellingPriceCHF": 26.2,
+        "colour": "Olive",
+        "sizes": "Medium"
+      },
+      {
+        "name": "Olive / Large",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "olive",
+            "name": "Olive"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "large",
+            "name": "Large"
+          }
+        ],
+        "b2bPriceEUR": 17.31,
+        "purchasePriceCHF": 16.15,
+        "sellingPriceCHF": 26.2,
+        "colour": "Olive",
+        "sizes": "Large"
+      },
+      {
+        "name": "Olive / XLarge",
+        "combination": [
+          {
+            "type": "colour",
+            "label": "FARBE",
+            "value": "olive",
+            "name": "Olive"
+          },
+          {
+            "type": "sizes",
+            "label": "GRÖSSE",
+            "value": "xlarge",
+            "name": "XLarge"
+          }
+        ],
+        "b2bPriceEUR": 17.31,
+        "purchasePriceCHF": 16.15,
+        "sellingPriceCHF": 26.2,
+        "colour": "Olive",
+        "sizes": "XLarge"
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:18.164Z",
+    "productId": "7bc95c05dc70acd77ad08498cf4463cc",
+    "name": "Regular Key silencer -05",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 14.24,
+        "purchasePriceCHF": 13.3,
+        "sellingPriceCHF": 21.55
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:19.647Z",
+    "productId": "005b5746cae18be461a61b3d1e96c89a",
+    "name": "100L Backpack 2.0",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 430.84,
+        "purchasePriceCHF": 402.4,
+        "sellingPriceCHF": 651.9
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:20.971Z",
+    "productId": "e50fa58a36eae2c43eb7bafd82b9078f",
+    "name": "FR Annaclava 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 33.13,
+        "purchasePriceCHF": 30.95,
+        "sellingPriceCHF": 50.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:22.374Z",
+    "productId": "c9bd9e4a930076cce119211a23bceef3",
+    "name": "Combination glove holder -09",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 12.71,
+        "purchasePriceCHF": 11.85,
+        "sellingPriceCHF": 19.25
+      },
+      {
+        "name": "HighVis yellow",
+        "value": "highvis-yellow",
+        "originalText": "HighVis yellow",
+        "colour": "HighVis yellow",
+        "b2bPriceEUR": 15.26,
+        "purchasePriceCHF": 14.25,
+        "sellingPriceCHF": 23.1
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:23.866Z",
+    "productId": "d28ffc48b2e62ef108b30cc58f7d246d",
+    "name": "Backpack belt-12",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 132.12,
+        "purchasePriceCHF": 123.4,
+        "sellingPriceCHF": 199.9
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:25.439Z",
+    "productId": "f64b0cd75b4fd5e2a7fd5dcd71445e9e",
+    "name": "FR Beanie",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 22.92,
+        "purchasePriceCHF": 21.4,
+        "sellingPriceCHF": 34.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:26.921Z",
+    "productId": "834dabe45daaf962af45e85b0fd7604b",
+    "name": "Elastic glove holder -05",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:28.507Z",
+    "productId": "b780e78f5e893b95099c912c0e5eee7c",
+    "name": "Dry bag set 1.0",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 52.02,
+        "purchasePriceCHF": 48.6,
+        "sellingPriceCHF": 78.7
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:29.943Z",
+    "productId": "a8fb19602471bc4069e3dc3b199d0aa3",
+    "name": "FR Neck gaiter -17",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 23.43,
+        "purchasePriceCHF": 21.9,
+        "sellingPriceCHF": 35.45
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:31.567Z",
+    "productId": "13dd82b42b49866981c6a527863dd938",
+    "name": "Glove holder -05",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 6.59,
+        "purchasePriceCHF": 6.15,
+        "sellingPriceCHF": 9.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:33.170Z",
+    "productId": "17783c42a0d1e99d18d4f9b8cb2d0004",
+    "name": "Covert backpack -21",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 636.13,
+        "purchasePriceCHF": 594.15,
+        "sellingPriceCHF": 962.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:34.776Z",
+    "productId": "55f9eb24c5c524d96ad5a491688e6110",
+    "name": "Modular Key holder -05",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 8.12,
+        "purchasePriceCHF": 7.6,
+        "sellingPriceCHF": 12.3
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:36.215Z",
+    "productId": "612566abf3dfa77f65db815446d300f6",
+    "name": "Binder mechanism",
+    "variants": [
+      {
+        "name": "2",
+        "value": "2",
+        "originalText": "2",
+        "number": "2",
+        "b2bPriceEUR": 6.59,
+        "purchasePriceCHF": 6.15,
+        "sellingPriceCHF": 9.95
+      },
+      {
+        "name": "4",
+        "value": "4",
+        "originalText": "4",
+        "number": "4",
+        "b2bPriceEUR": 6.59,
+        "purchasePriceCHF": 6.15,
+        "sellingPriceCHF": 9.95
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:37.812Z",
+    "productId": "9ec2a3424cd82a2f0abe78653a2e8f15",
+    "name": "Ballistic thigh protection -15",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 512.42,
+        "purchasePriceCHF": 478.6,
+        "sellingPriceCHF": 775.35
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 512.42,
+        "purchasePriceCHF": 478.6,
+        "sellingPriceCHF": 775.35
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 512.42,
+        "purchasePriceCHF": 478.6,
+        "sellingPriceCHF": 775.35
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:39.206Z",
+    "productId": "a60b203680d2f26c94308535226a0234",
+    "name": "Herma 25 mm buckle",
+    "variants": [
+      {
+        "name": "Default",
+        "value": "default",
+        "combination": null,
+        "b2bPriceEUR": 1.41,
+        "purchasePriceCHF": 1.3,
+        "sellingPriceCHF": 2.15
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:40.735Z",
+    "productId": "a10cfbf08e0514aced6402c8edbc3976",
+    "name": "Squeeze buckle closure 1.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 57.64,
+        "purchasePriceCHF": 53.85,
+        "sellingPriceCHF": 87.2
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 57.64,
+        "purchasePriceCHF": 53.85,
+        "sellingPriceCHF": 87.2
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 63.77,
+        "purchasePriceCHF": 59.55,
+        "sellingPriceCHF": 96.5
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:42.263Z",
+    "productId": "8353077bb58a1a939a74fa5301267bf2",
+    "name": "Herma 25 mm repair buckle",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 0.92,
+        "purchasePriceCHF": 0.85,
+        "sellingPriceCHF": 1.4
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 0.92,
+        "purchasePriceCHF": 0.85,
+        "sellingPriceCHF": 1.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:43.609Z",
+    "productId": "c5e7f8510af3ab31fa77b8fe4ae06e49",
+    "name": "Squeeze zipper closure -17",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 57.64,
+        "purchasePriceCHF": 53.85,
+        "sellingPriceCHF": 87.2
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 57.64,
+        "purchasePriceCHF": 53.85,
+        "sellingPriceCHF": 87.2
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 57.64,
+        "purchasePriceCHF": 53.85,
+        "sellingPriceCHF": 87.2
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:45.088Z",
+    "productId": "efc362890d1b4ec58b9f2dc68fcc79d0",
+    "name": "Shoulder pad set -15",
+    "variants": [
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 70.62,
+        "purchasePriceCHF": 65.95,
+        "sellingPriceCHF": 106.85
+      },
+      {
+        "name": "Multicam",
+        "value": "multicam",
+        "originalText": "Multicam",
+        "colour": "Multicam",
+        "b2bPriceEUR": 27.35,
+        "purchasePriceCHF": 25.55,
+        "sellingPriceCHF": 41.4
+      }
+    ],
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-12-19T00:20:46.607Z",
+    "productId": "331f38f2ae6d0ff8e20edfd5c908e16c",
+    "name": "Herma I-bar set 1.0",
+    "variants": [
+      {
+        "name": "Black",
+        "value": "black",
+        "originalText": "Black",
+        "colour": "Black",
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      },
+      {
+        "name": "Grey",
+        "value": "grey",
+        "originalText": "Grey",
+        "colour": "Grey",
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      },
+      {
+        "name": "Olive",
+        "value": "olive",
+        "originalText": "Olive",
+        "colour": "Olive",
+        "b2bPriceEUR": 5.56,
+        "purchasePriceCHF": 5.2,
+        "sellingPriceCHF": 8.4
+      }
+    ],
+    "status": "success"
+  }
+]

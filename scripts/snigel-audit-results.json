@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-12-19T08:55:31.076Z",
+  "snigel": {
+    "total": 0,
+    "products": []
+  },
+  "shopware": {
+    "total": 0,
+    "products": []
+  },
+  "comparison": {
+    "matched": 0,
+    "missing": 0,
+    "missingProducts": []
+  }
+}

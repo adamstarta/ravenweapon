@@ -40,6 +40,23 @@
             <argument type="service" id="request_stack"/>
             <tag name="kernel.event_subscriber"/>
         </service>
+
+        <!-- Redirect Cleanup Subscriber - removes _noStore from redirectParameters to prevent Cloudflare 403 -->
+        <service id="RavenTheme\Subscriber\RedirectCleanupSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Logout Redirect Subscriber - redirects to homepage after logout -->
+        <service id="RavenTheme\Subscriber\LogoutRedirectSubscriber">
+            <argument type="service" id="router"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Variant Price Processor - overrides line item prices for Snigel variants -->
+        <service id="RavenTheme\Cart\VariantPriceProcessor">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <tag name="shopware.cart.processor" priority="4000"/>
+        </service>
     </services>
 
 </container>

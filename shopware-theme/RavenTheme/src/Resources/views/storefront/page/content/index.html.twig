@@ -52,11 +52,11 @@
             </ul>
 
             <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
-                <a href="/Alle-Produkte/" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
+                <a href="/alle-produkte/" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     <span style="margin-left: 0.5rem;">Zum Shop</span>
                 </a>
-                <a href="{{ path('frontend.cms.page', { id: 'about-us' }) }}" style="display: inline-flex; align-items: center; padding: 0.5rem 1rem; background: white; color: #414651; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #d1d5db; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                <a href="/impressum" style="display: inline-flex; align-items: center; padding: 0.5rem 1rem; background: white; color: #414651; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #d1d5db; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
                     Über uns
                     <svg style="width: 1rem; height: 1rem; margin-left: 0.5rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"></path></svg>
                 </a>
@@ -109,7 +109,7 @@
                 <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 4rem); font-weight: 400; color: #111827; line-height: 1.1;">
                     Beliebte Produkte
                 </h2>
-                <a href="/Alle-Produkte/" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
+                <a href="/alle-produkte/" class="btn btn-primary" style="display: inline-flex; align-items: center; padding: 0.5rem 1.25rem; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); color: #1f2937; font-weight: 600; border-radius: 0.5rem; text-decoration: none; border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.25);">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     <span style="margin-left: 0.5rem;">Zum gesamten Sortiment</span>
                 </a>
@@ -247,7 +247,7 @@
 
             <div class="raven-brands-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                 {# Brand 1: Lockhart Tactical #}
-                <a href="/hersteller/lockhart-tactical"
+                <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: 'lockhart-tactical'}) }}"
                    style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
@@ -256,7 +256,7 @@
                 </a>
 
                 {# Brand 2: Magpul #}
-                <a href="/hersteller/magpul"
+                <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: 'magpul'}) }}"
                    style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
@@ -265,7 +265,7 @@
                 </a>
 
                 {# Brand 3: Snigel #}
-                <a href="/hersteller/snigel"
+                <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: 'snigel'}) }}"
                    style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
@@ -274,7 +274,7 @@
                 </a>
 
                 {# Brand 4: Zerotech #}
-                <a href="/hersteller/zerotech"
+                <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: 'zerotech'}) }}"
                    style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
@@ -300,7 +300,7 @@
                 {# Video Embed - Cloudflare Stream #}
                 <div style="border-radius: 0.75rem; overflow: hidden; position: relative; padding-top: 56.25%; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
                     <iframe
-                        src="https://customer-zz0gro70wkcharf0.cloudflarestream.com/14b22c52b620a8e2d65ba9eb5b481bdb/iframe?poster=https%3A%2F%2Fcustomer-zz0gro70wkcharf0.cloudflarestream.com%2F14b22c52b620a8e2d65ba9eb5b481bdb%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+                        src="https://customer-zz0gro70wkcharf0.cloudflarestream.com/b0310c7a97eb2c385d6881fca13a9b25/iframe?poster=https%3A%2F%2Fcustomer-zz0gro70wkcharf0.cloudflarestream.com%2Fb0310c7a97eb2c385d6881fca13a9b25%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
                         loading="lazy"
                         style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
                         allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
@@ -370,9 +370,15 @@
                         }
                     } catch(e) {}
                 } else {
-                    // Default to "Graphite Black" when no color is stored
+                    // Only default to "Graphite Black" for Raven Weapons (product number starts with RW- or LT-)
+                    // Snigel products (SN-) should not have a default color
                     if (colorSpan && !colorSpan.textContent.trim()) {
-                        colorSpan.textContent = 'Graphite Black';
+                        var productNum = item.querySelector('[data-product-number]');
+                        var pn = productNum ? productNum.getAttribute('data-product-number') : '';
+                        if (pn && (pn.startsWith('RW-') || pn.startsWith('LT-'))) {
+                            colorSpan.textContent = 'Graphite Black';
+                        }
+                        // For Snigel (SN-) and other products, leave color empty
                     }
                 }
             }
@@ -541,13 +547,15 @@
             e.stopImmediatePropagation();
             var formData = new FormData(form);
 
-            // Save default color "Graphite Black" to localStorage for homepage add-to-cart
-            // This ensures the cart sidebar and checkout show the color variant
+            // Save default color to localStorage for homepage add-to-cart (Raven Weapons only)
+            // Snigel products should not get a default color
             var productIdInput = form.querySelector('input[name*="[id]"]');
+            var productNumInput = form.querySelector('input[name*="productNumber"], [data-product-number]');
             if (productIdInput) {
                 var productId = productIdInput.value;
-                // Only set if no color is already saved for this product
-                if (!localStorage.getItem('raven_color_' + productId)) {
+                var productNum = productNumInput ? (productNumInput.value || productNumInput.getAttribute('data-product-number')) : '';
+                // Only set default for Raven Weapons (RW- or LT-), not Snigel (SN-)
+                if (!localStorage.getItem('raven_color_' + productId) && productNum && (productNum.startsWith('RW-') || productNum.startsWith('LT-'))) {
                     localStorage.setItem('raven_color_' + productId, JSON.stringify({color: 'Graphite Black', image: ''}));
                 }
             }
@@ -567,19 +575,21 @@
         }
     }, true);
 
-    // Save default color on add-to-cart button click (before Shopware handles it)
+    // Save default color on add-to-cart button click (Raven Weapons only, before Shopware handles it)
     document.addEventListener('click', function(e) {
         var addToCartBtn = e.target.closest('form[data-add-to-cart] button[type="submit"], form.add-to-cart-form button[type="submit"]');
         if (addToCartBtn) {
             var form = addToCartBtn.closest('form');
             if (form) {
                 var productIdInput = form.querySelector('input[name*="[id]"]');
+                var productNumInput = form.querySelector('input[name*="productNumber"], [data-product-number]');
                 if (productIdInput) {
                     var productId = productIdInput.value;
-                    // Save default color "Graphite Black" if no color already saved
-                    if (!localStorage.getItem('raven_color_' + productId)) {
+                    var productNum = productNumInput ? (productNumInput.value || productNumInput.getAttribute('data-product-number')) : '';
+                    // Only set default for Raven Weapons (RW- or LT-), not Snigel (SN-)
+                    if (!localStorage.getItem('raven_color_' + productId) && productNum && (productNum.startsWith('RW-') || productNum.startsWith('LT-'))) {
                         localStorage.setItem('raven_color_' + productId, JSON.stringify({color: 'Graphite Black', image: ''}));
-                        console.log('Saved default color Graphite Black for product:', productId);
+                        console.log('Saved default color Graphite Black for Raven product:', productId);
                     }
                 }
             }

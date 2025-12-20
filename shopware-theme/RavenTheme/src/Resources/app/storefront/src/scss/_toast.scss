@@ -1,0 +1,238 @@
+// =============================================================================
+// RAVEN TOAST NOTIFICATIONS
+// Light minimal design with luxury aesthetics
+// =============================================================================
+
+// Variables
+$toast-bg: #ffffff;
+$toast-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+$toast-border: #e5e7eb;
+$toast-text: #1f2937;
+$toast-close: #9ca3af;
+$toast-close-hover: #374151;
+$toast-radius: 14px;
+$toast-padding: 16px;
+
+// Type colors
+$toast-error: #dc2626;
+$toast-success: #D4A847; // Raven gold
+$toast-warning: #f59e0b;
+$toast-info: #3b82f6;
+
+// =============================================================================
+// CONTAINER
+// =============================================================================
+#raven-toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+    max-width: calc(100vw - 48px);
+
+    @media (max-width: 480px) {
+        top: 16px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
+    }
+}
+
+// =============================================================================
+// TOAST CARD
+// =============================================================================
+.raven-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: $toast-padding;
+    background: $toast-bg;
+    border: 1px solid $toast-border;
+    border-left-width: 4px;
+    border-radius: $toast-radius;
+    box-shadow: $toast-shadow;
+    pointer-events: auto;
+    cursor: pointer;
+    min-width: 320px;
+    max-width: 420px;
+
+    // Animation states
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    &--visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    &--hiding {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    @media (max-width: 480px) {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+    }
+
+    // Type variations
+    &--error {
+        border-left-color: $toast-error;
+
+        .raven-toast__icon {
+            color: $toast-error;
+        }
+    }
+
+    &--success {
+        border-left-color: $toast-success;
+
+        .raven-toast__icon {
+            color: $toast-success;
+        }
+    }
+
+    &--warning {
+        border-left-color: $toast-warning;
+
+        .raven-toast__icon {
+            color: $toast-warning;
+        }
+    }
+
+    &--info {
+        border-left-color: $toast-info;
+
+        .raven-toast__icon {
+            color: $toast-info;
+        }
+    }
+}
+
+// =============================================================================
+// ICON
+// =============================================================================
+.raven-toast__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+// =============================================================================
+// CONTENT
+// =============================================================================
+.raven-toast__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.raven-toast__message {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: $toast-text;
+    word-wrap: break-word;
+}
+
+// =============================================================================
+// CLOSE BUTTON
+// =============================================================================
+.raven-toast__close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin: -4px -4px -4px 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: $toast-close;
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+
+    &:hover {
+        color: $toast-close-hover;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    }
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+@keyframes toast-slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toast-slide-out {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+// Mobile animation (slide down from top)
+@media (max-width: 480px) {
+    .raven-toast {
+        transform: translateY(-100%);
+
+        &--visible {
+            transform: translateY(0);
+        }
+
+        &--hiding {
+            transform: translateY(-100%);
+        }
+    }
+}
+
+// =============================================================================
+// RE-ENABLE FLASH MESSAGES FOR PLUGIN TO INTERCEPT
+// Override the hiding from base.scss - make them hidden but readable
+// =============================================================================
+.alert[data-raven-processed] {
+    display: none !important;
+}
+
+// Show alerts initially so plugin can read them, then hide
+.alert:not([data-raven-processed]) {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}

@@ -542,50 +542,7 @@
 
     <div class="raven-offcanvas-cart">
 
-    {# JavaScript to update cart colors from localStorage #}
-    <script>
-    (function() {
-        function updateCartColors() {
-            document.querySelectorAll('.raven-cart-item').forEach(function(item) {
-                var productId = item.getAttribute('data-product-id');
-                if (productId) {
-                    var colorData = localStorage.getItem('raven_color_' + productId);
-                    if (colorData) {
-                        try {
-                            var data = JSON.parse(colorData);
-                            var colorSpan = item.querySelector('.raven-item-color');
-                            if (colorSpan && data.color) {
-                                colorSpan.textContent = data.color;
-                            }
-                            // Also update image if available
-                            if (data.image) {
-                                var img = item.querySelector('.raven-cart-item-img');
-                                if (img) {
-                                    img.src = data.image;
-                                }
-                            }
-                        } catch(e) {}
-                    }
-                }
-            });
-        }
-        // Run immediately
-        updateCartColors();
-        // Run after short delays to catch dynamic content
-        setTimeout(updateCartColors, 50);
-        setTimeout(updateCartColors, 150);
-        setTimeout(updateCartColors, 300);
-        // Also run when DOM changes (for dynamically loaded content)
-        if (typeof MutationObserver !== 'undefined') {
-            var observer = new MutationObserver(function(mutations) {
-                updateCartColors();
-            });
-            observer.observe(document.body, { childList: true, subtree: true });
-            // Stop observing after 2 seconds to prevent performance issues
-            setTimeout(function() { observer.disconnect(); }, 2000);
-        }
-    })();
-    </script>
+    {# Variant data is now properly saved in payload - no need for localStorage override #}
         {# Header #}
         <div class="raven-cart-header">
             <div class="raven-cart-header-content">
@@ -628,8 +585,13 @@
                             <a href="{{ seoUrl('frontend.detail.page', {'productId': lineItem.referencedId}) }}" class="raven-item-name">
                                 {{ lineItem.label }}
                             </a>
-                            {% if lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
-                                <span class="raven-item-color">Farbe: {{ lineItem.payload.selectedColor }}</span>
+                            {# Display combined variantenDisplay, or fall back to individual fields (Color + Size) #}
+                            {% if lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
+                                <span class="raven-item-color">Variante: {{ lineItem.payload.variantenDisplay }}</span>
+                            {% elseif lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
+                                <span class="raven-item-color">Variante: {{ lineItem.payload.selectedColor }}{% if lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %} / {{ lineItem.payload.selectedSize }}{% endif %}</span>
+                            {% elseif lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %}
+                                <span class="raven-item-color">Variante: {{ lineItem.payload.selectedSize }}</span>
                             {% else %}
                                 <span class="raven-item-color"></span>
                             {% endif %}

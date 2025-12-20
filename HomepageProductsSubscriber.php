@@ -58,20 +58,32 @@ class HomepageProductsSubscriber implements EventSubscriberInterface
 
         $rootCategoryId = $context->getSalesChannel()->getNavigationCategoryId();
 
-        // Get main categories (direct children of root)
+        // Get main categories with 3 levels deep + seoUrls for dynamic navigation
         $categoryCriteria = new Criteria();
         $categoryCriteria->addFilter(new EqualsFilter('parentId', $rootCategoryId));
         $categoryCriteria->addFilter(new EqualsFilter('active', true));
         $categoryCriteria->addFilter(new EqualsFilter('visible', true));
         $categoryCriteria->addAssociation('media');
+        $categoryCriteria->addAssociation('seoUrls');
         $categoryCriteria->addAssociation('children');
+        $categoryCriteria->addAssociation('children.seoUrls');
+        $categoryCriteria->addAssociation('children.children');
+        $categoryCriteria->addAssociation('children.children.seoUrls');
+        $categoryCriteria->addAssociation('children.products');                 // Level 2 products (for categories like Raven Weapons)
+        $categoryCriteria->addAssociation('children.products.seoUrls');         // Level 2 product SEO URLs
         $categoryCriteria->addSorting(new FieldSorting('autoIncrement', FieldSorting::ASCENDING));
-        $categoryCriteria->setLimit(10);
+        $categoryCriteria->setLimit(20);
 
         $categories = $this->categoryRepository->search($categoryCriteria, $context->getContext());
 
         // Add categories to header pagelet as extension
         $pagelet->addExtension('navCategories', $categories->getEntities());
+
+        // Load products for categories without subcategories (like Raven Weapons)
+        $categoryProducts = $this->loadProductsForLeafCategories($categories->getEntities(), $context);
+        if (!empty($categoryProducts)) {
+            $pagelet->addExtension('categoryProducts', new ArrayStruct($categoryProducts));
+        }
     }
 
     /**
@@ -225,24 +237,40 @@ class HomepageProductsSubscriber implements EventSubscriberInterface
 
     /**
      * Load navigation categories for header menus on ALL pages
-     * Also sets homepageCategories for header navigation
+     * Loads 3-level deep category tree with seoUrls for dynamic navigation
      */
     private function loadNavigationCategories(Page $page, SalesChannelContext $context): void
     {
         $rootCategoryId = $context->getSalesChannel()->getNavigationCategoryId();
 
-        // Get main categories (direct children of root)
+        // Get main categories with 3 levels deep + seoUrls for dynamic links
         $categoryCriteria = new Criteria();
         $categoryCriteria->addFilter(new EqualsFilter('parentId', $rootCategoryId));
         $categoryCriteria->addFilter(new EqualsFilter('active', true));
         $categoryCriteria->addFilter(new EqualsFilter('visible', true));
         $categoryCriteria->addAssociation('media');
+        $categoryCriteria->addAssociation('seoUrls');                           // Level 1 SEO URLs
+        $categoryCriteria->addAssociation('children');                          // Level 2
+        $categoryCriteria->addAssociation('children.seoUrls');                  // Level 2 SEO URLs
+        $categoryCriteria->addAssociation('children.children');                 // Level 3
+        $categoryCriteria->addAssociation('children.children.seoUrls');         // Level 3 SEO URLs
+        $categoryCriteria->addAssociation('children.products');                 // Level 2 products (for categories like Raven Weapons)
+        $categoryCriteria->addAssociation('children.products.seoUrls');         // Level 2 product SEO URLs
         $categoryCriteria->addSorting(new FieldSorting('autoIncrement', FieldSorting::ASCENDING));
-        $categoryCriteria->setLimit(10);
+        $categoryCriteria->setLimit(20);
 
         $categories = $this->categoryRepository->search($categoryCriteria, $context->getContext());
 
-        // Add categories to page extensions for header navigation (if not already set)
+        // Add categories to page extensions for header navigation
+        $page->addExtension('navCategories', $categories->getEntities());
+
+        // Load products for categories without subcategories (like Raven Weapons)
+        $categoryProducts = $this->loadProductsForLeafCategories($categories->getEntities(), $context);
+        if (!empty($categoryProducts)) {
+            $page->addExtension('categoryProducts', new ArrayStruct($categoryProducts));
+        }
+
+        // Also set homepageCategories for backward compatibility
         if (!$page->hasExtension('homepageCategories')) {
             $page->addExtension('homepageCategories', $categories->getEntities());
         }
@@ -265,5 +293,47 @@ class HomepageProductsSubscriber implements EventSubscriberInterface
         }
 
         return null;
+    }
+
+    /**
+     * Load products for leaf categories (categories without subcategories)
+     * This is used to show products in navigation dropdowns for categories like "Raven Weapons"
+     */
+    private function loadProductsForLeafCategories($categories, SalesChannelContext $context): array
+    {
+        $categoryProducts = [];
+
+        foreach ($categories as $mainCategory) {
+            // Check children (level 2 categories like "Waffen")
+            if (!$mainCategory->getChildren()) {
+                continue;
+            }
+
+            foreach ($mainCategory->getChildren() as $childCategory) {
+                // Skip if this child has its own children (subcategories)
+                if ($childCategory->getChildren() && $childCategory->getChildren()->count() > 0) {
+                    continue;
+                }
+
+                // This is a leaf category - load its products
+                $categoryId = $childCategory->getId();
+
+                $productCriteria = new Criteria();
+                $productCriteria->addFilter(new EqualsFilter('categories.id', $categoryId));
+                $productCriteria->addFilter(new ProductAvailableFilter($context->getSalesChannel()->getId()));
+                $productCriteria->addAssociation('seoUrls');
+                $productCriteria->addSorting(new FieldSorting('name', FieldSorting::ASCENDING));
+                $productCriteria->setLimit(10);
+
+                $products = $this->productRepository->search($productCriteria, $context);
+
+                if ($products->count() > 0) {
+                    // Category ID is already hex string, just lowercase it
+                    $categoryProducts[strtolower($categoryId)] = $products->getEntities();
+                }
+            }
+        }
+
+        return $categoryProducts;
     }
 }

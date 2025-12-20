@@ -73,6 +73,8 @@ $customFields = [
     // Snigel color variants
     ['name' => 'snigel_has_color_variants', 'type' => 'bool', 'label' => 'Hat Snigel Farb-Varianten'],
     ['name' => 'snigel_color_options', 'type' => 'json', 'label' => 'Snigel Farb-Optionen'],
+    ['name' => 'snigel_color_label', 'type' => 'text', 'label' => 'Snigel Farb-Label'],
+    ['name' => 'snigel_color_count', 'type' => 'int', 'label' => 'Snigel Farb-Anzahl'],
     // Snigel size variants
     ['name' => 'snigel_has_sizes', 'type' => 'bool', 'label' => 'Hat Snigel Grössen'],
     ['name' => 'snigel_size_options', 'type' => 'text', 'label' => 'Snigel Grössen'],
@@ -254,14 +256,27 @@ if (!file_exists($jsonPath)) {
         // Determine variant type
         $hasColors = in_array('colour', $dropdownTypes);
         $hasSizes = in_array('sizes', $dropdownTypes);
-        $variantType = $variantLabels[0] ?? 'GRÖSSE';
+
+        // Get correct label for size selector (find index of 'sizes' in dropdownTypes)
+        $sizeIndex = array_search('sizes', $dropdownTypes);
+        $colorIndex = array_search('colour', $dropdownTypes);
+        $sizeLabel = ($sizeIndex !== false && isset($variantLabels[$sizeIndex])) ? $variantLabels[$sizeIndex] : 'GRÖSSE';
+        $colorLabel = ($colorIndex !== false && isset($variantLabels[$colorIndex])) ? $variantLabels[$colorIndex] : 'FARBE';
 
         // Build size options string (unique sizes)
+        // Also extract color-to-image mappings
         $sizes = [];
         $colors = [];
+        $colorImages = []; // Map color name to image URL
         foreach ($variants as $v) {
             if (isset($v['sizes'])) $sizes[$v['sizes']] = true;
-            if (isset($v['colour'])) $colors[$v['colour']] = true;
+            if (isset($v['colour'])) {
+                $colors[$v['colour']] = true;
+                // Store image URL for this color (if available)
+                if (isset($v['imageUrl']) && !isset($colorImages[$v['colour']])) {
+                    $colorImages[$v['colour']] = $v['imageUrl'];
+                }
+            }
         }
 
         // Update custom fields based on variant type
@@ -274,7 +289,7 @@ if (!file_exists($jsonPath)) {
                 $sizeOptionsArray[] = ['name' => $sizeName, 'value' => strtolower($sizeName)];
             }
             $existingCustomFields['snigel_size_options'] = json_encode($sizeOptionsArray);
-            $existingCustomFields['snigel_variant_type'] = $variantType;
+            $existingCustomFields['snigel_variant_type'] = $sizeLabel; // Use correct size label
 
             // Store full variants with prices (for price lookup)
             $variantData = [];
@@ -287,12 +302,21 @@ if (!file_exists($jsonPath)) {
             $existingCustomFields['snigel_variants'] = json_encode($variantData);
         }
 
-        if ($hasColors && count($colors) > 1) {
+        // Always save color info if colors exist (even just 1)
+        // Template will decide: 1 color = info text, 2+ colors = selector buttons
+        if ($hasColors && count($colors) >= 1) {
             $existingCustomFields['snigel_has_color_variants'] = true;
-            // Color options would need image URLs - simplified for now
+            $existingCustomFields['snigel_color_label'] = $colorLabel;
+            $existingCustomFields['snigel_color_count'] = count($colors); // Store count for template logic
+            // Color options array with image URLs
             $colorOptions = [];
             foreach (array_keys($colors) as $colorName) {
-                $colorOptions[] = ['name' => $colorName, 'imageUrl' => ''];
+                $colorOption = ['name' => $colorName];
+                // Add image URL if available from scraper
+                if (isset($colorImages[$colorName])) {
+                    $colorOption['imageUrl'] = $colorImages[$colorName];
+                }
+                $colorOptions[] = $colorOption;
             }
             $existingCustomFields['snigel_color_options'] = $colorOptions;
         }

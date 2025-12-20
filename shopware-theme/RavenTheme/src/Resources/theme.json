@@ -13,7 +13,7 @@
   ],
   "script": [
     "@Storefront",
-    "app/storefront/dist/storefront/js/raven-theme/raven-theme.js"
+    "app/storefront/src/main.js"
   ],
   "asset": [
     "@Storefront",

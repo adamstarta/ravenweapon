@@ -712,8 +712,13 @@ body.raven-checkout-finish {
                 {% if lineItem.payload.productNumber is defined %}
                 <p class="product-sku">Art.Nr: {{ lineItem.payload.productNumber }}</p>
                 {% endif %}
-                {% if lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
-                <p class="product-color" style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0.25rem 0 0 0;">Farbe: {{ lineItem.payload.selectedColor }}</p>
+                {# Display combined variantenDisplay, or fall back to individual fields #}
+                {% if lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
+                <p class="product-variant" style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0.25rem 0 0 0;">Variante: {{ lineItem.payload.variantenDisplay }}</p>
+                {% elseif lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
+                <p class="product-variant" style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0.25rem 0 0 0;">Variante: {{ lineItem.payload.selectedColor }}</p>
+                {% elseif lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %}
+                <p class="product-variant" style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0.25rem 0 0 0;">Variante: {{ lineItem.payload.selectedSize }}</p>
                 {% endif %}
             </div>
             <div class="product-qty">{{ lineItem.quantity }}</div>

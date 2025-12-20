@@ -16,7 +16,7 @@
                 <a href="{{ path('frontend.home.page') }}" style="color: #666; text-decoration: none;">Home</a>
                 <span style="margin: 0 0.5rem;">|</span>
                 {% if subcategoryName is defined and subcategoryName %}
-                    <a href="/{{ manufacturerSlug }}/" style="color: #666; text-decoration: none;">{{ manufacturerName }}</a>
+                    <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: manufacturerSlug}) }}" style="color: #666; text-decoration: none;">{{ manufacturerName }}</a>
                     <span style="margin: 0 0.5rem;">|</span>
                     <span>{{ subcategoryName }}</span>
                 {% else %}
@@ -57,7 +57,7 @@
                 {# CTA Buttons #}
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
                     {% if subcategoryName is defined and subcategoryName and manufacturer %}
-                        <a href="/{{ manufacturerSlug }}/" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: #D4A847; color: #111; font-weight: 600; border-radius: 8px; text-decoration: none; transition: background 0.2s;">
+                        <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: manufacturerSlug}) }}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: #D4A847; color: #111; font-weight: 600; border-radius: 8px; text-decoration: none; transition: background 0.2s;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="19" y1="12" x2="5" y2="12"/>
                                 <polyline points="12 19 5 12 12 5"/>
@@ -73,7 +73,7 @@
                             Zur Startseite
                         </a>
                     {% endif %}
-                    <a href="/Alle-Produkte/" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: white; color: #111; font-weight: 600; border: 1px solid #e5e7eb; border-radius: 8px; text-decoration: none; transition: border-color 0.2s;">
+                    <a href="{{ path('frontend.home.page') }}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: white; color: #111; font-weight: 600; border: 1px solid #e5e7eb; border-radius: 8px; text-decoration: none; transition: border-color 0.2s;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="9" cy="21" r="1"/>
                             <circle cx="20" cy="21" r="1"/>

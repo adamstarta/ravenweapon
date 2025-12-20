@@ -1,64 +1,94 @@
-{% sw_extends '@Storefront/storefront/page/account/register/index.html.twig' %}
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
 
-{% block base_content %}
+{# Custom login page using Shopware's built-in login component #}
+
+{% block base_header %}{% endblock %}
+{% block base_navigation %}{% endblock %}
+{% block base_footer %}{% endblock %}
+{% block base_flashbags %}{% endblock %}
+
+{% block base_main %}
+<main class="content-main">
 <div class="raven-login-page">
     <div class="login-wrapper">
-        {# Main Content - Two Column Layout #}
+        {# Back to Home #}
+        <a href="{{ path('frontend.home.page') }}" class="back-home-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Zur Startseite
+        </a>
+
         <div class="login-content">
-            {# Left Side - Login Form #}
-            <div class="login-card animate-fade-in-up">
-                {# Logo inside card #}
-                <div class="login-logo" style="margin-bottom: 0.5rem; height: 60px; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center;">
-                    <a href="{{ path('frontend.home.page') }}" style="display: flex; align-items: center; justify-content: center;">
-                        <img src="{{ asset('bundles/raventheme/assets/raven-logo.png') }}" alt="Raven Weapon" style="height: 200px; width: auto; object-fit: contain; display: block; margin: 0 auto;">
+            {# Left Side - Login Form using Shopware's built-in component #}
+            <div class="login-card">
+                {# Logo #}
+                <div class="login-logo">
+                    <a href="{{ path('frontend.home.page') }}">
+                        <img src="{{ asset('bundles/raventheme/assets/raven-logo.png') }}" alt="Raven Weapon">
                     </a>
                 </div>
+
                 <div class="card-header">
                     <h1>Willkommen zurück</h1>
                     <p>Melden Sie sich bei Ihrem Konto an</p>
                 </div>
 
+                {# Traditional HTML form - NO AJAX to avoid Shopware 403 on page controllers #}
                 <form action="{{ path('frontend.account.login') }}"
                       method="post"
                       class="login-form"
-                      data-form-csrf-handler="true">
+                      data-form-ajax="false"
+                      data-form-handler="false">
 
-                    <input type="hidden" name="redirectTo" value="{{ redirectTo }}">
-                    {% for key, value in redirectParameters %}
-                        <input type="hidden" name="redirectParameters[{{ key }}]" value="{{ value }}">
-                    {% endfor %}
+                    {{ sw_csrf('frontend.account.login') }}
+
+                    <input type="hidden" name="redirectTo" value="{{ redirectTo|default('frontend.account.home.page') }}">
+                    {% if redirectParameters is defined and redirectParameters is not empty and redirectParameters != '{"_noStore":true}' %}
+                        <input type="hidden" name="redirectParameters" value="{{ redirectParameters }}">
+                    {% endif %}
+
+                    {% if loginError %}
+                        <div class="login-error-alert">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            <span>{{ errorSnippet|default('Die Anmeldedaten sind nicht korrekt.')|trans }}</span>
+                        </div>
+                    {% endif %}
 
                     <div class="form-group">
-                        <label for="loginMail">E-Mail-Adresse</label>
+                        <label for="loginMail" class="form-label">E-Mail-Adresse</label>
                         <input type="email"
-                               name="email"
+                               class="form-control"
                                id="loginMail"
+                               name="username"
                                placeholder="ihre@email.de"
                                autocomplete="email"
                                required>
                     </div>
 
                     <div class="form-group">
-                        <label for="loginPassword">Passwort</label>
+                        <label for="loginPassword" class="form-label">Passwort</label>
                         <input type="password"
-                               name="password"
+                               class="form-control"
                                id="loginPassword"
+                               name="password"
                                placeholder="Ihr Passwort"
                                autocomplete="current-password"
                                required>
                     </div>
 
-                    <div class="form-options">
+                    <div class="login-options">
                         <label class="remember-me">
-                            <input type="checkbox" name="remember" value="1">
+                            <input type="checkbox" name="rememberLogin" value="1">
                             <span>Angemeldet bleiben</span>
                         </label>
-                        <a href="{{ path('frontend.account.recover.page') }}" class="forgot-link">
+                        <a href="{{ path('frontend.account.recover.page') }}" class="forgot-password">
                             Passwort vergessen?
                         </a>
                     </div>
 
-                    <button type="submit" class="login-btn">
+                    <button type="submit" class="login-submit-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                             <polyline points="10 17 15 12 10 7"></polyline>
@@ -89,7 +119,7 @@
             </div>
 
             {# Right Side - Register Card #}
-            <div class="register-card animate-fade-in-up delay-100">
+            <div class="register-card">
                 <div class="card-header">
                     <h2>Neu hier?</h2>
                     <p>Erstellen Sie ein Konto und profitieren Sie von exklusiven Vorteilen</p>
@@ -125,7 +155,7 @@
                     </div>
                 </div>
 
-                <a href="{{ path('frontend.account.login.page') }}#register-form" class="register-btn">
+                <a href="{{ path('frontend.account.register.page') }}" class="register-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                         <circle cx="8.5" cy="7" r="4"></circle>
@@ -135,14 +165,12 @@
                     Konto erstellen
                 </a>
 
-                <p class="register-note">
-                    Kostenlos und unverbindlich
-                </p>
+                <p class="register-note">Kostenlos und unverbindlich</p>
             </div>
         </div>
 
         {# Trust Badges #}
-        <div class="trust-badges animate-fade-in-up delay-200">
+        <div class="trust-badges">
             <div class="trust-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 SSL-verschlüsselt
@@ -156,80 +184,53 @@
                 Sichere Bezahlung
             </div>
         </div>
+
     </div>
 </div>
+</main>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================
-   RAVEN LUXURY LOGIN - Premium Design
-   ============================================ */
-
-:root {
-    --raven-gold: #D4A847;
-    --raven-gold-light: #E8C76B;
-    --raven-gold-dark: #B8922E;
-    --raven-charcoal: #1A1A1A;
-    --raven-dark: #111111;
-    --raven-gray-900: #1f2937;
-    --raven-gray-700: #374151;
-    --raven-gray-500: #6b7280;
-    --raven-gray-300: #d1d5db;
-    --raven-gray-100: #f3f4f6;
-    --raven-cream: #FDFCF9;
-    --raven-white: #ffffff;
-}
-
-/* ============ PAGE CONTAINER ============ */
+/* Raven Login Page Styles */
 .raven-login-page {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 3rem 1.5rem;
-    background: linear-gradient(180deg, var(--raven-cream) 0%, #F5F3EE 100%);
+    background: linear-gradient(180deg, #FDFCF9 0%, #F5F3EE 100%);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    position: relative;
-}
-
-/* Subtle pattern overlay */
-.raven-login-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0);
-    background-size: 32px 32px;
-    pointer-events: none;
 }
 
 .login-wrapper {
     width: 100%;
     max-width: 1000px;
     position: relative;
-    z-index: 1;
 }
 
-/* ============ LOGO ============ */
-.login-logo {
-    text-align: center;
-    margin-bottom: 3rem;
+.back-home-btn {
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    color: #374151;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.login-logo a {
-    display: inline-block;
-    transition: transform 0.3s ease;
+.back-home-btn:hover {
+    background: #fff;
+    color: #B8922E;
+    border-color: #D4A847;
 }
 
-.login-logo a:hover {
-    transform: scale(1.02);
-}
-
-/* ============ CONTENT GRID ============ */
 .login-content {
     display: grid;
     grid-template-columns: 1fr;
@@ -243,178 +244,172 @@
     }
 }
 
-/* ============ LUXURY CARDS ============ */
-.login-card,
-.register-card {
-    background: var(--raven-white);
+/* Login Card */
+.login-card {
+    background: #fff;
     border-radius: 24px;
     padding: 2.5rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
 }
 
-.login-card:hover,
-.register-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04);
-}
-
-@media (min-width: 640px) {
-    .login-card,
-    .register-card {
-        padding: 3rem;
-    }
-}
-
-/* ============ CARD HEADER ============ */
-.card-header {
-    margin-bottom: 2.25rem;
+.login-logo {
     text-align: center;
+    margin-bottom: 1.5rem;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.card-header h1,
-.card-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--raven-charcoal);
-    margin: 0 0 0.625rem 0;
-    letter-spacing: -0.02em;
+.login-logo img {
+    height: 200px;
+    width: auto;
 }
 
-.card-header p {
-    font-size: 0.9375rem;
-    color: var(--raven-gray-500);
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* ============ FORM STYLES ============ */
-.login-form .form-group {
+.raven-login-page .card-header {
+    text-align: center;
     margin-bottom: 1.5rem;
 }
 
-.login-form label {
-    display: block;
+.raven-login-page .card-header h1,
+.raven-login-page .card-header h2 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin: 0 0 0.5rem 0;
+}
+
+.raven-login-page .card-header p {
+    font-size: 0.9375rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Login Form Styles */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.login-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.login-form .form-label {
     font-weight: 600;
-    color: var(--raven-charcoal);
+    color: #1A1A1A;
     font-size: 0.8125rem;
-    margin-bottom: 0.625rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-.login-form input[type="email"],
-.login-form input[type="password"] {
-    width: 100%;
+.login-form .form-control {
+    border-radius: 14px;
+    border: 2px solid #d1d5db;
     padding: 1rem 1.25rem;
     font-size: 1rem;
-    border: 2px solid var(--raven-gray-300);
-    border-radius: 14px;
-    background: var(--raven-white);
-    color: var(--raven-charcoal);
     transition: all 0.25s ease;
-    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.login-form input:hover {
-    border-color: var(--raven-gray-500);
-}
-
-.login-form input:focus {
+.login-form .form-control:focus {
     outline: none;
-    border-color: var(--raven-gold);
+    border-color: #D4A847;
     box-shadow: 0 0 0 4px rgba(212, 168, 71, 0.15);
 }
 
-.login-form input::placeholder {
-    color: var(--raven-gray-500);
-}
-
-/* ============ FORM OPTIONS ============ */
-.form-options {
+.login-options {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 1rem;
 }
 
 .remember-me {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: 0.5rem;
     cursor: pointer;
-    font-size: 0.9375rem;
-    color: var(--raven-gray-700);
+    font-size: 0.875rem;
+    color: #374151;
 }
 
 .remember-me input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    border-radius: 6px;
-    accent-color: var(--raven-gold);
+    width: 18px;
+    height: 18px;
+    accent-color: #D4A847;
     cursor: pointer;
 }
 
-.forgot-link {
-    font-size: 0.9375rem;
-    color: var(--raven-gold-dark);
-    text-decoration: none;
+.forgot-password {
+    color: #B8922E;
     font-weight: 600;
-    transition: color 0.2s ease;
+    font-size: 0.875rem;
+    text-decoration: none;
 }
 
-.forgot-link:hover {
-    color: var(--raven-gold);
+.forgot-password:hover {
     text-decoration: underline;
 }
 
-/* ============ LUXURY LOGIN BUTTON ============ */
-.login-btn {
+.login-submit-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.625rem;
     width: 100%;
-    padding: 1.125rem 1.75rem;
-    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 50%, var(--raven-gold) 100%);
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #D4A847 0%, #E8C76B 50%, #D4A847 100%);
     background-size: 200% 100%;
-    border: 2px solid var(--raven-gold-dark);
+    border: 2px solid #B8922E;
     border-radius: 14px;
-    color: var(--raven-charcoal);
-    font-family: inherit;
-    font-size: 1.0625rem;
     font-weight: 700;
-    letter-spacing: 0.025em;
-    cursor: pointer;
+    font-size: 1rem;
+    color: #1A1A1A;
+    box-shadow: 0 6px 20px rgba(212, 168, 71, 0.35);
     transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(212, 168, 71, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    cursor: pointer;
 }
 
-.login-btn:hover {
+.login-submit-btn:hover {
     background-position: 100% 0;
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(212, 168, 71, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 28px rgba(212, 168, 71, 0.45);
 }
 
-.login-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 16px rgba(212, 168, 71, 0.35);
+.login-error-alert {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    color: #dc2626;
+    font-size: 0.9375rem;
 }
 
-/* ============ LOGIN BENEFITS ============ */
+.login-error-alert svg {
+    flex-shrink: 0;
+}
+
+/* Login Benefits */
 .login-benefits {
-    margin-top: 2.25rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--raven-gray-100);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f3f4f6;
 }
 
 .benefits-title {
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--raven-gray-500);
+    color: #6b7280;
     margin: 0 0 1rem 0;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -430,24 +425,26 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    font-size: 0.9375rem;
-    color: var(--raven-gray-700);
-    margin-bottom: 0.625rem;
+    font-size: 0.875rem;
+    color: #374151;
+    margin-bottom: 0.5rem;
 }
 
 .login-benefits li svg {
-    color: var(--raven-gold);
+    color: #D4A847;
     flex-shrink: 0;
 }
 
-/* ============ REGISTER CARD ============ */
+/* Register Card */
 .register-card {
-    background: linear-gradient(180deg, var(--raven-charcoal) 0%, var(--raven-dark) 100%);
+    background: linear-gradient(180deg, #1A1A1A 0%, #111111 100%);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
 }
 
 .register-card .card-header h2 {
-    font-size: 1.75rem;
-    color: var(--raven-white);
+    color: #fff;
 }
 
 .register-card .card-header p {
@@ -455,13 +452,13 @@
 }
 
 .register-benefits {
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
 }
 
 .benefit-item {
     display: flex;
-    gap: 1.125rem;
-    padding: 1.125rem 0;
+    gap: 1rem;
+    padding: 1rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -478,70 +475,63 @@
     background: rgba(212, 168, 71, 0.15);
     border: 1px solid rgba(212, 168, 71, 0.25);
     border-radius: 14px;
-    color: var(--raven-gold);
+    color: #D4A847;
     flex-shrink: 0;
 }
 
 .benefit-item strong {
     display: block;
     font-size: 1rem;
-    color: var(--raven-white);
-    margin-bottom: 0.375rem;
-    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.25rem;
 }
 
 .benefit-item p {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.5);
     margin: 0;
-    line-height: 1.4;
 }
 
-/* ============ REGISTER BUTTON ============ */
 .register-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.625rem;
     width: 100%;
-    padding: 1.125rem 1.75rem;
+    padding: 1rem 1.5rem;
     background: transparent;
-    border: 2px solid var(--raven-gold);
+    border: 2px solid #D4A847;
     border-radius: 14px;
-    color: var(--raven-gold);
-    font-family: inherit;
-    font-size: 1.0625rem;
+    color: #D4A847;
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 0.025em;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .register-btn:hover {
-    background: var(--raven-gold);
-    color: var(--raven-charcoal);
+    background: #D4A847;
+    color: #1A1A1A;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(212, 168, 71, 0.3);
 }
 
 .register-note {
     text-align: center;
     font-size: 0.8125rem;
     color: rgba(255, 255, 255, 0.4);
-    margin: 1.25rem 0 0 0;
+    margin: 1rem 0 0 0;
 }
 
-/* ============ TRUST BADGES ============ */
+/* Trust Badges */
 .trust-badges {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-    margin-top: 3rem;
-    padding: 1.5rem;
+    margin-top: 2.5rem;
+    padding: 1.25rem;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .trust-item {
@@ -550,78 +540,363 @@
     gap: 0.5rem;
     font-size: 0.8125rem;
     font-weight: 500;
-    color: var(--raven-gray-700);
+    color: #374151;
 }
 
 .trust-item svg {
-    color: var(--raven-gold);
+    color: #D4A847;
 }
 
-/* ============ ANIMATIONS ============ */
-.animate-fade-in {
-    animation: fadeIn 0.7s ease-out forwards;
+/* Toast notification styles (inline for login page) */
+#raven-toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+    max-width: calc(100vw - 48px);
 }
 
-.animate-fade-in-up {
-    animation: fadeInUp 0.7s ease-out forwards;
-}
-
-.delay-100 {
-    animation-delay: 0.15s;
+.raven-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left-width: 4px;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    pointer-events: auto;
+    cursor: pointer;
+    min-width: 320px;
+    max-width: 420px;
     opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.delay-200 {
-    animation-delay: 0.3s;
+.raven-toast--visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.raven-toast--hiding {
     opacity: 0;
+    transform: translateX(100%);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.raven-toast--error { border-left-color: #dc2626; }
+.raven-toast--error .raven-toast__icon { color: #dc2626; }
+.raven-toast--success { border-left-color: #D4A847; }
+.raven-toast--success .raven-toast__icon { color: #D4A847; }
+.raven-toast--warning { border-left-color: #f59e0b; }
+.raven-toast--warning .raven-toast__icon { color: #f59e0b; }
+.raven-toast--info { border-left-color: #3b82f6; }
+.raven-toast--info .raven-toast__icon { color: #3b82f6; }
+
+.raven-toast__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.raven-toast__content {
+    flex: 1;
+    min-width: 0;
 }
 
-/* ============ HIDE DEFAULT ELEMENTS ============ */
-.account-login-page,
-.account-content {
-    display: none !important;
+.raven-toast__message {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1f2937;
+    word-wrap: break-word;
 }
 
-/* ============ RESPONSIVE ============ */
-@media (max-width: 767px) {
-    .login-wrapper {
-        max-width: 440px;
-    }
+.raven-toast__close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin: -4px -4px -4px 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
 
-    .login-card,
-    .register-card {
-        padding: 2rem;
-    }
+.raven-toast__close:hover {
+    color: #374151;
+    background-color: rgba(0, 0, 0, 0.05);
+}
 
-    .card-header h1,
-    .card-header h2 {
-        font-size: 1.625rem;
+@media (max-width: 480px) {
+    #raven-toast-container {
+        top: 16px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
     }
-
-    .trust-badges {
-        gap: 1rem;
-        padding: 1rem;
+    .raven-toast {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+        transform: translateY(-100%);
     }
-
-    .trust-item {
-        font-size: 0.75rem;
-    }
+    .raven-toast--visible { transform: translateY(0); }
+    .raven-toast--hiding { transform: translateY(-100%); }
 }
 </style>
+
+<script>
+// Raven Toast - Inline for login/register pages
+(function() {
+    const icons = {
+        error: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>',
+        success: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 12 15 16 10"></polyline></svg>',
+        warning: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>',
+        info: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>'
+    };
+
+    const durations = { error: 5000, success: 3000, warning: 4000, info: 4000 };
+
+    function getContainer() {
+        let container = document.getElementById('raven-toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'raven-toast-container';
+            document.body.appendChild(container);
+        }
+        return container;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function removeToast(toast) {
+        if (toast._removing) return;
+        toast._removing = true;
+        clearTimeout(toast._timeoutId);
+        toast.classList.remove('raven-toast--visible');
+        toast.classList.add('raven-toast--hiding');
+        setTimeout(() => {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 300);
+    }
+
+    window.ravenToast = function(type, message, duration) {
+        const container = getContainer();
+        const toast = document.createElement('div');
+        toast.className = 'raven-toast raven-toast--' + type;
+        toast.setAttribute('role', 'alert');
+
+        toast.innerHTML =
+            '<div class="raven-toast__icon">' + (icons[type] || icons.info) + '</div>' +
+            '<div class="raven-toast__content"><span class="raven-toast__message">' + escapeHtml(message) + '</span></div>' +
+            '<button class="raven-toast__close" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>';
+
+        container.appendChild(toast);
+
+        requestAnimationFrame(function() {
+            toast.classList.add('raven-toast--visible');
+        });
+
+        const closeBtn = toast.querySelector('.raven-toast__close');
+        closeBtn.addEventListener('click', function() { removeToast(toast); });
+        toast.addEventListener('click', function(e) {
+            if (e.target === toast || e.target.closest('.raven-toast__content')) {
+                removeToast(toast);
+            }
+        });
+
+        const dismissTime = duration || durations[type] || 4000;
+        toast._timeoutId = setTimeout(function() { removeToast(toast); }, dismissTime);
+
+        toast.addEventListener('mouseenter', function() { clearTimeout(toast._timeoutId); });
+        toast.addEventListener('mouseleave', function() {
+            toast._timeoutId = setTimeout(function() { removeToast(toast); }, 1000);
+        });
+    };
+
+    console.log('Raven Toast initialized on login page');
+
+    // ========== GERMAN TRANSLATIONS FOR SHOPWARE VALIDATION MESSAGES ==========
+    const germanTranslations = {
+        // Email validation
+        'This value is already used.': 'Diese E-Mail-Adresse wird bereits verwendet.',
+        'This email address is already registered.': 'Diese E-Mail-Adresse ist bereits registriert.',
+        'The email address is already in use.': 'Diese E-Mail-Adresse wird bereits verwendet.',
+        'This value is not a valid email address.': 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+        'Please enter a valid email address.': 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+
+        // Password validation
+        'The password is too short.': 'Das Passwort ist zu kurz.',
+        'The password must be at least 8 characters.': 'Das Passwort muss mindestens 8 Zeichen lang sein.',
+        'The passwords do not match.': 'Die Passwörter stimmen nicht überein.',
+        'The password confirmation does not match.': 'Die Passwortbestätigung stimmt nicht überein.',
+        'Password must be at least {{ limit }} characters long.': 'Das Passwort muss mindestens 8 Zeichen lang sein.',
+        'Invalid credentials.': 'Die Anmeldedaten sind nicht korrekt.',
+        'Bad credentials.': 'Die Anmeldedaten sind nicht korrekt.',
+
+        // Required fields
+        'This field is required.': 'Dieses Feld ist erforderlich.',
+        'This value should not be blank.': 'Dieses Feld darf nicht leer sein.',
+        'Please fill out this field.': 'Bitte füllen Sie dieses Feld aus.',
+
+        // Login errors
+        'Customer with email address': 'Ein Kunde mit dieser E-Mail-Adresse wurde nicht gefunden.',
+        'not found': 'nicht gefunden',
+        'Your account is locked.': 'Ihr Konto ist gesperrt.',
+        'Account is locked': 'Ihr Konto ist gesperrt.',
+        'Too many login attempts.': 'Zu viele Anmeldeversuche. Bitte versuchen Sie es später erneut.',
+
+        // General validation
+        'An error occurred.': 'Ein Fehler ist aufgetreten.',
+        'Please check your input.': 'Bitte überprüfen Sie Ihre Eingaben.',
+        'The form contains errors.': 'Das Formular enthält Fehler.',
+        'Login failed.': 'Anmeldung fehlgeschlagen.',
+
+        // Account exists
+        'A customer with the email address': 'Ein Kunde mit dieser E-Mail-Adresse existiert bereits.',
+        'already exists': 'existiert bereits.'
+    };
+
+    function translateToGerman(message) {
+        // Direct match
+        if (germanTranslations[message]) {
+            return germanTranslations[message];
+        }
+
+        // Partial match for messages containing dynamic values
+        for (const [englishKey, germanValue] of Object.entries(germanTranslations)) {
+            if (message.toLowerCase().includes(englishKey.toLowerCase())) {
+                return germanValue;
+            }
+        }
+
+        // Check for email already exists pattern
+        if (message.toLowerCase().includes('already') && message.toLowerCase().includes('email')) {
+            return 'Diese E-Mail-Adresse wird bereits verwendet.';
+        }
+        if (message.toLowerCase().includes('already') && message.toLowerCase().includes('customer')) {
+            return 'Ein Kunde mit dieser E-Mail-Adresse existiert bereits.';
+        }
+        if (message.toLowerCase().includes('credentials') || message.toLowerCase().includes('invalid')) {
+            return 'Die Anmeldedaten sind nicht korrekt.';
+        }
+        if (message.toLowerCase().includes('locked')) {
+            return 'Ihr Konto ist gesperrt.';
+        }
+
+        // Return original if no translation found
+        return message;
+    }
+
+    // ========== DYNAMIC ERROR/SUCCESS HANDLING ==========
+
+    // 1. Login errors (Twig-based)
+    {% if loginError %}
+    window.ravenToast('error', translateToGerman('{{ errorSnippet|default('Die Anmeldedaten sind nicht korrekt.')|trans|e('js') }}'));
+    {% endif %}
+
+    // 2. Form violations (Shopware 6 passes these via formViolations)
+    {% if formViolations is defined and formViolations is not empty %}
+        {% for violation in formViolations %}
+    window.ravenToast('error', translateToGerman('{{ violation.message|e('js') }}'));
+        {% endfor %}
+    {% endif %}
+
+    // 3. Flash messages from Shopware (success, danger, warning, info)
+    {% for type, messages in app.flashes() %}
+        {% for message in messages %}
+            {% if type == 'success' %}
+    window.ravenToast('success', translateToGerman('{{ message|trans|e('js') }}'));
+            {% elseif type == 'danger' or type == 'error' %}
+    window.ravenToast('error', translateToGerman('{{ message|trans|e('js') }}'));
+            {% elseif type == 'warning' %}
+    window.ravenToast('warning', translateToGerman('{{ message|trans|e('js') }}'));
+            {% else %}
+    window.ravenToast('info', translateToGerman('{{ message|trans|e('js') }}'));
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    // JavaScript fallback for URL params and DOM-based errors
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Login error via URL
+        if (urlParams.get('loginError') === '1' || urlParams.has('loginError')) {
+            window.ravenToast('error', 'Die Anmeldedaten sind nicht korrekt.');
+        }
+
+        // Success messages via URL (e.g., after logout, password reset)
+        if (urlParams.has('logoutSuccess') || urlParams.get('logout') === '1') {
+            window.ravenToast('success', 'Sie wurden erfolgreich abgemeldet.');
+        }
+        if (urlParams.has('passwordChanged') || urlParams.has('passwordReset')) {
+            window.ravenToast('success', 'Ihr Passwort wurde erfolgreich geändert.');
+        }
+        if (urlParams.has('accountCreated') || urlParams.has('registered')) {
+            window.ravenToast('success', 'Ihr Konto wurde erstellt. Bitte melden Sie sich an.');
+        }
+
+        // Check for inline error alert (from Shopware flash messages)
+        const errorAlert = document.querySelector('.login-error-alert');
+        if (errorAlert) {
+            let message = errorAlert.querySelector('span')?.textContent || 'Die Anmeldedaten sind nicht korrekt.';
+            message = translateToGerman(message.trim());
+            window.ravenToast('error', message);
+            errorAlert.style.display = 'none'; // Hide inline alert since we show toast
+        }
+
+        // Detect any .alert elements that Shopware might inject
+        const alerts = document.querySelectorAll('.alert, .alert-danger, .alert-warning, .alert-success, .alert-info');
+        alerts.forEach(function(alert) {
+            let message = alert.textContent.trim();
+            if (!message) return;
+
+            // Translate English messages to German
+            message = translateToGerman(message);
+
+            let type = 'info';
+            if (alert.classList.contains('alert-danger') || alert.classList.contains('alert-error')) {
+                type = 'error';
+            } else if (alert.classList.contains('alert-success')) {
+                type = 'success';
+            } else if (alert.classList.contains('alert-warning')) {
+                type = 'warning';
+            }
+
+            window.ravenToast(type, message);
+            alert.style.display = 'none'; // Hide original alert
+        });
+
+        // Detect Shopware form violation elements
+        const violations = document.querySelectorAll('.invalid-feedback, .form-error, [data-form-violations]');
+        violations.forEach(function(violation) {
+            let message = violation.textContent.trim();
+            if (message) {
+                // Translate English messages to German
+                message = translateToGerman(message);
+                window.ravenToast('error', message);
+            }
+        });
+    });
+})();
+</script>
 {% endblock %}

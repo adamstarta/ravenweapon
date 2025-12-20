@@ -1,0 +1,203 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_main %}
+<main class="content-main">
+    <div style="max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem;">
+        <h1 style="font-family: 'Chakra Petch', sans-serif; font-size: 2.5rem; font-weight: 700; color: #111827; margin-bottom: 2rem;">Kontakt</h1>
+
+        <div style="font-family: 'Inter', sans-serif; color: #374151; line-height: 1.8;">
+
+            {# Contact Cards #}
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                {# Address Card #}
+                <div style="background: #f3f4f6; padding: 1.5rem; border-radius: 12px; display: flex; align-items: flex-start; gap: 1rem;">
+                    <span style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 10px; background: linear-gradient(135deg, #F2B90D, #F6CE55); flex-shrink: 0;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </span>
+                    <div>
+                        <h4 style="font-family: 'Chakra Petch', sans-serif; font-weight: 600; color: #111827; margin: 0 0 0.5rem;">Raven Weapon AG</h4>
+                        <p style="margin: 0; color: #6b7280;">Gorisstrasse 1, 8735 St. Gallenkappel</p>
+                    </div>
+                </div>
+
+                {# Phone Card #}
+                <div style="background: #f3f4f6; padding: 1.5rem; border-radius: 12px; display: flex; align-items: flex-start; gap: 1rem;">
+                    <span style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 10px; background: linear-gradient(135deg, #22c55e, #16a34a); flex-shrink: 0;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </span>
+                    <div>
+                        <h4 style="font-family: 'Chakra Petch', sans-serif; font-weight: 600; color: #111827; margin: 0 0 0.5rem;">Support Telefon</h4>
+                        <p style="margin: 0;"><a href="tel:+41793561986" style="color: #D4A847; text-decoration: none;">+41 79 356 19 86</a></p>
+                    </div>
+                </div>
+
+                {# Email Card #}
+                <div style="background: #f3f4f6; padding: 1.5rem; border-radius: 12px; display: flex; align-items: flex-start; gap: 1rem;">
+                    <span style="display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 10px; background: linear-gradient(135deg, #111827, #374151); flex-shrink: 0;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </span>
+                    <div>
+                        <h4 style="font-family: 'Chakra Petch', sans-serif; font-weight: 600; color: #111827; margin: 0 0 0.5rem;">Support E-Mail</h4>
+                        <p style="margin: 0;"><a href="mailto:info@ravenweapon.ch" style="color: #D4A847; text-decoration: none;">info@ravenweapon.ch</a></p>
+                    </div>
+                </div>
+            </div>
+
+            {# Contact Form #}
+            <section style="background: #f9fafb; padding: 2rem; border-radius: 12px; border: 1px solid #e5e7eb;">
+                <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: 1.5rem; font-weight: 600; color: #111827; margin-bottom: 1.5rem;">Nachricht senden</h2>
+
+                <form action="{{ path('frontend.form.contact.send') }}" method="post" data-form-validation="true" data-form-csrf-handler="true">
+
+                    <div style="display: grid; grid-template-columns: 150px 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <label for="salutationId" style="display: block; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Anrede *</label>
+                            <select id="salutationId" name="salutationId" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; box-sizing: border-box; background: white;">
+                                <option value="">Bitte wählen</option>
+                                <option value="0191c12cc1f171169287e8232db98300">Herr</option>
+                                <option value="0191c12cc20170218b8565b6bad1553e">Frau</option>
+                                <option value="0191c12cc20c71b9a1b51a0365a1ef2b">Keine Angabe</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="firstName" style="display: block; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Vorname *</label>
+                            <input type="text" id="firstName" name="firstName" required
+                                   style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label for="lastName" style="display: block; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Nachname *</label>
+                            <input type="text" id="lastName" name="lastName" required
+                                   style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; box-sizing: border-box;">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <label for="email" style="display: block; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">E-Mail *</label>
+                            <input type="email" id="email" name="email" required
+                                   style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label for="phone" style="display: block; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Telefon *</label>
+                            <input type="tel" id="phone" name="phone" required
+                                   style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; box-sizing: border-box;">
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label for="subject" style="display: block; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Betreff *</label>
+                        <input type="text" id="subject" name="subject" required
+                               style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; box-sizing: border-box;">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="comment" style="display: block; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Ihre Nachricht *</label>
+                        <textarea id="comment" name="comment" rows="5" required
+                                  style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; resize: vertical; box-sizing: border-box;"></textarea>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                        <button type="submit" style="background: linear-gradient(135deg, #F2B90D 0%, #F6CE55 50%, #FFD54F 100%); color: #1f2937; border: none; padding: 1rem 2rem; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                            Senden
+                        </button>
+                        <span style="font-size: 0.875rem; color: #6b7280;">* Pflichtfelder</span>
+                    </div>
+
+                    <div id="contact-form-message" style="margin-top: 1rem; display: none;"></div>
+                </form>
+
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.querySelector('form[action*="/form/contact"]');
+                    const messageDiv = document.getElementById('contact-form-message');
+
+                    if (form) {
+                        form.addEventListener('submit', async function(e) {
+                            e.preventDefault();
+
+                            const submitBtn = form.querySelector('button[type="submit"]');
+                            const originalText = submitBtn.textContent;
+                            submitBtn.textContent = 'Wird gesendet...';
+                            submitBtn.disabled = true;
+
+                            try {
+                                const formData = new FormData(form);
+                                const response = await fetch(form.action, {
+                                    method: 'POST',
+                                    body: formData,
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest'
+                                    }
+                                });
+
+                                const result = await response.json();
+                                console.log('Contact form response:', result);
+
+                                // Check for success - Shopware returns empty array [] on success
+                                const isSuccess = response.ok && (
+                                    (Array.isArray(result) && result.length === 0) ||
+                                    (Array.isArray(result) && result.some(r => r.type === 'success'))
+                                );
+
+                                if (isSuccess) {
+                                    messageDiv.style.display = 'block';
+                                    messageDiv.style.padding = '1rem';
+                                    messageDiv.style.borderRadius = '8px';
+                                    messageDiv.style.background = '#dcfce7';
+                                    messageDiv.style.color = '#166534';
+                                    messageDiv.innerHTML = '<strong>Vielen Dank!</strong> Ihre Nachricht wurde erfolgreich gesendet. Wir werden uns so schnell wie möglich bei Ihnen melden.';
+                                    form.reset();
+                                } else {
+                                    messageDiv.style.display = 'block';
+                                    messageDiv.style.padding = '1rem';
+                                    messageDiv.style.borderRadius = '8px';
+                                    messageDiv.style.background = '#fee2e2';
+                                    messageDiv.style.color = '#991b1b';
+
+                                    // Parse Shopware error format: [{type: "danger", alert: "..."}]
+                                    if (Array.isArray(result) && result.length > 0) {
+                                        // Extract text from HTML alert or use plain message
+                                        const errors = result.map(err => {
+                                            if (err.alert) {
+                                                // Strip HTML tags from alert
+                                                const temp = document.createElement('div');
+                                                temp.innerHTML = err.alert;
+                                                return temp.textContent.trim();
+                                            }
+                                            return err.error || err.message || JSON.stringify(err);
+                                        }).join('<br>');
+                                        messageDiv.innerHTML = '<strong>Fehler:</strong><br>' + errors;
+                                    } else {
+                                        messageDiv.innerHTML = '<strong>Fehler:</strong> Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+                                    }
+                                }
+                            } catch (error) {
+                                messageDiv.style.display = 'block';
+                                messageDiv.style.padding = '1rem';
+                                messageDiv.style.borderRadius = '8px';
+                                messageDiv.style.background = '#fee2e2';
+                                messageDiv.style.color = '#991b1b';
+                                messageDiv.innerHTML = '<strong>Fehler:</strong> Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+                            } finally {
+                                submitBtn.textContent = originalText;
+                                submitBtn.disabled = false;
+                            }
+                        });
+                    }
+                });
+                </script>
+            </section>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

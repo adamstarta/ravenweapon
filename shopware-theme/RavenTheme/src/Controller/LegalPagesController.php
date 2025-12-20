@@ -34,4 +34,12 @@ class LegalPagesController extends StorefrontController
             'pageTitle' => 'Datenschutzerklärung'
         ]);
     }
+
+    #[Route(path: '/kontakt', name: 'frontend.legal.kontakt', options: ['seo' => false], defaults: ['_httpCache' => true], methods: ['GET'])]
+    public function kontakt(Request $request, SalesChannelContext $context): Response
+    {
+        return $this->renderStorefront('@RavenTheme/storefront/page/legal/kontakt.html.twig', [
+            'pageTitle' => 'Kontakt'
+        ]);
+    }
 }

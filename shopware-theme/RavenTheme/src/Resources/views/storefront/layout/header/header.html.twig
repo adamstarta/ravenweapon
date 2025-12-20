@@ -104,6 +104,44 @@
         z-index: 1000;
         margin-top: 8px;
     }
+    /* Right-aligned dropdown for items near right edge (like Ausrüstung) */
+    .raven-nav-item.dropdown-align-right .raven-mega-menu {
+        left: auto !important;
+        right: 24px !important;
+        transform: none !important;
+        max-width: calc(100vw - 48px);
+    }
+    @media (max-width: 1400px) {
+        .raven-nav-item.dropdown-align-right .raven-mega-menu {
+            right: 32px !important;
+            max-width: calc(100vw - 64px);
+        }
+    }
+    @media (max-width: 1200px) {
+        .raven-nav-item.dropdown-align-right .raven-mega-menu {
+            right: 48px !important;
+            max-width: calc(100vw - 80px);
+        }
+    }
+    /* Left-aligned dropdown for items near left edge (like Waffen) */
+    .raven-nav-item.dropdown-align-left .raven-mega-menu {
+        left: 24px !important;
+        right: auto !important;
+        transform: none !important;
+        max-width: calc(100vw - 48px);
+    }
+    @media (max-width: 1400px) {
+        .raven-nav-item.dropdown-align-left .raven-mega-menu {
+            left: 16px !important;
+            max-width: calc(100vw - 64px);
+        }
+    }
+    @media (max-width: 1200px) {
+        .raven-nav-item.dropdown-align-left .raven-mega-menu {
+            left: 8px !important;
+            max-width: calc(100vw - 80px);
+        }
+    }
     .raven-nav-item:hover .raven-mega-menu {
         opacity: 1;
         visibility: visible;
@@ -382,18 +420,25 @@
     }
 
     // Update cart item colors and images from localStorage (global function)
+    // NOTE: Server now stores variants in line item payload, so this only handles images
+    // and fallback for empty color spans. Don't overwrite server-rendered "Variante:" text.
     window.updateCartColors = function() {
         document.querySelectorAll('.raven-cart-item, [data-product-id]').forEach(function(item) {
             var productId = item.getAttribute('data-product-id');
             if (productId) {
                 var colorData = localStorage.getItem('raven_color_' + productId);
                 var colorSpan = item.querySelector('.raven-item-color');
+                var currentText = colorSpan ? colorSpan.textContent.trim() : '';
+
+                // Only update if server didn't render the variant (empty or no "Variante:" prefix)
+                // Server-rendered content has "Variante: ColorName" format
+                var serverRendered = currentText.indexOf('Variante:') === 0;
 
                 if (colorData) {
                     try {
                         var data = JSON.parse(colorData);
-                        // Update color text
-                        if (colorSpan && data.color) {
+                        // Only update color text if server didn't already render it
+                        if (colorSpan && data.color && !serverRendered && !currentText) {
                             colorSpan.textContent = data.color;
                         }
                         // Update image if we have a stored image URL
@@ -404,11 +449,14 @@
                             }
                         }
                     } catch(e) {}
-                } else {
-                    // Default to "Graphite Black" when no color is stored
-                    if (colorSpan && !colorSpan.textContent.trim()) {
+                } else if (!serverRendered && !currentText) {
+                    // Only default to "Graphite Black" for Raven Weapons if server didn't render
+                    var productNum = item.querySelector('[data-product-number]');
+                    var pn = productNum ? productNum.getAttribute('data-product-number') : '';
+                    if (colorSpan && pn && (pn.startsWith('RW-') || pn.startsWith('LT-') || pn.startsWith('RAVEN'))) {
                         colorSpan.textContent = 'Graphite Black';
                     }
+                    // For Snigel (SN-) and other products, leave color empty
                 }
             }
         });
@@ -1184,14 +1232,17 @@
                     var priceEl = product.querySelector('.search-suggest-product-price span, .search-suggest-product-price');
                     if (priceEl) {
                         var priceText = priceEl.textContent.trim();
-                        // Parse price like "CHF 2,985.00" and convert to "CHF 2'985"
+                        // Parse price like "CHF 2,985.00" and format as "CHF 2'985.00"
                         var priceMatch = priceText.match(/CHF\s*([\d,.']+)/i);
                         if (priceMatch) {
                             // Remove thousands separator and parse
                             var priceNum = parseFloat(priceMatch[1].replace(/[,']/g, ''));
                             if (!isNaN(priceNum)) {
-                                var roundedPrice = Math.round(priceNum);
-                                price = 'CHF ' + roundedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+                                // Format with 2 decimal places in Swiss format
+                                var formattedPrice = priceNum.toFixed(2);
+                                var parts = formattedPrice.split('.');
+                                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+                                price = 'CHF ' + parts.join('.');
                             }
                         }
                     }
@@ -1544,15 +1595,15 @@
             </div>
 
             {# Navigation Row - Dynamic Categories from Shopware #}
-            {# SEO URL mapping for main categories - fixes navigation links #}
+            {# SEO URL mapping for main categories - all lowercase for consistency #}
             {% set mainCategorySeoUrls = {
-                '019aee0f487c79a1a8814377c46e0c10': '/Alle-Produkte/',
-                'a61f19c9cb4b11f0b4074aca3d279c31': '/Waffen/',
-                'a61f1ec3cb4b11f0b4074aca3d279c31': '/Raven-Caliber-Kit/',
-                '019adeff65f97225927586968691dc02': '/Zielhilfen-Optik-Zubehoer/',
-                '2f40311624aea6de289c770f0bfd0ff9': '/Munition/',
-                '604131c6ae1646c98623da4fe61a739b': '/Zubehoer/',
-                '019b0857613474e6a799cfa07d143c76': '/Ausruestung/'
+                '019aee0f487c79a1a8814377c46e0c10': '/alle-produkte/',
+                'a61f19c9cb4b11f0b4074aca3d279c31': '/waffen/',
+                'a61f1ec3cb4b11f0b4074aca3d279c31': '/raven-caliber-kit/',
+                '019adeff65f97225927586968691dc02': '/zielhilfen-optik-zubehoer/',
+                '2f40311624aea6de289c770f0bfd0ff9': '/munition/',
+                '604131c6ae1646c98623da4fe61a739b': '/zubehoer/',
+                '019b0857613474e6a799cfa07d143c76': '/ausruestung/'
             } %}
             <div class="pb-3" style="margin-top: 20px;">
                 <nav id="raven-main-nav" class="flex items-center justify-center" style="gap: 40px;">
@@ -1561,7 +1612,11 @@
                             {% set category = treeItem.category %}
                             {% set hasChildren = treeItem.children|length > 0 %}
                             {% set categoryUrl = mainCategorySeoUrls[category.id] ?? seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
-                            <div class="raven-nav-item">
+                            {% set isNearRightEdge = loop.index >= (header.navigation.tree|length - 1) %}
+                            {% set isRightAlignedCategory = category.translated.name in ['Ausrüstung', 'Zubehör'] %}
+                            {% set isNearLeftEdge = loop.index <= 2 %}
+                            {% set isLeftAlignedCategory = category.translated.name in ['Waffen', 'Raven Weapons'] %}
+                            <div class="raven-nav-item{% if (isNearRightEdge and hasChildren) or isRightAlignedCategory %} dropdown-align-right{% elseif (isNearLeftEdge and hasChildren) or isLeftAlignedCategory %} dropdown-align-left{% endif %}">
                                 <a href="{{ categoryUrl }}"
                                    class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
                                     {{ category.translated.name }}
@@ -1572,35 +1627,75 @@
                                     {% endif %}
                                 </a>
                                 {% if hasChildren %}
-                                {# Check if any children have grandchildren for layout decision #}
+                                {# Check if any children have grandchildren OR products for layout decision #}
                                 {% set hasAnyGrandChildren = false %}
                                 {% for childItem in treeItem.children %}
                                     {% if childItem.children|length > 0 %}
                                         {% set hasAnyGrandChildren = true %}
+                                    {% else %}
+                                        {# Check for products in categoryProducts extension #}
+                                        {% set catIdHex = childItem.category.id|lower %}
+                                        {% set catProds = page.extensions.categoryProducts.vars[catIdHex]|default(header.extensions.categoryProducts.vars[catIdHex]|default(null)) %}
+                                        {% if catProds is not null and catProds|length > 0 %}
+                                            {% set hasAnyGrandChildren = true %}
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
 
                                 {% if hasAnyGrandChildren %}
-                                {# Multi-column layout for categories with grandchildren (like Raven Weapons) #}
-                                <div class="raven-mega-menu" style="min-width: {% if treeItem.children|length > 2 %}600px{% else %}320px{% endif %}; padding: 16px 20px;">
-                                    <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+                                {# Multi-column GRID layout for categories with grandchildren/products #}
+                                {% set childCount = treeItem.children|length %}
+                                {# Smart column calculation: 2-4 items = same columns, 5-6 items = 3 cols, 7+ = 4 cols #}
+                                {% if childCount <= 4 %}
+                                    {% set colCount = childCount %}
+                                {% elseif childCount <= 6 %}
+                                    {% set colCount = 3 %}
+                                {% else %}
+                                    {% set colCount = 4 %}
+                                {% endif %}
+                                {% set gridWidth = colCount == 2 ? '450px' : (colCount == 3 ? '650px' : '900px') %}
+                                <div class="raven-mega-menu" style="min-width: {{ gridWidth }}; padding: 20px 24px;">
+                                    <div style="display: grid; grid-template-columns: repeat({{ colCount }}, 1fr); gap: 24px;">
                                     {% for childItem in treeItem.children %}
                                         {% set childCat = childItem.category %}
                                         {% set hasGrandChildren = childItem.children|length > 0 %}
-                                        <div style="min-width: 140px; flex: 1;">
+                                        {% set categoryIdHex = childCat.id|lower %}
+                                        {% set categoryProductsExt = page.extensions.categoryProducts.vars[categoryIdHex]|default(header.extensions.categoryProducts.vars[categoryIdHex]|default(null)) %}
+                                        {% set hasProducts = categoryProductsExt is not null and categoryProductsExt|length > 0 %}
+                                        <div style="min-width: 0;">
                                             {# Sturmgewehre links to parent Raven Weapons page #}
                                             {% set childUrl = childCat.translated.name == 'Sturmgewehre' ? seoUrl('frontend.navigation.page', { navigationId: category.id }) : seoUrl('frontend.navigation.page', { navigationId: childCat.id }) %}
                                             <a href="{{ childUrl }}" style="display: flex; align-items: center; gap: 8px; padding: 8px 0 8px 0; color: #c9a227; font-size: 14px; text-decoration: none; font-weight: 600; border-bottom: 1px solid #f3f4f6; margin-bottom: 8px;">
                                                 {{ childCat.translated.name }}
                                             </a>
                                             {% if hasGrandChildren %}
-                                                {% for grandChildItem in childItem.children %}
+                                                {% set totalGrandChildren = childItem.children|length %}
+                                                {% for grandChildItem in childItem.children|slice(0, 5) %}
                                                     {% set grandChildCat = grandChildItem.category %}
                                                     <a href="{{ seoUrl('frontend.navigation.page', { navigationId: grandChildCat.id }) }}" style="display: flex; align-items: center; gap: 6px; padding: 5px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
                                                         <span style="color: #c9a227;">↳</span>
                                                         {{ grandChildCat.translated.name }}
                                                     </a>
                                                 {% endfor %}
+                                                {% if totalGrandChildren > 5 %}
+                                                    <a href="{{ childUrl }}" style="display: flex; align-items: center; gap: 6px; padding: 6px 0; color: #c9a227; font-size: 12px; text-decoration: none; font-weight: 500;">
+                                                        → Alle anzeigen ({{ totalGrandChildren }})
+                                                    </a>
+                                                {% endif %}
+                                            {% elseif hasProducts %}
+                                                {# Show max 5 products for categories without subcategories #}
+                                                {% set totalProducts = categoryProductsExt|length %}
+                                                {% for product in categoryProductsExt|slice(0, 5) %}
+                                                    <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" style="display: flex; align-items: center; gap: 6px; padding: 5px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
+                                                        <span style="color: #c9a227;">↳</span>
+                                                        {{ product.translated.name }}
+                                                    </a>
+                                                {% endfor %}
+                                                {% if totalProducts > 5 %}
+                                                    <a href="{{ childUrl }}" style="display: flex; align-items: center; gap: 6px; padding: 6px 0; color: #c9a227; font-size: 12px; text-decoration: none; font-weight: 500;">
+                                                        → Alle anzeigen ({{ totalProducts }})
+                                                    </a>
+                                                {% endif %}
                                             {% endif %}
                                         </div>
                                     {% endfor %}
@@ -1622,111 +1717,74 @@
                             </div>
                         {% endfor %}
                     {% else %}
-                        {# Fallback - navigation with dropdowns #}
-                        <div class="raven-nav-item">
-                            <a href="/Alle-Produkte/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">Alle Produkte</a>
-                        </div>
-                        <div class="raven-nav-item">
-                            <a href="/Raven-Weapons/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                                Raven Weapons
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
-                            </a>
-                            <div class="raven-mega-menu">
-                                <div class="menu-header">Raven Weapons</div>
-                                <a href="/Raven-Weapons/Sturmgewehre/"><span style="color: #9ca3af;">↳</span> Sturmgewehre</a>
-                                <a href="/Raven-Weapons/RAPAX/"><span style="color: #9ca3af;">↳</span> RAPAX</a>
-                            </div>
-                        </div>
-                        <div class="raven-nav-item">
-                            <a href="/Raven-Caliber-Kit/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">Raven Caliber Kit</a>
-                        </div>
-                        <div class="raven-nav-item">
-                            <a href="/Waffenzubehoer/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                                Zielhilfen, Optik & Zubehör
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
-                            </a>
-                            <div class="raven-mega-menu">
-                                <div class="menu-header">Zielhilfen, Optik & Zubehör</div>
-                                <a href="/Waffenzubehoer/Zielfernrohre/"><span style="color: #9ca3af;">↳</span> Zielfernrohre</a>
-                                <a href="/Waffenzubehoer/Rotpunktvisiere/"><span style="color: #9ca3af;">↳</span> Rotpunktvisiere</a>
-                                <a href="/Waffenzubehoer/Spektive/"><span style="color: #9ca3af;">↳</span> Spektive</a>
-                                <a href="/Waffenzubehoer/Fernglaeser/"><span style="color: #9ca3af;">↳</span> Ferngläser</a>
-                            </div>
-                        </div>
-                        <div class="raven-nav-item">
-                            <a href="/Zubehoer/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                                Zubehör
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
-                            </a>
-                            <div class="raven-mega-menu">
-                                <div class="menu-header">Zubehör</div>
-                                <a href="/Zubehoer/Magazine/"><span style="color: #9ca3af;">↳</span> Magazine</a>
-                                <a href="/Zubehoer/Griffe-Handschutz/"><span style="color: #9ca3af;">↳</span> Griffe & Handschutz</a>
-                                <a href="/Zubehoer/Schienen-Zubehoer/"><span style="color: #9ca3af;">↳</span> Schienen & Zubehör</a>
-                                <a href="/Zubehoer/Zweibeine/"><span style="color: #9ca3af;">↳</span> Zweibeine</a>
-                                <a href="/Zubehoer/Muendungsaufsaetze/"><span style="color: #9ca3af;">↳</span> Mündungsaufsätze</a>
-                                <a href="/Zubehoer/Zielfernrohrmontagen/"><span style="color: #9ca3af;">↳</span> Zielfernrohrmontagen</a>
-                            </div>
-                        </div>
-                        <div class="raven-nav-item">
-                            <a href="/Ausruestung/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                                Ausrüstung
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
-                            </a>
-                            <div class="raven-mega-menu" style="min-width: 800px; padding: 24px;">
-                                <div class="menu-header" style="margin-bottom: 16px; font-size: 15px; font-weight: 600; color: #1f2937;">Taktische Ausrüstung</div>
-                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-                                    <!-- Körperschutz -->
-                                    <div>
-                                        <a href="/koerperschutz/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Körperschutz</a>
-                                        <a href="/Ausruestung/Ballistischer-Schutz/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Ballistischer Schutz</a>
-                                        <a href="/Ausruestung/Westen-Chest-Rigs/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Westen & Chest Rigs</a>
-                                    </div>
-                                    <!-- Taschen & Transport -->
-                                    <div>
-                                        <a href="/taschen-transport/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Taschen & Transport</a>
-                                        <a href="/Ausruestung/Taschen-Rucksaecke/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Taschen & Rucksäcke</a>
-                                        <a href="/Ausruestung/Halter-Taschen/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Halter & Taschen</a>
-                                    </div>
-                                    <!-- Bekleidung & Tragen -->
-                                    <div>
-                                        <a href="/bekleidung-tragen/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Bekleidung & Tragen</a>
-                                        <a href="/Ausruestung/Taktische-Bekleidung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Taktische Bekleidung</a>
-                                        <a href="/Ausruestung/Guertel/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Gürtel</a>
-                                        <a href="/Ausruestung/Tragegurte-Holster/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Tragegurte & Holster</a>
-                                        <a href="/Ausruestung/Beinpaneele/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Beinpaneele</a>
-                                    </div>
-                                    <!-- Spezialausrüstung -->
-                                    <div>
-                                        <a href="/spezialausruestung/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Spezialausrüstung</a>
-                                        <a href="/Ausruestung/Medizinische-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Medizinische Ausrüstung</a>
-                                        <a href="/Ausruestung/K9-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">K9 Ausrüstung</a>
-                                        <a href="/Ausruestung/Scharfschuetzen-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Scharfschützen-Ausrüstung</a>
-                                        <a href="/Ausruestung/Verdeckte-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Verdeckte Ausrüstung</a>
-                                    </div>
-                                    <!-- Behörden & Dienst -->
-                                    <div>
-                                        <a href="/behoerden-dienst/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Behörden & Dienst</a>
-                                        <a href="/Ausruestung/Polizeiausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Polizeiausrüstung</a>
-                                        <a href="/Ausruestung/Verwaltungsausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Verwaltungsausrüstung</a>
-                                        <a href="/Ausruestung/Dienstausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Dienstausrüstung</a>
-                                    </div>
-                                    <!-- Zubehör & Sonstiges -->
-                                    <div>
-                                        <a href="/zubehoer-sonstiges/" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">Zubehör & Sonstiges</a>
-                                        <a href="/Ausruestung/Taktische-Ausruestung/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Taktische Ausrüstung</a>
-                                        <a href="/Ausruestung/Patches/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Patches</a>
-                                        <a href="/Ausruestung/Source-Hydration/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Source Hydration</a>
-                                        <a href="/Ausruestung/Verschiedenes/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Verschiedenes</a>
-                                        <a href="/Ausruestung/Multicam/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Multicam</a>
-                                        <a href="/Ausruestung/Warnschutz/" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">Warnschutz</a>
+                        {# Dynamic Navigation - loads from database via navCategories #}
+                        {% set categories = page.extensions.navCategories|default(page.header.extensions.navCategories|default([])) %}
+
+                        {% for mainCat in categories %}
+                            {% set hasChildren = mainCat.children is defined and mainCat.children|length > 0 %}
+
+                            {# Special handling for Ausrüstung mega-menu (3-column grid layout) #}
+                            {% if mainCat.translated.name == 'Ausrüstung' and hasChildren %}
+                                <div class="raven-nav-item dropdown-align-right">
+                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: mainCat.id }) }}"
+                                       class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                                        {{ mainCat.translated.name }}
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </a>
+                                    <div class="raven-mega-menu" style="min-width: 800px; padding: 24px;">
+                                        <div class="menu-header" style="margin-bottom: 16px; font-size: 15px; font-weight: 600; color: #1f2937;">Taktische Ausrüstung</div>
+                                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                                            {% for subCat in mainCat.children|filter(c => c.active and c.visible) %}
+                                            <div>
+                                                <a href="{{ seoUrl('frontend.navigation.page', { navigationId: subCat.id }) }}" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">
+                                                    {{ subCat.translated.name }}
+                                                </a>
+                                                {% if subCat.children is defined and subCat.children|length > 0 %}
+                                                    {% for subSubCat in subCat.children|filter(c => c.active and c.visible) %}
+                                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: subSubCat.id }) }}" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">
+                                                        {{ subSubCat.translated.name }}
+                                                    </a>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="raven-nav-item">
-                            <a href="/Munition/" class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">Munition</a>
-                        </div>
+                            {% else %}
+                                {# Standard navigation item (with or without dropdown) #}
+                                <div class="raven-nav-item{% if hasChildren %} dropdown-align-left{% endif %}">
+                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: mainCat.id }) }}"
+                                       class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
+                                        {{ mainCat.translated.name }}
+                                        {% if hasChildren %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                                        {% endif %}
+                                    </a>
+
+                                    {% if hasChildren %}
+                                    <div class="raven-mega-menu">
+                                        <div class="menu-header">{{ mainCat.translated.name }}</div>
+
+                                        {% for subCat in mainCat.children|filter(c => c.active and c.visible) %}
+                                            <a href="{{ seoUrl('frontend.navigation.page', { navigationId: subCat.id }) }}">
+                                                <span style="color: #9ca3af;">↳</span> {{ subCat.translated.name }}
+                                            </a>
+
+                                            {# Level 3 children #}
+                                            {% if subCat.children is defined and subCat.children|length > 0 %}
+                                                {% for subSubCat in subCat.children|filter(c => c.active and c.visible) %}
+                                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: subSubCat.id }) }}" style="padding-left: 2rem; font-size: 12px;">
+                                                        <span style="color: #d1d5db;">↳</span> {{ subSubCat.translated.name }}
+                                                    </a>
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     {% endif %}
                 </nav>
             </div>
@@ -1754,52 +1812,5 @@
     </div>
 </header>
 
-<!-- Second cart handler removed - using main handler from above -->
-
-{# Breadcrumb for category pages - injected via JavaScript #}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Only show breadcrumb on category/navigation pages (not homepage, not product detail)
-    const path = window.location.pathname.toLowerCase();
-    if (path === '/' || path.includes('/detail/') || path.includes('/checkout/') || path.includes('/account/')) {
-        return;
-    }
-
-    let breadcrumbHtml = '<a href="/" style="color: #666; text-decoration: none;">Home</a>';
-
-    // Parse URL path into segments for ALL categories (including Raven Weapons)
-    const segments = window.location.pathname.replace(/^\/|\/$/g, '').split('/').filter(s => s);
-    if (segments.length === 0) return;
-
-    let buildPath = '';
-    segments.forEach((segment, index) => {
-        buildPath += '/' + segment;
-        // Format display name: replace hyphens with spaces and capitalize words
-        const displayName = segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-
-        if (index === segments.length - 1) {
-            // Last segment - current page (not clickable)
-            breadcrumbHtml += '<span style="color: #999; margin: 0 0.5rem;">/</span>';
-            breadcrumbHtml += '<span style="color: #333; font-weight: 500;">' + displayName + '</span>';
-        } else {
-            // Parent segments - clickable links
-            breadcrumbHtml += '<span style="color: #999; margin: 0 0.5rem;">/</span>';
-            breadcrumbHtml += '<a href="' + buildPath + '/" style="color: #666; text-decoration: none;">' + displayName + '</a>';
-        }
-    });
-
-    // Create breadcrumb container
-    const breadcrumbNav = document.createElement('nav');
-    breadcrumbNav.setAttribute('aria-label', 'Breadcrumb');
-    breadcrumbNav.className = 'raven-breadcrumb';
-    breadcrumbNav.style.cssText = 'font-size: 0.875rem; color: #666; padding: 0.75rem 1.5rem; background: #f8f8f8; border-bottom: 1px solid #eee;';
-    breadcrumbNav.innerHTML = '<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center;">' + breadcrumbHtml + '</div>';
-
-    // Insert after header
-    const header = document.querySelector('header');
-    if (header && header.parentNode) {
-        header.parentNode.insertBefore(breadcrumbNav, header.nextSibling);
-    }
-});
-</script>
+{# JS breadcrumb removed - using Shopware's Twig breadcrumb styled in navigation/index.html.twig #}
 {% endblock %}

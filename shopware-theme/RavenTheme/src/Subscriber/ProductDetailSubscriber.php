@@ -37,15 +37,7 @@ class ProductDetailSubscriber implements EventSubscriberInterface
         $product = $page->getProduct();
         $context = $event->getSalesChannelContext();
 
-        // Check if seoCategory is already set with full breadcrumb data
-        $existingCategory = $product->getSeoCategory();
-        if ($existingCategory !== null && $existingCategory->getBreadcrumb() !== null) {
-            // Already have full breadcrumb data, load parent categories for URLs
-            $this->loadBreadcrumbCategories($existingCategory, $page, $context->getContext());
-            return;
-        }
-
-        // Try to get the main category for this product in the current sales channel
+        // ALWAYS try to get the main_category first - it's the authoritative source
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('productId', $product->getId()));
         $criteria->addFilter(new EqualsFilter('salesChannelId', $context->getSalesChannelId()));
@@ -59,19 +51,29 @@ class ProductDetailSubscriber implements EventSubscriberInterface
 
             if ($category instanceof CategoryEntity) {
                 // Load the category with seoUrls for proper URL generation
+                // Filter seoUrls by current language to get correct SEO paths
                 $categoryCriteria = new Criteria([$category->getId()]);
-                $categoryCriteria->addAssociation('seoUrls');
+                $categoryCriteria->getAssociation('seoUrls')
+                    ->addFilter(new EqualsFilter('languageId', $context->getContext()->getLanguageId()))
+                    ->addFilter(new EqualsFilter('isCanonical', true));
 
                 $fullCategory = $this->categoryRepository->search($categoryCriteria, $context->getContext())->first();
 
                 if ($fullCategory instanceof CategoryEntity) {
-                    // Set the seoCategory on the product
+                    // Set the seoCategory on the product (overwrite any existing stale data)
                     $product->setSeoCategory($fullCategory);
 
                     // Load all parent categories for breadcrumb URLs
                     $this->loadBreadcrumbCategories($fullCategory, $page, $context->getContext());
+                    return;
                 }
             }
+        }
+
+        // Fallback: Use existing seoCategory if main_category is not available
+        $existingCategory = $product->getSeoCategory();
+        if ($existingCategory !== null && $existingCategory->getBreadcrumb() !== null) {
+            $this->loadBreadcrumbCategories($existingCategory, $page, $context->getContext());
         }
     }
 
@@ -104,8 +106,11 @@ class ProductDetailSubscriber implements EventSubscriberInterface
         }
 
         // Load all breadcrumb categories with their SEO URLs
+        // Filter seoUrls by current language to get correct SEO paths
         $criteria = new Criteria($categoryIds);
-        $criteria->addAssociation('seoUrls');
+        $criteria->getAssociation('seoUrls')
+            ->addFilter(new EqualsFilter('languageId', $context->getLanguageId()))
+            ->addFilter(new EqualsFilter('isCanonical', true));
 
         $categories = $this->categoryRepository->search($criteria, $context);
 

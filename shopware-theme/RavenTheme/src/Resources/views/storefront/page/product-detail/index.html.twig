@@ -2,16 +2,6 @@
 
 {% block base_main_inner %}
 <div class="raven-product-detail container py-5 md:py-8">
-    {# Visible DEBUG for troubleshooting #}
-    <div style="background:#fef3c7;padding:10px;margin-bottom:10px;font-size:12px;border:1px solid #f59e0b;border-radius:4px;">
-        <strong>DEBUG:</strong>
-        breadcrumbCategories={{ page.extensions.breadcrumbCategories is defined ? 'yes' : 'no' }}
-        count={{ page.extensions.breadcrumbCategories|length|default(0) }} |
-        seoCategory={{ page.product.seoCategory ? page.product.seoCategory.translated.name : 'NULL' }} |
-        seoCategoryLevel={{ page.product.seoCategory ? page.product.seoCategory.level : 'N/A' }} |
-        breadcrumb={{ page.product.seoCategory and page.product.seoCategory.breadcrumb ? page.product.seoCategory.breadcrumb|join(' > ') : 'NULL' }}
-    </div>
-
     {# Breadcrumb - Using Shopware's breadcrumbCategories from ProductDetailSubscriber #}
     <nav class="breadcrumb-nav text-sm text-gray-500 mb-5" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
@@ -150,31 +140,37 @@
                 inkl. MwSt.
             </p>
 
-            {# Color Variants - using product media images #}
-            {% if page.product.media|length > 1 %}
+            {# Color Variants - DYNAMIC from custom fields (supports both Snigel and Raven products) #}
+            {% set hasColorVariants = page.product.translated.customFields.raven_has_colors|default(false) or page.product.translated.customFields.snigel_has_color_variants|default(false) %}
+            {% set colorOptionsRaw = page.product.translated.customFields.raven_color_options|default(page.product.translated.customFields.snigel_color_options|default('[]')) %}
+            {% set colorOptions = colorOptionsRaw is iterable ? colorOptionsRaw : (colorOptionsRaw|json_encode starts with '[' ? colorOptionsRaw|json_encode : []) %}
+
+            {% if hasColorVariants and colorOptions|length > 0 %}
             <div class="mb-5">
                 <p class="text-sm text-gray-600 mb-3" style="font-family: 'Inter', sans-serif;">
-                    Farbe : <span id="selected-color-name" class="font-semibold text-gray-900">Black</span>
+                    Farbe: <span id="selected-color-name" class="font-semibold text-gray-900">{{ colorOptions[0].name|default('Standard') }}</span>
                 </p>
+                {# Store original cover image for fallback #}
+                <input type="hidden" id="original-cover-image" value="{{ page.product.cover.media.url|default('') }}">
                 <div class="flex flex-wrap gap-2">
-                    {% set colorNames = ['Graphite Black', 'Flat Dark Earth', 'Northern Lights', 'Olive Drab Green', 'Sniper Grey'] %}
-                    {% for media in page.product.media %}
-                    {% set colorIndex = loop.index0 %}
-                    {% set colorName = colorNames[colorIndex]|default('Standard') %}
+                    {% for colorOption in colorOptions %}
+                    {% set colorName = colorOption.name|default('Variante ' ~ loop.index) %}
+                    {% set colorImageUrl = colorOption.imageUrl|default('') %}
+
+                    {% if colorImageUrl %}
                     <button class="color-image-swatch {% if loop.first %}selected{% endif %}"
                             data-color-name="{{ colorName }}"
+                            data-color-image="{{ colorImageUrl }}"
                             title="{{ colorName }}"
-                            onclick="document.getElementById('product-main-image').src='{{ media.media.url }}';
-                                     document.getElementById('selected-color-name').textContent='{{ colorName }}';
-                                     document.querySelectorAll('.color-image-swatch').forEach(el => el.classList.remove('selected'));
-                                     this.classList.add('selected');">
-                        <img src="{{ media.media.url }}" alt="{{ colorName }}" class="w-full h-full object-contain">
+                            onclick="selectColorVariant(this, '{{ colorName }}', '{{ colorImageUrl }}')">
+                        <img src="{{ colorImageUrl }}" alt="{{ colorName }}" class="w-full h-full object-contain" onerror="this.style.display='none'">
                         <span class="swatch-check">
                             <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4">
                                 <path d="M5 13l4 4L19 7" stroke="#374151" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
                     </button>
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -192,6 +188,11 @@
                 <input type="hidden" name="lineItems[{{ page.product.id }}][referencedId]" value="{{ page.product.id }}">
                 <input type="hidden" name="lineItems[{{ page.product.id }}][stackable]" value="1">
                 <input type="hidden" name="lineItems[{{ page.product.id }}][removable]" value="1">
+
+                {# Hidden inputs for variant selection - INSIDE form so they get submitted #}
+                {% if hasColorVariants and colorOptions|length > 0 %}
+                    <input type="hidden" name="selectedColor" id="selected-color-input" value="{{ colorOptions[0].name|default('') }}">
+                {% endif %}
 
                 {# Quantity Selector #}
                 <div class="mb-4">
@@ -710,6 +711,49 @@
 </svg>
 
 <script>
+    // ========== COLOR VARIANT SELECTION WITH FALLBACK ==========
+    function selectColorVariant(button, colorName, imageUrl) {
+        const mainImage = document.getElementById('product-main-image');
+        const zoomResultImg = document.getElementById('zoom-result-img');
+        const colorNameSpan = document.getElementById('selected-color-name');
+        const originalCoverImage = document.getElementById('original-cover-image');
+        const fallbackUrl = originalCoverImage ? originalCoverImage.value : '';
+
+        if (!mainImage || !imageUrl) return;
+
+        // Update selected state
+        document.querySelectorAll('.color-image-swatch').forEach(el => el.classList.remove('selected'));
+        button.classList.add('selected');
+
+        // Update color name
+        if (colorNameSpan) {
+            colorNameSpan.textContent = colorName;
+        }
+
+        // Update hidden input for form submission (CRITICAL!)
+        const colorInput = document.getElementById('selected-color-input');
+        if (colorInput) {
+            colorInput.value = colorName;
+        }
+
+        // Create a test image to verify the URL loads
+        const testImg = new Image();
+        testImg.onload = function() {
+            // Image loaded successfully, use it
+            mainImage.src = imageUrl;
+            if (zoomResultImg) zoomResultImg.src = imageUrl;
+        };
+        testImg.onerror = function() {
+            // Image failed to load, use fallback
+            console.warn('Color image failed to load:', imageUrl, '- using fallback');
+            if (fallbackUrl) {
+                mainImage.src = fallbackUrl;
+                if (zoomResultImg) zoomResultImg.src = fallbackUrl;
+            }
+        };
+        testImg.src = imageUrl;
+    }
+
     // ========== IMAGE ZOOM FUNCTIONALITY ==========
     (function() {
         function initImageZoom() {

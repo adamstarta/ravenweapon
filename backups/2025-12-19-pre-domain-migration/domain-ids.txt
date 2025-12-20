@@ -1,0 +1,45 @@
+# Domain IDs for Migration
+# Date: 2025-12-19
+# Purpose: Domain migration reference (ortak.ch -> ravenweapon.ch)
+
+## Sales Channel Domain Table (sales_channel_domain)
+
+| Domain ID | URL | Sales Channel ID |
+|-----------|-----|------------------|
+| 008168ef117559f9d665c178d4c3f712 | http://77.42.19.154 | 0191c12dd4b970949e9aeec40433be3e |
+| 0191c12dd4c2703389643fb7ec33a480 | http://ortak.ch | 0191c12dd4b970949e9aeec40433be3e |
+| 019ada1de305796f83c19288782d2805 | https://ortak.ch | 0191c12dd4b970949e9aeec40433be3e |
+| 0191c12d5f2a72dbade5696257ad7d96 | default.headless0 | 98432def39fc4624b33213a56b8c944d |
+
+## Migration SQL Commands
+
+### Add new domain (ravenweapon.ch)
+```sql
+-- Add HTTP domain
+INSERT INTO sales_channel_domain (id, url, sales_channel_id, language_id, currency_id, snippet_set_id, created_at)
+SELECT UNHEX(REPLACE(UUID(), '-', '')), 'http://ravenweapon.ch', sales_channel_id, language_id, currency_id, snippet_set_id, NOW()
+FROM sales_channel_domain WHERE url = 'http://ortak.ch';
+
+-- Add HTTPS domain
+INSERT INTO sales_channel_domain (id, url, sales_channel_id, language_id, currency_id, snippet_set_id, created_at)
+SELECT UNHEX(REPLACE(UUID(), '-', '')), 'https://ravenweapon.ch', sales_channel_id, language_id, currency_id, snippet_set_id, NOW()
+FROM sales_channel_domain WHERE url = 'https://ortak.ch';
+```
+
+### Remove old domain (after verification)
+```sql
+-- Only run after confirming new domain works!
+DELETE FROM sales_channel_domain WHERE url IN ('http://ortak.ch', 'https://ortak.ch');
+```
+
+## Rollback SQL (if needed)
+```sql
+-- Re-add ortak.ch domains
+INSERT INTO sales_channel_domain (id, url, sales_channel_id, language_id, currency_id, snippet_set_id, created_at)
+VALUES
+(UNHEX('0191c12dd4c2703389643fb7ec33a480'), 'http://ortak.ch', UNHEX('0191c12dd4b970949e9aeec40433be3e'),
+ (SELECT language_id FROM sales_channel_domain WHERE url = 'http://77.42.19.154'),
+ (SELECT currency_id FROM sales_channel_domain WHERE url = 'http://77.42.19.154'),
+ (SELECT snippet_set_id FROM sales_channel_domain WHERE url = 'http://77.42.19.154'),
+ NOW());
+```

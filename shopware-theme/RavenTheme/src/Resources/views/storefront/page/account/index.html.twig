@@ -184,27 +184,6 @@
                 </div>
             </div>
 
-            {# Recent Orders Section #}
-            <div class="recent-orders">
-                <div class="section-header">
-                    <h2 class="section-title">Letzte Bestellungen</h2>
-                    <a href="{{ path('frontend.account.order.page') }}" class="view-all-link">
-                        Alle anzeigen
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-                <div class="orders-placeholder">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                    <p>Ihre Bestellhistorie wird hier angezeigt</p>
-                    <a href="{{ path('frontend.home.page') }}" class="shop-now-btn">Jetzt einkaufen</a>
-                </div>
-            </div>
         </main>
     </div>
 </div>
@@ -507,85 +486,6 @@
 .card-link:hover {
     color: var(--raven-gold);
     gap: 0.75rem;
-}
-
-/* ============ RECENT ORDERS ============ */
-.recent-orders {
-    background: var(--raven-white);
-    border-radius: 20px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.section-title {
-    font-family: 'Chakra Petch', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--raven-charcoal);
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-}
-
-.view-all-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--raven-gold-dark);
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.view-all-link:hover {
-    color: var(--raven-gold);
-    gap: 0.75rem;
-}
-
-.orders-placeholder {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--raven-gray-400);
-}
-
-.orders-placeholder svg {
-    margin-bottom: 1rem;
-    opacity: 0.5;
-}
-
-.orders-placeholder p {
-    font-size: 0.9375rem;
-    margin: 0 0 1.5rem 0;
-}
-
-.shop-now-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.875rem 2rem;
-    background: linear-gradient(135deg, var(--raven-gold) 0%, var(--raven-gold-light) 50%, var(--raven-gold) 100%);
-    background-size: 200% 100%;
-    border: 2px solid var(--raven-gold-dark);
-    border-radius: 12px;
-    color: var(--raven-charcoal);
-    font-size: 0.9375rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.shop-now-btn:hover {
-    background-position: 100% 0;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(212, 168, 71, 0.4);
 }
 
 /* ============ HIDE DEFAULT ELEMENTS ============ */

@@ -46,23 +46,16 @@
         <span class="text-gray-700 font-medium">{{ page.product.translated.name|slice(0, 50) }}{% if page.product.translated.name|length > 50 %}...{% endif %}</span>
     </nav>
 
-    {# ========== UNIFIED VARIANT OPTIONS - Dynamic from custom fields ========== #}
-    {# Check both raven_variant_options (Raven/Lockhart products) and snigel_color_options (Snigel products) #}
-    {% set hasVariants =
-        page.product.translated.customFields.raven_has_variants|default(false) or
-        page.product.translated.customFields.snigel_has_color_variants|default(false)
-    %}
-    {% set variantOptionsRaw =
-        page.product.translated.customFields.raven_variant_options|default(
-            page.product.translated.customFields.snigel_color_options|default([])
-        )
-    %}
+    {# ========== RAVEN VARIANT OPTIONS - Image-based thumbnails for Lockhart Tactical products ========== #}
+    {# Only Raven products have image-based variants with thumbnails #}
+    {% set hasRavenVariants = page.product.translated.customFields.raven_has_variants|default(false) %}
+    {% set ravenVariantOptions = page.product.translated.customFields.raven_variant_options|default([]) %}
     {# Parse JSON if string, otherwise use as-is #}
-    {% set variantOptions = variantOptionsRaw is iterable ? variantOptionsRaw : [] %}
+    {% set variantOptions = ravenVariantOptions is iterable ? ravenVariantOptions : [] %}
 
     {# Determine initial main image - use first variant if available, otherwise cover #}
     {% set initialMainImage = page.product.cover.media.url|default('') %}
-    {% if hasVariants and variantOptions|length > 0 and variantOptions[0].imageUrl is defined %}
+    {% if hasRavenVariants and variantOptions|length > 0 and variantOptions[0].imageUrl is defined %}
         {% set initialMainImage = variantOptions[0].imageUrl %}
     {% endif %}
 
@@ -92,8 +85,8 @@
                 {% endif %}
             </div>
 
-            {# Thumbnail Gallery Slider - Hide for products with variant buttons (they use variant thumbnails instead) #}
-            {% if page.product.media|length > 1 and not hasVariants %}
+            {# Thumbnail Gallery Slider - Hide for Raven products with variant buttons (they use variant thumbnails instead) #}
+            {% if page.product.media|length > 1 and not hasRavenVariants %}
             <div class="product-gallery-slider">
                 <button type="button" class="gallery-nav gallery-nav-prev" id="gallery-prev" aria-label="Vorheriges Bild">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -158,9 +151,9 @@
                 <span class="text-sm text-gray-500 font-normal ml-2">inkl. MwSt.</span>
             </div>
 
-            {# ========== UNIFIED VARIANT SELECTOR - "Variante:" label ========== #}
-            {# Uses variantOptions defined at top of template (supports both Raven and Snigel products) #}
-            {% if hasVariants and variantOptions|length > 0 %}
+            {# ========== RAVEN VARIANT SELECTOR - Image thumbnails for Lockhart Tactical ========== #}
+            {# Uses variantOptions defined at top of template (Raven products only) #}
+            {% if hasRavenVariants and variantOptions|length > 0 %}
             <div class="mb-8">
                 <p class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em;">
                     Variante: <span id="selected-variant-name" class="font-semibold text-gray-800">{{ variantOptions[0].name|default('Standard') }}</span>
@@ -182,6 +175,34 @@
                         {% endif %}
                     {% endfor %}
                 </div>
+            </div>
+            {% endif %}
+
+            {# ========== SNIGEL COLOR SELECTOR - Dynamic from custom fields ========== #}
+            {% set snigelHasColors = page.product.translated.customFields.snigel_has_color_variants|default(false) %}
+            {% set snigelColorOptions = page.product.translated.customFields.snigel_color_options|default([]) %}
+            {% set snigelColorLabel = page.product.translated.customFields.snigel_color_label|default('FARBE') %}
+            {% set snigelColorCount = page.product.translated.customFields.snigel_color_count|default(0) %}
+
+            {% if snigelHasColors and snigelColorOptions|length > 0 and not hasRavenVariants %}
+            <div class="mb-6" id="snigel-color-container">
+                <p class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em;">
+                    {% if snigelColorLabel == 'FARBE' or snigelColorLabel == 'Color' %}Farbe{% else %}{{ snigelColorLabel }}{% endif %}: <span id="selected-color-name" class="font-semibold text-gray-800">{{ snigelColorOptions[0].name|default('Standard') }}</span>
+                </p>
+                {# Only show selector buttons if 2+ colors, otherwise just show info text above #}
+                {% if snigelColorOptions|length > 1 %}
+                <div class="flex flex-wrap gap-3" id="snigel-color-swatches">
+                    {% for colorData in snigelColorOptions %}
+                        <button type="button"
+                                class="color-tag {% if loop.first %}selected{% endif %}"
+                                data-color-name="{{ colorData.name }}"
+                                data-image-url="{{ colorData.imageUrl|default('') }}"
+                                title="{{ colorData.name }}">
+                            {{ colorData.name }}
+                        </button>
+                    {% endfor %}
+                </div>
+                {% endif %}
             </div>
             {% endif %}
 
@@ -224,9 +245,17 @@
                 <input type="hidden" name="lineItems[{{ page.product.id }}][stackable]" value="1">
                 <input type="hidden" name="lineItems[{{ page.product.id }}][removable]" value="1">
 
-                {# Hidden inputs for selected variant - updated by JavaScript #}
+                {# Hidden inputs for selected variant - pre-populated with first option, updated by JavaScript #}
+                {% set defaultVariant = '' %}
+                {% if ravenVariantOptions|length > 0 %}
+                    {% set defaultVariant = ravenVariantOptions[0].name|default('') %}
+                {% elseif snigelColorOptions|length > 0 %}
+                    {% set defaultVariant = snigelColorOptions[0].name|default('') %}
+                {% endif %}
+                <input type="hidden" name="selectedColor" id="selected-color-input" value="{{ defaultVariant }}">
                 <input type="hidden" name="selectedSize" id="selected-size-input" value="">
                 <input type="hidden" name="selectedSizePrice" id="selected-size-price-input" value="">
+                <input type="hidden" name="variantenDisplay" id="varianten-display-input" value="{{ defaultVariant }}">
 
                 {# Quantity and Add to Cart in Row #}
                 <div class="flex items-center gap-4">
@@ -898,6 +927,39 @@
 </svg>
 
 <script>
+    // ========== VARIANTEN DISPLAY UPDATE FUNCTION ==========
+    // Global function to update variantenDisplay hidden input
+    // Called when color, size, or Raven variant changes
+    function updateVariantenDisplay() {
+        const colorInput = document.getElementById('selected-color-input');
+        const sizeInput = document.getElementById('selected-size-input');
+        const variantNameSpan = document.getElementById('selected-variant-name');
+        const displayInput = document.getElementById('varianten-display-input');
+
+        if (!displayInput) return;
+
+        let parts = [];
+
+        // Check Raven variant (for Lockhart Tactical products)
+        if (variantNameSpan && variantNameSpan.textContent.trim()) {
+            parts.push(variantNameSpan.textContent.trim());
+        }
+        // Otherwise check Snigel color
+        else if (colorInput && colorInput.value.trim()) {
+            parts.push(colorInput.value.trim());
+        }
+
+        // Add size if available
+        if (sizeInput && sizeInput.value.trim()) {
+            parts.push(sizeInput.value.trim());
+        }
+
+        // Format: "Color / Size" or just "Color" or just "Size"
+        displayInput.value = parts.join(' / ');
+
+        console.log('Updated variantenDisplay:', displayInput.value);
+    }
+
     // ========== IMAGE ZOOM FUNCTIONALITY ==========
     (function() {
         function initImageZoom() {
@@ -1083,6 +1145,12 @@
                         selectedVariantName.textContent = variantName;
                     }
 
+                    // Update hidden input for form submission (CRITICAL!)
+                    const colorInput = document.getElementById('selected-color-input');
+                    if (colorInput && variantName) {
+                        colorInput.value = variantName;
+                    }
+
                     // Filter thumbnails by color code and get first matching thumbnail URL
                     const swatchImageUrl = this.dataset.imageUrl;
                     const colorCode = extractColorCode(swatchImageUrl);
@@ -1109,6 +1177,9 @@
                             image: actualImageUrl || swatchImageUrl
                         }));
                     }
+
+                    // Update combined variantenDisplay field
+                    updateVariantenDisplay();
                 });
             });
 
@@ -1141,6 +1212,16 @@
                         image: actualInitialUrl || initialImageUrl
                     }));
                 }
+
+                // Set initial color input value for form submission
+                const colorInput = document.getElementById('selected-color-input');
+                if (colorInput && initialVariantName) {
+                    colorInput.value = initialVariantName;
+                    console.log('Set initial Raven variant:', initialVariantName);
+                }
+
+                // Update combined variantenDisplay field on initial load
+                updateVariantenDisplay();
             }
         }
 
@@ -1288,6 +1369,9 @@
                             price: variantPrice || null
                         }));
                     }
+
+                    // Update combined variantenDisplay field
+                    updateVariantenDisplay();
                 });
             });
 
@@ -1305,6 +1389,9 @@
                 const priceInput = document.getElementById('selected-size-price-input');
                 if (sizeInput) sizeInput.value = sizeOptions[0].name;
                 if (priceInput && firstPrice) priceInput.value = firstPrice.toString();
+
+                // Update combined variantenDisplay field on initial load
+                updateVariantenDisplay();
             }
         }
 
@@ -1312,6 +1399,99 @@
             document.addEventListener('DOMContentLoaded', initSizeSwatches);
         } else {
             initSizeSwatches();
+        }
+    })();
+
+    // ========== SNIGEL COLOR SELECTOR FUNCTIONALITY ==========
+    (function() {
+        function initColorSwatches() {
+            const container = document.getElementById('snigel-color-container');
+            const swatchContainer = document.getElementById('snigel-color-swatches');
+            const selectedColorName = document.getElementById('selected-color-name');
+            const colorInput = document.getElementById('selected-color-input');
+
+            if (!container || !swatchContainer) return;
+
+            const swatches = swatchContainer.querySelectorAll('.color-tag');
+            if (swatches.length === 0) return;
+
+            // Get main image element for color-based image swap
+            const mainImage = document.getElementById('product-main-image');
+            const zoomResultImg = document.getElementById('zoom-result-img');
+
+            swatches.forEach(swatch => {
+                swatch.addEventListener('click', function() {
+                    // Update selected state
+                    swatches.forEach(s => s.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    // Update color name display
+                    const colorName = this.dataset.colorName;
+                    if (colorName && selectedColorName) {
+                        selectedColorName.textContent = colorName;
+                    }
+
+                    // Update hidden input
+                    if (colorInput) {
+                        colorInput.value = colorName;
+                    }
+
+                    // Swap main product image if color has valid imageUrl
+                    const imageUrl = this.dataset.imageUrl;
+                    // Only swap if imageUrl exists and is a valid URL (starts with http)
+                    if (imageUrl && imageUrl.trim() !== '' && imageUrl.startsWith('http') && mainImage) {
+                        // Store original image for fallback
+                        const originalSrc = mainImage.src;
+
+                        // Fade out, swap, fade in
+                        mainImage.style.opacity = '0.5';
+                        mainImage.style.transition = 'opacity 0.2s ease';
+
+                        setTimeout(() => {
+                            // Add error handler to restore original if new image fails
+                            mainImage.onerror = function() {
+                                console.log('Color image failed to load, restoring original');
+                                mainImage.src = originalSrc;
+                                mainImage.style.opacity = '1';
+                            };
+
+                            mainImage.src = imageUrl;
+                            mainImage.style.opacity = '1';
+
+                            // Also update zoom image if exists
+                            if (zoomResultImg) {
+                                zoomResultImg.src = imageUrl;
+                            }
+                        }, 200);
+
+                        console.log('Snigel color image swap:', colorName, imageUrl);
+                    } else {
+                        console.log('Snigel color - no image swap (no valid imageUrl):', colorName);
+                    }
+
+                    // Update combined variantenDisplay field
+                    updateVariantenDisplay();
+                });
+            });
+
+            // Set initial color value from first selected swatch
+            const firstSelected = swatchContainer.querySelector('.color-tag.selected');
+            if (firstSelected && colorInput) {
+                const initialColor = firstSelected.dataset.colorName;
+                if (initialColor) {
+                    colorInput.value = initialColor;
+                    console.log('Set initial color:', initialColor);
+                }
+            }
+
+            // Update variantenDisplay on initial load
+            updateVariantenDisplay();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initColorSwatches);
+        } else {
+            initColorSwatches();
         }
     })();
 
