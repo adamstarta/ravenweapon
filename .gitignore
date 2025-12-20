@@ -37,6 +37,14 @@ build/
 scripts/snigel-data/snigel-images.tar.gz
 scripts/snigel-data/snigel-images.tar
 
+# Database backups (contain sensitive data)
+backups/
+*.sql
+
+# Screenshots (debug/temp)
+*.png
+!assets/*.png
+
 # Temporary files
 temp-*.twig
 temp-*.scss
