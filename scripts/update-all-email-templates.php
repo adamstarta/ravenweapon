@@ -1,117 +1,47 @@
 <?php
 /**
- * Update ALL Email Templates
- * 1. Change all sender names to "Raven Weapon AG"
- * 2. Update shipped template with logo, products, prices
- * 3. Update paid template with same style
+ * Update ALL email templates to match Raven Weapon AG branding
+ * - Professional styled layout matching Welcome email
+ * - All URLs updated to shop.ravenweapon.ch
  */
-$pdo = new PDO('mysql:host=127.0.0.1;dbname=shopware', 'root', 'root');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-echo "=== UPDATING ALL EMAIL TEMPLATES ===\n\n";
+$host = 'localhost';
+$dbname = 'shopware';
+$user = 'root';
+$pass = 'root';
 
-// 1. Update ALL sender names to "Raven Weapon AG"
-echo "1. Updating all sender names to 'Raven Weapon AG'...\n";
-$stmt = $pdo->exec("UPDATE mail_template_translation SET sender_name = 'Raven Weapon AG' WHERE sender_name != 'Raven Weapon AG'");
-echo "   Updated sender names\n\n";
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage() . "\n");
+}
 
-// 2. SHIPPED template (order_delivery.state.shipped)
-echo "2. Updating SHIPPED template...\n";
+echo "=== Updating ALL Email Templates for Raven Weapon AG ===\n\n";
 
-$shippedHtml = '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
+// Base URL
+$shopUrl = 'https://shop.ravenweapon.ch';
+$logoUrl = $shopUrl . '/bundles/raventheme/assets/raven-logo.png';
+
+// Helper function to wrap content in Raven template
+function wrapInRavenTemplate($content, $logoUrl, $shopUrl, $lang = 'de') {
+    $footer = $lang === 'de' ? 'Mit freundlichen Grüssen' : 'Best regards';
+    $country = $lang === 'de' ? 'Schweiz' : 'Switzerland';
+
+    return '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
     <!-- Header with Logo -->
     <div style="text-align: center; padding: 30px 20px; border-bottom: 3px solid #F59E0B;">
-        <img src="https://ortak.ch/raven-logo.png" alt="Raven Weapon" style="max-width: 200px; height: auto;">
+        <img src="' . $logoUrl . '" alt="Raven Weapon" style="max-width: 200px; height: auto;">
     </div>
 
     <!-- Content -->
     <div style="padding: 30px 20px;">
-        <h2 style="color: #1a1a1a; margin: 0 0 20px 0;">Ihre Bestellung wurde versandt!</h2>
-
-        <p style="font-size: 16px; margin-bottom: 20px;">
-            Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
-        </p>
-
-        <p style="font-size: 16px; margin-bottom: 25px;">
-            gute Neuigkeiten! Ihre Bestellung <strong>#{{ order.orderNumber }}</strong> wurde versandt.
-        </p>
-
-        <!-- Status Box -->
-        <div style="background: #D1FAE5; border-left: 4px solid #10B981; padding: 15px 20px; margin-bottom: 25px;">
-            <p style="margin: 0; color: #065F46;"><strong>Status:</strong> Versandt</p>
-        </div>
-
-        <!-- Products Section -->
-        <h3 style="color: #1a1a1a; border-bottom: 2px solid #F59E0B; padding-bottom: 10px; margin-bottom: 20px;">Bestellübersicht</h3>
-
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-            {% for lineItem in order.lineItems %}
-            <tr style="border-bottom: 1px solid #eee;">
-                <td style="padding: 15px 10px 15px 0; width: 80px; vertical-align: top;">
-                    {% if lineItem.cover %}
-                    <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" style="width: 80px; height: 80px; object-fit: contain; border: 1px solid #eee; border-radius: 4px;">
-                    {% else %}
-                    <div style="width: 80px; height: 80px; background: #f5f5f5; border-radius: 4px;"></div>
-                    {% endif %}
-                </td>
-                <td style="padding: 15px 10px; vertical-align: top;">
-                    <strong style="font-size: 15px;">{{ lineItem.label }}</strong>
-                    {% if lineItem.payload.productNumber %}
-                    <br><span style="color: #666; font-size: 13px;">Art.Nr: {{ lineItem.payload.productNumber }}</span>
-                    {% endif %}
-                </td>
-                <td style="padding: 15px 10px; vertical-align: top; text-align: center; white-space: nowrap;">
-                    {{ lineItem.quantity }}x
-                </td>
-                <td style="padding: 15px 0 15px 10px; vertical-align: top; text-align: right; white-space: nowrap;">
-                    <strong>{{ lineItem.totalPrice|currency(order.currency.isoCode) }}</strong>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-
-        <!-- Order Summary -->
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
-            <tr>
-                <td style="padding: 8px 0; color: #666;">Zwischensumme:</td>
-                <td style="padding: 8px 0; text-align: right;">{{ order.amountNet|currency(order.currency.isoCode) }}</td>
-            </tr>
-            <tr>
-                <td style="padding: 8px 0; color: #666;">Versand:</td>
-                <td style="padding: 8px 0; text-align: right;">{{ order.shippingTotal|currency(order.currency.isoCode) }}</td>
-            </tr>
-            <tr style="border-top: 2px solid #1a1a1a;">
-                <td style="padding: 15px 0; font-size: 18px;"><strong>Gesamtsumme:</strong></td>
-                <td style="padding: 15px 0; text-align: right; font-size: 18px;"><strong>{{ order.amountTotal|currency(order.currency.isoCode) }}</strong></td>
-            </tr>
-        </table>
-
-        <!-- Shipping Address -->
-        {% set shippingAddress = order.deliveries.first.shippingOrderAddress %}
-        {% if shippingAddress %}
-        <div style="margin-bottom: 25px;">
-            <h4 style="color: #F59E0B; margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Lieferadresse</h4>
-            <p style="margin: 0; line-height: 1.6; color: #333;">
-                {{ shippingAddress.firstName }} {{ shippingAddress.lastName }}<br>
-                {{ shippingAddress.street }}<br>
-                {{ shippingAddress.zipcode }} {{ shippingAddress.city }}<br>
-                {% if shippingAddress.country %}{{ shippingAddress.country.translated.name }}{% endif %}
-            </p>
-        </div>
-        {% endif %}
-
-        <!-- CTA Button -->
-        <div style="text-align: center; margin: 30px 0;">
-            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
-               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">
-                Bestellung verfolgen
-            </a>
-        </div>
+        ' . $content . '
 
         <!-- Footer -->
-        <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px;">
+        <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 30px;">
             <p style="margin: 0; color: #666;">
-                Mit freundlichen Grüssen<br>
+                ' . $footer . '<br>
                 <strong style="color: #1a1a1a;">Raven Weapon AG</strong>
             </p>
         </div>
@@ -119,140 +49,97 @@ $shippedHtml = '<div style="font-family: Arial, sans-serif; max-width: 600px; ma
 
     <!-- Email Footer -->
     <div style="background: #1a1a1a; color: #ffffff; padding: 20px; text-align: center; font-size: 13px;">
-        <p style="margin: 0 0 10px 0;">Raven Weapon AG | Schweiz</p>
+        <p style="margin: 0 0 10px 0;">Raven Weapon AG | ' . $country . '</p>
         <p style="margin: 0; color: #888;">
-            Bei Fragen kontaktieren Sie uns gerne unter <a href="mailto:info@ravenweapon.ch" style="color: #F59E0B; text-decoration: none;">info@ravenweapon.ch</a>
+            <a href="' . $shopUrl . '" style="color: #F59E0B; text-decoration: none;">www.ravenweapon.ch</a>
         </p>
     </div>
 </div>';
-
-$shippedPlain = 'Ihre Bestellung wurde versandt!
-
-Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
-
-gute Neuigkeiten! Ihre Bestellung #{{ order.orderNumber }} wurde versandt.
-
-Status: Versandt
-
-BESTELLÜBERSICHT
-================
-{% for lineItem in order.lineItems %}
-{{ lineItem.quantity }}x {{ lineItem.label }}{% if lineItem.payload.productNumber %} (Art.Nr: {{ lineItem.payload.productNumber }}){% endif %} - {{ lineItem.totalPrice|currency(order.currency.isoCode) }}
-{% endfor %}
-
-Zwischensumme: {{ order.amountNet|currency(order.currency.isoCode) }}
-Versand: {{ order.shippingTotal|currency(order.currency.isoCode) }}
-GESAMTSUMME: {{ order.amountTotal|currency(order.currency.isoCode) }}
-
-{% set shippingAddress = order.deliveries.first.shippingOrderAddress %}
-{% if shippingAddress %}
-LIEFERADRESSE
-=============
-{{ shippingAddress.firstName }} {{ shippingAddress.lastName }}
-{{ shippingAddress.street }}
-{{ shippingAddress.zipcode }} {{ shippingAddress.city }}
-{% if shippingAddress.country %}{{ shippingAddress.country.translated.name }}{% endif %}
-{% endif %}
-
-Bestellung verfolgen: {{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}
-
-Mit freundlichen Grüssen
-Raven Weapon AG
-
---
-Bei Fragen: info@ravenweapon.ch';
-
-// Get shipped template ID
-$stmt = $pdo->query("SELECT HEX(mt.id) as tid FROM mail_template mt
-    JOIN mail_template_type mtt ON mt.mail_template_type_id = mtt.id
-    WHERE mtt.technical_name = 'order_delivery.state.shipped'");
-$row = $stmt->fetch();
-if ($row) {
-    $tid = $row['tid'];
-    $stmt = $pdo->prepare("UPDATE mail_template_translation
-            SET content_plain = ?,
-                content_html = ?,
-                subject = 'Ihre Bestellung wurde versandt - #{{ order.orderNumber }}',
-                updated_at = NOW()
-            WHERE mail_template_id = UNHEX(?)");
-    $stmt->execute([$shippedPlain, $shippedHtml, $tid]);
-    echo "   Shipped template updated\n\n";
 }
 
-// 3. PAID template (order_transaction.state.paid)
-echo "3. Updating PAID template...\n";
+// Get language IDs
+$sql = "SELECT LOWER(HEX(id)) as id, name FROM language";
+$stmt = $pdo->query($sql);
+$languages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$paidHtml = '<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
-    <!-- Header with Logo -->
-    <div style="text-align: center; padding: 30px 20px; border-bottom: 3px solid #F59E0B;">
-        <img src="https://ortak.ch/raven-logo.png" alt="Raven Weapon" style="max-width: 200px; height: auto;">
-    </div>
+$langMap = [];
+foreach ($languages as $lang) {
+    if (stripos($lang['name'], 'deutsch') !== false || stripos($lang['name'], 'german') !== false) {
+        $langMap['de'] = $lang['id'];
+    } else {
+        $langMap['en'] = $lang['id'];
+    }
+}
 
-    <!-- Content -->
-    <div style="padding: 30px 20px;">
-        <h2 style="color: #1a1a1a; margin: 0 0 20px 0;">Zahlung erhalten</h2>
+echo "Language IDs: DE=" . $langMap['de'] . ", EN=" . $langMap['en'] . "\n\n";
 
+// ==================== STEP 1: Update sender names ====================
+echo "Step 1: Updating all sender names to 'Raven Weapon AG'...\n";
+$sql = "UPDATE mail_template_translation SET sender_name = 'Raven Weapon AG'";
+$stmt = $pdo->query($sql);
+echo "  ✓ Updated " . $stmt->rowCount() . " sender names\n\n";
+
+// ==================== STEP 2: Update ALL URLs from ortak.ch to shop.ravenweapon.ch ====================
+echo "Step 2: Updating all URLs (ortak.ch -> shop.ravenweapon.ch)...\n";
+$sql = "UPDATE mail_template_translation
+        SET content_html = REPLACE(REPLACE(REPLACE(content_html,
+            'https://ortak.ch', 'https://shop.ravenweapon.ch'),
+            'http://ortak.ch', 'https://shop.ravenweapon.ch'),
+            'www.ortak.ch', 'www.ravenweapon.ch'),
+            content_plain = REPLACE(REPLACE(REPLACE(content_plain,
+            'https://ortak.ch', 'https://shop.ravenweapon.ch'),
+            'http://ortak.ch', 'https://shop.ravenweapon.ch'),
+            'www.ortak.ch', 'www.ravenweapon.ch'),
+            updated_at = NOW()";
+$stmt = $pdo->query($sql);
+echo "  ✓ Updated URLs in templates\n\n";
+
+// ==================== STEP 3: Define all styled templates ====================
+$templates = [
+    // ORDER CONFIRMATION
+    'order_confirmation_mail' => [
+        'de' => [
+            'subject' => 'Bestellbestätigung - Bestellung {{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
         <p style="font-size: 16px; margin-bottom: 20px;">
             Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
         </p>
 
         <p style="font-size: 16px; margin-bottom: 25px;">
-            wir haben Ihre Zahlung für die Bestellung <strong>#{{ order.orderNumber }}</strong> erhalten. Vielen Dank!
+            vielen Dank für Ihre Bestellung bei <strong>Raven Weapon AG</strong>!
         </p>
 
-        <!-- Status Box -->
-        <div style="background: #D1FAE5; border-left: 4px solid #10B981; padding: 15px 20px; margin-bottom: 25px;">
-            <p style="margin: 0; color: #065F46;"><strong>Zahlungsstatus:</strong> Bezahlt</p>
+        <!-- Order Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Bestellinformationen</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Bestellnummer:</strong></td><td style="padding: 5px 0;">{{ order.orderNumber }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Bestelldatum:</strong></td><td style="padding: 5px 0;">{{ order.orderDateTime|format_datetime(\'medium\', \'short\', locale=\'de-CH\') }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Zahlungsart:</strong></td><td style="padding: 5px 0;">{{ order.transactions.first.paymentMethod.translated.name }}</td></tr>
+            </table>
         </div>
 
-        <!-- Products Section -->
-        <h3 style="color: #1a1a1a; border-bottom: 2px solid #F59E0B; padding-bottom: 10px; margin-bottom: 20px;">Bestellübersicht</h3>
-
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-            {% for lineItem in order.lineItems %}
-            <tr style="border-bottom: 1px solid #eee;">
-                <td style="padding: 15px 10px 15px 0; width: 80px; vertical-align: top;">
-                    {% if lineItem.cover %}
-                    <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" style="width: 80px; height: 80px; object-fit: contain; border: 1px solid #eee; border-radius: 4px;">
-                    {% else %}
-                    <div style="width: 80px; height: 80px; background: #f5f5f5; border-radius: 4px;"></div>
-                    {% endif %}
-                </td>
-                <td style="padding: 15px 10px; vertical-align: top;">
-                    <strong style="font-size: 15px;">{{ lineItem.label }}</strong>
-                    {% if lineItem.payload.productNumber %}
-                    <br><span style="color: #666; font-size: 13px;">Art.Nr: {{ lineItem.payload.productNumber }}</span>
-                    {% endif %}
-                </td>
-                <td style="padding: 15px 10px; vertical-align: top; text-align: center; white-space: nowrap;">
-                    {{ lineItem.quantity }}x
-                </td>
-                <td style="padding: 15px 0 15px 10px; vertical-align: top; text-align: right; white-space: nowrap;">
-                    <strong>{{ lineItem.totalPrice|currency(order.currency.isoCode) }}</strong>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-
-        <!-- Order Summary -->
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
-            <tr>
-                <td style="padding: 8px 0; color: #666;">Zwischensumme:</td>
-                <td style="padding: 8px 0; text-align: right;">{{ order.amountNet|currency(order.currency.isoCode) }}</td>
-            </tr>
-            <tr>
-                <td style="padding: 8px 0; color: #666;">Versand:</td>
-                <td style="padding: 8px 0; text-align: right;">{{ order.shippingTotal|currency(order.currency.isoCode) }}</td>
-            </tr>
-            <tr style="border-top: 2px solid #1a1a1a;">
-                <td style="padding: 15px 0; font-size: 18px;"><strong>Gesamtsumme:</strong></td>
-                <td style="padding: 15px 0; text-align: right; font-size: 18px;"><strong>{{ order.amountTotal|currency(order.currency.isoCode) }}</strong></td>
-            </tr>
-        </table>
-
-        <p style="font-size: 14px; color: #666; margin-bottom: 25px;">
-            Ihre Bestellung wird nun für den Versand vorbereitet. Sie erhalten eine weitere E-Mail, sobald Ihre Bestellung versandt wurde.
-        </p>
+        <!-- Order Items -->
+        <div style="margin-bottom: 25px;">
+            <h3 style="color: #1a1a1a; margin: 0 0 15px 0; font-size: 16px;">Ihre bestellten Artikel</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+                {% for lineItem in order.nestedLineItems %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 12px 0;">
+                        <strong>{{ lineItem.label }}</strong>
+                        {% if lineItem.payload.productNumber is defined %}<br><small style="color: #666;">Art.-Nr.: {{ lineItem.payload.productNumber }}</small>{% endif %}
+                    </td>
+                    <td style="padding: 12px; text-align: center;">{{ lineItem.quantity }}x</td>
+                    <td style="padding: 12px 0; text-align: right;">{{ lineItem.totalPrice|currency }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <table style="width: 100%; margin-top: 15px;">
+                <tr><td style="padding: 5px 0;"><strong>Zwischensumme:</strong></td><td style="text-align: right;">{{ order.amountNet|currency }}</td></tr>
+                <tr><td style="padding: 5px 0;">Versandkosten:</td><td style="text-align: right;">{{ order.shippingTotal|currency }}</td></tr>
+                <tr style="border-top: 2px solid #1a1a1a;"><td style="padding: 12px 0; font-size: 18px;"><strong>Gesamtsumme:</strong></td><td style="text-align: right; font-size: 18px; color: #F59E0B;"><strong>{{ order.amountTotal|currency }}</strong></td></tr>
+            </table>
+        </div>
 
         <!-- CTA Button -->
         <div style="text-align: center; margin: 30px 0;">
@@ -260,83 +147,692 @@ $paidHtml = '<div style="font-family: Arial, sans-serif; max-width: 600px; margi
                style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">
                 Bestellung ansehen
             </a>
-        </div>
+        </div>',
+            'plain' => 'Bestellbestätigung - Raven Weapon AG
 
-        <!-- Footer -->
-        <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px;">
-            <p style="margin: 0; color: #666;">
-                Mit freundlichen Grüssen<br>
-                <strong style="color: #1a1a1a;">Raven Weapon AG</strong>
-            </p>
-        </div>
-    </div>
+Bestellnummer: {{ order.orderNumber }}
+Gesamtsumme: {{ order.amountTotal|currency }}
 
-    <!-- Email Footer -->
-    <div style="background: #1a1a1a; color: #ffffff; padding: 20px; text-align: center; font-size: 13px;">
-        <p style="margin: 0 0 10px 0;">Raven Weapon AG | Schweiz</p>
-        <p style="margin: 0; color: #888;">
-            Bei Fragen kontaktieren Sie uns gerne unter <a href="mailto:info@ravenweapon.ch" style="color: #F59E0B; text-decoration: none;">info@ravenweapon.ch</a>
-        </p>
-    </div>
-</div>';
-
-$paidPlain = 'Zahlung erhalten
-
-Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
-
-wir haben Ihre Zahlung für die Bestellung #{{ order.orderNumber }} erhalten. Vielen Dank!
-
-Zahlungsstatus: Bezahlt
-
-BESTELLÜBERSICHT
-================
-{% for lineItem in order.lineItems %}
-{{ lineItem.quantity }}x {{ lineItem.label }}{% if lineItem.payload.productNumber %} (Art.Nr: {{ lineItem.payload.productNumber }}){% endif %} - {{ lineItem.totalPrice|currency(order.currency.isoCode) }}
-{% endfor %}
-
-Zwischensumme: {{ order.amountNet|currency(order.currency.isoCode) }}
-Versand: {{ order.shippingTotal|currency(order.currency.isoCode) }}
-GESAMTSUMME: {{ order.amountTotal|currency(order.currency.isoCode) }}
-
-Ihre Bestellung wird nun für den Versand vorbereitet. Sie erhalten eine weitere E-Mail, sobald Ihre Bestellung versandt wurde.
-
-Bestellung ansehen: {{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}
+Vielen Dank für Ihre Bestellung!
 
 Mit freundlichen Grüssen
-Raven Weapon AG
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'Order Confirmation - Order {{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Hello {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
 
---
-Bei Fragen: info@ravenweapon.ch';
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Thank you for your order at <strong>Raven Weapon AG</strong>!
+        </p>
 
-// Get paid template ID
-$stmt = $pdo->query("SELECT HEX(mt.id) as tid FROM mail_template mt
-    JOIN mail_template_type mtt ON mt.mail_template_type_id = mtt.id
-    WHERE mtt.technical_name = 'order_transaction.state.paid'");
-$row = $stmt->fetch();
-if ($row) {
-    $tid = $row['tid'];
-    $stmt = $pdo->prepare("UPDATE mail_template_translation
-            SET content_plain = ?,
-                content_html = ?,
-                subject = 'Zahlung erhalten - Bestellung #{{ order.orderNumber }}',
-                updated_at = NOW()
-            WHERE mail_template_id = UNHEX(?)");
-    $stmt->execute([$paidPlain, $paidHtml, $tid]);
-    echo "   Paid template updated\n\n";
+        <!-- Order Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Order Information</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Order Number:</strong></td><td>{{ order.orderNumber }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Order Date:</strong></td><td>{{ order.orderDateTime|format_datetime(\'medium\', \'short\') }}</td></tr>
+            </table>
+        </div>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                View Order
+            </a>
+        </div>',
+            'plain' => 'Order Confirmation - Raven Weapon AG
+
+Order Number: {{ order.orderNumber }}
+Total: {{ order.amountTotal|currency }}
+
+Thank you for your order!
+
+Best regards,
+Raven Weapon AG'
+        ]
+    ],
+
+    // PASSWORD RECOVERY
+    'customer.recovery.request' => [
+        'de' => [
+            'subject' => 'Passwort zurücksetzen - Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Guten Tag {{ customer.firstName }} {{ customer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Sie haben eine Anfrage zum Zurücksetzen Ihres Passworts bei <strong>Raven Weapon AG</strong> gestellt.
+        </p>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 35px 0;">
+            <a href="{{ resetUrl }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">
+                Passwort zurücksetzen
+            </a>
+        </div>
+
+        <!-- Info Box -->
+        <div style="background: #f8f9fa; border-left: 4px solid #F59E0B; padding: 20px; margin-bottom: 25px; border-radius: 0 8px 8px 0;">
+            <p style="margin: 0; font-size: 14px; color: #374151;">
+                Falls der Button nicht funktioniert:<br>
+                <a href="{{ resetUrl }}" style="color: #F59E0B; word-break: break-all;">{{ resetUrl }}</a>
+            </p>
+        </div>
+
+        <!-- Security Note -->
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
+            <p style="margin: 0; font-size: 13px; color: #92400E;">
+                <strong>Hinweis:</strong> Falls Sie diese Anfrage nicht gestellt haben, ignorieren Sie diese E-Mail.
+            </p>
+        </div>',
+            'plain' => 'Passwort zurücksetzen - Raven Weapon AG
+
+Guten Tag {{ customer.firstName }} {{ customer.lastName }},
+
+Sie haben eine Anfrage zum Zurücksetzen Ihres Passworts gestellt.
+
+Link: {{ resetUrl }}
+
+Falls Sie diese Anfrage nicht gestellt haben, ignorieren Sie diese E-Mail.
+
+Mit freundlichen Grüssen
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'Reset your password - Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Hello {{ customer.firstName }} {{ customer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            You have requested to reset your password at <strong>Raven Weapon AG</strong>.
+        </p>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 35px 0;">
+            <a href="{{ resetUrl }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px;">
+                Reset Password
+            </a>
+        </div>
+
+        <!-- Security Note -->
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
+            <p style="margin: 0; font-size: 13px; color: #92400E;">
+                <strong>Note:</strong> If you did not request this, please ignore this email.
+            </p>
+        </div>',
+            'plain' => 'Reset your password - Raven Weapon AG
+
+Hello {{ customer.firstName }} {{ customer.lastName }},
+
+You have requested to reset your password.
+
+Link: {{ resetUrl }}
+
+If you did not request this, please ignore this email.
+
+Best regards,
+Raven Weapon AG'
+        ]
+    ],
+
+    // ORDER SHIPPED
+    'order_delivery.state.shipped' => [
+        'de' => [
+            'subject' => 'Ihre Bestellung wurde versandt - #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            <strong style="color: #059669;">Gute Nachrichten!</strong> Ihre Bestellung wurde versandt.
+        </p>
+
+        <!-- Order Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Versandinformationen</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Bestellnummer:</strong></td><td>{{ order.orderNumber }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Versandart:</strong></td><td>{{ order.deliveries.first.shippingMethod.translated.name }}</td></tr>
+                {% if order.deliveries.first.trackingCodes|length > 0 %}
+                <tr><td style="padding: 5px 0;"><strong>Tracking:</strong></td><td>{{ order.deliveries.first.trackingCodes|first }}</td></tr>
+                {% endif %}
+            </table>
+        </div>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Bestellung verfolgen
+            </a>
+        </div>',
+            'plain' => 'Ihre Bestellung wurde versandt - Raven Weapon AG
+
+Bestellnummer: {{ order.orderNumber }}
+
+Ihre Bestellung ist unterwegs!
+
+Mit freundlichen Grüssen
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'Your order has been shipped - #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Hello {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            <strong style="color: #059669;">Great news!</strong> Your order has been shipped.
+        </p>
+
+        <!-- Order Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Shipping Information</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Order Number:</strong></td><td>{{ order.orderNumber }}</td></tr>
+                {% if order.deliveries.first.trackingCodes|length > 0 %}
+                <tr><td style="padding: 5px 0;"><strong>Tracking:</strong></td><td>{{ order.deliveries.first.trackingCodes|first }}</td></tr>
+                {% endif %}
+            </table>
+        </div>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Track Order
+            </a>
+        </div>',
+            'plain' => 'Your order has been shipped - Raven Weapon AG
+
+Order Number: {{ order.orderNumber }}
+
+Your order is on its way!
+
+Best regards,
+Raven Weapon AG'
+        ]
+    ],
+
+    // PAYMENT RECEIVED
+    'order_transaction.state.paid' => [
+        'de' => [
+            'subject' => 'Zahlung erhalten - Bestellung #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            <strong style="color: #059669;">Vielen Dank!</strong> Wir haben Ihre Zahlung erhalten.
+        </p>
+
+        <!-- Order Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Zahlungsdetails</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Bestellnummer:</strong></td><td>{{ order.orderNumber }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Betrag:</strong></td><td style="color: #F59E0B;"><strong>{{ order.amountTotal|currency }}</strong></td></tr>
+            </table>
+        </div>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Ihre Bestellung wird nun für den Versand vorbereitet.
+        </p>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Bestellung ansehen
+            </a>
+        </div>',
+            'plain' => 'Zahlung erhalten - Raven Weapon AG
+
+Bestellnummer: {{ order.orderNumber }}
+Betrag: {{ order.amountTotal|currency }}
+
+Vielen Dank! Ihre Bestellung wird nun vorbereitet.
+
+Mit freundlichen Grüssen
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'Payment received - Order #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Hello {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            <strong style="color: #059669;">Thank you!</strong> We have received your payment.
+        </p>
+
+        <!-- Order Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Payment Details</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Order Number:</strong></td><td>{{ order.orderNumber }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Amount:</strong></td><td style="color: #F59E0B;"><strong>{{ order.amountTotal|currency }}</strong></td></tr>
+            </table>
+        </div>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                View Order
+            </a>
+        </div>',
+            'plain' => 'Payment received - Raven Weapon AG
+
+Order Number: {{ order.orderNumber }}
+Amount: {{ order.amountTotal|currency }}
+
+Thank you! Your order is being prepared.
+
+Best regards,
+Raven Weapon AG'
+        ]
+    ],
+
+    // CONTACT FORM
+    'contact_form' => [
+        'de' => [
+            'subject' => 'Neue Kontaktanfrage von {{ contactFormData.firstName }} {{ contactFormData.lastName }}',
+            'html' => '<!-- Heading -->
+        <h2 style="color: #1a1a1a; margin: 0 0 20px 0;">Neue Kontaktanfrage</h2>
+
+        <!-- Contact Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Kontaktdaten</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Name:</strong></td><td>{{ contactFormData.firstName }} {{ contactFormData.lastName }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>E-Mail:</strong></td><td><a href="mailto:{{ contactFormData.email }}" style="color: #F59E0B;">{{ contactFormData.email }}</a></td></tr>
+                {% if contactFormData.phone %}<tr><td style="padding: 5px 0;"><strong>Telefon:</strong></td><td>{{ contactFormData.phone }}</td></tr>{% endif %}
+                <tr><td style="padding: 5px 0;"><strong>Betreff:</strong></td><td>{{ contactFormData.subject }}</td></tr>
+            </table>
+        </div>
+
+        <!-- Message Box -->
+        <div style="background: #f8f9fa; border-left: 4px solid #F59E0B; padding: 20px; margin-bottom: 25px; border-radius: 0 8px 8px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #1a1a1a;">Nachricht</h4>
+            <p style="margin: 0; line-height: 1.6; color: #374151; white-space: pre-wrap;">{{ contactFormData.comment }}</p>
+        </div>',
+            'plain' => 'Neue Kontaktanfrage
+
+Name: {{ contactFormData.firstName }} {{ contactFormData.lastName }}
+E-Mail: {{ contactFormData.email }}
+Betreff: {{ contactFormData.subject }}
+
+Nachricht:
+{{ contactFormData.comment }}
+
+---
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'New contact request from {{ contactFormData.firstName }} {{ contactFormData.lastName }}',
+            'html' => '<!-- Heading -->
+        <h2 style="color: #1a1a1a; margin: 0 0 20px 0;">New Contact Request</h2>
+
+        <!-- Contact Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Contact Details</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Name:</strong></td><td>{{ contactFormData.firstName }} {{ contactFormData.lastName }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Email:</strong></td><td><a href="mailto:{{ contactFormData.email }}" style="color: #F59E0B;">{{ contactFormData.email }}</a></td></tr>
+            </table>
+        </div>
+
+        <!-- Message Box -->
+        <div style="background: #f8f9fa; border-left: 4px solid #F59E0B; padding: 20px; margin-bottom: 25px; border-radius: 0 8px 8px 0;">
+            <h4 style="margin: 0 0 10px 0; color: #1a1a1a;">Message</h4>
+            <p style="margin: 0; line-height: 1.6; color: #374151; white-space: pre-wrap;">{{ contactFormData.comment }}</p>
+        </div>',
+            'plain' => 'New Contact Request
+
+Name: {{ contactFormData.firstName }} {{ contactFormData.lastName }}
+Email: {{ contactFormData.email }}
+
+Message:
+{{ contactFormData.comment }}
+
+---
+Raven Weapon AG'
+        ]
+    ],
+
+    // ORDER CANCELLED
+    'order.state.cancelled' => [
+        'de' => [
+            'subject' => 'Bestellung storniert - #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Ihre Bestellung <strong>#{{ order.orderNumber }}</strong> wurde storniert.
+        </p>
+
+        <!-- Info Box -->
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
+            <p style="margin: 0; font-size: 13px; color: #92400E;">
+                Bei Fragen kontaktieren Sie uns unter <a href="mailto:info@ravenweapon.ch" style="color: #F59E0B;">info@ravenweapon.ch</a>
+            </p>
+        </div>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.home.page\', {}, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Zum Shop
+            </a>
+        </div>',
+            'plain' => 'Bestellung storniert - Raven Weapon AG
+
+Bestellnummer: {{ order.orderNumber }}
+
+Ihre Bestellung wurde storniert.
+
+Bei Fragen: info@ravenweapon.ch
+
+Mit freundlichen Grüssen
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'Order cancelled - #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Hello {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Your order <strong>#{{ order.orderNumber }}</strong> has been cancelled.
+        </p>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.home.page\', {}, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Visit Shop
+            </a>
+        </div>',
+            'plain' => 'Order cancelled - Raven Weapon AG
+
+Order Number: {{ order.orderNumber }}
+
+Your order has been cancelled.
+
+Best regards,
+Raven Weapon AG'
+        ]
+    ],
+
+    // INVOICE
+    'invoice_mail' => [
+        'de' => [
+            'subject' => 'Rechnung für Ihre Bestellung #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            anbei erhalten Sie die Rechnung zu Ihrer Bestellung <strong>#{{ order.orderNumber }}</strong>.
+        </p>
+
+        <!-- Order Info Box -->
+        <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <h3 style="color: #F59E0B; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Rechnungsdetails</h3>
+            <table style="width: 100%; color: #ffffff;">
+                <tr><td style="padding: 5px 0;"><strong>Bestellnummer:</strong></td><td>{{ order.orderNumber }}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Betrag:</strong></td><td style="color: #F59E0B;"><strong>{{ order.amountTotal|currency }}</strong></td></tr>
+            </table>
+        </div>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Die Rechnung finden Sie als PDF im Anhang dieser E-Mail.
+        </p>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Bestellung ansehen
+            </a>
+        </div>',
+            'plain' => 'Rechnung - Raven Weapon AG
+
+Bestellnummer: {{ order.orderNumber }}
+Betrag: {{ order.amountTotal|currency }}
+
+Die Rechnung finden Sie als PDF im Anhang.
+
+Mit freundlichen Grüssen
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'Invoice for your order #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Hello {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Please find attached the invoice for your order <strong>#{{ order.orderNumber }}</strong>.
+        </p>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                View Order
+            </a>
+        </div>',
+            'plain' => 'Invoice - Raven Weapon AG
+
+Order Number: {{ order.orderNumber }}
+Amount: {{ order.amountTotal|currency }}
+
+The invoice is attached as a PDF.
+
+Best regards,
+Raven Weapon AG'
+        ]
+    ],
+
+    // DELIVERY NOTE
+    'delivery_mail' => [
+        'de' => [
+            'subject' => 'Lieferschein für Ihre Bestellung #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Guten Tag {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            anbei erhalten Sie den Lieferschein zu Ihrer Bestellung <strong>#{{ order.orderNumber }}</strong>.
+        </p>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Bestellung ansehen
+            </a>
+        </div>',
+            'plain' => 'Lieferschein - Raven Weapon AG
+
+Bestellnummer: {{ order.orderNumber }}
+
+Den Lieferschein finden Sie als PDF im Anhang.
+
+Mit freundlichen Grüssen
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'Delivery note for your order #{{ order.orderNumber }} | Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Hello {% if order.orderCustomer.salutation %}{{ order.orderCustomer.salutation.translated.letterName ~ \' \' }}{% endif %}{{ order.orderCustomer.firstName }} {{ order.orderCustomer.lastName }},
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Please find attached the delivery note for your order <strong>#{{ order.orderNumber }}</strong>.
+        </p>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.order.single.page\', { \'deepLinkCode\': order.deepLinkCode }, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                View Order
+            </a>
+        </div>',
+            'plain' => 'Delivery Note - Raven Weapon AG
+
+Order Number: {{ order.orderNumber }}
+
+The delivery note is attached as a PDF.
+
+Best regards,
+Raven Weapon AG'
+        ]
+    ],
+
+    // PASSWORD CHANGE
+    'password_change' => [
+        'de' => [
+            'subject' => 'Passwort geändert - Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Guten Tag,
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Ihr Passwort bei <strong>Raven Weapon AG</strong> wurde erfolgreich geändert.
+        </p>
+
+        <!-- Security Note -->
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
+            <p style="margin: 0; font-size: 13px; color: #92400E;">
+                <strong>Hinweis:</strong> Falls Sie diese Änderung nicht vorgenommen haben, kontaktieren Sie uns sofort unter <a href="mailto:info@ravenweapon.ch" style="color: #F59E0B;">info@ravenweapon.ch</a>
+            </p>
+        </div>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.login.page\', {}, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Jetzt anmelden
+            </a>
+        </div>',
+            'plain' => 'Passwort geändert - Raven Weapon AG
+
+Ihr Passwort wurde erfolgreich geändert.
+
+Falls Sie diese Änderung nicht vorgenommen haben, kontaktieren Sie uns sofort.
+
+Mit freundlichen Grüssen
+Raven Weapon AG'
+        ],
+        'en' => [
+            'subject' => 'Password changed - Raven Weapon AG',
+            'html' => '<!-- Greeting -->
+        <p style="font-size: 16px; margin-bottom: 20px;">
+            Hello,
+        </p>
+
+        <p style="font-size: 16px; margin-bottom: 25px;">
+            Your password at <strong>Raven Weapon AG</strong> has been successfully changed.
+        </p>
+
+        <!-- Security Note -->
+        <div style="background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 8px; padding: 15px; margin-bottom: 25px;">
+            <p style="margin: 0; font-size: 13px; color: #92400E;">
+                <strong>Note:</strong> If you did not make this change, please contact us immediately.
+            </p>
+        </div>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ rawUrl(\'frontend.account.login.page\', {}, salesChannel.domains|first.url) }}"
+               style="display: inline-block; background: #F59E0B; color: #ffffff; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: bold;">
+                Sign In Now
+            </a>
+        </div>',
+            'plain' => 'Password changed - Raven Weapon AG
+
+Your password has been successfully changed.
+
+If you did not make this change, please contact us immediately.
+
+Best regards,
+Raven Weapon AG'
+        ]
+    ],
+];
+
+// ==================== STEP 3: Update styled templates ====================
+echo "Step 3: Updating styled templates...\n\n";
+
+foreach ($templates as $technicalName => $langTemplates) {
+    echo "  Updating: $technicalName\n";
+
+    // Get template ID
+    $sql = "SELECT LOWER(HEX(mt.id)) as template_id
+            FROM mail_template mt
+            JOIN mail_template_type mtt ON mt.mail_template_type_id = mtt.id
+            WHERE mtt.technical_name = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$technicalName]);
+    $templateId = $stmt->fetchColumn();
+
+    if (!$templateId) {
+        echo "    ⚠ Template not found, skipping\n";
+        continue;
+    }
+
+    foreach ($langTemplates as $langCode => $content) {
+        $langId = $langMap[$langCode] ?? null;
+        if (!$langId) continue;
+
+        $fullHtml = wrapInRavenTemplate($content['html'], $logoUrl, $shopUrl, $langCode);
+
+        $sql = "UPDATE mail_template_translation
+                SET content_html = :html,
+                    content_plain = :plain,
+                    subject = :subject,
+                    updated_at = NOW()
+                WHERE mail_template_id = UNHEX(:templateId)
+                AND language_id = UNHEX(:languageId)";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            'html' => $fullHtml,
+            'plain' => $content['plain'],
+            'subject' => $content['subject'],
+            'templateId' => $templateId,
+            'languageId' => $langId
+        ]);
+
+        echo "    ✓ $langCode updated\n";
+    }
 }
 
-// Verify
-echo "=== VERIFICATION ===\n";
-$stmt = $pdo->query("SELECT COUNT(DISTINCT sender_name) as cnt, GROUP_CONCAT(DISTINCT sender_name) as names FROM mail_template_translation");
-$check = $stmt->fetch();
-echo "Unique sender names: " . $check['cnt'] . " (" . $check['names'] . ")\n";
-
-$stmt = $pdo->query("SELECT content_html LIKE '%raven-logo.png%' as has_logo FROM mail_template_translation mtt JOIN mail_template mt ON mtt.mail_template_id = mt.id JOIN mail_template_type mttype ON mt.mail_template_type_id = mttype.id WHERE mttype.technical_name = 'order_delivery.state.shipped' LIMIT 1");
-$check = $stmt->fetch();
-echo "Shipped has logo: " . ($check['has_logo'] ? "YES" : "NO") . "\n";
-
-$stmt = $pdo->query("SELECT content_html LIKE '%raven-logo.png%' as has_logo FROM mail_template_translation mtt JOIN mail_template mt ON mtt.mail_template_id = mt.id JOIN mail_template_type mttype ON mt.mail_template_type_id = mttype.id WHERE mttype.technical_name = 'order_transaction.state.paid' LIMIT 1");
-$check = $stmt->fetch();
-echo "Paid has logo: " . ($check['has_logo'] ? "YES" : "NO") . "\n";
-
-echo "\n=== ALL DONE! ===\n";
+echo "\n✓ All email templates updated!\n";
+echo "\nRemember to clear the cache:\n";
+echo "bin/console cache:clear\n";
