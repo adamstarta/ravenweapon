@@ -20,11 +20,15 @@
             </call>
         </service>
 
+        <!-- Navigation Products Subscriber - loads products for dropdown menu -->
+        <service id="RavenTheme\Subscriber\NavigationProductsSubscriber">
+            <argument type="service" id="sales_channel.product.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <!-- Homepage Products Subscriber - loads featured products for homepage -->
         <service id="RavenTheme\Subscriber\HomepageProductsSubscriber">
             <argument type="service" id="sales_channel.product.repository"/>
-            <argument type="service" id="product_manufacturer.repository"/>
-            <argument type="service" id="category.repository"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
@@ -56,6 +60,13 @@
         <service id="RavenTheme\Cart\VariantPriceProcessor">
             <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
             <tag name="shopware.cart.processor" priority="4000"/>
+        </service>
+
+        <!-- Order Notification Subscriber - sends email to admin on new orders -->
+        <service id="RavenTheme\Subscriber\OrderNotificationSubscriber">
+            <argument type="service" id="mailer"/>
+            <argument type="service" id="logger"/>
+            <tag name="kernel.event_subscriber"/>
         </service>
     </services>
 

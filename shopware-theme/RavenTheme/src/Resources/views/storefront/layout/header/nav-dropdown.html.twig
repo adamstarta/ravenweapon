@@ -1,0 +1,69 @@
+{# nav-dropdown.html.twig - Thoron-style mega menu dropdown #}
+{# Variables: treeItem, category #}
+
+<div class="raven-mega-menu" data-dropdown-id="{{ category.id }}">
+    <div class="raven-mega-menu-inner">
+        {# LEFT COLUMN: Subcategories #}
+        <div class="raven-dropdown-left">
+            {% for childItem in treeItem.children %}
+                {% set childCat = childItem.category %}
+                {% set childUrl = seoUrl('frontend.navigation.page', { navigationId: childCat.id }) %}
+                <a href="{{ childUrl }}"
+                   class="raven-dropdown-item{% if loop.first %} active{% endif %}"
+                   data-submenu-target="{{ childCat.id }}">
+                    <span>{{ childCat.translated.name }}</span>
+                    <span class="raven-dropdown-arrow">›</span>
+                </a>
+            {% endfor %}
+        </div>
+
+        {# RIGHT COLUMN: Sub-subcategories OR category preview #}
+        <div class="raven-dropdown-right">
+            {% for childItem in treeItem.children %}
+                {% set childCat = childItem.category %}
+                {% set hasGrandChildren = childItem.children|length > 0 %}
+                {% set childUrl = seoUrl('frontend.navigation.page', { navigationId: childCat.id }) %}
+
+                {% if hasGrandChildren %}
+                {# Subcategory HAS grandchildren - show grid of grandchildren #}
+                <div class="raven-submenu{% if loop.first %} active{% endif %}" data-submenu-id="{{ childCat.id }}">
+                    <div class="raven-submenu-title">{{ childCat.translated.name }}</div>
+                    <div class="raven-submenu-grid">
+                        {% for grandChildItem in childItem.children %}
+                            {% set grandChildCat = grandChildItem.category %}
+                            <a href="{{ seoUrl('frontend.navigation.page', { navigationId: grandChildCat.id }) }}" class="raven-submenu-link">
+                                {{ grandChildCat.translated.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <a href="{{ childUrl }}" class="raven-submenu-viewall">
+                        Alle {{ childCat.translated.name }} anzeigen
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                {% else %}
+                {# Subcategory has NO grandchildren - show products from this category #}
+                {% set navProducts = header.extensions.navigationProducts.getVars[childCat.id]|default(null) %}
+                <div class="raven-submenu{% if loop.first %} active{% endif %}" data-submenu-id="{{ childCat.id }}">
+                    <div class="raven-submenu-title">{{ childCat.translated.name }}</div>
+                    {% if navProducts is not null and navProducts|length > 0 %}
+                    <div class="raven-submenu-grid">
+                        {% for product in navProducts %}
+                            <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" class="raven-submenu-link">
+                                {{ product.translated.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="raven-submenu-empty">Produkte werden geladen...</p>
+                    {% endif %}
+                    <a href="{{ childUrl }}" class="raven-submenu-viewall">
+                        Alle {{ childCat.translated.name }} anzeigen
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

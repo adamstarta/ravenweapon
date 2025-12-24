@@ -143,11 +143,10 @@
                 {{ productName }}
             </h1>
 
-            {# Price - Swiss Format: CHF 3'150 #}
+            {# Price - Swiss Format: CHF 3'150.00 (always with decimals) #}
             <div class="raven-product-price" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 700; font-size: 28px; line-height: 1.2; font-variant-numeric: tabular-nums; margin-bottom: 2rem;">
                 {% set detailPrice = page.product.calculatedPrice.unitPrice %}
-                {% set detailCents = ((detailPrice * 100) % 100)|round %}
-                CHF {% if detailCents == 0 %}{{ detailPrice|number_format(0, '.', "'") }}{% else %}{{ detailPrice|number_format(2, '.', "'") }}{% endif %}
+                CHF {{ detailPrice|number_format(2, '.', "'") }}
                 <span class="text-sm text-gray-500 font-normal ml-2">inkl. MwSt.</span>
             </div>
 
@@ -328,6 +327,46 @@
                 <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
                     Artikelnummer: <span class="font-medium text-gray-700">{{ page.product.productNumber }}</span>
                 </p>
+            </div>
+            {% endif %}
+
+            {# Stock Display #}
+            {% set stockCount = page.product.availableStock|default(page.product.stock|default(0)) %}
+            {% set isCloseout = page.product.isCloseout|default(false) %}
+            <div class="mt-3">
+                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                    Lagerbestand:
+                    {% if stockCount > 0 %}
+                        <span class="font-medium text-gray-700">{{ stockCount }} Auf Lager</span>
+                    {% elseif not isCloseout %}
+                        {# Stock = 0 but can still order (backorder) #}
+                        <span class="font-medium" style="color: #b45309; background-color: #fef3c7; padding: 2px 8px; border-radius: 4px;">Auf Nachbestellung verfügbar</span>
+                    {% else %}
+                        {# Stock = 0 and cannot order #}
+                        <span class="font-medium" style="color: #dc2626; background-color: #fef2f2; padding: 2px 8px; border-radius: 4px;">Ausverkauft</span>
+                    {% endif %}
+                </p>
+            </div>
+
+            {# Weight and Dimensions #}
+            {% if page.product.weight or (page.product.length and page.product.width and page.product.height) %}
+            <div class="mt-3">
+                {% if page.product.weight %}
+                <p class="text-sm text-gray-500" style="font-family: 'Inter', sans-serif;">
+                    Gewicht: <span class="font-medium text-gray-700">
+                        {% if page.product.weight >= 1000 %}
+                            {{ (page.product.weight / 1000)|number_format(1, '.', "'") }} kg
+                        {% else %}
+                            {{ page.product.weight|number_format(0) }} g
+                        {% endif %}
+                    </span>
+                </p>
+                {% endif %}
+                {% if page.product.length and page.product.width and page.product.height %}
+                <p class="text-sm text-gray-500 mt-1" style="font-family: 'Inter', sans-serif;">
+                    Abmessungen: <span class="font-medium text-gray-700">{{ (page.product.length / 10)|number_format(1, '.', "'") }} x {{ (page.product.width / 10)|number_format(1, '.', "'") }} x {{ (page.product.height / 10)|number_format(1, '.', "'") }} cm</span>
+                </p>
+                {% endif %}
             </div>
             {% endif %}
         </div>
@@ -1244,14 +1283,12 @@
             return null;
         }
 
-        // Format price Swiss style: CHF 2'977.35 or CHF 240
+        // Format price Swiss style: CHF 2'977.35 (always with decimals)
         function formatSwissPrice(price) {
-            const cents = Math.round((price * 100) % 100);
-            if (cents === 0) {
-                return 'CHF ' + Math.floor(price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
-            } else {
-                return 'CHF ' + price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, "'").replace('.', '.');
-            }
+            const formatted = price.toFixed(2);
+            const [whole, decimal] = formatted.split('.');
+            const wholeFormatted = whole.replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+            return 'CHF ' + wholeFormatted + '.' + decimal;
         }
 
         function initSizeSwatches() {

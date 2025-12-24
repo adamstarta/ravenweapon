@@ -23,6 +23,37 @@
             </a>
         </div>
 
+        {# Breadcrumb Navigation #}
+        <nav class="checkout-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li>
+                    <a href="{{ path('frontend.home.page') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <span class="breadcrumb-separator">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </span>
+                    <a href="{{ path('frontend.checkout.cart.page') }}">Warenkorb</a>
+                </li>
+                <li>
+                    <span class="breadcrumb-separator">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </span>
+                    <span class="breadcrumb-current">Anmeldung</span>
+                </li>
+            </ol>
+        </nav>
+
         {# Progress Steps #}
         <div class="checkout-progress">
             <div class="progress-step active">
@@ -240,9 +271,9 @@
                             <div class="privacy-notice">
                                 <p>
                                     Mit dem Klick auf "Weiter zur Zahlung" bestätigen Sie, dass Sie unsere
-                                    <a href="{{ path('frontend.cms.page', { id: 'privacy' }) }}" target="_blank">Datenschutzerklärung</a>
+                                    <a href="/datenschutz" target="_blank">Datenschutzerklärung</a>
                                     gelesen haben und unsere
-                                    <a href="{{ path('frontend.cms.page', { id: 'tos' }) }}" target="_blank">AGB</a>
+                                    <a href="/agb" target="_blank">AGB</a>
                                     akzeptieren.
                                 </p>
                             </div>
@@ -363,7 +394,62 @@
 /* Logo */
 .checkout-logo {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Breadcrumb */
+.checkout-breadcrumb {
+    margin-bottom: 1.5rem;
+}
+
+.checkout-breadcrumb ol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.checkout-breadcrumb li {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.checkout-breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.checkout-breadcrumb a:hover {
+    color: #F2B90D;
+}
+
+.checkout-breadcrumb a svg {
+    flex-shrink: 0;
+}
+
+.breadcrumb-separator {
+    display: inline-flex;
+    align-items: center;
+    color: #d1d5db;
+    margin: 0 0.125rem;
+}
+
+.breadcrumb-current {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #111827;
 }
 
 /* Progress Steps */
@@ -900,6 +986,31 @@
 .checkout-aside,
 .checkout-main,
 .checkout-register {
+    display: none !important;
+}
+
+/* Hide Net total, VAT, Rounded total, and Delivery period */
+.checkout-aside-summary-list .checkout-aside-summary-value,
+.checkout-aside-summary-list .checkout-aside-summary-label,
+.cart-summary-net,
+.cart-summary-tax,
+.cart-summary-rounded,
+.checkout-summary-container .cart-summary-net,
+.checkout-summary-container .cart-summary-tax,
+.checkout-summary-container .cart-summary-rounded,
+.summary-value.summary-net,
+.summary-label.summary-net,
+.summary-value.summary-tax,
+.summary-label.summary-tax,
+.checkout-aside-delivery,
+.delivery-information,
+.cart-delivery-date,
+[class*="delivery-period"],
+[class*="delivery-date"],
+[class*="net-price"],
+[class*="tax-price"],
+[class*="rounded-total"],
+.line-item-delivery-date {
     display: none !important;
 }
 </style>

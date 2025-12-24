@@ -14,6 +14,35 @@
     display: none !important;
 }
 
+/* ============================================
+   CRITICAL: HIDE ALL PAGINATION EXCEPT BOTTOM
+   This must be at the TOP to take priority
+   ============================================ */
+
+/* HIDE ALL PAGINATION BY DEFAULT - NO EXCEPTIONS */
+nav.pagination,
+.pagination-nav,
+nav[aria-label="pagination"],
+nav[aria-label="Pagination"],
+.raven-pagination-row,
+.raven-inline-pagination,
+.cms-element-product-listing nav.pagination,
+.cms-element-product-listing-wrapper nav.pagination {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* ONLY SHOW THE BOTTOM PAGINATION - THIS IS THE ONLY ONE WE WANT */
+nav.pagination.listing-pagination-bottom,
+.listing-pagination-bottom,
+nav.pagination-nav.listing-pagination-bottom {
+    display: flex !important;
+    visibility: visible !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-top: 2rem !important;
+}
+
 /* Filter Bar - Exact Match to Reference */
 .raven-filter-bar {
     display: flex;
@@ -383,28 +412,16 @@ nav.pagination + .cms-listing-row,
 .product-listing ~ nav.pagination,
 .cms-listing-row ~ nav.pagination {
     display: flex !important;
-    justify-content: flex-end !important;
+    justify-content: center !important;
     margin-top: 2rem !important;
 }
 
-/* Style the cloned pagination inside right controls */
+/* DISABLED - No inline pagination anymore, only bottom pagination
 .raven-right-controls nav.pagination.raven-inline-pagination,
 .raven-right-controls .raven-inline-pagination {
-    display: flex !important;
-    align-items: center;
-    margin: 0 !important;
-    padding: 0 !important;
+    display: none !important;
 }
-
-.raven-right-controls .raven-inline-pagination .pagination,
-.raven-inline-pagination .pagination {
-    display: flex !important;
-    align-items: center;
-    gap: 2px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+*/
 
 /* Individual page items in inline pagination - MATCH BOTTOM STYLE */
 .raven-inline-pagination .page-item {
@@ -729,10 +746,7 @@ nav[aria-label="Pagination"].listing-pagination-bottom,
     </div>
 </div>
 
-{# Pagination row below filter bar #}
-<div class="raven-pagination-row" id="raven-pagination-row">
-    {# Pagination will be moved here via JavaScript #}
-</div>
+{# REMOVED: Top pagination row - we only want pagination at the bottom now #}
 
 {# Render the parent product listing #}
 {{ parent() }}
@@ -740,87 +754,43 @@ nav[aria-label="Pagination"].listing-pagination-bottom,
 <script>
 (function() {
     // ==============================================
-    // HIDE TOP PAGINATION - KEEP ONLY BOTTOM
+    // SIMPLIFIED PAGINATION FIX
+    // Hide ALL pagination except .listing-pagination-bottom
     // ==============================================
-    function hideTopPagination() {
-        // Find all pagination elements
+
+    function fixPagination() {
+        // Hide ALL pagination elements
         var allPaginations = document.querySelectorAll('nav.pagination, .pagination-nav, nav[aria-label="pagination"], nav[aria-label="Pagination"]');
 
-        if (allPaginations.length <= 1) return; // Only one pagination, nothing to hide
-
-        // Find the product grid/listing
-        var productGrid = document.querySelector('.cms-listing-row, .product-listing, .cms-element-product-listing .row > .col');
-        if (!productGrid) return;
-
-        var productGridTop = productGrid.getBoundingClientRect().top + window.scrollY;
-
-        // Hide any pagination that appears BEFORE the product grid
         allPaginations.forEach(function(pag) {
-            var pagTop = pag.getBoundingClientRect().top + window.scrollY;
-
-            // If pagination is above the product grid, hide it
-            if (pagTop < productGridTop) {
-                pag.style.display = 'none';
-                pag.style.visibility = 'hidden';
-                pag.classList.add('raven-hidden-pagination');
-            } else {
-                // Show bottom pagination
-                pag.style.display = 'flex';
-                pag.style.visibility = 'visible';
-                pag.classList.remove('raven-hidden-pagination');
-            }
-        });
-    }
-
-    // Alternative: Hide first pagination, show last
-    function hideFirstPaginationShowLast() {
-        var wrapper = document.querySelector('.cms-element-product-listing-wrapper, .cms-element-product-listing');
-        if (!wrapper) return;
-
-        var paginations = wrapper.querySelectorAll('nav.pagination, nav[aria-label="pagination"], nav[aria-label="Pagination"]');
-
-        paginations.forEach(function(pag, index) {
-            if (index < paginations.length - 1) {
-                // Hide all but the last one
-                pag.style.display = 'none !important';
-                pag.style.setProperty('display', 'none', 'important');
-            } else {
-                // Show only the last one
+            // Only show if it has the listing-pagination-bottom class
+            if (pag.classList.contains('listing-pagination-bottom')) {
                 pag.style.setProperty('display', 'flex', 'important');
-                pag.style.justifyContent = 'flex-end';
+                pag.style.setProperty('visibility', 'visible', 'important');
+                pag.style.justifyContent = 'center';
+                pag.style.width = '100%';
+
+                // Center the inner pagination list
+                var ul = pag.querySelector('.pagination');
+                if (ul) {
+                    ul.style.marginLeft = 'auto';
+                    ul.style.marginRight = 'auto';
+                }
+            } else {
+                // Hide everything else
+                pag.style.setProperty('display', 'none', 'important');
+                pag.style.setProperty('visibility', 'hidden', 'important');
             }
         });
-    }
-
-    // Fix bottom pagination alignment
-    function fixBottomPagination() {
-        var bottomPag = document.querySelector('.listing-pagination-bottom');
-        if (bottomPag) {
-            bottomPag.style.display = 'flex';
-            bottomPag.style.justifyContent = 'flex-end';
-            bottomPag.style.width = '100%';
-            var ul = bottomPag.querySelector('.pagination');
-            if (ul) {
-                ul.style.marginLeft = 'auto';
-                ul.style.marginRight = '0';
-            }
-        }
-    }
-
-    // Run all fixes
-    function runAllFixes() {
-        hideTopPagination();
-        hideFirstPaginationShowLast();
-        fixBottomPagination();
     }
 
     // Run on DOM ready, load, and multiple delays
-    document.addEventListener('DOMContentLoaded', runAllFixes);
-    window.addEventListener('load', runAllFixes);
-    setTimeout(runAllFixes, 100);
-    setTimeout(runAllFixes, 500);
-    setTimeout(runAllFixes, 1000);
-    setTimeout(runAllFixes, 2000);
+    document.addEventListener('DOMContentLoaded', fixPagination);
+    window.addEventListener('load', fixPagination);
+    setTimeout(fixPagination, 100);
+    setTimeout(fixPagination, 500);
+    setTimeout(fixPagination, 1000);
+    setTimeout(fixPagination, 2000);
 
     // =========================================
     // DYNAMIC FILTER FUNCTIONALITY

@@ -21,6 +21,16 @@
 
 {% block layout_header %}
 <style>
+    /* Fixed header compensation - add padding to body so content doesn't hide under header */
+    body {
+        padding-top: 70px; /* Mobile header height */
+    }
+    @media (min-width: 768px) {
+        body {
+            padding-top: 140px; /* Desktop header height - now taller with 2-row nav */
+        }
+    }
+
     /* Hide dark CMS "coming soon" blocks - clean template is used instead */
     .cms-element-text > div[style*="background:#1a"],
     .cms-element-text > div[style*="background: #1a"],
@@ -82,93 +92,287 @@
     .raven-nav-link:hover {
         color: #111827 !important;
     }
+    /* Keep yellow underline active when hovering anywhere in dropdown */
+    .raven-nav-item:hover .raven-nav-link::after {
+        width: 100%;
+    }
+    .raven-nav-item:hover .raven-nav-link {
+        color: #111827 !important;
+    }
 
-    /* Mega Menu Dropdown Styles */
-    .raven-nav-item {
-        position: relative;
+    /* ============================================ */
+    /* SINGLE ROW NAVIGATION LAYOUT               */
+    /* ============================================ */
+    .raven-nav-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        width: 100%;
     }
-    .raven-mega-menu {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        min-width: 220px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        border: 1px solid #e5e7eb;
-        padding: 12px 0;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.2s ease;
-        z-index: 1000;
-        margin-top: 8px;
-    }
-    /* Right-aligned dropdown for items near right edge (like Ausrüstung) */
-    .raven-nav-item.dropdown-align-right .raven-mega-menu {
-        left: auto !important;
-        right: 24px !important;
-        transform: none !important;
-        max-width: calc(100vw - 48px);
-    }
-    @media (max-width: 1400px) {
-        .raven-nav-item.dropdown-align-right .raven-mega-menu {
-            right: 32px !important;
-            max-width: calc(100vw - 64px);
-        }
-    }
-    @media (max-width: 1200px) {
-        .raven-nav-item.dropdown-align-right .raven-mega-menu {
-            right: 48px !important;
-            max-width: calc(100vw - 80px);
-        }
-    }
-    /* Left-aligned dropdown for items near left edge (like Waffen) */
-    .raven-nav-item.dropdown-align-left .raven-mega-menu {
-        left: 24px !important;
-        right: auto !important;
-        transform: none !important;
-        max-width: calc(100vw - 48px);
-    }
-    @media (max-width: 1400px) {
-        .raven-nav-item.dropdown-align-left .raven-mega-menu {
-            left: 16px !important;
-            max-width: calc(100vw - 64px);
-        }
-    }
-    @media (max-width: 1200px) {
-        .raven-nav-item.dropdown-align-left .raven-mega-menu {
-            left: 8px !important;
-            max-width: calc(100vw - 80px);
-        }
-    }
-    .raven-nav-item:hover .raven-mega-menu {
-        opacity: 1;
-        visibility: visible;
-    }
-    .raven-mega-menu a {
+    .raven-nav-row {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px 20px;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: nowrap;
+    }
+    .raven-nav-row-1 {
+        gap: 24px;
+    }
+    .raven-nav-row-1 .raven-nav-link {
+        font-size: 16px !important;
+    }
+    .raven-nav-row-2 {
+        display: none;
+    }
+
+    /* Active state for current page */
+    .raven-nav-link.is-active {
+        color: #111827 !important;
+        font-weight: 600;
+    }
+    .raven-nav-link.is-active::after {
+        width: 100%;
+        background: linear-gradient(to right, #F2B90D, #D4A847);
+    }
+
+    /* ============================================ */
+    /* THORON-STYLE FULL-WIDTH DROPDOWN            */
+    /* ============================================ */
+    .raven-nav-item {
+        position: static;
+    }
+    .raven-mega-menu {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        background: #fff;
+        border-top: 1px solid #e5e7eb;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease 0.15s, visibility 0.2s ease 0.15s; /* 0.15s delay when closing */
+        z-index: 1000;
+    }
+    .raven-nav-item:hover .raven-mega-menu,
+    .raven-mega-menu:hover {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s; /* No delay when opening */
+    }
+    .raven-mega-menu-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        min-height: 300px;
+    }
+    /* Left Column - Subcategories */
+    .raven-dropdown-left {
+        width: 320px;
+        flex-shrink: 0;
+        border-right: 1px solid #f3f4f6;
+        padding: 16px 0;
+        background: #fafafa;
+        position: relative;
+    }
+    /* Invisible bridge to prevent hover loss when moving to right column */
+    .raven-dropdown-left::after {
+        content: '';
+        position: absolute;
+        right: -30px;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        background: transparent;
+    }
+    .raven-dropdown-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
         color: #374151;
+        font-family: 'Inter', sans-serif;
         font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.15s ease;
+        cursor: pointer;
+    }
+    .raven-dropdown-item:hover,
+    .raven-dropdown-item.active {
+        background: #fff;
+        color: #111827;
+    }
+    .raven-dropdown-item.active {
+        border-left: 3px solid #F2B90D;
+        padding-left: 21px;
+    }
+    .raven-dropdown-arrow {
+        color: #9ca3af;
+        font-size: 16px;
+        transition: transform 0.15s ease;
+    }
+    .raven-dropdown-item:hover .raven-dropdown-arrow,
+    .raven-dropdown-item.active .raven-dropdown-arrow {
+        color: #F2B90D;
+        transform: translateX(3px);
+    }
+    /* Right Column - Sub-subcategories */
+    .raven-dropdown-right {
+        flex: 1;
+        padding: 24px 32px;
+        background: #fff;
+    }
+    .raven-submenu {
+        display: none;
+    }
+    .raven-submenu.active {
+        display: block;
+    }
+    .raven-submenu-title {
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #F2B90D;
+    }
+    .raven-submenu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 8px 24px;
+    }
+    .raven-submenu-link {
+        display: block;
+        padding: 8px 0;
+        color: #6b7280;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        text-decoration: none;
+        transition: color 0.15s ease;
+    }
+    .raven-submenu-link:hover {
+        color: #F2B90D;
+    }
+    .raven-submenu-viewall {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 16px;
+        padding: 8px 16px;
+        background: #111827;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background 0.15s ease;
+    }
+    .raven-submenu-viewall:hover {
+        background: #F2B90D;
+        color: #111827;
+    }
+    .raven-submenu-empty {
+        color: #9ca3af;
+        font-size: 14px;
+        font-style: italic;
+        padding: 16px 0;
+    }
+    /* No children - show empty state */
+    .raven-dropdown-right-empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: #9ca3af;
+        font-size: 14px;
+    }
+
+    /* Category Preview Card (for subcategories without grandchildren) */
+    .raven-category-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 32px;
+        min-height: 250px;
+    }
+    .raven-preview-icon {
+        margin-bottom: 16px;
+        opacity: 0.6;
+    }
+    .raven-preview-title {
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 8px;
+    }
+    .raven-preview-desc {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        color: #6b7280;
+        margin-bottom: 24px;
+        max-width: 300px;
+    }
+    .raven-preview-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #facc15, #f59e0b);
+        color: #111827;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    .raven-preview-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+    }
+
+    /* ============================================ */
+    /* SIMPLE DROPDOWN (for categories w/o grandchildren) */
+    /* ============================================ */
+    .raven-simple-dropdown {
+        position: fixed;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        min-width: 280px;
+        max-width: 400px;
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    .raven-simple-dropdown-inner {
+        padding: 12px 0;
+    }
+    .raven-simple-dropdown-item {
+        display: block;
+        padding: 12px 24px;
+        color: #374151;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
         text-decoration: none;
         transition: all 0.15s ease;
     }
-    .raven-mega-menu a:hover {
+    .raven-simple-dropdown-item:hover {
         background: #f9fafb;
-        color: #111827;
-    }
-    .raven-mega-menu .menu-header {
-        padding: 8px 20px 12px;
-        font-size: 11px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: #9ca3af;
-        border-bottom: 1px solid #f3f4f6;
-        margin-bottom: 8px;
+        color: #F2B90D;
     }
 
     /* Live Search Autocomplete Styles */
@@ -1386,9 +1590,73 @@
         initSnigelColorSave();
     }
 })();
+
+// ============================================
+// THORON-STYLE DROPDOWN HOVER BEHAVIOR
+// ============================================
+(function() {
+    function initDropdownHover() {
+        // Get all dropdown items in left column
+        var dropdownItems = document.querySelectorAll('.raven-dropdown-item');
+
+        dropdownItems.forEach(function(item) {
+            item.addEventListener('mouseenter', function() {
+                // Get the parent dropdown
+                var dropdown = this.closest('.raven-mega-menu');
+                if (!dropdown) return;
+
+                // Get target submenu ID
+                var targetId = this.getAttribute('data-submenu-target');
+                if (!targetId) return;
+
+                // Remove active class from all items in this dropdown
+                dropdown.querySelectorAll('.raven-dropdown-item').forEach(function(el) {
+                    el.classList.remove('active');
+                });
+
+                // Add active class to hovered item
+                this.classList.add('active');
+
+                // Hide all submenus in this dropdown
+                dropdown.querySelectorAll('.raven-submenu').forEach(function(submenu) {
+                    submenu.classList.remove('active');
+                });
+
+                // Show the target submenu
+                var targetSubmenu = dropdown.querySelector('[data-submenu-id="' + targetId + '"]');
+                if (targetSubmenu) {
+                    targetSubmenu.classList.add('active');
+                }
+            });
+        });
+
+        // Position dropdown below header on hover
+        var navItems = document.querySelectorAll('.raven-nav-item');
+        navItems.forEach(function(navItem) {
+            var megaMenu = navItem.querySelector('.raven-mega-menu');
+            if (megaMenu) {
+                navItem.addEventListener('mouseenter', function() {
+                    // Get header height to position dropdown
+                    var header = document.querySelector('.raven-header');
+                    if (header) {
+                        var headerRect = header.getBoundingClientRect();
+                        megaMenu.style.top = headerRect.bottom + 'px';
+                    }
+                });
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDropdownHover);
+    } else {
+        initDropdownHover();
+    }
+
+})();
 </script>
 
-<header class="raven-header" style="width: 100%;">
+<header class="raven-header" style="width: 100%; position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #fff;">
     {# Mobile Header #}
     <div class="raven-header-mobile md:hidden bg-white relative z-50" style="width: 100%;">
         <div style="width: 100%; padding: 12px 24px;">
@@ -1594,7 +1862,7 @@
                 </div>
             </div>
 
-            {# Navigation Row - Dynamic Categories from Shopware #}
+            {# Navigation Rows - Dynamic Categories from Shopware - 2 ROW LAYOUT #}
             {# SEO URL mapping for main categories - all lowercase for consistency #}
             {% set mainCategorySeoUrls = {
                 '019aee0f487c79a1a8814377c46e0c10': '/alle-produkte/',
@@ -1603,188 +1871,118 @@
                 '019adeff65f97225927586968691dc02': '/zielhilfen-optik-zubehoer/',
                 '2f40311624aea6de289c770f0bfd0ff9': '/munition/',
                 '604131c6ae1646c98623da4fe61a739b': '/zubehoer/',
-                '019b0857613474e6a799cfa07d143c76': '/ausruestung/'
+                '019b0857613474e6a799cfa07d143c76': '/ausruestung/',
+                'e0da99a4d0062c3a6b619ccc6fb57df4': '/dienstleistungen/'
             } %}
-            <div class="pb-3" style="margin-top: 20px;">
-                <nav id="raven-main-nav" class="flex items-center justify-center" style="gap: 40px;">
+            {# All categories in single row #}
+            {% set row1Categories = ['Alle Produkte', 'Waffen', 'Munition', 'Zubehör', 'Ausrüstung', 'Raven Caliber Kit', 'Zielhilfen, Optik & Zubehör', 'Dienstleistungen'] %}
+            {% set row2Categories = [] %}
+            {# Get current path for active state #}
+            {% set currentPath = app.request.pathInfo %}
+            <div class="pb-3" style="margin-top: 16px;">
+                <nav id="raven-main-nav" class="raven-nav-wrapper" aria-label="Hauptnavigation">
                     {% if header.navigation.tree is defined and header.navigation.tree|length > 0 %}
-                        {% for treeItem in header.navigation.tree %}
-                            {% set category = treeItem.category %}
-                            {% set hasChildren = treeItem.children|length > 0 %}
-                            {% set categoryUrl = mainCategorySeoUrls[category.id] ?? seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
-                            {% set isNearRightEdge = loop.index >= (header.navigation.tree|length - 1) %}
-                            {% set isRightAlignedCategory = category.translated.name in ['Ausrüstung', 'Zubehör'] %}
-                            {% set isNearLeftEdge = loop.index <= 2 %}
-                            {% set isLeftAlignedCategory = category.translated.name in ['Waffen', 'Raven Weapons'] %}
-                            <div class="raven-nav-item{% if (isNearRightEdge and hasChildren) or isRightAlignedCategory %} dropdown-align-right{% elseif (isNearLeftEdge and hasChildren) or isLeftAlignedCategory %} dropdown-align-left{% endif %}">
-                                <a href="{{ categoryUrl }}"
-                                   class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                                    {{ category.translated.name }}
-                                    {% if hasChildren %}
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;">
-                                        <polyline points="6 9 12 15 18 9"/>
-                                    </svg>
+                        {# ROW 1: Main Categories #}
+                        <div class="raven-nav-row raven-nav-row-1">
+                            {% for treeItem in header.navigation.tree %}
+                                {% set category = treeItem.category %}
+                                {% if category.translated.name in row1Categories %}
+                                    {% set hasChildren = treeItem.children|length > 0 %}
+                                    {% set categoryUrl = mainCategorySeoUrls[category.id] ?? seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
+                                    {% set isActive = currentPath starts with categoryUrl or (categoryUrl != '/' and currentPath == categoryUrl) %}
+                                    {% set isRightAlignedCategory = category.translated.name in ['Ausrüstung', 'Zubehör', 'Dienstleistungen'] %}
+                                    {% set isLeftAlignedCategory = category.translated.name in ['Waffen', 'Alle Produkte'] %}
+                                    {% set displayName = category.translated.name %}
+                                    {% if displayName == 'Zielhilfen, Optik & Zubehör' %}
+                                        {% set displayName = 'Optik & Zubehör' %}
                                     {% endif %}
-                                </a>
-                                {% if hasChildren %}
-                                {# Check if any children have grandchildren OR products for layout decision #}
-                                {% set hasAnyGrandChildren = false %}
-                                {% for childItem in treeItem.children %}
-                                    {% if childItem.children|length > 0 %}
-                                        {% set hasAnyGrandChildren = true %}
-                                    {% else %}
-                                        {# Check for products in categoryProducts extension #}
-                                        {% set catIdHex = childItem.category.id|lower %}
-                                        {% set catProds = page.extensions.categoryProducts.vars[catIdHex]|default(header.extensions.categoryProducts.vars[catIdHex]|default(null)) %}
-                                        {% if catProds is not null and catProds|length > 0 %}
-                                            {% set hasAnyGrandChildren = true %}
-                                        {% endif %}
-                                    {% endif %}
-                                {% endfor %}
-
-                                {% if hasAnyGrandChildren %}
-                                {# Multi-column GRID layout for categories with grandchildren/products #}
-                                {% set childCount = treeItem.children|length %}
-                                {# Smart column calculation: 2-4 items = same columns, 5-6 items = 3 cols, 7+ = 4 cols #}
-                                {% if childCount <= 4 %}
-                                    {% set colCount = childCount %}
-                                {% elseif childCount <= 6 %}
-                                    {% set colCount = 3 %}
-                                {% else %}
-                                    {% set colCount = 4 %}
-                                {% endif %}
-                                {% set gridWidth = colCount == 2 ? '450px' : (colCount == 3 ? '650px' : '900px') %}
-                                <div class="raven-mega-menu" style="min-width: {{ gridWidth }}; padding: 20px 24px;">
-                                    <div style="display: grid; grid-template-columns: repeat({{ colCount }}, 1fr); gap: 24px;">
-                                    {% for childItem in treeItem.children %}
-                                        {% set childCat = childItem.category %}
-                                        {% set hasGrandChildren = childItem.children|length > 0 %}
-                                        {% set categoryIdHex = childCat.id|lower %}
-                                        {% set categoryProductsExt = page.extensions.categoryProducts.vars[categoryIdHex]|default(header.extensions.categoryProducts.vars[categoryIdHex]|default(null)) %}
-                                        {% set hasProducts = categoryProductsExt is not null and categoryProductsExt|length > 0 %}
-                                        <div style="min-width: 0;">
-                                            {# Sturmgewehre links to parent Raven Weapons page #}
-                                            {% set childUrl = childCat.translated.name == 'Sturmgewehre' ? seoUrl('frontend.navigation.page', { navigationId: category.id }) : seoUrl('frontend.navigation.page', { navigationId: childCat.id }) %}
-                                            <a href="{{ childUrl }}" style="display: flex; align-items: center; gap: 8px; padding: 8px 0 8px 0; color: #c9a227; font-size: 14px; text-decoration: none; font-weight: 600; border-bottom: 1px solid #f3f4f6; margin-bottom: 8px;">
-                                                {{ childCat.translated.name }}
-                                            </a>
-                                            {% if hasGrandChildren %}
-                                                {% set totalGrandChildren = childItem.children|length %}
-                                                {% for grandChildItem in childItem.children|slice(0, 5) %}
-                                                    {% set grandChildCat = grandChildItem.category %}
-                                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: grandChildCat.id }) }}" style="display: flex; align-items: center; gap: 6px; padding: 5px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                                        <span style="color: #c9a227;">↳</span>
-                                                        {{ grandChildCat.translated.name }}
-                                                    </a>
-                                                {% endfor %}
-                                                {% if totalGrandChildren > 5 %}
-                                                    <a href="{{ childUrl }}" style="display: flex; align-items: center; gap: 6px; padding: 6px 0; color: #c9a227; font-size: 12px; text-decoration: none; font-weight: 500;">
-                                                        → Alle anzeigen ({{ totalGrandChildren }})
-                                                    </a>
-                                                {% endif %}
-                                            {% elseif hasProducts %}
-                                                {# Show max 5 products for categories without subcategories #}
-                                                {% set totalProducts = categoryProductsExt|length %}
-                                                {% for product in categoryProductsExt|slice(0, 5) %}
-                                                    <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" style="display: flex; align-items: center; gap: 6px; padding: 5px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                                        <span style="color: #c9a227;">↳</span>
-                                                        {{ product.translated.name }}
-                                                    </a>
-                                                {% endfor %}
-                                                {% if totalProducts > 5 %}
-                                                    <a href="{{ childUrl }}" style="display: flex; align-items: center; gap: 6px; padding: 6px 0; color: #c9a227; font-size: 12px; text-decoration: none; font-weight: 500;">
-                                                        → Alle anzeigen ({{ totalProducts }})
-                                                    </a>
-                                                {% endif %}
+                                    <div class="raven-nav-item{% if isRightAlignedCategory %} dropdown-align-right{% elseif isLeftAlignedCategory %} dropdown-align-left{% endif %}">
+                                        <a href="{{ categoryUrl }}"
+                                           class="raven-nav-link inline-flex items-center gap-1.5 font-medium text-gray-600 hover:text-gray-900 py-2{% if isActive %} is-active{% endif %}" style="font-size: 16px;"
+                                           {% if isActive %}aria-current="page"{% endif %}>
+                                            {{ displayName }}
+                                            {% if hasChildren %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; opacity: 0.5;">
+                                                <polyline points="6 9 12 15 18 9"/>
+                                            </svg>
                                             {% endif %}
-                                        </div>
-                                    {% endfor %}
-                                    </div>
-                                </div>
-                                {% else %}
-                                {# Simple list layout for categories without grandchildren (like Zielhilfen) #}
-                                <div class="raven-mega-menu" style="min-width: 280px; padding: 16px 20px;">
-                                    {% for childItem in treeItem.children %}
-                                        {% set childCat = childItem.category %}
-                                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: childCat.id }) }}" style="display: flex; align-items: center; gap: 8px; padding: 6px 0; color: #6b7280; font-size: 13px; text-decoration: none;">
-                                            <span style="color: #c9a227;">↳</span>
-                                            {{ childCat.translated.name }}
                                         </a>
-                                    {% endfor %}
-                                </div>
-                                {% endif %}
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        {# Dynamic Navigation - loads from database via navCategories #}
-                        {% set categories = page.extensions.navCategories|default(page.header.extensions.navCategories|default([])) %}
-
-                        {% for mainCat in categories %}
-                            {% set hasChildren = mainCat.children is defined and mainCat.children|length > 0 %}
-
-                            {# Special handling for Ausrüstung mega-menu (3-column grid layout) #}
-                            {% if mainCat.translated.name == 'Ausrüstung' and hasChildren %}
-                                <div class="raven-nav-item dropdown-align-right">
-                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: mainCat.id }) }}"
-                                       class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                                        {{ mainCat.translated.name }}
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
-                                    </a>
-                                    <div class="raven-mega-menu" style="min-width: 800px; padding: 24px;">
-                                        <div class="menu-header" style="margin-bottom: 16px; font-size: 15px; font-weight: 600; color: #1f2937;">Taktische Ausrüstung</div>
-                                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-                                            {% for subCat in mainCat.children|filter(c => c.active and c.visible) %}
-                                            <div>
-                                                <a href="{{ seoUrl('frontend.navigation.page', { navigationId: subCat.id }) }}" style="display: block; font-weight: 600; font-size: 13px; color: #374151; margin-bottom: 8px; text-decoration: none;">
-                                                    {{ subCat.translated.name }}
-                                                </a>
-                                                {% if subCat.children is defined and subCat.children|length > 0 %}
-                                                    {% for subSubCat in subCat.children|filter(c => c.active and c.visible) %}
-                                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: subSubCat.id }) }}" style="display: block; padding: 4px 0; color: #6b7280; font-size: 12px; text-decoration: none;">
-                                                        {{ subSubCat.translated.name }}
-                                                    </a>
-                                                    {% endfor %}
-                                                {% endif %}
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            {% else %}
-                                {# Standard navigation item (with or without dropdown) #}
-                                <div class="raven-nav-item{% if hasChildren %} dropdown-align-left{% endif %}">
-                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: mainCat.id }) }}"
-                                       class="raven-nav-link inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 py-2">
-                                        {{ mainCat.translated.name }}
                                         {% if hasChildren %}
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                                        {% include '@RavenTheme/storefront/layout/header/nav-dropdown.html.twig' with {treeItem: treeItem, category: category} %}
                                         {% endif %}
-                                    </a>
-
-                                    {% if hasChildren %}
-                                    <div class="raven-mega-menu">
-                                        <div class="menu-header">{{ mainCat.translated.name }}</div>
-
-                                        {% for subCat in mainCat.children|filter(c => c.active and c.visible) %}
-                                            <a href="{{ seoUrl('frontend.navigation.page', { navigationId: subCat.id }) }}">
-                                                <span style="color: #9ca3af;">↳</span> {{ subCat.translated.name }}
-                                            </a>
-
-                                            {# Level 3 children #}
-                                            {% if subCat.children is defined and subCat.children|length > 0 %}
-                                                {% for subSubCat in subCat.children|filter(c => c.active and c.visible) %}
-                                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: subSubCat.id }) }}" style="padding-left: 2rem; font-size: 12px;">
-                                                        <span style="color: #d1d5db;">↳</span> {{ subSubCat.translated.name }}
-                                                    </a>
-                                                {% endfor %}
-                                            {% endif %}
-                                        {% endfor %}
                                     </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {# ROW 2: Specialty Items #}
+                        <div class="raven-nav-row raven-nav-row-2">
+                            {% for treeItem in header.navigation.tree %}
+                                {% set category = treeItem.category %}
+                                {% if category.translated.name in row2Categories %}
+                                    {% set hasChildren = treeItem.children|length > 0 %}
+                                    {% set categoryUrl = mainCategorySeoUrls[category.id] ?? seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
+                                    {% set isActive = currentPath starts with categoryUrl or (categoryUrl != '/' and currentPath == categoryUrl) %}
+                                    <div class="raven-nav-item">
+                                        <a href="{{ categoryUrl }}"
+                                           class="raven-nav-link inline-flex items-center gap-1.5 font-medium text-gray-600 hover:text-gray-900 py-2{% if isActive %} is-active{% endif %}" style="font-size: 16px;"
+                                           {% if isActive %}aria-current="page"{% endif %}>
+                                            {{ category.translated.name }}
+                                            {% if hasChildren %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; opacity: 0.5;">
+                                                <polyline points="6 9 12 15 18 9"/>
+                                            </svg>
+                                            {% endif %}
+                                        </a>
+                                        {% if hasChildren %}
+                                        {% include '@RavenTheme/storefront/layout/header/nav-dropdown.html.twig' with {treeItem: treeItem, category: category} %}
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {# Fallback: Dynamic Navigation - loads from database via navCategories #}
+                        {% set categories = page.extensions.navCategories|default(page.header.extensions.navCategories|default([])) %}
+                        <div class="raven-nav-row raven-nav-row-1">
+                            {% for mainCat in categories %}
+                                {% if mainCat.translated.name in row1Categories %}
+                                    {% set hasChildren = mainCat.children is defined and mainCat.children|length > 0 %}
+                                    {% set categoryUrl = mainCategorySeoUrls[mainCat.id] ?? seoUrl('frontend.navigation.page', { navigationId: mainCat.id }) %}
+                                    {% set isActive = currentPath starts with categoryUrl %}
+                                    {% set displayName = mainCat.translated.name %}
+                                    {% if displayName == 'Zielhilfen, Optik & Zubehör' %}
+                                        {% set displayName = 'Optik & Zubehör' %}
                                     {% endif %}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                                    <div class="raven-nav-item">
+                                        <a href="{{ categoryUrl }}"
+                                           class="raven-nav-link inline-flex items-center gap-1.5 font-medium text-gray-600 hover:text-gray-900 py-2{% if isActive %} is-active{% endif %}" style="font-size: 16px;">
+                                            {{ displayName }}
+                                            {% if hasChildren %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="raven-nav-row raven-nav-row-2">
+                            {% for mainCat in categories %}
+                                {% if mainCat.translated.name in row2Categories %}
+                                    {% set hasChildren = mainCat.children is defined and mainCat.children|length > 0 %}
+                                    {% set categoryUrl = mainCategorySeoUrls[mainCat.id] ?? seoUrl('frontend.navigation.page', { navigationId: mainCat.id }) %}
+                                    {% set isActive = currentPath starts with categoryUrl %}
+                                    <div class="raven-nav-item">
+                                        <a href="{{ categoryUrl }}"
+                                           class="raven-nav-link inline-flex items-center gap-1.5 font-medium text-gray-600 hover:text-gray-900 py-2{% if isActive %} is-active{% endif %}" style="font-size: 16px;">
+                                            {{ mainCat.translated.name }}
+                                            {% if hasChildren %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; opacity: 0.5;"><polyline points="6 9 12 15 18 9"/></svg>
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     {% endif %}
                 </nav>
             </div>
@@ -1811,6 +2009,305 @@
         </div>
     </div>
 </header>
+
+{# ============================================================ #}
+{# MOBILE NAVIGATION MENU - Full Screen with Accordion Submenus #}
+{# ============================================================ #}
+<div id="raven-mobile-menu" class="raven-mobile-menu" aria-hidden="true">
+    {# Backdrop #}
+    <div class="raven-mobile-menu-backdrop" data-mobile-menu-close></div>
+
+    {# Menu Panel #}
+    <div class="raven-mobile-menu-panel">
+        {# Menu Header #}
+        <div class="raven-mobile-menu-header">
+            <span class="raven-mobile-menu-title">Menu</span>
+            <button type="button" class="raven-mobile-menu-close" data-mobile-menu-close aria-label="Menu schliessen">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        {# Menu Content (Scrollable) #}
+        <div class="raven-mobile-menu-content">
+            {# Navigation Items #}
+            <nav class="raven-mobile-menu-nav">
+                {# Home Link #}
+                <a href="{{ path('frontend.home.page') }}" class="raven-mobile-menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>Startseite</span>
+                </a>
+
+                {# Dynamic Categories with Accordion #}
+                {% if header.navigation.tree is defined and header.navigation.tree|length > 0 %}
+                    {% for treeItem in header.navigation.tree %}
+                        {% set category = treeItem.category %}
+                        {% set hasChildren = treeItem.children|length > 0 %}
+                        {% set categoryUrl = seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
+
+                        {% if hasChildren %}
+                            {# Category with Accordion #}
+                            <div class="raven-mobile-menu-accordion">
+                                <button type="button" class="raven-mobile-menu-item raven-mobile-accordion-toggle" aria-expanded="false">
+                                    <span>{{ category.translated.name }}</span>
+                                    <svg class="raven-accordion-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                                <div class="raven-mobile-accordion-content">
+                                    {# View All Link #}
+                                    <a href="{{ categoryUrl }}" class="raven-mobile-submenu-item raven-mobile-submenu-viewall">
+                                        <span>Alle {{ category.translated.name }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </a>
+                                    {# Subcategories #}
+                                    {% for childItem in treeItem.children %}
+                                        {% set childCat = childItem.category %}
+                                        {% set hasGrandChildren = childItem.children|length > 0 %}
+
+                                        {% if hasGrandChildren %}
+                                            {# Nested Accordion for Level 3 #}
+                                            <div class="raven-mobile-menu-accordion raven-mobile-accordion-nested">
+                                                <button type="button" class="raven-mobile-submenu-item raven-mobile-accordion-toggle" aria-expanded="false">
+                                                    <span>{{ childCat.translated.name }}</span>
+                                                    <svg class="raven-accordion-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                                    </svg>
+                                                </button>
+                                                <div class="raven-mobile-accordion-content">
+                                                    <a href="{{ seoUrl('frontend.navigation.page', { navigationId: childCat.id }) }}" class="raven-mobile-subsubmenu-item raven-mobile-submenu-viewall">
+                                                        Alle {{ childCat.translated.name }}
+                                                    </a>
+                                                    {% for grandChildItem in childItem.children %}
+                                                        {% set grandChildCat = grandChildItem.category %}
+                                                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: grandChildCat.id }) }}" class="raven-mobile-subsubmenu-item">
+                                                            {{ grandChildCat.translated.name }}
+                                                        </a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <a href="{{ seoUrl('frontend.navigation.page', { navigationId: childCat.id }) }}" class="raven-mobile-submenu-item">
+                                                {{ childCat.translated.name }}
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% else %}
+                            {# Simple Category Link #}
+                            <a href="{{ categoryUrl }}" class="raven-mobile-menu-item">
+                                <span>{{ category.translated.name }}</span>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </nav>
+
+            {# Footer Section #}
+            <div class="raven-mobile-menu-footer">
+                {# Account Links #}
+                <div class="raven-mobile-menu-footer-section">
+                    <div class="raven-mobile-menu-footer-title">Konto</div>
+                    {% if context.customer %}
+                        <a href="{{ path('frontend.account.home.page') }}" class="raven-mobile-menu-footer-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M4 21v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"></path>
+                            </svg>
+                            <span>Mein Konto</span>
+                        </a>
+                        <a href="{{ path('frontend.account.order.page') }}" class="raven-mobile-menu-footer-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                            </svg>
+                            <span>Bestellungen</span>
+                        </a>
+                        <a href="{{ path('frontend.account.logout.page') }}" class="raven-mobile-menu-footer-link raven-mobile-menu-logout">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                            <span>Abmelden</span>
+                        </a>
+                    {% else %}
+                        <a href="{{ path('frontend.account.login.page') }}" class="raven-mobile-menu-footer-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                                <polyline points="10 17 15 12 10 7"></polyline>
+                                <line x1="15" y1="12" x2="3" y2="12"></line>
+                            </svg>
+                            <span>Anmelden</span>
+                        </a>
+                        <a href="{{ path('frontend.account.register.page') }}" class="raven-mobile-menu-footer-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="8.5" cy="7" r="4"></circle>
+                                <line x1="20" y1="8" x2="20" y2="14"></line>
+                                <line x1="23" y1="11" x2="17" y2="11"></line>
+                            </svg>
+                            <span>Registrieren</span>
+                        </a>
+                    {% endif %}
+                </div>
+
+                {# Contact Info #}
+                <div class="raven-mobile-menu-footer-section">
+                    <div class="raven-mobile-menu-footer-title">Kontakt</div>
+                    <a href="tel:+41793561986" class="raven-mobile-menu-footer-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>+41 79 356 19 86</span>
+                    </a>
+                    <a href="mailto:info@ravenweapon.ch" class="raven-mobile-menu-footer-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>info@ravenweapon.ch</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Mobile Menu JavaScript #}
+<script>
+(function() {
+    'use strict';
+
+    var menu = document.getElementById('raven-mobile-menu');
+    var body = document.body;
+    var scrollPosition = 0;
+
+    // Open menu
+    function openMobileMenu() {
+        scrollPosition = window.pageYOffset;
+        menu.classList.add('is-open');
+        menu.setAttribute('aria-hidden', 'false');
+        body.classList.add('raven-menu-open');
+        body.style.top = -scrollPosition + 'px';
+    }
+
+    // Close menu
+    function closeMobileMenu() {
+        menu.classList.remove('is-open');
+        menu.setAttribute('aria-hidden', 'true');
+        body.classList.remove('raven-menu-open');
+        body.style.top = '';
+        window.scrollTo(0, scrollPosition);
+    }
+
+    // Toggle accordion
+    function toggleAccordion(button) {
+        var accordion = button.closest('.raven-mobile-menu-accordion');
+        var content = accordion.querySelector('.raven-mobile-accordion-content');
+        var isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+        // Close other accordions at same level
+        var parent = accordion.parentElement;
+        var siblings = parent.querySelectorAll(':scope > .raven-mobile-menu-accordion');
+        siblings.forEach(function(sibling) {
+            if (sibling !== accordion) {
+                var siblingBtn = sibling.querySelector('.raven-mobile-accordion-toggle');
+                var siblingContent = sibling.querySelector('.raven-mobile-accordion-content');
+                if (siblingBtn && siblingContent) {
+                    siblingBtn.setAttribute('aria-expanded', 'false');
+                    siblingContent.style.maxHeight = null;
+                }
+            }
+        });
+
+        // Toggle current accordion
+        if (isExpanded) {
+            button.setAttribute('aria-expanded', 'false');
+            content.style.maxHeight = null;
+        } else {
+            button.setAttribute('aria-expanded', 'true');
+            content.style.maxHeight = content.scrollHeight + 'px';
+
+            // Update max-height when nested accordions expand
+            content.querySelectorAll('.raven-mobile-accordion-content').forEach(function(nested) {
+                nested.addEventListener('transitionend', function() {
+                    if (button.getAttribute('aria-expanded') === 'true') {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+        }
+    }
+
+    // Event delegation for menu toggle
+    document.addEventListener('click', function(e) {
+        // Open menu button
+        if (e.target.closest('[data-offcanvas-menu-toggle]')) {
+            e.preventDefault();
+            openMobileMenu();
+            return;
+        }
+
+        // Close menu button/backdrop
+        if (e.target.closest('[data-mobile-menu-close]')) {
+            e.preventDefault();
+            closeMobileMenu();
+            return;
+        }
+
+        // Accordion toggle
+        var accordionToggle = e.target.closest('.raven-mobile-accordion-toggle');
+        if (accordionToggle) {
+            e.preventDefault();
+            toggleAccordion(accordionToggle);
+            return;
+        }
+    }, false);
+
+    // Touch events for better mobile response
+    document.addEventListener('touchstart', function(e) {
+        if (e.target.closest('[data-offcanvas-menu-toggle]')) {
+            e.target.closest('[data-offcanvas-menu-toggle]').classList.add('is-pressed');
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+        document.querySelectorAll('.is-pressed').forEach(function(el) {
+            el.classList.remove('is-pressed');
+        });
+    }, { passive: true });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close menu when clicking a navigation link
+    menu.querySelectorAll('a:not(.raven-mobile-submenu-viewall)').forEach(function(link) {
+        link.addEventListener('click', function() {
+            // Small delay for visual feedback
+            setTimeout(closeMobileMenu, 150);
+        });
+    });
+
+    // Expose globally
+    window.ravenOpenMobileMenu = openMobileMenu;
+    window.ravenCloseMobileMenu = closeMobileMenu;
+
+    console.log('Raven Mobile Menu initialized');
+})();
+</script>
 
 {# JS breadcrumb removed - using Shopware's Twig breadcrumb styled in navigation/index.html.twig #}
 {% endblock %}

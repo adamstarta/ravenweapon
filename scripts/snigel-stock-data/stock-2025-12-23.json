@@ -1,0 +1,4872 @@
+{
+  "scrapedAt": "2025-12-23T09:46:20.228Z",
+  "totalProducts": 195,
+  "totalVariants": 367,
+  "inStock": 163,
+  "outOfStock": 13,
+  "noStockInfo": 19,
+  "products": [
+    {
+      "name": "Belt closure pack  (5) -11",
+      "slug": "belt-closure-pack-5-11",
+      "url": "https://products.snigel.se/product/belt-closure-pack-5-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "13-00110-01-000",
+          "options": {},
+          "stock": 88,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:07.357Z"
+    },
+    {
+      "name": "Featherweight stretcher -09",
+      "slug": "featherweight-stretcher-09",
+      "url": "https://products.snigel.se/product/featherweight-stretcher-09/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "54-00540B09-000",
+          "options": {},
+          "stock": 78,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:12.535Z"
+    },
+    {
+      "name": "Foldable drinking cup",
+      "slug": "foldable-drinking-cup-13",
+      "url": "https://products.snigel.se/product/foldable-drinking-cup-13/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "48-00819A20-000",
+          "options": {},
+          "stock": 217,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:16.445Z"
+    },
+    {
+      "name": "Plastic bag, ziplock A6 -09, 10 pack",
+      "slug": "plastic-bag-ziplock-a6-09-10-pack",
+      "url": "https://products.snigel.se/product/plastic-bag-ziplock-a6-09-10-pack/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "PBA6-09",
+          "options": {},
+          "stock": 794,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:21.715Z"
+    },
+    {
+      "name": "Sleeping bag cover with hood 2.0",
+      "slug": "sleeping-bag-cover-with-hood-2-0",
+      "url": "https://products.snigel.se/product/sleeping-bag-cover-with-hood-2-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "53-02494A09-000",
+          "options": {},
+          "stock": 480,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:26.306Z"
+    },
+    {
+      "name": "Light field blanket 1.0",
+      "slug": "light-field-blanket-1-0",
+      "url": "https://products.snigel.se/product/light-field-blanket-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "53-02172A09-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:30.454Z"
+    },
+    {
+      "name": "Multi-tarp 1.0",
+      "slug": "multi-tarp-1-0",
+      "url": "https://products.snigel.se/product/multi-tarp-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "51-02472A09-000",
+          "options": {},
+          "stock": 485,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:35.454Z"
+    },
+    {
+      "name": "Hypothermal bag 1.1",
+      "slug": "hypothermal-bag-1-1",
+      "url": "https://products.snigel.se/product/hypothermal-bag-1-1/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "54-02403B09-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:40.627Z"
+    },
+    {
+      "name": "A3 Commander’s aid 1.0",
+      "slug": "a3-commanders-aid-1-0",
+      "url": "https://products.snigel.se/product/a3-commanders-aid-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "52-01558A09-000",
+          "options": {},
+          "stock": 23,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:49:47.135Z"
+    },
+    {
+      "name": "A5 Field binder",
+      "slug": "a5-field-binder-07",
+      "url": "https://products.snigel.se/product/a5-field-binder-07/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "52-00506-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 185,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "52-00506-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 433,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:50:19.222Z"
+    },
+    {
+      "name": "Police Notebook cover-10",
+      "slug": "police-notebook-cover-10",
+      "url": "https://products.snigel.se/product/police-notebook-cover-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "52-00490-01-000",
+          "options": {},
+          "stock": 385,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:50:26.122Z"
+    },
+    {
+      "name": "Medium Notebook cover",
+      "slug": "medium-notebook-cover-07",
+      "url": "https://products.snigel.se/product/medium-notebook-cover-07/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "52-00489B01-012",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 654,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "52-00489B09-012",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 268,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:50:33.563Z"
+    },
+    {
+      "name": "Small Notebook cover",
+      "slug": "small-notebook-cover-07",
+      "url": "https://products.snigel.se/product/small-notebook-cover-07/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "52-00489B01-011",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 280,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "52-00489B09-011",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 1189,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:50:39.239Z"
+    },
+    {
+      "name": "Memo board -14",
+      "slug": "memo-board-14",
+      "url": "https://products.snigel.se/product/memo-board-14/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "52-00411-09-000",
+          "options": {},
+          "stock": 926,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:50:44.036Z"
+    },
+    {
+      "name": "Badge holder -16",
+      "slug": "badge-holder-16",
+      "url": "https://products.snigel.se/product/badge-holder-16/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "52-01347-09-000",
+          "options": {},
+          "stock": 995,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:50:50.407Z"
+    },
+    {
+      "name": "Wallet",
+      "slug": "wallet-10",
+      "url": "https://products.snigel.se/product/wallet-10/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "52-00563-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 315,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "52-00563-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 94,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:50:57.003Z"
+    },
+    {
+      "name": "Mini wallet",
+      "slug": "mini-wallet-15",
+      "url": "https://products.snigel.se/product/mini-wallet-15/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "52-00090-01-000",
+          "options": {},
+          "stock": 882,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:51:00.961Z"
+    },
+    {
+      "name": "Spotting Scope cover",
+      "slug": "spotting-scope-cover",
+      "url": "https://products.snigel.se/product/spotting-scope-cover/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "40-01416-09-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:51:04.974Z"
+    },
+    {
+      "name": "XL Snipers support bag -03",
+      "slug": "xl-snipers-support-bag-03",
+      "url": "https://products.snigel.se/product/xl-snipers-support-bag-03/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "33-00652-09-000",
+          "options": {},
+          "stock": 8,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:51:09.263Z"
+    },
+    {
+      "name": "Low profile 3L hydration bladder",
+      "slug": "source-low-profile-3l-hydration-bladder",
+      "url": "https://products.snigel.se/product/source-low-profile-3l-hydration-bladder/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "46-00585-09-000",
+          "options": {},
+          "stock": 3,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:51:13.303Z"
+    },
+    {
+      "name": "1L Kangaroo hydration bladder",
+      "slug": "1l-kangaroo-hydration-bladder",
+      "url": "https://products.snigel.se/product/1l-kangaroo-hydration-bladder/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "46-00536-05-000",
+          "options": {},
+          "stock": 35,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:55:41.820Z"
+    },
+    {
+      "name": "2,5L hydration cover -16",
+      "slug": "25l-hydration-cover-16",
+      "url": "https://products.snigel.se/product/25l-hydration-cover-16/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "44-01305-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:55:47.037Z"
+    },
+    {
+      "name": "Restraint sling -06",
+      "slug": "restraint-sling-06",
+      "url": "https://products.snigel.se/product/restraint-sling-06/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "34-01199-01-000",
+          "options": {},
+          "stock": 157,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:55:50.982Z"
+    },
+    {
+      "name": "Ribs Chest rig 1.0",
+      "slug": "carry-cord-10",
+      "url": "https://products.snigel.se/product/carry-cord-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "16-01868A09-000",
+          "options": {},
+          "stock": 26,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:55:58.805Z"
+    },
+    {
+      "name": "Pancake holster -16",
+      "slug": "pancake-holster-16",
+      "url": "https://products.snigel.se/product/pancake-holster-16/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "35-00809-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 58,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "35-00809-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 35,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:56:05.747Z"
+    },
+    {
+      "name": "Crotch pistol holster 2.0",
+      "slug": "crotch-pistol-holster-11",
+      "url": "https://products.snigel.se/product/crotch-pistol-holster-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "35-00605B01-000",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:56:11.948Z"
+    },
+    {
+      "name": "Shotgun holder 1.0",
+      "slug": "shotgun-holder-1-0",
+      "url": "https://products.snigel.se/product/shotgun-holder-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "36-01076-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:56:18.686Z"
+    },
+    {
+      "name": "Weapon attachment, side -00",
+      "slug": "weapon-attachment-side-00",
+      "url": "https://products.snigel.se/product/weapon-attachment-side-00/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "36-00579-01-000",
+          "options": {},
+          "stock": 12,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:56:24.811Z"
+    },
+    {
+      "name": "Back holder 2.0",
+      "slug": "weapon-attachment-back-02",
+      "url": "https://products.snigel.se/product/weapon-attachment-back-02/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "36-00631A01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 89,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "36-00631A09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 11,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:56:34.340Z"
+    },
+    {
+      "name": "Weapon sling system 1.0",
+      "slug": "weapon-sling-system-1-0",
+      "url": "https://products.snigel.se/product/weapon-sling-system-1-0/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "34-01586A01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 51,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "34-01586A09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 142,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "34-01586A56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 9,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:59:35.330Z"
+    },
+    {
+      "name": "Rifle sling w attachment -09",
+      "slug": "rifle-sling-w-attachment-09",
+      "url": "https://products.snigel.se/product/rifle-sling-w-attachment-09/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "34-00580-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 80,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:59:41.523Z"
+    },
+    {
+      "name": "Weapon hook -10",
+      "slug": "weapon-hook-10",
+      "url": "https://products.snigel.se/product/weapon-hook-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "WH-10B",
+          "options": {},
+          "stock": 8075,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:59:46.737Z"
+    },
+    {
+      "name": "Leg strap -11",
+      "slug": "leg-strap-11",
+      "url": "https://products.snigel.se/product/leg-strap-11/",
+      "variantCount": 5,
+      "variants": [
+        {
+          "sku": "26-00515-01-010",
+          "options": {
+            "sizes": "XSmall"
+          },
+          "stock": 163,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "26-00515-01-011",
+          "options": {
+            "sizes": "Small"
+          },
+          "stock": 288,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "26-00515-01-012",
+          "options": {
+            "sizes": "Medium"
+          },
+          "stock": 585,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "26-00515-01-013",
+          "options": {
+            "sizes": "Large"
+          },
+          "stock": 31,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "26-00515-01-014",
+          "options": {
+            "sizes": "XLarge"
+          },
+          "stock": 67,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:59:54.861Z"
+    },
+    {
+      "name": "Sniper patch, Small -12",
+      "slug": "sniper-patch-small-12",
+      "url": "https://products.snigel.se/product/sniper-patch-small-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00186-09-00",
+          "options": {},
+          "stock": 93,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T08:59:59.079Z"
+    },
+    {
+      "name": "Förhandlar patch -12",
+      "slug": "forhandlar-patch-12",
+      "url": "https://products.snigel.se/product/forhandlar-patch-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00190-09-00",
+          "options": {},
+          "stock": 164,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:00:02.781Z"
+    },
+    {
+      "name": "Tekniker patch, small -12",
+      "slug": "tekniker-patch-small-12",
+      "url": "https://products.snigel.se/product/tekniker-patch-small-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00182-09-00",
+          "options": {},
+          "stock": 90,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:00:06.727Z"
+    },
+    {
+      "name": "Instructor patch, Small -12",
+      "slug": "instructor-patch-small-12",
+      "url": "https://products.snigel.se/product/instructor-patch-small-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00866-09-00",
+          "options": {},
+          "stock": 358,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:00:10.922Z"
+    },
+    {
+      "name": "Small instruktors patch -11",
+      "slug": "litet-instrukt%c2%9arsm%c2%8arke-11",
+      "url": "https://products.snigel.se/product/litet-instrukt%c2%9arsm%c2%8arke-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00181-09-00",
+          "options": {},
+          "stock": 10,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:00:18.020Z"
+    },
+    {
+      "name": "Police-Swe patch -12",
+      "slug": "police-swe-patch-12",
+      "url": "https://products.snigel.se/product/police-swe-patch-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00240-09-00",
+          "options": {},
+          "stock": 63,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:04:51.000Z"
+    },
+    {
+      "name": "Polis patch, Large -11",
+      "slug": "polis-patch-large-11",
+      "url": "https://products.snigel.se/product/polis-patch-large-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00185-09-00",
+          "options": {},
+          "stock": 178,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:04:56.819Z"
+    },
+    {
+      "name": "Polis patch, Small -11",
+      "slug": "polis-patch-small-11",
+      "url": "https://products.snigel.se/product/polis-patch-small-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00191-09-00",
+          "options": {},
+          "stock": 152,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:05:02.939Z"
+    },
+    {
+      "name": "Medic patch, small -16",
+      "slug": "medic-patch-small-16",
+      "url": "https://products.snigel.se/product/medic-patch-small-16/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-01422-09-000",
+          "options": {},
+          "stock": 291,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:05:09.021Z"
+    },
+    {
+      "name": "Medic patch w Velcro",
+      "slug": "medic-patch-w-velcro",
+      "url": "https://products.snigel.se/product/medic-patch-w-velcro/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "30-00888-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 1166,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "30-00888-17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 530,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:05:16.226Z"
+    },
+    {
+      "name": "Cross patch, Small -12",
+      "slug": "cross-patch-small-12",
+      "url": "https://products.snigel.se/product/cross-patch-small-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00323-09-00",
+          "options": {},
+          "stock": 937,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:05:21.892Z"
+    },
+    {
+      "name": "Fin patch, Small -12",
+      "slug": "fin-patch-small-12",
+      "url": "https://products.snigel.se/product/fin-patch-small-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00217-09-00",
+          "options": {},
+          "stock": 117,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:05:28.214Z"
+    },
+    {
+      "name": "Blue and yellow patch -16",
+      "slug": "fin-patch-small-w-velcro-12",
+      "url": "https://products.snigel.se/product/fin-patch-small-w-velcro-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-01301-27-000",
+          "options": {},
+          "stock": 248,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:05:34.141Z"
+    },
+    {
+      "name": "Swedish flag -16",
+      "slug": "swedish-flag-16",
+      "url": "https://products.snigel.se/product/swedish-flag-16/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-01423-14-000",
+          "options": {},
+          "stock": 338,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:05:40.168Z"
+    },
+    {
+      "name": "Swe patch, Small -12",
+      "slug": "swe-patch-small-12",
+      "url": "https://products.snigel.se/product/swe-patch-small-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00189-01-00",
+          "options": {},
+          "stock": 93,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:05:48.602Z"
+    },
+    {
+      "name": "Dog patch -12",
+      "slug": "dog-patch-12",
+      "url": "https://products.snigel.se/product/dog-patch-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00187-09-00",
+          "options": {},
+          "stock": 194,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:09:19.620Z"
+    },
+    {
+      "name": "K9 patch, Small -12",
+      "slug": "k9-patch-small-12",
+      "url": "https://products.snigel.se/product/k9-patch-small-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00196-09-00",
+          "options": {},
+          "stock": 77,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:09:25.809Z"
+    },
+    {
+      "name": "HUNDFÖRARE, Dog handler patch, small",
+      "slug": "litet-hundforarmarke-11",
+      "url": "https://products.snigel.se/product/litet-hundforarmarke-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00324-09-00",
+          "options": {},
+          "stock": 51,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:09:32.197Z"
+    },
+    {
+      "name": "Small blank patch-13",
+      "slug": "small-blank-patch-13",
+      "url": "https://products.snigel.se/product/small-blank-patch-13/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00658-09-000",
+          "options": {},
+          "stock": 633,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:09:37.509Z"
+    },
+    {
+      "name": "SNIGEL patch w Velcro",
+      "slug": "snigel-patch-w-velcro",
+      "url": "https://products.snigel.se/product/snigel-patch-w-velcro/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-01970A09-000",
+          "options": {},
+          "stock": 1710,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:09:43.845Z"
+    },
+    {
+      "name": "Admin case",
+      "slug": "admin-case-14",
+      "url": "https://products.snigel.se/product/admin-case-14/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "52-00140B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 87,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "52-00140B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:09:53.142Z"
+    },
+    {
+      "name": "Gas mask bag -11",
+      "slug": "gas-mask-bag-11",
+      "url": "https://products.snigel.se/product/gas-mask-bag-11/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "23-00571-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 82,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "23-00571-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 51,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:10:03.660Z"
+    },
+    {
+      "name": "Medium Schwung bag 1.1",
+      "slug": "medium-schwung-bag-17",
+      "url": "https://products.snigel.se/product/medium-schwung-bag-17/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "28-00073B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 116,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "28-00073B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 114,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:10:14.301Z"
+    },
+    {
+      "name": "Rope bag -05",
+      "slug": "rope-bag-05",
+      "url": "https://products.snigel.se/product/rope-bag-05/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "ROBA-05B",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "ROBA-05",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:10:22.444Z"
+    },
+    {
+      "name": "Carrier pouch -16",
+      "slug": "carrier-pouch-16",
+      "url": "https://products.snigel.se/product/carrier-pouch-16/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "23-01165-09-000",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:10:30.576Z"
+    },
+    {
+      "name": "3L Multipurpose bag -15",
+      "slug": "3l-multipurpose-bag-15",
+      "url": "https://products.snigel.se/product/3l-multipurpose-bag-15/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "28-00100-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 617,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "28-00100-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 195,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:12:34.715Z"
+    },
+    {
+      "name": "6L Funny pack",
+      "slug": "6l-funny-pack-18",
+      "url": "https://products.snigel.se/product/6l-funny-pack-18/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "28-01291-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 1319,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "28-01291-56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:12:43.883Z"
+    },
+    {
+      "name": "10L Multi-purpose bag",
+      "slug": "10l-multi-purpose-bag-15",
+      "url": "https://products.snigel.se/product/10l-multi-purpose-bag-15/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "28-00271-09-000",
+          "options": {},
+          "stock": 418,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:12:49.856Z"
+    },
+    {
+      "name": "30×61 cm Weapon bag -13",
+      "slug": "30x61-cm-weapon-bag-13",
+      "url": "https://products.snigel.se/product/30x61-cm-weapon-bag-13/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "28-00251-01-000",
+          "options": {},
+          "stock": 21,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:12:56.912Z"
+    },
+    {
+      "name": "34×64 cm dual Weapon bag -11",
+      "slug": "34x64-cm-dual-weapon-bag-11",
+      "url": "https://products.snigel.se/product/34x64-cm-dual-weapon-bag-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "28-00055-01-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:13:05.150Z"
+    },
+    {
+      "name": "34×100 cm dual Weapon bag -11",
+      "slug": "34x100-cm-dual-weapon-bag-11",
+      "url": "https://products.snigel.se/product/34x100-cm-dual-weapon-bag-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "28-00054-01-000",
+          "options": {},
+          "stock": 31,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:13:12.680Z"
+    },
+    {
+      "name": "Organized bag -11",
+      "slug": "organized-bag-11",
+      "url": "https://products.snigel.se/product/organized-bag-11/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "28-00501-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 192,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "28-00501-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 21,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:13:21.304Z"
+    },
+    {
+      "name": "55L Duffel bag -17",
+      "slug": "55l-duffel-bag-17",
+      "url": "https://products.snigel.se/product/55l-duffel-bag-17/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "28-01350-01-000",
+          "options": {
+            "colour": "Black",
+            "backpack-size": "55L"
+          },
+          "stock": 122,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "28-01350-09-000",
+          "options": {
+            "colour": "Grey",
+            "backpack-size": "55L"
+          },
+          "stock": 299,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:13:29.294Z"
+    },
+    {
+      "name": "90L Duffel bag 1.0",
+      "slug": "90l-duffel-bag-1-0",
+      "url": "https://products.snigel.se/product/90l-duffel-bag-1-0/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "28-01350A01-090",
+          "options": {
+            "colour": "Black",
+            "backpack-size": "90L"
+          },
+          "stock": 149,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "28-01350A09-090",
+          "options": {
+            "colour": "Grey",
+            "backpack-size": "90L"
+          },
+          "stock": 367,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:13:37.813Z"
+    },
+    {
+      "name": "230 Roller bag -15",
+      "slug": "230-roller-bag-15",
+      "url": "https://products.snigel.se/product/230-roller-bag-15/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "28-00851-09-000",
+          "options": {},
+          "stock": 63,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:13:44.912Z"
+    },
+    {
+      "name": "15L Princess backpack  -17",
+      "slug": "15l-princess-backpack-17",
+      "url": "https://products.snigel.se/product/15l-princess-backpack-17/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "29-01067-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 107,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "29-01067-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 386,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "29-01067-56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 188,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:13:55.567Z"
+    },
+    {
+      "name": "30-40L Combat backpack 1.0",
+      "slug": "30-40l-combat-backpack-1-0",
+      "url": "https://products.snigel.se/product/30-40l-combat-backpack-1-0/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "29-01410A01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 2008,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "29-01410A09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 2067,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:14:05.128Z"
+    },
+    {
+      "name": "15-20L All pack",
+      "slug": "10-20l-all-pack-16-17",
+      "url": "https://products.snigel.se/product/10-20l-all-pack-16-17/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "29-00363B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "29-00363B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 405,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:14:13.165Z"
+    },
+    {
+      "name": "30L Waterproof mission backpack 1.0",
+      "slug": "30l-waterproof-mission-backpack-1-0",
+      "url": "https://products.snigel.se/product/30l-waterproof-mission-backpack-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "29-01754A09-000",
+          "options": {},
+          "stock": 1067,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:14:19.024Z"
+    },
+    {
+      "name": "30L Mission backpack 1.1",
+      "slug": "30l-mission-backpack-16",
+      "url": "https://products.snigel.se/product/30l-mission-backpack-16/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "29-00394B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 768,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "29-00394B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 913,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "29-00394B56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 141,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:14:29.418Z"
+    },
+    {
+      "name": "30L Specialist backpack",
+      "slug": "25-30l-specialist-backpack-14",
+      "url": "https://products.snigel.se/product/25-30l-specialist-backpack-14/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "29-00026-01-030",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 840,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "29-00026-09-030",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 457,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "29-00026-17-030",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 384,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:14:41.711Z"
+    },
+    {
+      "name": "30L insert wall -10",
+      "slug": "25l-insert-wall-10",
+      "url": "https://products.snigel.se/product/25l-insert-wall-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-00569-20-000",
+          "options": {},
+          "stock": 240,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:14:48.093Z"
+    },
+    {
+      "name": "Multi insert panel 1.0",
+      "slug": "multi-insert-panel-1-0",
+      "url": "https://products.snigel.se/product/multi-insert-panel-1-0/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "27-01973A24-030",
+          "options": {
+            "backpack-size": "30L"
+          },
+          "stock": 394,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "27-01973A24-040",
+          "options": {
+            "backpack-size": "40L"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:14:58.975Z"
+    },
+    {
+      "name": "30L protective insert 1.1",
+      "slug": "25l-protective-insert-bag-15",
+      "url": "https://products.snigel.se/product/25l-protective-insert-bag-15/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-00076C09-000",
+          "options": {},
+          "stock": 119,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:16:27.751Z"
+    },
+    {
+      "name": "Elastic insert stripes (6) -10",
+      "slug": "elastic-insert-stripes-6-10",
+      "url": "https://products.snigel.se/product/elastic-insert-stripes-6-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-00520-09-000",
+          "options": {},
+          "stock": 545,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:17:12.788Z"
+    },
+    {
+      "name": "40L Specialist backpack",
+      "slug": "40l-specialist-backpack-14",
+      "url": "https://products.snigel.se/product/40l-specialist-backpack-14/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "29-00026-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 446,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "29-00026-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 371,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:17:20.850Z"
+    },
+    {
+      "name": "Large insert pouch 1.0",
+      "slug": "large-insert-pouch-1-0",
+      "url": "https://products.snigel.se/product/large-insert-pouch-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-02538A20-000",
+          "options": {},
+          "stock": 272,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:17:28.624Z"
+    },
+    {
+      "name": "Medium insert pouches",
+      "slug": "medium-insert-pouches-10",
+      "url": "https://products.snigel.se/product/medium-insert-pouches-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-00533-00-000",
+          "options": {},
+          "stock": 1555,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:17:35.839Z"
+    },
+    {
+      "name": "40L Velcro and webbing  panel -10",
+      "slug": "40l-velcro-and-webbing-panel-10",
+      "url": "https://products.snigel.se/product/40l-velcro-and-webbing-panel-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-01028-09-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:17:42.618Z"
+    },
+    {
+      "name": "40L insert wall",
+      "slug": "40l-insert-wall-10",
+      "url": "https://products.snigel.se/product/40l-insert-wall-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-00568-20-000",
+          "options": {},
+          "stock": 217,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:17:50.091Z"
+    },
+    {
+      "name": "40L protective insert",
+      "slug": "40l-protective-insert-12",
+      "url": "https://products.snigel.se/product/40l-protective-insert-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-00105-09-000",
+          "options": {},
+          "stock": 26,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:17:57.891Z"
+    },
+    {
+      "name": "50L Mission backpack 2.0",
+      "slug": "50l-mission-backpack-2-0",
+      "url": "https://products.snigel.se/product/50l-mission-backpack-2-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "29-00160C09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 883,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:18:06.719Z"
+    },
+    {
+      "name": "Side pockets pair 2.0",
+      "slug": "side-pockets-pair-2-0",
+      "url": "https://products.snigel.se/product/side-pockets-pair-2-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "26-02140B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 923,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:18:14.154Z"
+    },
+    {
+      "name": "100L Backpack 2.0",
+      "slug": "100l-backpack-2-0",
+      "url": "https://products.snigel.se/product/100l-backpack-2-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "29-01161C09-100",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 77,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:18:22.544Z"
+    },
+    {
+      "name": "Backpack belt-12",
+      "slug": "backpack-belt-12",
+      "url": "https://products.snigel.se/product/backpack-belt-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "26-00910-09-001",
+          "options": {},
+          "stock": 7,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:20:24.319Z"
+    },
+    {
+      "name": "Dry bag set 1.0",
+      "slug": "120l-dry-bag-12",
+      "url": "https://products.snigel.se/product/120l-dry-bag-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "26-01082A09-000",
+          "options": {},
+          "stock": 74,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:20:31.670Z"
+    },
+    {
+      "name": "Covert backpack -21",
+      "slug": "covert-backpack-12",
+      "url": "https://products.snigel.se/product/covert-backpack-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "29-00155-01-000",
+          "options": {},
+          "stock": 23,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:20:38.992Z"
+    },
+    {
+      "name": "Binder mechanism",
+      "slug": "binder-mechanism",
+      "url": "https://products.snigel.se/product/binder-mechanism/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "50-00592-01-000",
+          "options": {
+            "number": "2"
+          },
+          "stock": 38,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "50-00019-01-000",
+          "options": {
+            "number": "4"
+          },
+          "stock": 171,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:20:47.219Z"
+    },
+    {
+      "name": "Herma 25 mm buckle",
+      "slug": "herma-25-mm-buckle-pair",
+      "url": "https://products.snigel.se/product/herma-25-mm-buckle-pair/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "01-200B09",
+          "options": {},
+          "stock": 253,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:20:54.136Z"
+    },
+    {
+      "name": "Herma 25 mm repair buckle",
+      "slug": "malefemale-rep-buckle-stealth",
+      "url": "https://products.snigel.se/product/malefemale-rep-buckle-stealth/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "01-202B01",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 1264,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "01-202B09",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 569,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:21:02.479Z"
+    },
+    {
+      "name": "Shoulder pad set -15",
+      "slug": "shoulder-pad-set-15",
+      "url": "https://products.snigel.se/product/shoulder-pad-set-15/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "26-00623-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "26-00623-56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:21:11.595Z"
+    },
+    {
+      "name": "Herma I-bar set 1.0",
+      "slug": "herma-i-bar-set-1-0",
+      "url": "https://products.snigel.se/product/herma-i-bar-set-1-0/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "26-00487B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 2009,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-00487B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 620,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-00487B17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 105,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:21:22.503Z"
+    },
+    {
+      "name": "I-Bar set -10",
+      "slug": "i-bar-set-10",
+      "url": "https://products.snigel.se/product/i-bar-set-10/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "26-00487-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 479,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-00487-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 406,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-00487-17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 365,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:21:31.569Z"
+    },
+    {
+      "name": "Herma T-bar set 1.0",
+      "slug": "herma-t-bar-set-1-0",
+      "url": "https://products.snigel.se/product/herma-t-bar-set-1-0/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "26-00491B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 80,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-00491B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "26-00491B17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 371,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:21:41.983Z"
+    },
+    {
+      "name": "T-bar set -12",
+      "slug": "t-bar-set-12",
+      "url": "https://products.snigel.se/product/t-bar-set-12/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "26-00491-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 197,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-00491-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 98,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-00491-17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:28:20.006Z"
+    },
+    {
+      "name": "Duffel Strap-12",
+      "slug": "duffel-strap-12",
+      "url": "https://products.snigel.se/product/duffel-strap-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "26-00428-09-000",
+          "options": {},
+          "stock": 38,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:28:27.733Z"
+    },
+    {
+      "name": "Name card holder -11",
+      "slug": "name-card-holder-11",
+      "url": "https://products.snigel.se/product/name-card-holder-11/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "26-00547-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 32,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-00547-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 55,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:28:36.555Z"
+    },
+    {
+      "name": "T-Tape holder 1.0",
+      "slug": "t-tape-holder-1-0",
+      "url": "https://products.snigel.se/product/t-tape-holder-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-02045A09-000",
+          "options": {},
+          "stock": 255,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:28:43.705Z"
+    },
+    {
+      "name": "Trauma shears holder 1.0",
+      "slug": "trauma-shears-holder-1-0",
+      "url": "https://products.snigel.se/product/trauma-shears-holder-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-02044A09-000",
+          "options": {},
+          "stock": 188,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:28:50.394Z"
+    },
+    {
+      "name": "Large hammer holder -14",
+      "slug": "large-hammer-holder-14",
+      "url": "https://products.snigel.se/product/large-hammer-holder-14/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-00966-09-000",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:28:57.617Z"
+    },
+    {
+      "name": "Padded pouch -12",
+      "slug": "padded-pouch-12",
+      "url": "https://products.snigel.se/product/padded-pouch-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "24-00350-09-000",
+          "options": {},
+          "stock": 123,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:29:04.288Z"
+    },
+    {
+      "name": "1L Bottle pouch -18",
+      "slug": "1l-bottle-pouch-18",
+      "url": "https://products.snigel.se/product/1l-bottle-pouch-18/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "21-01590B09-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:29:11.556Z"
+    },
+    {
+      "name": "8×19 pouch -14",
+      "slug": "8x19-pouch-14",
+      "url": "https://products.snigel.se/product/8x19-pouch-14/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "21-00349-56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:29:21.956Z"
+    },
+    {
+      "name": "Trauma pouch insert -17",
+      "slug": "trauma-pouch-insert-17",
+      "url": "https://products.snigel.se/product/trauma-pouch-insert-17/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "25-01167-09-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:30:19.141Z"
+    },
+    {
+      "name": "Trauma pouch -17",
+      "slug": "trauma-pouch-17",
+      "url": "https://products.snigel.se/product/trauma-pouch-17/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "21-01166-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 814,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01166-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:30:31.059Z"
+    },
+    {
+      "name": "Medium Admin pouch -18",
+      "slug": "medium-admin-pouch-18",
+      "url": "https://products.snigel.se/product/medium-admin-pouch-18/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "23-00420B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 1318,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "23-00420B17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 376,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:30:43.149Z"
+    },
+    {
+      "name": "Small Admin pouch",
+      "slug": "small-admin-pouch-12",
+      "url": "https://products.snigel.se/product/small-admin-pouch-12/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "21-00309B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 212,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-00309B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 1448,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:30:52.352Z"
+    },
+    {
+      "name": "Virve radio pouch -10",
+      "slug": "virve-radio-pouch-10",
+      "url": "https://products.snigel.se/product/virve-radio-pouch-10/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "21-01078-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 73,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01078-17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 153,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:31:00.863Z"
+    },
+    {
+      "name": "VIRVE pouch, Basic-11",
+      "slug": "virve-pouch-basic-11",
+      "url": "https://products.snigel.se/product/virve-pouch-basic-11/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "21-00144-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "21-00144-17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:31:08.935Z"
+    },
+    {
+      "name": "Radio pouch -15",
+      "slug": "radio-pouch-06-15",
+      "url": "https://products.snigel.se/product/radio-pouch-06-15/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "21-00270-01-900",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 1531,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-00270-09-900",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 812,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-00270-28-900",
+          "options": {
+            "colour": "HighVis yellow"
+          },
+          "stock": 282,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:31:17.966Z"
+    },
+    {
+      "name": "Canister pouch -15",
+      "slug": "canister-pouch-15",
+      "url": "https://products.snigel.se/product/canister-pouch-15/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "21-01101-01-000",
+          "options": {},
+          "stock": 233,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:31:24.072Z"
+    },
+    {
+      "name": "Zipped dump bag -10",
+      "slug": "zipped-dump-bag-10",
+      "url": "https://products.snigel.se/product/zipped-dump-bag-10/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "22-00519-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 433,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "22-00519-17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 89,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:31:34.494Z"
+    },
+    {
+      "name": "Micro dump pouch 2.0",
+      "slug": "ballistic-nijiiia-blanket-15",
+      "url": "https://products.snigel.se/product/ballistic-nijiiia-blanket-15/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "22-02066B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 574,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "22-02066B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 206,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:31:44.032Z"
+    },
+    {
+      "name": "Small dump pouch 2.0",
+      "slug": "small-dump-pouch-2-0",
+      "url": "https://products.snigel.se/product/small-dump-pouch-2-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "22-00301B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 283,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:32:51.079Z"
+    },
+    {
+      "name": "MG Ammunition pouch  -09",
+      "slug": "mg-ammunition-pouch-09",
+      "url": "https://products.snigel.se/product/mg-ammunition-pouch-09/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "22-00511-09-000",
+          "options": {},
+          "stock": 137,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:32:57.486Z"
+    },
+    {
+      "name": "Cal 50 Magazine pouch -10",
+      "slug": "cal-50-magazine-pouch-10",
+      "url": "https://products.snigel.se/product/cal-50-magazine-pouch-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "22-00510-",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:33:05.650Z"
+    },
+    {
+      "name": "Dual Magazine pouch -18",
+      "slug": "dual-magazine-pouch-15",
+      "url": "https://products.snigel.se/product/dual-magazine-pouch-15/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "22-00248B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "22-00248B17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 176,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:33:15.036Z"
+    },
+    {
+      "name": "Dual holder insert -12",
+      "slug": "dual-holder-insert-12",
+      "url": "https://products.snigel.se/product/dual-holder-insert-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "25-00307-09-000",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:33:20.982Z"
+    },
+    {
+      "name": "Speed magazine pouch 2.0",
+      "slug": "speed-magazine-pouch-2-0",
+      "url": "https://products.snigel.se/product/speed-magazine-pouch-2-0/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "22-01888B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 706,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "22-01888B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 3379,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "22-01888B17-000",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 990,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:33:31.213Z"
+    },
+    {
+      "name": "Elastic pouch 1.0",
+      "slug": "elastic-pouch-1-0",
+      "url": "https://products.snigel.se/product/elastic-pouch-1-0/",
+      "variantCount": 4,
+      "variants": [
+        {
+          "sku": "21-01701A01-556",
+          "options": {
+            "mag-size": "5.56",
+            "colour": "Black"
+          },
+          "stock": 198,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01701A09-556",
+          "options": {
+            "mag-size": "5.56",
+            "colour": "Grey"
+          },
+          "stock": 924,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01701A01-762",
+          "options": {
+            "mag-size": "7.62",
+            "colour": "Black"
+          },
+          "stock": 113,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01701A09-762",
+          "options": {
+            "mag-size": "7.62",
+            "colour": "Grey"
+          },
+          "stock": 220,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:33:42.603Z"
+    },
+    {
+      "name": "SMG Magazine pouch 14",
+      "slug": "smg-magazine-pouch-00-14",
+      "url": "https://products.snigel.se/product/smg-magazine-pouch-00-14/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "22-00452-01-000",
+          "options": {},
+          "stock": 787,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:33:49.120Z"
+    },
+    {
+      "name": "Grenade pouch -10",
+      "slug": "grenade-pouch-10",
+      "url": "https://products.snigel.se/product/grenade-pouch-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "22-00527-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 278,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:33:56.973Z"
+    },
+    {
+      "name": "Covert Telescopic baton wrist holder -08",
+      "slug": "covert-telescopic-baton-wrist-holder-08",
+      "url": "https://products.snigel.se/product/covert-telescopic-baton-wrist-holder-08/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-00632-01-000",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:34:03.458Z"
+    },
+    {
+      "name": "Double handcuff pouch -11",
+      "slug": "twin-handcuff-pouch-11",
+      "url": "https://products.snigel.se/product/twin-handcuff-pouch-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "21-00057-01-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:35:22.382Z"
+    },
+    {
+      "name": "Handcuff pouch -09",
+      "slug": "handcuff-pouch-09",
+      "url": "https://products.snigel.se/product/handcuff-pouch-09/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "21-00485-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 2493,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-00485-28-000",
+          "options": {
+            "colour": "HighVis yellow"
+          },
+          "stock": 210,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:35:30.860Z"
+    },
+    {
+      "name": "Topless Handcuff pouch 06",
+      "slug": "topless-handcuff-pouch-06",
+      "url": "https://products.snigel.se/product/topless-handcuff-pouch-06/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "21-00495-01-000",
+          "options": {},
+          "stock": 2449,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:35:38.392Z"
+    },
+    {
+      "name": "GP pouch 3 long",
+      "slug": "gp-pouch-3-long-12",
+      "url": "https://products.snigel.se/product/gp-pouch-3-long-12/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "21-01855A01-013",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 3548,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-01855A09-013",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 963,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-01855A17-013",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 339,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:35:47.808Z"
+    },
+    {
+      "name": "GP pouch 3",
+      "slug": "gp-pouch-3",
+      "url": "https://products.snigel.se/product/gp-pouch-3/",
+      "variantCount": 4,
+      "variants": [
+        {
+          "sku": "21-01855A01-003",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 1910,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-01855A09-003",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 770,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-00298-28-000",
+          "options": {
+            "colour": "HighVis yellow"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "21-01855A17-003",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 110,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:35:58.082Z"
+    },
+    {
+      "name": "GP pouch 2 long",
+      "slug": "gp-pouch-2-long",
+      "url": "https://products.snigel.se/product/gp-pouch-2-long/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "21-01855A01-012",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 3080,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-00493-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:36:05.950Z"
+    },
+    {
+      "name": "GP pouch 2",
+      "slug": "gp-pouch-2-12",
+      "url": "https://products.snigel.se/product/gp-pouch-2-12/",
+      "variantCount": 4,
+      "variants": [
+        {
+          "sku": "21-01855A01-002",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 1088,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-01855A09-002",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 788,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-00167-56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 612,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-01855A17-002",
+          "options": {
+            "colour": "Olive"
+          },
+          "stock": 87,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:36:15.685Z"
+    },
+    {
+      "name": "Telescopic baton holder -08",
+      "slug": "telescopic-baton-holder-08",
+      "url": "https://products.snigel.se/product/telescopic-baton-holder-08/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "20-00499-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 2213,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "20-00499-28-000",
+          "options": {
+            "colour": "HighVis yellow"
+          },
+          "stock": 208,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:36:23.766Z"
+    },
+    {
+      "name": "Large key silencer-05",
+      "slug": "large-key-silencer-05",
+      "url": "https://products.snigel.se/product/large-key-silencer-05/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-00561-01-000",
+          "options": {},
+          "stock": 451,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:36:31.733Z"
+    },
+    {
+      "name": "Regular Key silencer -05",
+      "slug": "regular-key-silencer-05",
+      "url": "https://products.snigel.se/product/regular-key-silencer-05/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-00560-01-000",
+          "options": {},
+          "stock": 67,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:36:37.811Z"
+    },
+    {
+      "name": "Combination glove holder -09",
+      "slug": "combination-glove-holder-09",
+      "url": "https://products.snigel.se/product/combination-glove-holder-09/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "20-00531-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 767,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "20-00531B28-000",
+          "options": {
+            "colour": "HighVis yellow"
+          },
+          "stock": 107,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:36:46.649Z"
+    },
+    {
+      "name": "Elastic glove holder -05",
+      "slug": "elastic-glove-holder-05",
+      "url": "https://products.snigel.se/product/elastic-glove-holder-05/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-00530-01-000",
+          "options": {},
+          "stock": 1181,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:36:54.654Z"
+    },
+    {
+      "name": "Glove holder -05",
+      "slug": "glove-holder-05",
+      "url": "https://products.snigel.se/product/glove-holder-05/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-00500-01-000",
+          "options": {},
+          "stock": 2737,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:37:01.762Z"
+    },
+    {
+      "name": "Modular Key holder -05",
+      "slug": "modular-key-holder-05",
+      "url": "https://products.snigel.se/product/modular-key-holder-05/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "20-00494-01-000",
+          "options": {},
+          "stock": 1044,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:37:10.165Z"
+    },
+    {
+      "name": "Ballistic thigh protection -15",
+      "slug": "ballistic-thigh-protection-15",
+      "url": "https://products.snigel.se/product/ballistic-thigh-protection-15/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "85-01153B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "85-01153B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "85-01153B56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:37:20.836Z"
+    },
+    {
+      "name": "Squeeze buckle closure 1.0",
+      "slug": "squeeze-buckle-closure-1-0",
+      "url": "https://products.snigel.se/product/squeeze-buckle-closure-1-0/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "86-02026A01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "86-02026A09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 21,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "86-02026A56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:37:31.562Z"
+    },
+    {
+      "name": "Squeeze zipper closure -17",
+      "slug": "squeeze-zipper-closure-17",
+      "url": "https://products.snigel.se/product/squeeze-zipper-closure-17/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "86-01487-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 43,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "86-01487-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "86-01487-56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:37:42.941Z"
+    },
+    {
+      "name": "Squeeze quick adjust -17",
+      "slug": "squeeze-quick-adjust-17",
+      "url": "https://products.snigel.se/product/squeeze-quick-adjust-17/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "26-01102-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 126,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-01102-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 63,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-01102-56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 5,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:37:54.066Z"
+    },
+    {
+      "name": "3 row cummerbund 1.0",
+      "slug": "squeeze-3-row-cummerbund-1-0",
+      "url": "https://products.snigel.se/product/squeeze-3-row-cummerbund-1-0/",
+      "variantCount": 4,
+      "variants": [
+        {
+          "sku": "26-02012A09-008",
+          "options": {
+            "colour": "Grey",
+            "panel-sizes": "008"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "26-02012A09-010",
+          "options": {
+            "colour": "Grey",
+            "panel-sizes": "010"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "26-02012A56-008",
+          "options": {
+            "colour": "Multicam",
+            "panel-sizes": "008"
+          },
+          "stock": 10,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-02012A56-010",
+          "options": {
+            "colour": "Multicam",
+            "panel-sizes": "010"
+          },
+          "stock": 17,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:38:03.759Z"
+    },
+    {
+      "name": "Elastic cumber band w compartments 1.0",
+      "slug": "elastic-cumber-band-w-compartments-1-0",
+      "url": "https://products.snigel.se/product/elastic-cumber-band-w-compartments-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "86-01948A09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:38:12.837Z"
+    },
+    {
+      "name": "Squeeze side panel pouch set -18",
+      "slug": "squeeze-side-panel-pouch-set-17",
+      "url": "https://products.snigel.se/product/squeeze-side-panel-pouch-set-17/",
+      "variantCount": 9,
+      "variants": [
+        {
+          "sku": "84-00984-01-007",
+          "options": {
+            "colour": "Black",
+            "panel-sizes": "007"
+          },
+          "stock": 2,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "84-00984-01-009",
+          "options": {
+            "colour": "Black",
+            "panel-sizes": "009"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "84-00984-01-011",
+          "options": {
+            "colour": "Black",
+            "panel-sizes": "011"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "84-00984-09-007",
+          "options": {
+            "colour": "Grey",
+            "panel-sizes": "007"
+          },
+          "stock": 29,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "84-00984-09-009",
+          "options": {
+            "colour": "Grey",
+            "panel-sizes": "009"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "84-00984-09-011",
+          "options": {
+            "colour": "Grey",
+            "panel-sizes": "011"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "84-00984-56-007",
+          "options": {
+            "colour": "Multicam",
+            "panel-sizes": "007"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "84-00984-56-009",
+          "options": {
+            "colour": "Multicam",
+            "panel-sizes": "009"
+          },
+          "stock": 8,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "84-00984-56-011",
+          "options": {
+            "colour": "Multicam",
+            "panel-sizes": "011"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:38:27.065Z"
+    },
+    {
+      "name": "Squeeze ballistic front and back 1.3 S2",
+      "slug": "squeeze-ballistic-front-and-back-1-3-s2",
+      "url": "https://products.snigel.se/product/squeeze-ballistic-front-and-back-1-3-s2/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "17-02813A09-002",
+          "options": {
+            "colour": "Grey",
+            "v-size": "Size 2"
+          },
+          "stock": 9,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:38:35.084Z"
+    },
+    {
+      "name": "Squeeze vest/plate carrier",
+      "slug": "squeeze-vest-plate-carrier-17",
+      "url": "https://products.snigel.se/product/squeeze-vest-plate-carrier-17/",
+      "variantCount": 9,
+      "variants": [
+        {
+          "sku": "17-00944-01-001",
+          "options": {
+            "colour": "Black",
+            "v-size": "Size 1"
+          },
+          "stock": 4,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "17-00944-01-002",
+          "options": {
+            "colour": "Black",
+            "v-size": "Size 2"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "17-00944-01-003",
+          "options": {
+            "colour": "Black",
+            "v-size": "Size 3"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "17-00944-09-001",
+          "options": {
+            "colour": "Grey",
+            "v-size": "Size 1"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "17-00944-09-002",
+          "options": {
+            "colour": "Grey",
+            "v-size": "Size 2"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "17-00944-09-003",
+          "options": {
+            "colour": "Grey",
+            "v-size": "Size 3"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "17-00944-56-001",
+          "options": {
+            "colour": "Multicam",
+            "v-size": "Size 1"
+          },
+          "stock": 6,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "17-00944-56-002",
+          "options": {
+            "colour": "Multicam",
+            "v-size": "Size 2"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "17-00944-56-003",
+          "options": {
+            "colour": "Multicam",
+            "v-size": "Size 3"
+          },
+          "stock": 9,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:38:50.222Z"
+    },
+    {
+      "name": "Squeeze MOLLE front panel 1.0",
+      "slug": "squeeze-molle-front-panel-1-0",
+      "url": "https://products.snigel.se/product/squeeze-molle-front-panel-1-0/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "26-02027A01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 24,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-02027A09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 28,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "26-02027A56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 20,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:39:00.891Z"
+    },
+    {
+      "name": "Elastic 40 mm T-bar set -12",
+      "slug": "elastic-40-mm-t-bar-set-12",
+      "url": "https://products.snigel.se/product/elastic-40-mm-t-bar-set-12/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "26-00280-01-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:39:06.963Z"
+    },
+    {
+      "name": "Plate carrier, Strap on DF -13",
+      "slug": "plate-carrier-strap-on-df-13",
+      "url": "https://products.snigel.se/product/plate-carrier-strap-on-df-13/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "17-00642-01-000",
+          "options": {
+            "colour": "Black",
+            "v-size": "Size 3"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "17-00642-09-000",
+          "options": {
+            "colour": "Grey",
+            "v-size": "Size 3"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "17-00642-56-000",
+          "options": {
+            "colour": "Multicam",
+            "v-size": "Size 3"
+          },
+          "stock": 108,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:39:17.283Z"
+    },
+    {
+      "name": "Plate carrier, Strap on -14",
+      "slug": "plate-carrier-strap-on-14",
+      "url": "https://products.snigel.se/product/plate-carrier-strap-on-14/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "17-01020-09-000",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:39:25.732Z"
+    },
+    {
+      "name": "Equipment vest -16",
+      "slug": "tactical-vest-16",
+      "url": "https://products.snigel.se/product/tactical-vest-16/",
+      "variantCount": 8,
+      "variants": [
+        {
+          "sku": "18-01162-01-001",
+          "options": {
+            "colour": "Black",
+            "v-size": "Size 1"
+          },
+          "stock": 1444,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "18-01162-01-002",
+          "options": {
+            "colour": "Black",
+            "v-size": "Size 2"
+          },
+          "stock": 1709,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "18-01162-01-003",
+          "options": {
+            "colour": "Black",
+            "v-size": "Size 3"
+          },
+          "stock": 1510,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "18-01162-01-004",
+          "options": {
+            "colour": "Black",
+            "v-size": "Size 4"
+          },
+          "stock": 692,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "18-01162-28-001",
+          "options": {
+            "colour": "HighVis yellow",
+            "v-size": "Size 1"
+          },
+          "stock": 25,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "18-01162-28-002",
+          "options": {
+            "colour": "HighVis yellow",
+            "v-size": "Size 2"
+          },
+          "stock": 3,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "18-01162-28-003",
+          "options": {
+            "colour": "HighVis yellow",
+            "v-size": "Size 3"
+          },
+          "stock": 216,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "18-01162-28-004",
+          "options": {
+            "colour": "HighVis yellow",
+            "v-size": "Size 4"
+          },
+          "stock": 84,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:39:40.591Z"
+    },
+    {
+      "name": "Covert equipment vest -12",
+      "slug": "covert-equipment-vest-12",
+      "url": "https://products.snigel.se/product/covert-equipment-vest-12/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "18-00095-09-001",
+          "options": {
+            "v-size": "Size 1"
+          },
+          "stock": 31,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "18-00095-09-002",
+          "options": {
+            "v-size": "Size 2"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "18-00095-09-003",
+          "options": {
+            "v-size": "Size 3"
+          },
+          "stock": 50,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:39:51.133Z"
+    },
+    {
+      "name": "Technical equipment vest 2.0",
+      "slug": "technical-equipment-vest-11",
+      "url": "https://products.snigel.se/product/technical-equipment-vest-11/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "18-00575B01-0JR",
+          "options": {
+            "sizes": "M-XXL"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "18-00575B01-0EL",
+          "options": {
+            "sizes": "XS-M"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:40:00.583Z"
+    },
+    {
+      "name": "Covert equipment vest -12 FIN",
+      "slug": "covert-equipment-vest-12-fin",
+      "url": "https://products.snigel.se/product/covert-equipment-vest-12-fin/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "18-00343-01-001",
+          "options": {
+            "v-size": "Size 1"
+          },
+          "stock": 18,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:40:08.250Z"
+    },
+    {
+      "name": "Covert surveillance vest -05",
+      "slug": "covert-surveillance-equipment-vest-05",
+      "url": "https://products.snigel.se/product/covert-surveillance-equipment-vest-05/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "18-00484-01-001",
+          "options": {
+            "v-size": "Size 1"
+          },
+          "stock": 11,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "18-00484-01-002",
+          "options": {
+            "v-size": "Size 2"
+          },
+          "stock": 239,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "18-00484-01-003",
+          "options": {
+            "v-size": "Size 3"
+          },
+          "stock": 136,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:40:17.915Z"
+    },
+    {
+      "name": "Dual side covert equipment harness -11",
+      "slug": "dual-side-covert-equipment-harness-11",
+      "url": "https://products.snigel.se/product/dual-side-covert-equipment-harness-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "15-00492-01-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:41:15.702Z"
+    },
+    {
+      "name": "Single side covert equipment harness -11",
+      "slug": "single-side-covert-equipment-harness-11",
+      "url": "https://products.snigel.se/product/single-side-covert-equipment-harness-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "15-00602-01-000",
+          "options": {},
+          "stock": 88,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:41:22.989Z"
+    },
+    {
+      "name": "Small leg panel -12",
+      "slug": "small-leg-panel-12",
+      "url": "https://products.snigel.se/product/small-leg-panel-12/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "14-00101-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 496,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "14-00101-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 40,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:41:30.069Z"
+    },
+    {
+      "name": "50 mm buckle adapter set",
+      "slug": "50-mm-buckle-adapter-set",
+      "url": "https://products.snigel.se/product/50-mm-buckle-adapter-set/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "40-00102-01-000",
+          "options": {},
+          "stock": 124,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:41:37.108Z"
+    },
+    {
+      "name": "Leg attachment light -10",
+      "slug": "leg-attachment-light-10",
+      "url": "https://products.snigel.se/product/leg-attachment-light-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "ALL-10B",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 164,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:41:45.168Z"
+    },
+    {
+      "name": "Belt attachment -11",
+      "slug": "belt-attachment-11",
+      "url": "https://products.snigel.se/product/belt-attachment-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "26-00598-01-000",
+          "options": {},
+          "stock": 412,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:41:50.901Z"
+    },
+    {
+      "name": "Covert elastic equipment belt 2.0",
+      "slug": "covert-elastic-equipment-belt-2-0",
+      "url": "https://products.snigel.se/product/covert-elastic-equipment-belt-2-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "12-01757A01-000",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:41:59.278Z"
+    },
+    {
+      "name": "Combat belt harness -14",
+      "slug": "combat-belt-harness-14",
+      "url": "https://products.snigel.se/product/combat-belt-harness-14/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "15-01029-01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 10,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "15-01029-09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 9,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "15-01029-56-000",
+          "options": {
+            "colour": "Multicam"
+          },
+          "stock": 9,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:42:09.164Z"
+    },
+    {
+      "name": "Light combat belt 1.0",
+      "slug": "light-combat-belt-1-0",
+      "url": "https://products.snigel.se/product/light-combat-belt-1-0/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "13-01897A09-001",
+          "options": {
+            "colour": "Grey",
+            "v-size": "Size 1"
+          },
+          "stock": 75,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-01897A09-002",
+          "options": {
+            "colour": "Grey",
+            "v-size": "Size 2"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "13-01897A09-003",
+          "options": {
+            "colour": "Grey",
+            "v-size": "Size 3"
+          },
+          "stock": 90,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:42:19.718Z"
+    },
+    {
+      "name": "Ribs combat belt 1.0",
+      "slug": "ribs-combat-belt-1-0",
+      "url": "https://products.snigel.se/product/ribs-combat-belt-1-0/",
+      "variantCount": 3,
+      "variants": [
+        {
+          "sku": "13-01864A09-001",
+          "options": {
+            "v-size": "Size 1"
+          },
+          "stock": 19,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "13-01864A09-002",
+          "options": {
+            "v-size": "Size 2"
+          },
+          "stock": 152,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "13-01864A09-003",
+          "options": {
+            "v-size": "Size 3"
+          },
+          "stock": 43,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:42:29.409Z"
+    },
+    {
+      "name": "Comfort belt-13",
+      "slug": "comfort-belt-13",
+      "url": "https://products.snigel.se/product/comfort-belt-13/",
+      "variantCount": 6,
+      "variants": [
+        {
+          "sku": "13-00327-01-010",
+          "options": {
+            "colour": "Black",
+            "sizes": "XSmall"
+          },
+          "stock": 6,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00327-01-011",
+          "options": {
+            "colour": "Black",
+            "sizes": "Small"
+          },
+          "stock": 36,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00327-01-012",
+          "options": {
+            "colour": "Black",
+            "sizes": "Medium"
+          },
+          "stock": 123,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00327-01-013",
+          "options": {
+            "colour": "Black",
+            "sizes": "Large"
+          },
+          "stock": 87,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00327-01-014",
+          "options": {
+            "colour": "Black",
+            "sizes": "XLarge"
+          },
+          "stock": 24,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00327-01-015",
+          "options": {
+            "colour": "Black",
+            "sizes": "XXL"
+          },
+          "stock": 4,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:42:40.609Z"
+    },
+    {
+      "name": "Equipment belt harness -10",
+      "slug": "equipment-belt-harness-10",
+      "url": "https://products.snigel.se/product/equipment-belt-harness-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "15-00607-01-000",
+          "options": {},
+          "stock": 17,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:42:47.634Z"
+    },
+    {
+      "name": "Belt adjuster -09",
+      "slug": "belt-adjuster-09",
+      "url": "https://products.snigel.se/product/belt-adjuster-09/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "10-00486-01-000",
+          "options": {},
+          "stock": 3266,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:42:54.016Z"
+    },
+    {
+      "name": "Police Equipment belt -09",
+      "slug": "police-equipment-belt-09",
+      "url": "https://products.snigel.se/product/police-equipment-belt-09/",
+      "variantCount": 6,
+      "variants": [
+        {
+          "sku": "13-00483-01-010",
+          "options": {
+            "sizes": "XSmall"
+          },
+          "stock": 140,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00483-01-011",
+          "options": {
+            "sizes": "Small"
+          },
+          "stock": 385,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00483-01-012",
+          "options": {
+            "sizes": "Medium"
+          },
+          "stock": 883,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00483-01-013",
+          "options": {
+            "sizes": "Large"
+          },
+          "stock": 847,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00483-01-014",
+          "options": {
+            "sizes": "XLarge"
+          },
+          "stock": 263,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "13-00483-01-015",
+          "options": {
+            "sizes": "XXL"
+          },
+          "stock": 182,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:43:05.390Z"
+    },
+    {
+      "name": "Basic Equipment belt",
+      "slug": "basic-equipment-belt",
+      "url": "https://products.snigel.se/product/basic-equipment-belt/",
+      "variantCount": 4,
+      "variants": [
+        {
+          "sku": "12-00507-01-011",
+          "options": {
+            "sizes": "Small"
+          },
+          "stock": 12,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "12-00507-01-012",
+          "options": {
+            "sizes": "Medium"
+          },
+          "stock": 76,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "12-00507-01-013",
+          "options": {
+            "sizes": "Large"
+          },
+          "stock": 149,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "12-00507-01-014",
+          "options": {
+            "sizes": "XLarge"
+          },
+          "stock": 470,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:43:15.483Z"
+    },
+    {
+      "name": "Braces",
+      "slug": "braces-12",
+      "url": "https://products.snigel.se/product/braces-12/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "10-00215B01-000",
+          "options": {
+            "colour": "Black"
+          },
+          "stock": 306,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "10-00215B09-000",
+          "options": {
+            "colour": "Grey"
+          },
+          "stock": 2,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:43:24.052Z"
+    },
+    {
+      "name": "Covert equipment belt -17",
+      "slug": "covert-equipment-belt-17",
+      "url": "https://products.snigel.se/product/covert-equipment-belt-17/",
+      "variantCount": 5,
+      "variants": [
+        {
+          "sku": "11-01426-01-011",
+          "options": {
+            "sizes": "Small"
+          },
+          "stock": 169,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "11-01426-01-012",
+          "options": {
+            "sizes": "Medium"
+          },
+          "stock": 287,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "11-01426-01-013",
+          "options": {
+            "sizes": "Large"
+          },
+          "stock": 285,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "11-01426-01-014",
+          "options": {
+            "sizes": "XLarge"
+          },
+          "stock": 259,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "11-01426-01-015",
+          "options": {
+            "sizes": "XXL"
+          },
+          "stock": 51,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:43:36.136Z"
+    },
+    {
+      "name": "Elastic trousers belt 1.1",
+      "slug": "elastic-trousers-belt-16",
+      "url": "https://products.snigel.se/product/elastic-trousers-belt-16/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "11-01295B09-000",
+          "options": {},
+          "stock": 206,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:44:35.133Z"
+    },
+    {
+      "name": "Tactical coverall, Digi  -09F",
+      "slug": "tactical-coverall-digi-09f",
+      "url": "https://products.snigel.se/product/tactical-coverall-digi-09f/",
+      "variantCount": 2,
+      "variants": [
+        {
+          "sku": "08-00707-53-8XX",
+          "options": {
+            "variant": "241"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "08-00707-53-8XX",
+          "options": {
+            "variant": "242"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:44:45.506Z"
+    },
+    {
+      "name": "Tactical coverall 09F",
+      "slug": "tactical-coverall-09f-complete",
+      "url": "https://products.snigel.se/product/tactical-coverall-09f-complete/",
+      "variantCount": 4,
+      "variants": [
+        {
+          "sku": "08-00707-14-9XX",
+          "options": {
+            "parts": "Briefs"
+          },
+          "stock": 5,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "08-00707-14-XXX",
+          "options": {
+            "parts": "COMPLETE"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "08-00707-14-7XX",
+          "options": {
+            "parts": "Coverall"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "08-00707-14-8XX",
+          "options": {
+            "parts": "Vest"
+          },
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:44:55.504Z"
+    },
+    {
+      "name": "Tactical coverall 09F Briefs",
+      "slug": "tactical-coverall-10jk",
+      "url": "https://products.snigel.se/product/tactical-coverall-10jk/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "08-01056-14-XXX",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:45:02.516Z"
+    },
+    {
+      "name": "Flight suit other -09",
+      "slug": "flight-suit-other-09",
+      "url": "https://products.snigel.se/product/flight-suit-other-09/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "08-00523-14-XXX",
+          "options": {},
+          "stock": 999,
+          "status": "no_info"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:45:07.981Z"
+    },
+    {
+      "name": "Tactical coverall BG -10F",
+      "slug": "tactical-coverall-bg-10f",
+      "url": "https://products.snigel.se/product/tactical-coverall-bg-10f/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "08-00699-17-XXX",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:45:14.213Z"
+    },
+    {
+      "name": "Flight suit, Pilot -09",
+      "slug": "flight-suit-pilot-09",
+      "url": "https://products.snigel.se/product/flight-suit-pilot-09/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "08-00522-14-XXX",
+          "options": {},
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:45:20.807Z"
+    },
+    {
+      "name": "Fleece jacket 1.0",
+      "slug": "fleece-jacket-1-0",
+      "url": "https://products.snigel.se/product/fleece-jacket-1-0/",
+      "variantCount": 4,
+      "variants": [
+        {
+          "sku": "07-01927A09-IJ3",
+          "options": {
+            "sizes-double-all": "IJ3= Small short"
+          },
+          "stock": 159,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "07-01927A09-KL4",
+          "options": {
+            "sizes-double-all": "KL4= Medium regular"
+          },
+          "stock": 140,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "07-01927A09-MN4",
+          "options": {
+            "sizes-double-all": "MN4= Large regular"
+          },
+          "stock": 349,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "07-01927A09-OP4",
+          "options": {
+            "sizes-double-all": "OP4= XL regular"
+          },
+          "stock": 124,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:45:29.044Z"
+    },
+    {
+      "name": "Elbow pads 2.0",
+      "slug": "elbow-pads-2-0",
+      "url": "https://products.snigel.se/product/elbow-pads-2-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "00-01670A01-000",
+          "options": {},
+          "stock": 1183,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:45:37.507Z"
+    },
+    {
+      "name": "Knee pads 2.0",
+      "slug": "knee-pads-2-0",
+      "url": "https://products.snigel.se/product/knee-pads-2-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "00-01669A01-000",
+          "options": {},
+          "stock": 753,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:45:45.252Z"
+    },
+    {
+      "name": "Snigel T-shirt 2.0",
+      "slug": "snigel-t-shirt-2-0",
+      "url": "https://products.snigel.se/product/snigel-t-shirt-2-0/",
+      "variantCount": 8,
+      "variants": [
+        {
+          "sku": "05-01962A14-011",
+          "options": {
+            "colour": "Navy",
+            "sizes": "Small"
+          },
+          "stock": 16,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "05-01962A14-012",
+          "options": {
+            "colour": "Navy",
+            "sizes": "Medium"
+          },
+          "stock": 999,
+          "status": "no_info"
+        },
+        {
+          "sku": "05-01962A14-013",
+          "options": {
+            "colour": "Navy",
+            "sizes": "Large"
+          },
+          "stock": 32,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "05-01962A14-014",
+          "options": {
+            "colour": "Navy",
+            "sizes": "XLarge"
+          },
+          "stock": 7,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "05-01962A17-011",
+          "options": {
+            "colour": "Olive",
+            "sizes": "Small"
+          },
+          "stock": 34,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "05-01962A17-012",
+          "options": {
+            "colour": "Olive",
+            "sizes": "Medium"
+          },
+          "stock": 36,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "05-01962A17-013",
+          "options": {
+            "colour": "Olive",
+            "sizes": "Large"
+          },
+          "stock": 74,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "05-01962A17-014",
+          "options": {
+            "colour": "Olive",
+            "sizes": "XLarge"
+          },
+          "stock": 37,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:45:56.195Z"
+    },
+    {
+      "name": "FR Annaclava 1.0",
+      "slug": "fr-annaclava-1-0",
+      "url": "https://products.snigel.se/product/fr-annaclava-1-0/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "09-00409A09-000",
+          "options": {},
+          "stock": 599,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:46:03.039Z"
+    },
+    {
+      "name": "FR Beanie",
+      "slug": "fr-beanie-17",
+      "url": "https://products.snigel.se/product/fr-beanie-17/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "09-01352-09-000",
+          "options": {},
+          "stock": 1598,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:46:10.206Z"
+    },
+    {
+      "name": "FR Neck gaiter -17",
+      "slug": "fr-neck-gaiter-17",
+      "url": "https://products.snigel.se/product/fr-neck-gaiter-17/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "09-01353-09-000",
+          "options": {},
+          "stock": 1064,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T09:46:17.634Z"
+    },
+    {
+      "name": "Machine gun sling  -16",
+      "slug": "machine-gun-sling-16",
+      "url": "https://products.snigel.se/product/machine-gun-sling-16/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "34-00539-09-000",
+          "options": {},
+          "stock": 54,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T11:33:46.784Z"
+    },
+    {
+      "name": "Stort Instruktörsmärke -11",
+      "slug": "stort-instruktorsmarke-11",
+      "url": "https://products.snigel.se/product/stort-instruktorsmarke-11/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "30-00192-09-00",
+          "options": {},
+          "stock": 248,
+          "status": "in_stock",
+          "canBackorder": false
+        }
+      ],
+      "scrapedAt": "2025-12-23T11:33:56.936Z"
+    },
+    {
+      "name": "Small Insert pouches 2.0",
+      "slug": "small-insert-pouches-10",
+      "url": "https://products.snigel.se/product/small-insert-pouches-10/",
+      "variantCount": 1,
+      "variants": [
+        {
+          "sku": "27-00532B00-000",
+          "options": {},
+          "stock": 2666,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T11:34:07.560Z"
+    },
+    {
+      "name": "Oyster pouch 1.0",
+      "slug": "oyster-pouch-1-0",
+      "url": "https://products.snigel.se/product/oyster-pouch-1-0/",
+      "variantCount": 10,
+      "variants": [
+        {
+          "sku": "21-01774A01-001",
+          "options": {
+            "colour": "black",
+            "sizes": "small"
+          },
+          "stock": 245,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01774A01-002",
+          "options": {
+            "colour": "black",
+            "sizes": "medium"
+          },
+          "stock": 2977,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01774A09-000",
+          "options": {
+            "colour": "grey",
+            "sizes": "xsmall"
+          },
+          "stock": 234,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "21-01774A09-001",
+          "options": {
+            "colour": "grey",
+            "sizes": "small"
+          },
+          "stock": 993,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01774A09-002",
+          "options": {
+            "colour": "grey",
+            "sizes": "medium"
+          },
+          "stock": 3194,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01774A09-003",
+          "options": {
+            "colour": "grey",
+            "sizes": "large"
+          },
+          "stock": 656,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01774A17-000",
+          "options": {
+            "colour": "olive",
+            "sizes": "xsmall"
+          },
+          "stock": 656,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01774A17-001",
+          "options": {
+            "colour": "olive",
+            "sizes": "small"
+          },
+          "stock": 656,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01774A17-002",
+          "options": {
+            "colour": "olive",
+            "sizes": "medium"
+          },
+          "stock": 656,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "21-01774A17-003",
+          "options": {
+            "colour": "olive",
+            "sizes": "large"
+          },
+          "stock": 656,
+          "status": "in_stock",
+          "canBackorder": true
+        }
+      ],
+      "scrapedAt": "2025-12-23T11:49:21.773Z",
+      "manuallyScraped": true
+    },
+    {
+      "name": "Covert stretch vest -16",
+      "slug": "covert-stretch-vest-16",
+      "url": "https://products.snigel.se/product/covert-stretch-vest-16/",
+      "variantCount": 7,
+      "variants": [
+        {
+          "sku": "19-01098-01-000",
+          "options": {
+            "colour": "black",
+            "v-size": "size-15"
+          },
+          "stock": 37,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "19-01098-01-001",
+          "options": {
+            "colour": "black",
+            "v-size": "size-1"
+          },
+          "stock": 32,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "19-01098-01-002",
+          "options": {
+            "colour": "black",
+            "v-size": "size-2"
+          },
+          "stock": 182,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "19-01098-01-003",
+          "options": {
+            "colour": "black",
+            "v-size": "size-3"
+          },
+          "stock": 165,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "19-01098-25-001",
+          "options": {
+            "colour": "white",
+            "v-size": "size-1"
+          },
+          "stock": 29,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "19-01098-25-002",
+          "options": {
+            "colour": "white",
+            "v-size": "size-2"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        },
+        {
+          "sku": "19-01098-25-003",
+          "options": {
+            "colour": "white",
+            "v-size": "size-3"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T11:49:21.778Z",
+      "manuallyScraped": true
+    },
+    {
+      "name": "Rigid trouser belt -05",
+      "slug": "rigid-trouser-belt-05",
+      "url": "https://products.snigel.se/product/rigid-trouser-belt-05/",
+      "variantCount": 5,
+      "variants": [
+        {
+          "sku": "11-00498-01-0GJ",
+          "options": {
+            "colour": "black",
+            "sizes": "xs-s"
+          },
+          "stock": 117,
+          "status": "in_stock",
+          "canBackorder": false
+        },
+        {
+          "sku": "11-00498-01-000",
+          "options": {
+            "colour": "black",
+            "sizes": "m-l"
+          },
+          "stock": 179,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "11-00498-09-0GJ",
+          "options": {
+            "colour": "grey",
+            "sizes": "xs-s"
+          },
+          "stock": 179,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "11-00498-09-000",
+          "options": {
+            "colour": "grey",
+            "sizes": "m-l"
+          },
+          "stock": 179,
+          "status": "in_stock",
+          "canBackorder": true
+        },
+        {
+          "sku": "11-00498-17-000",
+          "options": {
+            "colour": "olive",
+            "sizes": "m-l"
+          },
+          "stock": 0,
+          "status": "out_of_stock"
+        }
+      ],
+      "scrapedAt": "2025-12-23T11:49:21.778Z",
+      "manuallyScraped": true
+    }
+  ],
+  "errors": [],
+  "retryAt": "2025-12-23T11:40:44.834Z"
+}

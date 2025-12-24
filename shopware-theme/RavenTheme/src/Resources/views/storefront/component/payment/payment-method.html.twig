@@ -18,7 +18,11 @@
         {% endif %}
     {% endfor %}
 
-    <div class="payment-method-item{% if isSelected %} is-selected{% endif %}"
+    {# Check if Kreditkarte - temporarily unavailable #}
+    {% set isKreditkarte = 'kreditkarte' in paymentNameLower %}
+    {% set isTemporarilyUnavailable = isKreditkarte %}
+
+    <div class="payment-method-item{% if isSelected %} is-selected{% endif %}{% if isTemporarilyUnavailable %} is-unavailable{% endif %}"
          data-payment-method-id="{{ payment.id }}"
          data-payment-method-name="{{ paymentNameLower|replace({' ': '-'}) }}">
 
@@ -27,10 +31,25 @@
             {{ parent() }}
         </div>
 
-        {# Collapsible payment method content - shows when selected #}
-        <div class="payment-method-content{% if isSelected %} is-visible{% endif %}">
+        {# Collapsible payment method content - shows when selected or unavailable #}
+        <div class="payment-method-content{% if isSelected %} is-visible{% endif %}{% if isTemporarilyUnavailable %} is-visible{% endif %}">
             <div class="payment-method-content-inner">
-                {% if isRedirectPayment %}
+                {% if isTemporarilyUnavailable %}
+                    {# Coming Soon message for unavailable payment methods #}
+                    <div class="payment-unavailable-info">
+                        <div class="unavailable-badge">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                            <span>Demnächst verfügbar</span>
+                        </div>
+                        <p class="unavailable-message">
+                            Diese Zahlungsart wird in Kürze aktiviert. Bitte nutzen Sie vorerst die Banküberweisung (Vorkasse).
+                        </p>
+                    </div>
+                {% elseif isRedirectPayment %}
                     {# Redirect illustration and message #}
                     <div class="payment-redirect-info">
                         <div class="redirect-illustration">
@@ -67,4 +86,22 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{# Override radio button to disable unavailable payment methods #}
+{% block component_payment_method_input %}
+    {% set isKreditkarte = 'kreditkarte' in payment.translated.name|lower %}
+    {% set isTemporarilyUnavailable = isKreditkarte %}
+
+    {% if isTemporarilyUnavailable %}
+        <input type="radio"
+               name="paymentMethodId"
+               id="paymentMethod{{ payment.id }}"
+               value="{{ payment.id }}"
+               disabled
+               class="payment-method-input is-disabled"
+               style="opacity: 0.5; cursor: not-allowed;">
+    {% else %}
+        {{ parent() }}
+    {% endif %}
 {% endblock %}

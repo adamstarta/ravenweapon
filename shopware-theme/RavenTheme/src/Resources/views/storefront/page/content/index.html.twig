@@ -23,8 +23,8 @@
     {# ========================================== #}
     {# HERO SECTION #}
     {# ========================================== #}
-    <section class="raven-hero relative w-full overflow-hidden" style="min-height: 520px; padding: 6rem 0 4rem;">
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('bundles/raventheme/assets/hero-background.jpg') }}');"></div>
+    <section class="raven-hero relative w-full overflow-hidden" style="min-height: 520px; padding: 6rem 0 4rem; margin-top: -20px;">
+        <div class="absolute bg-cover bg-no-repeat" style="background-image: url('{{ asset('bundles/raventheme/assets/hero-background.jpg') }}'); top: -40px; left: 0; right: 0; bottom: -40px; background-position: center center;"></div>
         <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.55), rgba(0,0,0,0.65));"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-24 text-white">
@@ -248,38 +248,38 @@
             <div class="raven-brands-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                 {# Brand 1: Lockhart Tactical #}
                 <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: 'lockhart-tactical'}) }}"
-                   style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
+                   style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 10rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
                    title="Lockhart Tactical">
-                    <img src="{{ asset('bundles/raventheme/assets/brand-lockhart.png') }}" alt="Lockhart Tactical" style="max-height: 70%; max-width: 70%; object-fit: contain;">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-lockhart.png') }}" alt="Lockhart Tactical" style="max-height: 80%; max-width: 80%; object-fit: contain;">
                 </a>
 
                 {# Brand 2: Magpul #}
                 <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: 'magpul'}) }}"
-                   style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
+                   style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 10rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
                    title="Magpul">
-                    <img src="{{ asset('bundles/raventheme/assets/brand-magpul.png') }}" alt="Magpul" style="max-height: 70%; max-width: 70%; object-fit: contain;">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-magpul.png') }}" alt="Magpul" style="max-height: 80%; max-width: 80%; object-fit: contain;">
                 </a>
 
                 {# Brand 3: Snigel #}
                 <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: 'snigel'}) }}"
-                   style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
+                   style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 10rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
                    title="Snigel">
-                    <img src="{{ asset('bundles/raventheme/assets/brand-snigel.png') }}" alt="Snigel" style="max-height: 70%; max-width: 70%; object-fit: contain;">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-snigel.png') }}" alt="Snigel" style="max-height: 80%; max-width: 80%; object-fit: contain;">
                 </a>
 
                 {# Brand 4: Zerotech #}
                 <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: 'zerotech'}) }}"
-                   style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 6rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
+                   style="border: 1px solid #e5e7eb; border-radius: 0.75rem; height: 10rem; display: flex; align-items: center; justify-content: center; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-decoration: none;"
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
                    title="Zerotech">
-                    <img src="{{ asset('bundles/raventheme/assets/brand-zerotech.png') }}" alt="Zerotech" style="max-height: 70%; max-width: 70%; object-fit: contain;">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-zerotech.png') }}" alt="Zerotech" style="max-height: 80%; max-width: 80%; object-fit: contain;">
                 </a>
             </div>
         </div>
@@ -300,7 +300,7 @@
                 {# Video Embed - Cloudflare Stream #}
                 <div style="border-radius: 0.75rem; overflow: hidden; position: relative; padding-top: 56.25%; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
                     <iframe
-                        src="https://customer-zz0gro70wkcharf0.cloudflarestream.com/b0310c7a97eb2c385d6881fca13a9b25/iframe?poster=https%3A%2F%2Fcustomer-zz0gro70wkcharf0.cloudflarestream.com%2Fb0310c7a97eb2c385d6881fca13a9b25%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&controls=false"
+                        src="https://customer-zz0gro70wkcharf0.cloudflarestream.com/14b22c52b620a8e2d65ba9eb5b481bdb/iframe?poster=https%3A%2F%2Fcustomer-zz0gro70wkcharf0.cloudflarestream.com%2F14b22c52b620a8e2d65ba9eb5b481bdb%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
                         loading="lazy"
                         style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
                         allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
