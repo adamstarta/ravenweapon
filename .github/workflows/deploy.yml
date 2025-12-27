@@ -41,12 +41,12 @@ jobs:
             # Compile theme and clear cache
             docker exec shopware-chf bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
 
-            # Verify site responds inside container (bypasses Cloudflare)
-            HTTP_STATUS=$(docker exec shopware-chf curl -s -o /dev/null -w "%{http_code}" http://localhost/)
-            if [ "$HTTP_STATUS" -eq 200 ]; then
-              echo "Site is accessible internally (HTTP $HTTP_STATUS)"
+            # Verify theme files exist in container
+            if docker exec shopware-chf test -f /var/www/html/custom/plugins/RavenTheme/src/Resources/theme.json; then
+              echo "Theme files verified successfully"
             else
-              echo "Warning: Site returned HTTP $HTTP_STATUS"
+              echo "ERROR: Theme files not found!"
+              exit 1
             fi
 
             # Cleanup
