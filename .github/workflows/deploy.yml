@@ -1,0 +1,57 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'shopware-theme/**'
+      - 'scripts/server/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        run: |
+          # Copy theme to server
+          scp -r shopware-theme/RavenTheme ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+
+          # Deploy theme and compile
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+            # Copy theme to container
+            docker cp /tmp/RavenTheme shopware-chf:/var/www/html/custom/plugins/
+
+            # Compile theme and clear cache
+            docker exec shopware-chf bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
+
+            # Cleanup
+            rm -rf /tmp/RavenTheme
+
+            echo "Deployment complete!"
+          ENDSSH
+
+      - name: Verify deployment
+        run: |
+          # Wait for cache to clear
+          sleep 5
+
+          # Check if site is accessible
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://ravenweapon.ch)
+          if [ "$HTTP_STATUS" -eq 200 ]; then
+            echo "Site is accessible (HTTP $HTTP_STATUS)"
+          else
+            echo "Warning: Site returned HTTP $HTTP_STATUS"
+            exit 1
+          fi
