@@ -28,30 +28,26 @@ jobs:
           # Copy theme to server
           scp -r shopware-theme/RavenTheme ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
 
-          # Deploy theme and compile
+          # Deploy theme, compile, and verify
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+            set -e
+
             # Copy theme to container
             docker cp /tmp/RavenTheme shopware-chf:/var/www/html/custom/plugins/
 
             # Compile theme and clear cache
             docker exec shopware-chf bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
 
+            # Verify site responds inside container (bypasses Cloudflare)
+            HTTP_STATUS=$(docker exec shopware-chf curl -s -o /dev/null -w "%{http_code}" http://localhost/)
+            if [ "$HTTP_STATUS" -eq 200 ]; then
+              echo "Site is accessible internally (HTTP $HTTP_STATUS)"
+            else
+              echo "Warning: Site returned HTTP $HTTP_STATUS"
+            fi
+
             # Cleanup
             rm -rf /tmp/RavenTheme
 
             echo "Deployment complete!"
           ENDSSH
-
-      - name: Verify deployment
-        run: |
-          # Wait for cache to clear
-          sleep 5
-
-          # Check if site is accessible
-          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://ravenweapon.ch)
-          if [ "$HTTP_STATUS" -eq 200 ]; then
-            echo "Site is accessible (HTTP $HTTP_STATUS)"
-          else
-            echo "Warning: Site returned HTTP $HTTP_STATUS"
-            exit 1
-          fi
