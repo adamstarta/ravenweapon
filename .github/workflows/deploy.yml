@@ -25,6 +25,9 @@ jobs:
 
       - name: Deploy to server
         run: |
+          # Clean up any previous deployment files first
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /tmp/RavenTheme"
+
           # Copy theme to server
           scp -r shopware-theme/RavenTheme ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
 
