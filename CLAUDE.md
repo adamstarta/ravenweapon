@@ -5,9 +5,10 @@
 Swiss firearms e-commerce platform for **RAVEN WEAPON AG** built on Shopware 6.6.
 
 - **Live Site:** https://ravenweapon.ch
+- **Staging Site:** https://developing.ravenweapon.ch
 - **GitHub Repo:** https://github.com/adamstarta/ravenweapon
 - **Tech Stack:** Shopware 6.6, PHP 8.3, MySQL 8, Twig, SCSS
-- **Production Server:** Hetzner Linux (77.42.19.154) running Docker container `shopware-chf`
+- **Production Server:** Hetzner Linux (77.42.19.154) running Docker containers
 
 ## Architecture
 
@@ -18,39 +19,50 @@ Swiss firearms e-commerce platform for **RAVEN WEAPON AG** built on Shopware 6.6
 └─────────────────────┘                     └────────┬─────────┘
                                                      │
                                             GitHub Actions
-                                            (Auto-deploy)
                                                      │
-                                                     ▼
-                                            ┌──────────────────┐
-                                            │  Linux Server    │
-                                            │  (Production)    │
-                                            │  ravenweapon.ch  │
-                                            └──────────────────┘
+                        ┌────────────────────────────┼────────────────────────────┐
+                        │                            │                            │
+                        ▼                            │                            ▼
+              ┌──────────────────┐                   │              ┌──────────────────┐
+              │  Staging         │                   │              │  Production      │
+              │  shopware-dev    │ ───► Review ──────┘              │  shopware-chf    │
+              │  developing.     │       & Approve                  │  ravenweapon.ch  │
+              │  ravenweapon.ch  │                                  │                  │
+              └──────────────────┘                                  └──────────────────┘
 ```
 
 ## Deployment Workflow
 
-**You do NOT need SSH access or Docker commands.** Everything deploys automatically:
+**Two-stage deployment with staging preview:**
 
 1. Edit files locally on Windows
 2. Commit and push to `main` branch
-3. GitHub Actions automatically:
-   - SSHs into the Linux server
-   - Copies the theme to the Docker container
-   - Runs `theme:compile` and `cache:clear`
-   - Verifies deployment succeeded
+3. GitHub Actions automatically deploys to **staging** first
+4. Preview changes at https://developing.ravenweapon.ch
+5. If staging looks good, approve the production deployment in GitHub Actions
+6. GitHub Actions deploys to **production**
 
 **Deployment triggers on changes to:**
 - `shopware-theme/**` (theme files)
 - `scripts/server/**` (utility scripts)
 - `.github/workflows/deploy.yml`
 
+### Setting Up GitHub Environments (One-time Setup)
+
+To enable the approval workflow, create these environments in GitHub:
+
+1. Go to https://github.com/adamstarta/ravenweapon/settings/environments
+2. Create environment: `staging` (no protection rules needed)
+3. Create environment: `production`
+   - Add protection rule: "Required reviewers" (add yourself)
+   - This will require manual approval before production deployment
+
 ## Repository Structure
 
 ```
 ravenweapon/
 ├── .github/workflows/
-│   └── deploy.yml              # Auto-deployment workflow
+│   └── deploy.yml              # Two-stage deployment workflow
 ├── shopware-theme/
 │   └── RavenTheme/             # Main theme plugin
 │       └── src/
@@ -118,9 +130,11 @@ Custom Shopware plugins are registered in `main.js`:
 
 ### Testing Changes
 After pushing to `main`:
-1. Wait ~2 minutes for deployment
-2. Check https://ravenweapon.ch (hard refresh: Ctrl+Shift+R)
-3. Check GitHub Actions tab for deployment status: https://github.com/adamstarta/ravenweapon/actions
+1. Wait ~2 minutes for staging deployment
+2. Check https://developing.ravenweapon.ch (hard refresh: Ctrl+Shift+R)
+3. If staging looks good, go to GitHub Actions and approve production deployment
+4. Check https://ravenweapon.ch after production deployment
+5. Check GitHub Actions tab for deployment status: https://github.com/adamstarta/ravenweapon/actions
 
 ## Branding
 
@@ -150,7 +164,8 @@ git add .
 git commit -m "feat: description of your change"
 git push origin main
 
-# Deployment happens automatically!
+# Deployment to staging happens automatically!
+# Then approve production deployment in GitHub Actions
 ```
 
 ### Commit Message Conventions
@@ -172,22 +187,24 @@ Visit: https://github.com/adamstarta/ravenweapon/actions
 | Changes not showing | Hard refresh (Ctrl+Shift+R), Cloudflare may cache |
 | Deployment failed | Check Actions tab for error logs |
 | Twig syntax error | Verify `{% sw_extends %}` usage |
+| Staging works but production doesn't | Check if production deployment was approved |
 
 ## Important Notes
 
-1. **No local Shopware needed** - The live server handles everything
+1. **No local Shopware needed** - The servers handle everything
 2. **No Docker commands needed** - GitHub Actions handles deployment
 3. **No SSH needed** - Everything goes through Git
-4. **Always test on live site** - There's no staging environment
+4. **Always preview on staging** - Test at developing.ravenweapon.ch first
 5. **Cloudflare caching** - May need to wait or hard refresh to see changes
 
 ## Server Information (Reference Only)
 
-The production environment (you don't need to access this):
+The server environment (you don't need to access this):
 - **Server:** Hetzner Linux at 77.42.19.154
-- **Container:** `shopware-chf` (dockware)
-- **Shopware Path:** `/var/www/html`
-- **CDN/SSL:** Cloudflare (Full strict SSL)
+- **Staging Container:** `shopware-dev` (port 8082)
+- **Production Container:** `shopware-chf` (port 8081)
+- **Reverse Proxy:** nginx routes by hostname
+- **CDN/SSL:** Cloudflare (Full SSL mode)
 
 ## Getting Help
 

@@ -1,4 +1,4 @@
-name: Deploy to Production
+name: Deploy Theme
 
 on:
   push:
@@ -10,8 +10,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  # Stage 1: Deploy to staging
+  deploy-staging:
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,34 +25,88 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy to server
+      - name: Deploy to staging
         run: |
-          # Clean up any previous deployment files first
+          # Clean up any previous deployment files
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /tmp/RavenTheme"
 
           # Copy theme to server
           scp -r shopware-theme/RavenTheme ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
 
-          # Deploy theme, compile, and verify
+          # Deploy to staging container (shopware-dev)
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
             set -e
 
-            # Copy theme to container
+            # Copy theme to staging container
+            docker cp /tmp/RavenTheme shopware-dev:/var/www/html/custom/plugins/
+
+            # Compile theme and clear cache
+            docker exec shopware-dev bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
+
+            # Verify theme files exist
+            if docker exec shopware-dev test -f /var/www/html/custom/plugins/RavenTheme/src/Resources/theme.json; then
+              echo "Staging: Theme files verified successfully"
+            else
+              echo "ERROR: Theme files not found in staging!"
+              exit 1
+            fi
+
+            echo "Staging deployment complete!"
+            echo "Preview at: https://developing.ravenweapon.ch"
+          ENDSSH
+
+      - name: Post staging URL
+        run: |
+          echo "::notice title=Staging Deployed::Preview your changes at https://developing.ravenweapon.ch"
+
+  # Stage 2: Deploy to production (requires approval)
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to production
+        run: |
+          # Clean up any previous deployment files
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /tmp/RavenTheme"
+
+          # Copy theme to server
+          scp -r shopware-theme/RavenTheme ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+
+          # Deploy to production container (shopware-chf)
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
+            set -e
+
+            # Copy theme to production container
             docker cp /tmp/RavenTheme shopware-chf:/var/www/html/custom/plugins/
 
             # Compile theme and clear cache
             docker exec shopware-chf bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
 
-            # Verify theme files exist in container
+            # Verify theme files exist
             if docker exec shopware-chf test -f /var/www/html/custom/plugins/RavenTheme/src/Resources/theme.json; then
-              echo "Theme files verified successfully"
+              echo "Production: Theme files verified successfully"
             else
-              echo "ERROR: Theme files not found!"
+              echo "ERROR: Theme files not found in production!"
               exit 1
             fi
 
             # Cleanup
             rm -rf /tmp/RavenTheme
 
-            echo "Deployment complete!"
+            echo "Production deployment complete!"
           ENDSSH
+
+      - name: Post production URL
+        run: |
+          echo "::notice title=Production Deployed::Live at https://ravenweapon.ch"
