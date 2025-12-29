@@ -34,8 +34,10 @@ build/
 
 # Credentials (SENSITIVE)
 .server-credentials
-scripts/snigel-data/snigel-images.tar.gz
-scripts/snigel-data/snigel-images.tar
+
+# Snigel extractor data (scraped content, not tracked)
+tools/snigel-extractor/data/
+!tools/snigel-extractor/data/.gitkeep
 
 # Database backups (contain sensitive data)
 backups/

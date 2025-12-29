@@ -1,30 +1,163 @@
 # RAVEN WEAPON AG - Shopware E-Commerce
 
-Swiss firearms e-commerce platform built on Shopware 6 with custom RavenTheme.
+Swiss firearms e-commerce platform built on Shopware 6 with a custom premium theme.
 
 **Production:** https://ravenweapon.ch
-**Tech Stack:** Shopware 6.6.0.0, Docker (dockware), PHP 8.3, MySQL 8, Twig, SCSS
+**Staging:** https://developing.ravenweapon.ch
+**Tech Stack:** Shopware 6.6.0.0, PHP 8.3, MySQL 8, Twig, SCSS, Docker
 
 ---
 
-## Local Development (Windows)
+## Architecture
+
+```
+┌─────────────────────┐      git push       ┌──────────────────┐
+│   Windows Machine   │ ─────────────────►  │     GitHub       │
+│   (Development)     │                     │   (Repository)   │
+└─────────────────────┘                     └────────┬─────────┘
+                                                     │
+                                            GitHub Actions
+                                                     │
+                        ┌────────────────────────────┼────────────────────────────┐
+                        │                            │                            │
+                        ▼                            │                            ▼
+              ┌──────────────────┐                   │              ┌──────────────────┐
+              │  Staging         │                   │              │  Production      │
+              │  shopware-dev    │ ───► Review ──────┘              │  shopware-chf    │
+              │  developing.     │       & Approve                  │  ravenweapon.ch  │
+              │  ravenweapon.ch  │                                  │                  │
+              └──────────────────┘                                  └──────────────────┘
+```
+
+**Two-stage deployment workflow:**
+1. Push to `main` branch triggers automatic deployment to staging
+2. Preview changes at https://developing.ravenweapon.ch
+3. Approve production deployment in GitHub Actions
+4. Changes go live at https://ravenweapon.ch
+
+---
+
+## Repository Structure
+
+```
+ravenweapon/
+├── .github/workflows/
+│   └── deploy.yml                    # Two-stage CI/CD pipeline
+│
+├── shopware-theme/RavenTheme/        # Custom Shopware 6 theme plugin
+│   └── src/
+│       ├── Controller/               # Custom route controllers
+│       ├── Subscriber/               # Event subscribers
+│       └── Resources/
+│           ├── config/services.xml   # Dependency injection
+│           ├── theme.json            # Theme configuration
+│           ├── app/storefront/src/
+│           │   ├── scss/base.scss    # Main stylesheet
+│           │   └── main.js           # JS entry point
+│           └── views/storefront/     # Twig template overrides
+│
+├── PayrexxPaymentGateway/            # Swiss payment processing plugin
+│
+├── tools/snigel-extractor/           # Snigel B2B product sync tools
+│   ├── scrapers/                     # PHP & Node.js scrapers
+│   └── data/                         # Product data & images
+│
+├── scripts/server/                   # Server-side utility scripts
+│
+├── assets/                           # Brand assets, logos, product images
+│
+├── CLAUDE.md                         # AI development assistant guide
+└── docker-compose.yml                # Local development setup
+```
+
+---
+
+## Key Customizations
+
+### Theme Features
+- **Gold gradient branding** with premium dark aesthetic
+- **Custom typography:** Chakra Petch (headlines) + Inter (body)
+- **AJAX off-canvas cart** with real-time updates
+- **Toast notifications** for add-to-cart feedback
+- **Responsive navigation** with mobile flyout menu
+- **German language** as primary storefront language
+
+### Custom Templates
+| Component | Location |
+|-----------|----------|
+| Header | `views/storefront/layout/header/header.html.twig` |
+| Footer | `views/storefront/layout/footer/footer.html.twig` |
+| Product Detail | `views/storefront/page/product-detail/index.html.twig` |
+| Product Card | `views/storefront/component/product/card/box-standard.html.twig` |
+| Off-canvas Cart | `views/storefront/component/checkout/offcanvas-cart.html.twig` |
+| 404 Error Page | `views/storefront/page/error/error-404.html.twig` |
+
+### JavaScript Plugins
+- `RavenOffcanvasCartPlugin` - AJAX cart with off-canvas sidebar
+- `RavenToastPlugin` - Toast notifications for user feedback
+
+### Template Fixes
+- **HTTPS srcset fix** (`utilities/thumbnail.html.twig`) - Forces HTTPS for image srcset URLs due to Cloudflare SSL termination
+
+---
+
+## Development
 
 ### Prerequisites
-- Docker Desktop
 - Git
+- Text editor (VS Code recommended)
 
-### Setup
+### Workflow
 
 ```bash
 # Clone repository
 git clone https://github.com/adamstarta/ravenweapon.git
 cd ravenweapon
 
-# Start Docker container
-docker-compose up -d
-# Wait ~2 minutes for Shopware to initialize
+# Edit theme files in shopware-theme/RavenTheme/src/
 
-# Activate RavenTheme
+# Commit and push
+git add .
+git commit -m "feat: your change description"
+git push origin main
+
+# Deployment happens automatically:
+# 1. Staging deploys (~2 min)
+# 2. Check https://developing.ravenweapon.ch
+# 3. Approve production in GitHub Actions
+# 4. Production deploys (~2 min)
+```
+
+### Twig Templates
+Always use `{% sw_extends %}` (NOT `{% extends %}`) for Shopware template inheritance:
+
+```twig
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+
+{% block page_product_detail_buy %}
+    {# Your custom content #}
+{% endblock %}
+```
+
+### Commit Conventions
+- `feat:` - New feature
+- `fix:` - Bug fix
+- `style:` - CSS/styling changes
+- `refactor:` - Code restructuring
+- `docs:` - Documentation
+
+---
+
+## Local Development (Optional)
+
+For local testing with Docker:
+
+```bash
+# Start container
+docker-compose up -d
+# Wait ~2 minutes for initialization
+
+# Activate theme
 docker exec ravenweapon-shop bash -c "cd /var/www/html && \
   bin/console plugin:refresh && \
   bin/console plugin:install RavenTheme --activate && \
@@ -32,92 +165,43 @@ docker exec ravenweapon-shop bash -c "cd /var/www/html && \
   bin/console cache:clear"
 ```
 
-### Access
-- **Storefront:** http://localhost/
-- **Admin Panel:** http://localhost/admin (admin / shopware)
-- **Database:** http://localhost:8888 (Adminer)
+**Local Access:**
+- Storefront: http://localhost/
+- Admin Panel: http://localhost/admin (admin/shopware)
 
 ---
 
-## Project Structure
+## Snigel B2B Integration
 
-```
-ravenweapon/
-├── shopware-theme/RavenTheme/    # Custom Shopware 6 theme plugin
-│   └── src/
-│       ├── Controller/           # Custom route controllers
-│       ├── Subscriber/           # Event subscribers
-│       └── Resources/
-│           ├── config/services.xml
-│           ├── app/storefront/src/scss/   # Styles
-│           └── views/storefront/          # Twig templates
-├── scripts/server/               # Server-side utility scripts
-├── PayrexxPaymentGateway/        # Swiss payment plugin
-├── assets/                       # Brand assets, logos
-├── CLAUDE.md                     # AI assistant guide
-└── docker-compose.yml
+The `tools/snigel-extractor/` contains scrapers for syncing products from the Snigel B2B portal (products.snigel.se):
+
+```bash
+# Scrape products
+php tools/snigel-extractor/scrapers/snigel-scraper.php
+
+# Sync stock levels
+node tools/snigel-extractor/scrapers/snigel-stock-scraper.js
+
+# Sync B2B prices
+node tools/snigel-extractor/scrapers/snigel-b2b-sync.js
 ```
 
 ---
 
-## Development Workflow
-
-### Edit Theme Files
-```bash
-# After editing files in shopware-theme/RavenTheme/
-docker cp shopware-theme/RavenTheme ravenweapon-shop:/var/www/html/custom/plugins/
-docker exec ravenweapon-shop bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
-```
-
-### Deploy to Production (one-liner)
-```bash
-scp -r shopware-theme/RavenTheme root@77.42.19.154:/tmp/ && \
-ssh root@77.42.19.154 "docker cp /tmp/RavenTheme shopware-chf:/var/www/html/custom/plugins/ && \
-docker exec shopware-chf bash -c 'cd /var/www/html && bin/console theme:compile && bin/console cache:clear'"
-```
-
----
-
-## Useful Commands
-
-### Shopware Console
-```bash
-bin/console cache:clear           # Clear all caches
-bin/console theme:compile         # Recompile theme SCSS/JS
-bin/console plugin:refresh        # Detect plugin changes
-bin/console assets:install        # Reinstall public assets
-```
-
-### Docker
-```bash
-docker logs ravenweapon-shop -f   # View container logs
-docker exec -it ravenweapon-shop bash   # Access container shell
-docker-compose restart            # Restart container
-docker-compose down               # Stop container
-```
-
----
-
-## Production Server
+## Server Information
 
 | Setting | Value |
 |---------|-------|
-| **Server** | Hetzner (77.42.19.154) |
-| **Container** | `shopware-chf` |
-| **Domain** | https://ravenweapon.ch |
-| **CDN/SSL** | Cloudflare (Full strict) |
-| **Currency** | CHF |
+| Server | Hetzner (77.42.19.154) |
+| Production Container | `shopware-chf` (port 8081) |
+| Staging Container | `shopware-dev` (port 8082) |
+| Domain | https://ravenweapon.ch |
+| CDN/SSL | Cloudflare (Full strict) |
+| Currency | CHF |
 
-### SSH Access
-```bash
-ssh root@77.42.19.154
-
-# Enter container
-docker exec -it shopware-chf bash
-
-# Quick cache clear
-docker exec shopware-chf bash -c "cd /var/www/html && bin/console cache:clear"
-```
+**Environment Differences:**
+- Production: `APP_ENV=prod`, `APP_DEBUG=0`
+- Staging: `APP_ENV=dev`, `APP_DEBUG=1`
 
 ---
 
@@ -129,10 +213,23 @@ docker exec shopware-chf bash -c "cd /var/www/html && bin/console cache:clear"
 | Gold Gradient | `#FDE047 → #F59E0B → #D97706` | Headlines, CTAs |
 | Primary Gold | `#F59E0B` | Buttons, accents |
 | Dark Background | `#111827` | Headers, cards |
+| Price Red | `#E53935` | Prices |
+| Available Green | `#77C15A` | Stock status |
 
 ### Typography
-- **Headlines:** Chakra Petch (700)
-- **Body:** Inter (400/500/600)
+- **Headlines:** Chakra Petch (700 weight)
+- **Body:** Inter (400/500/600 weights)
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Changes not showing | Hard refresh (Ctrl+Shift+R), Cloudflare caches for ~5 min |
+| Deployment failed | Check [GitHub Actions](https://github.com/adamstarta/ravenweapon/actions) |
+| Twig syntax error | Verify `{% sw_extends %}` usage |
+| Staging works, prod doesn't | Approve production deployment in GitHub Actions |
 
 ---
 

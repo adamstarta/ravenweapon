@@ -1,3 +1,0 @@
-# Ignore database dumps (contain sensitive data)
-*.sql
-*.sql.gz
