@@ -1,0 +1,14 @@
+{% sw_extends "@Storefront/storefront/utilities/thumbnail.html.twig" %}
+
+{% block thumbnail_utility_img %}
+    {# Fix HTTP to HTTPS for srcset URLs - required because Cloudflare proxy terminates SSL #}
+    {% if srcsetValues is defined %}
+        {% set fixedSrcsetValues = [] %}
+        {% for srcsetValue in srcsetValues %}
+            {% set fixedSrcsetValues = fixedSrcsetValues|merge([srcsetValue|replace({"http://ravenweapon.ch": "https://ravenweapon.ch", "http://developing.ravenweapon.ch": "https://developing.ravenweapon.ch"})]) %}
+        {% endfor %}
+        {% set srcsetValues = fixedSrcsetValues %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
