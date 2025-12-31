@@ -31,8 +31,8 @@ const CONFIG = {
 
     // Shopware API (from CLAUDE.md)
     shopware: {
-        baseUrl: 'https://ortak.ch',
-        apiUrl: 'https://ortak.ch/api',
+        baseUrl: 'https://ravenweapon.ch',
+        apiUrl: 'https://ravenweapon.ch/api',
         clientId: 'SWIAC3HJVHFJMHQYRWRUM1E1SG',
         clientSecret: 'RGtsN1Z2TklqU1ZZSVFTOFB6bWZXNWZNNk40V2h4RWY5Q2tPblg',
         currencyId: '0191c12cf40d718a8a3439b74a6f083c' // CHF
