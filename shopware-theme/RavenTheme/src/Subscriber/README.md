@@ -40,14 +40,20 @@ Loads breadcrumb categories with correct SEO URLs for product pages.
 
 Sends admin email notifications when orders are placed.
 
-**Events:** `state_enter.order.state.open`, `state_enter.order.state.in_progress`
+**Event:** `CheckoutOrderPlacedEvent`
 
-**Recipients:** Hardcoded in `$adminEmails` array (update as needed)
+**Recipients:** Defined in `ADMIN_EMAILS` constant:
+- `mirco@ravenweapon.ch`
+- `business.mitrovic@gmail.com`
+
+**SMTP:** Uses `MAILER_DSN` directly from `.env` (info@ravenweapon.ch via Infomaniak)
 
 **Features:**
 - Rich HTML email with Raven gold branding
+- Product thumbnail images in order items
 - Extracts variant info from line item payload
 - Swiss CHF formatting with apostrophes (CHF 1'234.56)
+- "Show in admin panel" button linking to backend
 
 ---
 
