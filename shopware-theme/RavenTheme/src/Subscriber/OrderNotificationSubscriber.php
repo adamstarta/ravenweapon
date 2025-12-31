@@ -22,7 +22,7 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         'business.mitrovic@gmail.com',
         'alamajacintg04@gmail.com', // Temporary for testing
     ];
-    private const FROM_EMAIL = 'shop@ravenweapon.ch';
+    private const FROM_EMAIL = 'info@ravenweapon.ch';
     private const FROM_NAME = 'Raven Weapon Shop';
 
     private MailerInterface $mailer;
