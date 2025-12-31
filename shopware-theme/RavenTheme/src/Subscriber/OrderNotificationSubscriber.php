@@ -5,10 +5,12 @@ namespace RavenTheme\Subscriber;
 use Shopware\Core\Checkout\Cart\LineItem\LineItem;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Checkout\Order\Aggregate\OrderLineItem\OrderLineItemEntity;
-use Shopware\Core\Checkout\Order\Event\OrderStateMachineStateChangeEvent;
+use Shopware\Core\Checkout\Cart\Event\CheckoutOrderPlacedEvent;
 use Shopware\Core\Framework\Event\EventData\MailRecipientStruct;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mime\Email;
 use Psr\Log\LoggerInterface;
 
@@ -20,7 +22,6 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
     private const ADMIN_EMAILS = [
         'mirco@ravenweapon.ch',
         'business.mitrovic@gmail.com',
-        'alamajacintg04@gmail.com', // Temporary for testing
     ];
     private const FROM_EMAIL = 'info@ravenweapon.ch';
     private const FROM_NAME = 'Raven Weapon Shop';
@@ -39,12 +40,11 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            'state_enter.order.state.open' => 'onOrderPlaced',
-            'state_enter.order.state.in_progress' => 'onOrderPlaced',
+            CheckoutOrderPlacedEvent::class => 'onOrderPlaced',
         ];
     }
 
-    public function onOrderPlaced(OrderStateMachineStateChangeEvent $event): void
+    public function onOrderPlaced(CheckoutOrderPlacedEvent $event): void
     {
         $order = $event->getOrder();
 
@@ -113,7 +113,16 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
             ->html($htmlContent)
             ->text($textContent);
 
-        $this->mailer->send($email);
+        // Use DSN directly from environment to ensure correct SMTP config
+        $dsn = $_ENV['MAILER_DSN'] ?? $_SERVER['MAILER_DSN'] ?? null;
+
+        if ($dsn && $dsn !== 'null://null') {
+            $transport = Transport::fromDsn($dsn);
+            $directMailer = new Mailer($transport);
+            $directMailer->send($email);
+        } else {
+            $this->mailer->send($email);
+        }
     }
 
     private function buildItemsList(OrderEntity $order): array
@@ -147,12 +156,20 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                 $variantInfo = ' (' . implode(' / ', $parts) . ')';
             }
 
+            // Get product image URL from cover
+            $imageUrl = '';
+            $cover = $lineItem->getCover();
+            if ($cover) {
+                $imageUrl = $cover->getUrl();
+            }
+
             $items[] = [
                 'name' => $lineItem->getLabel() . $variantInfo,
                 'quantity' => $lineItem->getQuantity(),
                 'unitPrice' => number_format($lineItem->getUnitPrice(), 2, '.', "'") . ' CHF',
                 'totalPrice' => number_format($lineItem->getTotalPrice(), 2, '.', "'") . ' CHF',
                 'productNumber' => $payload['productNumber'] ?? 'N/A',
+                'imageUrl' => $imageUrl,
             ];
         }
 
@@ -170,13 +187,26 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
     ): string {
         $itemsHtml = '';
         foreach ($items as $item) {
+            $imageHtml = '';
+            if (!empty($item['imageUrl'])) {
+                $imageHtml = sprintf(
+                    '<img src="%s" alt="%s" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; margin-right: 10px; vertical-align: middle;">',
+                    htmlspecialchars($item['imageUrl']),
+                    htmlspecialchars($item['name'])
+                );
+            } else {
+                // Placeholder if no image
+                $imageHtml = '<div style="width: 50px; height: 50px; background: #f3f4f6; border-radius: 4px; display: inline-block; vertical-align: middle; margin-right: 10px;"></div>';
+            }
+
             $itemsHtml .= sprintf(
                 '<tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">%s</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">%s<span style="vertical-align: middle;">%s</span></td>
                     <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: center;">%d</td>
                     <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right;">%s</td>
                     <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right;">%s</td>
                 </tr>',
+                $imageHtml,
                 htmlspecialchars($item['name']),
                 $item['quantity'],
                 $item['unitPrice'],
