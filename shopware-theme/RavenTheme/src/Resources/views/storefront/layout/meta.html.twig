@@ -15,21 +15,22 @@
 
 {% block layout_head_javascript_prod %}
     {{ parent() }}
-    {# Load RavenTheme plugin bundle #}
-    <script type="text/javascript" src="{{ asset('js/raven-theme/raven-theme.js', 'theme') }}" defer></script>
+    {# RavenTheme plugins are compiled into storefront.js automatically #}
 {% endblock %}
 
 {% block layout_head_stylesheet %}
+    {# PRELOAD LCP HERO IMAGE - Start download before CSS parsing for faster LCP #}
+    <link rel="preload" as="image" href="{{ asset('bundles/raventheme/assets/hero-background.jpg') }}" fetchpriority="high">
+
     {# Preconnect to Google Fonts - establishes early connection #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    {# Preload fonts with display=swap - non-blocking font loading #}
-    <link
-        rel="preload"
-        as="style"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap"
-    >
+    {# PRELOAD Google Fonts CSS - Critical for mobile LCP (H1 uses Chakra Petch) #}
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap">
+
+    {# NON-RENDER-BLOCKING Google Fonts - Uses print/onload pattern #}
+    {# This loads fonts asynchronously so they don't block first render #}
     <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap"
@@ -37,10 +38,7 @@
         onload="this.media='all'"
     >
     <noscript>
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap"
-        >
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap">
     </noscript>
 
     {{ parent() }}
