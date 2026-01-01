@@ -132,8 +132,7 @@
                             <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" style="text-decoration: none; color: inherit; display: block;">
                                 <div style="height: 18rem; background: white; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                                     {% if product.cover.media %}
-                                        {# First 3 products are above the fold - no lazy loading #}
-                                        {% sw_thumbnails 'homepage-product-thumb' with { media: product.cover.media, sizes: { 'default': '400px' }, attributes: { 'class': 'product-img', 'alt': product.translated.name, 'style': 'max-width: 100%; max-height: 100%; object-fit: contain; padding: 0.75rem;', 'isLCP': (loop.index <= 3) } } %}
+                                        {% sw_thumbnails 'homepage-product-thumb' with { media: product.cover.media, sizes: { 'default': '400px' }, attributes: { 'class': 'product-img', 'alt': product.translated.name, 'style': 'max-width: 100%; max-height: 100%; object-fit: contain; padding: 0.75rem;' } } %}
                                     {% else %}
                                         <div style="color: #d1d5db;">{% sw_icon 'placeholder' style { 'size': 'lg' } %}</div>
                                     {% endif %}
