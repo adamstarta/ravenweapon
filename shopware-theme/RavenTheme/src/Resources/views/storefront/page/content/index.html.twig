@@ -18,8 +18,10 @@
     .relative{position:relative}.absolute{position:absolute}.inset-0{top:0;right:0;bottom:0;left:0}
     .z-10{z-index:10}.text-white{color:#fff}
     .max-w-7xl{max-width:80rem;margin-left:auto;margin-right:auto}
-    .px-6{padding-left:1.5rem;padding-right:1.5rem}
-    @media(min-width:1024px){.lg\:px-24{padding-left:6rem;padding-right:6rem}}
+    /* Hero content responsive */
+    .raven-hero-content{max-width:1400px;padding-left:1.5rem;padding-right:1.5rem}
+    @media(min-width:768px){.raven-hero-content{padding-left:3rem;padding-right:2rem}}
+    @media(min-width:1024px){.raven-hero-content{padding-left:6rem;padding-right:2rem}}
 </style>
 
 <main class="raven-homepage">
@@ -40,7 +42,7 @@
         >
         <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.55), rgba(0,0,0,0.65));"></div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-24 text-white">
+        <div class="relative z-10 text-white raven-hero-content">
             <h1 class="raven-hero-title mb-3" style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.3; padding-top: 0.15em;">
                 RAVEN WEAPON AG
             </h1>
@@ -117,7 +119,7 @@
         }
     </style>
     <section class="raven-products bg-white" style="padding: 3rem 0 4rem;">
-        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2.5rem;">
                 <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 4rem); font-weight: 400; color: #111827; line-height: 1.1;">
                     Beliebte Produkte
@@ -129,7 +131,7 @@
             </div>
 
             {# Product Grid - Dynamic from Database #}
-            <div class="raven-product-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 2rem;">
+            <div class="raven-product-grid" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 3rem;">
                 {% if page.extensions.homepageProducts is defined and page.extensions.homepageProducts|length > 0 %}
                     {% for product in page.extensions.homepageProducts %}
                         <article class="raven-product-card" style="background: white; cursor: pointer;">
@@ -207,7 +209,7 @@
     {# ========================================== #}
     {% if page.extensions.homepageCategories is defined and page.extensions.homepageCategories|length > 0 %}
     <section class="raven-categories bg-white" style="padding: 3rem 0;">
-        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; color: #111827; line-height: 1.1; margin-bottom: 2rem;">
                 Kategorien
             </h2>
@@ -253,7 +255,7 @@
         }
     </style>
     <section class="raven-brands bg-white" style="padding: 3rem 0;">
-        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <h2 style="font-family: 'Chakra Petch', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 400; color: #111827; line-height: 1.1; margin-bottom: 2rem;">
                 Unsere Marken
             </h2>
@@ -359,7 +361,7 @@
         }
     </style>
     <section class="raven-video bg-white" style="padding: 3rem 0 4rem;">
-        <div class="max-w-7xl mx-auto px-6 lg:px-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="raven-video-grid" style="display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;">
                 {# Lite YouTube Facade - Only loads iframe on click #}
                 <div class="lite-youtube"
