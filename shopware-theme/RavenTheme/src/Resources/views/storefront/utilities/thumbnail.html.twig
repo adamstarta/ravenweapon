@@ -10,15 +10,13 @@
         {% set srcsetValues = fixedSrcsetValues %}
     {% endif %}
 
-    {# PageSpeed Optimization: Add lazy loading for all product images #}
-    {# This reduces initial page load by deferring off-screen images #}
+    {# PageSpeed Optimization: Force lazy loading for all product images #}
+    {# Shopware default is "eager" - we override to "lazy" for better PageSpeed #}
     {% if attributes is defined %}
         {% set optimizedAttrs = attributes %}
 
-        {# Add lazy loading if not already set #}
-        {% if optimizedAttrs.loading is not defined %}
-            {% set optimizedAttrs = optimizedAttrs|merge({ 'loading': 'lazy' }) %}
-        {% endif %}
+        {# FORCE lazy loading - override Shopware's default "eager" #}
+        {% set optimizedAttrs = optimizedAttrs|merge({ 'loading': 'lazy' }) %}
 
         {# Add decoding async for all images #}
         {% if optimizedAttrs.decoding is not defined %}
