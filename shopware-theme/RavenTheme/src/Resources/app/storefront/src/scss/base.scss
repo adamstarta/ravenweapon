@@ -6,9 +6,9 @@ Design reference styles from static prototype
 */
 
 // =============================================================================
-// GOOGLE FONTS
+// GOOGLE FONTS - Loaded via meta.html.twig for better performance
+// (preload + non-blocking loading instead of render-blocking @import)
 // =============================================================================
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
 
 // =============================================================================
 // VARIABLES

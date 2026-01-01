@@ -10,5 +10,32 @@
         {% set srcsetValues = fixedSrcsetValues %}
     {% endif %}
 
+    {# PageSpeed Optimization: Add lazy loading + decoding for non-LCP images #}
+    {# Pass isLCP: true in attributes to disable lazy loading for above-fold images #}
+    {% set isLCP = attributes.isLCP|default(false) %}
+
+    {# Build optimized attributes #}
+    {% set optimizedAttrs = attributes|default({}) %}
+
+    {# Add lazy loading for non-LCP images #}
+    {% if not isLCP and optimizedAttrs.loading is not defined %}
+        {% set optimizedAttrs = optimizedAttrs|merge({ 'loading': 'lazy' }) %}
+    {% endif %}
+
+    {# Add fetchpriority for LCP images #}
+    {% if isLCP and optimizedAttrs.fetchpriority is not defined %}
+        {% set optimizedAttrs = optimizedAttrs|merge({ 'fetchpriority': 'high' }) %}
+    {% endif %}
+
+    {# Add decoding async for all images #}
+    {% if optimizedAttrs.decoding is not defined %}
+        {% set optimizedAttrs = optimizedAttrs|merge({ 'decoding': 'async' }) %}
+    {% endif %}
+
+    {# Remove isLCP from attributes (not a valid HTML attribute) #}
+    {% set optimizedAttrs = optimizedAttrs|filter((v, k) => k != 'isLCP') %}
+
+    {% set attributes = optimizedAttrs %}
+
     {{ parent() }}
 {% endblock %}

@@ -18,3 +18,30 @@
     {# Load RavenTheme plugin bundle #}
     <script type="text/javascript" src="{{ asset('js/raven-theme/raven-theme.js', 'theme') }}" defer></script>
 {% endblock %}
+
+{% block layout_head_stylesheet %}
+    {# Preconnect to Google Fonts - establishes early connection #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    {# Preload fonts with display=swap - non-blocking font loading #}
+    <link
+        rel="preload"
+        as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap"
+    >
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap"
+        media="print"
+        onload="this.media='all'"
+    >
+    <noscript>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap"
+        >
+    </noscript>
+
+    {{ parent() }}
+{% endblock %}

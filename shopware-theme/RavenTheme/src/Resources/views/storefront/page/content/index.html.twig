@@ -24,7 +24,16 @@
     {# HERO SECTION #}
     {# ========================================== #}
     <section class="raven-hero relative w-full overflow-hidden" style="min-height: 520px; padding: 6rem 0 4rem; margin-top: -20px;">
-        <div class="absolute bg-cover bg-no-repeat" style="background-image: url('{{ asset('bundles/raventheme/assets/hero-background.jpg') }}'); top: -40px; left: 0; right: 0; bottom: -40px; background-position: center center;"></div>
+        {# LCP Image - HIGH PRIORITY for PageSpeed optimization #}
+        <img
+            src="{{ asset('bundles/raventheme/assets/hero-background.jpg') }}"
+            alt="Raven Weapon AG - Schweizer Präzisionswaffen"
+            fetchpriority="high"
+            decoding="async"
+            width="1920"
+            height="1080"
+            style="position: absolute; top: -40px; left: 0; right: 0; bottom: -40px; width: 100%; height: calc(100% + 80px); object-fit: cover; object-position: center;"
+        >
         <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.55), rgba(0,0,0,0.65));"></div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-24 text-white">
@@ -123,7 +132,8 @@
                             <a href="{{ seoUrl('frontend.detail.page', { productId: product.id }) }}" style="text-decoration: none; color: inherit; display: block;">
                                 <div style="height: 18rem; background: white; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                                     {% if product.cover.media %}
-                                        {% sw_thumbnails 'homepage-product-thumb' with { media: product.cover.media, sizes: { 'default': '400px' }, attributes: { 'class': 'product-img', 'alt': product.translated.name, 'style': 'max-width: 100%; max-height: 100%; object-fit: contain; padding: 0.75rem;' } } %}
+                                        {# First 3 products are above the fold - no lazy loading #}
+                                        {% sw_thumbnails 'homepage-product-thumb' with { media: product.cover.media, sizes: { 'default': '400px' }, attributes: { 'class': 'product-img', 'alt': product.translated.name, 'style': 'max-width: 100%; max-height: 100%; object-fit: contain; padding: 0.75rem;', 'isLCP': (loop.index <= 3) } } %}
                                     {% else %}
                                         <div style="color: #d1d5db;">{% sw_icon 'placeholder' style { 'size': 'lg' } %}</div>
                                     {% endif %}
@@ -252,7 +262,7 @@
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
                    title="Lockhart Tactical">
-                    <img src="{{ asset('bundles/raventheme/assets/brand-lockhart.png') }}" alt="Lockhart Tactical" style="max-height: 80%; max-width: 80%; object-fit: contain;">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-lockhart.png') }}" alt="Lockhart Tactical" loading="lazy" decoding="async" width="200" height="100" style="max-height: 80%; max-width: 80%; object-fit: contain;">
                 </a>
 
                 {# Brand 2: Magpul #}
@@ -261,7 +271,7 @@
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
                    title="Magpul">
-                    <img src="{{ asset('bundles/raventheme/assets/brand-magpul.png') }}" alt="Magpul" style="max-height: 80%; max-width: 80%; object-fit: contain;">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-magpul.png') }}" alt="Magpul" loading="lazy" decoding="async" width="200" height="100" style="max-height: 80%; max-width: 80%; object-fit: contain;">
                 </a>
 
                 {# Brand 3: Snigel #}
@@ -270,7 +280,7 @@
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
                    title="Snigel">
-                    <img src="{{ asset('bundles/raventheme/assets/brand-snigel.png') }}" alt="Snigel" style="max-height: 80%; max-width: 80%; object-fit: contain;">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-snigel.png') }}" alt="Snigel" loading="lazy" decoding="async" width="200" height="100" style="max-height: 80%; max-width: 80%; object-fit: contain;">
                 </a>
 
                 {# Brand 4: Zerotech #}
@@ -279,7 +289,7 @@
                    onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)';"
                    onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'; this.style.transform='translateY(0)';"
                    title="Zerotech">
-                    <img src="{{ asset('bundles/raventheme/assets/brand-zerotech.png') }}" alt="Zerotech" style="max-height: 80%; max-width: 80%; object-fit: contain;">
+                    <img src="{{ asset('bundles/raventheme/assets/brand-zerotech.png') }}" alt="Zerotech" loading="lazy" decoding="async" width="200" height="100" style="max-height: 80%; max-width: 80%; object-fit: contain;">
                 </a>
             </div>
         </div>
