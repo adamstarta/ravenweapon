@@ -3108,7 +3108,7 @@ button[type="submit"].raven-btn-primary {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
-    margin-top: 2rem !important;
+    margin-top: 2.5rem !important;
     padding: 0.75rem 1.5rem !important;
     font-size: 14px !important;
     line-height: 1.5 !important;
@@ -3133,10 +3133,12 @@ button[type="submit"].raven-btn-primary {
   }
 
   // Reduce spacing between category title and filter buttons
-  .cms-section {
-    margin-bottom: 0 !important;
+  h1 {
+    margin-bottom: 0.5rem !important;
   }
 
+  .cms-element-text h1,
+  .col-12 .cms-element-text h1,
   .raven-category-title {
     margin-bottom: 0.5rem !important;
   }
@@ -3144,5 +3146,11 @@ button[type="submit"].raven-btn-primary {
   .raven-filter-bar {
     padding-top: 0.5rem !important;
     margin-top: 0 !important;
+  }
+
+  // Remove padding from product listing container
+  .cms-block-product-listing .cms-block-container {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
   }
 }
