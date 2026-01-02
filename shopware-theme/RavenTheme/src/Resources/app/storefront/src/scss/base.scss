@@ -3108,13 +3108,12 @@ button[type="submit"].raven-btn-primary {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
-    margin-top: 1.5rem !important;
-    padding: 1rem 1.5rem !important;
+    margin-top: 2rem !important;
+    padding: 0.75rem 1.5rem !important;
     font-size: 14px !important;
     line-height: 1.5 !important;
-    background-color: #f5f5f5 !important;
-    border-top: 1px solid #e5e5e5 !important;
-    border-bottom: 1px solid #e5e5e5 !important;
+    background-color: transparent !important;
+    border: none !important;
     color: #666 !important;
   }
 
@@ -3131,5 +3130,19 @@ button[type="submit"].raven-btn-primary {
   .product-detail-breadcrumb .breadcrumb-current {
     color: #333 !important;
     font-weight: 500 !important;
+  }
+
+  // Reduce spacing between category title and filter buttons
+  .cms-section {
+    margin-bottom: 0 !important;
+  }
+
+  .raven-category-title {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .raven-filter-bar {
+    padding-top: 0.5rem !important;
+    margin-top: 0 !important;
   }
 }
