@@ -19,10 +19,10 @@
     .z-10{z-index:10}.text-white{color:#fff}
     .max-w-7xl{max-width:80rem;margin-left:auto;margin-right:auto}
     /* Hero content responsive - centered on mobile, left on desktop */
-    .raven-hero-content{max-width:1400px;padding-left:1.5rem;padding-right:1.5rem;text-align:center}
-    .raven-hero-content ul{display:inline-block;text-align:left}
-    .raven-hero-buttons{justify-content:center}
-    @media(min-width:768px){.raven-hero-content{padding-left:3rem;padding-right:2rem;text-align:left}.raven-hero-buttons{justify-content:flex-start}}
+    .raven-hero-content{max-width:1400px;padding-left:1.5rem;padding-right:1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+    .raven-hero-content ul{text-align:left}
+    .raven-hero-buttons{display:flex!important;justify-content:center!important}
+    @media(min-width:768px){.raven-hero-content{padding-left:3rem;padding-right:2rem;align-items:flex-start;text-align:left}.raven-hero-buttons{justify-content:flex-start!important}}
     @media(min-width:1024px){.raven-hero-content{padding-left:6rem;padding-right:2rem}}
 </style>
 

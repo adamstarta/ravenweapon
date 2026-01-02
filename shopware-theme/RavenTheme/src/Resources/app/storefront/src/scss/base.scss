@@ -3000,3 +3000,96 @@ body.raven-menu-open {
 .cart-item-delivery-date {
   display: none !important;
 }
+
+// =============================================================================
+// MOBILE UI IMPROVEMENTS - Compact Quantity + Large Add to Cart
+// =============================================================================
+
+// Product detail quantity + cart row
+#qty-decrease,
+#qty-increase,
+.quantity-btn {
+  width: 36px !important;
+  height: 44px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: #F9FAFB !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+#qty-decrease {
+  border-radius: 8px 0 0 8px !important;
+  border: 1px solid #D1D5DB !important;
+  border-right: none !important;
+}
+
+#qty-increase {
+  border-radius: 0 8px 8px 0 !important;
+  border: 1px solid #D1D5DB !important;
+  border-left: none !important;
+}
+
+#quantity,
+.quantity-input {
+  width: 44px !important;
+  height: 44px !important;
+  border: 1px solid #D1D5DB !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0 !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  -moz-appearance: textfield !important;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+// Large Add to Cart button
+.add-to-cart-btn,
+button[type="submit"].raven-btn-primary {
+  height: 56px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  flex: 1 !important;
+
+  svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
+// Hero centering on mobile
+.raven-hero-content {
+  text-align: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  ul {
+    display: inline-block;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    text-align: left;
+    padding-left: 3rem;
+    padding-right: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-left: 6rem;
+  }
+}
+
+.raven-hero-buttons {
+  justify-content: center !important;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start !important;
+  }
+}
