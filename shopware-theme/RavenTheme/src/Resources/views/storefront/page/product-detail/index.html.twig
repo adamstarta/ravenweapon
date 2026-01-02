@@ -2,9 +2,22 @@
 
 {% block base_main_inner %}
 <!-- RAVENTHEME_TEMPLATE_V2_ACTIVE -->
+<style>
+/* Mobile breadcrumb visibility fix */
+@media (max-width: 767px) {
+    .raven-product-detail {
+        padding-top: 1rem !important;
+    }
+    .breadcrumb-nav {
+        margin-top: 0.75rem !important;
+        padding: 0.75rem 0 !important;
+        font-size: 13px !important;
+    }
+}
+</style>
 <div class="raven-product-detail container py-5 md:py-8">
     {# Breadcrumb - Using Shopware's breadcrumbCategories from ProductDetailSubscriber #}
-    <nav class="breadcrumb-nav text-gray-500 mb-5" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif; font-size: 14px; padding: 0.5rem 0; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
+    <nav class="breadcrumb-nav text-gray-500 mb-5" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif; font-size: 14px; padding: 1rem 0; margin-top: 0.5rem; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
         {% if page.extensions.breadcrumbCategories is defined and page.extensions.breadcrumbCategories|length > 0 %}
             {% for category in page.extensions.breadcrumbCategories %}
