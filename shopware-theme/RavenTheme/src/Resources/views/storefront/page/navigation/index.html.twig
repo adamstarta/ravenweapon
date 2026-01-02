@@ -590,11 +590,16 @@ main nav[aria-label="Breadcrumb"]:not(.raven-category-breadcrumb) {
             {% endif %}
 
             {% else %}
+            {# Show 404 style page when no products #}
             <div style="text-align: center; padding: 4rem 2rem;">
-                <h3 style="font-size: 1.5rem; font-weight: 600; color: #111; margin-bottom: 0.5rem;">Keine Produkte gefunden</h3>
-                <p style="color: #666; margin-bottom: 2rem;">In dieser Kategorie sind noch keine Produkte vorhanden.</p>
+                <img src="{{ asset('assets/illustration/404_error.svg', 'theme') }}"
+                     alt="Seite nicht gefunden"
+                     class="rounded mx-auto d-block"
+                     style="max-width: 300px; margin-bottom: 2rem;">
+                <h3 style="font-size: 1.5rem; font-weight: 600; color: #111; margin-bottom: 0.5rem;">Seite nicht gefunden</h3>
+                <p style="color: #666; margin-bottom: 2rem;">Es tut uns leid, die gesuchte Seite konnte nicht gefunden werden. Sie existiert möglicherweise nicht mehr oder wurde verschoben.</p>
                 <a href="{{ path('frontend.home.page') }}" style="display: inline-block; padding: 0.75rem 1.5rem; background: #D4A847; color: #111; font-weight: 600; border-radius: 6px; text-decoration: none;">
-                    Zur Startseite
+                    Zurück zum Shop
                 </a>
             </div>
             {% endif %}
