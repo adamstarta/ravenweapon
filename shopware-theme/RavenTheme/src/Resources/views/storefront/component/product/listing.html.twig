@@ -49,30 +49,32 @@
 {% block element_product_listing_col_empty %}
     <div class="cms-listing-col col-12">
         {% block element_product_listing_col_empty_custom %}
-            {# Clean, simple "Coming Soon" message #}
+            {# 404 style - Page not found #}
             <div style="text-align: center; padding: 4rem 2rem; max-width: 480px; margin: 0 auto;">
-                {# Simple arrow icon #}
+                {# 404 illustration #}
                 <div style="margin-bottom: 1.5rem;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#D4A847" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#D4A847" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
+                        <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
+                        <line x1="9" y1="9" x2="9.01" y2="9"/>
+                        <line x1="15" y1="9" x2="15.01" y2="9"/>
                     </svg>
                 </div>
 
                 {# Title #}
                 <h2 style="font-family: 'Inter', -apple-system, sans-serif; font-size: 1.5rem; font-weight: 600; color: #111; margin: 0 0 0.75rem;">
-                    Bald verfügbar
+                    Seite nicht gefunden
                 </h2>
 
                 {# Description #}
                 <p style="font-size: 1rem; color: #666; line-height: 1.6; margin: 0 0 2rem;">
-                    Neue Produkte werden in Kürze hinzugefügt. Schauen Sie bald wieder vorbei oder kontaktieren Sie uns für weitere Informationen.
+                    Es tut uns leid, die gesuchte Seite konnte nicht gefunden werden. Sie existiert möglicherweise nicht mehr oder wurde verschoben.
                 </p>
 
                 {# CTA Button #}
-                <a href="{{ path('frontend.cms.page', { id: 'contact' }) }}"
+                <a href="{{ path('frontend.home.page') }}"
                    style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #D4A847; color: #111; font-weight: 600; border-radius: 6px; text-decoration: none; transition: background 0.2s;">
-                    Kontaktieren Sie uns
+                    Zurück zum Shop
                 </a>
             </div>
         {% endblock %}
