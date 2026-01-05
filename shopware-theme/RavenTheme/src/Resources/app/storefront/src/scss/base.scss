@@ -3226,26 +3226,34 @@ button[type="submit"].raven-btn-primary {
   }
 }
 
-// CRITICAL FIX: Override inline overflow:hidden on description-wrapper
-// This allows tables to scroll horizontally on mobile
+// CRITICAL FIX: Make tables scrollable on mobile while keeping "see more" working
+// overflow-y: hidden keeps the collapse feature working
+// overflow-x: visible allows horizontal content to overflow to scrollable child
 .description-wrapper {
   @media (max-width: 767px) {
     overflow-y: hidden !important;
     overflow-x: visible !important;
 
-    // Ensure description tables can scroll
     .description-content {
-      max-width: 100%;
-      overflow-x: auto !important;
-      -webkit-overflow-scrolling: touch;
-    }
+      overflow: visible !important;
 
-    figure.table {
-      overflow-x: auto !important;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -1rem;
-      padding: 0 1rem;
-      max-width: calc(100% + 2rem);
+      // Make figure.table the scrollable container
+      figure.table {
+        display: block !important;
+        overflow-x: auto !important;
+        overflow-y: visible !important;
+        -webkit-overflow-scrolling: touch;
+        margin: 0;
+        padding-bottom: 0.5rem; // Space for scrollbar
+
+        // Make table scrollable with minimum width
+        table {
+          display: table !important;
+          width: auto !important;
+          min-width: 500px;
+          table-layout: auto;
+        }
+      }
     }
   }
 }
