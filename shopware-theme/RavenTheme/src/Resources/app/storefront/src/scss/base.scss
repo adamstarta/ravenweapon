@@ -3227,29 +3227,28 @@ button[type="submit"].raven-btn-primary {
 }
 
 // CRITICAL FIX: Make tables scrollable on mobile while keeping "see more" working
-// overflow-y: hidden keeps the collapse feature working
-// overflow-x: visible allows horizontal content to overflow to scrollable child
 .description-wrapper {
   @media (max-width: 767px) {
-    overflow-y: hidden !important;
-    overflow-x: visible !important;
+    overflow: hidden !important; // Keep for "see more" feature
 
     .description-content {
       overflow: visible !important;
 
-      // Make figure.table the scrollable container
+      // Make figure.table the constrained scroll container
       figure.table {
         display: block !important;
-        overflow-x: auto !important;
+        overflow-x: scroll !important; // Always show scrollbar for discoverability
         overflow-y: visible !important;
         -webkit-overflow-scrolling: touch;
         margin: 0;
-        padding-bottom: 0.5rem; // Space for scrollbar
+        padding-bottom: 0.5rem;
+        max-width: 100% !important; // Constrain to parent width
+        width: 100% !important;
 
-        // Make table scrollable with minimum width
+        // Make table wider than container so it scrolls
         table {
           display: table !important;
-          width: auto !important;
+          width: max-content !important;
           min-width: 500px;
           table-layout: auto;
         }
