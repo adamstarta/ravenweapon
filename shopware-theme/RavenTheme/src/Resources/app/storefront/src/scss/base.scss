@@ -3154,3 +3154,88 @@ button[type="submit"].raven-btn-primary {
     padding-bottom: 0.5rem !important;
   }
 }
+
+// =============================================================================
+// RESPONSIVE TABLES IN DESCRIPTION CONTENT
+// =============================================================================
+
+// Make tables in product descriptions responsive on mobile
+.description-content {
+  // Wrapper for tables to enable horizontal scroll
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    // Ensure table doesn't collapse
+    tbody, thead, tfoot {
+      display: table;
+      width: 100%;
+      min-width: 500px; // Force minimum width so values don't wrap awkwardly
+    }
+
+    // Table cell styling
+    td, th {
+      padding: 0.5rem 0.75rem;
+      white-space: nowrap; // Prevent text wrapping in cells
+
+      &:first-child {
+        white-space: normal; // Allow first column (labels) to wrap if needed
+        min-width: 150px;
+      }
+
+      &:last-child {
+        text-align: right;
+        font-weight: 500;
+      }
+    }
+
+    // Row styling
+    tr {
+      border-bottom: 1px solid #e5e7eb;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  // Mobile-specific scroll indicator shadow
+  @media (max-width: 767px) {
+    position: relative;
+
+    // Right shadow indicator for scrollable content
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 30px;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 100%);
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    // Hide shadow when scrolled to end (handled by JS, but CSS fallback)
+    &.scrolled-end::after {
+      opacity: 0;
+    }
+  }
+}
+
+// Alternative: Wrap description in a scroll container
+.description-wrapper {
+  @media (max-width: 767px) {
+    // Ensure description tables can scroll
+    .description-content {
+      max-width: 100%;
+
+      table {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
