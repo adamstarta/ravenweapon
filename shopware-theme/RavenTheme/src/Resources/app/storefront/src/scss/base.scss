@@ -3156,13 +3156,59 @@ button[type="submit"].raven-btn-primary {
 }
 
 // =============================================================================
-// RESPONSIVE TABLES IN DESCRIPTION CONTENT (MOBILE ONLY)
+// RESPONSIVE TABLES IN DESCRIPTION CONTENT
 // =============================================================================
 
-// Desktop: Tables display normally - no changes needed
-// Mobile: Apply horizontal scroll behavior
+// Desktop and Mobile: Scrollable tables with proper spacing
 .description-content {
-  // Mobile-only table styles
+  // Make figure.table a scroll container for both desktop and mobile
+  figure.table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 0 1rem 0;
+    max-width: 100%;
+  }
+
+  // Table styles - consistent for all screen sizes
+  table {
+    width: max-content; // Allow table to be wider than container
+    min-width: 100%;
+    border-collapse: collapse;
+
+    // Table cell styling with generous padding
+    td, th {
+      padding: 0.75rem 1.25rem;
+      vertical-align: top;
+      border-bottom: 1px solid #e5e7eb;
+      white-space: nowrap; // Prevent text wrapping so scroll is needed
+    }
+
+    // First column (labels) styling
+    td:first-child,
+    th:first-child {
+      font-weight: 500;
+      color: #374151;
+      padding-right: 2rem;
+      white-space: normal; // Allow labels to wrap
+      min-width: 200px;
+    }
+
+    // Last column (values) styling
+    td:last-child,
+    th:last-child {
+      text-align: right;
+      color: #111827;
+    }
+
+    // Row styling
+    tr:last-child td,
+    tr:last-child th {
+      border-bottom: none;
+    }
+  }
+
+  // Mobile-only table styles - override desktop styles
   @media (max-width: 767px) {
     table {
       display: block;
@@ -3205,32 +3251,38 @@ button[type="submit"].raven-btn-primary {
   }
 }
 
-// CRITICAL FIX: Make tables scrollable on mobile while keeping "see more" working
+// CRITICAL FIX: Make tables scrollable while keeping "see more" working
 .description-wrapper {
+  // Desktop: Allow overflow for figure.table scroll
+  .description-content {
+    figure.table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 0 1rem 0;
+      max-width: 100%;
+
+      table {
+        display: table;
+        width: max-content;
+        min-width: 500px;
+        table-layout: auto;
+      }
+    }
+  }
+
+  // Mobile: Additional fixes
   @media (max-width: 767px) {
     overflow: hidden !important; // Keep for "see more" feature
 
     .description-content {
       overflow: visible !important;
 
-      // Make figure.table the constrained scroll container
       figure.table {
-        display: block !important;
-        overflow-x: scroll !important; // Always show scrollbar for discoverability
+        overflow-x: scroll !important;
         overflow-y: visible !important;
-        -webkit-overflow-scrolling: touch;
-        margin: 0;
         padding-bottom: 0.5rem;
-        max-width: 100% !important; // Constrain to parent width
         width: 100% !important;
-
-        // Make table wider than container so it scrolls
-        table {
-          display: table !important;
-          width: max-content !important;
-          min-width: 500px;
-          table-layout: auto;
-        }
       }
     }
   }
