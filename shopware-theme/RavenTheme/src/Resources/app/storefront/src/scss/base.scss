@@ -3226,10 +3226,33 @@ button[type="submit"].raven-btn-primary {
   }
 }
 
-// Alternative: Wrap description in a scroll container
+// CRITICAL FIX: Override inline overflow:hidden on description-wrapper
+// This allows tables to scroll horizontally on mobile
 .description-wrapper {
   @media (max-width: 767px) {
+    overflow-y: hidden !important;
+    overflow-x: visible !important;
+
     // Ensure description tables can scroll
+    .description-content {
+      max-width: 100%;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    figure.table {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -1rem;
+      padding: 0 1rem;
+      max-width: calc(100% + 2rem);
+    }
+  }
+}
+
+// Alternative: Additional scroll container styles
+.description-wrapper-scroll {
+  @media (max-width: 767px) {
     .description-content {
       max-width: 100%;
 
