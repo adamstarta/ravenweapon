@@ -633,12 +633,30 @@
     .description-wrapper {
         position: relative;
         max-height: 150px;
-        overflow: hidden;
+        overflow-y: hidden;
+        overflow-x: visible;
         transition: max-height 0.4s ease;
     }
 
     .description-wrapper.expanded {
         max-height: 2000px;
+    }
+
+    /* Mobile: Allow tables to scroll horizontally */
+    @media (max-width: 767px) {
+        .description-content {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .description-content table {
+            min-width: 500px;
+        }
+        .description-content figure.table {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -1rem;
+            padding: 0 1rem;
+        }
     }
 
     .description-fade {
