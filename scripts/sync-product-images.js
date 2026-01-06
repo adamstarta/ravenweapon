@@ -1,8 +1,14 @@
 /**
- * Sync Product Images to Shopware
+ * Sync Product Images to Shopware - PERFECT VERSION
  *
  * Reads product image URLs from Excel and uploads them to Shopware.
  * Excludes "Raven Swiss" products.
+ *
+ * Features:
+ *   - Syncs ALL image columns: image_1, image_2, image_3, image_4, image_5
+ *   - Unique filenames: Prefixes with product number to avoid duplicates
+ *   - Sanitizes filenames: Handles special characters (%, parentheses, etc.)
+ *   - Comprehensive reporting: Shows exactly what succeeded/failed
  *
  * Usage:
  *   node sync-product-images.js              # Sync all products
@@ -114,6 +120,43 @@ function downloadFile(url) {
 function getExtension(url) {
     const match = url.match(/\.(\w+)(?:\?|$)/);
     return match ? match[1].toLowerCase() : 'jpg';
+}
+
+/**
+ * Sanitize filename - remove/replace problematic characters
+ */
+function sanitizeFilename(filename) {
+    // URL decode first (handles %20, %28, etc.)
+    let decoded = filename;
+    try {
+        decoded = decodeURIComponent(filename);
+    } catch (e) {
+        // If decode fails, use original
+    }
+
+    // Replace problematic characters
+    return decoded
+        .replace(/[%]/g, 'pct')           // Replace % with 'pct'
+        .replace(/[()]/g, '')              // Remove parentheses
+        .replace(/[<>:"/\\|?*]/g, '')      // Remove invalid filename chars
+        .replace(/\s+/g, '-')              // Replace spaces with dashes
+        .replace(/[^\w\-_.]/g, '')         // Remove other special chars
+        .replace(/-+/g, '-')               // Collapse multiple dashes
+        .replace(/^-|-$/g, '');            // Trim leading/trailing dashes
+}
+
+/**
+ * Generate unique filename with product number prefix
+ */
+function generateUniqueFilename(productNumber, imageUrl, position) {
+    const urlPath = new URL(imageUrl).pathname;
+    let originalName = urlPath.split('/').pop().replace(/\.[^.]+$/, '') || `image-${position}`;
+
+    // Sanitize the original filename
+    const sanitized = sanitizeFilename(originalName);
+
+    // Prefix with product number to ensure uniqueness
+    return `${productNumber}-pos${position}-${sanitized}`;
 }
 
 /**
@@ -236,16 +279,19 @@ async function getProductMediaFolderId() {
 
 /**
  * Upload media to Shopware
+ * @param {string} imageUrl - URL of the image to upload
+ * @param {string} productId - Shopware product ID
+ * @param {string} productNumber - Product number for unique filename
+ * @param {number} position - Image position (1-5)
  */
-async function uploadMedia(imageUrl, productId, position) {
+async function uploadMedia(imageUrl, productId, productNumber, position) {
     const token = await getToken();
     const mediaId = generateUUID();
     const extension = getExtension(imageUrl);
     const mediaFolderId = await getProductMediaFolderId();
 
-    // Extract filename from URL
-    const urlPath = new URL(imageUrl).pathname;
-    const fileName = urlPath.split('/').pop().replace(/\.[^.]+$/, '') || `product-image-${position}`;
+    // Generate unique, sanitized filename with product number prefix
+    const fileName = generateUniqueFilename(productNumber, imageUrl, position);
 
     try {
         // Step 1: Create media entity with folder ID
@@ -364,9 +410,9 @@ async function syncProductImages(products, dryRun = false) {
         console.log(`[${processed}/${products.length}] ${productName}`);
         console.log(`    Number: ${productNumber}`);
 
-        // Collect image URLs
+        // Collect image URLs (image_1 through image_5)
         const imageUrls = [];
-        for (let i = 1; i <= 4; i++) {
+        for (let i = 1; i <= 5; i++) {
             const url = product[`image_${i}`];
             if (url && typeof url === 'string' && url.startsWith('http')) {
                 imageUrls.push({ position: i, url: url });
@@ -410,7 +456,7 @@ async function syncProductImages(products, dryRun = false) {
         for (const img of imageUrls) {
             console.log(`      Uploading image ${img.position}...`);
 
-            const mediaId = await uploadMedia(img.url, productId, img.position + existingMedia);
+            const mediaId = await uploadMedia(img.url, productId, productNumber, img.position + existingMedia);
 
             if (mediaId) {
                 const linked = await linkMediaToProduct(productId, mediaId, img.position + existingMedia);
