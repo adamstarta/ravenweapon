@@ -175,36 +175,52 @@ function generateUUID() {
 // ============================================================
 
 let accessToken = null;
+let tokenExpiry = 0;
 
 /**
- * Get Shopware API token
+ * Get Shopware API token (with auto-refresh)
  */
-async function getToken() {
-    if (accessToken) return accessToken;
+async function getToken(forceRefresh = false) {
+    const now = Date.now();
 
-    console.log('  Getting Shopware API token...');
-    const res = await httpRequest(`${CONFIG.shopware.apiUrl}/oauth/token`, {
-        method: 'POST',
-        body: {
-            grant_type: 'client_credentials',
-            client_id: CONFIG.shopware.clientId,
-            client_secret: CONFIG.shopware.clientSecret
+    // Refresh token if expired or forced
+    if (!accessToken || forceRefresh || now >= tokenExpiry) {
+        console.log('  Getting Shopware API token...');
+        const res = await httpRequest(`${CONFIG.shopware.apiUrl}/oauth/token`, {
+            method: 'POST',
+            body: {
+                grant_type: 'client_credentials',
+                client_id: CONFIG.shopware.clientId,
+                client_secret: CONFIG.shopware.clientSecret
+            }
+        });
+
+        if (!res.data.access_token) {
+            throw new Error('Failed to get API token: ' + JSON.stringify(res.data));
         }
-    });
 
-    if (!res.data.access_token) {
-        throw new Error('Failed to get API token: ' + JSON.stringify(res.data));
+        accessToken = res.data.access_token;
+        // Token usually expires in 600 seconds, refresh 60 seconds early
+        tokenExpiry = now + ((res.data.expires_in || 600) - 60) * 1000;
+        console.log('  ✓ Token obtained');
     }
 
-    accessToken = res.data.access_token;
-    console.log('  ✓ Token obtained');
     return accessToken;
 }
 
 /**
- * Search for product by product number
+ * Force token refresh (call when getting 401 errors)
  */
-async function findProductByNumber(productNumber) {
+async function refreshToken() {
+    accessToken = null;
+    tokenExpiry = 0;
+    return getToken(true);
+}
+
+/**
+ * Search for product by product number (with 401 retry)
+ */
+async function findProductByNumber(productNumber, retry = true) {
     const token = await getToken();
 
     const res = await httpRequest(`${CONFIG.shopware.apiUrl}/search/product`, {
@@ -220,6 +236,13 @@ async function findProductByNumber(productNumber) {
             }
         }
     });
+
+    // Handle token expiration - retry once with fresh token
+    if (res.status === 401 && retry) {
+        console.log('    ⟳ Token expired, refreshing...');
+        await refreshToken();
+        return findProductByNumber(productNumber, false);
+    }
 
     if (res.data.data && res.data.data.length > 0) {
         return res.data.data[0];
