@@ -81,6 +81,8 @@
                       class="raven-address-form"
                       data-form-csrf-handler="true">
 
+                    {{ sw_csrf('frontend.account.address.create') }}
+
                     {# Hidden salutation - use first available #}
                     <input type="hidden" name="address[salutationId]" value="{{ page.salutations|first.id }}">
 
