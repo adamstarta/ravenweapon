@@ -1,0 +1,206 @@
+{
+  "scrapedAt": "2026-01-07T13:04:54.026Z",
+  "successful": [],
+  "failed": [
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00102",
+      "url": "https://zerotechoptics.com/p/1-6x24mm-vengeance-sfp-rar-moa-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00077",
+      "url": "https://zerotechoptics.com/p/3-12x40-zeroplex-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00076",
+      "url": "https://zerotechoptics.com/p/6-24x50-ffp-rmg-moa-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00075",
+      "url": "https://zerotechoptics.com/p/6-24x50-ffp-rmg-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00074",
+      "url": "https://zerotechoptics.com/p/4-20x50-phr-ii-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00073",
+      "url": "https://zerotechoptics.com/p/4-20x50-r3-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00072",
+      "url": "https://zerotechoptics.com/p/4-20x50-phr-ii-ir-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00071",
+      "url": "https://zerotechoptics.com/p/4-20x50-r3-illuminated-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-VEN-000-XX-00066",
+      "url": "https://zerotechoptics.com/p/5-25x56-rmg-ffp-mrad-zero-stop-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THR-000-XX-00107",
+      "url": "https://zerotechoptics.com/p/4-16x50mm-zeroplex-thrive-riflescopes/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THR-000-XX-00106",
+      "url": "https://zerotechoptics.com/p/4-16x50mm-phr-ii-thrive-riflescopes/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THR-000-XX-00105",
+      "url": "https://zerotechoptics.com/p/3-12x44mm-zeroplex-thrive-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THR-000-XX-00104",
+      "url": "https://zerotechoptics.com/p/3-9x40mm-phr-4-thrive-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THR-000-XX-00103",
+      "url": "https://zerotechoptics.com/p/3-9x40mm-zeroplex-thrive-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THR-000-XX-00108",
+      "url": "https://zerotechoptics.com/p/4-16x50mm-mildot-thrive-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THD-000-XX-00117",
+      "url": "https://zerotechoptics.com/p/2-5-15x50mm-phr-ii-illuminated-thrive-hd-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THD-000-XX-00116",
+      "url": "https://zerotechoptics.com/p/2-5-15x50mm-phr-ii-thrive-hd-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THD-000-XX-00115",
+      "url": "https://zerotechoptics.com/p/3-18x56mm-phr-ii-ir-thrive-hd-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THD-000-XX-00114",
+      "url": "https://zerotechoptics.com/p/6-24x50mm-ir-lr-hunter-mrad-thrive-hd-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THD-000-XX-00113",
+      "url": "https://zerotechoptics.com/p/1-8x24mm-g4-ir-thrive-hd-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-THD-000-XX-00112",
+      "url": "https://zerotechoptics.com/p/1-8x24mm-phr-4-ir-thrive-hd-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-TRD-000-XX-00118",
+      "url": "https://zerotechoptics.com/p/1-10x24-lpvo-rmg-l-illuminated-trace-ed-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-TRC-000-XX-00111",
+      "url": "https://zerotechoptics.com/p/4-5-27x50mm-r3-trace-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-TRC-000-XX-00110",
+      "url": "https://zerotechoptics.com/p/4-5-27x50mm-rmg-trace-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-TRC-000-XX-00109",
+      "url": "https://zerotechoptics.com/p/4-5-27x50mm-rmg-moa-trace-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-TRA-000-XX-00081",
+      "url": "https://zerotechoptics.com/p/4-24x50mm-ffp-rmg-ir-trace-advanced-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-TRA-000-XX-00080",
+      "url": "https://zerotechoptics.com/p/4-24x50mm-ffp-tremor-3-trace-advanced-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-TRA-000-XX-00079",
+      "url": "https://zerotechoptics.com/p/5-30x56mm-rmg2-ed-trace-advanced-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-ZF-TRA-000-XX-00078",
+      "url": "https://zerotechoptics.com/p/5-30x56mm-t3-ed-trace-advanced-riflescope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-SSC-TRA-000-XX-00094",
+      "url": "https://zerotechoptics.com/p/20-60x80mm-ffp-osr-mrad-trace-spotting-scope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-SSC-THR-000-XX-00095",
+      "url": "https://zerotechoptics.com/p/20-60x85mm-ting-thrive-spotting-scope/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-TRC-000-XX-00093",
+      "url": "https://zerotechoptics.com/p/ras-1x25mm-trace-digital-red-dot/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-TRC-000-XX-00091",
+      "url": "https://zerotechoptics.com/p/trace-halo-aspherical-enclosed-red-dot/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-TRC-000-FD-00092",
+      "url": "https://zerotechoptics.com/p/trace-halo-aspherical-enclosed-red-dot-fde/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-THR-000-XX-00101",
+      "url": "https://zerotechoptics.com/p/thrive-red-dot-3-moa/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-THD-000-XX-00100",
+      "url": "https://zerotechoptics.com/p/thrive-hd-reflex-3-moa-high/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-THD-000-XX-00099",
+      "url": "https://zerotechoptics.com/p/thrive-hd-reflex-green-dot-3-moa/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-THD-000-XX-00098",
+      "url": "https://zerotechoptics.com/p/thrive-hd-multi-reticle-high-reflex/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-THD-000-XX-00097",
+      "url": "https://zerotechoptics.com/p/micro-prism-1x20-thrive-hd/",
+      "reason": "Weight not found in page"
+    },
+    {
+      "productNumber": "ZRT-RV-THD-000-XX-00096",
+      "url": "https://zerotechoptics.com/p/1-4x24mm-variable-prism-thrive-hd/",
+      "reason": "Weight not found in page"
+    }
+  ]
+}

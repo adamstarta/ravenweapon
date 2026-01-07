@@ -35,14 +35,10 @@
                     <p>Melden Sie sich bei Ihrem Konto an</p>
                 </div>
 
-                {# Traditional HTML form - NO AJAX to avoid Shopware 403 on page controllers #}
                 <form action="{{ path('frontend.account.login') }}"
                       method="post"
                       class="login-form"
-                      data-form-ajax="false"
-                      data-form-handler="false">
-
-                    {{ sw_csrf('frontend.account.login') }}
+                      data-form-handler="true">
 
                     <input type="hidden" name="redirectTo" value="{{ redirectTo|default('frontend.account.home.page') }}">
                     {% if redirectParameters is defined and redirectParameters is not empty and redirectParameters != '{"_noStore":true}' %}

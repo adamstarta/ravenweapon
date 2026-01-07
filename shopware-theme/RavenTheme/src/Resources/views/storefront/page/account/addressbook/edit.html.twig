@@ -79,12 +79,16 @@
                 <form action="{{ path('frontend.account.address.edit.save', { addressId: page.address.id }) }}"
                       method="post"
                       class="raven-address-form"
-                      data-form-csrf-handler="true">
+                      data-form-handler="true">
 
-                    {{ sw_csrf('frontend.account.address.edit.save') }}
+                    {# CRITICAL: Address ID tells Shopware to UPDATE not CREATE #}
+                    <input type="hidden" name="address[id]" value="{{ page.address.id }}">
 
                     {# Hidden salutation - use existing or first available #}
                     <input type="hidden" name="address[salutationId]" value="{{ page.address.salutationId ?: page.salutations|first.id }}">
+
+                    {# Redirect after save #}
+                    <input type="hidden" name="redirectTo" value="frontend.account.address.page">
 
                     {# Name Fields #}
                     <div class="form-row two-columns">
@@ -533,68 +537,5 @@
 
 <script>
 document.body.classList.add('raven-account-page-bg');
-
-// ============ DEBUG: Address Form Submission ============
-(function() {
-    // Create debug panel
-    const debugPanel = document.createElement('div');
-    debugPanel.id = 'address-debug-panel';
-    debugPanel.style.cssText = 'position:fixed;bottom:20px;right:20px;width:400px;max-height:300px;overflow:auto;background:#1a1a1a;color:#00ff00;font-family:monospace;font-size:12px;padding:15px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.5);z-index:9999;display:none;';
-    debugPanel.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:10px;"><strong style="color:#D4A847;">DEBUG: Address Form</strong><button onclick="this.parentElement.parentElement.style.display=\'none\'" style="background:none;border:none;color:#ff0000;cursor:pointer;font-size:16px;">✕</button></div><div id="debug-content"></div>';
-    document.body.appendChild(debugPanel);
-
-    function log(msg, type = 'info') {
-        const content = document.getElementById('debug-content');
-        const colors = { info: '#00ff00', error: '#ff0000', warn: '#ffff00', success: '#00ffff' };
-        content.innerHTML += `<div style="color:${colors[type]};margin:5px 0;">[${new Date().toLocaleTimeString()}] ${msg}</div>`;
-        debugPanel.style.display = 'block';
-        content.scrollTop = content.scrollHeight;
-    }
-
-    // Intercept form submission
-    const form = document.querySelector('.raven-address-form');
-    if (form) {
-        log('Form found: ' + form.action);
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            log('Form submitted...', 'warn');
-
-            const formData = new FormData(form);
-            log('Form data: ' + [...formData.entries()].map(e => e[0] + '=' + (e[0].includes('csrf') ? '[CSRF]' : e[1])).join(', '));
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            })
-            .then(response => {
-                log('Response status: ' + response.status + ' ' + response.statusText, response.ok ? 'success' : 'error');
-                log('Response URL: ' + response.url);
-                return response.text().then(text => ({ status: response.status, ok: response.ok, text: text, url: response.url }));
-            })
-            .then(data => {
-                if (data.ok) {
-                    log('SUCCESS! Redirecting in 3s...', 'success');
-                    log('Response length: ' + data.text.length + ' chars');
-                    setTimeout(() => { window.location.href = '{{ path("frontend.account.address.page") }}'; }, 3000);
-                } else {
-                    log('ERROR! Status: ' + data.status, 'error');
-                    // Try to extract error message
-                    const match = data.text.match(/alert[^>]*>(.*?)<\/div>/s);
-                    if (match) log('Error msg: ' + match[1].replace(/<[^>]+>/g, '').trim(), 'error');
-                    else log('Full response logged to console', 'warn');
-                    console.log('Full response:', data.text);
-                }
-            })
-            .catch(err => {
-                log('FETCH ERROR: ' + err.message, 'error');
-            });
-        });
-    } else {
-        log('ERROR: Form not found!', 'error');
-    }
-})();
-// ============ END DEBUG ============
 </script>
 {% endblock page_account_main_content %}
