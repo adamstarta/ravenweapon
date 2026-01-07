@@ -1,6 +1,40 @@
 {% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
 
 {% block base_main_inner %}
+{# Product Schema.org JSON-LD for Google Rich Snippets #}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ page.product.translated.name|e('js') }}",
+    "description": "{{ page.product.translated.description|striptags|slice(0, 200)|e('js') }}",
+    "image": "{% if page.product.cover.media.url %}{{ page.product.cover.media.url }}{% endif %}",
+    "sku": "{{ page.product.productNumber }}",
+    "brand": {
+        "@type": "Brand",
+        "name": "{% if page.product.manufacturer %}{{ page.product.manufacturer.translated.name|e('js') }}{% else %}Raven Weapon{% endif %}"
+    },
+    "offers": {
+        "@type": "Offer",
+        "url": "{{ app.request.uri }}",
+        "priceCurrency": "CHF",
+        "price": "{{ page.product.calculatedPrice.unitPrice }}",
+        "availability": "{% if page.product.availableStock > 0 %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+        "seller": {
+            "@type": "Organization",
+            "name": "Raven Weapon AG"
+        }
+    }
+    {% if page.product.ratingAverage > 0 %},
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ page.product.ratingAverage }}",
+        "reviewCount": "{{ page.product.reviews.total|default(1) }}"
+    }
+    {% endif %}
+}
+</script>
+<!-- RAVENTHEME_PRODUCT_SCHEMA_ACTIVE -->
 {# CSS to hide Shopware's default breadcrumb on product detail - we have our own styled one #}
 <style>
     body .breadcrumb-container,
