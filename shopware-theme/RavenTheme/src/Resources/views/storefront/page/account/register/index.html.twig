@@ -171,6 +171,15 @@
                     </label>
                 </div>
 
+                {# Cloudflare Turnstile Widget #}
+                <div class="form-group turnstile-container">
+                    <div class="cf-turnstile"
+                         data-sitekey="0x4AAAAAACLCpKO4Tgee88q5"
+                         data-theme="light"
+                         data-size="normal">
+                    </div>
+                </div>
+
                 <button type="submit" class="auth-btn primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -262,6 +271,15 @@
                     </a>
                 </div>
 
+                {# Cloudflare Turnstile Widget #}
+                <div class="form-group turnstile-container">
+                    <div class="cf-turnstile"
+                         data-sitekey="0x4AAAAAACLCpKO4Tgee88q5"
+                         data-theme="light"
+                         data-size="normal">
+                    </div>
+                </div>
+
                 <button type="submit" class="auth-btn primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
@@ -325,6 +343,9 @@
 
     </div>
 </div>
+
+{# Cloudflare Turnstile Script #}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -794,6 +815,17 @@
 
 .trust-item svg {
     color: var(--raven-gold);
+}
+
+/* ============ TURNSTILE WIDGET ============ */
+.turnstile-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.turnstile-container .cf-turnstile {
+    transform-origin: center;
 }
 
 /* ============ HIDE DEFAULT ELEMENTS ============ */
