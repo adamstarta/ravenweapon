@@ -1,6 +1,39 @@
 {% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
 
 {% block base_main_inner %}
+{# Product Schema.org JSON-LD for Google Rich Snippets #}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ page.product.translated.name|e('js') }}",
+    "description": "{{ page.product.translated.description|striptags|slice(0, 200)|e('js') }}",
+    "image": "{% if page.product.cover.media.url %}{{ page.product.cover.media.url }}{% endif %}",
+    "sku": "{{ page.product.productNumber }}",
+    "brand": {
+        "@type": "Brand",
+        "name": "{% if page.product.manufacturer %}{{ page.product.manufacturer.translated.name|e('js') }}{% else %}Raven Weapon{% endif %}"
+    },
+    "offers": {
+        "@type": "Offer",
+        "url": "{{ app.request.uri }}",
+        "priceCurrency": "CHF",
+        "price": "{{ page.product.calculatedPrice.unitPrice }}",
+        "availability": "{% if page.product.availableStock > 0 %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+        "seller": {
+            "@type": "Organization",
+            "name": "Raven Weapon AG"
+        }
+    }
+    {% if page.product.ratingAverage > 0 %},
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ page.product.ratingAverage }}",
+        "reviewCount": "{{ page.product.reviews.total|default(1) }}"
+    }
+    {% endif %}
+}
+</script>
 <!-- RAVENTHEME_TEMPLATE_V2_ACTIVE -->
 <style>
 /* Mobile breadcrumb visibility fix */
@@ -210,12 +243,12 @@
 
                 {# Compact Quantity Selector + Large Add to Cart - Same Row #}
                 <div class="quantity-cart-row" style="display: flex; align-items: center; gap: 12px;">
-                    {# Compact Quantity Selector #}
-                    <div class="quantity-selector-compact" style="display: inline-flex; align-items: center; border: 1px solid #D1D5DB; border-radius: 8px; overflow: hidden; height: 44px; flex-shrink: 0;">
+                    {# Quantity Selector - Three Separate Boxes #}
+                    <div class="quantity-selector" style="display: inline-flex; align-items: center; gap: 0; flex-shrink: 0;">
                         <button type="button"
                                 id="qty-decrease"
                                 class="qty-btn"
-                                style="width: 36px; height: 100%; border: none; background: #F9FAFB; font-size: 18px; font-weight: 600; color: #374151; cursor: pointer; transition: background 0.2s;"
+                                style="width: 44px; height: 44px; border: 1px solid #D1D5DB; border-radius: 8px 0 0 8px; background: #FFFFFF; font-size: 20px; font-weight: 500; color: #6B7280; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center;"
                                 onclick="let qtyInput = document.getElementById('quantity'); if(qtyInput.value > 1) qtyInput.value = parseInt(qtyInput.value) - 1;">
                             −
                         </button>
@@ -226,12 +259,12 @@
                                min="1"
                                max="{{ page.product.availableStock }}"
                                class="quantity-input"
-                               style="width: 40px; height: 100%; border: none; border-left: 1px solid #E5E7EB; border-right: 1px solid #E5E7EB; text-align: center; font-weight: 600; font-size: 16px; font-family: 'Inter', sans-serif; -moz-appearance: textfield; background: white;"
+                               style="width: 50px; height: 44px; border: 1px solid #D1D5DB; border-left: none; border-right: none; text-align: center; font-weight: 600; font-size: 16px; font-family: 'Inter', sans-serif; -moz-appearance: textfield; background: #FFFFFF; color: #374151;"
                                readonly>
                         <button type="button"
                                 id="qty-increase"
                                 class="qty-btn"
-                                style="width: 36px; height: 100%; border: none; background: #F9FAFB; font-size: 18px; font-weight: 600; color: #374151; cursor: pointer; transition: background 0.2s;"
+                                style="width: 44px; height: 44px; border: 1px solid #D1D5DB; border-radius: 0 8px 8px 0; background: #FFFFFF; font-size: 20px; font-weight: 500; color: #6B7280; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center;"
                                 onclick="let qtyInput = document.getElementById('quantity'); if(qtyInput.value < {{ page.product.availableStock }}) qtyInput.value = parseInt(qtyInput.value) + 1;">
                             +
                         </button>
@@ -312,16 +345,12 @@
                         {% endif %}
                     </div>
 
-                    {# Weight - convert from grams to kg if > 1000g #}
+                    {# Weight - stored in kg, always display in grams #}
                     {% if page.product.weight %}
                     <div class="spec-row" style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">
                         <span class="text-xs text-gray-400">Gewicht</span>
                         <span class="text-xs font-medium text-gray-600">
-                            {% if page.product.weight >= 1000 %}
-                                {{ (page.product.weight / 1000)|number_format(1, ',', '.') }} kg
-                            {% else %}
-                                {{ page.product.weight|number_format(0) }} g
-                            {% endif %}
+                            {{ (page.product.weight * 1000)|number_format(0) }} g
                         </span>
                     </div>
                     {% endif %}
@@ -440,9 +469,20 @@
         display: none !important;
     }
 
-    .quantity-btn:hover {
-        background: #F3F4F6;
-        border-color: #9CA3AF;
+    /* Quantity selector styles */
+    .qty-btn:hover {
+        background: #F3F4F6 !important;
+        color: #374151 !important;
+    }
+
+    .quantity-input::-webkit-outer-spin-button,
+    .quantity-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .quantity-input[type=number] {
+        -moz-appearance: textfield;
     }
 
     .color-image-swatch {

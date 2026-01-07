@@ -101,5 +101,31 @@
                 {% endif %}
             {% endfor %}
         </nav>
+
+        {# BreadcrumbList Schema.org JSON-LD for Google Rich Snippets #}
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://ravenweapon.ch"
+                }
+                {% set position = 2 %}
+                {% for breadcrumbCategory in breadcrumbCategories %}
+                ,{
+                    "@type": "ListItem",
+                    "position": {{ position }},
+                    "name": "{{ breadcrumbCategory.translated.name|e('js') }}",
+                    "item": "https://ravenweapon.ch{{ seoUrl('frontend.navigation.page', { navigationId: breadcrumbCategory.id }) }}"
+                }
+                {% set position = position + 1 %}
+                {% endfor %}
+            ]
+        }
+        </script>
     {% endif %}
 {% endblock %}

@@ -13,6 +13,38 @@
 
 {% block layout_head_meta_tags_image_twitter %}{{ app.request.schemeAndHttpHost }}/bundles/raventheme/assets/raven-logo.png{% endblock %}
 
+{% block layout_head_meta_tags_schema_org %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Raven Weapon AG",
+    "url": "https://ravenweapon.ch",
+    "logo": "https://ravenweapon.ch/bundles/raventheme/assets/raven-logo.png",
+    "description": "Schweizer Waffenhändler - Waffen, Munition, Optik & Zubehör online kaufen",
+    "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH",
+        "addressRegion": "Schweiz"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@ravenweapon.ch",
+        "contactType": "customer service"
+    }
+}
+</script>
+{% endblock %}
+
+{% block layout_head_meta_tags_general %}
+    {{ parent() }}
+    {% if page.metaInformation.metaDescription is not defined or page.metaInformation.metaDescription is empty %}
+        {% if page.cmsPage is defined and page.cmsPage %}
+            <meta name="description" content="Raven Weapon AG - Ihr Schweizer Waffenhändler. Waffen, Munition, Zielfernrohre, Red Dots & Zubehör online kaufen. Schnelle Lieferung in der Schweiz.">
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
 {% block layout_head_javascript_prod %}
     {{ parent() }}
     {# RavenTheme plugins are compiled into storefront.js automatically #}
