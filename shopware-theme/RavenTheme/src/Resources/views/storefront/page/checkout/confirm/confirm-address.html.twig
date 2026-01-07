@@ -3,41 +3,63 @@
 {# Override address section titles to use German text #}
 
 {% block page_checkout_confirm_address_shipping_title %}
-    <div class="confirm-address-header">
-        {{ "Lieferadresse"|trans }}
+    <div class="card-title">
+        Lieferadresse
     </div>
 {% endblock %}
 
 {% block page_checkout_confirm_address_billing_title %}
-    <div class="confirm-address-header">
-        {{ "Rechnungsadresse"|trans }}
+    <div class="card-title">
+        Rechnungsadresse
     </div>
 {% endblock %}
 
-{# Override the "Same as shipping address" text #}
-{% block page_checkout_confirm_address_billing_equal %}
-    <p class="confirm-address-equal">
-        {{ "Gleich wie Lieferadresse"|trans }}
+{# Override the "Same as shipping address" text - correct block name #}
+{% block page_checkout_confirm_address_billing_data_equal %}
+    <p>
+        Gleich wie Lieferadresse
     </p>
 {% endblock %}
 
-{# Override address change links #}
+{# Override address change links with correct structure #}
 {% block page_checkout_confirm_address_shipping_actions %}
-    <div class="confirm-address-actions">
-        <a href="{{ path('frontend.account.address.edit.page', { addressId: context.customer.activeShippingAddress.id }) }}"
-           class="confirm-address-btn"
-           title="{{ "Lieferadresse ändern"|trans }}">
-            {{ "Lieferadresse ändern"|trans }}
+    {% set shippingAddress = context.customer.activeShippingAddress %}
+    {% set addressManagerOptions = {
+        initialTab: 'shipping',
+        activeShippingAddressId: shippingAddress.id,
+        addressManagerUrl: path('frontend.account.addressmanager.get'),
+        addressSwitchUrl: path('frontend.account.address.switch-default'),
+    } %}
+
+    <div class="card-actions">
+        <a href="{{ path('frontend.account.address.edit.page', {addressId: shippingAddress.id}) }}"
+           title="Lieferadresse ändern"
+           class="btn btn-light"
+           data-address-manager="true"
+           data-address-manager-options="{{ addressManagerOptions|json_encode }}"
+        >
+            Lieferadresse ändern
         </a>
     </div>
 {% endblock %}
 
 {% block page_checkout_confirm_address_billing_actions %}
-    <div class="confirm-address-actions">
-        <a href="{{ path('frontend.account.address.edit.page', { addressId: context.customer.activeBillingAddress.id }) }}"
-           class="confirm-address-btn"
-           title="{{ "Rechnungsadresse ändern"|trans }}">
-            {{ "Rechnungsadresse ändern"|trans }}
+    {% set billingAddress = context.customer.activeBillingAddress %}
+    {% set addressManagerOptions = {
+        initialTab: 'billing',
+        addressId: billingAddress.id,
+        addressManagerUrl: path('frontend.account.addressmanager.get'),
+        addressSwitchUrl: path('frontend.account.address.switch-default'),
+    } %}
+
+    <div class="card-actions">
+        <a href="{{ path('frontend.account.address.edit.page', {addressId: billingAddress.id}) }}"
+           title="Rechnungsadresse ändern"
+           class="btn btn-light"
+           data-address-manager="true"
+           data-address-manager-options="{{ addressManagerOptions|json_encode }}"
+        >
+            Rechnungsadresse ändern
         </a>
     </div>
 {% endblock %}
