@@ -40,8 +40,8 @@ jobs:
             # Copy theme to staging container
             docker cp /tmp/RavenTheme shopware-dev:/var/www/html/custom/plugins/
 
-            # Compile theme and clear cache
-            docker exec shopware-dev bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
+            # Refresh, compile theme and clear cache
+            docker exec shopware-dev bash -c "cd /var/www/html && bin/console theme:refresh && bin/console theme:compile && bin/console cache:clear"
 
             # Verify theme files exist
             if docker exec shopware-dev test -f /var/www/html/custom/plugins/RavenTheme/src/Resources/theme.json; then
@@ -90,8 +90,8 @@ jobs:
             # Copy theme to production container
             docker cp /tmp/RavenTheme shopware-chf:/var/www/html/custom/plugins/
 
-            # Compile theme and clear cache
-            docker exec shopware-chf bash -c "cd /var/www/html && bin/console theme:compile && bin/console cache:clear"
+            # Refresh, compile theme and clear cache
+            docker exec shopware-chf bash -c "cd /var/www/html && bin/console theme:refresh && bin/console theme:compile && bin/console cache:clear"
 
             # Verify theme files exist
             if docker exec shopware-chf test -f /var/www/html/custom/plugins/RavenTheme/src/Resources/theme.json; then

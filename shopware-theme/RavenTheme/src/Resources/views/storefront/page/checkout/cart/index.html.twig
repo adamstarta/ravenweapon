@@ -3,7 +3,8 @@
 {# Hide the default Shopware summary sidebar #}
 {% block page_checkout_cart_container_summary %}{% endblock %}
 
-{% block page_checkout_cart %}
+{# Override page_checkout_container to handle BOTH empty and filled cart states #}
+{% block page_checkout_container %}
 <style>
 /* Hide the entire Shopware default Summary sidebar - we have our own */
 .checkout-aside,
