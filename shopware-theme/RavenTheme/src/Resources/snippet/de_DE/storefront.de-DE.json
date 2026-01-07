@@ -1,0 +1,12 @@
+{
+    "checkout": {
+        "shippingAddressHeader": "Lieferadresse",
+        "billingAddressHeader": "Rechnungsadresse",
+        "addressEqualText": "Gleich wie Lieferadresse",
+        "confirmPaymentMethod": "Zahlungsart"
+    },
+    "account": {
+        "overviewChangeShipping": "Lieferadresse ändern",
+        "overviewChangeBilling": "Rechnungsadresse ändern"
+    }
+}
