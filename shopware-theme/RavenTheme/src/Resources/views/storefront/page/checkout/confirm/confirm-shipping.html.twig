@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
+
+{# Override the shipping method title to use German snippet #}
+{% block page_checkout_confirm_shipping_title %}
+    {# Title is handled by the accordion in our custom checkout, so we hide it here #}
+{% endblock %}
+
+{# The shipping methods themselves use Shopware's built-in system #}
+{# Prices come from Admin > Settings > Shipping > [Method] > Prices #}
+{# Method names come from Admin > Settings > Shipping > [Method] > Name #}

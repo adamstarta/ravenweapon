@@ -1,0 +1,8 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-payment.html.twig' %}
+
+{# Override the payment method title to use German text #}
+{% block page_checkout_confirm_payment_title %}
+    <div class="confirm-payment-header">
+        {{ "Zahlungsart"|trans }}
+    </div>
+{% endblock %}

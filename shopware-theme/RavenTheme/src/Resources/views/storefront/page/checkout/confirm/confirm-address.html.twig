@@ -1,0 +1,43 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-address.html.twig' %}
+
+{# Override address section titles to use German text #}
+
+{% block page_checkout_confirm_address_shipping_title %}
+    <div class="confirm-address-header">
+        {{ "Lieferadresse"|trans }}
+    </div>
+{% endblock %}
+
+{% block page_checkout_confirm_address_billing_title %}
+    <div class="confirm-address-header">
+        {{ "Rechnungsadresse"|trans }}
+    </div>
+{% endblock %}
+
+{# Override the "Same as shipping address" text #}
+{% block page_checkout_confirm_address_billing_equal %}
+    <p class="confirm-address-equal">
+        {{ "Gleich wie Lieferadresse"|trans }}
+    </p>
+{% endblock %}
+
+{# Override address change links #}
+{% block page_checkout_confirm_address_shipping_actions %}
+    <div class="confirm-address-actions">
+        <a href="{{ path('frontend.account.address.edit.page', { addressId: context.customer.activeShippingAddress.id }) }}"
+           class="confirm-address-btn"
+           title="{{ "Lieferadresse ändern"|trans }}">
+            {{ "Lieferadresse ändern"|trans }}
+        </a>
+    </div>
+{% endblock %}
+
+{% block page_checkout_confirm_address_billing_actions %}
+    <div class="confirm-address-actions">
+        <a href="{{ path('frontend.account.address.edit.page', { addressId: context.customer.activeBillingAddress.id }) }}"
+           class="confirm-address-btn"
+           title="{{ "Rechnungsadresse ändern"|trans }}">
+            {{ "Rechnungsadresse ändern"|trans }}
+        </a>
+    </div>
+{% endblock %}
