@@ -1165,11 +1165,14 @@
             });
 
             // Map color index to variant code (first color → first variant, etc.)
+            // Use LAST image for each variant to avoid logo/graphic images that often appear first
             let matchedImageUrl = null;
             if (colorIndex >= 0 && colorIndex < variantOrder.length) {
                 const targetVariant = variantOrder[colorIndex];
-                if (variantToImages[targetVariant] && variantToImages[targetVariant].length > 0) {
-                    matchedImageUrl = variantToImages[targetVariant][0];
+                const variantImages = variantToImages[targetVariant];
+                if (variantImages && variantImages.length > 0) {
+                    // Pick the last image with this variant code (avoids logos, picks actual product photo)
+                    matchedImageUrl = variantImages[variantImages.length - 1];
                 }
             }
 
