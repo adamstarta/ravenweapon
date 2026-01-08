@@ -1,19 +1,20 @@
 {% sw_extends '@Storefront/storefront/page/checkout/register/index.html.twig' %}
 
-{# Redirect to login page if not logged in #}
+{# Checkout Registration Page - Account creation for new customers #}
 {% block base_head %}
     {{ parent() }}
 {% endblock %}
 
 {% block base_main_inner %}
-{% if not context.customer %}
-    {# Redirect guests to login with checkout redirect #}
-    <script>window.location.href = '{{ path('frontend.account.login.page') }}?redirectTo=frontend.checkout.confirm.page';</script>
+{% if context.customer %}
+    {# Already logged in - redirect directly to checkout confirm #}
+    <script>window.location.href = '{{ path('frontend.checkout.confirm.page') }}';</script>
     <noscript>
-        <meta http-equiv="refresh" content="1;url={{ path('frontend.account.login.page') }}?redirectTo=frontend.checkout.confirm.page">
-        <p>Weiterleitung zur <a href="{{ path('frontend.account.login.page') }}?redirectTo=frontend.checkout.confirm.page">Anmeldeseite</a>...</p>
+        <meta http-equiv="refresh" content="0;url={{ path('frontend.checkout.confirm.page') }}">
+        <p>Weiterleitung zur <a href="{{ path('frontend.checkout.confirm.page') }}">Kasse</a>...</p>
     </noscript>
 {% else %}
+    {# Not logged in - show registration/login form #}
 <div class="raven-checkout-register">
     <div class="checkout-wrapper">
         {# Logo Section #}
@@ -137,11 +138,11 @@
                     <span>oder</span>
                 </div>
 
-                {# Guest/Register Section #}
+                {# Account Registration Section #}
                 <div class="form-card register-section">
                     <div class="card-header">
-                        <h2>Als Gast bestellen oder Konto erstellen</h2>
-                        <p>Geben Sie Ihre Versandinformationen ein</p>
+                        <h2>Neues Kundenkonto erstellen</h2>
+                        <p>Erstellen Sie ein Konto um Ihre Bestellung abzuschliessen</p>
                     </div>
 
                     <form action="{{ path('frontend.checkout.register.save') }}"
@@ -195,22 +196,19 @@
                                        required>
                             </div>
 
-                            {# Account Creation Option #}
-                            <div class="form-group checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="createCustomerAccount" id="createAccount" value="1">
-                                    <span class="checkbox-text">Kundenkonto erstellen</span>
-                                </label>
-                            </div>
+                            {# Always create account (required for Swiss firearms) #}
+                            <input type="hidden" name="createCustomerAccount" value="1">
 
-                            <div class="form-group password-field" id="passwordField" style="display: none;">
+                            <div class="form-group">
                                 <label for="personalPassword">Passwort *</label>
                                 <input type="password"
                                        name="password"
                                        id="personalPassword"
                                        placeholder="Mindestens 8 Zeichen"
-                                       minlength="8">
-                                <span class="field-hint">Mindestens 8 Zeichen</span>
+                                       autocomplete="new-password"
+                                       minlength="8"
+                                       required>
+                                <span class="field-hint">Mindestens 8 Zeichen - für Ihr Kundenkonto</span>
                             </div>
                         </div>
 
@@ -270,17 +268,17 @@
                         <div class="form-section">
                             <div class="privacy-notice">
                                 <p>
-                                    Mit dem Klick auf "Weiter zur Zahlung" bestätigen Sie, dass Sie unsere
+                                    Mit dem Klick auf "Konto erstellen & weiter" bestätigen Sie, dass Sie unsere
                                     <a href="/datenschutz" target="_blank">Datenschutzerklärung</a>
                                     gelesen haben und unsere
                                     <a href="/agb" target="_blank">AGB</a>
-                                    akzeptieren.
+                                    akzeptieren. Sie erhalten eine E-Mail zur Bestätigung Ihres Kontos.
                                 </p>
                             </div>
                         </div>
 
                         <button type="submit" class="btn-continue">
-                            Weiter zur Zahlung
+                            Konto erstellen & weiter
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -1015,25 +1013,6 @@
 }
 </style>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Toggle password field visibility
-    const createAccountCheckbox = document.getElementById('createAccount');
-    const passwordField = document.getElementById('passwordField');
-    const passwordInput = document.getElementById('personalPassword');
-
-    if (createAccountCheckbox && passwordField) {
-        createAccountCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                passwordField.style.display = 'block';
-                passwordInput.required = true;
-            } else {
-                passwordField.style.display = 'none';
-                passwordInput.required = false;
-            }
-        });
-    }
-});
-</script>
+{# Password field is now always visible - no toggle needed #}
 {% endif %}
 {% endblock %}
