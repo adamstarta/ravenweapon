@@ -1,6 +1,6 @@
 /**
  * Update Caliber Kit Prices
- * Rule: Kit Price = Complete Rifle Price - 900 CHF
+ * Rule: Kit Price = Complete Rifle Price - 1400 CHF
  */
 
 const https = require('https');
@@ -13,13 +13,15 @@ const CONFIG = {
     }
 };
 
-// New prices (Complete Rifle - 900)
+// New prices (Complete Rifle - 1400)
+// 22LR: 3850 - 1400 = 2450 | 223: 3850 - 1400 = 2450
+// 300AAC: 3950 - 1400 = 2550 | 762: 3950 - 1400 = 2550 | 9mm: 3340 - 1400 = 1940
 const PRICE_UPDATES = [
-    { productNumber: 'KIT-22LR', newPrice: 2950.00, name: '.22LR CALIBER KIT' },
-    { productNumber: 'KIT-223', newPrice: 2950.00, name: '.223 CALIBER KIT' },
-    { productNumber: 'KIT-300AAC', newPrice: 3050.00, name: '300 AAC CALIBER KIT' },
-    { productNumber: 'KIT-762', newPrice: 3050.00, name: '7.62x39 CALIBER KIT' },
-    { productNumber: 'KIT-9MM', newPrice: 2440.00, name: '9mm CALIBER KIT' }
+    { productNumber: 'KIT-22LR', newPrice: 2450.00, name: '.22LR CALIBER KIT' },
+    { productNumber: 'KIT-223', newPrice: 2450.00, name: '.223 CALIBER KIT' },
+    { productNumber: 'KIT-300AAC', newPrice: 2550.00, name: '300 AAC CALIBER KIT' },
+    { productNumber: 'KIT-762', newPrice: 2550.00, name: '7.62x39 CALIBER KIT' },
+    { productNumber: 'KIT-9MM', newPrice: 1940.00, name: '9mm CALIBER KIT' }
 ];
 
 function httpRequest(url, options = {}) {
@@ -109,7 +111,7 @@ async function updateProductPrice(productId, newGrossPrice) {
 async function main() {
     console.log('\n' + '='.repeat(70));
     console.log('  CALIBER KIT PRICE UPDATE');
-    console.log('  Rule: Kit = Complete Rifle - 900 CHF');
+    console.log('  Rule: Kit = Complete Rifle - 1400 CHF');
     console.log('='.repeat(70) + '\n');
 
     await getToken();

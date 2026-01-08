@@ -402,8 +402,18 @@ body.raven-checkout-finish {
     letter-spacing: 0.05em;
     border-bottom: 1px solid #e5e7eb;
     display: grid;
-    grid-template-columns: 1fr auto auto;
-    gap: 1rem;
+    grid-template-columns: 50px 1fr auto auto;
+    gap: 0.75rem;
+}
+
+.order-products-header .header-menge {
+    text-align: center;
+    min-width: 40px;
+}
+
+.order-products-header .header-preis {
+    text-align: right;
+    min-width: 90px;
 }
 
 .product-item {
@@ -704,9 +714,10 @@ body.raven-checkout-finish {
     {# Products #}
     <div class="order-products">
         <div class="order-products-header">
+            <span></span>
             <span>Produkt</span>
-            <span>Menge</span>
-            <span>Preis</span>
+            <span class="header-menge">Menge</span>
+            <span class="header-preis">Preis</span>
         </div>
         {% for lineItem in page.order.lineItems %}
         <div class="product-item">
