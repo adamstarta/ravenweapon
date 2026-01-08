@@ -269,6 +269,15 @@
                     {% endfor %}
                 </div>
             </div>
+            {# Build gallery image array for color matching #}
+            <script>
+                window.snigelGalleryImages = [
+                    {% if page.product.cover.media %}'{{ page.product.cover.media.url }}'{% endif %}
+                    {% for media in page.product.media %}
+                        {% if media.media.id != page.product.cover.media.id %},'{{ media.media.url }}'{% endif %}
+                    {% endfor %}
+                ];
+            </script>
             {% endif %}
 
             {# Size selector for Snigel - handles JSON strings, JSON arrays, or comma-separated strings #}
@@ -1108,7 +1117,7 @@
         testImg.src = imageUrl;
     }
 
-    // ========== SNIGEL COLOR SELECTION (Text-based) ==========
+    // ========== SNIGEL COLOR SELECTION (Text-based with gallery image matching) ==========
     function selectSnigelColor(button, colorName) {
         // Update selected state
         const colorButtons = button.parentElement.querySelectorAll('.snigel-text-swatch');
@@ -1125,6 +1134,45 @@
         const colorInput = document.getElementById('snigel-color-input');
         if (colorInput) {
             colorInput.value = colorName;
+        }
+
+        // ===== IMAGE MATCHING: Search gallery for image matching color name =====
+        const mainImage = document.getElementById('product-main-image');
+        const zoomResultImg = document.getElementById('zoom-result-img');
+
+        if (mainImage && window.snigelGalleryImages && window.snigelGalleryImages.length > 0) {
+            // Normalize the color name for matching (lowercase, handle spaces/special chars)
+            const normalizedColor = colorName.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+            // Search gallery images for one containing the color name
+            let matchedImageUrl = null;
+            for (const imageUrl of window.snigelGalleryImages) {
+                // Decode URL and get filename for matching
+                const decodedUrl = decodeURIComponent(imageUrl).toLowerCase();
+                const normalizedUrl = decodedUrl.replace(/[^a-z0-9]/g, '');
+
+                if (normalizedUrl.includes(normalizedColor)) {
+                    matchedImageUrl = imageUrl;
+                    break;
+                }
+            }
+
+            // If found a matching image, update the main image
+            if (matchedImageUrl) {
+                mainImage.src = matchedImageUrl;
+                if (zoomResultImg) {
+                    zoomResultImg.src = matchedImageUrl;
+                }
+
+                // Also update the gallery thumbnail selection
+                const galleryThumbs = document.querySelectorAll('.gallery-thumb');
+                galleryThumbs.forEach(thumb => {
+                    thumb.classList.remove('active');
+                    if (thumb.getAttribute('data-image-url') === matchedImageUrl) {
+                        thumb.classList.add('active');
+                    }
+                });
+            }
         }
 
         // Store selection in localStorage for cart
