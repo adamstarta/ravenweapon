@@ -4,7 +4,8 @@
 {% block utilities_flash_messages %}
     {% for type, messages in app.flashes %}
         {% for message in messages %}
-            <div class="alert alert-{{ type }}" role="alert" data-raven-flash="{{ type }}">
+            {# Hidden by default - RavenToast plugin will show as toast notification #}
+            <div class="alert alert-{{ type }}" role="alert" data-raven-flash="{{ type }}" style="display: none !important;">
                 <div class="alert-content">
                     {{ message|trans|sw_sanitize }}
                 </div>

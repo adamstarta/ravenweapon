@@ -769,13 +769,28 @@
 
         // Account exists
         'A customer with the email address': 'Ein Kunde mit dieser E-Mail-Adresse existiert bereits.',
-        'already exists': 'existiert bereits.'
+        'already exists': 'existiert bereits.',
+
+        // Payment/Shipping change messages (cart validation)
+        'payment is not available': 'Die Zahlungsart wurde automatisch angepasst.',
+        'shipping is not available': 'Die Versandart wurde automatisch angepasst.',
+        'was changed to': 'wurde geändert zu'
     };
 
     function translateToGerman(message) {
         // Direct match
         if (germanTranslations[message]) {
             return germanTranslations[message];
+        }
+
+        // Cart validation: Payment method changed
+        if (message.toLowerCase().includes('payment') && message.toLowerCase().includes('not available')) {
+            return 'Die Zahlungsart wurde automatisch angepasst.';
+        }
+
+        // Cart validation: Shipping method changed
+        if (message.toLowerCase().includes('shipping') && message.toLowerCase().includes('not available')) {
+            return 'Die Versandart wurde automatisch angepasst.';
         }
 
         // Partial match for messages containing dynamic values

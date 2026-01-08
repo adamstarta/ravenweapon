@@ -17,6 +17,21 @@ export default class RavenToastPlugin extends Plugin {
             success: 3000,
             warning: 4000,
             info: 4000
+        },
+        // German translations for common Shopware messages
+        translations: {
+            // Payment/Shipping cart validation
+            'payment is not available': 'Die Zahlungsart wurde automatisch angepasst.',
+            'shipping is not available': 'Die Versandart wurde automatisch angepasst.',
+            'was changed to': 'wurde geändert zu',
+            // Login errors
+            'Invalid credentials': 'Die Anmeldedaten sind nicht korrekt.',
+            'Bad credentials': 'Die Anmeldedaten sind nicht korrekt.',
+            'Your account is locked': 'Ihr Konto ist gesperrt.',
+            // Cart errors
+            'Product not found': 'Produkt nicht gefunden.',
+            'Out of stock': 'Nicht auf Lager.',
+            'Not enough stock': 'Nicht genügend auf Lager.'
         }
     };
 
@@ -66,10 +81,11 @@ export default class RavenToastPlugin extends Plugin {
                 const content = alert.querySelector('.alert-content') || alert;
                 let message = content.textContent?.trim();
 
-                // Clean up message
+                // Clean up message and translate
                 if (message) {
                     message = message.replace(/^\s*×?\s*/, '').trim();
                     if (message.length > 0) {
+                        message = this._translateMessage(message);
                         this.show(type, message);
                     }
                 }
@@ -228,5 +244,32 @@ export default class RavenToastPlugin extends Plugin {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+    }
+
+    /**
+     * Translate message to German if translation exists
+     */
+    _translateMessage(message) {
+        const lowerMessage = message.toLowerCase();
+
+        // Check for payment method change message
+        if (lowerMessage.includes('payment') && lowerMessage.includes('not available')) {
+            return this.options.translations['payment is not available'];
+        }
+
+        // Check for shipping method change message
+        if (lowerMessage.includes('shipping') && lowerMessage.includes('not available')) {
+            return this.options.translations['shipping is not available'];
+        }
+
+        // Check for partial matches in translations
+        for (const [key, translation] of Object.entries(this.options.translations)) {
+            if (lowerMessage.includes(key.toLowerCase())) {
+                return translation;
+            }
+        }
+
+        // Return original if no translation found
+        return message;
     }
 }
