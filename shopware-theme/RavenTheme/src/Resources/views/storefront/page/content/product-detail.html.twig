@@ -116,9 +116,12 @@
                 {% endif %}
             </div>
 
-            {# Thumbnail Gallery Slider #}
-            <!-- DEBUG: Media count = {{ page.product.media|length|default(0) }} -->
-            {% if page.product.media|length > 1 %}
+            {# Thumbnail Gallery Slider - Hide for Raven products with color variants (they use Farbe swatches instead) #}
+            {% set isRavenProduct = page.product.translated.customFields.raven_has_variants|default(false) %}
+            {% set ravenVariantOptions = page.product.translated.customFields.raven_variant_options|default([]) %}
+            {% set hideGalleryForRaven = isRavenProduct and ravenVariantOptions is iterable and ravenVariantOptions|length > 0 %}
+
+            {% if page.product.media|length > 1 and not hideGalleryForRaven %}
             <div class="product-gallery-slider">
                 <button type="button" class="gallery-nav gallery-nav-prev" id="gallery-prev" aria-label="Vorheriges Bild">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -187,24 +190,36 @@
                 inkl. MwSt.
             </p>
 
-            {# Color Variants - DYNAMIC from custom fields (supports both Snigel and Raven products) #}
-            {# NOTE: Database uses raven_has_variants/raven_variant_options for Raven products #}
-            {% set hasColorVariants = page.product.translated.customFields.raven_has_variants|default(false) or page.product.translated.customFields.snigel_has_color_variants|default(false) %}
-            {% set colorOptionsRaw = page.product.translated.customFields.raven_variant_options|default(page.product.translated.customFields.snigel_color_options|default([])) %}
-            {% set colorOptions = colorOptionsRaw is iterable ? colorOptionsRaw : [] %}
+            {# ========== VARIANT SELECTORS ========== #}
+            {# Detect product type: Raven (Caliber Kit/Rifle) vs Snigel (Ausrüstung) #}
+            {% set isRavenVariantProduct = page.product.translated.customFields.raven_has_variants|default(false) %}
+            {% set isSnigel = page.product.translated.customFields.snigel_has_color_variants|default(false) or page.product.translated.customFields.snigel_has_sizes|default(false) %}
 
-            {% if hasColorVariants and colorOptions|length > 0 %}
+            {# Raven variant options (with images) #}
+            {% set ravenOptions = page.product.translated.customFields.raven_variant_options|default([]) %}
+            {% set ravenOptions = ravenOptions is iterable ? ravenOptions : [] %}
+
+            {# Snigel color options (text-based) #}
+            {% set snigelColorOptions = page.product.translated.customFields.snigel_color_options|default([]) %}
+            {% set snigelColorOptions = snigelColorOptions is iterable ? snigelColorOptions : [] %}
+
+            {# Snigel size options #}
+            {% set snigelSizeOptions = page.product.translated.customFields.snigel_size_options|default('') %}
+            {% set snigelHasSizes = page.product.translated.customFields.snigel_has_sizes|default(false) %}
+
+            {# Store original cover image for fallback #}
+            <input type="hidden" id="original-cover-image" value="{{ page.product.cover.media.url|default('') }}">
+
+            {# ===== RAVEN PRODUCTS: Image-based color swatches ===== #}
+            {% if isRavenVariantProduct and ravenOptions|length > 0 %}
             <div class="mb-5">
                 <p class="text-sm text-gray-600 mb-3" style="font-family: 'Inter', sans-serif;">
-                    Farbe: <span id="selected-color-name" class="font-semibold text-gray-900">{{ colorOptions[0].name|default('Standard') }}</span>
+                    Farbe: <span id="selected-color-name" class="font-semibold text-gray-900">{{ ravenOptions[0].name|default('Standard') }}</span>
                 </p>
-                {# Store original cover image for fallback #}
-                <input type="hidden" id="original-cover-image" value="{{ page.product.cover.media.url|default('') }}">
                 <div class="flex flex-wrap gap-2">
-                    {% for colorOption in colorOptions %}
+                    {% for colorOption in ravenOptions %}
                     {% set colorName = colorOption.name|default('Variante ' ~ loop.index) %}
                     {% set colorImageUrl = colorOption.imageUrl|default('') %}
-
                     {% if colorImageUrl %}
                     <button class="color-image-swatch {% if loop.first %}selected{% endif %}"
                             data-color-name="{{ colorName }}"
@@ -224,6 +239,52 @@
             </div>
             {% endif %}
 
+            {# ===== SNIGEL PRODUCTS: Text-based gold selectors ===== #}
+            {# Color selector for Snigel #}
+            {% if isSnigel and snigelColorOptions|length > 0 %}
+            <div class="mb-4">
+                <p class="text-sm text-gray-600 mb-2" style="font-family: 'Inter', sans-serif;">
+                    Farbe: <span id="selected-snigel-color" class="font-semibold text-gray-900">{{ snigelColorOptions[0].name|default(snigelColorOptions[0]|default('Standard')) }}</span>
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    {% for colorOption in snigelColorOptions %}
+                    {% set colorName = colorOption.name|default(colorOption) %}
+                    <button type="button"
+                            class="snigel-text-swatch {% if loop.first %}selected{% endif %}"
+                            data-variant-name="{{ colorName }}"
+                            onclick="selectSnigelColor(this, '{{ colorName }}')">
+                        {{ colorName }}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {# Size selector for Snigel #}
+            {% if snigelHasSizes and snigelSizeOptions %}
+            {% set sizeArray = snigelSizeOptions|split(',') %}
+            {% if sizeArray|length > 0 %}
+            <div class="mb-5">
+                <p class="text-sm text-gray-600 mb-2" style="font-family: 'Inter', sans-serif;">
+                    Grösse: <span id="selected-snigel-size" class="font-semibold text-gray-900">{{ sizeArray[0]|trim }}</span>
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    {% for size in sizeArray %}
+                    {% set sizeName = size|trim %}
+                    {% if sizeName %}
+                    <button type="button"
+                            class="snigel-text-swatch {% if loop.first %}selected{% endif %}"
+                            data-size-name="{{ sizeName }}"
+                            onclick="selectSnigelSize(this, '{{ sizeName }}')">
+                        {{ sizeName }}
+                    </button>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+
             {# Quantity Selector and Add to Cart #}
             <form action="{{ path('frontend.checkout.line-item.add') }}"
                   method="post"
@@ -238,8 +299,18 @@
                 <input type="hidden" name="lineItems[{{ page.product.id }}][removable]" value="1">
 
                 {# Hidden inputs for variant selection - INSIDE form so they get submitted #}
-                {% if hasColorVariants and colorOptions|length > 0 %}
-                    <input type="hidden" name="selectedColor" id="selected-color-input" value="{{ colorOptions[0].name|default('') }}">
+                {# Raven color selection #}
+                {% if isRavenVariantProduct and ravenOptions|length > 0 %}
+                    <input type="hidden" name="selectedColor" id="selected-color-input" value="{{ ravenOptions[0].name|default('') }}">
+                {% endif %}
+                {# Snigel color selection #}
+                {% if isSnigel and snigelColorOptions|length > 0 %}
+                    <input type="hidden" name="selectedColor" id="snigel-color-input" value="{{ snigelColorOptions[0].name|default(snigelColorOptions[0]|default('')) }}">
+                {% endif %}
+                {# Snigel size selection #}
+                {% if snigelHasSizes and snigelSizeOptions %}
+                    {% set firstSize = snigelSizeOptions|split(',')|first|trim %}
+                    <input type="hidden" name="selectedSize" id="snigel-size-input" value="{{ firstSize }}">
                 {% endif %}
 
                 {# Compact Quantity Selector + Large Add to Cart - Same Row #}
@@ -519,6 +590,32 @@
 
     .color-image-swatch.selected .swatch-check {
         display: flex;
+    }
+
+    /* ========== SNIGEL TEXT-BASED VARIANT SELECTORS (Gold Style) ========== */
+    .snigel-text-swatch {
+        padding: 8px 16px;
+        border: 2px solid #D4A847;
+        border-radius: 6px;
+        background: transparent;
+        color: #D4A847;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .snigel-text-swatch:hover {
+        background: rgba(212, 168, 71, 0.1);
+        border-color: #C59A0F;
+    }
+
+    .snigel-text-swatch.selected {
+        background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%);
+        border-color: #C59A0F;
+        color: #1f2937;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     }
 
     .add-to-cart-btn:hover {
@@ -885,6 +982,62 @@
             }
         };
         testImg.src = imageUrl;
+    }
+
+    // ========== SNIGEL COLOR SELECTION (Text-based) ==========
+    function selectSnigelColor(button, colorName) {
+        // Update selected state
+        const colorButtons = button.parentElement.querySelectorAll('.snigel-text-swatch');
+        colorButtons.forEach(el => el.classList.remove('selected'));
+        button.classList.add('selected');
+
+        // Update display text
+        const colorNameSpan = document.getElementById('selected-snigel-color');
+        if (colorNameSpan) {
+            colorNameSpan.textContent = colorName;
+        }
+
+        // Update hidden input for form submission
+        const colorInput = document.getElementById('snigel-color-input');
+        if (colorInput) {
+            colorInput.value = colorName;
+        }
+
+        // Store selection in localStorage for cart
+        try {
+            const productId = '{{ page.product.id }}';
+            let stored = JSON.parse(localStorage.getItem('snigel_variant_' + productId) || '{}');
+            stored.color = colorName;
+            localStorage.setItem('snigel_variant_' + productId, JSON.stringify(stored));
+        } catch(e) { console.warn('localStorage error:', e); }
+    }
+
+    // ========== SNIGEL SIZE SELECTION (Text-based) ==========
+    function selectSnigelSize(button, sizeName) {
+        // Update selected state
+        const sizeButtons = button.parentElement.querySelectorAll('.snigel-text-swatch');
+        sizeButtons.forEach(el => el.classList.remove('selected'));
+        button.classList.add('selected');
+
+        // Update display text
+        const sizeNameSpan = document.getElementById('selected-snigel-size');
+        if (sizeNameSpan) {
+            sizeNameSpan.textContent = sizeName;
+        }
+
+        // Update hidden input for form submission
+        const sizeInput = document.getElementById('snigel-size-input');
+        if (sizeInput) {
+            sizeInput.value = sizeName;
+        }
+
+        // Store selection in localStorage for cart
+        try {
+            const productId = '{{ page.product.id }}';
+            let stored = JSON.parse(localStorage.getItem('snigel_variant_' + productId) || '{}');
+            stored.size = sizeName;
+            localStorage.setItem('snigel_variant_' + productId, JSON.stringify(stored));
+        } catch(e) { console.warn('localStorage error:', e); }
     }
 
     // ========== IMAGE ZOOM FUNCTIONALITY ==========
