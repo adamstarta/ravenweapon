@@ -21,6 +21,8 @@ export default class RavenToastPlugin extends Plugin {
         // German translations for common Shopware messages
         translations: {
             // Cart success messages
+            'shopping cart updated': 'Warenkorb wurde aktualisiert',
+            'cart updated': 'Warenkorb wurde aktualisiert',
             'product added to your shopping cart': 'Artikel zum Warenkorb hinzugefügt',
             'products added to your shopping cart': 'Artikel zum Warenkorb hinzugefügt',
             'added to cart': 'Zum Warenkorb hinzugefügt',
@@ -28,6 +30,8 @@ export default class RavenToastPlugin extends Plugin {
             'has been added': 'wurde hinzugefügt',
             'item added': 'Artikel hinzugefügt',
             'items added': 'Artikel hinzugefügt',
+            'removed from cart': 'Aus dem Warenkorb entfernt',
+            'item removed': 'Artikel entfernt',
             // Payment/Shipping cart validation
             'payment is not available': 'Die Zahlungsart wurde automatisch angepasst.',
             'shipping is not available': 'Die Versandart wurde automatisch angepasst.',
@@ -264,6 +268,11 @@ export default class RavenToastPlugin extends Plugin {
      */
     _translateMessage(message) {
         const lowerMessage = message.toLowerCase();
+
+        // Check for "Shopping cart updated" message
+        if (lowerMessage.includes('shopping cart updated') || lowerMessage.includes('cart updated') || lowerMessage.includes('cart has been updated')) {
+            return 'Warenkorb wurde aktualisiert';
+        }
 
         // Check for "X product(s) added to your shopping cart" pattern
         if (lowerMessage.includes('product') && lowerMessage.includes('added') && lowerMessage.includes('cart')) {
