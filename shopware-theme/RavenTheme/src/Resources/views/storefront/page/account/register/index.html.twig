@@ -988,6 +988,32 @@
 <script>
 // Raven Toast - Inline for login/register pages
 (function() {
+    // ========== CART-BASED REDIRECT ==========
+    // If user has items in cart, redirect to checkout after registration
+    (async function() {
+        try {
+            const response = await fetch('/store-api/checkout/cart', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'sw-access-key': document.querySelector('meta[name="sw-access-key"]')?.content || ''
+                }
+            });
+            const cart = await response.json();
+
+            if (cart.lineItems && cart.lineItems.length > 0) {
+                // Cart has items - update redirect to checkout
+                const redirectInput = document.querySelector('input[name="redirectTo"]');
+                if (redirectInput && redirectInput.value === 'frontend.account.home.page') {
+                    redirectInput.value = 'frontend.checkout.confirm.page';
+                }
+            }
+        } catch (e) {
+            console.log('Cart check failed, using default redirect');
+        }
+    })();
+
     const icons = {
         error: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>',
         success: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 12 15 16 10"></polyline></svg>',
