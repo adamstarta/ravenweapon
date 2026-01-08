@@ -366,3 +366,18 @@
 {% endblock %}
 
 {% block base_body_classes %}{{ parent() }} raven-checkout-body{% endblock %}
+
+{% block base_body_script %}
+{{ parent() }}
+<script>
+// Set flag for welcome toast when registration form is submitted
+(function() {
+    var registerForm = document.querySelector('.register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function() {
+            sessionStorage.setItem('ravenJustRegistered', 'true');
+        });
+    }
+})();
+</script>
+{% endblock %}
