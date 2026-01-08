@@ -260,17 +260,17 @@
             </div>
             {% endif %}
 
-            {# Size selector for Snigel #}
+            {# Size selector for Snigel - handles both JSON array and comma-separated string formats #}
             {% if snigelHasSizes and snigelSizeOptions %}
-            {% set sizeArray = snigelSizeOptions|split(',') %}
+            {% set sizeArray = snigelSizeOptions is iterable ? snigelSizeOptions : [] %}
             {% if sizeArray|length > 0 %}
             <div class="mb-5">
                 <p class="text-sm text-gray-600 mb-2" style="font-family: 'Inter', sans-serif;">
-                    Grösse: <span id="selected-snigel-size" class="font-semibold text-gray-900">{{ sizeArray[0]|trim }}</span>
+                    Grösse: <span id="selected-snigel-size" class="font-semibold text-gray-900">{{ sizeArray[0].name|default(sizeArray[0]|default('Standard')) }}</span>
                 </p>
                 <div class="flex flex-wrap gap-2">
-                    {% for size in sizeArray %}
-                    {% set sizeName = size|trim %}
+                    {% for sizeOption in sizeArray %}
+                    {% set sizeName = sizeOption.name|default(sizeOption) %}
                     {% if sizeName %}
                     <button type="button"
                             class="snigel-text-swatch {% if loop.first %}selected{% endif %}"
@@ -309,7 +309,8 @@
                 {% endif %}
                 {# Snigel size selection #}
                 {% if snigelHasSizes and snigelSizeOptions %}
-                    {% set firstSize = snigelSizeOptions|split(',')|first|trim %}
+                    {% set sizeArr = snigelSizeOptions is iterable ? snigelSizeOptions : [] %}
+                    {% set firstSize = sizeArr|length > 0 ? sizeArr[0].name|default(sizeArr[0]|default('')) : '' %}
                     <input type="hidden" name="selectedSize" id="snigel-size-input" value="{{ firstSize }}">
                 {% endif %}
 
