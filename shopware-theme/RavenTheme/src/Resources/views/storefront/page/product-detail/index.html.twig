@@ -171,7 +171,7 @@
             {% if manufacturerName and productName starts with manufacturerName %}
                 {% set productName = productName|slice(manufacturerName|length)|trim %}
             {% endif %}
-            <h1 class="prod-title text-gray-900 mb-5" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700; font-size: 2rem; line-height: 1.2;">
+            <h1 class="prod-title text-gray-900 mb-3" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700; font-size: 2rem; line-height: 1.2;">
                 {{ productName }}
             </h1>
 
@@ -188,9 +188,10 @@
             </p>
 
             {# Color Variants - DYNAMIC from custom fields (supports both Snigel and Raven products) #}
-            {% set hasColorVariants = page.product.translated.customFields.raven_has_colors|default(false) or page.product.translated.customFields.snigel_has_color_variants|default(false) %}
-            {% set colorOptionsRaw = page.product.translated.customFields.raven_color_options|default(page.product.translated.customFields.snigel_color_options|default('[]')) %}
-            {% set colorOptions = colorOptionsRaw is iterable ? colorOptionsRaw : (colorOptionsRaw|json_encode starts with '[' ? colorOptionsRaw|json_encode : []) %}
+            {# NOTE: Database uses raven_has_variants/raven_variant_options for Raven products #}
+            {% set hasColorVariants = page.product.translated.customFields.raven_has_variants|default(false) or page.product.translated.customFields.snigel_has_color_variants|default(false) %}
+            {% set colorOptionsRaw = page.product.translated.customFields.raven_variant_options|default(page.product.translated.customFields.snigel_color_options|default([])) %}
+            {% set colorOptions = colorOptionsRaw is iterable ? colorOptionsRaw : [] %}
 
             {% if hasColorVariants and colorOptions|length > 0 %}
             <div class="mb-5">
