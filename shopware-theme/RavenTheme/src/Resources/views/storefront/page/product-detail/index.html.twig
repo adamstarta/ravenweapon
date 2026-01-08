@@ -1,4 +1,4 @@
-{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+{% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
 
 {% block base_main_inner %}
 {# Product Schema.org JSON-LD for Google Rich Snippets #}
@@ -229,7 +229,7 @@
                   class="mb-6"
                   data-add-to-cart="true"
                   data-form-csrf-handler="true">
-                {{ sw_csrf('frontend.checkout.line-item.add') }}
+                {# CSRF token handled automatically by data-form-csrf-handler #}
                 <input type="hidden" name="lineItems[{{ page.product.id }}][id]" value="{{ page.product.id }}">
                 <input type="hidden" name="lineItems[{{ page.product.id }}][type]" value="product">
                 <input type="hidden" name="lineItems[{{ page.product.id }}][referencedId]" value="{{ page.product.id }}">
