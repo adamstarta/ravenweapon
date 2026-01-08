@@ -93,21 +93,34 @@
     {# Product Grid: Image Left, Info Right #}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
 
+        {# Detect Raven variant products early for initial image selection #}
+        {% set isRavenProduct = page.product.translated.customFields.raven_has_variants|default(false) %}
+        {% set ravenVariantOptions = page.product.translated.customFields.raven_variant_options|default([]) %}
+        {% set ravenVariantOptions = ravenVariantOptions is iterable ? ravenVariantOptions : [] %}
+        {% set hideGalleryForRaven = isRavenProduct and ravenVariantOptions|length > 0 %}
+
+        {# Determine initial image: use first variant image for Raven products, cover for others #}
+        {% set initialImageUrl = page.product.cover.media.url|default('') %}
+        {% if isRavenProduct and ravenVariantOptions|length > 0 and ravenVariantOptions[0].imageUrl is defined %}
+            {% set initialImageUrl = ravenVariantOptions[0].imageUrl %}
+        {% endif %}
+
         {# LEFT: Product Image Gallery #}
         <div class="product-image-section">
             {# Main Image with Zoom #}
             <div class="product-main-image bg-white rounded-xl p-8 shadow-sm mb-4" id="image-zoom-container">
                 {% if page.product.cover.media %}
                 <img id="product-main-image"
-                     src="{{ page.product.cover.media.url }}"
+                     src="{{ initialImageUrl }}"
                      alt="{{ page.product.translated.name }}"
                      class="w-full h-auto object-contain zoom-image"
-                     style="max-height: 500px;">
+                     style="max-height: 500px;"
+                     onerror="this.onerror=null; this.src='{{ page.product.cover.media.url }}';">
                 {# Zoom Lens (hidden by default) #}
                 <div id="zoom-lens" class="zoom-lens"></div>
                 {# Zoomed Result Box #}
                 <div id="zoom-result" class="zoom-result">
-                    <img id="zoom-result-img" src="{{ page.product.cover.media.url }}" alt="Zoomed">
+                    <img id="zoom-result-img" src="{{ initialImageUrl }}" alt="Zoomed" onerror="this.onerror=null; this.src='{{ page.product.cover.media.url }}';">
                 </div>
                 {% else %}
                 <img src="{{ asset('bundles/raventheme/assets/placeholder.png') }}"
@@ -115,11 +128,6 @@
                      class="w-full h-auto object-contain">
                 {% endif %}
             </div>
-
-            {# Thumbnail Gallery Slider - Hide for Raven products with color variants (they use Farbe swatches instead) #}
-            {% set isRavenProduct = page.product.translated.customFields.raven_has_variants|default(false) %}
-            {% set ravenVariantOptions = page.product.translated.customFields.raven_variant_options|default([]) %}
-            {% set hideGalleryForRaven = isRavenProduct and ravenVariantOptions is iterable and ravenVariantOptions|length > 0 %}
 
             {% if page.product.media|length > 1 and not hideGalleryForRaven %}
             <div class="product-gallery-slider">
