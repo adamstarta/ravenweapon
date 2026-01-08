@@ -260,7 +260,7 @@
             </div>
             {% endif %}
 
-            {# Size selector for Snigel - handles both JSON array and comma-separated string formats #}
+            {# Size selector for Snigel - handles JSON array with optional imageUrl #}
             {% if snigelHasSizes and snigelSizeOptions %}
             {% set sizeArray = snigelSizeOptions is iterable ? snigelSizeOptions : [] %}
             {% if sizeArray|length > 0 %}
@@ -271,11 +271,15 @@
                 <div class="flex flex-wrap gap-2">
                     {% for sizeOption in sizeArray %}
                     {% set sizeName = sizeOption.name|default(sizeOption) %}
+                    {% set sizeImageUrl = sizeOption.imageUrl|default('') %}
+                    {% set sizeValue = sizeOption.value|default(sizeName|lower) %}
                     {% if sizeName %}
                     <button type="button"
                             class="snigel-text-swatch {% if loop.first %}selected{% endif %}"
                             data-size-name="{{ sizeName }}"
-                            onclick="selectSnigelSize(this, '{{ sizeName }}')">
+                            data-size-value="{{ sizeValue }}"
+                            data-image-url="{{ sizeImageUrl }}"
+                            onclick="selectSnigelSize(this, '{{ sizeName }}', '{{ sizeImageUrl }}', '{{ sizeValue }}')">
                         {{ sizeName }}
                     </button>
                     {% endif %}
@@ -284,6 +288,18 @@
             </div>
             {% endif %}
             {% endif %}
+
+            {# Build product media lookup for variant image matching #}
+            <script>
+                window.productMediaUrls = [
+                    {% for media in page.product.media %}
+                    {
+                        url: "{{ media.media.url }}",
+                        filename: "{{ media.media.fileName|default('')|lower }}"
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                ];
+            </script>
 
             {# Quantity Selector and Add to Cart #}
             <form action="{{ path('frontend.checkout.line-item.add') }}"
@@ -1013,8 +1029,8 @@
         } catch(e) { console.warn('localStorage error:', e); }
     }
 
-    // ========== SNIGEL SIZE SELECTION (Text-based) ==========
-    function selectSnigelSize(button, sizeName) {
+    // ========== SNIGEL SIZE SELECTION (Text-based with image switching) ==========
+    function selectSnigelSize(button, sizeName, imageUrl, sizeValue) {
         // Update selected state
         const sizeButtons = button.parentElement.querySelectorAll('.snigel-text-swatch');
         sizeButtons.forEach(el => el.classList.remove('selected'));
@@ -1030,6 +1046,40 @@
         const sizeInput = document.getElementById('snigel-size-input');
         if (sizeInput) {
             sizeInput.value = sizeName;
+        }
+
+        // ===== IMAGE SWITCHING =====
+        const mainImage = document.getElementById('product-main-image');
+        const zoomResultImg = document.getElementById('zoom-result-img');
+        const originalCoverImage = document.getElementById('original-cover-image');
+        const fallbackUrl = originalCoverImage ? originalCoverImage.value : '';
+
+        // Try to find matching image
+        let matchedImageUrl = imageUrl; // Use provided imageUrl first
+
+        // If no imageUrl provided, search product media by filename
+        if (!matchedImageUrl && window.productMediaUrls && sizeValue) {
+            const searchTerm = sizeValue.toLowerCase();
+            const match = window.productMediaUrls.find(m =>
+                m.filename && m.filename.includes(searchTerm)
+            );
+            if (match) {
+                matchedImageUrl = match.url;
+            }
+        }
+
+        // Update image if we found a match
+        if (matchedImageUrl && mainImage) {
+            const testImg = new Image();
+            testImg.onload = function() {
+                mainImage.src = matchedImageUrl;
+                if (zoomResultImg) zoomResultImg.src = matchedImageUrl;
+            };
+            testImg.onerror = function() {
+                console.warn('Size image failed to load:', matchedImageUrl);
+                // Keep current image on error
+            };
+            testImg.src = matchedImageUrl;
         }
 
         // Store selection in localStorage for cart
