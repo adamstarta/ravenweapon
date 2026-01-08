@@ -601,9 +601,13 @@ body.raven-checkout-finish {
     </div>
     {% endif %}
 
-    {# Bank Transfer Details #}
+    {# Bank Transfer Details - Show for prepayment/bank transfer payment methods #}
     {% set paymentMethod = page.order.transactions.first.paymentMethod %}
-    {% if paymentMethod and (paymentMethod.shortName == 'paid_in_advance' or paymentMethod.translated.name == 'Paid in advance' or paymentMethod.translated.name == 'Vorkasse') %}
+    {% set paymentName = paymentMethod.translated.name|default('')|lower %}
+    {% set paymentShortName = paymentMethod.shortName|default('')|lower %}
+    {% set isBankTransfer = paymentShortName matches '/paid_in_advance|prepayment|bank|vorkasse/'
+        or paymentName matches '/vorkasse|bank|prepayment|paid in advance|banküberweisung|überweisung/' %}
+    {% if paymentMethod and isBankTransfer %}
     <div class="raven-bank-transfer-info">
         <h3>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
