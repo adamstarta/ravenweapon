@@ -20,6 +20,14 @@ export default class RavenToastPlugin extends Plugin {
         },
         // German translations for common Shopware messages
         translations: {
+            // Cart success messages
+            'product added to your shopping cart': 'Artikel zum Warenkorb hinzugefügt',
+            'products added to your shopping cart': 'Artikel zum Warenkorb hinzugefügt',
+            'added to cart': 'Zum Warenkorb hinzugefügt',
+            'added to your cart': 'Zum Warenkorb hinzugefügt',
+            'has been added': 'wurde hinzugefügt',
+            'item added': 'Artikel hinzugefügt',
+            'items added': 'Artikel hinzugefügt',
             // Payment/Shipping cart validation
             'payment is not available': 'Die Zahlungsart wurde automatisch angepasst.',
             'shipping is not available': 'Die Versandart wurde automatisch angepasst.',
@@ -31,7 +39,12 @@ export default class RavenToastPlugin extends Plugin {
             // Cart errors
             'Product not found': 'Produkt nicht gefunden.',
             'Out of stock': 'Nicht auf Lager.',
-            'Not enough stock': 'Nicht genügend auf Lager.'
+            'Not enough stock': 'Nicht genügend auf Lager.',
+            // General success/error
+            'successfully': 'erfolgreich',
+            'Success': 'Erfolg',
+            'Error': 'Fehler',
+            'Warning': 'Warnung'
         }
     };
 
@@ -251,6 +264,16 @@ export default class RavenToastPlugin extends Plugin {
      */
     _translateMessage(message) {
         const lowerMessage = message.toLowerCase();
+
+        // Check for "X product(s) added to your shopping cart" pattern
+        if (lowerMessage.includes('product') && lowerMessage.includes('added') && lowerMessage.includes('cart')) {
+            return 'Artikel zum Warenkorb hinzugefügt';
+        }
+
+        // Check for "added to cart" variations
+        if (lowerMessage.includes('added to') && (lowerMessage.includes('cart') || lowerMessage.includes('basket'))) {
+            return 'Zum Warenkorb hinzugefügt';
+        }
 
         // Check for payment method change message
         if (lowerMessage.includes('payment') && lowerMessage.includes('not available')) {
