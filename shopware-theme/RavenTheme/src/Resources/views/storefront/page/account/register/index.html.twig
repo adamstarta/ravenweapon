@@ -1166,6 +1166,19 @@
     document.addEventListener('DOMContentLoaded', function() {
         const urlParams = new URLSearchParams(window.location.search);
 
+        // ========== SET FLAG FOR WELCOME TOAST ON CHECKOUT ==========
+        // When register form is submitted, set flag so checkout page can show welcome toast
+        const registerForm = document.querySelector('.register-form');
+        if (registerForm) {
+            registerForm.addEventListener('submit', function() {
+                // Check if redirecting to checkout (not to account home)
+                const redirectInput = registerForm.querySelector('input[name="redirectTo"]');
+                if (redirectInput && redirectInput.value.includes('checkout')) {
+                    sessionStorage.setItem('ravenJustRegistered', 'true');
+                }
+            });
+        }
+
         // Login error via URL
         if (urlParams.get('loginError') === '1' || urlParams.has('loginError')) {
             window.ravenToast('error', 'Die Anmeldedaten sind nicht korrekt.');
