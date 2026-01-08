@@ -27,11 +27,11 @@ jobs:
 
       - name: Deploy to staging
         run: |
-          # Clean up any previous deployment files
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /tmp/RavenTheme"
+          # Clean up any previous deployment files and create fresh directory
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /tmp/RavenTheme && mkdir -p /tmp/RavenTheme"
 
-          # Copy theme to server
-          scp -r shopware-theme/RavenTheme ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+          # Copy theme to server using tar to preserve structure
+          tar -czf - -C shopware-theme RavenTheme | ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "tar -xzf - -C /tmp/"
 
           # Deploy to staging container (shopware-dev)
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
@@ -77,11 +77,11 @@ jobs:
 
       - name: Deploy to production
         run: |
-          # Clean up any previous deployment files
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /tmp/RavenTheme"
+          # Clean up any previous deployment files and create fresh directory
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /tmp/RavenTheme && mkdir -p /tmp/RavenTheme"
 
-          # Copy theme to server
-          scp -r shopware-theme/RavenTheme ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+          # Copy theme to server using tar to preserve structure
+          tar -czf - -C shopware-theme RavenTheme | ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "tar -xzf - -C /tmp/"
 
           # Deploy to production container (shopware-chf)
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
