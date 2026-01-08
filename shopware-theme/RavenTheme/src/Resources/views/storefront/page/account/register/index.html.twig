@@ -992,19 +992,27 @@
     // If user has items in cart, redirect to checkout after registration
     (async function() {
         try {
-            const response = await fetch('/store-api/checkout/cart', {
+            var accessKeyMeta = document.querySelector('meta[name="sw-access-key"]');
+            var accessKey = accessKeyMeta ? accessKeyMeta.content : '';
+
+            var response = await fetch('/store-api/checkout/cart', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'sw-access-key': document.querySelector('meta[name="sw-access-key"]')?.content || ''
+                    'sw-access-key': accessKey
                 }
             });
-            const cart = await response.json();
 
-            if (cart.lineItems && cart.lineItems.length > 0) {
-                // Cart has items - update redirect to checkout
-                const redirectInput = document.querySelector('input[name="redirectTo"]');
+            if (!response.ok) {
+                console.log('Cart API error:', response.status);
+                return;
+            }
+
+            var cart = await response.json();
+
+            if (Array.isArray(cart.lineItems) && cart.lineItems.length > 0) {
+                var redirectInput = document.querySelector('input[name="redirectTo"]');
                 if (redirectInput && redirectInput.value === 'frontend.account.home.page') {
                     redirectInput.value = 'frontend.checkout.confirm.page';
                 }
