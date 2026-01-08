@@ -260,16 +260,54 @@
             </div>
             {% endif %}
 
-            {# Size selector for Snigel - handles comma-separated strings, JSON arrays, or simple arrays #}
+            {# Size selector for Snigel - handles JSON strings, JSON arrays, or comma-separated strings #}
             {% if snigelHasSizes and snigelSizeOptions %}
-            {# Convert to array - handle string (comma-separated) or array formats #}
+            {# Render size selector via JavaScript if data is JSON string (starts with "[") #}
+            {% set isJsonString = snigelSizeOptions is string and snigelSizeOptions|trim|slice(0,1) == '[' %}
+            {% if isJsonString %}
+            {# JSON string stored in database - parse with JavaScript #}
+            <div class="mb-5" id="snigel-size-selector-container">
+                <p class="text-sm text-gray-600 mb-2" style="font-family: 'Inter', sans-serif;">
+                    Grösse: <span id="selected-snigel-size" class="font-semibold text-gray-900">Wird geladen...</span>
+                </p>
+                <div class="flex flex-wrap gap-2" id="snigel-size-buttons"></div>
+            </div>
+            <script>
+                (function() {
+                    try {
+                        var sizeData = {{ snigelSizeOptions|raw }};
+                        var container = document.getElementById('snigel-size-buttons');
+                        var selectedSpan = document.getElementById('selected-snigel-size');
+                        if (sizeData && sizeData.length > 0 && container) {
+                            selectedSpan.textContent = sizeData[0].name || sizeData[0] || 'Standard';
+                            sizeData.forEach(function(opt, idx) {
+                                var name = opt.name || opt;
+                                var value = opt.value || name.toLowerCase();
+                                var imageUrl = opt.imageUrl || '';
+                                var btn = document.createElement('button');
+                                btn.type = 'button';
+                                btn.className = 'snigel-text-swatch' + (idx === 0 ? ' selected' : '');
+                                btn.setAttribute('data-size-name', name);
+                                btn.setAttribute('data-size-value', value);
+                                btn.setAttribute('data-image-url', imageUrl);
+                                btn.textContent = name;
+                                btn.onclick = function() { selectSnigelSize(btn, name, imageUrl, value); };
+                                container.appendChild(btn);
+                            });
+                            // Update hidden input with first value
+                            var sizeInput = document.getElementById('snigel-size-input');
+                            if (sizeInput) sizeInput.value = sizeData[0].name || sizeData[0] || '';
+                        }
+                    } catch(e) { console.error('Size selector parse error:', e); }
+                })();
+            </script>
+            {% else %}
+            {# Regular array or comma-separated string - handle in Twig #}
             {% if snigelSizeOptions is iterable and snigelSizeOptions is not string %}
                 {% set sizeArray = snigelSizeOptions %}
             {% elseif snigelSizeOptions is string and ',' in snigelSizeOptions %}
-                {# Comma-separated string like "S,M,L,XL" #}
                 {% set sizeArray = snigelSizeOptions|split(',') %}
             {% elseif snigelSizeOptions is string and snigelSizeOptions|trim != '' %}
-                {# Single value string #}
                 {% set sizeArray = [snigelSizeOptions] %}
             {% else %}
                 {% set sizeArray = [] %}
@@ -281,7 +319,6 @@
                 </p>
                 <div class="flex flex-wrap gap-2">
                     {% for sizeOption in sizeArray %}
-                    {# Handle both object format {name: "S"} and simple string "S" #}
                     {% set sizeName = (sizeOption.name|default(sizeOption))|trim %}
                     {% set sizeImageUrl = sizeOption.imageUrl|default('') %}
                     {% set sizeValue = sizeOption.value|default(sizeName|lower) %}
@@ -298,6 +335,7 @@
                     {% endfor %}
                 </div>
             </div>
+            {% endif %}
             {% endif %}
             {% endif %}
 
@@ -335,19 +373,9 @@
                 {% if isSnigel and snigelColorOptions|length > 0 %}
                     <input type="hidden" name="selectedColor" id="snigel-color-input" value="{{ snigelColorOptions[0].name|default(snigelColorOptions[0]|default('')) }}">
                 {% endif %}
-                {# Snigel size selection - handle comma-separated strings, JSON arrays, or simple arrays #}
+                {# Snigel size selection - always render input, JavaScript will populate if JSON string #}
                 {% if snigelHasSizes and snigelSizeOptions %}
-                    {% if snigelSizeOptions is iterable and snigelSizeOptions is not string %}
-                        {% set sizeArr = snigelSizeOptions %}
-                    {% elseif snigelSizeOptions is string and ',' in snigelSizeOptions %}
-                        {% set sizeArr = snigelSizeOptions|split(',') %}
-                    {% elseif snigelSizeOptions is string and snigelSizeOptions|trim != '' %}
-                        {% set sizeArr = [snigelSizeOptions] %}
-                    {% else %}
-                        {% set sizeArr = [] %}
-                    {% endif %}
-                    {% set firstSize = sizeArr|length > 0 ? (sizeArr[0].name|default(sizeArr[0]|default('')))|trim : '' %}
-                    <input type="hidden" name="selectedSize" id="snigel-size-input" value="{{ firstSize }}">
+                    <input type="hidden" name="selectedSize" id="snigel-size-input" value="">
                 {% endif %}
 
                 {# Compact Quantity Selector + Large Add to Cart - Same Row #}
