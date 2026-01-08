@@ -56,6 +56,13 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <!-- Login Redirect Subscriber - redirects to checkout after login if cart has items -->
+        <service id="RavenTheme\Subscriber\LoginRedirectSubscriber">
+            <argument type="service" id="router"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <!-- Variant Price Processor - overrides line item prices for Snigel variants -->
         <service id="RavenTheme\Cart\VariantPriceProcessor">
             <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
