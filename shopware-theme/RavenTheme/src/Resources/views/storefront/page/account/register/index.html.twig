@@ -8,6 +8,8 @@
 
 {% block base_content %}
 {% set isRegisterPage = app.request.attributes.get('_route') == 'frontend.account.register.page' %}
+{# Get redirectTo from URL parameter - if coming from checkout, redirect back there after registration #}
+{% set registerRedirectTo = app.request.query.get('redirectTo') | default('frontend.account.home.page') %}
 
 <div class="raven-auth-page fullscreen">
     {# Back to Homepage Button #}
@@ -40,10 +42,12 @@
                   class="auth-form register-form"
                   data-form-handler="true">
 
-                <input type="hidden" name="redirectTo" value="frontend.account.home.page">
+                {# Use redirectTo from URL if present (e.g., from checkout flow) #}
+                <input type="hidden" name="redirectTo" value="{{ registerRedirectTo }}">
                 <input type="hidden" name="redirectParameters" value="">
                 <input type="hidden" name="errorRoute" value="frontend.account.register.page">
-                <input type="hidden" name="errorParameters" value="">
+                {# Preserve redirectTo in error case so user can try again and still go to checkout #}
+                <input type="hidden" name="errorParameters" value="{% if registerRedirectTo != 'frontend.account.home.page' %}redirectTo={{ registerRedirectTo }}{% endif %}">
                 {# CRITICAL: This tells Shopware to create a REAL customer account, not a guest! #}
                 <input type="hidden" name="createCustomerAccount" value="1">
 

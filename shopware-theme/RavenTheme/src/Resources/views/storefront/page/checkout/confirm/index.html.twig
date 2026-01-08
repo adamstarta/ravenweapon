@@ -1531,6 +1531,54 @@ if (document.readyState === 'loading') {
 setTimeout(forcePaymentMethodStyles, 100);
 setTimeout(forcePaymentMethodStyles, 500);
 
+// ========== WELCOME TOAST FOR NEW REGISTRATIONS ==========
+(function() {
+    // Check if user just registered (flag set by register page)
+    if (sessionStorage.getItem('ravenJustRegistered') === 'true') {
+        sessionStorage.removeItem('ravenJustRegistered');
+
+        // Get customer name from the page
+        var customerName = '{{ context.customer.firstName | default("") | e("js") }}';
+
+        // Create toast container if not exists
+        var container = document.getElementById('raven-toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'raven-toast-container';
+            container.style.cssText = 'position:fixed;top:24px;right:24px;z-index:99999;display:flex;flex-direction:column;gap:12px;pointer-events:none;max-width:calc(100vw - 48px);';
+            document.body.appendChild(container);
+        }
+
+        // Create welcome toast
+        var toast = document.createElement('div');
+        toast.style.cssText = 'display:flex;align-items:flex-start;gap:12px;padding:16px;background:#ffffff;border:1px solid #e5e7eb;border-left:4px solid #D4A847;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.12);pointer-events:auto;min-width:320px;max-width:420px;opacity:0;transform:translateX(100%);transition:opacity 0.3s ease,transform 0.3s ease;';
+
+        var message = customerName ?
+            'Willkommen ' + customerName + ' bei Raven Weapon AG!' :
+            'Willkommen bei Raven Weapon AG!';
+
+        toast.innerHTML =
+            '<div style="flex-shrink:0;color:#D4A847;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 12 15 16 10"></polyline></svg></div>' +
+            '<div style="flex:1;"><span style="font-family:Inter,sans-serif;font-size:15px;font-weight:500;color:#1f2937;">' + message + '</span></div>' +
+            '<button type="button" onclick="this.parentElement.remove()" style="flex-shrink:0;background:transparent;border:none;color:#9ca3af;cursor:pointer;padding:4px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>';
+
+        container.appendChild(toast);
+
+        // Animate in
+        requestAnimationFrame(function() {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(0)';
+        });
+
+        // Auto remove after 5 seconds
+        setTimeout(function() {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(100%)';
+            setTimeout(function() { toast.remove(); }, 300);
+        }, 5000);
+    }
+})();
+
 // ========== CHECKOUT COLOR UPDATE FUNCTIONALITY ==========
 // Read selected colors from localStorage and update checkout summary items
 (function() {

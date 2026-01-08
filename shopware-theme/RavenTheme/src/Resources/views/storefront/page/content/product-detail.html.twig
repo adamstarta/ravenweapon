@@ -178,11 +178,11 @@
                 {{ productName }}
             </h1>
 
-            {# Price - Swiss Format: CHF 3'150 #}
-            <div class="raven-product-price mb-1" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 700; font-size: 1.75rem; line-height: 1.2; font-variant-numeric: tabular-nums;">
+            {# Price - Swiss Format: CHF 3'150 - ID added for JavaScript price updates #}
+            <div id="product-price-display" class="raven-product-price mb-1" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 700; font-size: 1.75rem; line-height: 1.2; font-variant-numeric: tabular-nums;">
                 {% set detailPrice = page.product.calculatedPrice.unitPrice %}
                 {% set detailCents = ((detailPrice * 100) % 100)|round %}
-                CHF {% if detailCents == 0 %}{{ detailPrice|number_format(0, '.', "'") }}{% else %}{{ detailPrice|number_format(2, '.', "'") }}{% endif %}
+                CHF <span id="product-price-value">{% if detailCents == 0 %}{{ detailPrice|number_format(0, '.', "'") }}{% else %}{{ detailPrice|number_format(2, '.', "'") }}{% endif %}</span>
             </div>
 
             {# VAT included text #}
@@ -206,6 +206,9 @@
             {# Snigel size options #}
             {% set snigelSizeOptions = page.product.translated.customFields.snigel_size_options|default('') %}
             {% set snigelHasSizes = page.product.translated.customFields.snigel_has_sizes|default(false) %}
+
+            {# Snigel variants with pricing data #}
+            {% set snigelVariants = page.product.translated.customFields.snigel_variants|default('') %}
 
             {# Store original cover image for fallback #}
             <input type="hidden" id="original-cover-image" value="{{ page.product.cover.media.url|default('') }}">
@@ -276,10 +279,28 @@
                 (function() {
                     try {
                         var sizeData = {{ snigelSizeOptions|raw }};
+                        // Load variant pricing data
+                        var variantData = [];
+                        {% if snigelVariants and snigelVariants|trim|slice(0,1) == '[' %}
+                        variantData = {{ snigelVariants|raw }};
+                        {% endif %}
+
+                        // Build price lookup map (by value/name)
+                        window.snigelPriceLookup = {};
+                        variantData.forEach(function(v) {
+                            var key = (v.value || v.name || '').toLowerCase();
+                            if (v.sellingPriceCHF) {
+                                window.snigelPriceLookup[key] = parseFloat(v.sellingPriceCHF);
+                            }
+                        });
+
                         var container = document.getElementById('snigel-size-buttons');
                         var selectedSpan = document.getElementById('selected-snigel-size');
                         if (sizeData && sizeData.length > 0 && container) {
-                            selectedSpan.textContent = sizeData[0].name || sizeData[0] || 'Standard';
+                            var firstName = sizeData[0].name || sizeData[0] || 'Standard';
+                            var firstValue = (sizeData[0].value || firstName).toLowerCase();
+                            selectedSpan.textContent = firstName;
+
                             sizeData.forEach(function(opt, idx) {
                                 var name = opt.name || opt;
                                 var value = opt.value || name.toLowerCase();
@@ -294,12 +315,41 @@
                                 btn.onclick = function() { selectSnigelSize(btn, name, imageUrl, value); };
                                 container.appendChild(btn);
                             });
-                            // Update hidden input with first value
+
+                            // Update hidden inputs with first value
                             var sizeInput = document.getElementById('snigel-size-input');
-                            if (sizeInput) sizeInput.value = sizeData[0].name || sizeData[0] || '';
+                            if (sizeInput) sizeInput.value = firstName;
+
+                            // Set initial price from variant data
+                            var priceInput = document.getElementById('snigel-size-price-input');
+                            var firstPrice = window.snigelPriceLookup[firstValue];
+                            if (priceInput && firstPrice) {
+                                priceInput.value = firstPrice;
+                                // Update displayed price
+                                updateDisplayedPrice(firstPrice);
+                            }
                         }
                     } catch(e) { console.error('Size selector parse error:', e); }
                 })();
+
+                // Helper function to format price in Swiss format
+                function formatSwissPrice(price) {
+                    var rounded = Math.round(price * 100) / 100;
+                    var cents = Math.round((rounded * 100) % 100);
+                    if (cents === 0) {
+                        return Math.floor(rounded).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+                    } else {
+                        return rounded.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+                    }
+                }
+
+                // Update displayed price on the page
+                function updateDisplayedPrice(price) {
+                    var priceSpan = document.getElementById('product-price-value');
+                    if (priceSpan && price) {
+                        priceSpan.textContent = formatSwissPrice(price);
+                    }
+                }
             </script>
             {% else %}
             {# Regular array or comma-separated string - handle in Twig #}
@@ -376,6 +426,7 @@
                 {# Snigel size selection - always render input, JavaScript will populate if JSON string #}
                 {% if snigelHasSizes and snigelSizeOptions %}
                     <input type="hidden" name="selectedSize" id="snigel-size-input" value="">
+                    <input type="hidden" name="selectedSizePrice" id="snigel-size-price-input" value="">
                 {% endif %}
 
                 {# Compact Quantity Selector + Large Add to Cart - Same Row #}
@@ -1077,7 +1128,7 @@
         } catch(e) { console.warn('localStorage error:', e); }
     }
 
-    // ========== SNIGEL SIZE SELECTION (Text-based with image switching) ==========
+    // ========== SNIGEL SIZE SELECTION (Text-based with image switching + price update) ==========
     function selectSnigelSize(button, sizeName, imageUrl, sizeValue) {
         // Update selected state
         const sizeButtons = button.parentElement.querySelectorAll('.snigel-text-swatch');
@@ -1094,6 +1145,24 @@
         const sizeInput = document.getElementById('snigel-size-input');
         if (sizeInput) {
             sizeInput.value = sizeName;
+        }
+
+        // ===== PRICE UPDATE =====
+        // Look up price from variant data
+        const lookupKey = (sizeValue || sizeName || '').toLowerCase();
+        if (window.snigelPriceLookup && window.snigelPriceLookup[lookupKey]) {
+            const newPrice = window.snigelPriceLookup[lookupKey];
+
+            // Update hidden price input for form submission
+            const priceInput = document.getElementById('snigel-size-price-input');
+            if (priceInput) {
+                priceInput.value = newPrice;
+            }
+
+            // Update displayed price
+            if (typeof updateDisplayedPrice === 'function') {
+                updateDisplayedPrice(newPrice);
+            }
         }
 
         // ===== IMAGE SWITCHING =====
