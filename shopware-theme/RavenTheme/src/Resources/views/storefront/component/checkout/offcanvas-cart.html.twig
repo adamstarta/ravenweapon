@@ -677,6 +677,8 @@
                 </div>
 
                 <div class="raven-cart-actions">
+                    {# If logged in, go to checkout. If not, go to login page #}
+                    {% if context.customer %}
                     <a href="{{ path('frontend.checkout.confirm.page') }}" class="raven-btn-checkout">
                         Zur Kasse
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -684,6 +686,15 @@
                             <polyline points="12 5 19 12 12 19"/>
                         </svg>
                     </a>
+                    {% else %}
+                    <a href="{{ path('frontend.account.login.page') }}" class="raven-btn-checkout">
+                        Zur Kasse
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                    {% endif %}
                     <a href="{{ path('frontend.checkout.cart.page') }}" class="raven-btn-cart">
                         Warenkorb ansehen
                     </a>
