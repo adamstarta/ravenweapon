@@ -1621,11 +1621,17 @@
                 .then(response => {
                     btn.disabled = false;
                     btn.innerHTML = originalText;
+                    if (typeof window.ravenToast === 'function') {
+                        window.ravenToast('success', 'Artikel zum Warenkorb hinzugefügt');
+                    }
                     showOffcanvasCart();
                 })
                 .catch(err => {
                     btn.disabled = false;
                     btn.innerHTML = originalText;
+                    if (typeof window.ravenToast === 'function') {
+                        window.ravenToast('error', 'Fehler beim Hinzufügen zum Warenkorb');
+                    }
                     console.error('Add to cart failed:', err);
                 });
             });
