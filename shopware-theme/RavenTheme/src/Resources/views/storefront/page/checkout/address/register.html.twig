@@ -1,44 +1,9 @@
 {% sw_extends '@Storefront/storefront/page/checkout/address/register.html.twig' %}
 
 {# Override the guest checkout checkbox to force account creation #}
+{# Note: component blocks like password fields are overridden in component/account/register.html.twig #}
 {% block page_checkout_register_personal_guest %}
     {# Hide guest option - accounts are mandatory for Swiss firearms regulations #}
     {# Force account creation with hidden input #}
     <input type="hidden" name="createCustomerAccount" value="1">
-{% endblock %}
-
-{# Override the card title #}
-{% block component_account_register_personal_fields_title %}
-    <div class="card-title">
-        {{ "Persönliche Daten"|trans|sw_sanitize }}
-    </div>
-{% endblock %}
-
-{# Fix password field to always be visible #}
-{% block component_account_register_personal_password %}
-    <div class="form-group col-md-6">
-        {{ "account.personalPasswordLabel"|trans|sw_sanitize }}
-        <input type="password"
-               name="password"
-               id="personalPassword"
-               placeholder="Mindestens 8 Zeichen"
-               class="form-control{% if formViolations.getViolations('/password') is not empty %} is-invalid{% endif %}"
-               autocomplete="new-password"
-               required="required"
-               minlength="8"
-               value="">
-        {% if formViolations.getViolations('/password') is not empty %}
-            {% for message in formViolations.getViolations('/password') %}
-                <div class="invalid-feedback">
-                    {{ message.message|trans }}
-                </div>
-            {% endfor %}
-        {% endif %}
-        <small class="form-text text-muted">Mindestens 8 Zeichen - für Ihr Kundenkonto</small>
-    </div>
-{% endblock %}
-
-{# Remove password confirmation field since double opt-in is disabled #}
-{% block component_account_register_personal_password_confirm %}
-    {# Password confirmation not needed when double opt-in is disabled #}
 {% endblock %}

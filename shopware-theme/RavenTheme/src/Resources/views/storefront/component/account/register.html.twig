@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/component/account/register.html.twig' %}
+
+{# Remove password confirmation field since double opt-in is disabled #}
+{# Users only need to enter password once - simpler checkout flow #}
+{% block component_account_register_personal_password_confirmation %}
+    {# Password confirmation removed - double opt-in disabled #}
+{% endblock %}
