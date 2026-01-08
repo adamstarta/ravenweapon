@@ -260,17 +260,29 @@
             </div>
             {% endif %}
 
-            {# Size selector for Snigel - handles JSON array with optional imageUrl #}
+            {# Size selector for Snigel - handles comma-separated strings, JSON arrays, or simple arrays #}
             {% if snigelHasSizes and snigelSizeOptions %}
-            {% set sizeArray = snigelSizeOptions is iterable ? snigelSizeOptions : [] %}
+            {# Convert to array - handle string (comma-separated) or array formats #}
+            {% if snigelSizeOptions is iterable and snigelSizeOptions is not string %}
+                {% set sizeArray = snigelSizeOptions %}
+            {% elseif snigelSizeOptions is string and ',' in snigelSizeOptions %}
+                {# Comma-separated string like "S,M,L,XL" #}
+                {% set sizeArray = snigelSizeOptions|split(',') %}
+            {% elseif snigelSizeOptions is string and snigelSizeOptions|trim != '' %}
+                {# Single value string #}
+                {% set sizeArray = [snigelSizeOptions] %}
+            {% else %}
+                {% set sizeArray = [] %}
+            {% endif %}
             {% if sizeArray|length > 0 %}
             <div class="mb-5">
                 <p class="text-sm text-gray-600 mb-2" style="font-family: 'Inter', sans-serif;">
-                    Grösse: <span id="selected-snigel-size" class="font-semibold text-gray-900">{{ sizeArray[0].name|default(sizeArray[0]|default('Standard')) }}</span>
+                    Grösse: <span id="selected-snigel-size" class="font-semibold text-gray-900">{{ sizeArray[0].name|default(sizeArray[0]|default('Standard'))|trim }}</span>
                 </p>
                 <div class="flex flex-wrap gap-2">
                     {% for sizeOption in sizeArray %}
-                    {% set sizeName = sizeOption.name|default(sizeOption) %}
+                    {# Handle both object format {name: "S"} and simple string "S" #}
+                    {% set sizeName = (sizeOption.name|default(sizeOption))|trim %}
                     {% set sizeImageUrl = sizeOption.imageUrl|default('') %}
                     {% set sizeValue = sizeOption.value|default(sizeName|lower) %}
                     {% if sizeName %}
@@ -323,10 +335,18 @@
                 {% if isSnigel and snigelColorOptions|length > 0 %}
                     <input type="hidden" name="selectedColor" id="snigel-color-input" value="{{ snigelColorOptions[0].name|default(snigelColorOptions[0]|default('')) }}">
                 {% endif %}
-                {# Snigel size selection #}
+                {# Snigel size selection - handle comma-separated strings, JSON arrays, or simple arrays #}
                 {% if snigelHasSizes and snigelSizeOptions %}
-                    {% set sizeArr = snigelSizeOptions is iterable ? snigelSizeOptions : [] %}
-                    {% set firstSize = sizeArr|length > 0 ? sizeArr[0].name|default(sizeArr[0]|default('')) : '' %}
+                    {% if snigelSizeOptions is iterable and snigelSizeOptions is not string %}
+                        {% set sizeArr = snigelSizeOptions %}
+                    {% elseif snigelSizeOptions is string and ',' in snigelSizeOptions %}
+                        {% set sizeArr = snigelSizeOptions|split(',') %}
+                    {% elseif snigelSizeOptions is string and snigelSizeOptions|trim != '' %}
+                        {% set sizeArr = [snigelSizeOptions] %}
+                    {% else %}
+                        {% set sizeArr = [] %}
+                    {% endif %}
+                    {% set firstSize = sizeArr|length > 0 ? (sizeArr[0].name|default(sizeArr[0]|default('')))|trim : '' %}
                     <input type="hidden" name="selectedSize" id="snigel-size-input" value="{{ firstSize }}">
                 {% endif %}
 
