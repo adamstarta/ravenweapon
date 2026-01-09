@@ -102,6 +102,10 @@ export default class RavenToastPlugin extends Plugin {
                 if (message) {
                     message = message.replace(/^\s*×?\s*/, '').trim();
                     if (message.length > 0) {
+                        // Check suppression on original message (before translation)
+                        if (this._shouldSuppressMessage(message)) {
+                            return;
+                        }
                         message = this._translateMessage(message);
                         this.show(type, message);
                     }
@@ -134,6 +138,11 @@ export default class RavenToastPlugin extends Plugin {
      * @param {number} duration - Optional custom duration in ms
      */
     show(type, message, duration) {
+        // Check if message should be suppressed
+        if (this._shouldSuppressMessage(message)) {
+            return;
+        }
+
         const toast = this._createToast(type, message);
         this.container.appendChild(toast);
 
@@ -264,24 +273,66 @@ export default class RavenToastPlugin extends Plugin {
     }
 
     /**
+     * Check if message should be suppressed (not shown)
+     */
+    _shouldSuppressMessage(message) {
+        const lowerMessage = message.toLowerCase();
+
+        // Suppress shipping/payment automatic adjustment messages
+        if (lowerMessage.includes('versandart') && lowerMessage.includes('automatisch')) {
+            return true;
+        }
+        if (lowerMessage.includes('zahlungsart') && lowerMessage.includes('automatisch')) {
+            return true;
+        }
+        // Also suppress English versions
+        if (lowerMessage.includes('shipping') && lowerMessage.includes('automatically')) {
+            return true;
+        }
+        if (lowerMessage.includes('payment') && lowerMessage.includes('automatically')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Translate message to German if translation exists
      */
     _translateMessage(message) {
         const lowerMessage = message.toLowerCase();
 
-        // Check for "Shopping cart updated" message
-        if (lowerMessage.includes('shopping cart updated') || lowerMessage.includes('cart updated') || lowerMessage.includes('cart has been updated')) {
+        // Check for "Shopping cart updated" message (exact match or variations)
+        if (lowerMessage.includes('shopping cart updated') ||
+            lowerMessage.includes('cart updated') ||
+            lowerMessage.includes('cart has been updated') ||
+            lowerMessage === 'shopping cart updated.' ||
+            lowerMessage === 'cart updated.') {
             return 'Warenkorb wurde aktualisiert';
         }
 
         // Check for "X product(s) added to your shopping cart" pattern
-        if (lowerMessage.includes('product') && lowerMessage.includes('added') && lowerMessage.includes('cart')) {
+        // This catches: "1 product added to your shopping cart."
+        if ((lowerMessage.includes('product') || lowerMessage.includes('item')) &&
+            lowerMessage.includes('added') &&
+            (lowerMessage.includes('cart') || lowerMessage.includes('basket'))) {
             return 'Artikel zum Warenkorb hinzugefügt';
         }
 
         // Check for "added to cart" variations
         if (lowerMessage.includes('added to') && (lowerMessage.includes('cart') || lowerMessage.includes('basket'))) {
             return 'Zum Warenkorb hinzugefügt';
+        }
+
+        // Check for "removed from cart" messages
+        if ((lowerMessage.includes('removed') || lowerMessage.includes('deleted')) &&
+            (lowerMessage.includes('cart') || lowerMessage.includes('basket'))) {
+            return 'Artikel aus dem Warenkorb entfernt';
+        }
+
+        // Check for quantity update messages
+        if (lowerMessage.includes('quantity') && lowerMessage.includes('updated')) {
+            return 'Menge wurde aktualisiert';
         }
 
         // Check for payment method change message
@@ -292,6 +343,22 @@ export default class RavenToastPlugin extends Plugin {
         // Check for shipping method change message
         if (lowerMessage.includes('shipping') && lowerMessage.includes('not available')) {
             return this.options.translations['shipping is not available'];
+        }
+
+        // Check for login/auth messages
+        if (lowerMessage.includes('logged in') || lowerMessage.includes('login successful')) {
+            return 'Erfolgreich angemeldet';
+        }
+        if (lowerMessage.includes('logged out') || lowerMessage.includes('logout successful')) {
+            return 'Erfolgreich abgemeldet';
+        }
+
+        // Check for save/update success messages
+        if (lowerMessage.includes('saved successfully') || lowerMessage.includes('successfully saved')) {
+            return 'Erfolgreich gespeichert';
+        }
+        if (lowerMessage.includes('updated successfully') || lowerMessage.includes('successfully updated')) {
+            return 'Erfolgreich aktualisiert';
         }
 
         // Check for partial matches in translations
