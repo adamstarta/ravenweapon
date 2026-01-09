@@ -1,21 +1,18 @@
 {# STANDALONE - No extends! Directly included by index.html.twig #}
 {# This gives us full access to page.shippingMethods without inheritance issues #}
 
-<!-- DEBUG: RAVEN STANDALONE SHIPPING TEMPLATE v3 - FORCED DEPLOY -->
-
 <form id="changeShippingForm"
       name="changeShippingForm"
       action="{{ path('frontend.checkout.configure') }}"
       data-form-auto-submit="true"
       data-form-auto-submit-options='{"changeTriggerSelectors":[".shipping-method-input"]}'
       method="post">
-    {{ sw_csrf('frontend.checkout.configure') }}
 
     <input type="hidden" name="redirectTo" value="frontend.checkout.confirm.page">
 
     <div class="raven-shipping-methods">
         {% for shippingMethod in page.shippingMethods %}
-            {% set isSelected = shippingMethod.id == context.shippingMethod.id %}
+            {% set isSelected = context.shippingMethod and shippingMethod.id == context.shippingMethod.id %}
 
             <div class="raven-shipping-option {% if isSelected %}is-selected{% endif %}"
                  data-shipping-method-id="{{ shippingMethod.id }}">
