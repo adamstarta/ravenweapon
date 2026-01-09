@@ -7,7 +7,7 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "{{ page.product.translated.name|e('js') }}",
-    "description": "{{ page.product.translated.description|striptags|slice(0, 200)|e('js') }}",
+    "description": "{{ page.product.translated.description|default('')|striptags|slice(0, 200)|e('js') }}",
     "image": "{% if page.product.cover and page.product.cover.media and page.product.cover.media.url %}{{ page.product.cover.media.url }}{% endif %}",
     "sku": "{{ page.product.productNumber }}",
     "brand": {
@@ -25,11 +25,11 @@
             "name": "Raven Weapon AG"
         }
     }
-    {% if page.product.ratingAverage > 0 %},
+    {% if page.product.ratingAverage is defined and page.product.ratingAverage > 0 %},
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "{{ page.product.ratingAverage }}",
-        "reviewCount": "{{ page.product.reviews.total|default(1) }}"
+        "reviewCount": "{{ page.product.reviews is defined and page.product.reviews ? page.product.reviews.total|default(1) : 1 }}"
     }
     {% endif %}
 }
