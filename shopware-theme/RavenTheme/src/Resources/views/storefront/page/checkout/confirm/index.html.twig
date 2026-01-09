@@ -1453,7 +1453,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Payment method toggle functionality
     initPaymentMethodToggle();
+
+    // Make shipping method rows clickable (click on name to select)
+    initShippingMethodClick();
 });
+
+// Make entire shipping method row clickable
+function initShippingMethodClick() {
+    document.querySelectorAll('.shipping-method, .confirm-shipping-method, .shipping-method-radio').forEach(method => {
+        method.style.cursor = 'pointer';
+        method.addEventListener('click', function(e) {
+            // Don't trigger if clicking directly on the radio button
+            if (e.target.tagName !== 'INPUT') {
+                const radio = this.querySelector('input[type="radio"]');
+                if (radio && !radio.checked) {
+                    radio.click();
+                }
+            }
+        });
+    });
+}
 
 // Handle payment method selection and content toggle
 function initPaymentMethodToggle() {
