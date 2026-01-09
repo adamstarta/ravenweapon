@@ -25,16 +25,17 @@
     </a>
 
     <div class="auth-wrapper{% if isRegisterPage %} register-mode{% endif %}">
-        {# Logo Section #}
-        <div class="auth-logo">
-            <a href="{{ path('frontend.home.page') }}">
-                <div class="logo-image" style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:center;background-repeat:no-repeat;height:50px;width:220px;"></div>
-            </a>
-        </div>
 
         {% if isRegisterPage %}
         {# ========== REGISTER CARD ========== #}
         <div class="auth-card">
+            {# Logo inside card #}
+            <div class="auth-logo-inside">
+                <a href="{{ path('frontend.home.page') }}">
+                    <div class="logo-image" style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:center;background-repeat:no-repeat;height:50px;width:220px;"></div>
+                </a>
+            </div>
+
             <div class="card-header">
                 <h1>Konto erstellen</h1>
                 <p>Registrieren Sie sich für ein exklusives Einkaufserlebnis</p>
@@ -233,6 +234,13 @@
         {% else %}
         {# ========== LOGIN CARD ========== #}
         <div class="auth-card">
+            {# Logo inside card #}
+            <div class="auth-logo-inside">
+                <a href="{{ path('frontend.home.page') }}">
+                    <div class="logo-image" style="background-image:url('{{ asset('bundles/raventheme/assets/logo.svg') }}');background-size:100% 455%;background-position:center;background-repeat:no-repeat;height:50px;width:220px;"></div>
+                </a>
+            </div>
+
             <div class="card-header">
                 <h1>Willkommen zurück</h1>
                 <p>Melden Sie sich bei Ihrem Konto an</p>
@@ -463,19 +471,21 @@
     z-index: 1;
 }
 
-/* ============ LOGO ============ */
-.auth-logo {
+/* ============ LOGO INSIDE CARD ============ */
+.auth-logo-inside {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--raven-gray-100);
 }
 
-.auth-logo a {
+.auth-logo-inside a {
     display: inline-flex;
     justify-content: center;
     transition: transform 0.3s ease;
 }
 
-.auth-logo a:hover {
+.auth-logo-inside a:hover {
     transform: scale(1.02);
 }
 
