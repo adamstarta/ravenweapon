@@ -210,21 +210,21 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
             $imageHtml = '';
             if (!empty($item['imageUrl'])) {
                 $imageHtml = sprintf(
-                    '<img src="%s" alt="%s" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; margin-right: 10px; vertical-align: middle;">',
+                    '<img src="%s" alt="%s" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; margin-right: 8px; vertical-align: middle;">',
                     htmlspecialchars($item['imageUrl']),
                     htmlspecialchars($item['name'])
                 );
             } else {
                 // Placeholder if no image
-                $imageHtml = '<div style="width: 50px; height: 50px; background: #f3f4f6; border-radius: 4px; display: inline-block; vertical-align: middle; margin-right: 10px;"></div>';
+                $imageHtml = '<div style="width: 40px; height: 40px; background: #f3f4f6; border-radius: 4px; display: inline-block; vertical-align: middle; margin-right: 8px;"></div>';
             }
 
             $itemsHtml .= sprintf(
                 '<tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">%s<span style="vertical-align: middle;">%s</span></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">%s<span style="vertical-align: middle; font-size: 13px;">%s</span></td>
                     <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: center;">%d</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right;">%s</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right;">%s</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right; white-space: nowrap;">%s</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right; white-space: nowrap;">%s</td>
                 </tr>',
                 $imageHtml,
                 htmlspecialchars($item['name']),
@@ -242,7 +242,7 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f3f4f6;">
-    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="max-width: 750px; margin: 0 auto; padding: 20px;">
         <!-- Header -->
         <div style="background: linear-gradient(135deg, #111827 0%, #1f2937 100%); padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
             <h1 style="margin: 0; color: #fde047; font-family: 'Chakra Petch', sans-serif; font-size: 24px; font-weight: 700;">
@@ -309,13 +309,19 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                 <h2 style="margin: 0 0 15px 0; color: #111827; font-size: 16px; font-weight: 600;">
                     Bestellte Artikel
                 </h2>
-                <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
+                <table style="width: 100%; font-size: 14px; border-collapse: collapse; table-layout: fixed;">
+                    <colgroup>
+                        <col style="width: 50%;">
+                        <col style="width: 10%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                    </colgroup>
                     <thead>
                         <tr style="background: #f9fafb;">
                             <th style="padding: 12px 10px; text-align: left; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Artikel</th>
                             <th style="padding: 12px 10px; text-align: center; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Menge</th>
-                            <th style="padding: 12px 10px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Stückpreis</th>
-                            <th style="padding: 12px 10px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Gesamt</th>
+                            <th style="padding: 12px 10px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb; white-space: nowrap;">Stückpreis</th>
+                            <th style="padding: 12px 10px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb; white-space: nowrap;">Gesamt</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -324,15 +330,15 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                     <tfoot>
                         <tr style="background: #f9fafb;">
                             <td colspan="3" style="padding: 10px; color: #6b7280; text-align: right;">Zwischensumme:</td>
-                            <td style="padding: 10px; color: #374151; font-weight: 500; text-align: right;">{$subtotal}</td>
+                            <td style="padding: 10px; color: #374151; font-weight: 500; text-align: right; white-space: nowrap;">{$subtotal}</td>
                         </tr>
                         <tr style="background: #f9fafb;">
                             <td colspan="3" style="padding: 10px; color: #6b7280; text-align: right;">Versandkosten:</td>
-                            <td style="padding: 10px; color: #374151; font-weight: 500; text-align: right;">{$shippingCost}</td>
+                            <td style="padding: 10px; color: #374151; font-weight: 500; text-align: right; white-space: nowrap;">{$shippingCost}</td>
                         </tr>
                         <tr style="background: #111827;">
                             <td colspan="3" style="padding: 15px 10px; color: #ffffff; font-weight: 600; text-align: right;">Gesamtbetrag:</td>
-                            <td style="padding: 15px 10px; color: #fde047; font-weight: 700; text-align: right; font-size: 16px;">{$totalAmount}</td>
+                            <td style="padding: 15px 10px; color: #fde047; font-weight: 700; text-align: right; font-size: 16px; white-space: nowrap;">{$totalAmount}</td>
                         </tr>
                     </tfoot>
                 </table>
