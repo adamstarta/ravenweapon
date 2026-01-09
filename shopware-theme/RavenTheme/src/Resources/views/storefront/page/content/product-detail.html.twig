@@ -188,10 +188,14 @@
 
         {# RIGHT: Product Info #}
         <div class="product-info-section">
-            {# Manufacturer Name #}
+            {# Manufacturer Name - clickable link to manufacturer page #}
             <p class="cat-label text-sm text-gray-400 mb-1 uppercase tracking-wider" style="font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.05em;">
                 {% if page.product.manufacturer.translated.name %}
-                    {{ page.product.manufacturer.translated.name }}
+                    {% set mfrName = page.product.manufacturer.translated.name %}
+                    {% set mfrSlug = mfrName|lower|replace({' ': '-', '_': '-', '.': '', ',': '', '&': '', '(': '', ')': '', '/': '', '\\\\': '', \"'\": '', '\"': '', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'}) %}
+                    <a href="{{ path('frontend.manufacturer.page', {manufacturerSlug: mfrSlug}) }}" style="color: inherit; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#D4A847'" onmouseout="this.style.color='inherit'">
+                        {{ mfrName }}
+                    </a>
                 {% else %}
                     Produkt
                 {% endif %}
