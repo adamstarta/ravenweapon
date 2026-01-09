@@ -272,6 +272,8 @@
                 </p>
                 <div class="flex flex-wrap gap-2" id="snigel-size-buttons"></div>
             </div>
+            {# Hidden input MUST be before the script so JS can find it #}
+            <input type="hidden" name="selectedSize" id="snigel-size-input" value="">
             <script>
                 (function() {
                     try {
@@ -313,6 +315,8 @@
                 {% set sizeArray = [] %}
             {% endif %}
             {% if sizeArray|length > 0 %}
+            {# Hidden input for non-JSON size selection #}
+            <input type="hidden" name="selectedSize" id="snigel-size-input" value="{{ sizeArray[0].name|default(sizeArray[0]|default(''))|trim }}">
             <div class="mb-5">
                 <p class="text-sm text-gray-600 mb-2" style="font-family: 'Inter', sans-serif;">
                     Grösse: <span id="selected-snigel-size" class="font-semibold text-gray-900">{{ sizeArray[0].name|default(sizeArray[0]|default('Standard'))|trim }}</span>
@@ -373,47 +377,6 @@
                 {% if isSnigel and snigelColorOptions|length > 0 %}
                     <input type="hidden" name="selectedColor" id="snigel-color-input" value="{{ snigelColorOptions[0].name|default(snigelColorOptions[0]|default('')) }}">
                 {% endif %}
-                {# Snigel size selection - pre-populate with first value to avoid race condition #}
-                <!-- DEBUG: snigelHasSizes={{ snigelHasSizes ? 'true' : 'false' }}, snigelSizeOptions type={{ snigelSizeOptions is string ? 'string' : 'other' }} -->
-                {% if snigelHasSizes and snigelSizeOptions %}
-                    {% set firstSizeValue = '' %}
-                    {% set isJsonString = snigelSizeOptions is string and snigelSizeOptions|trim|slice(0,1) == '[' %}
-                    <!-- DEBUG: isJsonString={{ isJsonString ? 'true' : 'false' }}, firstChar={{ snigelSizeOptions is string ? snigelSizeOptions|trim|slice(0,1) : 'N/A' }} -->
-                    {% if isJsonString %}
-                        {# Extract first "name" value from JSON string like [{"name":"Small",...}] #}
-                        {% set jsonStr = snigelSizeOptions|trim %}
-                        {% set nameMarker = '"name":"' %}
-                        {% set splitParts = jsonStr|split(nameMarker) %}
-                        {% if splitParts|length > 1 %}
-                            {# Get second part (index 1) which starts with the first name value #}
-                            {% set afterName = splitParts[1] %}
-                            {% if '"' in afterName %}
-                                {% set firstSizeValue = afterName|split('"')|first %}
-                            {% endif %}
-                        {% elseif '"name": "' in jsonStr %}
-                            {# Handle JSON with space after colon #}
-                            {% set splitPartsSpaced = jsonStr|split('"name": "') %}
-                            {% if splitPartsSpaced|length > 1 %}
-                                {% set afterName = splitPartsSpaced[1] %}
-                                {% if '"' in afterName %}
-                                    {% set firstSizeValue = afterName|split('"')|first %}
-                                {% endif %}
-                            {% endif %}
-                        {% endif %}
-                    <!-- DEBUG: after JSON parse, firstSizeValue={{ firstSizeValue }} -->
-                    {% else %}
-                        {# Handle array or comma-separated string #}
-                        {% if snigelSizeOptions is iterable and snigelSizeOptions is not string %}
-                            {% set firstSizeValue = snigelSizeOptions[0].name|default(snigelSizeOptions[0]|default('')) %}
-                        {% elseif snigelSizeOptions is string and ',' in snigelSizeOptions %}
-                            {% set firstSizeValue = (snigelSizeOptions|split(','))[0]|trim %}
-                        {% elseif snigelSizeOptions is string and snigelSizeOptions|trim != '' %}
-                            {% set firstSizeValue = snigelSizeOptions|trim %}
-                        {% endif %}
-                    {% endif %}
-                    <input type="hidden" name="selectedSize" id="snigel-size-input" value="{{ firstSizeValue }}">
-                {% endif %}
-
                 {# Compact Quantity Selector + Large Add to Cart - Same Row #}
                 <div class="quantity-cart-row" style="display: flex; align-items: center; gap: 12px;">
                     {# Quantity Selector - Three Separate Boxes #}
