@@ -328,204 +328,202 @@ body.raven-checkout-finish {
 }
 
 /* ============================================
-   ORDER DETAILS SECTION
+   ORDER DETAILS - SINGLE TABLE DESIGN
    ============================================ */
 
 .raven-order-details {
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto 2rem;
     padding: 0 1.5rem;
 }
 
-/* Info Cards Row */
-.order-info-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-@media (max-width: 640px) {
-    .order-info-row {
-        grid-template-columns: 1fr;
-    }
-}
-
-.info-card {
+/* Single Order Table */
+.raven-order-table {
+    width: 100%;
     background: white;
     border: 1px solid #e5e7eb;
     border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
     overflow: hidden;
 }
 
-.info-card-header {
-    font-family: 'Chakra Petch', sans-serif;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    color: #6b7280;
-    background: #f9fafb;
-    padding: 0.625rem 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.info-card-body {
-    padding: 0.875rem;
+.raven-order-table td,
+.raven-order-table th {
+    padding: 0.625rem 1rem;
+    text-align: left;
     font-size: 0.8125rem;
     color: #374151;
-    line-height: 1.5;
+    vertical-align: top;
 }
 
-.info-card-body strong {
-    color: #111827;
+/* Section Headers (Lieferadresse, etc.) */
+.raven-order-table .section-header td {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 1rem;
+    padding-bottom: 0.375rem;
+}
+
+.raven-order-table .section-header:first-child td {
+    padding-top: 1.25rem;
+}
+
+/* Address Content Rows */
+.raven-order-table .address-row td {
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
+    line-height: 1.4;
+}
+
+.raven-order-table .address-name {
     font-weight: 600;
+    color: #111827;
 }
 
-/* Product Table */
-.order-products {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
+/* Info Row (Zahlung/Versand) */
+.raven-order-table .info-row td {
+    padding-top: 0.25rem;
+    padding-bottom: 1rem;
 }
 
-.order-products-header {
+.raven-order-table .info-label {
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Separator Row */
+.raven-order-table .separator-row td {
+    padding: 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Product Header Row */
+.raven-order-table .product-header td,
+.raven-order-table .product-header th {
     font-family: 'Chakra Petch', sans-serif;
     font-size: 0.6875rem;
     font-weight: 600;
     color: #6b7280;
-    background: #f9fafb;
-    padding: 0.625rem 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    background: #f9fafb;
+    padding: 0.625rem 1rem;
     border-bottom: 1px solid #e5e7eb;
-    display: grid;
-    grid-template-columns: 50px 1fr auto auto;
-    gap: 0.75rem;
 }
 
-.order-products-header .header-menge {
-    text-align: center;
-    min-width: 40px;
-}
-
-.order-products-header .header-preis {
+.raven-order-table .product-header .col-menge,
+.raven-order-table .product-header .col-currency,
+.raven-order-table .product-header .col-preis {
     text-align: right;
-    min-width: 90px;
 }
 
-.product-item {
-    display: grid;
-    grid-template-columns: 50px 1fr auto auto;
-    gap: 0.75rem;
-    padding: 0.875rem;
-    align-items: center;
+/* Product Rows */
+.raven-order-table .product-row td {
+    padding: 0.875rem 1rem;
     border-bottom: 1px solid #f3f4f6;
 }
 
-.product-item:last-child {
-    border-bottom: none;
-}
-
-.product-img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 6px;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-}
-
-.product-info {
-    min-width: 0;
-}
-
-.product-name {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: #111827;
-    margin: 0 0 0.25rem 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.product-sku {
-    font-size: 0.6875rem;
-    color: #6b7280;
-}
-
-.product-qty {
-    font-size: 0.8125rem;
-    color: #374151;
-    text-align: center;
-    min-width: 40px;
-}
-
-.product-price {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #111827;
-    text-align: right;
-    min-width: 90px;
-}
-
-/* Order Summary */
-.order-summary {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 320px;
-    margin-left: auto;
-}
-
-.order-summary-header {
-    font-family: 'Chakra Petch', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #111827;
-    background: #f9fafb;
-    padding: 0.625rem 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+.raven-order-table .product-row:last-of-type td {
     border-bottom: 1px solid #e5e7eb;
 }
 
-.order-summary-body {
-    padding: 0.875rem;
+.raven-order-table .product-name {
+    font-weight: 600;
+    color: #111827;
 }
 
-.summary-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.375rem 0;
-    font-size: 0.8125rem;
+.raven-order-table .product-sku {
+    display: block;
+    font-size: 0.6875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    padding-left: 1rem;
 }
 
-.summary-row .label {
+.raven-order-table .product-variant {
+    display: block;
+    font-size: 0.6875rem;
+    color: #059669;
+    font-weight: 600;
+    margin-top: 0.125rem;
+    padding-left: 1rem;
+}
+
+.raven-order-table .col-menge,
+.raven-order-table .col-currency,
+.raven-order-table .col-preis {
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.raven-order-table .col-menge {
+    width: 60px;
+}
+
+.raven-order-table .col-currency {
+    width: 40px;
     color: #6b7280;
 }
 
-.summary-row .value {
-    color: #111827;
+.raven-order-table .col-preis {
+    width: 80px;
     font-weight: 500;
-}
-
-.summary-row.total {
-    border-top: 2px solid #111827;
-    margin-top: 0.5rem;
-    padding-top: 0.625rem;
-}
-
-.summary-row.total .label,
-.summary-row.total .value {
-    font-size: 0.9375rem;
-    font-weight: 700;
     color: #111827;
+}
+
+/* Summary Rows */
+.raven-order-table .summary-row td {
+    padding: 0.375rem 1rem;
+    color: #6b7280;
+}
+
+.raven-order-table .summary-row .col-preis {
+    font-weight: 500;
+    color: #111827;
+}
+
+.raven-order-table .summary-row:first-of-type td {
+    padding-top: 0.75rem;
+}
+
+/* Total Row */
+.raven-order-table .total-row td {
+    padding: 0.75rem 1rem 1rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: #111827;
+    border-top: 2px solid #111827;
+}
+
+.raven-order-table .total-row .col-preis {
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .raven-order-table td,
+    .raven-order-table th {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    .raven-order-table .col-menge {
+        width: 40px;
+    }
+
+    .raven-order-table .col-currency {
+        width: 35px;
+    }
+
+    .raven-order-table .col-preis {
+        width: 65px;
+    }
 }
 
 /* Footer */
@@ -666,103 +664,123 @@ body.raven-checkout-finish {
     </a>
 </div>
 
-{# Custom Order Details #}
+{# Custom Order Details - Single Table Design #}
 <div class="raven-order-details">
-    {# Address & Info Row #}
-    <div class="order-info-row">
-        {# Shipping Address #}
-        <div class="info-card">
-            <div class="info-card-header">Lieferadresse</div>
-            <div class="info-card-body">
-                {% set delivery = page.order.deliveries.first %}
-                {% if delivery %}
-                    <strong>{{ delivery.shippingOrderAddress.firstName }} {{ delivery.shippingOrderAddress.lastName }}</strong><br>
-                    {{ delivery.shippingOrderAddress.street }}<br>
-                    {{ delivery.shippingOrderAddress.zipcode }} {{ delivery.shippingOrderAddress.city }}<br>
-                    {{ delivery.shippingOrderAddress.country.translated.name }}
-                {% endif %}
-            </div>
-        </div>
+    <table class="raven-order-table">
+        {# ===== ADDRESS SECTION ===== #}
+        {% set delivery = page.order.deliveries.first %}
+        {% set billingAddress = page.order.billingAddress %}
 
-        {# Billing Address #}
-        <div class="info-card">
-            <div class="info-card-header">Rechnungsadresse</div>
-            <div class="info-card-body">
-                {% set billingAddress = page.order.billingAddress %}
-                {% if billingAddress %}
-                    <strong>{{ billingAddress.firstName }} {{ billingAddress.lastName }}</strong><br>
-                    {{ billingAddress.street }}<br>
-                    {{ billingAddress.zipcode }} {{ billingAddress.city }}<br>
-                    {% if billingAddress.country %}{{ billingAddress.country.translated.name }}{% endif %}
-                {% elseif delivery %}
-                    <em>Gleich wie Lieferadresse</em>
-                {% endif %}
-            </div>
-        </div>
+        {# Lieferadresse #}
+        <tr class="section-header">
+            <td colspan="4">Lieferadresse</td>
+        </tr>
+        {% if delivery %}
+        <tr class="address-row">
+            <td colspan="4"><span class="address-name">{{ delivery.shippingOrderAddress.firstName }} {{ delivery.shippingOrderAddress.lastName }}</span></td>
+        </tr>
+        <tr class="address-row">
+            <td colspan="4">{{ delivery.shippingOrderAddress.street }}</td>
+        </tr>
+        <tr class="address-row">
+            <td colspan="4">{{ delivery.shippingOrderAddress.zipcode }} {{ delivery.shippingOrderAddress.city }}</td>
+        </tr>
+        <tr class="address-row">
+            <td colspan="4">{{ delivery.shippingOrderAddress.country.translated.name }}</td>
+        </tr>
+        {% endif %}
 
-        {# Payment & Shipping Info #}
-        <div class="info-card">
-            <div class="info-card-header">Informationen</div>
-            <div class="info-card-body">
+        {# Rechnungsadresse #}
+        <tr class="section-header">
+            <td colspan="4">Rechnungsadresse</td>
+        </tr>
+        {% if billingAddress %}
+        <tr class="address-row">
+            <td colspan="4"><span class="address-name">{{ billingAddress.firstName }} {{ billingAddress.lastName }}</span></td>
+        </tr>
+        <tr class="address-row">
+            <td colspan="4">{{ billingAddress.street }}</td>
+        </tr>
+        <tr class="address-row">
+            <td colspan="4">{{ billingAddress.zipcode }} {{ billingAddress.city }}</td>
+        </tr>
+        <tr class="address-row">
+            <td colspan="4">{% if billingAddress.country %}{{ billingAddress.country.translated.name }}{% endif %}</td>
+        </tr>
+        {% elseif delivery %}
+        <tr class="address-row">
+            <td colspan="4"><em>Gleich wie Lieferadresse</em></td>
+        </tr>
+        {% endif %}
+
+        {# Informationen #}
+        <tr class="section-header">
+            <td colspan="4">Informationen</td>
+        </tr>
+        <tr class="info-row">
+            <td colspan="4">
                 {% set paymentName = page.order.transactions.first.paymentMethod.translated.name %}
-                <strong>Zahlung:</strong> {{ paymentName == 'Paid in advance' ? 'Vorkasse' : paymentName }}<br>
-                <strong>Versand:</strong> {% if page.order.deliveries.first %}{{ page.order.deliveries.first.shippingMethod.translated.name }}{% else %}Standard{% endif %}
-            </div>
-        </div>
-    </div>
+                <span class="info-label">Zahlung:</span> {{ paymentName == 'Paid in advance' ? 'Vorkasse / Banküberweisung' : paymentName }}<br>
+                <span class="info-label">Versand:</span> {% if delivery %}{{ delivery.shippingMethod.translated.name }}{% else %}Standard{% endif %}
+            </td>
+        </tr>
 
-    {# Products #}
-    <div class="order-products">
-        <div class="order-products-header">
-            <span></span>
-            <span>Produkt</span>
-            <span class="header-menge">Menge</span>
-            <span class="header-preis">Preis</span>
-        </div>
+        {# ===== SEPARATOR ===== #}
+        <tr class="separator-row">
+            <td colspan="4"></td>
+        </tr>
+
+        {# ===== PRODUCTS SECTION ===== #}
+        <tr class="product-header">
+            <th>Produkt</th>
+            <th class="col-menge">Menge</th>
+            <th class="col-currency"></th>
+            <th class="col-preis">Preis</th>
+        </tr>
+
         {% for lineItem in page.order.lineItems %}
-        <div class="product-item">
-            <img class="product-img" src="{% if lineItem.cover %}{{ lineItem.cover.url }}{% else %}{{ asset('bundles/storefront/assets/icon/default/placeholder.svg') }}{% endif %}" alt="{{ lineItem.label }}">
-            <div class="product-info">
-                <p class="product-name">{{ lineItem.label }}</p>
+        <tr class="product-row">
+            <td>
+                <span class="product-name">{{ lineItem.label }}</span>
                 {% if lineItem.payload.productNumber is defined %}
-                <p class="product-sku">Art.Nr: {{ lineItem.payload.productNumber }}</p>
+                <span class="product-sku">Art.Nr: {{ lineItem.payload.productNumber }}</span>
                 {% endif %}
-                {# Display combined variantenDisplay, or fall back to individual fields #}
+                {# Display variant info #}
                 {% if lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
-                <p class="product-variant" style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0.25rem 0 0 0;">Variante: {{ lineItem.payload.variantenDisplay }}</p>
+                <span class="product-variant">Variante: {{ lineItem.payload.variantenDisplay }}</span>
                 {% elseif lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
-                <p class="product-variant" style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0.25rem 0 0 0;">Variante: {{ lineItem.payload.selectedColor }}</p>
+                <span class="product-variant">Variante: {{ lineItem.payload.selectedColor }}</span>
                 {% elseif lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %}
-                <p class="product-variant" style="font-size: 0.75rem; color: #059669; font-weight: 600; margin: 0.25rem 0 0 0;">Variante: {{ lineItem.payload.selectedSize }}</p>
+                <span class="product-variant">Variante: {{ lineItem.payload.selectedSize }}</span>
                 {% endif %}
-            </div>
-            <div class="product-qty">{{ lineItem.quantity }}</div>
-            <div class="product-price">CHF {{ lineItem.totalPrice|number_format(2, '.', "'") }}</div>
-        </div>
+            </td>
+            <td class="col-menge">{{ lineItem.quantity }}</td>
+            <td class="col-currency">CHF</td>
+            <td class="col-preis">{{ lineItem.totalPrice|number_format(2, '.', "'") }}</td>
+        </tr>
         {% endfor %}
-    </div>
 
-    {# Order Summary #}
-    <div class="order-summary">
-        <div class="order-summary-header">Zusammenfassung</div>
-        <div class="order-summary-body">
-            <div class="summary-row">
-                <span class="label">Zwischensumme</span>
-                <span class="value">CHF {{ page.order.positionPrice|number_format(2, '.', "'") }}</span>
-            </div>
-            {% for delivery in page.order.deliveries %}
-            <div class="summary-row">
-                <span class="label">Versand</span>
-                <span class="value">CHF {{ delivery.shippingCosts.totalPrice|number_format(2, '.', "'") }}</span>
-            </div>
-            {% endfor %}
-            {# Tax breakdown hidden - GROSS pricing like Lee-Sport #}
-            <div class="summary-row total">
-                <span class="label">Gesamtsumme</span>
-                <span class="value">CHF {{ page.order.amountTotal|number_format(2, '.', "'") }}</span>
-            </div>
-        </div>
-    </div>
+        {# ===== SUMMARY SECTION ===== #}
+        <tr class="summary-row">
+            <td colspan="2" style="text-align: right;">Zwischensumme</td>
+            <td class="col-currency">CHF</td>
+            <td class="col-preis">{{ page.order.positionPrice|number_format(2, '.', "'") }}</td>
+        </tr>
+        {% for delivery in page.order.deliveries %}
+        <tr class="summary-row">
+            <td colspan="2" style="text-align: right;">Versand</td>
+            <td class="col-currency">CHF</td>
+            <td class="col-preis">{{ delivery.shippingCosts.totalPrice|number_format(2, '.', "'") }}</td>
+        </tr>
+        {% endfor %}
+
+        {# ===== TOTAL ROW ===== #}
+        <tr class="total-row">
+            <td colspan="2" style="text-align: right;">Gesamtsumme</td>
+            <td class="col-currency">CHF</td>
+            <td class="col-preis">{{ page.order.amountTotal|number_format(2, '.', "'") }}</td>
+        </tr>
+    </table>
 </div>
 {% endif %}
 
