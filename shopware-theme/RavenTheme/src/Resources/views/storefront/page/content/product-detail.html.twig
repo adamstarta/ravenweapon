@@ -334,16 +334,40 @@
                             });
 
                             // Update hidden inputs with first value
+                            // NOTE: Hidden inputs are defined AFTER this script in the DOM (inside the form)
+                            // so we need DOMContentLoaded to ensure they exist
                             var sizeInput = document.getElementById('snigel-size-input');
-                            if (sizeInput) sizeInput.value = firstName;
+                            var priceInput = document.getElementById('snigel-size-price-input');
+
+                            if (sizeInput) {
+                                // Input exists, set immediately
+                                sizeInput.value = firstName;
+                            }
 
                             // Set initial price from variant data
-                            var priceInput = document.getElementById('snigel-size-price-input');
                             var firstPrice = window.snigelPriceLookup[firstValue];
                             if (priceInput && firstPrice) {
                                 priceInput.value = firstPrice;
-                                // Update displayed price
                                 updateDisplayedPrice(firstPrice);
+                            }
+
+                            // Fallback: use DOMContentLoaded if inputs weren't found yet
+                            if (!sizeInput || !priceInput) {
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var delayedSizeInput = document.getElementById('snigel-size-input');
+                                    var delayedPriceInput = document.getElementById('snigel-size-price-input');
+
+                                    if (delayedSizeInput && !delayedSizeInput.value) {
+                                        delayedSizeInput.value = firstName;
+                                    }
+
+                                    if (delayedPriceInput && !delayedPriceInput.value && firstPrice) {
+                                        delayedPriceInput.value = firstPrice;
+                                        if (typeof updateDisplayedPrice === 'function') {
+                                            updateDisplayedPrice(firstPrice);
+                                        }
+                                    }
+                                });
                             }
                         }
                     } catch(e) { console.error('Size selector parse error:', e); }
