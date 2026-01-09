@@ -296,9 +296,18 @@
                                 btn.onclick = function() { selectSnigelSize(btn, name, imageUrl, value); };
                                 container.appendChild(btn);
                             });
-                            // Update hidden input with first value
+                            // Update hidden input with first value - try immediately and also on DOMContentLoaded
+                            var firstName = sizeData[0].name || sizeData[0] || '';
                             var sizeInput = document.getElementById('snigel-size-input');
-                            if (sizeInput) sizeInput.value = sizeData[0].name || sizeData[0] || '';
+                            if (sizeInput) {
+                                sizeInput.value = firstName;
+                            } else {
+                                // Fallback: set value when DOM is fully loaded
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var input = document.getElementById('snigel-size-input');
+                                    if (input && !input.value) input.value = firstName;
+                                });
+                            }
                         }
                     } catch(e) { console.error('Size selector parse error:', e); }
                 })();
