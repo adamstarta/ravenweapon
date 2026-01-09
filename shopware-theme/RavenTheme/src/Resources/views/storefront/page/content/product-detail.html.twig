@@ -8,7 +8,7 @@
     "@type": "Product",
     "name": "{{ page.product.translated.name|e('js') }}",
     "description": "{{ page.product.translated.description|striptags|slice(0, 200)|e('js') }}",
-    "image": "{% if page.product.cover.media.url %}{{ page.product.cover.media.url }}{% endif %}",
+    "image": "{% if page.product.cover and page.product.cover.media and page.product.cover.media.url %}{{ page.product.cover.media.url }}{% endif %}",
     "sku": "{{ page.product.productNumber }}",
     "brand": {
         "@type": "Brand",
