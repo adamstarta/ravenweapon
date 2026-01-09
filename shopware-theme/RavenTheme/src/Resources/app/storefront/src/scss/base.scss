@@ -30,6 +30,17 @@ $search-bg: rgba(120, 120, 128, 0.16);
 }
 
 // =============================================================================
+// HIDE COOKIE CONSENT BANNER
+// =============================================================================
+.js-cookie-permission-container,
+.cookie-permission-container,
+.cookie-permission,
+.cookie-consent-container,
+[data-cookie-permission] {
+  display: none !important;
+}
+
+// =============================================================================
 // HIDE MANUFACTURER LINKS AND PRODUCT DETAIL EXTRAS
 // =============================================================================
 .product-detail-manufacturer-link,
