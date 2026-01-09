@@ -62,12 +62,42 @@ class CartLineItemSubscriber implements EventSubscriberInterface
         // Fallback: build variantenDisplay from color/size if not provided
         if (empty($payload['variantenDisplay'])) {
             $parts = [];
+
+            // First try request parameters
             if (!empty($payload['selectedColor'])) {
                 $parts[] = $payload['selectedColor'];
             }
             if (!empty($payload['selectedSize'])) {
                 $parts[] = $payload['selectedSize'];
             }
+
+            // If still empty, try to get from Shopware's built-in product options
+            if (empty($parts)) {
+                $options = $lineItem->getPayloadValue('options') ?? [];
+                $colorFromOptions = null;
+                $sizeFromOptions = null;
+
+                foreach ($options as $option) {
+                    $groupName = $option['group'] ?? '';
+                    $optionName = $option['option'] ?? '';
+
+                    if (in_array($groupName, ['Farbe', 'Color', 'Colour'])) {
+                        $colorFromOptions = $optionName;
+                    } elseif (in_array($groupName, ['Größe', 'Grösse', 'Size'])) {
+                        $sizeFromOptions = $optionName;
+                    }
+                }
+
+                if ($colorFromOptions) {
+                    $parts[] = $colorFromOptions;
+                    $payload['selectedColor'] = $colorFromOptions;
+                }
+                if ($sizeFromOptions) {
+                    $parts[] = $sizeFromOptions;
+                    $payload['selectedSize'] = $sizeFromOptions;
+                }
+            }
+
             if (!empty($parts)) {
                 $payload['variantenDisplay'] = implode(' / ', $parts);
             }
