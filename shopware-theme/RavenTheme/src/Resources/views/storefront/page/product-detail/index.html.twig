@@ -374,9 +374,11 @@
                     <input type="hidden" name="selectedColor" id="snigel-color-input" value="{{ snigelColorOptions[0].name|default(snigelColorOptions[0]|default('')) }}">
                 {% endif %}
                 {# Snigel size selection - pre-populate with first value to avoid race condition #}
+                <!-- DEBUG: snigelHasSizes={{ snigelHasSizes ? 'true' : 'false' }}, snigelSizeOptions type={{ snigelSizeOptions is string ? 'string' : 'other' }} -->
                 {% if snigelHasSizes and snigelSizeOptions %}
                     {% set firstSizeValue = '' %}
                     {% set isJsonString = snigelSizeOptions is string and snigelSizeOptions|trim|slice(0,1) == '[' %}
+                    <!-- DEBUG: isJsonString={{ isJsonString ? 'true' : 'false' }}, firstChar={{ snigelSizeOptions is string ? snigelSizeOptions|trim|slice(0,1) : 'N/A' }} -->
                     {% if isJsonString %}
                         {# Extract first "name" value from JSON string like [{"name":"Small",...}] #}
                         {% set jsonStr = snigelSizeOptions|trim %}
@@ -398,6 +400,7 @@
                                 {% endif %}
                             {% endif %}
                         {% endif %}
+                    <!-- DEBUG: after JSON parse, firstSizeValue={{ firstSizeValue }} -->
                     {% else %}
                         {# Handle array or comma-separated string #}
                         {% if snigelSizeOptions is iterable and snigelSizeOptions is not string %}
