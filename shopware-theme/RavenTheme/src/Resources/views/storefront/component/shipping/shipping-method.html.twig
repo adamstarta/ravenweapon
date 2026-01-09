@@ -1,6 +1,6 @@
 {% sw_extends '@Storefront/storefront/component/shipping/shipping-method.html.twig' %}
 
-{% block component_shipping_method %}
+{% block component_shipping_method_field %}
     {% set isSelected = shippingMethod.id == context.shippingMethod.id %}
 
     <div class="shipping-method-radio raven-shipping-option {% if isSelected %}is-selected{% endif %}"
