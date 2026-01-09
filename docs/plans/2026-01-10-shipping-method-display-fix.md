@@ -1,6 +1,40 @@
-{# STANDALONE - No extends! Directly included by index.html.twig #}
-{# This gives us full access to page.shippingMethods without inheritance issues #}
+# Shipping Method Display Fix
 
+## Problem
+
+Shipping method names (Standard, Express, International) are NOT showing in checkout.
+Only "Auswählen" displays. The radio buttons work but have no labels.
+
+## Root Cause
+
+1. The `confirm-shipping.html.twig` uses `{% sw_extends '@Storefront/...' %}`
+2. This inherits Shopware's template structure which loops through methods and calls a component
+3. The component template receives EMPTY `shippingMethod` variable
+4. Result: Empty names, empty IDs, empty values
+
+## Solution
+
+**Create STANDALONE template - don't extend Shopware's base**
+
+The `index.html.twig` already does:
+```twig
+{% sw_include 'storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
+```
+
+This include passes the parent context (`page`, `context`, etc.) to the included template.
+
+So we should create `confirm-shipping.html.twig` as a **standalone template** (no extends) that directly renders the shipping form using `page.shippingMethods`.
+
+---
+
+## Implementation
+
+### Step 1: Rewrite confirm-shipping.html.twig (STANDALONE)
+
+Replace the entire file with a standalone template:
+
+```twig
+{# STANDALONE - No extends! Directly included by index.html.twig #}
 <form id="changeShippingForm"
       name="changeShippingForm"
       action="{{ path('frontend.checkout.configure') }}"
@@ -15,9 +49,7 @@
         {% for shippingMethod in page.shippingMethods %}
             {% set isSelected = shippingMethod.id == context.shippingMethod.id %}
 
-            <div class="raven-shipping-option {% if isSelected %}is-selected{% endif %}"
-                 data-shipping-method-id="{{ shippingMethod.id }}">
-
+            <div class="raven-shipping-option {% if isSelected %}is-selected{% endif %}">
                 <input type="radio"
                        id="shippingMethod{{ shippingMethod.id }}"
                        name="shippingMethodId"
@@ -60,3 +92,37 @@
         {% endfor %}
     </div>
 </form>
+```
+
+### Step 2: Verify CSS exists in index.html.twig
+
+The CSS for `.raven-shipping-option`, `.raven-shipping-label`, etc. should already exist.
+
+### Step 3: Commit and deploy
+
+```bash
+git add -A
+git commit -m "fix(checkout): use standalone shipping template without extends"
+git push origin main
+```
+
+### Step 4: Approve production deployment in GitHub Actions
+
+---
+
+## Why This Works
+
+1. **No extends** = No inheritance chain = No variable scope issues
+2. **Direct include** = Gets full `page` and `context` from parent
+3. `page.shippingMethods` contains all available shipping methods with full data
+4. `context.shippingMethod.id` is the currently selected method
+
+---
+
+## Expected Result
+
+After deployment, shipping options will show:
+- ✅ Method name (Standard, Express, International)
+- ✅ Delivery time (if configured)
+- ✅ Price (calculated or "Auswählen")
+- ✅ Radio buttons with proper values
