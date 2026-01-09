@@ -422,10 +422,26 @@ body.raven-checkout-finish {
     text-align: right;
 }
 
+/* Product Image Column */
+.raven-order-table .col-image {
+    width: 60px;
+    padding: 0.625rem 0.5rem 0.625rem 1rem;
+}
+
+.raven-order-table .product-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+}
+
 /* Product Rows */
 .raven-order-table .product-row td {
     padding: 0.875rem 1rem;
     border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
 }
 
 .raven-order-table .product-row:last-of-type td {
@@ -673,52 +689,52 @@ body.raven-checkout-finish {
 
         {# Lieferadresse #}
         <tr class="section-header">
-            <td colspan="4">Lieferadresse</td>
+            <td colspan="5">Lieferadresse</td>
         </tr>
         {% if delivery %}
         <tr class="address-row">
-            <td colspan="4"><span class="address-name">{{ delivery.shippingOrderAddress.firstName }} {{ delivery.shippingOrderAddress.lastName }}</span></td>
+            <td colspan="5"><span class="address-name">{{ delivery.shippingOrderAddress.firstName }} {{ delivery.shippingOrderAddress.lastName }}</span></td>
         </tr>
         <tr class="address-row">
-            <td colspan="4">{{ delivery.shippingOrderAddress.street }}</td>
+            <td colspan="5">{{ delivery.shippingOrderAddress.street }}</td>
         </tr>
         <tr class="address-row">
-            <td colspan="4">{{ delivery.shippingOrderAddress.zipcode }} {{ delivery.shippingOrderAddress.city }}</td>
+            <td colspan="5">{{ delivery.shippingOrderAddress.zipcode }} {{ delivery.shippingOrderAddress.city }}</td>
         </tr>
         <tr class="address-row">
-            <td colspan="4">{{ delivery.shippingOrderAddress.country.translated.name }}</td>
+            <td colspan="5">{{ delivery.shippingOrderAddress.country.translated.name }}</td>
         </tr>
         {% endif %}
 
         {# Rechnungsadresse #}
         <tr class="section-header">
-            <td colspan="4">Rechnungsadresse</td>
+            <td colspan="5">Rechnungsadresse</td>
         </tr>
         {% if billingAddress %}
         <tr class="address-row">
-            <td colspan="4"><span class="address-name">{{ billingAddress.firstName }} {{ billingAddress.lastName }}</span></td>
+            <td colspan="5"><span class="address-name">{{ billingAddress.firstName }} {{ billingAddress.lastName }}</span></td>
         </tr>
         <tr class="address-row">
-            <td colspan="4">{{ billingAddress.street }}</td>
+            <td colspan="5">{{ billingAddress.street }}</td>
         </tr>
         <tr class="address-row">
-            <td colspan="4">{{ billingAddress.zipcode }} {{ billingAddress.city }}</td>
+            <td colspan="5">{{ billingAddress.zipcode }} {{ billingAddress.city }}</td>
         </tr>
         <tr class="address-row">
-            <td colspan="4">{% if billingAddress.country %}{{ billingAddress.country.translated.name }}{% endif %}</td>
+            <td colspan="5">{% if billingAddress.country %}{{ billingAddress.country.translated.name }}{% endif %}</td>
         </tr>
         {% elseif delivery %}
         <tr class="address-row">
-            <td colspan="4"><em>Gleich wie Lieferadresse</em></td>
+            <td colspan="5"><em>Gleich wie Lieferadresse</em></td>
         </tr>
         {% endif %}
 
         {# Informationen #}
         <tr class="section-header">
-            <td colspan="4">Informationen</td>
+            <td colspan="5">Informationen</td>
         </tr>
         <tr class="info-row">
-            <td colspan="4">
+            <td colspan="5">
                 {% set paymentName = page.order.transactions.first.paymentMethod.translated.name %}
                 <span class="info-label">Zahlung:</span> {{ paymentName == 'Paid in advance' ? 'Vorkasse / Banküberweisung' : paymentName }}<br>
                 <span class="info-label">Versand:</span> {% if delivery %}{{ delivery.shippingMethod.translated.name }}{% else %}Standard{% endif %}
@@ -727,11 +743,12 @@ body.raven-checkout-finish {
 
         {# ===== SEPARATOR ===== #}
         <tr class="separator-row">
-            <td colspan="4"></td>
+            <td colspan="5"></td>
         </tr>
 
         {# ===== PRODUCTS SECTION ===== #}
         <tr class="product-header">
+            <th class="col-image"></th>
             <th>Produkt</th>
             <th class="col-menge">Menge</th>
             <th class="col-currency"></th>
@@ -740,6 +757,9 @@ body.raven-checkout-finish {
 
         {% for lineItem in page.order.lineItems %}
         <tr class="product-row">
+            <td class="col-image">
+                <img class="product-img" src="{% if lineItem.cover %}{{ lineItem.cover.url }}{% else %}{{ asset('bundles/storefront/assets/icon/default/placeholder.svg') }}{% endif %}" alt="{{ lineItem.label }}">
+            </td>
             <td>
                 <span class="product-name">{{ lineItem.label }}</span>
                 {% if lineItem.payload.productNumber is defined %}
@@ -762,13 +782,13 @@ body.raven-checkout-finish {
 
         {# ===== SUMMARY SECTION ===== #}
         <tr class="summary-row">
-            <td colspan="2" style="text-align: right;">Zwischensumme</td>
+            <td colspan="3" style="text-align: right;">Zwischensumme</td>
             <td class="col-currency">CHF</td>
             <td class="col-preis">{{ page.order.positionPrice|number_format(2, '.', "'") }}</td>
         </tr>
         {% for delivery in page.order.deliveries %}
         <tr class="summary-row">
-            <td colspan="2" style="text-align: right;">Versand</td>
+            <td colspan="3" style="text-align: right;">Versand</td>
             <td class="col-currency">CHF</td>
             <td class="col-preis">{{ delivery.shippingCosts.totalPrice|number_format(2, '.', "'") }}</td>
         </tr>
@@ -776,7 +796,7 @@ body.raven-checkout-finish {
 
         {# ===== TOTAL ROW ===== #}
         <tr class="total-row">
-            <td colspan="2" style="text-align: right;">Gesamtsumme</td>
+            <td colspan="3" style="text-align: right;">Gesamtsumme</td>
             <td class="col-currency">CHF</td>
             <td class="col-preis">{{ page.order.amountTotal|number_format(2, '.', "'") }}</td>
         </tr>
