@@ -498,7 +498,9 @@ h1.prod-title {
                                min="1"
                                max="{{ page.product.availableStock }}"
                                class="quantity-input"
-                               style="width: 50px; height: 44px; border: 1px solid #D1D5DB; border-left: none; border-right: none; text-align: center; font-weight: 600; font-size: 16px; font-family: 'Inter', sans-serif; -moz-appearance: textfield; background: #FFFFFF; color: #374151;">
+                               style="width: 50px; height: 44px; border: 1px solid #D1D5DB; border-left: none; border-right: none; text-align: center; font-weight: 600; font-size: 16px; font-family: 'Inter', sans-serif; -moz-appearance: textfield; background: #FFFFFF; color: #374151;"
+                               onblur="if(!this.value || this.value < 1) this.value = 1; if(this.value > {{ page.product.availableStock }}) this.value = {{ page.product.availableStock }};"
+                               oninput="if(this.value > {{ page.product.availableStock }}) this.value = {{ page.product.availableStock }};">
                         <button type="button"
                                 id="qty-increase"
                                 class="qty-btn"
