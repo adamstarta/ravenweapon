@@ -1020,6 +1020,18 @@
             padding: 0 !important;
         }
 
+        /* Hide Shopware default "SHIPPING METHOD" heading - we use accordion title instead */
+        .accordion-inner .confirm-shipping-method-headline,
+        .accordion-inner .shipping-methods-headline,
+        .accordion-inner .confirm-shipping-method h5,
+        .accordion-inner .confirm-shipping h5,
+        .accordion-inner h5.confirm-shipping-method-headline,
+        .accordion-inner [class*="shipping-method"] > h5:first-child,
+        .accordion-inner .card-title.confirm-shipping-method-headline,
+        .accordion-inner .confirm-shipping-methods > .card > .card-body > h5:first-child {
+            display: none !important;
+        }
+
         /* Two column address layout */
         .accordion-inner .confirm-address-row,
         .accordion-inner .row.confirm-address {

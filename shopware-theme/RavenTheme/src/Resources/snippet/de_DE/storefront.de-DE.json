@@ -3,10 +3,16 @@
         "shippingAddressHeader": "Lieferadresse",
         "billingAddressHeader": "Rechnungsadresse",
         "addressEqualText": "Gleich wie Lieferadresse",
-        "confirmPaymentMethod": "Zahlungsart"
+        "confirmPaymentMethod": "Zahlungsart",
+        "confirmShippingMethod": "Versandart",
+        "confirmShippingMethodHeader": "Versandart"
     },
     "account": {
         "overviewChangeShipping": "Lieferadresse ändern",
         "overviewChangeBilling": "Rechnungsadresse ändern"
+    },
+    "general": {
+        "shippingMethod": "Versandart",
+        "shippingMethodLabel": "Versandart"
     }
 }
