@@ -498,8 +498,7 @@ h1.prod-title {
                                min="1"
                                max="{{ page.product.availableStock }}"
                                class="quantity-input"
-                               style="width: 50px; height: 44px; border: 1px solid #D1D5DB; border-left: none; border-right: none; text-align: center; font-weight: 600; font-size: 16px; font-family: 'Inter', sans-serif; -moz-appearance: textfield; background: #FFFFFF; color: #374151;"
-                               readonly>
+                               style="width: 50px; height: 44px; border: 1px solid #D1D5DB; border-left: none; border-right: none; text-align: center; font-weight: 600; font-size: 16px; font-family: 'Inter', sans-serif; -moz-appearance: textfield; background: #FFFFFF; color: #374151;">
                         <button type="button"
                                 id="qty-increase"
                                 class="qty-btn"
@@ -524,8 +523,8 @@ h1.prod-title {
 
             {# Product Description with See More #}
             {% if page.product.translated.description %}
-            <div class="border-t border-gray-200 pt-6">
-                <h2 class="prod-title text-xl text-gray-900 mb-3" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700;">
+            <div class="border-t border-gray-200 pt-6 mt-6">
+                <h2 class="prod-title text-2xl text-gray-900 mb-3" style="font-family: 'Chakra Petch', sans-serif; font-weight: 700;">
                     Beschreibung
                 </h2>
                 <div class="description-wrapper" id="description-wrapper">
