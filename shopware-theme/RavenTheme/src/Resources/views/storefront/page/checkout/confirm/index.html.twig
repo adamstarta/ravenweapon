@@ -1456,7 +1456,7 @@
 
                             <div class="raven-shipping-methods">
                                 {% for shippingMethod in page.shippingMethods %}
-                                    {% set isSelected = shippingMethod.id == context.shippingMethod.id %}
+                                    {% set isSelected = context.shippingMethod and shippingMethod.id == context.shippingMethod.id %}
 
                                     <div class="raven-shipping-option {% if isSelected %}is-selected{% endif %}"
                                          data-shipping-method-id="{{ shippingMethod.id }}">
