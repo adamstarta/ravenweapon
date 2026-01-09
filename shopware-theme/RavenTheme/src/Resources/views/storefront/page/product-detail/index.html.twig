@@ -1,7 +1,7 @@
-{% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
 
 {% block base_main_inner %}
-<!-- DEBUG: Template version DEPLOY_V6_BREADCRUMB_FIX_20260109_1530 -->
+<!-- DEBUG: Template version DEPLOY_V7_SWEXTENDS_PATH_FIX_20260109 -->
 {# Product Schema.org JSON-LD for Google Rich Snippets #}
 <script type="application/ld+json">
 {
@@ -35,7 +35,7 @@
     {% endif %}
 }
 </script>
-<!-- RAVENTHEME_TEMPLATE_V6_BREADCRUMB_FIX_20260109 -->
+<!-- RAVENTHEME_TEMPLATE_V7_SWEXTENDS_FIX -->
 <style>
 /* Mobile breadcrumb visibility fix */
 @media (max-width: 767px) {
@@ -67,8 +67,8 @@
     }
 }
 </style>
-<!-- DEPLOY_CHECK: If you see this, V6 template is active -->
-<div class="raven-product-detail container pt-2 md:pt-3 pb-5 md:pb-8" data-template-version="V6">
+<!-- DEPLOY_CHECK: If you see this, V7 template is active - sw_extends path fixed -->
+<div class="raven-product-detail container pt-2 md:pt-3 pb-5 md:pb-8" data-template-version="V7">
     {# Breadcrumb - Using Shopware's breadcrumbCategories from ProductDetailSubscriber #}
     <nav class="breadcrumb-nav text-gray-500 mb-3" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif; font-size: 14px; padding: 0.5rem 0; margin-top: 0; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
