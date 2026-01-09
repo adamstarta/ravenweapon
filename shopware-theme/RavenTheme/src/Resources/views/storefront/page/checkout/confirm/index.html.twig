@@ -923,6 +923,103 @@
             margin-left: auto !important;
         }
 
+        /* ============ RAVEN SHIPPING METHOD CARDS ============ */
+        .raven-shipping-method {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            padding: 1rem 1.25rem !important;
+            background: var(--white) !important;
+            border: 2px solid var(--gray-200) !important;
+            border-radius: 10px !important;
+            margin-bottom: 0.5rem !important;
+            cursor: pointer !important;
+            transition: all 0.15s ease !important;
+        }
+
+        .raven-shipping-method:hover {
+            border-color: var(--gold) !important;
+            background: rgba(212, 168, 71, 0.03) !important;
+        }
+
+        .raven-shipping-method.is-selected {
+            border-color: var(--gold) !important;
+            background: rgba(212, 168, 71, 0.06) !important;
+            box-shadow: 0 0 0 3px rgba(212, 168, 71, 0.1) !important;
+        }
+
+        .raven-shipping-radio {
+            width: 20px !important;
+            height: 20px !important;
+            accent-color: var(--gold) !important;
+            margin: 0 !important;
+            flex-shrink: 0 !important;
+        }
+
+        .raven-shipping-label {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex: 1 !important;
+            cursor: pointer !important;
+            margin: 0 !important;
+        }
+
+        .shipping-method-info {
+            flex: 1 !important;
+        }
+
+        .shipping-method-name {
+            font-size: 0.9375rem !important;
+            font-weight: 600 !important;
+            color: var(--gray-900) !important;
+            margin-bottom: 0.125rem !important;
+        }
+
+        .shipping-method-delivery {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.375rem !important;
+            font-size: 0.8125rem !important;
+            color: var(--gray-600) !important;
+        }
+
+        .delivery-icon {
+            flex-shrink: 0 !important;
+        }
+
+        .shipping-method-desc {
+            font-size: 0.75rem !important;
+            color: var(--gray-500) !important;
+            margin-top: 0.25rem !important;
+        }
+
+        .shipping-method-price {
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+            color: var(--gray-900) !important;
+            white-space: nowrap !important;
+            padding-left: 1rem !important;
+        }
+
+        .shipping-method-price.is-active {
+            color: var(--gold-dark) !important;
+        }
+
+        .price-select {
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--gray-400) !important;
+        }
+
+        /* Remove default Shopware shipping styling in accordion */
+        .accordion-inner .shipping-method-list,
+        .accordion-inner .confirm-shipping-methods {
+            border: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+        }
+
         /* Two column address layout */
         .accordion-inner .confirm-address-row,
         .accordion-inner .row.confirm-address {
