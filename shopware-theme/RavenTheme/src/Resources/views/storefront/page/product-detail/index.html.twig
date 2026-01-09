@@ -373,9 +373,21 @@
                 {% if isSnigel and snigelColorOptions|length > 0 %}
                     <input type="hidden" name="selectedColor" id="snigel-color-input" value="{{ snigelColorOptions[0].name|default(snigelColorOptions[0]|default('')) }}">
                 {% endif %}
-                {# Snigel size selection - always render input, JavaScript will populate if JSON string #}
+                {# Snigel size selection - pre-populate with first value to avoid race condition #}
                 {% if snigelHasSizes and snigelSizeOptions %}
-                    <input type="hidden" name="selectedSize" id="snigel-size-input" value="">
+                    {% set firstSizeValue = '' %}
+                    {% set isJsonString = snigelSizeOptions is string and snigelSizeOptions|trim|slice(0,1) == '[' %}
+                    {% if not isJsonString %}
+                        {# Handle array or comma-separated string #}
+                        {% if snigelSizeOptions is iterable and snigelSizeOptions is not string %}
+                            {% set firstSizeValue = snigelSizeOptions[0].name|default(snigelSizeOptions[0]|default('')) %}
+                        {% elseif snigelSizeOptions is string and ',' in snigelSizeOptions %}
+                            {% set firstSizeValue = (snigelSizeOptions|split(','))[0]|trim %}
+                        {% elseif snigelSizeOptions is string and snigelSizeOptions|trim != '' %}
+                            {% set firstSizeValue = snigelSizeOptions|trim %}
+                        {% endif %}
+                    {% endif %}
+                    <input type="hidden" name="selectedSize" id="snigel-size-input" value="{{ firstSizeValue }}">
                 {% endif %}
 
                 {# Compact Quantity Selector + Large Add to Cart - Same Row #}
