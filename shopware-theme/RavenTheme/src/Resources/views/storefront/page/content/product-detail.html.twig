@@ -34,19 +34,19 @@
     {% endif %}
 }
 </script>
-<!-- RAVENTHEME_TEMPLATE_V10_MORE_MOBILE_SPACING -->
+<!-- RAVENTHEME_TEMPLATE_V11_BREADCRUMB_MARGIN -->
 <style>
-/* Mobile breadcrumb visibility fix - V10: More space below search bar */
+/* Mobile breadcrumb visibility fix - V11: Margin on breadcrumb itself */
 @media (max-width: 767px) {
     .raven-product-detail {
-        /* More padding to give breadcrumb breathing room below search */
-        padding-top: 4.5rem !important;
+        /* Keep container padding minimal */
+        padding-top: 3rem !important;
         margin-top: 0 !important;
     }
     .breadcrumb-nav {
         display: block !important;
         visibility: visible !important;
-        margin-top: 0 !important;
+        margin-top: 1.5rem !important;  /* Push breadcrumb down */
         padding: 0.5rem 0 !important;
         font-size: 14px !important;
         color: #374151 !important;
@@ -68,8 +68,8 @@
     }
 }
 </style>
-<!-- DEPLOY_CHECK: V10 - more mobile spacing -->
-<div class="raven-product-detail container pt-2 md:pt-3 pb-5 md:pb-8" data-template-version="V10">
+<!-- DEPLOY_CHECK: V11 - breadcrumb margin -->
+<div class="raven-product-detail container pt-2 md:pt-3 pb-5 md:pb-8" data-template-version="V11">
     {# Breadcrumb - Using Shopware's breadcrumbCategories from ProductDetailSubscriber #}
     <nav class="breadcrumb-nav text-gray-500 mb-3" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif; font-size: 14px; padding: 0.5rem 0; margin-top: 0; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
