@@ -204,7 +204,7 @@
 
             {# Product Name - strip manufacturer name from title #}
             {% set productName = page.product.translated.name %}
-            {% set manufacturerName = page.product.manufacturer.translated.name|default('') if page.product.manufacturer else '' %}
+            {% set manufacturerName = page.product.manufacturer ? page.product.manufacturer.translated.name|default('') : '' %}
             {% if manufacturerName and productName starts with manufacturerName %}
                 {% set productName = productName|slice(manufacturerName|length)|trim %}
             {% endif %}
