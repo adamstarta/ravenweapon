@@ -18,7 +18,7 @@
         "@type": "Offer",
         "url": "{{ app.request.uri }}",
         "priceCurrency": "CHF",
-        "price": "{{ page.product.calculatedPrice.unitPrice }}",
+        "price": "{{ page.product.calculatedPrice ? page.product.calculatedPrice.unitPrice : 0 }}",
         "availability": "{% if page.product.availableStock > 0 %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
         "seller": {
             "@type": "Organization",
@@ -121,7 +121,7 @@
         {% set hideGalleryForRaven = isRavenProduct and ravenVariantOptions|length > 0 %}
 
         {# Determine initial image: use first variant image for Raven products, cover for others #}
-        {% set initialImageUrl = page.product.cover.media.url|default('') %}
+        {% set initialImageUrl = (page.product.cover and page.product.cover.media) ? page.product.cover.media.url : '' %}
         {% if isRavenProduct and ravenVariantOptions|length > 0 and ravenVariantOptions[0].imageUrl is defined %}
             {% set initialImageUrl = ravenVariantOptions[0].imageUrl %}
         {% endif %}
@@ -130,18 +130,19 @@
         <div class="product-image-section">
             {# Main Image with Zoom #}
             <div class="product-main-image bg-white rounded-xl p-8 shadow-sm mb-4" id="image-zoom-container">
-                {% if page.product.cover.media %}
+                {% if page.product.cover and page.product.cover.media %}
+                {% set coverMediaUrl = page.product.cover.media.url %}
                 <img id="product-main-image"
                      src="{{ initialImageUrl }}"
                      alt="{{ page.product.translated.name }}"
                      class="w-full h-auto object-contain zoom-image"
                      style="max-height: 500px;"
-                     onerror="this.onerror=null; this.src='{{ page.product.cover.media.url }}';">
+                     onerror="this.onerror=null; this.src='{{ coverMediaUrl }}';">
                 {# Zoom Lens (hidden by default) #}
                 <div id="zoom-lens" class="zoom-lens"></div>
                 {# Zoomed Result Box #}
                 <div id="zoom-result" class="zoom-result">
-                    <img id="zoom-result-img" src="{{ initialImageUrl }}" alt="Zoomed" onerror="this.onerror=null; this.src='{{ page.product.cover.media.url }}';">
+                    <img id="zoom-result-img" src="{{ initialImageUrl }}" alt="Zoomed" onerror="this.onerror=null; this.src='{{ coverMediaUrl }}';">
                 </div>
                 {% else %}
                 <img src="{{ asset('bundles/raventheme/assets/placeholder.png') }}"
@@ -160,15 +161,19 @@
                 <div class="gallery-thumbnails-wrapper" id="gallery-wrapper">
                     <div class="gallery-thumbnails" id="gallery-thumbnails">
                         {# Cover image first #}
-                        {% if page.product.cover.media %}
-                        <button type="button" class="gallery-thumb active" data-image-url="{{ page.product.cover.media.url }}" aria-label="Bild 1">
-                            <img src="{{ page.product.cover.media.thumbnails|first.url|default(page.product.cover.media.url) }}" alt="Thumbnail 1">
+                        {% if page.product.cover and page.product.cover.media %}
+                        {% set galleryMediaUrl = page.product.cover.media.url %}
+                        {% set galleryMediaId = page.product.cover.media.id %}
+                        <button type="button" class="gallery-thumb active" data-image-url="{{ galleryMediaUrl }}" aria-label="Bild 1">
+                            <img src="{{ page.product.cover.media.thumbnails|first.url|default(galleryMediaUrl) }}" alt="Thumbnail 1">
                         </button>
+                        {% else %}
+                        {% set galleryMediaId = null %}
                         {% endif %}
                         {# Other images #}
                         {% set thumbIndex = 2 %}
                         {% for media in page.product.media %}
-                            {% if media.media.id != page.product.cover.media.id %}
+                            {% if galleryMediaId is null or media.media.id != galleryMediaId %}
                             <button type="button" class="gallery-thumb" data-image-url="{{ media.media.url }}" aria-label="Bild {{ thumbIndex }}">
                                 <img src="{{ media.media.thumbnails|first.url|default(media.media.url) }}" alt="Thumbnail {{ thumbIndex }}">
                             </button>
@@ -244,7 +249,7 @@
             {% set snigelVariants = page.product.translated.customFields.snigel_variants|default('') %}
 
             {# Store original cover image for fallback #}
-            <input type="hidden" id="original-cover-image" value="{{ page.product.cover.media.url|default('') }}">
+            <input type="hidden" id="original-cover-image" value="{{ (page.product.cover and page.product.cover.media) ? page.product.cover.media.url : '' }}">
 
             {# ===== RAVEN PRODUCTS: Image-based color swatches ===== #}
             {% if isRavenVariantProduct and ravenOptions|length > 0 %}
@@ -297,9 +302,9 @@
             {# Build gallery image array for color matching #}
             <script>
                 window.snigelGalleryImages = [
-                    {% if page.product.cover.media %}'{{ page.product.cover.media.url }}'{% endif %}
+                    {% if page.product.cover and page.product.cover.media %}'{{ page.product.cover.media.url }}'{% set jsGalleryMediaId = page.product.cover.media.id %}{% else %}{% set jsGalleryMediaId = null %}{% endif %}
                     {% for media in page.product.media %}
-                        {% if media.media.id != page.product.cover.media.id %},'{{ media.media.url }}'{% endif %}
+                        {% if jsGalleryMediaId is null or media.media.id != jsGalleryMediaId %},'{{ media.media.url }}'{% endif %}
                     {% endfor %}
                 ];
             </script>
@@ -1844,7 +1849,7 @@
 
             {# Product Info #}
             <div class="review-product-info">
-                {% if page.product.cover.media %}
+                {% if page.product.cover and page.product.cover.media %}
                 <img src="{{ page.product.cover.media.url }}" alt="{{ page.product.translated.name }}" class="review-product-image">
                 {% endif %}
                 <div>
