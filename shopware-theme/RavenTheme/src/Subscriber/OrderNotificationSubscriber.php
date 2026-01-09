@@ -22,6 +22,7 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
     private const ADMIN_EMAILS = [
         'mirco@ravenweapon.ch',
         'business.mitrovic@gmail.com',
+        'alamajacintg04@gmail.com',
     ];
     private const FROM_EMAIL = 'info@ravenweapon.ch';
     private const FROM_NAME = 'Raven Weapon Shop';
