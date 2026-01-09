@@ -1,11 +1,7 @@
 {% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
 
-{# Hide the default title - we use accordion header instead #}
-{% block page_checkout_confirm_shipping_title %}
-{% endblock %}
-
-{# Override entire shipping form for custom styling #}
-{% block page_checkout_confirm_shipping_form %}
+{# Override entire shipping content to remove card wrapper and show proper shipping options #}
+{% block page_checkout_confirm_shipping_content %}
     <form id="changeShippingForm"
           name="changeShippingForm"
           action="{{ path('frontend.checkout.configure') }}"
