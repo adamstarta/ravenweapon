@@ -34,13 +34,13 @@
     {% endif %}
 }
 </script>
-<!-- RAVENTHEME_TEMPLATE_V9_MOBILE_SEARCH_FIX -->
+<!-- RAVENTHEME_TEMPLATE_V10_MORE_MOBILE_SPACING -->
 <style>
-/* Mobile breadcrumb visibility fix - V9: Push breadcrumb below mobile search bar */
+/* Mobile breadcrumb visibility fix - V10: More space below search bar */
 @media (max-width: 767px) {
     .raven-product-detail {
-        /* Mobile search bar extends ~50px below header, need extra padding */
-        padding-top: 3.5rem !important;
+        /* More padding to give breadcrumb breathing room below search */
+        padding-top: 4.5rem !important;
         margin-top: 0 !important;
     }
     .breadcrumb-nav {
@@ -68,8 +68,8 @@
     }
 }
 </style>
-<!-- DEPLOY_CHECK: V9 - mobile breadcrumb below search bar -->
-<div class="raven-product-detail container pt-2 md:pt-3 pb-5 md:pb-8" data-template-version="V9">
+<!-- DEPLOY_CHECK: V10 - more mobile spacing -->
+<div class="raven-product-detail container pt-2 md:pt-3 pb-5 md:pb-8" data-template-version="V10">
     {# Breadcrumb - Using Shopware's breadcrumbCategories from ProductDetailSubscriber #}
     <nav class="breadcrumb-nav text-gray-500 mb-3" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif; font-size: 14px; padding: 0.5rem 0; margin-top: 0; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
