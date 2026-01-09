@@ -381,16 +381,21 @@
                         {# Extract first "name" value from JSON string like [{"name":"Small",...}] #}
                         {% set jsonStr = snigelSizeOptions|trim %}
                         {% set nameMarker = '"name":"' %}
-                        {% if nameMarker in jsonStr %}
-                            {% set afterName = jsonStr|split(nameMarker)|last %}
+                        {% set splitParts = jsonStr|split(nameMarker) %}
+                        {% if splitParts|length > 1 %}
+                            {# Get second part (index 1) which starts with the first name value #}
+                            {% set afterName = splitParts[1] %}
                             {% if '"' in afterName %}
                                 {% set firstSizeValue = afterName|split('"')|first %}
                             {% endif %}
                         {% elseif '"name": "' in jsonStr %}
                             {# Handle JSON with space after colon #}
-                            {% set afterName = jsonStr|split('"name": "')|last %}
-                            {% if '"' in afterName %}
-                                {% set firstSizeValue = afterName|split('"')|first %}
+                            {% set splitPartsSpaced = jsonStr|split('"name": "') %}
+                            {% if splitPartsSpaced|length > 1 %}
+                                {% set afterName = splitPartsSpaced[1] %}
+                                {% if '"' in afterName %}
+                                    {% set firstSizeValue = afterName|split('"')|first %}
+                                {% endif %}
                             {% endif %}
                         {% endif %}
                     {% else %}
