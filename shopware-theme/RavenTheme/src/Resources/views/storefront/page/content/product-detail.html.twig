@@ -34,33 +34,42 @@
     {% endif %}
 }
 </script>
-<!-- RAVENTHEME_TEMPLATE_V3_TITLE_SPACING_FIX -->
+<!-- RAVENTHEME_TEMPLATE_V8_CORRECT_FILE_FOUND -->
 <style>
-/* Mobile breadcrumb visibility fix */
+/* Mobile breadcrumb visibility fix - V8 */
 @media (max-width: 767px) {
     .raven-product-detail {
-        padding-top: 1rem !important;
+        padding-top: 0.5rem !important;
     }
     .breadcrumb-nav {
-        margin-top: 0.75rem !important;
-        padding: 0.75rem 0 !important;
-        font-size: 13px !important;
+        display: block !important;
+        visibility: visible !important;
+        margin-top: 0.25rem !important;
+        padding: 0.5rem 0 !important;
+        font-size: 14px !important;
+        color: #374151 !important;
+        font-weight: 500 !important;
+    }
+    .breadcrumb-nav a {
+        color: #374151 !important;
+        font-weight: 500 !important;
     }
 }
-/* Product title responsive sizing - larger on desktop to fill space (h1 only) */
-h1.prod-title {
+/* Product title responsive sizing - larger on desktop to fill space */
+.prod-title {
     font-size: 1.75rem !important; /* Mobile default */
 }
 @media (min-width: 768px) {
-    h1.prod-title {
+    .prod-title {
         font-size: 3rem !important; /* Desktop - bigger to reduce white space */
         margin-bottom: 0.25rem !important;
     }
 }
 </style>
-<div class="raven-product-detail container py-5 md:py-8">
+<!-- DEPLOY_CHECK: If you see V8, correct file is being used -->
+<div class="raven-product-detail container pt-2 md:pt-3 pb-5 md:pb-8" data-template-version="V8">
     {# Breadcrumb - Using Shopware's breadcrumbCategories from ProductDetailSubscriber #}
-    <nav class="breadcrumb-nav text-gray-500 mb-5" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif; font-size: 14px; padding: 1rem 0; margin-top: 0.5rem; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
+    <nav class="breadcrumb-nav text-gray-500 mb-3" aria-label="Breadcrumb" style="font-family: 'Inter', sans-serif; font-size: 14px; padding: 0.5rem 0; margin-top: 0; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
         {% if page.extensions.breadcrumbCategories is defined and page.extensions.breadcrumbCategories|length > 0 %}
             {% for category in page.extensions.breadcrumbCategories %}
