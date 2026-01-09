@@ -6,11 +6,26 @@
         {% set selectedPaymentMethodId = context.paymentMethod.id %}
     {% endif %}
 
+    {% set paymentNameLower = payment.translated.name|lower %}
+
+    {# Hide Mastercard payment method completely #}
+    {% set hiddenPayments = ['mastercard', 'visa', 'american express'] %}
+    {% set shouldHide = false %}
+    {% for hiddenName in hiddenPayments %}
+        {% if hiddenName in paymentNameLower %}
+            {% set shouldHide = true %}
+        {% endif %}
+    {% endfor %}
+
+    {# Skip rendering if this payment method should be hidden #}
+    {% if shouldHide %}
+        {# Do not render anything #}
+    {% else %}
+
     {% set isSelected = payment.id is same as(selectedPaymentMethodId) %}
 
     {# Determine if this is a redirect payment #}
     {% set redirectPayments = ['twint', 'postfinance', 'paypal', 'eps', 'ideal', 'sofort', 'giropay', 'bancontact', 'kreditkarte'] %}
-    {% set paymentNameLower = payment.translated.name|lower %}
     {% set isRedirectPayment = false %}
     {% for redirectName in redirectPayments %}
         {% if redirectName in paymentNameLower %}
@@ -86,6 +101,7 @@
             </div>
         </div>
     </div>
+    {% endif %}{# End shouldHide check #}
 {% endblock %}
 
 {# Override radio button to disable unavailable payment methods #}
