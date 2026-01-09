@@ -172,6 +172,9 @@ export default class RavenToastPlugin extends Plugin {
             return;
         }
 
+        // Always translate the message (handles direct calls via window.ravenToast)
+        message = this._translateMessage(message);
+
         const toast = this._createToast(type, message);
         this.container.appendChild(toast);
 
