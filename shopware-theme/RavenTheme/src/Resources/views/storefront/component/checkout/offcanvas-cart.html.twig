@@ -585,13 +585,36 @@
                             <a href="{{ seoUrl('frontend.detail.page', {'productId': lineItem.referencedId}) }}" class="raven-item-name">
                                 {{ lineItem.label }}
                             </a>
-                            {# Display variant options from Shopware's payload.options array #}
+                            {# Display variant options - try multiple sources #}
+                            {% set variantText = '' %}
+
+                            {# Method 1: Shopware's native payload.options array #}
                             {% if lineItem.payload.options is defined and lineItem.payload.options|length > 0 %}
                                 {% set optionValues = [] %}
                                 {% for option in lineItem.payload.options %}
                                     {% set optionValues = optionValues|merge([option.option]) %}
                                 {% endfor %}
-                                <span class="raven-item-color">Variante: {{ optionValues|join(' / ') }}</span>
+                                {% set variantText = optionValues|join(' / ') %}
+                            {% endif %}
+
+                            {# Method 2: Custom variantenDisplay field #}
+                            {% if variantText == '' and lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
+                                {% set variantText = lineItem.payload.variantenDisplay %}
+                            {% endif %}
+
+                            {# Method 3: Custom selectedColor/selectedSize fields #}
+                            {% if variantText == '' and lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
+                                {% set variantText = lineItem.payload.selectedColor %}
+                                {% if lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %}
+                                    {% set variantText = variantText ~ ' / ' ~ lineItem.payload.selectedSize %}
+                                {% endif %}
+                            {% elseif variantText == '' and lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %}
+                                {% set variantText = lineItem.payload.selectedSize %}
+                            {% endif %}
+
+                            {# Display if we found variant info #}
+                            {% if variantText %}
+                                <span class="raven-item-color">Variante: {{ variantText }}</span>
                             {% endif %}
                             <div class="raven-item-price">
                                 CHF {{ lineItem.price.unitPrice|number_format(2, '.', "'") }}
