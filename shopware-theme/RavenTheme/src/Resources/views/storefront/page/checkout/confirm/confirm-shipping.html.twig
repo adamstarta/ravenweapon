@@ -1,10 +1,55 @@
 {% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
 
-{# Override the shipping method title to use German snippet #}
+{# Hide the title - it's handled by our accordion #}
 {% block page_checkout_confirm_shipping_title %}
-    {# Title is handled by the accordion in our custom checkout, so we hide it here #}
 {% endblock %}
 
-{# The shipping methods themselves use Shopware's built-in system #}
-{# Prices come from Admin > Settings > Shipping > [Method] > Prices #}
-{# Method names come from Admin > Settings > Shipping > [Method] > Name #}
+{# Override the shipping method label to add delivery time and description #}
+{% block page_checkout_confirm_shipping_method_label %}
+    <label class="shipping-method-label"
+           for="shippingMethod{{ shippingMethod.id }}">
+
+        {# Radio button #}
+        <input type="radio"
+               id="shippingMethod{{ shippingMethod.id }}"
+               name="shippingMethodId"
+               value="{{ shippingMethod.id }}"
+               {{ shippingMethod.id == context.shippingMethod.id ? 'checked' : '' }}>
+
+        {# Method info container #}
+        <div class="shipping-method-info" style="flex: 1; min-width: 0;">
+            {# Method name #}
+            <div class="shipping-method-name" style="font-weight: 500; color: #111827;">
+                {{ shippingMethod.translated.name }}
+            </div>
+
+            {# Delivery time #}
+            {% if shippingMethod.deliveryTime %}
+                <div class="shipping-method-delivery-time" style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">
+                    <svg style="display: inline-block; width: 12px; height: 12px; margin-right: 4px; vertical-align: middle;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    {{ shippingMethod.deliveryTime.translated.name }}
+                </div>
+            {% endif %}
+
+            {# Description #}
+            {% if shippingMethod.translated.description %}
+                <div class="shipping-method-description" style="font-size: 0.75rem; color: #9ca3af; margin-top: 2px;">
+                    {{ shippingMethod.translated.description }}
+                </div>
+            {% endif %}
+        </div>
+
+        {# Price - displayed on the right #}
+        {% if shippingMethod.id == context.shippingMethod.id %}
+            {% for delivery in page.cart.deliveries %}
+                {% if delivery.shippingMethod.id == shippingMethod.id %}
+                    <div class="shipping-method-price" style="font-weight: 600; color: #111827; white-space: nowrap;">
+                        {{ delivery.shippingCosts.totalPrice|currency }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </label>
+{% endblock %}
