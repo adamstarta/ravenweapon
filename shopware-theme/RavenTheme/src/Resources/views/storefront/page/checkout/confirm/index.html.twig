@@ -1444,65 +1444,7 @@
                 </button>
                 <div class="accordion-content">
                     <div class="accordion-inner">
-                        {# INLINED SHIPPING FORM - bypasses sw_include resolution issues #}
-                        <form id="changeShippingForm"
-                              name="changeShippingForm"
-                              action="{{ path('frontend.checkout.configure') }}"
-                              data-form-auto-submit="true"
-                              data-form-auto-submit-options='{"changeTriggerSelectors":[".shipping-method-input"]}'
-                              method="post">
-                            {{ sw_csrf('frontend.checkout.configure') }}
-                            <input type="hidden" name="redirectTo" value="frontend.checkout.confirm.page">
-
-                            <div class="raven-shipping-methods">
-                                {% for shippingMethod in page.shippingMethods %}
-                                    {% set isSelected = context.shippingMethod and shippingMethod.id == context.shippingMethod.id %}
-
-                                    <div class="raven-shipping-option {% if isSelected %}is-selected{% endif %}"
-                                         data-shipping-method-id="{{ shippingMethod.id }}">
-
-                                        <input type="radio"
-                                               id="shippingMethod{{ shippingMethod.id }}"
-                                               name="shippingMethodId"
-                                               value="{{ shippingMethod.id }}"
-                                               class="raven-shipping-radio shipping-method-input"
-                                               {{ isSelected ? 'checked' : '' }}>
-
-                                        <label class="raven-shipping-label" for="shippingMethod{{ shippingMethod.id }}">
-                                            <div class="shipping-method-info">
-                                                <div class="shipping-method-name">
-                                                    {{ shippingMethod.translated.name }}
-                                                </div>
-
-                                                {% if shippingMethod.deliveryTime %}
-                                                    <div class="shipping-method-delivery">
-                                                        <svg class="delivery-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                        </svg>
-                                                        <span>{{ shippingMethod.deliveryTime.translated.name }}</span>
-                                                    </div>
-                                                {% endif %}
-                                            </div>
-
-                                            <div class="shipping-method-price {% if isSelected %}is-active{% endif %}">
-                                                {% set shippingPrice = null %}
-                                                {% for delivery in page.cart.deliveries %}
-                                                    {% if delivery.shippingMethod.id == shippingMethod.id %}
-                                                        {% set shippingPrice = delivery.shippingCosts.totalPrice %}
-                                                    {% endif %}
-                                                {% endfor %}
-
-                                                {% if shippingPrice is not null %}
-                                                    {{ shippingPrice|currency }}
-                                                {% else %}
-                                                    <span class="price-on-select">Auswählen</span>
-                                                {% endif %}
-                                            </div>
-                                        </label>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        </form>
+                        {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
                     </div>
                 </div>
             </div>
