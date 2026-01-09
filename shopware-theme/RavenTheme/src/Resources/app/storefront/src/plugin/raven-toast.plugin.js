@@ -76,50 +76,79 @@ export default class RavenToastPlugin extends Plugin {
      * Intercept Shopware flash messages and convert to toasts
      */
     _interceptFlashMessages() {
-        // Wait for DOM to be ready
-        const processFlashMessages = () => {
-            // Look for Shopware's flash messages
-            const alerts = document.querySelectorAll('.alert:not([data-raven-processed])');
+        // Process a single alert element
+        const processAlert = (alert) => {
+            if (alert.hasAttribute('data-raven-processed')) {
+                return;
+            }
+            alert.setAttribute('data-raven-processed', 'true');
 
-            alerts.forEach(alert => {
-                alert.setAttribute('data-raven-processed', 'true');
+            // Determine type from alert class
+            let type = 'info';
+            if (alert.classList.contains('alert-danger') || alert.classList.contains('alert-error')) {
+                type = 'error';
+            } else if (alert.classList.contains('alert-success')) {
+                type = 'success';
+            } else if (alert.classList.contains('alert-warning')) {
+                type = 'warning';
+            }
 
-                // Determine type from alert class
-                let type = 'info';
-                if (alert.classList.contains('alert-danger') || alert.classList.contains('alert-error')) {
-                    type = 'error';
-                } else if (alert.classList.contains('alert-success')) {
-                    type = 'success';
-                } else if (alert.classList.contains('alert-warning')) {
-                    type = 'warning';
-                }
+            // Get message text
+            const content = alert.querySelector('.alert-content') || alert;
+            let message = content.textContent?.trim();
 
-                // Get message text
-                const content = alert.querySelector('.alert-content') || alert;
-                let message = content.textContent?.trim();
-
-                // Clean up message and translate
-                if (message) {
-                    message = message.replace(/^\s*×?\s*/, '').trim();
-                    if (message.length > 0) {
-                        // Check suppression on original message (before translation)
-                        if (this._shouldSuppressMessage(message)) {
-                            return;
-                        }
-                        message = this._translateMessage(message);
-                        this.show(type, message);
+            // Clean up message and translate
+            if (message) {
+                message = message.replace(/^\s*×?\s*/, '').trim();
+                if (message.length > 0) {
+                    // Check suppression on original message (before translation)
+                    if (this._shouldSuppressMessage(message)) {
+                        alert.style.display = 'none';
+                        return;
                     }
+                    message = this._translateMessage(message);
+                    this.show(type, message);
                 }
+            }
 
-                // Hide the original alert
-                alert.style.display = 'none';
-            });
+            // Hide the original alert
+            alert.style.display = 'none';
         };
 
-        // Process immediately and after a short delay (for dynamic content)
-        processFlashMessages();
-        setTimeout(processFlashMessages, 100);
-        setTimeout(processFlashMessages, 500);
+        // Process all existing alerts
+        const processAllAlerts = () => {
+            document.querySelectorAll('.alert:not([data-raven-processed])').forEach(processAlert);
+        };
+
+        // Process immediately and after delays
+        processAllAlerts();
+        setTimeout(processAllAlerts, 100);
+        setTimeout(processAllAlerts, 500);
+        setTimeout(processAllAlerts, 1000);
+
+        // Use MutationObserver to catch dynamically added alerts
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        // Check if the added node is an alert
+                        if (node.classList && node.classList.contains('alert')) {
+                            processAlert(node);
+                        }
+                        // Check for alerts within the added node
+                        if (node.querySelectorAll) {
+                            node.querySelectorAll('.alert:not([data-raven-processed])').forEach(processAlert);
+                        }
+                    }
+                });
+            });
+        });
+
+        // Observe the entire document for added nodes
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
     }
 
     /**
