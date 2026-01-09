@@ -3093,13 +3093,15 @@ button[type="submit"].raven-btn-primary {
 // =============================================================================
 @media (max-width: 767px) {
   .raven-product-detail {
-    padding-top: 2.5rem !important;
+    padding-top: 0.5rem !important;
   }
 
   .breadcrumb-nav {
-    margin-top: 1.5rem !important;
-    padding: 1rem 0 !important;
-    font-size: 14px !important;
+    display: block !important;
+    visibility: visible !important;
+    margin-top: 0.25rem !important;
+    padding: 0.5rem 0 !important;
+    font-size: 12px !important;
     line-height: 1.5 !important;
   }
 
