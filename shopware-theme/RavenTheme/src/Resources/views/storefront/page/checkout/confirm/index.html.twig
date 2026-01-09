@@ -1458,21 +1458,108 @@ document.addEventListener('DOMContentLoaded', function() {
     initShippingMethodClick();
 });
 
-// Make entire shipping method row clickable
+// ========== SHIPPING METHOD SELECTION ==========
 function initShippingMethodClick() {
-    document.querySelectorAll('.shipping-method, .confirm-shipping-method, .shipping-method-radio').forEach(method => {
-        method.style.cursor = 'pointer';
-        method.addEventListener('click', function(e) {
+    // Get all shipping option elements
+    const shippingOptions = document.querySelectorAll('.raven-shipping-option');
+
+    shippingOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
             // Don't trigger if clicking directly on the radio button
-            if (e.target.tagName !== 'INPUT') {
-                const radio = this.querySelector('input[type="radio"]');
-                if (radio && !radio.checked) {
-                    radio.click();
+            if (e.target.tagName === 'INPUT') return;
+
+            const radio = this.querySelector('input[type="radio"]');
+            if (radio && !radio.checked) {
+                // Trigger the radio change
+                radio.checked = true;
+                radio.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+    });
+
+    // Listen for radio button changes
+    document.querySelectorAll('.raven-shipping-radio').forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.checked) {
+                // Update visual state immediately
+                document.querySelectorAll('.raven-shipping-option').forEach(opt => {
+                    opt.classList.remove('is-selected');
+                });
+                this.closest('.raven-shipping-option').classList.add('is-selected');
+
+                // Update price highlights
+                document.querySelectorAll('.shipping-method-price').forEach(price => {
+                    price.classList.remove('is-active-price');
+                });
+                const priceEl = this.closest('.raven-shipping-option').querySelector('.shipping-method-price');
+                if (priceEl) priceEl.classList.add('is-active-price');
+
+                // Submit the shipping form to update cart
+                const shippingForm = document.querySelector('#confirmShippingForm');
+                if (shippingForm) {
+                    // Show loading state
+                    showShippingUpdateLoader();
+
+                    // Use AJAX to update shipping method
+                    const formData = new FormData();
+                    formData.append('shippingMethodId', this.value);
+
+                    fetch(shippingForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    }).then(response => {
+                        // Reload the page to get updated prices
+                        window.location.reload();
+                    }).catch(error => {
+                        console.error('Shipping update failed:', error);
+                        window.location.reload();
+                    });
+                } else {
+                    // Fallback: find any form with shipping and submit
+                    const form = this.closest('form');
+                    if (form) {
+                        form.submit();
+                    }
                 }
             }
         });
     });
+
+    // Also handle legacy selectors for backwards compatibility
+    document.querySelectorAll('.shipping-method, .confirm-shipping-method, .shipping-method-radio').forEach(method => {
+        if (!method.classList.contains('raven-shipping-option')) {
+            method.style.cursor = 'pointer';
+            method.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'INPUT') {
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio && !radio.checked) {
+                        radio.click();
+                    }
+                }
+            });
+        }
+    });
 }
+
+// Show loading indicator while shipping updates
+function showShippingUpdateLoader() {
+    const summarySection = document.querySelector('.order-summary');
+    if (summarySection) {
+        const loader = document.createElement('div');
+        loader.className = 'shipping-update-loader';
+        loader.innerHTML = '<div style="position:absolute;inset:0;background:rgba(255,255,255,0.8);display:flex;align-items:center;justify-content:center;z-index:10;border-radius:12px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke="#D4A847" stroke-width="3" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="12"></circle></svg></div>';
+        summarySection.style.position = 'relative';
+        summarySection.appendChild(loader);
+    }
+}
+
+// Add spin animation
+const spinStyle = document.createElement('style');
+spinStyle.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+document.head.appendChild(spinStyle);
 
 // Handle payment method selection and content toggle
 function initPaymentMethodToggle() {

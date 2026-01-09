@@ -6,27 +6,30 @@
 
 {# Override the shipping method label to add delivery time and description #}
 {% block page_checkout_confirm_shipping_method_label %}
-    <label class="shipping-method-label"
-           for="shippingMethod{{ shippingMethod.id }}">
+    <label class="shipping-method-label raven-shipping-option {% if shippingMethod.id == context.shippingMethod.id %}is-selected{% endif %}"
+           for="shippingMethod{{ shippingMethod.id }}"
+           data-shipping-method-id="{{ shippingMethod.id }}">
 
         {# Radio button #}
         <input type="radio"
                id="shippingMethod{{ shippingMethod.id }}"
                name="shippingMethodId"
                value="{{ shippingMethod.id }}"
+               class="raven-shipping-radio"
+               form="confirmShippingForm"
                {{ shippingMethod.id == context.shippingMethod.id ? 'checked' : '' }}>
 
         {# Method info container #}
-        <div class="shipping-method-info" style="flex: 1; min-width: 0;">
+        <div class="shipping-method-info">
             {# Method name #}
-            <div class="shipping-method-name" style="font-weight: 500; color: #111827;">
+            <div class="shipping-method-name">
                 {{ shippingMethod.translated.name }}
             </div>
 
             {# Delivery time #}
             {% if shippingMethod.deliveryTime %}
-                <div class="shipping-method-delivery-time" style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">
-                    <svg style="display: inline-block; width: 12px; height: 12px; margin-right: 4px; vertical-align: middle;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="shipping-method-delivery-time">
+                    <svg class="delivery-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     {{ shippingMethod.deliveryTime.translated.name }}
@@ -35,21 +38,131 @@
 
             {# Description #}
             {% if shippingMethod.translated.description %}
-                <div class="shipping-method-description" style="font-size: 0.75rem; color: #9ca3af; margin-top: 2px;">
-                    {{ shippingMethod.translated.description }}
+                <div class="shipping-method-description">
+                    {{ shippingMethod.translated.description|striptags }}
                 </div>
             {% endif %}
         </div>
 
-        {# Price - displayed on the right #}
-        {% if shippingMethod.id == context.shippingMethod.id %}
+        {# Price - show for all methods, highlight selected #}
+        <div class="shipping-method-price {% if shippingMethod.id == context.shippingMethod.id %}is-active-price{% endif %}">
+            {% set shippingPrice = null %}
             {% for delivery in page.cart.deliveries %}
                 {% if delivery.shippingMethod.id == shippingMethod.id %}
-                    <div class="shipping-method-price" style="font-weight: 600; color: #111827; white-space: nowrap;">
-                        {{ delivery.shippingCosts.totalPrice|currency }}
-                    </div>
+                    {% set shippingPrice = delivery.shippingCosts.totalPrice %}
                 {% endif %}
             {% endfor %}
-        {% endif %}
+
+            {% if shippingPrice is not null %}
+                {{ shippingPrice|currency }}
+            {% else %}
+                {# For non-selected methods, show placeholder - will be calculated on selection #}
+                <span class="price-on-select">Auswählen</span>
+            {% endif %}
+        </div>
     </label>
+{% endblock %}
+
+{# Add custom styles for shipping methods #}
+{% block page_checkout_confirm_shipping_method %}
+    {{ parent() }}
+
+    <style>
+        /* Raven Shipping Method Selection */
+        .raven-shipping-option {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.875rem !important;
+            padding: 1rem 1.25rem !important;
+            background: var(--white, #ffffff) !important;
+            border: 2px solid var(--gray-200, #e5e7eb) !important;
+            border-radius: 10px !important;
+            cursor: pointer !important;
+            transition: all 0.15s ease !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .raven-shipping-option:hover {
+            border-color: var(--gold, #D4A847) !important;
+            background: rgba(212, 168, 71, 0.03) !important;
+        }
+
+        .raven-shipping-option.is-selected {
+            border-color: var(--gold, #D4A847) !important;
+            background: rgba(212, 168, 71, 0.06) !important;
+            box-shadow: 0 0 0 3px rgba(212, 168, 71, 0.1) !important;
+        }
+
+        .raven-shipping-radio {
+            width: 20px !important;
+            height: 20px !important;
+            accent-color: var(--gold, #D4A847) !important;
+            margin: 0 !important;
+            flex-shrink: 0 !important;
+        }
+
+        .shipping-method-info {
+            flex: 1 !important;
+            min-width: 0 !important;
+        }
+
+        .shipping-method-name {
+            font-size: 0.9375rem !important;
+            font-weight: 600 !important;
+            color: var(--gray-900, #111827) !important;
+            margin-bottom: 0.25rem !important;
+        }
+
+        .shipping-method-delivery-time {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.375rem !important;
+            font-size: 0.8125rem !important;
+            color: var(--gray-600, #4b5563) !important;
+            margin-bottom: 0.125rem !important;
+        }
+
+        .delivery-icon {
+            width: 14px !important;
+            height: 14px !important;
+            flex-shrink: 0 !important;
+        }
+
+        .shipping-method-description {
+            font-size: 0.75rem !important;
+            color: var(--gray-500, #6b7280) !important;
+            line-height: 1.4 !important;
+        }
+
+        .shipping-method-price {
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+            color: var(--gray-900, #111827) !important;
+            white-space: nowrap !important;
+            padding-left: 0.75rem !important;
+        }
+
+        .shipping-method-price.is-active-price {
+            color: var(--gold-dark, #B8922E) !important;
+        }
+
+        .price-on-select {
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--gray-400, #9ca3af) !important;
+        }
+
+        /* Remove default Shopware card styling */
+        .accordion-inner .confirm-shipping-methods .shipping-method {
+            border: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .accordion-inner .confirm-shipping-methods {
+            border: none !important;
+            background: transparent !important;
+        }
+    </style>
 {% endblock %}
