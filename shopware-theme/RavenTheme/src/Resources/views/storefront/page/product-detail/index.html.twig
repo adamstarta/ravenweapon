@@ -47,6 +47,16 @@
         font-size: 13px !important;
     }
 }
+/* Product title responsive sizing - larger on desktop to fill space */
+.prod-title {
+    font-size: 1.75rem !important; /* Mobile default */
+}
+@media (min-width: 768px) {
+    .prod-title {
+        font-size: 3rem !important; /* Desktop - bigger to reduce white space */
+        margin-bottom: 0.25rem !important;
+    }
+}
 </style>
 <div class="raven-product-detail container py-5 md:py-8">
     {# Breadcrumb - Using Shopware's breadcrumbCategories from ProductDetailSubscriber #}
