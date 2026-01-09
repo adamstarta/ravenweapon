@@ -71,18 +71,22 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
     {
         $orderNumber = $order->getOrderNumber();
         $orderDate = $order->getOrderDateTime()->format('d.m.Y H:i');
-        $totalAmount = number_format($order->getAmountTotal(), 2, '.', "'") . ' CHF';
 
         // Get customer info
         $customer = $order->getOrderCustomer();
         $customerName = $customer ? ($customer->getFirstName() . ' ' . $customer->getLastName()) : 'Unbekannt';
         $customerEmail = $customer ? $customer->getEmail() : 'N/A';
 
-        // Get shipping address
+        // Get shipping address and delivery info
         $shippingAddress = null;
+        $shippingMethodName = 'N/A';
+        $shippingCost = 0.0;
         $deliveries = $order->getDeliveries();
         if ($deliveries && $deliveries->count() > 0) {
-            $shippingAddress = $deliveries->first()?->getShippingOrderAddress();
+            $firstDelivery = $deliveries->first();
+            $shippingAddress = $firstDelivery?->getShippingOrderAddress();
+            $shippingMethodName = $firstDelivery?->getShippingMethod()?->getName() ?? 'Standard';
+            $shippingCost = $firstDelivery?->getShippingCosts()?->getTotalPrice() ?? 0.0;
         }
 
         $shippingInfo = 'N/A';
@@ -98,14 +102,25 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
             );
         }
 
-        // Build order items list
+        // Build order items list and calculate subtotal
         $itemsList = $this->buildItemsList($order);
+        $subtotal = $order->getAmountNet() + ($order->getAmountTotal() - $order->getAmountNet()) - $shippingCost;
+        // Alternative: calculate subtotal from line items
+        $subtotal = 0.0;
+        foreach ($itemsList as $item) {
+            $subtotal += $item['totalPriceRaw'];
+        }
+
+        // Format amounts with CHF first
+        $subtotalFormatted = 'CHF ' . number_format($subtotal, 2, '.', "'");
+        $shippingCostFormatted = 'CHF ' . number_format($shippingCost, 2, '.', "'");
+        $totalAmount = 'CHF ' . number_format($order->getAmountTotal(), 2, '.', "'");
 
         // Build email content
         $subject = sprintf('Neue Bestellung #%s - CHF %s', $orderNumber, number_format($order->getAmountTotal(), 2));
 
-        $htmlContent = $this->buildHtmlEmail($orderNumber, $orderDate, $customerName, $customerEmail, $shippingInfo, $itemsList, $totalAmount);
-        $textContent = $this->buildTextEmail($orderNumber, $orderDate, $customerName, $customerEmail, $shippingInfo, $itemsList, $totalAmount);
+        $htmlContent = $this->buildHtmlEmail($orderNumber, $orderDate, $customerName, $customerEmail, $shippingInfo, $shippingMethodName, $itemsList, $subtotalFormatted, $shippingCostFormatted, $totalAmount);
+        $textContent = $this->buildTextEmail($orderNumber, $orderDate, $customerName, $customerEmail, $shippingInfo, $shippingMethodName, $itemsList, $subtotalFormatted, $shippingCostFormatted, $totalAmount);
 
         $email = (new Email())
             ->from(self::FROM_NAME . ' <' . self::FROM_EMAIL . '>')
@@ -167,8 +182,9 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
             $items[] = [
                 'name' => $lineItem->getLabel() . $variantInfo,
                 'quantity' => $lineItem->getQuantity(),
-                'unitPrice' => number_format($lineItem->getUnitPrice(), 2, '.', "'") . ' CHF',
-                'totalPrice' => number_format($lineItem->getTotalPrice(), 2, '.', "'") . ' CHF',
+                'unitPrice' => 'CHF ' . number_format($lineItem->getUnitPrice(), 2, '.', "'"),
+                'totalPrice' => 'CHF ' . number_format($lineItem->getTotalPrice(), 2, '.', "'"),
+                'totalPriceRaw' => $lineItem->getTotalPrice(),
                 'productNumber' => $payload['productNumber'] ?? 'N/A',
                 'imageUrl' => $imageUrl,
             ];
@@ -183,7 +199,10 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         string $customerName,
         string $customerEmail,
         string $shippingInfo,
+        string $shippingMethodName,
         array $items,
+        string $subtotal,
+        string $shippingCost,
         string $totalAmount
     ): string {
         $itemsHtml = '';
@@ -280,6 +299,9 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                     Lieferadresse
                 </h2>
                 <p style="margin: 0; font-size: 14px; color: #374151; white-space: pre-line; line-height: 1.6;">{$shippingInfo}</p>
+                <p style="margin: 15px 0 0 0; font-size: 14px; color: #374151;">
+                    <strong style="color: #6b7280;">Versandart:</strong> {$shippingMethodName}
+                </p>
             </div>
 
             <!-- Order Items -->
@@ -300,6 +322,14 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                         {$itemsHtml}
                     </tbody>
                     <tfoot>
+                        <tr style="background: #f9fafb;">
+                            <td colspan="3" style="padding: 10px; color: #6b7280; text-align: right;">Zwischensumme:</td>
+                            <td style="padding: 10px; color: #374151; font-weight: 500; text-align: right;">{$subtotal}</td>
+                        </tr>
+                        <tr style="background: #f9fafb;">
+                            <td colspan="3" style="padding: 10px; color: #6b7280; text-align: right;">Versandkosten:</td>
+                            <td style="padding: 10px; color: #374151; font-weight: 500; text-align: right;">{$shippingCost}</td>
+                        </tr>
                         <tr style="background: #111827;">
                             <td colspan="3" style="padding: 15px 10px; color: #ffffff; font-weight: 600; text-align: right;">Gesamtbetrag:</td>
                             <td style="padding: 15px 10px; color: #fde047; font-weight: 700; text-align: right; font-size: 16px;">{$totalAmount}</td>
@@ -337,7 +367,10 @@ HTML;
         string $customerName,
         string $customerEmail,
         string $shippingInfo,
+        string $shippingMethodName,
         array $items,
+        string $subtotal,
+        string $shippingCost,
         string $totalAmount
     ): string {
         $itemsText = '';
@@ -372,11 +405,16 @@ LIEFERADRESSE
 =====================================
 {$shippingInfo}
 
+Versandart: {$shippingMethodName}
+
 =====================================
 BESTELLTE ARTIKEL
 =====================================
 {$itemsText}
 
+Zwischensumme: {$subtotal}
+Versandkosten: {$shippingCost}
+-------------------------------------
 GESAMTBETRAG: {$totalAmount}
 
 =====================================
