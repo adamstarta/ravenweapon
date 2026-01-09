@@ -585,15 +585,13 @@
                             <a href="{{ seoUrl('frontend.detail.page', {'productId': lineItem.referencedId}) }}" class="raven-item-name">
                                 {{ lineItem.label }}
                             </a>
-                            {# Display combined variantenDisplay, or fall back to individual fields (Color + Size) #}
-                            {% if lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
-                                <span class="raven-item-color">Variante: {{ lineItem.payload.variantenDisplay }}</span>
-                            {% elseif lineItem.payload.selectedColor is defined and lineItem.payload.selectedColor %}
-                                <span class="raven-item-color">Variante: {{ lineItem.payload.selectedColor }}{% if lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %} / {{ lineItem.payload.selectedSize }}{% endif %}</span>
-                            {% elseif lineItem.payload.selectedSize is defined and lineItem.payload.selectedSize %}
-                                <span class="raven-item-color">Variante: {{ lineItem.payload.selectedSize }}</span>
-                            {% else %}
-                                <span class="raven-item-color"></span>
+                            {# Display variant options from Shopware's payload.options array #}
+                            {% if lineItem.payload.options is defined and lineItem.payload.options|length > 0 %}
+                                {% set optionValues = [] %}
+                                {% for option in lineItem.payload.options %}
+                                    {% set optionValues = optionValues|merge([option.option]) %}
+                                {% endfor %}
+                                <span class="raven-item-color">Variante: {{ optionValues|join(' / ') }}</span>
                             {% endif %}
                             <div class="raven-item-price">
                                 CHF {{ lineItem.price.unitPrice|number_format(2, '.', "'") }}
