@@ -211,35 +211,28 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         string $shippingCost,
         string $totalAmount
     ): string {
-        // Build table rows for each item (original table design, mobile-safe)
+        // Build table rows for each item (with image, no Gesamt column for more space)
         $itemsHtml = '';
         foreach ($items as $item) {
+            // Build image HTML if available
             $imageHtml = '';
             if (!empty($item['imageUrl'])) {
                 $imageHtml = sprintf(
-                    '<img src="%s" alt="%s" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; vertical-align: middle;">',
-                    htmlspecialchars($item['imageUrl']),
-                    htmlspecialchars($item['name'])
+                    '<img src="%s" alt="" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; margin-right: 8px; vertical-align: middle;">',
+                    htmlspecialchars($item['imageUrl'])
                 );
-            } else {
-                $imageHtml = '<div style="width: 40px; height: 40px; background: #f3f4f6; border-radius: 4px; display: inline-block; vertical-align: middle;"></div>';
             }
 
             $itemsHtml .= sprintf(
                 '<tr>
-                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; vertical-align: top;">
-                        <div style="display: inline-block; vertical-align: top; margin-right: 8px;">%s</div>
-                        <span style="font-size: 12px; color: #374151; word-wrap: break-word;">%s</span>
-                    </td>
-                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: top; font-size: 13px; color: #374151;">%d</td>
-                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: top; font-size: 13px; color: #374151;">%s</td>
-                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: top; font-size: 13px; font-weight: 600; color: #374151;">%s</td>
+                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; vertical-align: middle; font-size: 13px; color: #374151;">%s<span style="vertical-align: middle;">%s</span></td>
+                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: middle; font-size: 13px; color: #374151;">%d</td>
+                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: middle; font-size: 13px; font-weight: 600; color: #374151;">%s</td>
                 </tr>',
                 $imageHtml,
                 htmlspecialchars($item['name']),
                 $item['quantity'],
-                $item['unitPrice'],
-                $item['totalPrice']
+                $item['unitPrice']
             );
         }
 
@@ -313,17 +306,15 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                 </h2>
                 <table style="width: 100%; font-size: 13px; border-collapse: collapse; table-layout: fixed;">
                     <colgroup>
-                        <col style="width: 40%;">
+                        <col style="width: 60%;">
                         <col style="width: 15%;">
-                        <col style="width: 22%;">
-                        <col style="width: 23%;">
+                        <col style="width: 25%;">
                     </colgroup>
                     <thead>
                         <tr style="background: #f9fafb;">
                             <th style="padding: 8px 5px; text-align: left; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Artikel</th>
                             <th style="padding: 8px 5px; text-align: center; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Anz.</th>
                             <th style="padding: 8px 5px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Preis</th>
-                            <th style="padding: 8px 5px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Gesamt</th>
                         </tr>
                     </thead>
                     <tbody>
