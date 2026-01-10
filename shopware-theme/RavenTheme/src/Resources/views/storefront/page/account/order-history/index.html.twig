@@ -92,12 +92,36 @@
                 {% for lineItem in order.lineItems %}
                 <div class="order-item-row">
                     <div class="item-image">
-                        {% if lineItem.cover %}
-                        <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}">
+                        {% set detailVariantImg = lineItem.payload.variantImageUrl|default('') %}
+                        {% set detailCoverImg = lineItem.cover.url|default('') %}
+                        {% set detailItemImg = detailVariantImg ? detailVariantImg : detailCoverImg %}
+                        {% if detailItemImg %}
+                        <img src="{{ detailItemImg }}" alt="{{ lineItem.label }}">
                         {% endif %}
                     </div>
                     <div class="item-info">
                         <p class="item-name">{{ lineItem.label }}</p>
+                        {% set detailVariant = lineItem.payload.variantenDisplay|default('') %}
+                        {% if not detailVariant %}
+                            {% set detailColor = lineItem.payload.selectedColor|default('') %}
+                            {% set detailSize = lineItem.payload.selectedSize|default('') %}
+                            {% if detailColor or detailSize %}
+                                {% set detailVariant = [detailColor, detailSize]|filter(v => v)|join(' / ') %}
+                            {% endif %}
+                        {% endif %}
+                        {% if not detailVariant and lineItem.payload.options is defined %}
+                            {% set detailOptParts = [] %}
+                            {% for opt in lineItem.payload.options %}
+                                {% if opt.option is defined %}{% set detailOptParts = detailOptParts|merge([opt.option]) %}{% endif %}
+                            {% endfor %}
+                            {% if detailOptParts|length > 0 %}{% set detailVariant = detailOptParts|join(' / ') %}{% endif %}
+                        {% endif %}
+                        {% if detailVariant %}
+                        <p class="item-variant-text">Variante: {{ detailVariant }}</p>
+                        {% endif %}
+                        {% if lineItem.payload.productNumber is defined and lineItem.payload.productNumber %}
+                        <p class="item-sku">Art.-Nr.: {{ lineItem.payload.productNumber }}</p>
+                        {% endif %}
                         <p class="item-qty">Menge: {{ lineItem.quantity }}</p>
                     </div>
                     <div class="item-prices">
@@ -169,11 +193,34 @@
                         {% for lineItem in order.lineItems|slice(0, 3) %}
                         <div class="item-row">
                             <div class="item-thumb">
-                                {% if lineItem.cover %}
-                                <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}">
+                                {% set listVariantImg = lineItem.payload.variantImageUrl|default('') %}
+                                {% set listCoverImg = lineItem.cover.url|default('') %}
+                                {% set listItemImg = listVariantImg ? listVariantImg : listCoverImg %}
+                                {% if listItemImg %}
+                                <img src="{{ listItemImg }}" alt="{{ lineItem.label }}">
                                 {% endif %}
                             </div>
-                            <span class="item-label">{{ lineItem.label }}</span>
+                            <div class="item-info-col">
+                                <span class="item-label">{{ lineItem.label }}</span>
+                                {% set listVariant = lineItem.payload.variantenDisplay|default('') %}
+                                {% if not listVariant %}
+                                    {% set listColor = lineItem.payload.selectedColor|default('') %}
+                                    {% set listSize = lineItem.payload.selectedSize|default('') %}
+                                    {% if listColor or listSize %}
+                                        {% set listVariant = [listColor, listSize]|filter(v => v)|join(' / ') %}
+                                    {% endif %}
+                                {% endif %}
+                                {% if not listVariant and lineItem.payload.options is defined %}
+                                    {% set optParts = [] %}
+                                    {% for opt in lineItem.payload.options %}
+                                        {% if opt.option is defined %}{% set optParts = optParts|merge([opt.option]) %}{% endif %}
+                                    {% endfor %}
+                                    {% if optParts|length > 0 %}{% set listVariant = optParts|join(' / ') %}{% endif %}
+                                {% endif %}
+                                {% if listVariant %}
+                                <span class="item-variant">Variante: {{ listVariant }}</span>
+                                {% endif %}
+                            </div>
                             <span class="item-price">CHF {{ lineItem.totalPrice|number_format(2, '.', ' ') }}</span>
                         </div>
                         {% endfor %}
@@ -518,10 +565,22 @@
     object-fit: cover;
 }
 
+.item-info-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
 .item-label {
     flex: 1;
     font-size: 0.875rem;
     color: var(--raven-charcoal);
+}
+
+.item-variant {
+    font-size: 0.75rem;
+    color: #D97706;
 }
 
 .item-price {
@@ -636,6 +695,18 @@
     font-size: 0.75rem;
     color: var(--raven-gray-500);
     margin: 0;
+}
+
+.item-variant-text {
+    font-size: 0.75rem;
+    color: #D97706;
+    margin: 0.125rem 0;
+}
+
+.item-sku {
+    font-size: 0.6875rem;
+    color: var(--raven-gray-400);
+    margin: 0.125rem 0;
 }
 
 .item-prices {
