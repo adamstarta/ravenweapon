@@ -227,13 +227,13 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
 
             $itemsHtml .= sprintf(
                 '<tr>
-                    <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: middle;">
-                        <div style="display: inline-block; vertical-align: middle; margin-right: 10px;">%s</div>
-                        <span style="vertical-align: middle; font-size: 13px; color: #374151;">%s</span>
+                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; vertical-align: top;">
+                        <div style="display: inline-block; vertical-align: top; margin-right: 8px;">%s</div>
+                        <span style="font-size: 12px; color: #374151; word-wrap: break-word;">%s</span>
                     </td>
-                    <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: middle; font-size: 14px; color: #374151;">%d</td>
-                    <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: middle; font-size: 14px; color: #374151; white-space: nowrap;">%s</td>
-                    <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: middle; font-size: 14px; font-weight: 600; color: #374151; white-space: nowrap;">%s</td>
+                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: top; font-size: 13px; color: #374151;">%d</td>
+                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: top; font-size: 13px; color: #374151;">%s</td>
+                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: top; font-size: 13px; font-weight: 600; color: #374151;">%s</td>
                 </tr>',
                 $imageHtml,
                 htmlspecialchars($item['name']),
@@ -311,13 +311,19 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                 <h2 style="margin: 0 0 15px 0; color: #111827; font-size: 14px; font-weight: 600;">
                     Bestellte Artikel
                 </h2>
-                <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
+                <table style="width: 100%; font-size: 13px; border-collapse: collapse; table-layout: fixed;">
+                    <colgroup>
+                        <col style="width: 40%;">
+                        <col style="width: 15%;">
+                        <col style="width: 22%;">
+                        <col style="width: 23%;">
+                    </colgroup>
                     <thead>
                         <tr style="background: #f9fafb;">
-                            <th style="padding: 10px 8px; text-align: left; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Artikel</th>
-                            <th style="padding: 10px 8px; text-align: center; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb; min-width: 50px;">Menge</th>
-                            <th style="padding: 10px 8px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb; min-width: 80px;">Stückpreis</th>
-                            <th style="padding: 10px 8px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb; min-width: 80px;">Gesamt</th>
+                            <th style="padding: 8px 5px; text-align: left; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Artikel</th>
+                            <th style="padding: 8px 5px; text-align: center; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Anz.</th>
+                            <th style="padding: 8px 5px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Preis</th>
+                            <th style="padding: 8px 5px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Gesamt</th>
                         </tr>
                     </thead>
                     <tbody>
