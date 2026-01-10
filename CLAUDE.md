@@ -204,6 +204,84 @@ The server environment (you don't need to access this):
 - **Reverse Proxy:** nginx routes by hostname
 - **CDN/SSL:** Cloudflare (Full SSL mode)
 
+## Codebase Guidelines (Keep It Clean!)
+
+### File Organization Rules
+
+**DO commit:**
+- `shopware-theme/` - All theme code (PHP, Twig, SCSS, JS)
+- `PayrexxPaymentGateway/` - Payment plugin
+- `assets/` - Brand assets (logos, fonts)
+- `.github/workflows/` - CI/CD configuration
+- `CLAUDE.md` - Project documentation
+
+**DON'T commit:**
+- One-time migration scripts (delete after use)
+- Scraped data JSON files
+- Temporary fix scripts
+- Browser screenshots (add to .gitignore)
+- Plan documents older than 7 days
+
+### Code Standards
+
+**PHP (Subscribers):**
+```php
+<?php declare(strict_types=1);
+
+namespace RavenTheme\Subscriber;
+
+// Use descriptive class names: ProductReviewsSubscriber, not ReviewSub
+// One responsibility per subscriber
+// Document with /** docblocks */
+```
+
+**Twig Templates:**
+- Always use `{% sw_extends %}` not `{% extends %}`
+- Keep inline styles minimal - use SCSS classes
+- Comment complex logic with `{# explanation #}`
+
+**SCSS:**
+- All styles go in `base.scss` (single file approach)
+- Use existing color variables: `$gold`, `$dark-bg`, `$price-red`
+- Mobile-first: design for 320px, then scale up
+
+**Email Templates (PHP):**
+- Use `min-width` in pixels, not percentages
+- Always add `white-space: nowrap` on price cells
+- Test on mobile Gmail before deploying
+
+### Cleanup Checklist (Run Monthly)
+
+```bash
+# Check for files that shouldn't be committed
+git ls-files | grep -E "\.(json|bak|tmp|old)$"
+
+# Check docs/plans/ for old files (delete if >7 days old)
+ls -la docs/plans/
+
+# Verify .gitignore covers temp files
+cat .gitignore
+```
+
+### Reusable Components
+
+When building similar features, reuse existing patterns:
+
+| Pattern | Example Location |
+|---------|------------------|
+| Table layout (email) | `OrderNotificationSubscriber.php` |
+| Toast notifications | `raven-toast.plugin.js` |
+| Off-canvas sidebar | `raven-offcanvas-cart.plugin.js` |
+| Product cards | `box-standard.html.twig` |
+| Form validation | `login/index.html.twig` |
+
+### Before Committing
+
+1. **Check for debug code:** Remove `console.log`, `var_dump`, `dd()`
+2. **Check for hardcoded values:** Use variables/config instead
+3. **Check file size:** If >500 lines, consider splitting
+4. **Test on staging:** Always verify before production
+
 ## Getting Help
 
 - Check GitHub Actions logs for deployment errors
