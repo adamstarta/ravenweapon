@@ -211,27 +211,49 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         string $shippingCost,
         string $totalAmount
     ): string {
+        // Build mobile-friendly card layout for each item
         $itemsHtml = '';
         foreach ($items as $item) {
             $imageHtml = '';
             if (!empty($item['imageUrl'])) {
                 $imageHtml = sprintf(
-                    '<img src="%s" alt="%s" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; margin-right: 8px; vertical-align: middle;">',
+                    '<img src="%s" alt="%s" style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;">',
                     htmlspecialchars($item['imageUrl']),
                     htmlspecialchars($item['name'])
                 );
             } else {
-                // Placeholder if no image
-                $imageHtml = '<div style="width: 40px; height: 40px; background: #f3f4f6; border-radius: 4px; display: inline-block; vertical-align: middle; margin-right: 8px;"></div>';
+                $imageHtml = '<div style="width: 50px; height: 50px; background: #f3f4f6; border-radius: 6px;"></div>';
             }
 
             $itemsHtml .= sprintf(
-                '<tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">%s<span style="vertical-align: middle; font-size: 13px;">%s</span></td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: center;">%d</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right; white-space: nowrap;">%s</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e5e7eb; text-align: right; white-space: nowrap;">%s</td>
-                </tr>',
+                '<div style="background: #f9fafb; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
+                    <!-- Product Row: Image + Name -->
+                    <table style="width: 100%%; border-collapse: collapse;">
+                        <tr>
+                            <td style="width: 60px; vertical-align: top; padding-right: 12px;">%s</td>
+                            <td style="vertical-align: top;">
+                                <div style="font-size: 14px; font-weight: 600; color: #111827; line-height: 1.4;">%s</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- Price Row -->
+                    <table style="width: 100%%; border-collapse: collapse; margin-top: 12px; background: #ffffff; border-radius: 6px;">
+                        <tr>
+                            <td style="padding: 10px 12px; text-align: center; border-right: 1px solid #e5e7eb;">
+                                <div style="font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px;">Menge</div>
+                                <div style="font-size: 16px; font-weight: 700; color: #111827; margin-top: 2px;">%d</div>
+                            </td>
+                            <td style="padding: 10px 12px; text-align: center; border-right: 1px solid #e5e7eb;">
+                                <div style="font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px;">Stückpreis</div>
+                                <div style="font-size: 14px; font-weight: 500; color: #374151; margin-top: 2px;">%s</div>
+                            </td>
+                            <td style="padding: 10px 12px; text-align: center;">
+                                <div style="font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px;">Gesamt</div>
+                                <div style="font-size: 16px; font-weight: 700; color: #e53935; margin-top: 2px;">%s</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>',
                 $imageHtml,
                 htmlspecialchars($item['name']),
                 $item['quantity'],
@@ -247,123 +269,103 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f3f4f6;">
-    <div style="max-width: 750px; margin: 0 auto; padding: 20px;">
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f3f4f6;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 15px;">
         <!-- Header -->
-        <div style="background: linear-gradient(135deg, #111827 0%, #1f2937 100%); padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
-            <h1 style="margin: 0; color: #fde047; font-family: 'Chakra Petch', sans-serif; font-size: 24px; font-weight: 700;">
+        <div style="background: linear-gradient(135deg, #111827 0%, #1f2937 100%); padding: 25px 20px; text-align: center; border-radius: 8px 8px 0 0;">
+            <h1 style="margin: 0; color: #fde047; font-size: 22px; font-weight: 700;">
                 Neue Bestellung
             </h1>
-            <p style="margin: 10px 0 0 0; color: #9ca3af; font-size: 14px;">
-                Bestellung #{$orderNumber}
+            <p style="margin: 8px 0 0 0; color: #9ca3af; font-size: 14px;">
+                #{$orderNumber}
             </p>
         </div>
 
         <!-- Content -->
-        <div style="background: #ffffff; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <div style="background: #ffffff; padding: 20px; border-radius: 0 0 8px 8px;">
             <!-- Order Info -->
-            <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #f3f4f6;">
-                <h2 style="margin: 0 0 15px 0; color: #111827; font-size: 16px; font-weight: 600;">
+            <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #e5e7eb;">
+                <h2 style="margin: 0 0 12px 0; color: #111827; font-size: 15px; font-weight: 600;">
                     Bestellinformationen
                 </h2>
                 <table style="width: 100%; font-size: 14px; color: #374151;">
                     <tr>
-                        <td style="padding: 5px 0; color: #6b7280;">Bestellnummer:</td>
-                        <td style="padding: 5px 0; font-weight: 600;">#{$orderNumber}</td>
+                        <td style="padding: 4px 0; color: #6b7280; width: 40%;">Datum:</td>
+                        <td style="padding: 4px 0;">{$orderDate}</td>
                     </tr>
                     <tr>
-                        <td style="padding: 5px 0; color: #6b7280;">Datum:</td>
-                        <td style="padding: 5px 0;">{$orderDate}</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px 0; color: #6b7280;">Gesamtbetrag:</td>
-                        <td style="padding: 5px 0; font-weight: 700; color: #e53935; font-size: 16px;">{$totalAmount}</td>
+                        <td style="padding: 4px 0; color: #6b7280;">Gesamtbetrag:</td>
+                        <td style="padding: 4px 0; font-weight: 700; color: #e53935; font-size: 16px;">{$totalAmount}</td>
                     </tr>
                 </table>
             </div>
 
             <!-- Customer Info -->
-            <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #f3f4f6;">
-                <h2 style="margin: 0 0 15px 0; color: #111827; font-size: 16px; font-weight: 600;">
-                    Kundeninformationen
+            <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #e5e7eb;">
+                <h2 style="margin: 0 0 12px 0; color: #111827; font-size: 15px; font-weight: 600;">
+                    Kunde
                 </h2>
-                <table style="width: 100%; font-size: 14px; color: #374151;">
-                    <tr>
-                        <td style="padding: 5px 0; color: #6b7280;">Name:</td>
-                        <td style="padding: 5px 0;">{$customerName}</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px 0; color: #6b7280;">E-Mail:</td>
-                        <td style="padding: 5px 0;"><a href="mailto:{$customerEmail}" style="color: #f59e0b; text-decoration: none;">{$customerEmail}</a></td>
-                    </tr>
-                </table>
+                <div style="font-size: 14px; color: #374151; line-height: 1.5;">
+                    <div style="font-weight: 600;">{$customerName}</div>
+                    <div><a href="mailto:{$customerEmail}" style="color: #f59e0b; text-decoration: none;">{$customerEmail}</a></div>
+                </div>
             </div>
 
             <!-- Shipping Address -->
-            <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 2px solid #f3f4f6;">
-                <h2 style="margin: 0 0 15px 0; color: #111827; font-size: 16px; font-weight: 600;">
+            <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #e5e7eb;">
+                <h2 style="margin: 0 0 12px 0; color: #111827; font-size: 15px; font-weight: 600;">
                     Lieferadresse
                 </h2>
-                <p style="margin: 0; font-size: 14px; color: #374151; white-space: pre-line; line-height: 1.6;">{$shippingInfo}</p>
-                <p style="margin: 15px 0 0 0; font-size: 14px; color: #374151;">
-                    <strong style="color: #6b7280;">Versandart:</strong> {$shippingMethodName}
-                </p>
+                <div style="font-size: 14px; color: #374151; white-space: pre-line; line-height: 1.5;">{$shippingInfo}</div>
+                <div style="margin-top: 10px; font-size: 14px;">
+                    <span style="color: #6b7280;">Versandart:</span> <span style="color: #374151;">{$shippingMethodName}</span>
+                </div>
             </div>
 
-            <!-- Order Items -->
-            <div style="margin-bottom: 25px;">
-                <h2 style="margin: 0 0 15px 0; color: #111827; font-size: 16px; font-weight: 600;">
+            <!-- Order Items - Card Layout -->
+            <div style="margin-bottom: 20px;">
+                <h2 style="margin: 0 0 15px 0; color: #111827; font-size: 15px; font-weight: 600;">
                     Bestellte Artikel
                 </h2>
-                <table style="width: 100%; font-size: 14px; border-collapse: collapse; table-layout: fixed;">
-                    <colgroup>
-                        <col style="width: 50%;">
-                        <col style="width: 10%;">
-                        <col style="width: 20%;">
-                        <col style="width: 20%;">
-                    </colgroup>
-                    <thead>
-                        <tr style="background: #f9fafb;">
-                            <th style="padding: 12px 10px; text-align: left; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Artikel</th>
-                            <th style="padding: 12px 10px; text-align: center; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb;">Menge</th>
-                            <th style="padding: 12px 10px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb; white-space: nowrap;">Stückpreis</th>
-                            <th style="padding: 12px 10px; text-align: right; color: #6b7280; font-weight: 600; border-bottom: 2px solid #e5e7eb; white-space: nowrap;">Gesamt</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {$itemsHtml}
-                    </tbody>
-                    <tfoot>
-                        <tr style="background: #f9fafb;">
-                            <td colspan="3" style="padding: 10px; color: #6b7280; text-align: right;">Zwischensumme:</td>
-                            <td style="padding: 10px; color: #374151; font-weight: 500; text-align: right; white-space: nowrap;">{$subtotal}</td>
-                        </tr>
-                        <tr style="background: #f9fafb;">
-                            <td colspan="3" style="padding: 10px; color: #6b7280; text-align: right;">Versandkosten:</td>
-                            <td style="padding: 10px; color: #374151; font-weight: 500; text-align: right; white-space: nowrap;">{$shippingCost}</td>
-                        </tr>
-                        <tr style="background: #111827;">
-                            <td colspan="3" style="padding: 15px 10px; color: #ffffff; font-weight: 600; text-align: right;">Gesamtbetrag:</td>
-                            <td style="padding: 15px 10px; color: #fde047; font-weight: 700; text-align: right; font-size: 16px; white-space: nowrap;">{$totalAmount}</td>
-                        </tr>
-                    </tfoot>
+                {$itemsHtml}
+            </div>
+
+            <!-- Summary -->
+            <div style="background: #f9fafb; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 6px 0; color: #6b7280;">Zwischensumme:</td>
+                        <td style="padding: 6px 0; text-align: right; color: #374151; font-weight: 500;">{$subtotal}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 6px 0; color: #6b7280;">Versandkosten:</td>
+                        <td style="padding: 6px 0; text-align: right; color: #374151; font-weight: 500;">{$shippingCost}</td>
+                    </tr>
                 </table>
+                <div style="border-top: 2px solid #e5e7eb; margin-top: 10px; padding-top: 12px;">
+                    <table style="width: 100%; font-size: 16px; border-collapse: collapse;">
+                        <tr>
+                            <td style="color: #111827; font-weight: 600;">Gesamtbetrag:</td>
+                            <td style="text-align: right; color: #e53935; font-weight: 700; font-size: 18px;">{$totalAmount}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <!-- CTA Button -->
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="https://shop.ravenweapon.ch/admin" style="display: inline-block; background: linear-gradient(135deg, #fde047 0%, #f59e0b 50%, #d97706 100%); color: #111827; padding: 14px 30px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
+            <div style="text-align: center;">
+                <a href="https://shop.ravenweapon.ch/admin" style="display: inline-block; background: linear-gradient(135deg, #fde047 0%, #f59e0b 50%, #d97706 100%); color: #111827; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
                     Im Admin-Panel anzeigen
                 </a>
             </div>
         </div>
 
         <!-- Footer -->
-        <div style="text-align: center; padding: 20px; color: #6b7280; font-size: 12px;">
+        <div style="text-align: center; padding: 15px; color: #6b7280; font-size: 12px;">
             <p style="margin: 0;">
                 Diese E-Mail wurde automatisch von Raven Weapon Shop gesendet.
             </p>
-            <p style="margin: 10px 0 0 0;">
+            <p style="margin: 8px 0 0 0;">
                 <a href="https://ravenweapon.ch" style="color: #f59e0b; text-decoration: none;">ravenweapon.ch</a>
             </p>
         </div>
