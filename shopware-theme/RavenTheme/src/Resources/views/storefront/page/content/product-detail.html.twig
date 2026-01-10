@@ -212,11 +212,10 @@
                 {{ productName }}
             </h1>
 
-            {# Price - Swiss Format: CHF 3'150 - ID added for JavaScript price updates #}
+            {# Price - Swiss Format: CHF 3'850.00 - ID added for JavaScript price updates #}
             <div id="product-price-display" class="raven-product-price mb-1" style="font-family: 'Inter', sans-serif; color: #E53935; font-weight: 700; font-size: 1.75rem; line-height: 1.2; font-variant-numeric: tabular-nums;">
                 {% set detailPrice = page.product.calculatedPrice.unitPrice %}
-                {% set detailCents = ((detailPrice * 100) % 100)|round %}
-                CHF <span id="product-price-value">{% if detailCents == 0 %}{{ detailPrice|number_format(0, '.', "'") }}{% else %}{{ detailPrice|number_format(2, '.', "'") }}{% endif %}</span>
+                CHF <span id="product-price-value">{{ detailPrice|number_format(2, '.', "'") }}</span>
             </div>
 
             {# VAT included text #}

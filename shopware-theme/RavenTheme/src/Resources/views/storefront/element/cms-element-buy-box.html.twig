@@ -33,10 +33,9 @@
     {% set productName = product.translated.name %}
     {% set fullTitle = manufacturerName ? manufacturerName ~ ' ' ~ productName : productName %}
 
-    {# Format price Swiss style with CHF #}
+    {# Format price Swiss style with CHF - always show decimals #}
     {% set priceValue = product.calculatedPrice.unitPrice %}
-    {% set priceCents = ((priceValue * 100) % 100)|round %}
-    {% set formattedPrice = priceCents == 0 ? priceValue|number_format(0, '.', "'") : priceValue|number_format(2, '.', "'") %}
+    {% set formattedPrice = priceValue|number_format(2, '.', "'") %}
 
     {# Breadcrumb #}
     <nav class="raven-breadcrumb" aria-label="Breadcrumb">

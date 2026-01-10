@@ -156,7 +156,7 @@
                                 <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                                     <div style="flex: 1;">
                                         <div style="color: #E53935; font-weight: 600; font-size: 16px; line-height: 1.2;">
-                                            {% if product.calculatedPrice %}CHF {{ product.calculatedPrice.unitPrice|number_format(0, '.', "'") }}{% endif %}
+                                            {% if product.calculatedPrice %}CHF {{ product.calculatedPrice.unitPrice|number_format(2, '.', "'") }}{% endif %}
                                         </div>
                                         {# Star Ratings - Use ratingAverage which is available in listings #}
                                         {% if product.ratingAverage and product.ratingAverage > 0 %}
