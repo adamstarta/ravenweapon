@@ -101,6 +101,12 @@
             <argument type="service" id="product_review.repository"/>
             <tag name="kernel.event_subscriber"/>
         </service>
+
+        <!-- Product Reviews Subscriber - loads reviews on product detail page -->
+        <service id="RavenTheme\Subscriber\ProductReviewsSubscriber">
+            <argument type="service" id="product_review.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
     </services>
 
 </container>
