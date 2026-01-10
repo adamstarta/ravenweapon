@@ -125,7 +125,6 @@
                         <p class="item-qty">Menge: {{ lineItem.quantity }}</p>
                     </div>
                     <div class="item-prices">
-                        <span class="unit-price">CHF {{ lineItem.unitPrice|number_format(2, '.', ' ') }}</span>
                         <span class="total-price">CHF {{ lineItem.totalPrice|number_format(2, '.', ' ') }}</span>
                     </div>
                 </div>
@@ -134,13 +133,9 @@
 
             {# Order Summary #}
             <div class="order-section">
-                <div class="summary-row">
-                    <span>Zwischensumme</span>
-                    <span>CHF {{ order.price.positionPrice|number_format(2, '.', ' ') }}</span>
-                </div>
                 {% for delivery in order.deliveries %}
                 <div class="summary-row">
-                    <span>Versand</span>
+                    <span>Versand ({{ delivery.shippingMethod.translated.name|default(delivery.shippingMethod.name|default('Standard')) }})</span>
                     <span>CHF {{ delivery.shippingCosts.totalPrice|number_format(2, '.', ' ') }}</span>
                 </div>
                 {% endfor %}
@@ -154,20 +149,45 @@
             <div class="addresses-grid">
                 <div class="address-box">
                     <h3>Rechnungsadresse</h3>
+                    {% if order.billingAddress %}
                     <p class="address-name">{{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}</p>
                     <p>{{ order.billingAddress.street }}</p>
                     <p>{{ order.billingAddress.zipcode }} {{ order.billingAddress.city }}</p>
-                    <p>{{ order.billingAddress.country.translated.name }}</p>
+                    {% if order.billingAddress.country %}
+                    <p>{{ order.billingAddress.country.translated.name|default(order.billingAddress.country.name|default('')) }}</p>
+                    {% endif %}
+                    {% else %}
+                    <p class="address-name">-</p>
+                    {% endif %}
                 </div>
-                {% for delivery in order.deliveries %}
                 <div class="address-box">
                     <h3>Lieferadresse</h3>
-                    <p class="address-name">{{ delivery.shippingOrderAddress.firstName }} {{ delivery.shippingOrderAddress.lastName }}</p>
-                    <p>{{ delivery.shippingOrderAddress.street }}</p>
-                    <p>{{ delivery.shippingOrderAddress.zipcode }} {{ delivery.shippingOrderAddress.city }}</p>
-                    <p>{{ delivery.shippingOrderAddress.country.translated.name }}</p>
+                    {% set shippingAddr = null %}
+                    {% for delivery in order.deliveries %}
+                        {% if delivery.shippingOrderAddress %}
+                            {% set shippingAddr = delivery.shippingOrderAddress %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if shippingAddr %}
+                    <p class="address-name">{{ shippingAddr.firstName }} {{ shippingAddr.lastName }}</p>
+                    <p>{{ shippingAddr.street }}</p>
+                    <p>{{ shippingAddr.zipcode }} {{ shippingAddr.city }}</p>
+                    {% if shippingAddr.country %}
+                    <p>{{ shippingAddr.country.translated.name|default(shippingAddr.country.name|default('')) }}</p>
+                    {% endif %}
+                    {% elseif order.billingAddress %}
+                    {# Fallback to billing address if no shipping address #}
+                    <p class="address-name">{{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}</p>
+                    <p>{{ order.billingAddress.street }}</p>
+                    <p>{{ order.billingAddress.zipcode }} {{ order.billingAddress.city }}</p>
+                    {% if order.billingAddress.country %}
+                    <p>{{ order.billingAddress.country.translated.name|default(order.billingAddress.country.name|default('')) }}</p>
+                    {% endif %}
+                    <p class="address-note">(Gleich wie Rechnungsadresse)</p>
+                    {% else %}
+                    <p class="address-name">-</p>
+                    {% endif %}
                 </div>
-                {% endfor %}
             </div>
 
             {% else %}
@@ -713,12 +733,6 @@
     text-align: right;
 }
 
-.unit-price {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--raven-gray-400);
-}
-
 .total-price {
     font-weight: 700;
     color: var(--raven-charcoal);
@@ -780,6 +794,13 @@
 .address-box .address-name {
     font-weight: 600;
     color: var(--raven-charcoal);
+}
+
+.address-box .address-note {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--raven-gray-400);
+    margin-top: 0.5rem;
 }
 
 /* ============ NO ORDERS ============ */
