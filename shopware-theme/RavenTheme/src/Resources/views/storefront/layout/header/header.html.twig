@@ -1456,11 +1456,14 @@
                     var priceEl = product.querySelector('.search-suggest-product-price span, .search-suggest-product-price');
                     if (priceEl) {
                         var priceText = priceEl.textContent.trim();
-                        // Parse price like "CHF 2,985.00" and format as "CHF 2'985.00"
-                        var priceMatch = priceText.match(/CHF\s*([\d,.']+)/i);
+                        // Parse price - handles both "CHF 2,985.00" and "3.850,00 CHF" formats
+                        // Format from Shopware: "3.850,00 CHF" (period=thousands, comma=decimal)
+                        var priceMatch = priceText.match(/([\d.,]+)\s*CHF/i) || priceText.match(/CHF\s*([\d.,]+)/i);
                         if (priceMatch) {
-                            // Remove thousands separator and parse
-                            var priceNum = parseFloat(priceMatch[1].replace(/[,']/g, ''));
+                            // Extract the number part and convert European format to standard
+                            var numStr = priceMatch[1];
+                            // European format: 3.850,00 -> remove dots (thousands), replace comma with dot (decimal)
+                            var priceNum = parseFloat(numStr.replace(/\./g, '').replace(',', '.'));
                             if (!isNaN(priceNum)) {
                                 // Format with 2 decimal places in Swiss format
                                 var formattedPrice = priceNum.toFixed(2);
