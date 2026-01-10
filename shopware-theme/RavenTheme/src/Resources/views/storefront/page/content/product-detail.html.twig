@@ -511,16 +511,16 @@
                                name="lineItems[{{ page.product.id }}][quantity]"
                                value="1"
                                min="1"
-                               max="{{ page.product.availableStock }}"
+                               max="99"
                                class="quantity-input"
                                style="width: 50px; height: 44px; border: 1px solid #D1D5DB; border-left: none; border-right: none; text-align: center; font-weight: 600; font-size: 16px; font-family: 'Inter', sans-serif; -moz-appearance: textfield; background: #FFFFFF; color: #374151;"
-                               onblur="if(!this.value || this.value < 1) this.value = 1; if(this.value > {{ page.product.availableStock }}) this.value = {{ page.product.availableStock }};"
-                               oninput="if(this.value > {{ page.product.availableStock }}) this.value = {{ page.product.availableStock }};">
+                               onblur="if(!this.value || this.value < 1) this.value = 1; if(this.value > 99) this.value = 99;"
+                               oninput="if(this.value > 99) this.value = 99;">
                         <button type="button"
                                 id="qty-increase"
                                 class="qty-btn"
                                 style="width: 44px; height: 44px; border: 1px solid #D1D5DB; border-radius: 0 8px 8px 0; background: #FFFFFF; font-size: 20px; font-weight: 500; color: #6B7280; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center;"
-                                onclick="let qtyInput = document.getElementById('quantity'); if(qtyInput.value < {{ page.product.availableStock }}) qtyInput.value = parseInt(qtyInput.value) + 1;">
+                                onclick="let qtyInput = document.getElementById('quantity'); if(qtyInput.value < 99) qtyInput.value = parseInt(qtyInput.value) + 1;">
                             +
                         </button>
                     </div>
