@@ -928,14 +928,39 @@
             gap: 0 !important;
         }
 
-        /* Hide radio button circles - keep functional but invisible */
+        /* Clean radio buttons - outline only, gold when selected */
         .raven-shipping-option .shipping-method-input,
         .raven-shipping-method .shipping-method-input {
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            width: 18px !important;
+            height: 18px !important;
+            border: 2px solid var(--gray-300) !important;
+            border-radius: 50% !important;
+            background: var(--white) !important;
+            cursor: pointer !important;
+            flex-shrink: 0 !important;
+            margin: 0 !important;
+            position: relative !important;
+        }
+
+        .raven-shipping-option .shipping-method-input:checked,
+        .raven-shipping-method .shipping-method-input:checked {
+            border-color: var(--gold) !important;
+            background: var(--gold) !important;
+        }
+
+        .raven-shipping-option .shipping-method-input:checked::after,
+        .raven-shipping-method .shipping-method-input:checked::after {
+            content: '' !important;
             position: absolute !important;
-            opacity: 0 !important;
-            width: 0 !important;
-            height: 0 !important;
-            pointer-events: none !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 6px !important;
+            height: 6px !important;
+            background: var(--white) !important;
+            border-radius: 50% !important;
         }
 
         .raven-shipping-option,
