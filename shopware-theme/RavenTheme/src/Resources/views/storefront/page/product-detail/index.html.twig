@@ -1528,9 +1528,7 @@
         });
     }
 
-    function submitReview(event) {
-        event.preventDefault();
-
+    function submitReview() {
         const form = document.getElementById('review-form');
         const submitBtn = document.getElementById('review-submit-btn');
         const rating = document.getElementById('review-rating-input').value;
@@ -1540,15 +1538,15 @@
         // Validation
         if (!rating || rating < 1) {
             alert('Bitte geben Sie eine Bewertung ab (1-5 Sterne)');
-            return false;
+            return;
         }
         if (!title || title.length < 5) {
             alert('Bitte geben Sie einen Titel ein (mindestens 5 Zeichen)');
-            return false;
+            return;
         }
         if (!content || content.length < 40) {
             alert('Bitte schreiben Sie eine Bewertung (mindestens 40 Zeichen)');
-            return false;
+            return;
         }
 
         // Disable button and show loading
@@ -1600,8 +1598,6 @@
             submitBtn.innerHTML = 'Bewertung absenden';
             alert('Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
         });
-
-        return false;
     }
 
     // Close modal on escape key
@@ -1628,7 +1624,7 @@
 
         {% if context.customer %}
         {# User is logged in - show review form #}
-        <form id="review-form" onsubmit="return submitReview(event)" action="{{ path('frontend.detail.review.save', { productId: page.product.id }) }}" method="post">
+        <form id="review-form" action="{{ path('frontend.detail.review.save', { productId: page.product.id }) }}" method="post">
             <input type="hidden" id="review-product-id" name="productId" value="{{ page.product.id }}">
             <input type="hidden" id="review-rating-input" name="points" value="0">
 
@@ -1669,8 +1665,8 @@
                 <textarea id="review-content" name="content" class="review-textarea" rows="4" placeholder="Teilen Sie Ihre Erfahrung mit diesem Produkt... (min. 40 Zeichen)" required minlength="40" maxlength="2000"></textarea>
             </div>
 
-            {# Submit Button #}
-            <button type="submit" id="review-submit-btn" class="review-submit-btn">
+            {# Submit Button - type="button" prevents form submission, onclick handles via AJAX #}
+            <button type="button" id="review-submit-btn" class="review-submit-btn" onclick="submitReview()">
                 Bewertung absenden
             </button>
         </form>
