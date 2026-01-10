@@ -1,4 +1,55 @@
 {% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
 
-{# This extends the Shopware base template, which will use our custom
-   component/shipping/shipping-method.html.twig override for each shipping option #}
+{# Override shipping method block to add delivery time display #}
+{% block page_checkout_confirm_shipping_form_method %}
+    {% set isSelected = shipping.id == context.shippingMethod.id %}
+
+    <div class="shipping-method-radio raven-shipping-option {% if isSelected %}is-selected{% endif %}"
+         data-shipping-method-id="{{ shipping.id }}">
+
+        <input type="radio"
+               id="shippingMethod{{ shipping.id }}"
+               name="shippingMethodId"
+               value="{{ shipping.id }}"
+               class="shipping-method-input"
+               {% if isSelected %}checked{% endif %}>
+
+        <label class="shipping-method-label" for="shippingMethod{{ shipping.id }}">
+            <div class="shipping-method-info">
+                <div class="shipping-method-name">
+                    {{ shipping.translated.name }}
+                </div>
+
+                {% if shipping.deliveryTime %}
+                    <div class="shipping-method-delivery">
+                        <svg class="delivery-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>{{ shipping.deliveryTime.translated.name }}</span>
+                    </div>
+                {% endif %}
+
+                {% if shipping.translated.description %}
+                    <div class="shipping-method-desc">
+                        {{ shipping.translated.description }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="shipping-method-price {% if isSelected %}is-active{% endif %}">
+                {% set shippingPrice = null %}
+                {% for delivery in page.cart.deliveries %}
+                    {% if delivery.shippingMethod.id == shipping.id %}
+                        {% set shippingPrice = delivery.shippingCosts.totalPrice %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if shippingPrice is not null %}
+                    {{ shippingPrice|currency }}
+                {% else %}
+                    <span class="price-on-select">Auswählen</span>
+                {% endif %}
+            </div>
+        </label>
+    </div>
+{% endblock %}
