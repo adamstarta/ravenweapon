@@ -3320,3 +3320,25 @@ button[type="submit"].raven-btn-primary {
     }
   }
 }
+
+// Search Suggest Product Price Display
+.search-suggest-product-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+}
+
+.search-suggest-product-name {
+  flex: 1;
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.search-suggest-product-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #E53935;
+  white-space: nowrap;
+  margin-left: auto;
+}
