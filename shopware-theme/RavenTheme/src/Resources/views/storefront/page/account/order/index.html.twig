@@ -128,6 +128,18 @@
                             </div>
                             <div class="item-details">
                                 <p class="item-name">{{ lineItem.label }}</p>
+                                {# Display variant info #}
+                                {% set detailVariantDisplay = lineItem.payload.variantenDisplay|default('') %}
+                                {% if not detailVariantDisplay %}
+                                    {% set detailColorPart = lineItem.payload.selectedColor|default('') %}
+                                    {% set detailSizePart = lineItem.payload.selectedSize|default('') %}
+                                    {% if detailColorPart or detailSizePart %}
+                                        {% set detailVariantDisplay = [detailColorPart, detailSizePart]|filter(v => v)|join(' / ') %}
+                                    {% endif %}
+                                {% endif %}
+                                {% if detailVariantDisplay %}
+                                    <p class="item-variant" style="font-size: 12px; color: #D97706; margin: 2px 0;">Variante: {{ detailVariantDisplay }}</p>
+                                {% endif %}
                                 <p class="item-quantity">Menge: {{ lineItem.quantity }}</p>
                                 {% if lineItem.payload.productNumber is defined %}
                                 <p class="item-sku">Art.-Nr.: {{ lineItem.payload.productNumber }}</p>
@@ -307,6 +319,18 @@
                                     </div>
                                     <div class="item-details">
                                         <p class="item-name">{{ lineItem.label }}</p>
+                                        {# Display variant info #}
+                                        {% set variantDisplay = lineItem.payload.variantenDisplay|default('') %}
+                                        {% if not variantDisplay %}
+                                            {% set colorPart = lineItem.payload.selectedColor|default('') %}
+                                            {% set sizePart = lineItem.payload.selectedSize|default('') %}
+                                            {% if colorPart or sizePart %}
+                                                {% set variantDisplay = [colorPart, sizePart]|filter(v => v)|join(' / ') %}
+                                            {% endif %}
+                                        {% endif %}
+                                        {% if variantDisplay %}
+                                            <p class="item-variant" style="font-size: 12px; color: #D97706; margin: 2px 0;">Variante: {{ variantDisplay }}</p>
+                                        {% endif %}
                                         <p class="item-quantity">Menge: {{ lineItem.quantity }}</p>
                                     </div>
                                     <div class="item-price">{{ lineItem.totalPrice|currency }}</div>
