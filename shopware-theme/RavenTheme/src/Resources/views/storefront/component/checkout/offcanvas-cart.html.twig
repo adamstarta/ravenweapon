@@ -564,8 +564,8 @@
             <div class="raven-cart-items">
                 {% for lineItem in page.cart.lineItems %}
                     <div class="raven-cart-item js-cart-item" data-line-item-id="{{ lineItem.id }}" data-product-id="{{ lineItem.referencedId }}">
-                        {# Product Image - will be updated by JS if color selection exists #}
-                        {% set itemImage = lineItem.cover.url|default('') %}
+                        {# Product Image - prefer variant image, fallback to cover #}
+                        {% set itemImage = lineItem.payload.variantImageUrl|default(lineItem.cover.url)|default('') %}
                         <div class="raven-item-image">
                             {% if itemImage %}
                                 <img src="{{ itemImage }}" alt="{{ lineItem.label }}" loading="lazy" class="raven-cart-item-img">

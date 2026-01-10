@@ -113,8 +113,9 @@
                         {% for lineItem in order.lineItems %}
                         <div class="order-detail-item">
                             <div class="item-image">
-                                {% if lineItem.cover %}
-                                    <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}">
+                                {% set accountOrderImage = lineItem.payload.variantImageUrl|default(lineItem.cover.url)|default('') %}
+                                {% if accountOrderImage %}
+                                    <img src="{{ accountOrderImage }}" alt="{{ lineItem.label }}">
                                 {% else %}
                                     <div class="no-image">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -291,8 +292,9 @@
                                 {% for lineItem in order.lineItems|slice(0, 3) %}
                                 <div class="order-item">
                                     <div class="item-image">
-                                        {% if lineItem.cover %}
-                                            <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}">
+                                        {% set orderListImage = lineItem.payload.variantImageUrl|default(lineItem.cover.url)|default('') %}
+                                        {% if orderListImage %}
+                                            <img src="{{ orderListImage }}" alt="{{ lineItem.label }}">
                                         {% else %}
                                             <div class="no-image">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -1526,8 +1526,9 @@
                 {% for lineItem in page.cart.lineItems %}
                 <div class="summary-item" data-product-id="{{ lineItem.referencedId }}">
                     <div class="summary-item-image">
-                        {% if lineItem.cover %}
-                        <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}" class="summary-item-img">
+                        {% set confirmItemImage = lineItem.payload.variantImageUrl|default(lineItem.cover.url)|default('') %}
+                        {% if confirmItemImage %}
+                        <img src="{{ confirmItemImage }}" alt="{{ lineItem.label }}" class="summary-item-img">
                         {% endif %}
                         <span class="summary-item-qty">{{ lineItem.quantity }}</span>
                     </div>

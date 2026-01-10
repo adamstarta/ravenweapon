@@ -148,8 +148,9 @@
                         {% for lineItem in order.lineItems %}
                         <div class="order-item-detail">
                             <div class="item-image">
-                                {% if lineItem.cover %}
-                                    <img src="{{ lineItem.cover.url }}" alt="{{ lineItem.label }}">
+                                {% set orderDetailImage = lineItem.payload.variantImageUrl|default(lineItem.cover.url)|default('') %}
+                                {% if orderDetailImage %}
+                                    <img src="{{ orderDetailImage }}" alt="{{ lineItem.label }}">
                                 {% else %}
                                     <div class="no-image">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

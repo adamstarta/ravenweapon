@@ -59,6 +59,15 @@ class CartLineItemSubscriber implements EventSubscriberInterface
             $payload['variantenDisplay'] = $variantenDisplay;
         }
 
+        // Get variant image URL from frontend (captured by JS on add-to-cart)
+        $variantImageUrl = $request->request->get('variantImageUrl');
+        if ($variantImageUrl && !empty($variantImageUrl) && is_string($variantImageUrl)) {
+            // Validate it's a URL
+            if (filter_var($variantImageUrl, FILTER_VALIDATE_URL)) {
+                $payload['variantImageUrl'] = $variantImageUrl;
+            }
+        }
+
         // Fallback: build variantenDisplay from color/size if not provided
         if (empty($payload['variantenDisplay'])) {
             $parts = [];

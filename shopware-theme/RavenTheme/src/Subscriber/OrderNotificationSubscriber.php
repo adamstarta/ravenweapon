@@ -177,10 +177,11 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                 $variantInfo = ' (' . implode(' / ', $parts) . ')';
             }
 
-            // Get product image URL from cover
+            // Get product image URL - prefer variant image from payload, fallback to cover
             $imageUrl = '';
-            $cover = $lineItem->getCover();
-            if ($cover) {
+            if (!empty($payload['variantImageUrl'])) {
+                $imageUrl = $payload['variantImageUrl'];
+            } elseif ($cover = $lineItem->getCover()) {
                 $imageUrl = $cover->getUrl();
             }
 

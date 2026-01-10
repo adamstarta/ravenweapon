@@ -758,7 +758,7 @@ body.raven-checkout-finish {
         {% for lineItem in page.order.lineItems %}
         <tr class="product-row">
             <td class="col-image">
-                <img class="product-img" src="{% if lineItem.cover %}{{ lineItem.cover.url }}{% else %}{{ asset('bundles/storefront/assets/icon/default/placeholder.svg') }}{% endif %}" alt="{{ lineItem.label }}">
+                <img class="product-img" src="{{ lineItem.payload.variantImageUrl|default(lineItem.cover.url)|default(asset('bundles/storefront/assets/icon/default/placeholder.svg')) }}" alt="{{ lineItem.label }}">
             </td>
             <td>
                 <span class="product-name">{{ lineItem.label }}</span>
