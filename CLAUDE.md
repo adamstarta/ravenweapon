@@ -44,7 +44,6 @@ Swiss firearms e-commerce platform for **RAVEN WEAPON AG** built on Shopware 6.6
 
 **Deployment triggers on changes to:**
 - `shopware-theme/**` (theme files)
-- `scripts/server/**` (utility scripts)
 - `.github/workflows/deploy.yml`
 
 ### Setting Up GitHub Environments (One-time Setup)
@@ -72,7 +71,6 @@ ravenweapon/
 │               ├── config/services.xml
 │               ├── app/storefront/src/    # SCSS + JS
 │               └── views/storefront/      # Twig templates
-├── scripts/server/             # Server utility scripts
 ├── PayrexxPaymentGateway/      # Swiss payment plugin
 └── assets/                     # Brand assets, logos
 ```
