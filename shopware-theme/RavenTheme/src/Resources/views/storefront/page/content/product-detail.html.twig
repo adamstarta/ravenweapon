@@ -1708,9 +1708,7 @@
         });
     }
 
-    function submitReview(event) {
-        event.preventDefault();
-
+    function submitReview() {
         const form = document.getElementById('review-form');
         const submitBtn = document.getElementById('review-submit-btn');
         const rating = document.getElementById('review-rating-input').value;
@@ -1720,24 +1718,66 @@
         // Validation
         if (!rating || rating < 1) {
             alert('Bitte geben Sie eine Bewertung ab (1-5 Sterne)');
-            return false;
+            return;
         }
         if (!title || title.length < 5) {
             alert('Bitte geben Sie einen Titel ein (mindestens 5 Zeichen)');
-            return false;
+            return;
         }
         if (!content || content.length < 40) {
             alert('Bitte schreiben Sie eine Bewertung (mindestens 40 Zeichen)');
-            return false;
+            return;
         }
 
         // Disable button and show loading
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:0.5rem;"><svg class="animate-spin" style="width:18px;height:18px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4" stroke-dashoffset="10"/></svg> Wird gesendet...</span>';
 
-        // Submit the form normally (Shopware 6.5+ uses SameSite cookie strategy, no explicit CSRF needed)
-        form.submit();
-        return false;
+        // Submit via AJAX to prevent page redirect
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => {
+            // Close modal and show success
+            closeReviewModal();
+
+            // Show success toast
+            if (window.ravenToast) {
+                window.ravenToast.show('Vielen Dank für Ihre Bewertung!', 'success');
+            } else {
+                // Fallback toast if plugin not available
+                const toast = document.createElement('div');
+                toast.className = 'review-success-toast';
+                toast.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Vielen Dank für Ihre Bewertung!';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.classList.add('show'), 10);
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 300);
+                }, 4000);
+            }
+
+            // Reset form
+            form.reset();
+            document.querySelectorAll('.review-star-btn svg').forEach(svg => svg.classList.remove('filled'));
+
+            // Reload page after short delay to show new review
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        })
+        .catch(error => {
+            console.error('Review submission error:', error);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Bewertung absenden';
+            alert('Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
+        });
     }
 
     // Close modal on escape key
@@ -1764,7 +1804,7 @@
 
         {% if context.customer %}
         {# User is logged in - show review form #}
-        <form id="review-form" onsubmit="return submitReview(event)" action="{{ path('frontend.detail.review.save', { productId: page.product.id }) }}" method="post">
+        <form id="review-form" action="{{ path('frontend.detail.review.save', { productId: page.product.id }) }}" method="post">
             <input type="hidden" id="review-product-id" name="productId" value="{{ page.product.id }}">
             <input type="hidden" id="review-rating-input" name="points" value="0">
 
@@ -1805,8 +1845,8 @@
                 <textarea id="review-content" name="content" class="review-textarea" rows="4" placeholder="Teilen Sie Ihre Erfahrung mit diesem Produkt... (min. 40 Zeichen)" required minlength="40" maxlength="2000"></textarea>
             </div>
 
-            {# Submit Button #}
-            <button type="submit" id="review-submit-btn" class="review-submit-btn">
+            {# Submit Button - type="button" prevents form submission, onclick handles via AJAX #}
+            <button type="button" id="review-submit-btn" class="review-submit-btn" onclick="submitReview()">
                 Bewertung absenden
             </button>
         </form>
@@ -2016,6 +2056,36 @@
         to { transform: rotate(360deg); }
     }
     .animate-spin { animation: spin 1s linear infinite; }
+
+    /* Success toast for review submission */
+    .review-success-toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 8px 32px rgba(5, 150, 105, 0.4);
+        z-index: 10001;
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .review-success-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    .review-success-toast svg {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+    }
 </style>
 
 {# Variant Image Capture - captures displayed image on add-to-cart #}
