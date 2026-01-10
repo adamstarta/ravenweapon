@@ -117,10 +117,16 @@ class BankTransferEmailSubscriber implements EventSubscriberInterface
 
         $email = (new Email())
             ->from(self::FROM_NAME . ' <' . self::FROM_EMAIL . '>')
+            ->replyTo(self::FROM_EMAIL)
             ->to($customerEmail)
             ->subject($subject)
             ->html($htmlContent)
             ->text($textContent);
+
+        // Add headers to improve email deliverability
+        $headers = $email->getHeaders();
+        $headers->addTextHeader('X-Mailer', 'Raven Weapon Shop');
+        $headers->addTextHeader('List-Unsubscribe', '<mailto:info@ravenweapon.ch?subject=unsubscribe>');
 
         // Use DSN directly from environment to ensure correct SMTP config
         $dsn = $_ENV['MAILER_DSN'] ?? $_SERVER['MAILER_DSN'] ?? null;
@@ -153,7 +159,7 @@ class BankTransferEmailSubscriber implements EventSubscriberInterface
         <!-- Header -->
         <div style="background: linear-gradient(135deg, #111827 0%, #1f2937 100%); padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
             <h1 style="margin: 0; color: #fde047; font-family: 'Chakra Petch', sans-serif; font-size: 22px; font-weight: 700;">
-                ZAHLUNGSINFORMATIONEN
+                Zahlungsinformationen
             </h1>
             <p style="margin: 10px 0 0 0; color: #9ca3af; font-size: 14px;">
                 Bestellung #{$orderNumber}
@@ -249,19 +255,19 @@ HTML;
         $bic = self::BANK_BIC;
 
         return <<<TEXT
-ZAHLUNGSINFORMATIONEN - BESTELLUNG #{$orderNumber}
+Zahlungsinformationen - Bestellung #{$orderNumber}
 
-=====================================
+-------------------------------------
 
 {$greeting},
 
 vielen Dank für Ihre Bestellung bei Raven Weapon. Um Ihre Bestellung abzuschliessen, überweisen Sie bitte den folgenden Betrag auf unser Bankkonto:
 
-ZU ZAHLENDER BETRAG: {$totalAmount}
+Zu zahlender Betrag: {$totalAmount}
 
-=====================================
-BANKVERBINDUNG
-=====================================
+-------------------------------------
+Bankverbindung
+-------------------------------------
 
 Kontoinhaber:    {$accountHolder}
 Bank:            {$bankName}
@@ -269,9 +275,9 @@ IBAN:            {$iban}
 BIC/SWIFT:       {$bic}
 Verwendungszweck: {$orderNumber}
 
-=====================================
+-------------------------------------
 
-WICHTIG: Bitte geben Sie unbedingt die Bestellnummer {$orderNumber} als Verwendungszweck an, damit wir Ihre Zahlung zuordnen können.
+Wichtig: Bitte geben Sie unbedingt die Bestellnummer {$orderNumber} als Verwendungszweck an, damit wir Ihre Zahlung zuordnen können.
 
 Nach Zahlungseingang wird Ihre Bestellung umgehend bearbeitet und versendet. Bei Fragen stehen wir Ihnen gerne zur Verfügung.
 

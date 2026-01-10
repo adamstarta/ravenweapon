@@ -25,7 +25,7 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         'alamajacintg04@gmail.com',
     ];
     private const FROM_EMAIL = 'info@ravenweapon.ch';
-    private const FROM_NAME = 'Raven Weapon Shop';
+    private const FROM_NAME = 'Raven Weapon AG';
 
     private MailerInterface $mailer;
     private LoggerInterface $logger;
@@ -124,10 +124,15 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
 
         $email = (new Email())
             ->from(self::FROM_NAME . ' <' . self::FROM_EMAIL . '>')
+            ->replyTo(self::FROM_EMAIL)
             ->to(...self::ADMIN_EMAILS)
             ->subject($subject)
             ->html($htmlContent)
             ->text($textContent);
+
+        // Add headers to improve email deliverability
+        $headers = $email->getHeaders();
+        $headers->addTextHeader('X-Mailer', 'Raven Weapon Shop');
 
         // Use DSN directly from environment to ensure correct SMTP config
         $dsn = $_ENV['MAILER_DSN'] ?? $_SERVER['MAILER_DSN'] ?? null;
@@ -246,7 +251,7 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         <!-- Header -->
         <div style="background: linear-gradient(135deg, #111827 0%, #1f2937 100%); padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
             <h1 style="margin: 0; color: #fde047; font-family: 'Chakra Petch', sans-serif; font-size: 24px; font-weight: 700;">
-                NEUE BESTELLUNG
+                Neue Bestellung
             </h1>
             <p style="margin: 10px 0 0 0; color: #9ca3af; font-size: 14px;">
                 Bestellung #{$orderNumber}
@@ -391,41 +396,41 @@ HTML;
         }
 
         return <<<TEXT
-NEUE BESTELLUNG - RAVEN WEAPON
+Neue Bestellung - Raven Weapon AG
 
-=====================================
-BESTELLINFORMATIONEN
-=====================================
+-------------------------------------
+Bestellinformationen
+-------------------------------------
 Bestellnummer: #{$orderNumber}
 Datum: {$orderDate}
 Gesamtbetrag: {$totalAmount}
 
-=====================================
-KUNDENINFORMATIONEN
-=====================================
+-------------------------------------
+Kundeninformationen
+-------------------------------------
 Name: {$customerName}
 E-Mail: {$customerEmail}
 
-=====================================
-LIEFERADRESSE
-=====================================
+-------------------------------------
+Lieferadresse
+-------------------------------------
 {$shippingInfo}
 
 Versandart: {$shippingMethodName}
 
-=====================================
-BESTELLTE ARTIKEL
-=====================================
+-------------------------------------
+Bestellte Artikel
+-------------------------------------
 {$itemsText}
 
 Zwischensumme: {$subtotal}
 Versandkosten: {$shippingCost}
 -------------------------------------
-GESAMTBETRAG: {$totalAmount}
+Gesamtbetrag: {$totalAmount}
 
-=====================================
+-------------------------------------
 
-Diese E-Mail wurde automatisch von Raven Weapon Shop gesendet.
+Diese E-Mail wurde automatisch von Raven Weapon AG gesendet.
 Admin-Panel: https://shop.ravenweapon.ch/admin
 
 TEXT;
