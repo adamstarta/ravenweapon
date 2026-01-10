@@ -113,7 +113,20 @@
                         {% for lineItem in order.lineItems %}
                         <div class="order-detail-item">
                             <div class="item-image">
-                                {% set accountOrderImage = lineItem.payload.variantImageUrl|default(lineItem.cover.url)|default('') %}
+                                {# Try to get variant image from payload, fallback to cover #}
+                                {% set detailVariantImg = '' %}
+                                {% if lineItem.payload is iterable and lineItem.payload.variantImageUrl is defined %}
+                                    {% set detailVariantImg = lineItem.payload.variantImageUrl %}
+                                {% endif %}
+                                {% set detailCoverImg = '' %}
+                                {% if lineItem.cover is defined and lineItem.cover %}
+                                    {% if lineItem.cover.url is defined %}
+                                        {% set detailCoverImg = lineItem.cover.url %}
+                                    {% elseif lineItem.cover is iterable and lineItem.cover.media is defined and lineItem.cover.media.url is defined %}
+                                        {% set detailCoverImg = lineItem.cover.media.url %}
+                                    {% endif %}
+                                {% endif %}
+                                {% set accountOrderImage = detailVariantImg|default(detailCoverImg)|default('') %}
                                 {% if accountOrderImage %}
                                     <img src="{{ accountOrderImage }}" alt="{{ lineItem.label }}">
                                 {% else %}
@@ -128,22 +141,42 @@
                             </div>
                             <div class="item-details">
                                 <p class="item-name">{{ lineItem.label }}</p>
-                                {# Display variant info #}
-                                {% set detailVariantDisplay = lineItem.payload.variantenDisplay|default('') %}
-                                {% if not detailVariantDisplay %}
-                                    {% set detailColorPart = lineItem.payload.selectedColor|default('') %}
-                                    {% set detailSizePart = lineItem.payload.selectedSize|default('') %}
-                                    {% if detailColorPart or detailSizePart %}
-                                        {% set detailVariantDisplay = [detailColorPart, detailSizePart]|filter(v => v)|join(' / ') %}
+                                {# Display variant info from payload #}
+                                {% set detailVariantDisplay = '' %}
+                                {% if lineItem.payload is iterable %}
+                                    {% if lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
+                                        {% set detailVariantDisplay = lineItem.payload.variantenDisplay %}
+                                    {% else %}
+                                        {% set detailColorPart = lineItem.payload.selectedColor|default('') %}
+                                        {% set detailSizePart = lineItem.payload.selectedSize|default('') %}
+                                        {% if detailColorPart or detailSizePart %}
+                                            {% set detailParts = [] %}
+                                            {% if detailColorPart %}{% set detailParts = detailParts|merge([detailColorPart]) %}{% endif %}
+                                            {% if detailSizePart %}{% set detailParts = detailParts|merge([detailSizePart]) %}{% endif %}
+                                            {% set detailVariantDisplay = detailParts|join(' / ') %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                                {# Also try Shopware's built-in options if no custom variant #}
+                                {% if not detailVariantDisplay and lineItem.payload is iterable and lineItem.payload.options is defined %}
+                                    {% set detailOptionParts = [] %}
+                                    {% for option in lineItem.payload.options %}
+                                        {% if option.option is defined %}
+                                            {% set detailOptionParts = detailOptionParts|merge([option.option]) %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if detailOptionParts|length > 0 %}
+                                        {% set detailVariantDisplay = detailOptionParts|join(' / ') %}
                                     {% endif %}
                                 {% endif %}
                                 {% if detailVariantDisplay %}
                                     <p class="item-variant" style="font-size: 12px; color: #D97706; margin: 2px 0;">Variante: {{ detailVariantDisplay }}</p>
                                 {% endif %}
-                                <p class="item-quantity">Menge: {{ lineItem.quantity }}</p>
-                                {% if lineItem.payload.productNumber is defined %}
-                                <p class="item-sku">Art.-Nr.: {{ lineItem.payload.productNumber }}</p>
+                                {# Show article number #}
+                                {% if lineItem.payload is iterable and lineItem.payload.productNumber is defined and lineItem.payload.productNumber %}
+                                    <p class="item-sku">Art.-Nr.: {{ lineItem.payload.productNumber }}</p>
                                 {% endif %}
+                                <p class="item-quantity">Menge: {{ lineItem.quantity }}</p>
                             </div>
                             <div class="item-prices">
                                 <span class="item-unit-price">{{ lineItem.unitPrice|currency }}</span>
@@ -304,7 +337,20 @@
                                 {% for lineItem in order.lineItems|slice(0, 3) %}
                                 <div class="order-item">
                                     <div class="item-image">
-                                        {% set orderListImage = lineItem.payload.variantImageUrl|default(lineItem.cover.url)|default('') %}
+                                        {# Try to get variant image from payload, fallback to cover #}
+                                        {% set variantImg = '' %}
+                                        {% if lineItem.payload is iterable and lineItem.payload.variantImageUrl is defined %}
+                                            {% set variantImg = lineItem.payload.variantImageUrl %}
+                                        {% endif %}
+                                        {% set coverImg = '' %}
+                                        {% if lineItem.cover is defined and lineItem.cover %}
+                                            {% if lineItem.cover.url is defined %}
+                                                {% set coverImg = lineItem.cover.url %}
+                                            {% elseif lineItem.cover is iterable and lineItem.cover.media is defined and lineItem.cover.media.url is defined %}
+                                                {% set coverImg = lineItem.cover.media.url %}
+                                            {% endif %}
+                                        {% endif %}
+                                        {% set orderListImage = variantImg|default(coverImg)|default('') %}
                                         {% if orderListImage %}
                                             <img src="{{ orderListImage }}" alt="{{ lineItem.label }}">
                                         {% else %}
@@ -319,17 +365,40 @@
                                     </div>
                                     <div class="item-details">
                                         <p class="item-name">{{ lineItem.label }}</p>
-                                        {# Display variant info #}
-                                        {% set variantDisplay = lineItem.payload.variantenDisplay|default('') %}
-                                        {% if not variantDisplay %}
-                                            {% set colorPart = lineItem.payload.selectedColor|default('') %}
-                                            {% set sizePart = lineItem.payload.selectedSize|default('') %}
-                                            {% if colorPart or sizePart %}
-                                                {% set variantDisplay = [colorPart, sizePart]|filter(v => v)|join(' / ') %}
+                                        {# Display variant info from payload #}
+                                        {% set variantDisplay = '' %}
+                                        {% if lineItem.payload is iterable %}
+                                            {% if lineItem.payload.variantenDisplay is defined and lineItem.payload.variantenDisplay %}
+                                                {% set variantDisplay = lineItem.payload.variantenDisplay %}
+                                            {% else %}
+                                                {% set colorPart = lineItem.payload.selectedColor|default('') %}
+                                                {% set sizePart = lineItem.payload.selectedSize|default('') %}
+                                                {% if colorPart or sizePart %}
+                                                    {% set variantParts = [] %}
+                                                    {% if colorPart %}{% set variantParts = variantParts|merge([colorPart]) %}{% endif %}
+                                                    {% if sizePart %}{% set variantParts = variantParts|merge([sizePart]) %}{% endif %}
+                                                    {% set variantDisplay = variantParts|join(' / ') %}
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                        {# Also try Shopware's built-in options if no custom variant #}
+                                        {% if not variantDisplay and lineItem.payload is iterable and lineItem.payload.options is defined %}
+                                            {% set optionParts = [] %}
+                                            {% for option in lineItem.payload.options %}
+                                                {% if option.option is defined %}
+                                                    {% set optionParts = optionParts|merge([option.option]) %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if optionParts|length > 0 %}
+                                                {% set variantDisplay = optionParts|join(' / ') %}
                                             {% endif %}
                                         {% endif %}
                                         {% if variantDisplay %}
                                             <p class="item-variant" style="font-size: 12px; color: #D97706; margin: 2px 0;">Variante: {{ variantDisplay }}</p>
+                                        {% endif %}
+                                        {# Show article number #}
+                                        {% if lineItem.payload is iterable and lineItem.payload.productNumber is defined and lineItem.payload.productNumber %}
+                                            <p class="item-sku" style="font-size: 11px; color: #9ca3af; margin: 2px 0;">Art.-Nr.: {{ lineItem.payload.productNumber }}</p>
                                         {% endif %}
                                         <p class="item-quantity">Menge: {{ lineItem.quantity }}</p>
                                     </div>
