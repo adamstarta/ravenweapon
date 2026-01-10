@@ -1634,7 +1634,7 @@ function initShippingMethodClick() {
     });
 
     // Listen for radio button changes
-    document.querySelectorAll('.raven-shipping-radio').forEach(radio => {
+    document.querySelectorAll('.shipping-method-input').forEach(radio => {
         radio.addEventListener('change', function() {
             if (this.checked) {
                 // Update visual state immediately
@@ -1651,7 +1651,7 @@ function initShippingMethodClick() {
                 if (priceEl) priceEl.classList.add('is-active-price');
 
                 // Submit the shipping form to update cart
-                const shippingForm = document.querySelector('#confirmShippingForm');
+                const shippingForm = document.querySelector('#changeShippingForm');
                 if (shippingForm) {
                     // Show loading state
                     showShippingUpdateLoader();

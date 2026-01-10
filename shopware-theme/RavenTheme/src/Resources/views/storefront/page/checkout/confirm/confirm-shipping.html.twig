@@ -4,9 +4,7 @@
 <form id="changeShippingForm"
       class="shipping-form"
       action="{{ path('frontend.checkout.configure') }}"
-      method="post"
-      data-form-auto-submit="true"
-      data-form-auto-submit-options='{"changeTriggerSelectors": [".shipping-method-input"]}'>
+      method="post">
 
     {% if page.shippingMethods.count > 0 %}
         <div class="raven-shipping-methods">
@@ -50,7 +48,7 @@
                             {% if shippingPrice is not null %}
                                 {{ shippingPrice|currency }}
                             {% else %}
-                                <span class="price-on-select">Auswählen</span>
+                                —
                             {% endif %}
                         </div>
                     </label>
