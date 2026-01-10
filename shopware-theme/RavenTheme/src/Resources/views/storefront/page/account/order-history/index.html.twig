@@ -82,7 +82,24 @@
                 <h1 class="page-title">Bestellung #{{ order.orderNumber }}</h1>
                 <div class="order-meta-header">
                     <span class="order-date-text">{{ order.orderDateTime|date('d.m.Y H:i') }}</span>
-                    <span class="status-badge">{{ order.stateMachineState.translated.name|default('Unbekannt') }}</span>
+                </div>
+            </div>
+
+            {# Status Overview #}
+            <div class="status-overview">
+                <div class="status-item">
+                    <span class="status-label">Bestellstatus</span>
+                    <span class="status-badge status-order">{{ order.stateMachineState.translated.name|default('Unbekannt') }}</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Zahlungsstatus</span>
+                    {% set paymentState = order.transactions.first.stateMachineState.translated.name|default('Unbekannt') %}
+                    <span class="status-badge status-payment {% if paymentState in ['Bezahlt', 'Paid', 'Authorized'] %}status-success{% elseif paymentState in ['Offen', 'Open', 'Pending'] %}status-pending{% elseif paymentState in ['Storniert', 'Cancelled', 'Failed'] %}status-error{% endif %}">{{ paymentState }}</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Lieferstatus</span>
+                    {% set deliveryState = order.deliveries.first.stateMachineState.translated.name|default('Unbekannt') %}
+                    <span class="status-badge status-delivery {% if deliveryState in ['Versandt', 'Shipped', 'Geliefert', 'Delivered'] %}status-success{% elseif deliveryState in ['Offen', 'Open'] %}status-pending{% elseif deliveryState in ['Storniert', 'Cancelled', 'Returned'] %}status-error{% endif %}">{{ deliveryState }}</span>
                 </div>
             </div>
 
@@ -509,6 +526,38 @@
     color: var(--raven-gold-dark);
 }
 
+/* ============ STATUS OVERVIEW ============ */
+.status-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 640px) {
+    .status-overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+.status-item {
+    background: var(--raven-white);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.status-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--raven-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
 /* ============ STATUS BADGE ============ */
 .status-badge {
     font-size: 0.6875rem;
@@ -518,6 +567,22 @@
     text-transform: uppercase;
     background: rgba(59, 130, 246, 0.15);
     color: #2563EB;
+    width: fit-content;
+}
+
+.status-badge.status-success {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+}
+
+.status-badge.status-pending {
+    background: rgba(251, 191, 36, 0.15);
+    color: #d97706;
+}
+
+.status-badge.status-error {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
 }
 
 /* ============ ORDERS LIST ============ */
