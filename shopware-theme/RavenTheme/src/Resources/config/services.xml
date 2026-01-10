@@ -95,6 +95,12 @@
             <argument type="service" id="shipping_method.repository"/>
             <tag name="kernel.event_subscriber"/>
         </service>
+
+        <!-- Review Auto-Approve Subscriber - auto-approves 4-5 star reviews -->
+        <service id="RavenTheme\Subscriber\ReviewAutoApproveSubscriber">
+            <argument type="service" id="product_review.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
     </services>
 
 </container>
