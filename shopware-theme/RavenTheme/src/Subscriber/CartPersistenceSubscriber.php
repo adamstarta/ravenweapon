@@ -47,24 +47,37 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
         $context = $event->getSalesChannelContext();
         $customer = $event->getCustomer();
 
+        // Debug logging
+        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - onCustomerLogout called\n", FILE_APPEND);
+
         if (!$customer) {
+            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - No customer, returning\n", FILE_APPEND);
             return;
         }
 
+        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Customer ID: " . $customer->getId() . "\n", FILE_APPEND);
+
         try {
             $cart = $this->cartService->getCart($context->getToken(), $context);
+            $itemCount = $cart->getLineItems()->count();
 
-            if ($cart->getLineItems()->count() === 0) {
+            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart items: " . $itemCount . "\n", FILE_APPEND);
+
+            if ($itemCount === 0) {
+                file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart empty, returning\n", FILE_APPEND);
                 return;
             }
 
             $this->saveCustomerCart($customer->getId(), $cart);
+
+            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart saved successfully!\n", FILE_APPEND);
 
             $this->logger->info('Cart saved for customer on logout', [
                 'customerId' => $customer->getId(),
                 'itemCount' => $cart->getLineItems()->count(),
             ]);
         } catch (\Exception $e) {
+            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Error: " . $e->getMessage() . "\n", FILE_APPEND);
             $this->logger->error('Failed to save cart on logout', [
                 'customerId' => $customer->getId(),
                 'error' => $e->getMessage(),
