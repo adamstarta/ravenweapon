@@ -65,48 +65,31 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
             return;
         }
 
-        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - onKernelController: logout route detected, priority -100\n", FILE_APPEND);
-
-        // Debug: list all request attributes
-        $attrKeys = array_keys($request->attributes->all());
-        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Request attributes: " . implode(', ', $attrKeys) . "\n", FILE_APPEND);
-
         // Get the sales channel context from the request
         $context = $request->attributes->get('sw-sales-channel-context');
         if (!$context instanceof SalesChannelContext) {
-            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - No SalesChannelContext found in sw-sales-channel-context\n", FILE_APPEND);
             return;
         }
 
         $customer = $context->getCustomer();
         if (!$customer) {
-            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - No customer in context\n", FILE_APPEND);
             return;
         }
 
-        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Customer ID: " . $customer->getId() . "\n", FILE_APPEND);
-
         try {
             $cart = $this->cartService->getCart($context->getToken(), $context);
-            $itemCount = $cart->getLineItems()->count();
 
-            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart items: " . $itemCount . "\n", FILE_APPEND);
-
-            if ($itemCount === 0) {
-                file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart empty, nothing to save\n", FILE_APPEND);
+            if ($cart->getLineItems()->count() === 0) {
                 return;
             }
 
             $this->saveCustomerCart($customer->getId(), $cart);
 
-            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart saved successfully! Items: " . $itemCount . "\n", FILE_APPEND);
-
             $this->logger->info('Cart saved for customer before logout', [
                 'customerId' => $customer->getId(),
-                'itemCount' => $itemCount,
+                'itemCount' => $cart->getLineItems()->count(),
             ]);
         } catch (\Exception $e) {
-            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Error: " . $e->getMessage() . "\n", FILE_APPEND);
             $this->logger->error('Failed to save cart before logout', [
                 'customerId' => $customer->getId(),
                 'error' => $e->getMessage(),
