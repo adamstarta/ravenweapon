@@ -1,7 +1,11 @@
 {% sw_extends '@Storefront/storefront/page/account/register/index.html.twig' %}
 
 {# German page title #}
-{% block base_head_title %}Registrieren | Raven Weapon AG{% endblock %}
+{% set customPageTitle = 'Registrieren | Raven Weapon AG' %}
+
+{% block base_head %}
+    {% sw_include '@Storefront/storefront/layout/meta.html.twig' with { customPageTitle: customPageTitle } %}
+{% endblock %}
 
 {# Hide header/navbar on auth pages #}
 {% block base_header %}{% endblock %}

@@ -1,7 +1,7 @@
 {% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
 
 {% block layout_head_title %}
-    <title itemprop="name">{% if page.metaInformation.metaTitle %}{{ page.metaInformation.metaTitle }}{% else %}Raven Weapon AG | Waffen, Munition & Ausrüstung | Schweiz{% endif %}</title>
+    <title itemprop="name">{% if customPageTitle is defined and customPageTitle %}{{ customPageTitle }}{% elseif page.metaInformation.metaTitle %}{{ page.metaInformation.metaTitle }}{% else %}Raven Weapon AG | Waffen, Munition & Ausrüstung | Schweiz{% endif %}</title>
 {% endblock %}
 
 {% block layout_head_favicon %}

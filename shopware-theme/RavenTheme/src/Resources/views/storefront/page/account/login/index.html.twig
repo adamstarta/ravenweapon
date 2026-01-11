@@ -2,7 +2,12 @@
 
 {# Custom login page using Shopware's built-in login component #}
 
-{% block base_head_title %}Anmelden | Raven Weapon AG{% endblock %}
+{# Set custom page title for login page #}
+{% set customPageTitle = 'Anmelden | Raven Weapon AG' %}
+
+{% block base_head %}
+    {% sw_include '@Storefront/storefront/layout/meta.html.twig' with { customPageTitle: customPageTitle } %}
+{% endblock %}
 
 {% block base_header %}{% endblock %}
 {% block base_navigation %}{% endblock %}
