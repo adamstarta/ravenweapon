@@ -1005,8 +1005,13 @@
 </style>
 
 <script>
-// Fix page title for register page
+// Fix page title based on current page (login vs register)
+{% set isRegisterPage = app.request.attributes.get('_route') == 'frontend.account.register.page' %}
+{% if isRegisterPage %}
 document.title = 'Registrieren | Raven Weapon AG';
+{% else %}
+document.title = 'Anmelden | Raven Weapon AG';
+{% endif %}
 
 // Raven Toast - Inline for login/register pages
 (function() {
