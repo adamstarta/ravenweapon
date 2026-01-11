@@ -1,0 +1,830 @@
+{
+  "scrapedAt": "2026-01-11",
+  "source": "https://app.makaris.ch/u/products",
+  "totalProducts": 137,
+  "note": "Raven Swiss products excluded as requested",
+  "products": [
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00102",
+      "productName": "VENGEANCE 1-6X24 SFP RAR MOA",
+      "netPrice": "304.35",
+      "grossPrice": "329.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00077",
+      "productName": "VENGEANCE 3-12X40 ZEROPLEX",
+      "netPrice": "206.66",
+      "grossPrice": "223.40"
+    },
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00076",
+      "productName": "VENGEANCE 6-24X50 FFP RMG MOA",
+      "netPrice": "473.64",
+      "grossPrice": "512.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00075",
+      "productName": "VENGEANCE 6-24X50 FFP RMG MRAD",
+      "netPrice": "452.36",
+      "grossPrice": "489.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00074",
+      "productName": "VENGEANCE 4-20X50 PHR II",
+      "netPrice": "343.20",
+      "grossPrice": "371.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00073",
+      "productName": "VENGEANCE 4-20X50 R3",
+      "netPrice": "385.66",
+      "grossPrice": "416.90"
+    },
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00072",
+      "productName": "VENGEANCE 4-20X50 PHR II IR",
+      "netPrice": "406.01",
+      "grossPrice": "438.90"
+    },
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00071",
+      "productName": "VENGEANCE 4-20X50 R3 ILLUM",
+      "netPrice": "356.06",
+      "grossPrice": "384.90"
+    },
+    {
+      "articleNumber": "ZRT-ZF-VEN-000-XX-00066",
+      "productName": "VENGEANCE 5-25X56 RMG FFP MRAD ZERO STOP",
+      "netPrice": "530.99",
+      "grossPrice": "574.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-TRD-000-XX-00118",
+      "productName": "TRACE ED 1-10X24 FFP 34MM MRAD LPVO",
+      "netPrice": "831.64",
+      "grossPrice": "899.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-TRC-000-XX-00111",
+      "productName": "TRACE 4.5-27X50 R3 MOA",
+      "netPrice": "554.12",
+      "grossPrice": "599.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-TRC-000-XX-00110",
+      "productName": "TRACE 4.5-27X50 RMG FFP",
+      "netPrice": "739.13",
+      "grossPrice": "799.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-TRC-000-XX-00109",
+      "productName": "TRACE 4.5-27X50 RMG FFP MOA",
+      "netPrice": "739.13",
+      "grossPrice": "799.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-TRA-000-XX-00081",
+      "productName": "TRACE ADVANCED 4-24X50 FFP RMG IR 0.1 MRAD JAPAN",
+      "netPrice": "1526.36",
+      "grossPrice": "1650.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-TRA-000-XX-00080",
+      "productName": "TRACE ADVANCED 4-24X50 FFP TREMOR 3 MRAD JAPAN",
+      "netPrice": "1646.62",
+      "grossPrice": "1780.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-TRA-000-XX-00079",
+      "productName": "TRACE ADVANCED 5-30X56 RMG2 ED",
+      "netPrice": "1849.21",
+      "grossPrice": "1999.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-TRA-000-XX-00078",
+      "productName": "TRACE ADVANCED 5-30X56 T3 ED TREMOR 3",
+      "netPrice": "1933.77",
+      "grossPrice": "2090.40"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THR-000-XX-00108",
+      "productName": "THRIVE 4-16X50 MILDOT",
+      "netPrice": "351.99",
+      "grossPrice": "380.50"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THR-000-XX-00107",
+      "productName": "THRIVE 4-16X50 ZEROPLEX",
+      "netPrice": "333.03",
+      "grossPrice": "360.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THR-000-XX-00106",
+      "productName": "THRIVE 4-16X50 PHR II",
+      "netPrice": "347.18",
+      "grossPrice": "375.30"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THR-000-XX-00105",
+      "productName": "THRIVE 3-12X44 ZEROPLEX",
+      "netPrice": "236.82",
+      "grossPrice": "256.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THR-000-XX-00104",
+      "productName": "THRIVE 3-9X40 PHR 4",
+      "netPrice": "205.83",
+      "grossPrice": "222.50"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THR-000-XX-00103",
+      "productName": "THRIVE 3-9X40 ZEROPLEX",
+      "netPrice": "156.34",
+      "grossPrice": "169.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THD-000-XX-00117",
+      "productName": "THRIVE HD 2.5-15X50 PHR II ILLUMINATED",
+      "netPrice": "473.64",
+      "grossPrice": "512.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THD-000-XX-00116",
+      "productName": "THRIVE HD 2.5-15X50 PHR II",
+      "netPrice": "423.31",
+      "grossPrice": "457.60"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THD-000-XX-00115",
+      "productName": "THRIVE HD 3-18X56 PHR II IR ILLUMINATED",
+      "netPrice": "633.67",
+      "grossPrice": "685.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THD-000-XX-00114",
+      "productName": "THRIVE HD FFP 6-24X50 IR LR HUNTER MRAD",
+      "netPrice": "670.12",
+      "grossPrice": "724.40"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THD-000-XX-00113",
+      "productName": "THRIVE HD 1-8X24 G4 IR",
+      "netPrice": "369.10",
+      "grossPrice": "399.00"
+    },
+    {
+      "articleNumber": "ZRT-ZF-THD-000-XX-00112",
+      "productName": "THRIVE HD 1-8X24 PHR 4 IR",
+      "netPrice": "369.10",
+      "grossPrice": "399.00"
+    },
+    {
+      "articleNumber": "ZRT-SSC-TRA-000-XX-00094",
+      "productName": "20-60X80 FFP OSR MRAD SPOTTING SCOPE",
+      "netPrice": "1756.71",
+      "grossPrice": "1899.00"
+    },
+    {
+      "articleNumber": "ZRT-SSC-THR-000-XX-00095",
+      "productName": "20-60X85 TING SCOPE",
+      "netPrice": "406.11",
+      "grossPrice": "439.00"
+    },
+    {
+      "articleNumber": "ZRT-RV-TRC-000-XX-00093",
+      "productName": "RAS 1X25 DIGITAL RED DOT 2 MOA",
+      "netPrice": "159.11",
+      "grossPrice": "172.00"
+    },
+    {
+      "articleNumber": "ZRT-RV-TRC-000-XX-00091",
+      "productName": "TRACE HALO ASPHERICAL ENCLOSED 3 MOA Red Dot",
+      "netPrice": "239.13",
+      "grossPrice": "258.50"
+    },
+    {
+      "articleNumber": "ZRT-RV-TRC-000-FD-00092",
+      "productName": "TRACE ASPHERICAL ENCLOSED RED DOT HALO FDE",
+      "netPrice": "239.13",
+      "grossPrice": "258.50"
+    },
+    {
+      "articleNumber": "ZRT-RV-THR-000-XX-00101",
+      "productName": "THRIVE RED DOT 3 MOA",
+      "netPrice": "97.13",
+      "grossPrice": "105.00"
+    },
+    {
+      "articleNumber": "ZRT-RV-THD-000-XX-00100",
+      "productName": "THRIVE HD REFLEX 3 MOA HIGH",
+      "netPrice": "184.09",
+      "grossPrice": "199.00"
+    },
+    {
+      "articleNumber": "ZRT-RV-THD-000-XX-00099",
+      "productName": "THRIVE HD REFLEX GREEN DOT 3 MOA HIGH MOUNT",
+      "netPrice": "207.40",
+      "grossPrice": "224.20"
+    },
+    {
+      "articleNumber": "ZRT-RV-THD-000-XX-00098",
+      "productName": "THRIVE HD MULTI RETICLE HIGH REFLEX",
+      "netPrice": "207.40",
+      "grossPrice": "224.20"
+    },
+    {
+      "articleNumber": "ZRT-RV-THD-000-XX-00097",
+      "productName": "MICRO PRISM 1X20",
+      "netPrice": "275.67",
+      "grossPrice": "298.00"
+    },
+    {
+      "articleNumber": "ZRT-RV-THD-000-XX-00096",
+      "productName": "THRIVE HD 1-4X24 VARIABLE PRISM ILLUM RAPR RETICLE",
+      "netPrice": "417.48",
+      "grossPrice": "451.30"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SW-00048",
+      "productName": "PRS GEN3 Precision-Adjustable Stock",
+      "netPrice": "319.06",
+      "grossPrice": "344.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SW-00044",
+      "productName": "MOE SL-S Carbine Stock - Mil-Spec",
+      "netPrice": "110.92",
+      "grossPrice": "119.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SW-00040",
+      "productName": "MOE SL Carbine Stock - Mil-Spec",
+      "netPrice": "80.39",
+      "grossPrice": "86.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SW-00036",
+      "productName": "MOE Carbine Stock - Mil-Spec",
+      "netPrice": "55.41",
+      "grossPrice": "59.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SW-00032",
+      "productName": "MOE Fixed Carbine Stock - Mil-Spec",
+      "netPrice": "48.94",
+      "grossPrice": "52.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SG-00050",
+      "productName": "PRS GEN3 Precision-Adjustable Stock",
+      "netPrice": "319.06",
+      "grossPrice": "344.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SG-00046",
+      "productName": "MOE SL-S Carbine Stock - Mil-Spec",
+      "netPrice": "110.92",
+      "grossPrice": "119.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SG-00042",
+      "productName": "MOE SL Carbine Stock - Mil-Spec",
+      "netPrice": "80.39",
+      "grossPrice": "86.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SG-00038",
+      "productName": "MOE Carbine Stock - Mil-Spec",
+      "netPrice": "55.41",
+      "grossPrice": "59.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-SG-00034",
+      "productName": "MOE Fixed Carbine Stock - Mil-Spec",
+      "netPrice": "48.94",
+      "grossPrice": "52.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-OD-00051",
+      "productName": "PRS GEN3 Precision-Adjustable Stock",
+      "netPrice": "319.06",
+      "grossPrice": "344.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-OD-00047",
+      "productName": "MOE SL-S Carbine Stock - Mil-Spec",
+      "netPrice": "110.92",
+      "grossPrice": "119.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-OD-00043",
+      "productName": "MOE SL Carbine Stock - Mil-Spec",
+      "netPrice": "80.39",
+      "grossPrice": "86.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-OD-00039",
+      "productName": "MOE Carbine Stock - Mil-Spec",
+      "netPrice": "55.41",
+      "grossPrice": "59.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-OD-00035",
+      "productName": "MOE Fixed Carbine Stock - Mil-Spec",
+      "netPrice": "48.94",
+      "grossPrice": "52.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-FD-00049",
+      "productName": "PRS GEN3 Precision-Adjustable Stock",
+      "netPrice": "319.06",
+      "grossPrice": "344.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-FD-00045",
+      "productName": "MOE SL-S Carbine Stock - Mil-Spec",
+      "netPrice": "110.92",
+      "grossPrice": "119.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-FD-00041",
+      "productName": "MOE SL Carbine Stock - Mil-Spec",
+      "netPrice": "80.39",
+      "grossPrice": "86.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-FD-00037",
+      "productName": "MOE Carbine Stock - Mil-Spec",
+      "netPrice": "55.41",
+      "grossPrice": "59.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-STK-000-FD-00033",
+      "productName": "MOE Fixed Carbine Stock - Mil-Spec",
+      "netPrice": "48.94",
+      "grossPrice": "52.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-SW-00067",
+      "productName": "M-LOK MVG - MOE Vertical Grip black",
+      "netPrice": "24.88",
+      "grossPrice": "26.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-SW-00056",
+      "productName": "RVG - Rail Vertical Grip - black",
+      "netPrice": "28.58",
+      "grossPrice": "30.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-SW-00052",
+      "productName": "AFG - Angled Fore Grip",
+      "netPrice": "43.39",
+      "grossPrice": "46.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-SG-00069",
+      "productName": "M-LOK MVG - MOE Vertical Grip Sniper Grey",
+      "netPrice": "24.88",
+      "grossPrice": "26.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-SG-00058",
+      "productName": "RVG - Rail Vertical Grip Sniper Grey",
+      "netPrice": "28.58",
+      "grossPrice": "30.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-SG-00054",
+      "productName": "AFG - Angled Fore Grip",
+      "netPrice": "43.39",
+      "grossPrice": "46.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-OD-00070",
+      "productName": "M-LOK MVG - MOE Vertical Grip",
+      "netPrice": "24.88",
+      "grossPrice": "26.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-OD-00059",
+      "productName": "RVG - Rail Vertical Grip OD-Green",
+      "netPrice": "28.58",
+      "grossPrice": "30.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-OD-00055",
+      "productName": "AFG - Angled Fore Grip",
+      "netPrice": "43.39",
+      "grossPrice": "46.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-FD-00068",
+      "productName": "M-LOK MVG - MOE Vertical Grip FDE",
+      "netPrice": "24.88",
+      "grossPrice": "26.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-FD-00057",
+      "productName": "RVG - Rail Vertical Grip FDE",
+      "netPrice": "28.58",
+      "grossPrice": "30.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-GRP-000-FD-00053",
+      "productName": "AFG - Angled Fore Grip",
+      "netPrice": "43.39",
+      "grossPrice": "46.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-BPD-000-SW-00064",
+      "productName": "Magpul Bipod for M-LOK black",
+      "netPrice": "152.54",
+      "grossPrice": "164.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-BPD-000-FD-00065",
+      "productName": "Magpul Bipod for M-LOK FDE",
+      "netPrice": "152.54",
+      "grossPrice": "164.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-ACS-000-SW-00060",
+      "productName": "XTM Hand Stop Kit black",
+      "netPrice": "25.81",
+      "grossPrice": "27.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-ACS-000-SG-00062",
+      "productName": "XTM Hand Stop Kit Sniper Grey",
+      "netPrice": "25.81",
+      "grossPrice": "27.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-ACS-000-OD-00063",
+      "productName": "XTM Hand Stop Kit OD-Green",
+      "netPrice": "25.81",
+      "grossPrice": "27.90"
+    },
+    {
+      "articleNumber": "MGP-ZBH-ACS-000-FD-00061",
+      "productName": "XTM Hand Stop Kit",
+      "netPrice": "25.81",
+      "grossPrice": "27.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR40-223-SW-00088",
+      "productName": "PMAG 40 AR/M4 GEN M3 5.56x45",
+      "netPrice": "30.43",
+      "grossPrice": "32.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR30W-223-SW-00086",
+      "productName": "PMAG 30 AR/M4 GEN M3 Window 5.56x45",
+      "netPrice": "23.03",
+      "grossPrice": "24.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR30W-223-SW-00027",
+      "productName": "PMAG 30 AR/M4 GEN M2 MOE Window 5.56x45",
+      "netPrice": "20.26",
+      "grossPrice": "21.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR30W-223-CT-00089",
+      "productName": "PMAG 30 AR/M4 GEN M3 Window 5.56x45",
+      "netPrice": "23.03",
+      "grossPrice": "24.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR30-223-SW-00090",
+      "productName": "PMAG 30 AR/M4 GEN M3 5.56x45",
+      "netPrice": "19.33",
+      "grossPrice": "20.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR30-223-SW-00028",
+      "productName": "PMAG 30 AR/M4 GEN M2 MOE 5.56x45",
+      "netPrice": "16.56",
+      "grossPrice": "17.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR30-223-ODT-00026",
+      "productName": "TMAG 30 AR/M4 GEN M3",
+      "netPrice": "32.28",
+      "grossPrice": "34.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR30-223-CT-00087",
+      "productName": "PMAG 30 AR/M4 GEN M3 5.56x45",
+      "netPrice": "19.33",
+      "grossPrice": "20.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR20-223-SW-00029",
+      "productName": "PMAG 20 AR/M4 GEN M3 5.56x45",
+      "netPrice": "20.26",
+      "grossPrice": "21.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR20-223-ODT-00030",
+      "productName": "TMAG 20 AR/M4 GEN M3",
+      "netPrice": "32.28",
+      "grossPrice": "34.90"
+    },
+    {
+      "articleNumber": "MGP-MG-AR10-223-SW-00031",
+      "productName": "PMAG 10 AR/M4 GEN M3 5.56x45",
+      "netPrice": "20.26",
+      "grossPrice": "21.90"
+    },
+    {
+      "articleNumber": "Instruktor-2-H",
+      "productName": "Instructor 2 hours",
+      "netPrice": "277.52",
+      "grossPrice": "300.00"
+    },
+    {
+      "articleNumber": "FCH-AMO-XXX-9mm-XX-00084",
+      "productName": "9mm LUGER FMJ 8g 124grs 50 pieces",
+      "netPrice": "17.58",
+      "grossPrice": "19.00"
+    },
+    {
+      "articleNumber": "FCH-AMO-XXX-300-XX-00083",
+      "productName": "300 AAC Blackout FMC 147 grs 580 m/s 50 pcs",
+      "netPrice": "53.65",
+      "grossPrice": "58.00"
+    },
+    {
+      "articleNumber": "FCH-AMO-XXX-22LR-XX-00085",
+      "productName": ".22 LR OFFICIAL 300 LRN 2.6g 40grs 50 pcs",
+      "netPrice": "15.26",
+      "grossPrice": "16.50"
+    },
+    {
+      "articleNumber": "FCH-AMO-XXX-223-XX-00082",
+      "productName": "223 Remington FMJ 55grs 980m/s 50 pcs",
+      "netPrice": "30.53",
+      "grossPrice": "33.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPT-9mm-TDL-00134",
+      "productName": "RAPAX Tactical Total DLC",
+      "netPrice": "3237.74",
+      "grossPrice": "3500.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPT-9mm-PDL-00133",
+      "productName": "RAPAX Tactical Partial DLC",
+      "netPrice": "3052.73",
+      "grossPrice": "3300.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPT-9mm-DPC-00131",
+      "productName": "RAPAX Tactical Duotone / Partial Cerakote",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPT-9mm-CPC-00132",
+      "productName": "RAPAX Tactical Complete Cerakote",
+      "netPrice": "2913.97",
+      "grossPrice": "3150.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPT-9mm-BLO-00129",
+      "productName": "RAPAX Tactical Black Oxide",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPT-9mm-BLN-00130",
+      "productName": "RAPAX Tactical Black Nickel",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPS-9mm-TDL-00128",
+      "productName": "RAPAX Sport Total DLC",
+      "netPrice": "3237.74",
+      "grossPrice": "3500.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPS-9mm-PDL-00127",
+      "productName": "RAPAX Sport Partial DLC",
+      "netPrice": "3052.73",
+      "grossPrice": "3300.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPS-9mm-DPC-00125",
+      "productName": "RAPAX Sport Duotone / Partial Cerakote",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPS-9mm-CPC-00126",
+      "productName": "RAPAX Sport Complete Cerakote",
+      "netPrice": "2913.97",
+      "grossPrice": "3150.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPS-9mm-BLO-00123",
+      "productName": "RAPAX Sport Black Oxide",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPS-9mm-BLN-00124",
+      "productName": "RAPAX Sport Black Nickel",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPC-9mm-TDL-00140",
+      "productName": "RAPAX II COMPACT Total DLC",
+      "netPrice": "3237.74",
+      "grossPrice": "3500.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPC-9mm-PDL-00139",
+      "productName": "RAPAX II COMPACT Partial DLC",
+      "netPrice": "3052.73",
+      "grossPrice": "3300.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPC-9mm-DPC-00137",
+      "productName": "RAPAX II COMPACT Black Oxide",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPC-9mm-CPC-00138",
+      "productName": "RAPAX II COMPACT Complete Cerakote",
+      "netPrice": "2913.97",
+      "grossPrice": "3150.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPC-9mm-BLO-00135",
+      "productName": "RAPAX II COMPACT Black Oxide",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-RPC-9mm-BLN-00136",
+      "productName": "RAPAX II COMPACT Black Nickel",
+      "netPrice": "2728.95",
+      "grossPrice": "2950.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRS-9mm-DGB-00146",
+      "productName": "CARACAL Lynx Sport Duotone Gold Black",
+      "netPrice": "3399.63",
+      "grossPrice": "3675.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRS-9mm-DET-00149",
+      "productName": "CARACAL Lynx Sport Desert Tan",
+      "netPrice": "3885.29",
+      "grossPrice": "4200.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRS-9mm-DDB-00145",
+      "productName": "CARACAL Lynx Sport Duotone Desert-Black",
+      "netPrice": "3307.12",
+      "grossPrice": "3575.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRS-9mm-BLO-00148",
+      "productName": "CARACAL Lynx Sport Black Oxyde",
+      "netPrice": "3237.74",
+      "grossPrice": "3500.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRS-9mm-BLN-00147",
+      "productName": "CARACAL Lynx Sport Black Nickel",
+      "netPrice": "3237.74",
+      "grossPrice": "3500.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRS-9mm-BLG-00144",
+      "productName": "CARACAL Lynx Sport Black Cerakote Grip (Gold)",
+      "netPrice": "3674.38",
+      "grossPrice": "3972.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRC-9mm-DUO-00143",
+      "productName": "CARACAL Lynx Compact Duotone",
+      "netPrice": "3307.12",
+      "grossPrice": "3575.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRC-9mm-BLO-00141",
+      "productName": "CARACAL Lynx Compact Black Oxyde",
+      "netPrice": "3237.74",
+      "grossPrice": "3500.00"
+    },
+    {
+      "articleNumber": "DEX-PIS-CRC-9mm-BLN-00142",
+      "productName": "CARACAL Lynx Compact Black Oxyde",
+      "netPrice": "3237.74",
+      "grossPrice": "3500.00"
+    },
+    {
+      "articleNumber": "Basic-Kurs-IV",
+      "productName": "Raven Basic course IV",
+      "netPrice": "1110.08",
+      "grossPrice": "1200.00"
+    },
+    {
+      "articleNumber": "Basic-Kurs-III",
+      "productName": "Raven Basic course III",
+      "netPrice": "971.32",
+      "grossPrice": "1050.00"
+    },
+    {
+      "articleNumber": "Basic-Kurs-II",
+      "productName": "Raven Basic Course II (2 persons)",
+      "netPrice": "740.06",
+      "grossPrice": "800.00"
+    },
+    {
+      "articleNumber": "Basic-Kurs",
+      "productName": "Raven Basic course",
+      "netPrice": "444.03",
+      "grossPrice": "480.00"
+    },
+    {
+      "articleNumber": "AIM-ZBH-SCM-XXX-SDG-00157",
+      "productName": "AIMPACT TP28 1.93 Sandy Gold",
+      "netPrice": "105.46",
+      "grossPrice": "114.00"
+    },
+    {
+      "articleNumber": "AIM-ZBH-SCM-XXX-SDG-00155",
+      "productName": "AIMPACT TP28 1.54 Sandy Gold",
+      "netPrice": "105.46",
+      "grossPrice": "114.00"
+    },
+    {
+      "articleNumber": "AIM-ZBH-SCM-XXX-BLK-00156",
+      "productName": "AIMPACT TP28 1.93 black",
+      "netPrice": "105.46",
+      "grossPrice": "114.00"
+    },
+    {
+      "articleNumber": "AIM-ZBH-SCM-XXX-BLK-00154",
+      "productName": "AIMPACT TP28 1.54 black",
+      "netPrice": "105.46",
+      "grossPrice": "114.00"
+    },
+    {
+      "articleNumber": "AIM-ZBH-SCM-XXX-BLK-00153",
+      "productName": "Aimpact TP 18 34mm",
+      "netPrice": "75.86",
+      "grossPrice": "82.00"
+    },
+    {
+      "articleNumber": "AIM-ZBH-SCM-XXX-BLK-00152",
+      "productName": "Aimpact TP 18",
+      "netPrice": "73.08",
+      "grossPrice": "79.00"
+    },
+    {
+      "articleNumber": "AIM-ZBH-SCM-XXX-BLK-00151",
+      "productName": "AIMPACT Scope Mount TP21 7075",
+      "netPrice": "91.58",
+      "grossPrice": "99.00"
+    },
+    {
+      "articleNumber": "AIM-ZBH-SCM-XXX-BLK-00150",
+      "productName": "AIMPACT Scope Mount TP21 6061",
+      "netPrice": "82.33",
+      "grossPrice": "89.00"
+    },
+    {
+      "articleNumber": "ACH-ZBH-MDB-762-SW-00122",
+      "productName": "7.62 - Acheron Hexalug - Muzzle brake",
+      "netPrice": "119.33",
+      "grossPrice": "129.00"
+    },
+    {
+      "articleNumber": "ACH-ZBH-MDB-556-SW-00121",
+      "productName": "5.56 - Acheron Hexalug - Muzzle brake",
+      "netPrice": "119.33",
+      "grossPrice": "129.00"
+    },
+    {
+      "articleNumber": "ACH-ZBH-FSD-762-SW-00120",
+      "productName": "7.62 - Flash Hider - Acheron HexaLug",
+      "netPrice": "119.33",
+      "grossPrice": "129.00"
+    },
+    {
+      "articleNumber": "ACH-ZBH-FSD-223-SW-00119",
+      "productName": "Flash Hider - Acheron HexaLug - 5.56",
+      "netPrice": "119.33",
+      "grossPrice": "129.00"
+    }
+  ]
+}

@@ -151,7 +151,7 @@
                                 {% if product.manufacturer and product.manufacturer.translated.name %}
                                     {% set mfrName = product.manufacturer.translated.name %}
                                     {% set mfrSlug = mfrName|lower|replace({' ': '-', '.': '', ',': '', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss'}) %}
-                                    <a href="/{{ mfrSlug }}" style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0; text-decoration: none; display: block;">{{ mfrName }}</a>
+                                    <a href="/hersteller/{{ mfrSlug }}" style="font-size: 12px; line-height: 16px; color: #6B7280; margin: 0 0 0.5rem 0; text-decoration: none; display: block;">{{ mfrName }}</a>
                                 {% endif %}
                                 <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;">
                                     <div style="flex: 1;">
