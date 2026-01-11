@@ -1,11 +1,11 @@
 {% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
 
 {% block layout_head_title %}
-    {# Detect auth pages and set German titles #}
-    {% set currentRoute = app.request.attributes.get('_route') %}
-    {% if currentRoute == 'frontend.account.login.page' %}
+    {# Detect auth pages and set German titles using URL path #}
+    {% set currentPath = app.request.pathInfo %}
+    {% if '/account/login' in currentPath %}
         {% set pageTitle = 'Anmelden | Raven Weapon AG' %}
-    {% elseif currentRoute == 'frontend.account.register.page' %}
+    {% elseif '/account/register' in currentPath %}
         {% set pageTitle = 'Registrieren | Raven Weapon AG' %}
     {% elseif customPageTitle is defined and customPageTitle %}
         {% set pageTitle = customPageTitle %}
