@@ -1,0 +1,185 @@
+<?php declare(strict_types=1);
+
+namespace RavenTheme\Subscriber;
+
+use Doctrine\DBAL\Connection;
+use Psr\Log\LoggerInterface;
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
+use Shopware\Core\Checkout\Customer\Event\CustomerLoginEvent;
+use Shopware\Core\Checkout\Customer\Event\CustomerLogoutEvent;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+/**
+ * Persists customer cart across logout/login sessions.
+ *
+ * On logout: Saves cart to raven_customer_cart table
+ * On login: Restores saved cart and merges with any guest cart items
+ */
+class CartPersistenceSubscriber implements EventSubscriberInterface
+{
+    private CartService $cartService;
+    private Connection $connection;
+    private LoggerInterface $logger;
+
+    public function __construct(
+        CartService $cartService,
+        Connection $connection,
+        LoggerInterface $logger
+    ) {
+        $this->cartService = $cartService;
+        $this->connection = $connection;
+        $this->logger = $logger;
+    }
+
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            CustomerLogoutEvent::class => ['onCustomerLogout', 100],
+            CustomerLoginEvent::class => ['onCustomerLogin', 200],
+        ];
+    }
+
+    public function onCustomerLogout(CustomerLogoutEvent $event): void
+    {
+        $context = $event->getSalesChannelContext();
+        $customer = $event->getCustomer();
+
+        if (!$customer) {
+            return;
+        }
+
+        try {
+            $cart = $this->cartService->getCart($context->getToken(), $context);
+
+            if ($cart->getLineItems()->count() === 0) {
+                return;
+            }
+
+            $this->saveCustomerCart($customer->getId(), $cart);
+
+            $this->logger->info('Cart saved for customer on logout', [
+                'customerId' => $customer->getId(),
+                'itemCount' => $cart->getLineItems()->count(),
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error('Failed to save cart on logout', [
+                'customerId' => $customer->getId(),
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function onCustomerLogin(CustomerLoginEvent $event): void
+    {
+        $context = $event->getSalesChannelContext();
+        $customer = $event->getCustomer();
+
+        if (!$customer) {
+            return;
+        }
+
+        try {
+            $guestCart = $this->cartService->getCart($context->getToken(), $context);
+            $guestItemCount = $guestCart->getLineItems()->count();
+
+            $savedItems = $this->loadCustomerCart($customer->getId());
+
+            if ($savedItems === null) {
+                return;
+            }
+
+            $this->mergeCartItems($savedItems, $guestCart, $context);
+            $this->deleteCustomerCart($customer->getId());
+
+            $this->logger->info('Cart restored for customer on login', [
+                'customerId' => $customer->getId(),
+                'restoredItems' => count($savedItems),
+                'guestItems' => $guestItemCount,
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->error('Failed to restore cart on login', [
+                'customerId' => $customer->getId(),
+                'error' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    private function saveCustomerCart(string $customerId, Cart $cart): void
+    {
+        $lineItemsData = [];
+
+        foreach ($cart->getLineItems() as $lineItem) {
+            $lineItemsData[] = [
+                'id' => $lineItem->getId(),
+                'referencedId' => $lineItem->getReferencedId(),
+                'type' => $lineItem->getType(),
+                'quantity' => $lineItem->getQuantity(),
+                'payload' => $lineItem->getPayload(),
+            ];
+        }
+
+        $cartData = json_encode($lineItemsData);
+
+        $this->connection->executeStatement(
+            'INSERT INTO `raven_customer_cart` (`customer_id`, `cart_data`, `created_at`, `updated_at`)
+             VALUES (:customerId, :cartData, NOW(), NOW())
+             ON DUPLICATE KEY UPDATE `cart_data` = :cartData, `updated_at` = NOW()',
+            [
+                'customerId' => Uuid::fromHexToBytes($customerId),
+                'cartData' => $cartData,
+            ]
+        );
+    }
+
+    private function loadCustomerCart(string $customerId): ?array
+    {
+        $result = $this->connection->fetchOne(
+            'SELECT `cart_data` FROM `raven_customer_cart` WHERE `customer_id` = :customerId',
+            ['customerId' => Uuid::fromHexToBytes($customerId)]
+        );
+
+        if (!$result) {
+            return null;
+        }
+
+        return json_decode($result, true);
+    }
+
+    private function deleteCustomerCart(string $customerId): void
+    {
+        $this->connection->executeStatement(
+            'DELETE FROM `raven_customer_cart` WHERE `customer_id` = :customerId',
+            ['customerId' => Uuid::fromHexToBytes($customerId)]
+        );
+    }
+
+    private function mergeCartItems(array $savedItems, Cart $currentCart, SalesChannelContext $context): void
+    {
+        foreach ($savedItems as $itemData) {
+            if ($currentCart->getLineItems()->has($itemData['id'])) {
+                continue;
+            }
+
+            if ($itemData['type'] === 'product' && !empty($itemData['referencedId'])) {
+                $lineItem = new \Shopware\Core\Checkout\Cart\LineItem\LineItem(
+                    $itemData['id'],
+                    $itemData['type'],
+                    $itemData['referencedId'],
+                    $itemData['quantity']
+                );
+
+                // Restore payload data (variant info, custom fields)
+                if (!empty($itemData['payload'])) {
+                    foreach ($itemData['payload'] as $key => $value) {
+                        $lineItem->setPayloadValue($key, $value);
+                    }
+                }
+
+                $this->cartService->add($currentCart, [$lineItem], $context);
+            }
+        }
+    }
+}

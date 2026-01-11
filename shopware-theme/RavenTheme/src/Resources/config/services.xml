@@ -114,6 +114,14 @@
             <argument type="service" id="product_review.repository"/>
             <tag name="kernel.event_subscriber"/>
         </service>
+
+        <!-- Cart Persistence Subscriber - saves cart on logout, restores on login -->
+        <service id="RavenTheme\Subscriber\CartPersistenceSubscriber">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="logger"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
     </services>
 
 </container>
