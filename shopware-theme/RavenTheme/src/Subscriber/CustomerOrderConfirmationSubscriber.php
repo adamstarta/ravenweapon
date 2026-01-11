@@ -83,6 +83,21 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         // Check if this is a bank transfer order
         $isBankTransfer = $this->isBankTransferPayment($order);
 
+        // Get billing address
+        $billingAddress = $order->getBillingAddress();
+        $billingInfo = '';
+        if ($billingAddress) {
+            $billingInfo = sprintf(
+                "%s %s\n%s\n%s %s\n%s",
+                $billingAddress->getFirstName(),
+                $billingAddress->getLastName(),
+                $billingAddress->getStreet(),
+                $billingAddress->getZipcode(),
+                $billingAddress->getCity(),
+                $billingAddress->getCountry()?->getName() ?? 'Schweiz'
+            );
+        }
+
         // Get shipping info
         $shippingMethodName = 'Standard';
         $shippingCost = 0.0;
@@ -113,6 +128,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
             $orderNumber,
             $orderDate,
             $greeting,
+            $billingInfo,
             $items,
             $subtotalFormatted,
             $shippingMethodName,
@@ -125,6 +141,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
             $orderNumber,
             $orderDate,
             $greeting,
+            $billingInfo,
             $items,
             $subtotalFormatted,
             $shippingMethodName,
@@ -236,6 +253,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         string $orderNumber,
         string $orderDate,
         string $greeting,
+        string $billingInfo,
         array $items,
         string $subtotal,
         string $shippingMethodName,
@@ -316,6 +334,14 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
                 {$greeting},<br><br>
                 vielen Dank für Ihre Bestellung bei Raven Weapon. Wir haben Ihre Bestellung erhalten und werden diese schnellstmöglich bearbeiten.
             </p>
+
+            <!-- Billing Address -->
+            <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+                <h3 style="margin: 0 0 10px 0; color: #D97706; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                    Rechnungsadresse
+                </h3>
+                <p style="margin: 0; font-size: 14px; color: #374151; white-space: pre-line; line-height: 1.5;">{$billingInfo}</p>
+            </div>
 
             {$bankDetailsHtml}
 
@@ -446,6 +472,7 @@ HTML;
         string $orderNumber,
         string $orderDate,
         string $greeting,
+        string $billingInfo,
         array $items,
         string $subtotal,
         string $shippingMethodName,
@@ -494,6 +521,11 @@ Bestellbestätigung - #{$orderNumber}
 {$greeting},
 
 vielen Dank für Ihre Bestellung bei Raven Weapon. Wir haben Ihre Bestellung erhalten und werden diese schnellstmöglich bearbeiten.
+
+-------------------------------------
+RECHNUNGSADRESSE
+-------------------------------------
+{$billingInfo}
 {$bankDetailsText}
 -------------------------------------
 BESTELLTE PRODUKTE
