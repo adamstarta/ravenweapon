@@ -9,15 +9,14 @@ use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
 use Shopware\Core\Checkout\Customer\Event\CustomerLoginEvent;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Shopware\Storefront\Framework\Routing\RequestTransformer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Persists customer cart across logout/login sessions.
  *
- * On logout: Saves cart to raven_customer_cart table (via kernel.request BEFORE logout processing)
+ * On logout: Saves cart to raven_customer_cart table (via kernel.controller BEFORE controller runs)
  * On login: Restores saved cart and merges with any guest cart items
  */
 class CartPersistenceSubscriber implements EventSubscriberInterface
@@ -39,17 +38,17 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            // Use kernel.request with high priority to save cart BEFORE logout processing
-            KernelEvents::REQUEST => ['onKernelRequest', 100],
+            // Use kernel.controller - fires right before controller, context is ready
+            KernelEvents::CONTROLLER => ['onKernelController', 100],
             CustomerLoginEvent::class => ['onCustomerLogin', 200],
         ];
     }
 
     /**
-     * Intercept the logout request BEFORE it's processed to save the cart
+     * Intercept the logout request BEFORE controller runs to save the cart
      * while it still exists (session not yet invalidated).
      */
-    public function onKernelRequest(RequestEvent $event): void
+    public function onKernelController(ControllerEvent $event): void
     {
         $request = $event->getRequest();
 
@@ -59,12 +58,14 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
         }
 
         // Check if this is the logout route
+        $routeName = $request->attributes->get('_route', '');
         $pathInfo = $request->getPathInfo();
-        if (!str_ends_with($pathInfo, '/account/logout')) {
+
+        if ($routeName !== 'frontend.account.logout.page' && !str_ends_with($pathInfo, '/account/logout')) {
             return;
         }
 
-        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - onKernelRequest: logout route detected\n", FILE_APPEND);
+        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - onKernelController: logout route detected\n", FILE_APPEND);
 
         // Get the sales channel context from the request
         $context = $request->attributes->get('sw-sales-channel-context');
