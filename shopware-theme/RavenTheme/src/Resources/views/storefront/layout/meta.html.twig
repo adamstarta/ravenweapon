@@ -1,7 +1,20 @@
 {% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
 
 {% block layout_head_title %}
-    <title itemprop="name">{% if customPageTitle is defined and customPageTitle %}{{ customPageTitle }}{% elseif page.metaInformation.metaTitle %}{{ page.metaInformation.metaTitle }}{% else %}Raven Weapon AG | Waffen, Munition & Ausrüstung | Schweiz{% endif %}</title>
+    {# Detect auth pages and set German titles #}
+    {% set currentRoute = app.request.attributes.get('_route') %}
+    {% if currentRoute == 'frontend.account.login.page' %}
+        {% set pageTitle = 'Anmelden | Raven Weapon AG' %}
+    {% elseif currentRoute == 'frontend.account.register.page' %}
+        {% set pageTitle = 'Registrieren | Raven Weapon AG' %}
+    {% elseif customPageTitle is defined and customPageTitle %}
+        {% set pageTitle = customPageTitle %}
+    {% elseif page.metaInformation.metaTitle %}
+        {% set pageTitle = page.metaInformation.metaTitle %}
+    {% else %}
+        {% set pageTitle = 'Raven Weapon AG | Waffen, Munition & Ausrüstung | Schweiz' %}
+    {% endif %}
+    <title itemprop="name">{{ pageTitle }}</title>
 {% endblock %}
 
 {% block layout_head_favicon %}
