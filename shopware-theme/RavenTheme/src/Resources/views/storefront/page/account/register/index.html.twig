@@ -6,10 +6,11 @@
 {% endblock %}
 
 {# Hide header/navbar on auth pages #}
-{% block base_header %}{% endblock %}
+{% block base_esi_header %}{% endblock %}
+{% block base_navigation_styling %}{% endblock %}
 
 {# Hide footer on auth pages #}
-{% block base_footer %}{% endblock %}
+{% block base_esi_footer %}{% endblock %}
 
 {# Block default flash messages - we show toasts instead #}
 {% block base_flashbags %}{% endblock %}
