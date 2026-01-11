@@ -83,6 +83,13 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <!-- Customer Order Confirmation Subscriber - mobile-friendly order confirmation email -->
+        <service id="RavenTheme\Subscriber\CustomerOrderConfirmationSubscriber">
+            <argument type="service" id="mailer"/>
+            <argument type="service" id="logger"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <!-- Turnstile Validation Subscriber - validates Cloudflare Turnstile on registration/login -->
         <service id="RavenTheme\Subscriber\TurnstileValidationSubscriber">
             <argument type="service" id="request_stack"/>
