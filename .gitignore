@@ -52,5 +52,9 @@ temp-*.twig
 temp-*.scss
 *.png.bak
 
+# Scraped data / comparison scripts
+*-products.json
+compare-products.js
+
 # ZIP archives (theme backups)
 shopware-theme/*.zip
