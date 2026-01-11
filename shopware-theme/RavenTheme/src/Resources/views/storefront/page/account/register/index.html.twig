@@ -4,7 +4,7 @@
 {% set customPageTitle = 'Registrieren | Raven Weapon AG' %}
 
 {% block base_head %}
-    {% sw_include '@Storefront/storefront/layout/meta.html.twig' with { customPageTitle: customPageTitle } %}
+    {% sw_include 'storefront/layout/meta.html.twig' with { customPageTitle: customPageTitle } %}
 {% endblock %}
 
 {# Hide header/navbar on auth pages #}
