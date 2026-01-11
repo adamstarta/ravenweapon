@@ -6,6 +6,42 @@ const PluginManager = window.PluginManager;
 PluginManager.register('RavenOffcanvasCart', RavenOffcanvasCartPlugin, 'body');
 PluginManager.register('RavenToast', RavenToastPlugin, 'body');
 
+// Fix cart page delete - bypass AJAX and do full page reload
+// Cloudflare sometimes blocks AJAX redirects, so we force page reload after delete
+document.addEventListener('DOMContentLoaded', function() {
+    // Only run on cart page
+    if (!window.location.pathname.includes('/checkout/cart')) return;
+
+    document.addEventListener('click', function(e) {
+        const deleteBtn = e.target.closest('form[action*="line-item/delete"] button[type="submit"]');
+        if (!deleteBtn) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const form = deleteBtn.closest('form');
+        if (!form) return;
+
+        // Submit form via fetch, then reload page
+        const formData = new FormData(form);
+        const action = form.getAttribute('action');
+
+        fetch(action, {
+            method: 'POST',
+            body: formData,
+            credentials: 'same-origin'
+        })
+        .then(() => {
+            // Force full page reload regardless of response
+            window.location.reload();
+        })
+        .catch(() => {
+            // Even on error, try reloading
+            window.location.reload();
+        });
+    }, true); // Use capture phase
+});
+
 // Variant Image Capture - captures current product image on add-to-cart
 // This ensures the correct variant image shows in cart, checkout, and orders
 document.addEventListener('DOMContentLoaded', function() {
