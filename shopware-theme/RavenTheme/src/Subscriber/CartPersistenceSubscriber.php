@@ -7,15 +7,17 @@ use Psr\Log\LoggerInterface;
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
 use Shopware\Core\Checkout\Customer\Event\CustomerLoginEvent;
-use Shopware\Core\Checkout\Customer\Event\CustomerLogoutEvent;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Framework\Routing\RequestTransformer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Persists customer cart across logout/login sessions.
  *
- * On logout: Saves cart to raven_customer_cart table
+ * On logout: Saves cart to raven_customer_cart table (via kernel.request BEFORE logout processing)
  * On login: Restores saved cart and merges with any guest cart items
  */
 class CartPersistenceSubscriber implements EventSubscriberInterface
@@ -37,21 +39,43 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            CustomerLogoutEvent::class => ['onCustomerLogout', 100],
+            // Use kernel.request with high priority to save cart BEFORE logout processing
+            KernelEvents::REQUEST => ['onKernelRequest', 100],
             CustomerLoginEvent::class => ['onCustomerLogin', 200],
         ];
     }
 
-    public function onCustomerLogout(CustomerLogoutEvent $event): void
+    /**
+     * Intercept the logout request BEFORE it's processed to save the cart
+     * while it still exists (session not yet invalidated).
+     */
+    public function onKernelRequest(RequestEvent $event): void
     {
-        $context = $event->getSalesChannelContext();
-        $customer = $event->getCustomer();
+        $request = $event->getRequest();
 
-        // Debug logging
-        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - onCustomerLogout called\n", FILE_APPEND);
+        // Only handle main requests (not sub-requests)
+        if (!$event->isMainRequest()) {
+            return;
+        }
 
+        // Check if this is the logout route
+        $pathInfo = $request->getPathInfo();
+        if (!str_ends_with($pathInfo, '/account/logout')) {
+            return;
+        }
+
+        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - onKernelRequest: logout route detected\n", FILE_APPEND);
+
+        // Get the sales channel context from the request
+        $context = $request->attributes->get('sw-sales-channel-context');
+        if (!$context instanceof SalesChannelContext) {
+            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - No SalesChannelContext found\n", FILE_APPEND);
+            return;
+        }
+
+        $customer = $context->getCustomer();
         if (!$customer) {
-            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - No customer, returning\n", FILE_APPEND);
+            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - No customer in context\n", FILE_APPEND);
             return;
         }
 
@@ -64,21 +88,21 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
             file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart items: " . $itemCount . "\n", FILE_APPEND);
 
             if ($itemCount === 0) {
-                file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart empty, returning\n", FILE_APPEND);
+                file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart empty, nothing to save\n", FILE_APPEND);
                 return;
             }
 
             $this->saveCustomerCart($customer->getId(), $cart);
 
-            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart saved successfully!\n", FILE_APPEND);
+            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Cart saved successfully! Items: " . $itemCount . "\n", FILE_APPEND);
 
-            $this->logger->info('Cart saved for customer on logout', [
+            $this->logger->info('Cart saved for customer before logout', [
                 'customerId' => $customer->getId(),
-                'itemCount' => $cart->getLineItems()->count(),
+                'itemCount' => $itemCount,
             ]);
         } catch (\Exception $e) {
             file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Error: " . $e->getMessage() . "\n", FILE_APPEND);
-            $this->logger->error('Failed to save cart on logout', [
+            $this->logger->error('Failed to save cart before logout', [
                 'customerId' => $customer->getId(),
                 'error' => $e->getMessage(),
             ]);
