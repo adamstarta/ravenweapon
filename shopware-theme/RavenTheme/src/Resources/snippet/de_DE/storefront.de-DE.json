@@ -9,10 +9,16 @@
     },
     "account": {
         "overviewChangeShipping": "Lieferadresse ändern",
-        "overviewChangeBilling": "Rechnungsadresse ändern"
+        "overviewChangeBilling": "Rechnungsadresse ändern",
+        "loginTitle": "Anmelden",
+        "registerTitle": "Registrieren"
     },
     "general": {
         "shippingMethod": "Versandart",
-        "shippingMethodLabel": "Versandart"
+        "shippingMethodLabel": "Versandart",
+        "loginTitle": "Anmelden",
+        "registerTitle": "Registrieren",
+        "headlineLogin": "Anmelden",
+        "headlineRegister": "Registrieren"
     }
 }
