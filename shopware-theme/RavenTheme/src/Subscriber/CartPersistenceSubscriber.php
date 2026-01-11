@@ -38,8 +38,8 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            // Use kernel.controller - fires right before controller, context is ready
-            KernelEvents::CONTROLLER => ['onKernelController', 100],
+            // Use kernel.controller with LOW priority (runs late, after context is set)
+            KernelEvents::CONTROLLER => ['onKernelController', -100],
             CustomerLoginEvent::class => ['onCustomerLogin', 200],
         ];
     }
@@ -65,12 +65,16 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
             return;
         }
 
-        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - onKernelController: logout route detected\n", FILE_APPEND);
+        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - onKernelController: logout route detected, priority -100\n", FILE_APPEND);
+
+        // Debug: list all request attributes
+        $attrKeys = array_keys($request->attributes->all());
+        file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - Request attributes: " . implode(', ', $attrKeys) . "\n", FILE_APPEND);
 
         // Get the sales channel context from the request
         $context = $request->attributes->get('sw-sales-channel-context');
         if (!$context instanceof SalesChannelContext) {
-            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - No SalesChannelContext found\n", FILE_APPEND);
+            file_put_contents('/tmp/cart_debug.log', date('Y-m-d H:i:s') . " - No SalesChannelContext found in sw-sales-channel-context\n", FILE_APPEND);
             return;
         }
 
