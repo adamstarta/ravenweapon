@@ -196,6 +196,10 @@ class CartPersistenceSubscriber implements EventSubscriberInterface
                     $itemData['quantity']
                 );
 
+                // Set removable and stackable flags so user can modify/delete the item
+                $lineItem->setRemovable(true);
+                $lineItem->setStackable(true);
+
                 // Restore payload data (variant info, custom fields)
                 if (!empty($itemData['payload'])) {
                     foreach ($itemData['payload'] as $key => $value) {
