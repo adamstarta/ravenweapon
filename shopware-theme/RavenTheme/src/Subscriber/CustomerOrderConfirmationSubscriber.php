@@ -328,10 +328,10 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
                         <col style="width: 30%;">
                     </colgroup>
                     <thead>
-                        <tr style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
-                            <th style="padding: 10px 8px; text-align: left; color: #ffffff; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Produkt</th>
-                            <th style="padding: 10px 4px; text-align: center; color: #ffffff; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Anz.</th>
-                            <th style="padding: 10px 8px; text-align: right; color: #ffffff; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Preis</th>
+                        <tr style="background: linear-gradient(135deg, #FDE047 0%, #F59E0B 100%);">
+                            <th style="padding: 10px 8px; text-align: left; color: #111827; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Produkt</th>
+                            <th style="padding: 10px 4px; text-align: center; color: #111827; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Anz.</th>
+                            <th style="padding: 10px 8px; text-align: right; color: #111827; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Preis</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -342,7 +342,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
 
             <!-- Summary -->
             <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
-                <h3 style="margin: 0 0 12px 0; color: #f59e0b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                <h3 style="margin: 0 0 12px 0; color: #D97706; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
                     Zusammenfassung
                 </h3>
                 <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
@@ -359,7 +359,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
 
             <!-- CTA Button -->
             <div style="text-align: center; margin-bottom: 20px;">
-                <a href="https://ravenweapon.ch/account/order" style="display: inline-block; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
+                <a href="https://ravenweapon.ch/account/order" style="display: inline-block; background: linear-gradient(135deg, #FDE047 0%, #F59E0B 100%); color: #111827; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px;">
                     Bestellungen ansehen
                 </a>
             </div>
@@ -367,7 +367,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
             <!-- Contact Info -->
             <p style="font-size: 13px; color: #6b7280; margin: 0; line-height: 1.5; text-align: center;">
                 Bei Fragen stehen wir Ihnen gerne zur Verfügung unter<br>
-                <a href="mailto:info@ravenweapon.ch" style="color: #f59e0b; text-decoration: none;">info@ravenweapon.ch</a>
+                <a href="mailto:info@ravenweapon.ch" style="color: #D97706; text-decoration: none;">info@ravenweapon.ch</a>
             </p>
         </div>
 
@@ -375,7 +375,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         <div style="text-align: center; padding: 16px; color: #6b7280; font-size: 12px;">
             <p style="margin: 0;">Raven Weapon AG | Schweiz</p>
             <p style="margin: 8px 0 0 0;">
-                <a href="https://ravenweapon.ch" style="color: #f59e0b; text-decoration: none;">ravenweapon.ch</a>
+                <a href="https://ravenweapon.ch" style="color: #D97706; text-decoration: none;">ravenweapon.ch</a>
             </p>
         </div>
     </div>
