@@ -83,8 +83,13 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         // Check if this is a bank transfer order
         $isBankTransfer = $this->isBankTransferPayment($order);
 
-        // Get billing address
-        $billingAddress = $order->getBillingAddress();
+        // Get billing address from addresses collection (getBillingAddress() doesn't load the association)
+        $billingAddress = null;
+        $addresses = $order->getAddresses();
+        $billingAddressId = $order->getBillingAddressId();
+        if ($addresses && $billingAddressId) {
+            $billingAddress = $addresses->get($billingAddressId);
+        }
         $billingInfo = '';
         if ($billingAddress) {
             $billingInfo = sprintf(
