@@ -107,7 +107,7 @@
                 </div>
 
                 {# Password #}
-                <div class="form-group">
+                <div class="form-group" id="passwordGroup">
                     <label for="personalPassword">Passwort</label>
                     <div class="password-wrapper">
                         <input type="password"
@@ -122,10 +122,11 @@
                             <svg class="eye-closed" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
                         </button>
                     </div>
+                    <div id="passwordRequirements" class="password-requirements">Mindestens 8 Zeichen erforderlich</div>
                 </div>
 
                 {# Confirm Password #}
-                <div class="form-group">
+                <div class="form-group" id="passwordConfirmGroup">
                     <label for="personalPasswordConfirmation">Passwort bestätigen</label>
                     <div class="password-wrapper">
                         <input type="password"
@@ -140,6 +141,7 @@
                             <svg class="eye-closed" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
                         </button>
                     </div>
+                    <div id="passwordMatchMessage" class="validation-message" style="display:none;"></div>
                 </div>
 
                 {# Billing Address Section #}
@@ -862,6 +864,55 @@
     height: 20px;
 }
 
+/* Form Validation States */
+.form-group.has-error input,
+.form-group.has-error .password-wrapper input {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+.form-group.has-success input,
+.form-group.has-success .password-wrapper input {
+    border-color: #16a34a !important;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1) !important;
+}
+
+.validation-message {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.validation-message.error {
+    color: #dc2626;
+}
+
+.validation-message.success {
+    color: #16a34a;
+}
+
+.validation-message svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.password-requirements {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+.password-requirements.met {
+    color: #16a34a;
+}
+
+.password-requirements.unmet {
+    color: #dc2626;
+}
+
 /* Remember me checkbox alignment */
 .remember-me {
     display: flex;
@@ -1101,6 +1152,114 @@ function togglePassword(inputId, btn) {
         eyeClosed.style.display = 'none';
     }
 }
+
+// ========== REAL-TIME FORM VALIDATION ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const registerForm = document.querySelector('.register-form');
+    if (!registerForm) return;
+
+    const passwordInput = document.getElementById('personalPassword');
+    const confirmInput = document.getElementById('personalPasswordConfirmation');
+    const passwordGroup = document.getElementById('passwordGroup');
+    const confirmGroup = document.getElementById('passwordConfirmGroup');
+    const passwordRequirements = document.getElementById('passwordRequirements');
+    const passwordMatchMessage = document.getElementById('passwordMatchMessage');
+
+    // SVG icons for validation messages
+    const checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    const errorIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+
+    // Validate password length
+    function validatePassword() {
+        const value = passwordInput.value;
+        const isValid = value.length >= 8;
+
+        if (value.length === 0) {
+            passwordGroup.classList.remove('has-error', 'has-success');
+            passwordRequirements.className = 'password-requirements';
+            passwordRequirements.textContent = 'Mindestens 8 Zeichen erforderlich';
+        } else if (isValid) {
+            passwordGroup.classList.remove('has-error');
+            passwordGroup.classList.add('has-success');
+            passwordRequirements.className = 'password-requirements met';
+            passwordRequirements.innerHTML = checkIcon + ' Passwort erfüllt die Anforderungen';
+        } else {
+            passwordGroup.classList.remove('has-success');
+            passwordGroup.classList.add('has-error');
+            passwordRequirements.className = 'password-requirements unmet';
+            passwordRequirements.innerHTML = errorIcon + ' Noch ' + (8 - value.length) + ' Zeichen erforderlich';
+        }
+
+        if (confirmInput.value.length > 0) {
+            validatePasswordMatch();
+        }
+
+        return isValid;
+    }
+
+    // Validate password match
+    function validatePasswordMatch() {
+        const password = passwordInput.value;
+        const confirm = confirmInput.value;
+
+        if (confirm.length === 0) {
+            confirmGroup.classList.remove('has-error', 'has-success');
+            passwordMatchMessage.style.display = 'none';
+            return false;
+        }
+
+        const isMatch = password === confirm && password.length >= 8;
+
+        if (password === confirm) {
+            if (password.length >= 8) {
+                confirmGroup.classList.remove('has-error');
+                confirmGroup.classList.add('has-success');
+                passwordMatchMessage.className = 'validation-message success';
+                passwordMatchMessage.innerHTML = checkIcon + ' Passwörter stimmen überein';
+            } else {
+                confirmGroup.classList.remove('has-error', 'has-success');
+                passwordMatchMessage.style.display = 'none';
+                return false;
+            }
+        } else {
+            confirmGroup.classList.remove('has-success');
+            confirmGroup.classList.add('has-error');
+            passwordMatchMessage.className = 'validation-message error';
+            passwordMatchMessage.innerHTML = errorIcon + ' Passwörter stimmen nicht überein';
+        }
+
+        passwordMatchMessage.style.display = 'flex';
+        return isMatch;
+    }
+
+    // Event listeners
+    passwordInput.addEventListener('input', validatePassword);
+    passwordInput.addEventListener('blur', validatePassword);
+    confirmInput.addEventListener('input', validatePasswordMatch);
+    confirmInput.addEventListener('blur', validatePasswordMatch);
+
+    // Form submission validation
+    registerForm.addEventListener('submit', function(e) {
+        const isPasswordValid = passwordInput.value.length >= 8;
+        const isMatchValid = passwordInput.value === confirmInput.value;
+
+        if (!isPasswordValid) {
+            e.preventDefault();
+            validatePassword();
+            window.ravenToast('error', 'Das Passwort muss mindestens 8 Zeichen lang sein.');
+            passwordInput.focus();
+            return false;
+        }
+
+        if (!isMatchValid) {
+            e.preventDefault();
+            validatePasswordMatch();
+            window.ravenToast('error', 'Die Passwörter stimmen nicht überein.');
+            confirmInput.focus();
+            return false;
+        }
+    });
+});
 
 // Fix page title based on current page (login vs register)
 {% set isRegisterPage = app.request.attributes.get('_route') == 'frontend.account.register.page' %}
