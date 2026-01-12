@@ -3377,4 +3377,42 @@ button[type="submit"].raven-btn-primary {
   .raven-checkout-wrapper {
     margin-top: 3rem !important;
   }
+
+  // Fix address list overlap - flex-wrap forces stacking
+  .addresses-list .address-list-item {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  .addresses-list .address-list-item .address-info {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    order: 1 !important;
+  }
+
+  .addresses-list .address-list-item .address-badges {
+    flex: 0 0 auto !important;
+    order: 2 !important;
+  }
+
+  .addresses-list .address-list-item .address-item-actions {
+    flex: 1 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    order: 3 !important;
+  }
+
+  // Section header fix
+  .all-addresses-section .section-header {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+  }
+
+  .all-addresses-section .section-header .section-title {
+    flex: 0 0 100% !important;
+  }
 }
