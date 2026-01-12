@@ -3367,12 +3367,21 @@ button[type="submit"].raven-btn-primary {
     grid-template-columns: 1fr !important;
   }
 
-  // Checkout header - ensure it's not cut off
-  .checkout-main-header {
-    padding-top: 0.5rem;
+  // Account pages - push content below sticky header (132px header height)
+  .raven-account-dashboard,
+  .account-content-wrapper {
+    padding-top: 140px !important;
+    margin-top: 0 !important;
   }
 
+  // Checkout page - push content below sticky header
   .raven-checkout-wrapper {
-    padding-top: 0.5rem;
+    padding-top: 140px !important;
+    margin-top: 0 !important;
+  }
+
+  // Remove any conflicting padding from parent containers
+  main.content-main {
+    padding-top: 0 !important;
   }
 }
