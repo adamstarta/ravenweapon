@@ -2071,8 +2071,6 @@
                 {% if header.navigation.tree is defined and header.navigation.tree|length > 0 %}
                     {% for treeItem in header.navigation.tree %}
                         {% set category = treeItem.category %}
-                        {# Skip Waffen category - uncomment next line to show: #}
-                        {% if category.translated.name|lower == 'waffen' %}{% continue %}{% endif %}
                         {% set hasChildren = treeItem.children|length > 0 %}
                         {% set categoryUrl = seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
 

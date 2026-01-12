@@ -1,0 +1,12 @@
+{
+  "name": "snigel-scraper",
+  "version": "1.0.0",
+  "description": "Scrape Snigel B2B portal and compare with ravenweapon products",
+  "main": "snigel-scraper.js",
+  "scripts": {
+    "scrape": "node snigel-scraper.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}

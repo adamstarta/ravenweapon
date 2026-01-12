@@ -1,0 +1,472 @@
+{
+  "scraped_at": "2026-01-12T14:32:33.460Z",
+  "snigel_products": [
+    {
+      "snigel_name": "Medium Notebook cover",
+      "snigel_article_no": "52-00489-",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/medium-notebook-cover-07/",
+      "ravenweapon_name": "Medium Notebook cover",
+      "ravenweapon_sku": "52-00489-",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Small Notebook cover",
+      "snigel_article_no": "52-00489-XX-011",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/small-notebook-cover-07/",
+      "ravenweapon_name": "Small Notebook cover",
+      "ravenweapon_sku": "52-00489-XX-011",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Memo board -14",
+      "snigel_article_no": "52-00411-09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/memo-board-14/",
+      "ravenweapon_name": "Memo board -14",
+      "ravenweapon_sku": "52-00411-09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Badge holder -16",
+      "snigel_article_no": "52-01347-09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/badge-holder-16/",
+      "ravenweapon_name": "Badge holder -16",
+      "ravenweapon_sku": "52-01347-09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Wallet",
+      "snigel_article_no": "52-00563-",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/wallet-10/",
+      "ravenweapon_name": "Wallet",
+      "ravenweapon_sku": "52-00090-01-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Mini wallet",
+      "snigel_article_no": "52-00090-01-000",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/mini-wallet-15/",
+      "ravenweapon_name": "Mini wallet",
+      "ravenweapon_sku": "52-00563-",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Spotting Scope cover",
+      "snigel_article_no": "40-01416-09-000",
+      "snigel_colour": "Various",
+      "snigel_url": "https://products.snigel.se/product/spotting-scope-cover/",
+      "ravenweapon_name": "Spotting Scope cover",
+      "ravenweapon_sku": "40-01416-09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "XL Snipers support bag -03",
+      "snigel_article_no": "33-00652-09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/xl-snipers-support-bag-03/",
+      "ravenweapon_name": "XL Snipers support bag -03",
+      "ravenweapon_sku": "33-00652-09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Low profile 3L hydration bladder",
+      "snigel_article_no": "46-00585-09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/source-low-profile-3l-hydration-bladder/",
+      "ravenweapon_name": "Low profile 3L hydration bladder",
+      "ravenweapon_sku": "46-00585-09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "1L Kangaroo hydration bladder",
+      "snigel_article_no": "46-00536-05-000",
+      "snigel_colour": "Various",
+      "snigel_url": "https://products.snigel.se/product/1l-kangaroo-hydration-bladder/",
+      "ravenweapon_name": "1L Kangaroo hydration bladder",
+      "ravenweapon_sku": "46-00536-05-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "2,5L hydration cover -16",
+      "snigel_article_no": "44-01305-",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/25l-hydration-cover-16/",
+      "ravenweapon_name": "2,5L hydration cover -16",
+      "ravenweapon_sku": "44-01305-",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Restraint sling -06",
+      "snigel_article_no": "34-01199-01-000",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/restraint-sling-06/",
+      "ravenweapon_name": "Restraint sling -06",
+      "ravenweapon_sku": "34-01199-01-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Ribs Chest rig 1.0",
+      "snigel_article_no": "16-01868A09-000",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/carry-cord-10/",
+      "ravenweapon_name": "Ribs Chest rig 1.0",
+      "ravenweapon_sku": "16-01868A09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Pancake holster -16",
+      "snigel_article_no": "35-00809-",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/pancake-holster-16/",
+      "ravenweapon_name": "Pancake holster -16",
+      "ravenweapon_sku": "35-00809-",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Crotch pistol holster 2.0",
+      "snigel_article_no": "35-00605B01-000",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/crotch-pistol-holster-11/",
+      "ravenweapon_name": "Crotch pistol holster 2.0",
+      "ravenweapon_sku": "SN-crotch-pistol-holster-11",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Shotgun holder 1.0",
+      "snigel_article_no": "36-01076-",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/shotgun-holder-1-0/",
+      "ravenweapon_name": "Shotgun holder 1.0",
+      "ravenweapon_sku": "36-01076-",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Weapon attachment, side -00",
+      "snigel_article_no": "36-00579-01-000",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/weapon-attachment-side-00/",
+      "ravenweapon_name": "Weapon attachment, side -00",
+      "ravenweapon_sku": "36-00579-01-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Back holder 2.0",
+      "snigel_article_no": "DWA-02B",
+      "snigel_colour": "Autumncam",
+      "snigel_url": "https://products.snigel.se/product/weapon-attachment-back-02/",
+      "ravenweapon_name": "Back holder 2.0",
+      "ravenweapon_sku": "SN-weapon-attachment-back-02",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Machine gun sling  -16",
+      "snigel_article_no": "34-00539-09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/machine-gun-sling-16/",
+      "ravenweapon_name": "Machine gun sling  -16",
+      "ravenweapon_sku": "SN-machine-gun-sling-16",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Weapon sling system 1.0",
+      "snigel_article_no": "34-01586A",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/weapon-sling-system-1-0/",
+      "ravenweapon_name": "Weapon sling system 1.0",
+      "ravenweapon_sku": "34-01586A",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Rifle sling w attachment -09",
+      "snigel_article_no": "34-00580",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/rifle-sling-w-attachment-09/",
+      "ravenweapon_name": "Rifle sling w attachment -09",
+      "ravenweapon_sku": "34-00580",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Weapon hook -10",
+      "snigel_article_no": "WH-10B",
+      "snigel_colour": "Various",
+      "snigel_url": "https://products.snigel.se/product/weapon-hook-10/",
+      "ravenweapon_name": "Weapon hook -10",
+      "ravenweapon_sku": "SN-weapon-hook-10",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Leg strap -11",
+      "snigel_article_no": "26-00515-",
+      "snigel_colour": null,
+      "snigel_url": "https://products.snigel.se/product/leg-strap-11/",
+      "ravenweapon_name": "Leg strap -11",
+      "ravenweapon_sku": "26-00515-",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Sniper patch, Small -12",
+      "snigel_article_no": "30-00186-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/sniper-patch-small-12/",
+      "ravenweapon_name": "Sniper patch, Small -12",
+      "ravenweapon_sku": "30-00186-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Förhandlar patch -12",
+      "snigel_article_no": "30-00190-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/forhandlar-patch-12/",
+      "ravenweapon_name": "F�rhandlar patch -12",
+      "ravenweapon_sku": "30-00190-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Tekniker patch, small -12",
+      "snigel_article_no": "30-00182-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/tekniker-patch-small-12/",
+      "ravenweapon_name": "Tekniker patch, small -12",
+      "ravenweapon_sku": "30-00182-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Instructor patch, Small -12",
+      "snigel_article_no": "30-00866-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/instructor-patch-small-12/",
+      "ravenweapon_name": "Instructor patch, Small -12",
+      "ravenweapon_sku": "30-00866-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Small instruktors patch -11",
+      "snigel_article_no": "30-00181-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/litet-instrukt%c2%9arsm%c2%8arke-11/",
+      "ravenweapon_name": "Small instruktors patch -11",
+      "ravenweapon_sku": "30-00181-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Stort Instruktörsmärke -11",
+      "snigel_article_no": "30-00192-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/stort-instruktorsmarke-11/",
+      "ravenweapon_name": "Stort Instrukt�rsm�rke -11",
+      "ravenweapon_sku": "30-00192-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Police-Swe patch -12",
+      "snigel_article_no": "30-00240-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/police-swe-patch-12/",
+      "ravenweapon_name": "Police-Swe patch -12",
+      "ravenweapon_sku": "30-00240-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Polis patch, Large -11",
+      "snigel_article_no": "30-00185-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/polis-patch-large-11/",
+      "ravenweapon_name": "Polis patch, Large -11",
+      "ravenweapon_sku": "30-00185-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Polis patch, Small -11",
+      "snigel_article_no": "30-00191-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/polis-patch-small-11/",
+      "ravenweapon_name": "Polis patch, Small -11",
+      "ravenweapon_sku": "30-00191-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Medic patch, small -16",
+      "snigel_article_no": "30-01422-09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/medic-patch-small-16/",
+      "ravenweapon_name": "Medic patch, small -16",
+      "ravenweapon_sku": "30-01422-09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Medic patch w Velcro",
+      "snigel_article_no": "30-00888-",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/medic-patch-w-velcro/",
+      "ravenweapon_name": "Medic patch w Velcro",
+      "ravenweapon_sku": "30-00888-",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Cross patch, Small -12",
+      "snigel_article_no": "30-00323-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/cross-patch-small-12/",
+      "ravenweapon_name": "Cross patch, Small -12",
+      "ravenweapon_sku": "30-00323-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Fin patch, Small -12",
+      "snigel_article_no": "30-00217-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/fin-patch-small-12/",
+      "ravenweapon_name": "Fin patch, Small -12",
+      "ravenweapon_sku": "30-00217-09-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Blue and yellow patch -16",
+      "snigel_article_no": "30-01301-27-000",
+      "snigel_colour": "Various",
+      "snigel_url": "https://products.snigel.se/product/fin-patch-small-w-velcro-12/",
+      "ravenweapon_name": "Blue and yellow patch -16",
+      "ravenweapon_sku": "30-01301-27-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Swedish flag -16",
+      "snigel_article_no": "30-01423-14-000",
+      "snigel_colour": "Navy",
+      "snigel_url": "https://products.snigel.se/product/swedish-flag-16/",
+      "ravenweapon_name": "Swedish flag -16",
+      "ravenweapon_sku": "30-01423-14-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Swe patch, Small -12",
+      "snigel_article_no": "30-00189-01-00",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/swe-patch-small-12/",
+      "ravenweapon_name": "Swe patch, Small -12",
+      "ravenweapon_sku": "30-00189-01-00",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Belt closure pack  (5) -11",
+      "snigel_article_no": "13-00110-01-000",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/belt-closure-pack-5-11/",
+      "ravenweapon_name": "Belt closure pack  (5) -11",
+      "ravenweapon_sku": "SN-belt-closure-pack-5-11",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Featherweight stretcher -09",
+      "snigel_article_no": "54-00540B09-000",
+      "snigel_colour": "Various",
+      "snigel_url": "https://products.snigel.se/product/featherweight-stretcher-09/",
+      "ravenweapon_name": "Featherweight stretcher -09",
+      "ravenweapon_sku": "54-00540B09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Foldable drinking cup",
+      "snigel_article_no": "48-00819A20-000",
+      "snigel_colour": "Khaki",
+      "snigel_url": "https://products.snigel.se/product/foldable-drinking-cup-13/",
+      "ravenweapon_name": "Foldable drinking cup",
+      "ravenweapon_sku": "48-00819A20-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Plastic bag, ziplock A6 -09, 10 pack",
+      "snigel_article_no": "PBA6-09",
+      "snigel_colour": "Various",
+      "snigel_url": "https://products.snigel.se/product/plastic-bag-ziplock-a6-09-10-pack/",
+      "ravenweapon_name": "Plastic bag, ziplock A6 -09, 10 pack",
+      "ravenweapon_sku": "SN-plastic-bag-ziplock-a6-09-10-pack",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Sleeping bag cover with hood 2.0",
+      "snigel_article_no": "53-02494A09-000",
+      "snigel_colour": "Swecam",
+      "snigel_url": "https://products.snigel.se/product/sleeping-bag-cover-with-hood-2-0/",
+      "ravenweapon_name": "Sleeping bag cover with hood 2.0",
+      "ravenweapon_sku": "53-02494A09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Light field blanket 2.0",
+      "snigel_article_no": "53-02172B09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/light-field-blanket-1-0/",
+      "ravenweapon_name": null,
+      "ravenweapon_sku": null,
+      "match_status": "not_found"
+    },
+    {
+      "snigel_name": "3x2m Multi Tarp 1.0",
+      "snigel_article_no": "51-02472A09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/multi-tarp-1-0/",
+      "ravenweapon_name": "Multi-tarp 1.0",
+      "ravenweapon_sku": "51-02472A09-000",
+      "match_status": "partial"
+    },
+    {
+      "snigel_name": "Hypothermal bag 1.1",
+      "snigel_article_no": "54-02403B09-000",
+      "snigel_colour": "Swecam",
+      "snigel_url": "https://products.snigel.se/product/hypothermal-bag-1-1/",
+      "ravenweapon_name": "Hypothermal bag 1.1",
+      "ravenweapon_sku": "54-02403B09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "A3 Commander’s aid 1.0",
+      "snigel_article_no": "52-01558A09-000",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/a3-commanders-aid-1-0/",
+      "ravenweapon_name": "A3 Commander�s aid 1.0",
+      "ravenweapon_sku": "52-01558A09-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "A5 Field binder",
+      "snigel_article_no": "52-00506-",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/a5-field-binder-07/",
+      "ravenweapon_name": "A5 Field binder",
+      "ravenweapon_sku": "52-00506-",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Police Notebook cover-10",
+      "snigel_article_no": "52-00490-01-000",
+      "snigel_colour": "Black",
+      "snigel_url": "https://products.snigel.se/product/police-notebook-cover-10/",
+      "ravenweapon_name": "Police Notebook cover-10",
+      "ravenweapon_sku": "52-00490-01-000",
+      "match_status": "exact"
+    },
+    {
+      "snigel_name": "Dog patch -12",
+      "snigel_article_no": "30-00187-09-00",
+      "snigel_colour": "Grey",
+      "snigel_url": "https://products.snigel.se/product/dog-patch-12/",
+      "ravenweapon_name": "Dog patch -12",
+      "ravenweapon_sku": "30-00187-09-00",
+      "match_status": "exact"
+    }
+  ],
+  "summary": {
+    "total_snigel": 51,
+    "with_article_no": 51,
+    "with_colour": 50,
+    "matched_exact": 49,
+    "matched_partial": 1,
+    "not_found": 1
+  }
+}
