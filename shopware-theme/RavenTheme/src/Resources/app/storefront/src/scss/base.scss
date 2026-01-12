@@ -3370,16 +3370,11 @@ button[type="submit"].raven-btn-primary {
   // Account pages - push down below sticky header
   .raven-account-dashboard,
   .account-content-wrapper {
-    margin-top: 2rem !important;
+    margin-top: 3rem !important;
   }
 
   // Checkout page - push down below sticky header
   .raven-checkout-wrapper {
-    margin-top: 2rem !important;
-  }
-
-  // Checkout header specifically
-  .checkout-main-header {
-    margin-top: 1.5rem !important;
+    margin-top: 3rem !important;
   }
 }
