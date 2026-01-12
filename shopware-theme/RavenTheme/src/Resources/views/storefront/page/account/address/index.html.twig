@@ -282,10 +282,13 @@
 /* Hide sidebar and fix header overlap on mobile */
 @media (max-width: 1023px) {
     .account-sidebar {
-        display: none;
+        display: none !important;
     }
     .raven-account-dashboard {
-        padding-top: 1rem;
+        padding-top: 0.5rem;
+    }
+    .page-header {
+        padding-top: 0;
     }
 }
 
