@@ -769,37 +769,44 @@
         overflow: hidden !important;
     }
 
-    /* Fix address list item layout on mobile */
-    .address-list-item {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 0.75rem !important;
+    /* Fix address list item - force vertical stack */
+    .addresses-list .address-list-item {
+        display: block !important;
+        padding: 1rem !important;
     }
 
-    .address-info {
+    .addresses-list .address-list-item .address-info {
+        display: block !important;
         width: 100% !important;
+        margin-bottom: 0.75rem !important;
     }
 
-    .address-info .address-line {
+    .addresses-list .address-list-item .address-info .address-line {
         white-space: normal !important;
         overflow: visible !important;
+        text-overflow: clip !important;
     }
 
-    .address-badges {
+    .addresses-list .address-list-item .address-badges {
+        display: flex !important;
         width: 100% !important;
-        justify-content: flex-start !important;
+        margin-bottom: 0.75rem !important;
+        gap: 0.5rem !important;
     }
 
-    .address-item-actions {
+    .addresses-list .address-list-item .address-item-actions {
+        display: flex !important;
         width: 100% !important;
         justify-content: flex-end !important;
     }
 
-    /* Section header on mobile */
-    .section-header {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 1rem !important;
+    /* Section header - stack vertically */
+    .all-addresses-section .section-header {
+        display: block !important;
+    }
+
+    .all-addresses-section .section-header .section-title {
+        margin-bottom: 1rem !important;
     }
 }
 </style>
