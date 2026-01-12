@@ -74,8 +74,8 @@
         <a href="{{ path('frontend.home.page') }}" class="hover:text-amber-600 transition-colors" style="text-decoration: none;">Home</a>
         {% if page.extensions.breadcrumbCategories is defined and page.extensions.breadcrumbCategories|length > 0 %}
             {% for category in page.extensions.breadcrumbCategories %}
-                {# Skip root category (level 1) #}
-                {% if category.level >= 2 %}
+                {# Skip root category (level 1) and "Waffen" category #}
+                {% if category.level >= 2 and category.translated.name|lower != 'waffen' %}
                     {% set categoryUrl = null %}
                     {# Get canonical SEO URL for this category #}
                     {% if category.seoUrls is defined and category.seoUrls|length > 0 %}
@@ -101,8 +101,11 @@
             {# Fallback: Use product's seoCategory seoBreadcrumb #}
             {% if page.product.seoCategory and page.product.seoCategory.breadcrumb %}
                 {% for breadcrumbName in page.product.seoCategory.breadcrumb|slice(1) %}
-                    <span class="mx-2 text-gray-400">/</span>
-                    <span>{{ breadcrumbName }}</span>
+                    {# Skip "Waffen" from breadcrumb #}
+                    {% if breadcrumbName|lower != 'waffen' %}
+                        <span class="mx-2 text-gray-400">/</span>
+                        <span>{{ breadcrumbName }}</span>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
         {% endif %}
