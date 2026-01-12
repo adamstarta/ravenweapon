@@ -1409,6 +1409,20 @@
                 text-align: center;
             }
         }
+
+        /* MOBILE: Ensure header is not cut off */
+        @media screen and (max-width: 1023px) {
+            .raven-checkout-wrapper {
+                padding-top: 0.5rem;
+            }
+            .checkout-main-header {
+                margin-top: 0;
+            }
+            .checkout-main-header h1 {
+                padding-top: 0;
+                margin-top: 0;
+            }
+        }
     </style>
 {% endblock %}
 
@@ -1425,7 +1439,7 @@
 
 <div class="raven-checkout-wrapper">
     <div class="checkout-main-header">
-        <h1>Checkout</h1>
+        <h1>Kasse</h1>
         <p>Alle Informationen auf einen Blick</p>
     </div>
 
