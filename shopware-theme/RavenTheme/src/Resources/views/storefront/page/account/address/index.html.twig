@@ -757,7 +757,7 @@
     min-height: 100vh;
 }
 
-/* MOBILE: Hide sidebar completely */
+/* MOBILE: Hide sidebar and fix layout */
 @media screen and (max-width: 1023px) {
     .account-sidebar,
     aside.account-sidebar,
@@ -767,6 +767,39 @@
         width: 0 !important;
         height: 0 !important;
         overflow: hidden !important;
+    }
+
+    /* Fix address list item layout on mobile */
+    .address-list-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+    }
+
+    .address-info {
+        width: 100% !important;
+    }
+
+    .address-info .address-line {
+        white-space: normal !important;
+        overflow: visible !important;
+    }
+
+    .address-badges {
+        width: 100% !important;
+        justify-content: flex-start !important;
+    }
+
+    .address-item-actions {
+        width: 100% !important;
+        justify-content: flex-end !important;
+    }
+
+    /* Section header on mobile */
+    .section-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
     }
 }
 </style>
