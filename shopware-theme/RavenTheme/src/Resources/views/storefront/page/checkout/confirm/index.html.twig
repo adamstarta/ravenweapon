@@ -1373,9 +1373,17 @@
             }
         }
 
+        /* Fix header overlap on tablets */
+        @media (max-width: 1023px) {
+            .checkout-main-header {
+                padding-top: 0.5rem;
+            }
+        }
+
         @media (max-width: 640px) {
             .raven-checkout-wrapper {
                 padding: 1rem;
+                padding-top: 1.5rem;
             }
 
             .accordion-section {
