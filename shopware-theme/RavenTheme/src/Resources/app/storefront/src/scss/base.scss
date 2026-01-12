@@ -3342,3 +3342,37 @@ button[type="submit"].raven-btn-primary {
   white-space: nowrap;
   margin-left: auto;
 }
+
+// =============================================================================
+// MOBILE FIXES - Account Sidebar & Checkout Header
+// =============================================================================
+
+// Hide account sidebar on mobile (tablets and phones)
+@media screen and (max-width: 1023px) {
+  .account-sidebar,
+  aside.account-sidebar,
+  .raven-account-dashboard .account-sidebar,
+  .raven-account-dashboard aside {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+  }
+
+  // Make account container single column on mobile
+  .account-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  // Checkout header - ensure it's not cut off
+  .checkout-main-header {
+    padding-top: 0.5rem;
+  }
+
+  .raven-checkout-wrapper {
+    padding-top: 0.5rem;
+  }
+}
