@@ -659,34 +659,7 @@ nav[aria-label="Pagination"].listing-pagination-bottom,
         {% endif %}
 
         {# ============================================= #}
-        {# DYNAMIC SHIPPING FREE / ON SALE FILTER #}
-        {# ============================================= #}
-        {% if aggregations %}
-            {% set shippingFreeAggregation = aggregations.get('shipping-free') %}
-            {% if shippingFreeAggregation %}
-            <div class="raven-filter-group">
-                <button type="button" class="raven-filter-btn{% if currentFilters['shipping-free'] is defined and currentFilters['shipping-free'] %} active{% endif %}" data-filter-toggle="offer">
-                    Im Angebot
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="raven-filter-dropdown" data-filter-panel="offer">
-                    <div class="raven-filter-option">
-                        <input type="checkbox"
-                               id="offer-yes"
-                               name="shipping-free"
-                               value="1"
-                               data-filter-offer
-                               {% if currentFilters['shipping-free'] is defined and currentFilters['shipping-free'] %}checked{% endif %}>
-                        <label for="offer-yes">Nur Angebote anzeigen</label>
-                    </div>
-                    <button type="button" class="raven-filter-apply" data-apply-filter="offer">Anwenden</button>
-                </div>
-            </div>
-            {% endif %}
-        {% endif %}
-
-        {# ============================================= #}
-        {# STOCK STATUS FILTER (Rating Aggregation) #}
+        {# STOCK STATUS FILTER #}
         {# ============================================= #}
         <div class="raven-filter-group">
             <button type="button" class="raven-filter-btn{% if currentFilters['only-available'] is defined and currentFilters['only-available'] %} active{% endif %}" data-filter-toggle="stock">
@@ -805,7 +778,6 @@ nav[aria-label="Pagination"].listing-pagination-bottom,
         url.searchParams.delete('min-price');
         url.searchParams.delete('max-price');
         url.searchParams.delete('manufacturer');
-        url.searchParams.delete('shipping-free');
         url.searchParams.delete('only-available');
 
         // Collect property filters
@@ -834,12 +806,6 @@ nav[aria-label="Pagination"].listing-pagination-bottom,
         });
         if (selectedManufacturers.length > 0) {
             url.searchParams.set('manufacturer', selectedManufacturers.join('|'));
-        }
-
-        // Collect offer filter
-        var offerFilter = document.querySelector('[data-filter-offer]:checked');
-        if (offerFilter) {
-            url.searchParams.set('shipping-free', '1');
         }
 
         // Collect stock filter
