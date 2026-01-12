@@ -3367,20 +3367,20 @@ button[type="submit"].raven-btn-primary {
     grid-template-columns: 1fr !important;
   }
 
-  // Account pages - push content below sticky header (132px header height)
+  // Account pages - minimal padding for clean spacing
   .raven-account-dashboard,
   .account-content-wrapper {
-    padding-top: 140px !important;
+    padding-top: 1rem !important;
     margin-top: 0 !important;
   }
 
-  // Checkout page - push content below sticky header
+  // Checkout page - minimal padding for clean spacing
   .raven-checkout-wrapper {
-    padding-top: 140px !important;
+    padding-top: 1rem !important;
     margin-top: 0 !important;
   }
 
-  // Remove any conflicting padding from parent containers
+  // Ensure content flows properly below sticky header
   main.content-main {
     padding-top: 0 !important;
   }
