@@ -769,44 +769,48 @@
         overflow: hidden !important;
     }
 
-    /* Fix address list item - force vertical stack */
+    /* Fix address list item - use flex-wrap instead of display:block */
     .addresses-list .address-list-item {
-        display: block !important;
-        padding: 1rem !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
     }
 
+    /* Address info takes full width to force wrap */
     .addresses-list .address-list-item .address-info {
-        display: block !important;
+        flex: 0 0 100% !important;
         width: 100% !important;
-        margin-bottom: 0.75rem !important;
+        min-width: 0 !important;
     }
 
     .addresses-list .address-list-item .address-info .address-line {
         white-space: normal !important;
         overflow: visible !important;
-        text-overflow: clip !important;
     }
 
+    /* Badges stay auto width */
     .addresses-list .address-list-item .address-badges {
-        display: flex !important;
-        width: 100% !important;
-        margin-bottom: 0.75rem !important;
-        gap: 0.5rem !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
     }
 
+    /* Actions push to end */
     .addresses-list .address-list-item .address-item-actions {
+        flex: 1 !important;
         display: flex !important;
-        width: 100% !important;
         justify-content: flex-end !important;
     }
 
-    /* Section header - stack vertically */
+    /* Section header - use flex-wrap */
     .all-addresses-section .section-header {
-        display: block !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 1rem !important;
     }
 
     .all-addresses-section .section-header .section-title {
-        margin-bottom: 1rem !important;
+        flex: 0 0 100% !important;
     }
 }
 </style>
