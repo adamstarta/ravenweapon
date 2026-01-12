@@ -1898,7 +1898,8 @@
                 'e0da99a4d0062c3a6b619ccc6fb57df4': '/dienstleistungen/'
             } %}
             {# All categories in single row #}
-            {% set row1Categories = ['Alle Produkte', 'Waffen', 'Munition', 'Zubehör', 'Ausrüstung', 'Raven Caliber Kit', 'Zielhilfen, Optik & Zubehör', 'Dienstleistungen'] %}
+            {# NOTE: 'Waffen' commented out - uncomment to show in navbar: 'Waffen', #}
+            {% set row1Categories = ['Alle Produkte', 'Munition', 'Zubehör', 'Ausrüstung', 'Raven Caliber Kit', 'Zielhilfen, Optik & Zubehör', 'Dienstleistungen'] %}
             {% set row2Categories = [] %}
             {# Get current path for active state #}
             {% set currentPath = app.request.pathInfo %}
@@ -2070,6 +2071,8 @@
                 {% if header.navigation.tree is defined and header.navigation.tree|length > 0 %}
                     {% for treeItem in header.navigation.tree %}
                         {% set category = treeItem.category %}
+                        {# Skip Waffen category - uncomment next line to show: #}
+                        {% if category.translated.name|lower == 'waffen' %}{% continue %}{% endif %}
                         {% set hasChildren = treeItem.children|length > 0 %}
                         {% set categoryUrl = seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
 
