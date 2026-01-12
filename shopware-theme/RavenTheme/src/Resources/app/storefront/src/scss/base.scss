@@ -3367,21 +3367,19 @@ button[type="submit"].raven-btn-primary {
     grid-template-columns: 1fr !important;
   }
 
-  // Account pages - minimal padding for clean spacing
+  // Account pages - push down below sticky header
   .raven-account-dashboard,
   .account-content-wrapper {
-    padding-top: 1rem !important;
-    margin-top: 0 !important;
+    margin-top: 2rem !important;
   }
 
-  // Checkout page - minimal padding for clean spacing
+  // Checkout page - push down below sticky header
   .raven-checkout-wrapper {
-    padding-top: 1rem !important;
-    margin-top: 0 !important;
+    margin-top: 2rem !important;
   }
 
-  // Ensure content flows properly below sticky header
-  main.content-main {
-    padding-top: 0 !important;
+  // Checkout header specifically
+  .checkout-main-header {
+    margin-top: 1.5rem !important;
   }
 }
