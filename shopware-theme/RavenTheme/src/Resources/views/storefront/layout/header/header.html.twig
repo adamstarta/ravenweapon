@@ -1904,36 +1904,38 @@
             <div class="pb-3" style="margin-top: 16px;">
                 <nav id="raven-main-nav" class="raven-nav-wrapper" aria-label="Hauptnavigation">
                     {% if header.navigation.tree is defined and header.navigation.tree|length > 0 %}
-                        {# ROW 1: Main Categories #}
+                        {# ROW 1: Main Categories - iterate in our specified order #}
                         <div class="raven-nav-row raven-nav-row-1">
-                            {% for treeItem in header.navigation.tree %}
-                                {% set category = treeItem.category %}
-                                {% if category.translated.name in row1Categories %}
-                                    {% set hasChildren = treeItem.children|length > 0 %}
-                                    {% set categoryUrl = mainCategorySeoUrls[category.id] ?? seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
-                                    {% set isActive = currentPath starts with categoryUrl or (categoryUrl != '/' and currentPath == categoryUrl) %}
-                                    {% set isRightAlignedCategory = category.translated.name in ['Ausrüstung', 'Dienstleistungen', 'Munition'] %}
-                                    {% set isLeftAlignedCategory = category.translated.name in ['Waffen', 'Alle Produkte'] %}
-                                    {% set displayName = category.translated.name %}
-                                    {% if displayName == 'Zielhilfen, Optik & Zubehör' %}
-                                        {% set displayName = 'Optik & Zubehör' %}
-                                    {% endif %}
-                                    <div class="raven-nav-item{% if isRightAlignedCategory %} dropdown-align-right{% elseif isLeftAlignedCategory %} dropdown-align-left{% endif %}">
-                                        <a href="{{ categoryUrl }}"
-                                           class="raven-nav-link inline-flex items-center gap-1.5 font-medium text-gray-600 hover:text-gray-900 py-2{% if isActive %} is-active{% endif %}" style="font-size: 16px;"
-                                           {% if isActive %}aria-current="page"{% endif %}>
-                                            {{ displayName }}
-                                            {% if hasChildren %}
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; opacity: 0.5;">
-                                                <polyline points="6 9 12 15 18 9"/>
-                                            </svg>
-                                            {% endif %}
-                                        </a>
-                                        {% if hasChildren %}
-                                        {% include '@RavenTheme/storefront/layout/header/nav-dropdown.html.twig' with {treeItem: treeItem, category: category} %}
+                            {% for categoryName in row1Categories %}
+                                {% for treeItem in header.navigation.tree %}
+                                    {% set category = treeItem.category %}
+                                    {% if category.translated.name == categoryName %}
+                                        {% set hasChildren = treeItem.children|length > 0 %}
+                                        {% set categoryUrl = mainCategorySeoUrls[category.id] ?? seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
+                                        {% set isActive = currentPath starts with categoryUrl or (categoryUrl != '/' and currentPath == categoryUrl) %}
+                                        {% set isRightAlignedCategory = category.translated.name in ['Ausrüstung', 'Dienstleistungen', 'Munition'] %}
+                                        {% set isLeftAlignedCategory = category.translated.name in ['Waffen', 'Alle Produkte'] %}
+                                        {% set displayName = category.translated.name %}
+                                        {% if displayName == 'Zielhilfen, Optik & Zubehör' %}
+                                            {% set displayName = 'Optik & Zubehör' %}
                                         {% endif %}
-                                    </div>
-                                {% endif %}
+                                        <div class="raven-nav-item{% if isRightAlignedCategory %} dropdown-align-right{% elseif isLeftAlignedCategory %} dropdown-align-left{% endif %}">
+                                            <a href="{{ categoryUrl }}"
+                                               class="raven-nav-link inline-flex items-center gap-1.5 font-medium text-gray-600 hover:text-gray-900 py-2{% if isActive %} is-active{% endif %}" style="font-size: 16px;"
+                                               {% if isActive %}aria-current="page"{% endif %}>
+                                                {{ displayName }}
+                                                {% if hasChildren %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; opacity: 0.5;">
+                                                    <polyline points="6 9 12 15 18 9"/>
+                                                </svg>
+                                                {% endif %}
+                                            </a>
+                                            {% if hasChildren %}
+                                            {% include '@RavenTheme/storefront/layout/header/nav-dropdown.html.twig' with {treeItem: treeItem, category: category} %}
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor %}
                         </div>
                         {# ROW 2: Specialty Items #}
