@@ -289,10 +289,12 @@
                 <div class="flex flex-wrap gap-2">
                     {% for colorOption in snigelColorOptions %}
                     {% set colorName = colorOption.name|default(colorOption) %}
+                    {% set colorCode = colorOption.code|default('') %}
                     <button type="button"
                             class="snigel-text-swatch {% if loop.first %}selected{% endif %}"
                             data-variant-name="{{ colorName }}"
-                            onclick="selectSnigelColor(this, '{{ colorName }}')">
+                            data-color-code="{{ colorCode }}"
+                            onclick="selectSnigelColor(this, '{{ colorName }}', '{{ colorCode }}')">
                         {{ colorName }}
                     </button>
                     {% endfor %}
@@ -1143,8 +1145,28 @@
         testImg.src = imageUrl;
     }
 
-    // ========== SNIGEL COLOR SELECTION (Text-based with variant code image matching) ==========
-    function selectSnigelColor(button, colorName) {
+    // ========== SNIGEL COLOR SELECTION (Text-based with image switching) ==========
+    // Snigel color name to code mapping (based on actual image content analysis)
+    // Verified: b09=Black, b56=Grey, b01=Multicam for this product line
+    const SNIGEL_COLOR_CODES = {
+        'black': '09',
+        'schwarz': '09',
+        'grey': '56',
+        'gray': '56',
+        'grau': '56',
+        'dark grey': '56',
+        'olive': '03',
+        'oliv': '03',
+        'green': '04',
+        'grün': '04',
+        'tan': '05',
+        'coyote': '06',
+        'multicam': '01',
+        'white': '08',
+        'weiss': '08'
+    };
+
+    function selectSnigelColor(button, colorName, colorCode) {
         // Update selected state
         const colorButtons = button.parentElement.querySelectorAll('.snigel-text-swatch');
         colorButtons.forEach(el => el.classList.remove('selected'));
@@ -1162,73 +1184,37 @@
             colorInput.value = colorName;
         }
 
-        // ===== IMAGE MATCHING: Map colors to images using variant codes =====
-        const mainImage = document.getElementById('product-main-image');
-        const zoomResultImg = document.getElementById('zoom-result-img');
+        // ===== IMAGE SWITCHING BY COLOR CODE =====
+        // Snigel filename formats:
+        // - Standard: XX-XXXXX-CC-XXX (e.g., 28-00100-01-000)
+        // - Alternate: XX-XXXXXbCC_xxx (e.g., 29-00394b01_img_1255)
+        // Derive color code from name if not provided
+        let effectiveColorCode = colorCode;
+        if (!effectiveColorCode && colorName) {
+            effectiveColorCode = SNIGEL_COLOR_CODES[colorName.toLowerCase().trim()];
+        }
 
-        if (mainImage && window.snigelGalleryImages && window.snigelGalleryImages.length > 0) {
-            // Get the color index (0 for first color, 1 for second, etc.)
-            const allColorButtons = Array.from(colorButtons);
-            const colorIndex = allColorButtons.indexOf(button);
+        if (effectiveColorCode && window.productMediaUrls) {
+            const mainImage = document.getElementById('product-main-image');
+            const zoomResultImg = document.getElementById('zoom-result-img');
 
-            // Extract variant codes from gallery images (e.g., A14, A17 from Snigel product codes)
-            // Pattern: look for product variant suffix like "A14", "A17" in filenames
-            const variantPattern = /[A-Z]\d{2}/g;
-            const variantToImages = {};
-            const variantOrder = [];
+            // Search for image with matching color code in filename
+            // Match both formats: -CC- or bCC (where CC is the color code)
+            const colorPattern = new RegExp(`(-${effectiveColorCode}-|b${effectiveColorCode}[_-])`, 'i');
+            const match = window.productMediaUrls.find(m =>
+                m.filename && colorPattern.test(m.filename)
+            );
 
-            window.snigelGalleryImages.forEach(url => {
-                const filename = decodeURIComponent(url).split('/').pop();
-                const matches = filename.match(variantPattern);
-                if (matches && matches.length > 0) {
-                    const variantCode = matches[0];
-                    if (!variantToImages[variantCode]) {
-                        variantToImages[variantCode] = [];
-                        variantOrder.push(variantCode);
-                    }
-                    variantToImages[variantCode].push(url);
-                }
-            });
-
-            // Map color index to variant code (first color → first variant, etc.)
-            // Use LAST image for each variant to avoid logo/graphic images that often appear first
-            let matchedImageUrl = null;
-            if (colorIndex >= 0 && colorIndex < variantOrder.length) {
-                const targetVariant = variantOrder[colorIndex];
-                const variantImages = variantToImages[targetVariant];
-                if (variantImages && variantImages.length > 0) {
-                    // Pick the last image with this variant code (avoids logos, picks actual product photo)
-                    matchedImageUrl = variantImages[variantImages.length - 1];
-                }
-            }
-
-            // Fallback: if no variant match, try color name in URL (original approach)
-            if (!matchedImageUrl) {
-                const normalizedColor = colorName.toLowerCase().replace(/[^a-z0-9]/g, '');
-                for (const imageUrl of window.snigelGalleryImages) {
-                    const decodedUrl = decodeURIComponent(imageUrl).toLowerCase();
-                    if (decodedUrl.includes(normalizedColor)) {
-                        matchedImageUrl = imageUrl;
-                        break;
-                    }
-                }
-            }
-
-            // Update main image if match found
-            if (matchedImageUrl) {
-                mainImage.src = matchedImageUrl;
-                if (zoomResultImg) {
-                    zoomResultImg.src = matchedImageUrl;
-                }
-
-                // Also update the gallery thumbnail selection
-                const galleryThumbs = document.querySelectorAll('.gallery-thumb');
-                galleryThumbs.forEach(thumb => {
-                    thumb.classList.remove('active');
-                    if (thumb.getAttribute('data-image-url') === matchedImageUrl) {
-                        thumb.classList.add('active');
-                    }
-                });
+            if (match && mainImage) {
+                const testImg = new Image();
+                testImg.onload = function() {
+                    mainImage.src = match.url;
+                    if (zoomResultImg) zoomResultImg.src = match.url;
+                };
+                testImg.onerror = function() {
+                    console.warn('Color image failed to load:', match.url);
+                };
+                testImg.src = match.url;
             }
         }
 
@@ -1237,6 +1223,7 @@
             const productId = '{{ page.product.id }}';
             let stored = JSON.parse(localStorage.getItem('snigel_variant_' + productId) || '{}');
             stored.color = colorName;
+            stored.colorCode = effectiveColorCode;
             localStorage.setItem('snigel_variant_' + productId, JSON.stringify(stored));
         } catch(e) { console.warn('localStorage error:', e); }
     }
