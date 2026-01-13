@@ -89,6 +89,15 @@ export default class RavenOffcanvasCartPlugin extends Plugin {
         setTimeout(() => { backdrop.style.opacity = '1'; }, 10);
         document.body.style.overflow = 'hidden';
 
+        // Use event delegation for close button - works even after content refresh
+        offcanvas.addEventListener('click', (e) => {
+            const closeBtn = e.target.closest('[data-offcanvas-close], .js-offcanvas-close, .raven-cart-close');
+            if (closeBtn) {
+                e.preventDefault();
+                this.closeCart();
+            }
+        });
+
         this._initCartHandlers(offcanvas);
     }
 
