@@ -1055,20 +1055,21 @@
 
     // ========== SNIGEL COLOR SELECTION (Text-based with image switching) ==========
     // Snigel color name to code mapping (based on Snigel product SKU format)
+    // Note: Snigel uses various codes - 01=Black, 09=Grey, 56=Multicam, etc.
     const SNIGEL_COLOR_CODES = {
         'black': '01',
         'schwarz': '01',
-        'grey': '02',
-        'gray': '02',
-        'grau': '02',
-        'dark grey': '02',
+        'grey': '09',
+        'gray': '09',
+        'grau': '09',
+        'dark grey': '09',
         'olive': '03',
         'oliv': '03',
         'green': '04',
         'grün': '04',
         'tan': '05',
         'coyote': '06',
-        'multicam': '07',
+        'multicam': '56',
         'white': '08',
         'weiss': '08'
     };
@@ -1092,7 +1093,9 @@
         }
 
         // ===== IMAGE SWITCHING BY COLOR CODE =====
-        // Snigel SKU format: XX-XXXXX-[COLOR]-[SIZE] (e.g., 28-00100-01-000)
+        // Snigel filename formats:
+        // - Standard: XX-XXXXX-CC-XXX (e.g., 28-00100-01-000)
+        // - Alternate: XX-XXXXXbCC_xxx (e.g., 29-00394b01_img_1255)
         // Derive color code from name if not provided
         let effectiveColorCode = colorCode;
         if (!effectiveColorCode && colorName) {
@@ -1104,8 +1107,8 @@
             const zoomResultImg = document.getElementById('zoom-result-img');
 
             // Search for image with matching color code in filename
-            // Format: XX-XXXXX-CC-XXX where CC is the color code
-            const colorPattern = new RegExp(`-${effectiveColorCode}-`, 'i');
+            // Match both formats: -CC- or bCC (where CC is the color code)
+            const colorPattern = new RegExp(`(-${effectiveColorCode}-|b${effectiveColorCode}[_-])`, 'i');
             const match = window.productMediaUrls.find(m =>
                 m.filename && colorPattern.test(m.filename)
             );
