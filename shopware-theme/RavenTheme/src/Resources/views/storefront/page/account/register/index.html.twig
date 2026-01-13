@@ -1549,6 +1549,21 @@ document.title = 'Anmelden | Raven Weapon AG';
             let message = alert.textContent.trim();
             if (!message) return;
 
+            // Skip annoying payment/shipping method change messages on register page
+            const lowerMessage = message.toLowerCase();
+            if (lowerMessage.includes('payment') && lowerMessage.includes('not available')) {
+                alert.style.display = 'none';
+                return;
+            }
+            if (lowerMessage.includes('shipping') && lowerMessage.includes('not available')) {
+                alert.style.display = 'none';
+                return;
+            }
+            if (message.includes('Zahlungsart wurde automatisch') || message.includes('Versandart wurde automatisch')) {
+                alert.style.display = 'none';
+                return;
+            }
+
             // Translate English messages to German
             message = translateToGerman(message);
 
