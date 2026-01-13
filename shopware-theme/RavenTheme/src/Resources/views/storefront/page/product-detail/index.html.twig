@@ -1054,6 +1054,25 @@
     }
 
     // ========== SNIGEL COLOR SELECTION (Text-based with image switching) ==========
+    // Snigel color name to code mapping (based on Snigel product SKU format)
+    const SNIGEL_COLOR_CODES = {
+        'black': '01',
+        'schwarz': '01',
+        'grey': '02',
+        'gray': '02',
+        'grau': '02',
+        'dark grey': '02',
+        'olive': '03',
+        'oliv': '03',
+        'green': '04',
+        'grün': '04',
+        'tan': '05',
+        'coyote': '06',
+        'multicam': '07',
+        'white': '08',
+        'weiss': '08'
+    };
+
     function selectSnigelColor(button, colorName, colorCode) {
         // Update selected state
         const colorButtons = button.parentElement.querySelectorAll('.snigel-text-swatch');
@@ -1074,14 +1093,19 @@
 
         // ===== IMAGE SWITCHING BY COLOR CODE =====
         // Snigel SKU format: XX-XXXXX-[COLOR]-[SIZE] (e.g., 28-00100-01-000)
-        // Color codes: 01=Black, 02=Grey, etc.
-        if (colorCode && window.productMediaUrls) {
+        // Derive color code from name if not provided
+        let effectiveColorCode = colorCode;
+        if (!effectiveColorCode && colorName) {
+            effectiveColorCode = SNIGEL_COLOR_CODES[colorName.toLowerCase().trim()];
+        }
+
+        if (effectiveColorCode && window.productMediaUrls) {
             const mainImage = document.getElementById('product-main-image');
             const zoomResultImg = document.getElementById('zoom-result-img');
 
             // Search for image with matching color code in filename
             // Format: XX-XXXXX-CC-XXX where CC is the color code
-            const colorPattern = new RegExp(`-${colorCode}-`, 'i');
+            const colorPattern = new RegExp(`-${effectiveColorCode}-`, 'i');
             const match = window.productMediaUrls.find(m =>
                 m.filename && colorPattern.test(m.filename)
             );
@@ -1104,7 +1128,7 @@
             const productId = '{{ page.product.id }}';
             let stored = JSON.parse(localStorage.getItem('snigel_variant_' + productId) || '{}');
             stored.color = colorName;
-            stored.colorCode = colorCode;
+            stored.colorCode = effectiveColorCode;
             localStorage.setItem('snigel_variant_' + productId, JSON.stringify(stored));
         } catch(e) { console.warn('localStorage error:', e); }
     }
