@@ -1897,7 +1897,7 @@
                 'e0da99a4d0062c3a6b619ccc6fb57df4': '/dienstleistungen/'
             } %}
             {# All categories in single row - Raven Caliber Kit now under Waffen #}
-            {% set row1Categories = ['Alle Produkte', 'Waffen', 'Optik & Visierung', 'Munition', 'Zubehör', 'Ausrüstung', 'Dienstleistungen'] %}
+            {% set row1Categories = ['Alle Produkte', 'Waffen', 'Optik & Visierung', 'Zubehör', 'Ausrüstung', 'Dienstleistungen', 'Munition'] %}
             {% set row2Categories = [] %}
             {# Get current path for active state #}
             {% set currentPath = app.request.pathInfo %}
@@ -1912,7 +1912,7 @@
                                     {% set hasChildren = treeItem.children|length > 0 %}
                                     {% set categoryUrl = mainCategorySeoUrls[category.id] ?? seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
                                     {% set isActive = currentPath starts with categoryUrl or (categoryUrl != '/' and currentPath == categoryUrl) %}
-                                    {% set isRightAlignedCategory = category.translated.name in ['Ausrüstung', 'Zubehör', 'Dienstleistungen'] %}
+                                    {% set isRightAlignedCategory = category.translated.name in ['Ausrüstung', 'Dienstleistungen', 'Munition'] %}
                                     {% set isLeftAlignedCategory = category.translated.name in ['Waffen', 'Alle Produkte'] %}
                                     {% set displayName = category.translated.name %}
                                     {% if displayName == 'Zielhilfen, Optik & Zubehör' %}
