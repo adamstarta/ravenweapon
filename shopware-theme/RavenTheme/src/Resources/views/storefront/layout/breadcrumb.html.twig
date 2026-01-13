@@ -68,11 +68,6 @@
             {% for breadcrumbCategory in breadcrumbCategories %}
                 {% set catName = breadcrumbCategory.translated.name %}
 
-                {# Skip "Waffen" category from breadcrumb display #}
-                {% if catName|lower == 'waffen' %}
-                    {% continue %}
-                {% endif %}
-
                 {# Add slugified name to path for building full URL #}
                 {% set slugifiedName = catName|lower|replace({' & ': '-', 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss', '&': '-', ' ': '-', ',': '', '.': '', '/': '-'})|replace({'--': '-'})|replace({'--': '-'})|trim('-') %}
                 {% set breadcrumbPath = breadcrumbPath|merge([slugifiedName]) %}
@@ -122,7 +117,6 @@
                 }
                 {% set position = 2 %}
                 {% for breadcrumbCategory in breadcrumbCategories %}
-                {% if breadcrumbCategory.translated.name|lower != 'waffen' %}
                 ,{
                     "@type": "ListItem",
                     "position": {{ position }},
@@ -130,7 +124,6 @@
                     "item": "https://ravenweapon.ch{{ seoUrl('frontend.navigation.page', { navigationId: breadcrumbCategory.id }) }}"
                 }
                 {% set position = position + 1 %}
-                {% endif %}
                 {% endfor %}
             ]
         }
