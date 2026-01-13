@@ -272,10 +272,12 @@
                 <div class="flex flex-wrap gap-2">
                     {% for colorOption in snigelColorOptions %}
                     {% set colorName = colorOption.name|default(colorOption) %}
+                    {% set colorCode = colorOption.code|default('') %}
                     <button type="button"
                             class="snigel-text-swatch {% if loop.first %}selected{% endif %}"
                             data-variant-name="{{ colorName }}"
-                            onclick="selectSnigelColor(this, '{{ colorName }}')">
+                            data-color-code="{{ colorCode }}"
+                            onclick="selectSnigelColor(this, '{{ colorName }}', '{{ colorCode }}')">
                         {{ colorName }}
                     </button>
                     {% endfor %}
@@ -1051,8 +1053,8 @@
         testImg.src = imageUrl;
     }
 
-    // ========== SNIGEL COLOR SELECTION (Text-based) ==========
-    function selectSnigelColor(button, colorName) {
+    // ========== SNIGEL COLOR SELECTION (Text-based with image switching) ==========
+    function selectSnigelColor(button, colorName, colorCode) {
         // Update selected state
         const colorButtons = button.parentElement.querySelectorAll('.snigel-text-swatch');
         colorButtons.forEach(el => el.classList.remove('selected'));
@@ -1070,11 +1072,39 @@
             colorInput.value = colorName;
         }
 
+        // ===== IMAGE SWITCHING BY COLOR CODE =====
+        // Snigel SKU format: XX-XXXXX-[COLOR]-[SIZE] (e.g., 28-00100-01-000)
+        // Color codes: 01=Black, 02=Grey, etc.
+        if (colorCode && window.productMediaUrls) {
+            const mainImage = document.getElementById('product-main-image');
+            const zoomResultImg = document.getElementById('zoom-result-img');
+
+            // Search for image with matching color code in filename
+            // Format: XX-XXXXX-CC-XXX where CC is the color code
+            const colorPattern = new RegExp(`-${colorCode}-`, 'i');
+            const match = window.productMediaUrls.find(m =>
+                m.filename && colorPattern.test(m.filename)
+            );
+
+            if (match && mainImage) {
+                const testImg = new Image();
+                testImg.onload = function() {
+                    mainImage.src = match.url;
+                    if (zoomResultImg) zoomResultImg.src = match.url;
+                };
+                testImg.onerror = function() {
+                    console.warn('Color image failed to load:', match.url);
+                };
+                testImg.src = match.url;
+            }
+        }
+
         // Store selection in localStorage for cart
         try {
             const productId = '{{ page.product.id }}';
             let stored = JSON.parse(localStorage.getItem('snigel_variant_' + productId) || '{}');
             stored.color = colorName;
+            stored.colorCode = colorCode;
             localStorage.setItem('snigel_variant_' + productId, JSON.stringify(stored));
         } catch(e) { console.warn('localStorage error:', e); }
     }
