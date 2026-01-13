@@ -1054,22 +1054,22 @@
     }
 
     // ========== SNIGEL COLOR SELECTION (Text-based with image switching) ==========
-    // Snigel color name to code mapping (based on actual image content analysis)
-    // Verified: b09=Black, b56=Grey, b01=Multicam for this product line
+    // Snigel color name to code mapping (based on VISUAL content of images)
+    // Tested: b01 files show BLACK, b09 files show GREY, b56 files show MULTICAM
     const SNIGEL_COLOR_CODES = {
-        'black': '09',
-        'schwarz': '09',
-        'grey': '56',
-        'gray': '56',
-        'grau': '56',
-        'dark grey': '56',
+        'black': '01',
+        'schwarz': '01',
+        'grey': '09',
+        'gray': '09',
+        'grau': '09',
+        'dark grey': '09',
         'olive': '03',
         'oliv': '03',
         'green': '04',
         'grün': '04',
         'tan': '05',
         'coyote': '06',
-        'multicam': '01',
+        'multicam': '56',
         'white': '08',
         'weiss': '08'
     };

@@ -228,43 +228,40 @@ async function scrapeSnigel() {
     // === PAGINATION PHASE ===
     if (!allProductLinks || allProductLinks.length === 0) {
       allProductLinks = [];
-      let pageNum = 1;
 
-      console.log('\nCollecting product links...');
+      // Site has ~196 products across 20 pages (10 per page)
+      const TOTAL_PAGES = 20;
 
-      while (true) {
+      console.log('\nCollecting product links from all 20 pages...');
+      console.log('(Will retry forever until each page loads - no skipping)\n');
+
+      for (let pageNum = 1; pageNum <= TOTAL_PAGES; pageNum++) {
         const pageUrl = pageNum === 1
           ? `${SNIGEL_URL}/product-category/all/`
           : `${SNIGEL_URL}/product-category/all/?upage=${pageNum}`;
 
-        process.stdout.write(`  Page ${pageNum}...`);
+        process.stdout.write(`  Page ${pageNum}/${TOTAL_PAGES}...`);
 
-        // Retry pagination up to 3 times with networkidle
+        // Keep retrying FOREVER until page loads - no skipping
         let pageLoaded = false;
-        for (let attempt = 1; attempt <= 3; attempt++) {
+        let attempt = 0;
+        while (!pageLoaded) {
+          attempt++;
           try {
             await page.goto(pageUrl, {
-              waitUntil: 'networkidle',  // Wait for network to be quiet
-              timeout: PAGE_TIMEOUT
+              waitUntil: 'domcontentloaded',
+              timeout: PAGE_TIMEOUT * 3  // 3 minutes timeout
             });
+            // Wait for products to load
+            await page.waitForTimeout(3000);
+            await page.waitForSelector('a[href*="/product/"]', { timeout: 30000 });
             pageLoaded = true;
-            break;
           } catch (err) {
-            if (attempt < 3) {
-              process.stdout.write(` retry ${attempt}...`);
-              await new Promise(r => setTimeout(r, 3000));
-            }
+            process.stdout.write(` retry ${attempt}...`);
+            // Wait longer between retries (10 seconds)
+            await new Promise(r => setTimeout(r, 10000));
           }
         }
-
-        if (!pageLoaded) {
-          console.log(' timeout - end of pages');
-          break;
-        }
-
-        // Small delay to not overload the server
-        await page.waitForTimeout(1000);
-        await page.waitForSelector('a[href*="/product/"]', { timeout: 10000 }).catch(() => {});
 
         const links = await page.evaluate(() => {
           const allLinks = new Set();
@@ -288,13 +285,8 @@ async function scrapeSnigel() {
         console.log(` ${newCount} new (total: ${allProductLinks.length})`);
         saveProductLinks(allProductLinks);
 
-        if (newCount === 0) {
-          console.log('  No more new products');
-          break;
-        }
-
-        pageNum++;
-        if (pageNum > 100) break;
+        // Small delay between pages
+        await page.waitForTimeout(2000);
       }
 
       console.log(`\nFound ${allProductLinks.length} total products`);
@@ -305,10 +297,10 @@ async function scrapeSnigel() {
     // === SCRAPING PHASE ===
     const urlsToScrape = allProductLinks.filter(url => !progress.scrapedUrls.includes(url));
     console.log(`\nTo scrape: ${urlsToScrape.length} | Already done: ${progress.scrapedUrls.length}`);
+    console.log('(Will retry forever until each product loads - no skipping)');
     console.log('='.repeat(60));
 
     let successCount = 0;
-    let errorCount = 0;
 
     for (let i = 0; i < urlsToScrape.length; i++) {
       const link = urlsToScrape[i];
@@ -317,125 +309,77 @@ async function scrapeSnigel() {
 
       process.stdout.write(`[${current}/${allProductLinks.length}] ${productSlug}...`);
 
-      try {
-        await quickRetry(async () => {
-          await page.goto(link, {
-            waitUntil: 'networkidle',  // Wait for network to be quiet
-            timeout: PRODUCT_TIMEOUT
-          });
-        });
+      // Keep retrying FOREVER until product page loads
+      let productLoaded = false;
+      let attempt = 0;
+      let productData = null;
 
-        await page.waitForSelector('h1', { timeout: 5000 }).catch(() => {});
-        await page.waitForTimeout(500);  // Small delay
-
-        const productData = await page.evaluate(() => {
-          const result = { name: null, articleNo: null, colour: null };
-
-          const titleEl = document.querySelector('h1.product_title, h1.entry-title, .product_title, h1');
-          if (titleEl) result.name = titleEl.textContent.trim();
-
-          const skuEl = document.querySelector('span.sku');
-          if (skuEl) result.articleNo = skuEl.textContent.trim();
-
-          const colourLink = document.querySelector('a[href*="/colour/"]');
-          if (colourLink) result.colour = colourLink.textContent.trim();
-
-          return result;
-        });
-
-        if (!productData.name) {
-          console.log(' SKIP (no name)');
-          progress.scrapedUrls.push(link);
-          saveProgress(progress);
-          errorCount++;
-          continue;
-        }
-
-        const match = findMatch(productData.name, ravenProducts);
-
-        progress.products.push({
-          snigel_name: productData.name,
-          snigel_article_no: productData.articleNo,
-          snigel_colour: productData.colour,
-          snigel_url: link,
-          ravenweapon_name: match ? match.name : null,
-          ravenweapon_sku: match ? match.sku : null,
-          match_status: match ? match.matchType : 'not_found'
-        });
-        progress.scrapedUrls.push(link);
-
-        // Remove from failed if it was there
-        progress.failedUrls = progress.failedUrls.filter(u => u !== link);
-
-        successCount++;
-        saveProgress(progress);
-
-        const matchSymbol = match ? (match.matchType === 'exact' ? '=' : '~') : 'X';
-        console.log(` OK [${matchSymbol}] ${productData.articleNo || '-'}`);
-
-      } catch (err) {
-        console.log(` FAIL`);
-        if (!progress.failedUrls.includes(link)) {
-          progress.failedUrls.push(link);
-        }
-        saveProgress(progress);
-        errorCount++;
-      }
-    }
-
-    // === RETRY PHASE ===
-    if (progress.failedUrls.length > 0) {
-      console.log('\n' + '='.repeat(60));
-      console.log(`RETRYING ${progress.failedUrls.length} FAILED PRODUCTS`);
-      console.log('='.repeat(60));
-
-      const failedToRetry = [...progress.failedUrls];
-      for (const link of failedToRetry) {
-        const productSlug = link.split('/product/')[1]?.replace(/\/$/, '') || link;
-        process.stdout.write(`[RETRY] ${productSlug}...`);
-
+      while (!productLoaded) {
+        attempt++;
         try {
           await page.goto(link, {
             waitUntil: 'domcontentloaded',
-            timeout: PAGE_TIMEOUT * 2  // Longer timeout for retry
+            timeout: PAGE_TIMEOUT * 2  // 2 minutes timeout
           });
 
-          await page.waitForSelector('h1', { timeout: 5000 }).catch(() => {});
+          await page.waitForSelector('h1', { timeout: 30000 });
+          await page.waitForTimeout(1000);
 
-          const productData = await page.evaluate(() => {
+          productData = await page.evaluate(() => {
             const result = { name: null, articleNo: null, colour: null };
+
             const titleEl = document.querySelector('h1.product_title, h1.entry-title, .product_title, h1');
             if (titleEl) result.name = titleEl.textContent.trim();
+
             const skuEl = document.querySelector('span.sku');
             if (skuEl) result.articleNo = skuEl.textContent.trim();
+
             const colourLink = document.querySelector('a[href*="/colour/"]');
             if (colourLink) result.colour = colourLink.textContent.trim();
+
             return result;
           });
 
           if (productData.name) {
-            const match = findMatch(productData.name, ravenProducts);
-            progress.products.push({
-              snigel_name: productData.name,
-              snigel_article_no: productData.articleNo,
-              snigel_colour: productData.colour,
-              snigel_url: link,
-              ravenweapon_name: match ? match.name : null,
-              ravenweapon_sku: match ? match.sku : null,
-              match_status: match ? match.matchType : 'not_found'
-            });
-            progress.scrapedUrls.push(link);
-            progress.failedUrls = progress.failedUrls.filter(u => u !== link);
-            successCount++;
-            saveProgress(progress);
-            console.log(` OK`);
+            productLoaded = true;
           } else {
-            console.log(` SKIP`);
+            throw new Error('No product name found');
           }
         } catch (err) {
-          console.log(` FAIL`);
+          if (attempt > 1) {
+            process.stdout.write(` retry ${attempt}...`);
+          } else {
+            process.stdout.write(` retry...`);
+          }
+          // Wait 10 seconds between retries
+          await new Promise(r => setTimeout(r, 10000));
         }
       }
+
+      const match = findMatch(productData.name, ravenProducts);
+
+      progress.products.push({
+        snigel_name: productData.name,
+        snigel_article_no: productData.articleNo,
+        snigel_colour: productData.colour,
+        snigel_url: link,
+        ravenweapon_name: match ? match.name : null,
+        ravenweapon_sku: match ? match.sku : null,
+        match_status: match ? match.matchType : 'not_found'
+      });
+      progress.scrapedUrls.push(link);
+
+      // Remove from failed if it was there
+      progress.failedUrls = progress.failedUrls.filter(u => u !== link);
+
+      successCount++;
+      saveProgress(progress);
+
+      const matchSymbol = match ? (match.matchType === 'exact' ? '=' : '~') : 'X';
+      console.log(` OK [${matchSymbol}] ${productData.articleNo || '-'}`);
+
+      // Small delay between products
+      await page.waitForTimeout(1000);
     }
 
     // === REPORT ===
@@ -462,12 +406,7 @@ async function scrapeSnigel() {
     console.log(`\nTotal:    ${report.summary.total_snigel} products`);
     console.log(`Matched:  ${report.summary.matched_exact} exact, ${report.summary.matched_partial} partial`);
     console.log(`Missing:  ${report.summary.not_found} not on ravenweapon`);
-    console.log(`Success:  ${successCount} | Failed: ${progress.failedUrls.length}`);
     console.log(`\nReport: ${outputPath}`);
-
-    if (progress.failedUrls.length > 0) {
-      console.log(`\nRun script again to retry ${progress.failedUrls.length} failed products.`);
-    }
 
   } catch (err) {
     console.error('\nError:', err.message.split('\n')[0]);
