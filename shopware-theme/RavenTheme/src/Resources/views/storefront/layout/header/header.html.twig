@@ -61,8 +61,8 @@
         display: none !important;
     }
 
-    /* Hide manufacturer name ONLY on Waffenzubehör page */
-    body.page-waffenzubehoer .raven-manufacturer {
+    /* Hide manufacturer name ONLY on Optik & Visierung page */
+    body.page-optik-visierung .raven-manufacturer {
         display: none !important;
     }
 
@@ -1030,11 +1030,11 @@
         stripManufacturerFromTitles();
     }
 
-    // Add body class for Waffenzubehör page to hide manufacturer names only there
+    // Add body class for Optik & Visierung page to hide manufacturer names only there
     (function() {
         var path = window.location.pathname.toLowerCase();
-        if (path.indexOf('/waffenzubehoer') === 0) {
-            document.body.classList.add('page-waffenzubehoer');
+        if (path.indexOf('/optik-visierung') === 0) {
+            document.body.classList.add('page-optik-visierung');
         }
     })();
 
@@ -1139,9 +1139,9 @@
     // When on a category page, filter products client-side within that category
     function initCategorySearch() {
         var categoryPaths = {
-            '/Waffenzubehoer/': 'Waffenzubehör',
+            '/optik-visierung/': 'Optik & Visierung',
             '/Raven-Weapons/': 'Waffen',
-            '/Raven-Caliber-Kit/': 'Kalibers'
+            '/waffen/raven-caliber-kit/': 'Raven Caliber Kit'
         };
 
         // Get current category from URL path
@@ -1890,15 +1890,14 @@
             {% set mainCategorySeoUrls = {
                 '019aee0f487c79a1a8814377c46e0c10': '/alle-produkte/',
                 'a61f19c9cb4b11f0b4074aca3d279c31': '/waffen/',
-                'a61f1ec3cb4b11f0b4074aca3d279c31': '/raven-caliber-kit/',
-                '019adeff65f97225927586968691dc02': '/waffenzubehoer/',
+                '019adeff65f97225927586968691dc02': '/optik-visierung/',
                 '2f40311624aea6de289c770f0bfd0ff9': '/munition/',
                 '604131c6ae1646c98623da4fe61a739b': '/zubehoer/',
                 '019b0857613474e6a799cfa07d143c76': '/ausruestung/',
                 'e0da99a4d0062c3a6b619ccc6fb57df4': '/dienstleistungen/'
             } %}
-            {# All categories in single row #}
-            {% set row1Categories = ['Alle Produkte', 'Waffen', 'Waffenzubehör', 'Munition', 'Zubehör', 'Ausrüstung', 'Raven Caliber Kit', 'Zielhilfen, Optik & Zubehör', 'Dienstleistungen'] %}
+            {# All categories in single row - Raven Caliber Kit now under Waffen #}
+            {% set row1Categories = ['Alle Produkte', 'Waffen', 'Optik & Visierung', 'Munition', 'Zubehör', 'Ausrüstung', 'Dienstleistungen'] %}
             {% set row2Categories = [] %}
             {# Get current path for active state #}
             {% set currentPath = app.request.pathInfo %}
