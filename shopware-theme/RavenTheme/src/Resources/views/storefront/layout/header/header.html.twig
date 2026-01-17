@@ -2067,9 +2067,12 @@
                     <span>Startseite</span>
                 </a>
 
-                {# Dynamic Categories with Accordion #}
+                {# Dynamic Categories with Accordion - Same order as desktop nav #}
+                {% set mobileMenuOrder = ['Alle Produkte', 'Waffen', 'Optik & Visierung', 'Zubehör', 'Ausrüstung', 'Dienstleistungen', 'Munition'] %}
                 {% if header.navigation.tree is defined and header.navigation.tree|length > 0 %}
-                    {% for treeItem in header.navigation.tree %}
+                    {% for categoryName in mobileMenuOrder %}
+                        {% for treeItem in header.navigation.tree %}
+                            {% if treeItem.category.translated.name == categoryName %}
                         {% set category = treeItem.category %}
                         {% set hasChildren = treeItem.children|length > 0 %}
                         {% set categoryUrl = seoUrl('frontend.navigation.page', { navigationId: category.id }) %}
@@ -2131,6 +2134,8 @@
                                 <span>{{ category.translated.name }}</span>
                             </a>
                         {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
                 {% endif %}
             </nav>
