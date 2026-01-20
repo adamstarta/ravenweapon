@@ -1,0 +1,668 @@
+{
+  "timestamp": "2026-01-15T15:34:22.572Z",
+  "mode": "live",
+  "total": 94,
+  "success": 94,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "product": "A5 Field binder",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Medium Notebook cover",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Small Notebook cover",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Wallet",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "2,5L hydration cover -16",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "Pancake holster -16",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Shotgun holder 1.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "Back holder 2.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Weapon sling system 1.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 3
+    },
+    {
+      "product": "Rifle sling w attachment -09",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "Leg strap -11",
+      "status": "success",
+      "variantsCreated": 5,
+      "imagesLinked": 5,
+      "variantImages": 5
+    },
+    {
+      "product": "Medic patch w Velcro",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Admin case",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Gas mask bag -11",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Medium Schwung bag 1.1",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Rope bag -05",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "3L Multipurpose bag -15",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "6L Funny pack",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "Organized bag -11",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "55L Duffel bag -17",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "90L Duffel bag 1.0",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "15L Princess backpack  -17",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 2,
+      "variantImages": 3
+    },
+    {
+      "product": "30-40L Combat backpack 1.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "15-20L All pack",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "30L Mission backpack 1.1",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 3
+    },
+    {
+      "product": "30L Specialist backpack",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 3,
+      "variantImages": 3
+    },
+    {
+      "product": "Multi insert panel 1.0",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "40L Specialist backpack",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "50L Mission backpack 2.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "Side pockets pair 2.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "100L Backpack 2.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 1,
+      "variantImages": 1
+    },
+    {
+      "product": "Binder mechanism",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "Herma 25 mm repair buckle",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Shoulder pad set -15",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "Herma I-bar set 1.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 3
+    },
+    {
+      "product": "I-Bar set -10",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 1,
+      "variantImages": 3
+    },
+    {
+      "product": "Herma T-bar set 1.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 1,
+      "variantImages": 3
+    },
+    {
+      "product": "T-bar set -12",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 1,
+      "variantImages": 3
+    },
+    {
+      "product": "Name card holder -11",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "8×19 pouch -14",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "Oyster pouch 1.0",
+      "status": "success",
+      "variantsCreated": 4,
+      "imagesLinked": 6,
+      "variantImages": 12
+    },
+    {
+      "product": "Trauma pouch -17",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "Medium Admin pouch -18",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "Small Admin pouch",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "Virve radio pouch -10",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "VIRVE pouch, Basic-11",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "Radio pouch -15",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 2,
+      "variantImages": 3
+    },
+    {
+      "product": "Zipped dump bag -10",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "Micro dump pouch 2.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "Small dump pouch 2.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "Dual Magazine pouch -18",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Speed magazine pouch 2.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 2,
+      "variantImages": 3
+    },
+    {
+      "product": "Elastic pouch 1.0",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 4,
+      "variantImages": 4
+    },
+    {
+      "product": "Grenade pouch -10",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 1,
+      "variantImages": 1
+    },
+    {
+      "product": "Handcuff pouch -09",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "GP pouch 3 long",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 3,
+      "variantImages": 3
+    },
+    {
+      "product": "GP pouch 3",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 4,
+      "variantImages": 4
+    },
+    {
+      "product": "GP pouch 2 long",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 1,
+      "variantImages": 2
+    },
+    {
+      "product": "GP pouch 2",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 3,
+      "variantImages": 4
+    },
+    {
+      "product": "Telescopic baton holder -08",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Telescopic baton holder 26",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "Combination glove holder -09",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 2
+    },
+    {
+      "product": "Ballistic thigh protection -15",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 3
+    },
+    {
+      "product": "Squeeze buckle closure 1.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 3
+    },
+    {
+      "product": "Squeeze zipper closure -17",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 2,
+      "variantImages": 3
+    },
+    {
+      "product": "Squeeze quick adjust -17",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 1,
+      "variantImages": 3
+    },
+    {
+      "product": "3 row cummerbund 1.0",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 4
+    },
+    {
+      "product": "Elastic cumber band w compartments 1.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 1
+    },
+    {
+      "product": "Squeeze side panel pouch set -18",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 5,
+      "variantImages": 9
+    },
+    {
+      "product": "Squeeze ballistic front and back 1.3 S2",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 1,
+      "variantImages": 1
+    },
+    {
+      "product": "Squeeze vest/plate carrier",
+      "status": "success",
+      "variantsCreated": 9,
+      "imagesLinked": 7,
+      "variantImages": 9
+    },
+    {
+      "product": "Squeeze MOLLE front panel 1.0",
+      "status": "success",
+      "variantsCreated": 0,
+      "imagesLinked": 0,
+      "variantImages": 3
+    },
+    {
+      "product": "Plate carrier, Strap on DF -13",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 2,
+      "variantImages": 3
+    },
+    {
+      "product": "Equipment vest -16",
+      "status": "success",
+      "variantsCreated": 8,
+      "imagesLinked": 8,
+      "variantImages": 8
+    },
+    {
+      "product": "Covert equipment vest -12",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 0,
+      "variantImages": 3
+    },
+    {
+      "product": "Technical equipment vest 2.0",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "Covert equipment vest -12 FIN",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 1,
+      "variantImages": 1
+    },
+    {
+      "product": "Covert surveillance vest -05",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 3,
+      "variantImages": 3
+    },
+    {
+      "product": "Covert stretch vest -16",
+      "status": "success",
+      "variantsCreated": 8,
+      "imagesLinked": 4,
+      "variantImages": 8
+    },
+    {
+      "product": "Small leg panel -12",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "Leg attachment light -10",
+      "status": "success",
+      "variantsCreated": 1,
+      "imagesLinked": 1,
+      "variantImages": 1
+    },
+    {
+      "product": "Combat belt harness -14",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 1,
+      "variantImages": 3
+    },
+    {
+      "product": "Light combat belt 1.0",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 3,
+      "variantImages": 3
+    },
+    {
+      "product": "Ribs combat belt 1.0",
+      "status": "success",
+      "variantsCreated": 3,
+      "imagesLinked": 3,
+      "variantImages": 3
+    },
+    {
+      "product": "Comfort belt-13",
+      "status": "success",
+      "variantsCreated": 6,
+      "imagesLinked": 6,
+      "variantImages": 6
+    },
+    {
+      "product": "Police Equipment belt -09",
+      "status": "success",
+      "variantsCreated": 6,
+      "imagesLinked": 6,
+      "variantImages": 6
+    },
+    {
+      "product": "Basic Equipment belt",
+      "status": "success",
+      "variantsCreated": 4,
+      "imagesLinked": 4,
+      "variantImages": 4
+    },
+    {
+      "product": "Braces",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "Covert equipment belt -17",
+      "status": "success",
+      "variantsCreated": 5,
+      "imagesLinked": 5,
+      "variantImages": 5
+    },
+    {
+      "product": "Rigid trouser belt -05",
+      "status": "success",
+      "variantsCreated": 6,
+      "imagesLinked": 2,
+      "variantImages": 6
+    },
+    {
+      "product": "Tactical coverall, Digi  -09F",
+      "status": "success",
+      "variantsCreated": 2,
+      "imagesLinked": 2,
+      "variantImages": 2
+    },
+    {
+      "product": "Tactical coverall 09F",
+      "status": "success",
+      "variantsCreated": 4,
+      "imagesLinked": 4,
+      "variantImages": 4
+    },
+    {
+      "product": "Fleece jacket 1.0",
+      "status": "success",
+      "variantsCreated": 4,
+      "imagesLinked": 4,
+      "variantImages": 4
+    },
+    {
+      "product": "Snigel T-shirt 2.0",
+      "status": "success",
+      "variantsCreated": 4,
+      "imagesLinked": 8,
+      "variantImages": 8
+    }
+  ]
+}

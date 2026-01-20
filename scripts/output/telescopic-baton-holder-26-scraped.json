@@ -1,0 +1,39 @@
+{
+  "scraped_at": "2026-01-16",
+  "product": {
+    "name": "Telescopic baton holder 26",
+    "snigel_url": "https://products.snigel.se/product/telescopic-baton-holder-26/",
+    "article_no_base": "20-00499-1",
+    "weight": "70 g",
+    "dimensions": "L= 20, W= 5, D= 6 cm"
+  },
+  "colors": {
+    "Black": {
+      "article_no": "20-02603A01-000",
+      "stock": 660,
+      "available": true,
+      "images": [
+        "https://products.snigel.se/wp-content/uploads/2025/12/20-02603A01_IMG_6913.jpg",
+        "https://products.snigel.se/wp-content/uploads/2025/12/20-02603A01_IMG_6915.jpg",
+        "https://products.snigel.se/wp-content/uploads/2025/12/20-02603A01_IMG_6914.jpg",
+        "https://products.snigel.se/wp-content/uploads/2025/12/20-02603A01_IMG_6912.jpg",
+        "https://products.snigel.se/wp-content/uploads/2025/12/20-02603A01_IMG_6926.jpg",
+        "https://products.snigel.se/wp-content/uploads/2025/12/20-02603A01_IMG_6925.jpg",
+        "https://products.snigel.se/wp-content/uploads/2025/12/20-02603A01_IMG_6924.jpg"
+      ]
+    }
+  },
+  "description": {
+    "dimensions": "L= 20, W= 5 & D= 6",
+    "fits_in": "Expandable baton",
+    "fits_on": "Equipment vest, belt, leg plate or leg attachment",
+    "features_intro": "This telescopic baton holster can be attached to our equipment belt or equipment vest vertically or horizontally. It can also be carried concealed on your trouser belt.",
+    "features": [
+      "Fits most telescopic batons.",
+      "Large opening in the top to make it easy to insert the baton after use.",
+      "Flap, that can be removed to secure the baton.",
+      "The bottom has an opening so an extended baton can be inserted. The opening can be closed with a flap with press button.",
+      "Fold back attachment system makes it possible to attach the pouch on any equipment vest or belt."
+    ]
+  }
+}

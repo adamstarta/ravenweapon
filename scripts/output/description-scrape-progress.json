@@ -1,0 +1,578 @@
+{
+  "scrapedUrls": [
+    "https://products.snigel.se/product/belt-closure-pack-5-11/",
+    "https://products.snigel.se/product/featherweight-stretcher-09/",
+    "https://products.snigel.se/product/foldable-drinking-cup-13/",
+    "https://products.snigel.se/product/plastic-bag-ziplock-a6-09-10-pack/",
+    "https://products.snigel.se/product/sleeping-bag-cover-with-hood-2-0/",
+    "https://products.snigel.se/product/light-field-blanket-1-0/",
+    "https://products.snigel.se/product/multi-tarp-1-0/",
+    "https://products.snigel.se/product/hypothermal-bag-1-1/",
+    "https://products.snigel.se/product/a3-commanders-aid-1-0/",
+    "https://products.snigel.se/product/a5-field-binder-07/",
+    "https://products.snigel.se/product/police-notebook-cover-10/",
+    "https://products.snigel.se/product/medium-notebook-cover-07/",
+    "https://products.snigel.se/product/small-notebook-cover-07/",
+    "https://products.snigel.se/product/memo-board-14/",
+    "https://products.snigel.se/product/badge-holder-16/",
+    "https://products.snigel.se/product/wallet-10/",
+    "https://products.snigel.se/product/mini-wallet-15/",
+    "https://products.snigel.se/product/spotting-scope-cover/",
+    "https://products.snigel.se/product/xl-snipers-support-bag-03/",
+    "https://products.snigel.se/product/source-low-profile-3l-hydration-bladder/",
+    "https://products.snigel.se/product/1l-kangaroo-hydration-bladder/",
+    "https://products.snigel.se/product/25l-hydration-cover-16/",
+    "https://products.snigel.se/product/restraint-sling-06/",
+    "https://products.snigel.se/product/carry-cord-10/",
+    "https://products.snigel.se/product/pancake-holster-16/",
+    "https://products.snigel.se/product/crotch-pistol-holster-11/",
+    "https://products.snigel.se/product/shotgun-holder-1-0/",
+    "https://products.snigel.se/product/weapon-attachment-side-00/",
+    "https://products.snigel.se/product/weapon-attachment-back-02/",
+    "https://products.snigel.se/product/machine-gun-sling-16/",
+    "https://products.snigel.se/product/weapon-sling-system-1-0/",
+    "https://products.snigel.se/product/rifle-sling-w-attachment-09/",
+    "https://products.snigel.se/product/weapon-hook-10/",
+    "https://products.snigel.se/product/leg-strap-11/",
+    "https://products.snigel.se/product/sniper-patch-small-12/",
+    "https://products.snigel.se/product/forhandlar-patch-12/",
+    "https://products.snigel.se/product/tekniker-patch-small-12/",
+    "https://products.snigel.se/product/instructor-patch-small-12/",
+    "https://products.snigel.se/product/litet-instrukt%c2%9arsm%c2%8arke-11/",
+    "https://products.snigel.se/product/stort-instruktorsmarke-11/",
+    "https://products.snigel.se/product/police-swe-patch-12/",
+    "https://products.snigel.se/product/polis-patch-large-11/",
+    "https://products.snigel.se/product/polis-patch-small-11/",
+    "https://products.snigel.se/product/medic-patch-small-16/"
+  ],
+  "products": [
+    {
+      "name": "Belt closure pack  (5) -11",
+      "articleNo": "13-00110-01-000",
+      "url": "https://products.snigel.se/product/belt-closure-pack-5-11/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Featherweight stretcher -09",
+      "articleNo": "54-00540B09-000",
+      "url": "https://products.snigel.se/product/featherweight-stretcher-09/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Foldable drinking cup",
+      "articleNo": "48-00819A20-000",
+      "url": "https://products.snigel.se/product/foldable-drinking-cup-13/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Plastic bag, ziplock A6 -09, 10 pack",
+      "articleNo": "PBA6-09",
+      "url": "https://products.snigel.se/product/plastic-bag-ziplock-a6-09-10-pack/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Sleeping bag cover with hood 2.0",
+      "articleNo": "53-02494A09-000",
+      "url": "https://products.snigel.se/product/sleeping-bag-cover-with-hood-2-0/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Light field blanket 2.0",
+      "articleNo": "53-02172B09-000",
+      "url": "https://products.snigel.se/product/light-field-blanket-1-0/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "3x2m Multi Tarp 1.0",
+      "articleNo": "51-02472A09-000",
+      "url": "https://products.snigel.se/product/multi-tarp-1-0/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Hypothermal bag 1.1",
+      "articleNo": "54-02403B09-000",
+      "url": "https://products.snigel.se/product/hypothermal-bag-1-1/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "A3 Commander’s aid 1.0",
+      "articleNo": "52-01558A09-000",
+      "url": "https://products.snigel.se/product/a3-commanders-aid-1-0/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "A5 Field binder",
+      "articleNo": "52-00506-",
+      "url": "https://products.snigel.se/product/a5-field-binder-07/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Police Notebook cover-10",
+      "articleNo": "52-00490-01-000",
+      "url": "https://products.snigel.se/product/police-notebook-cover-10/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Medium Notebook cover",
+      "articleNo": "52-00489-",
+      "url": "https://products.snigel.se/product/medium-notebook-cover-07/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Small Notebook cover",
+      "articleNo": "52-00489-XX-011",
+      "url": "https://products.snigel.se/product/small-notebook-cover-07/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Memo board -14",
+      "articleNo": "52-00411-09-000",
+      "url": "https://products.snigel.se/product/memo-board-14/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Badge holder -16",
+      "articleNo": "52-01347-09-000",
+      "url": "https://products.snigel.se/product/badge-holder-16/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Wallet",
+      "articleNo": "52-00563-",
+      "url": "https://products.snigel.se/product/wallet-10/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Mini wallet",
+      "articleNo": "52-00090-01-000",
+      "url": "https://products.snigel.se/product/mini-wallet-15/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Spotting Scope cover",
+      "articleNo": "40-01416-09-000",
+      "url": "https://products.snigel.se/product/spotting-scope-cover/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "XL Snipers support bag -03",
+      "articleNo": "33-00652-09-000",
+      "url": "https://products.snigel.se/product/xl-snipers-support-bag-03/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Low profile 3L hydration bladder",
+      "articleNo": "46-00585-09-000",
+      "url": "https://products.snigel.se/product/source-low-profile-3l-hydration-bladder/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "1L Kangaroo hydration bladder",
+      "articleNo": "46-00536-05-000",
+      "url": "https://products.snigel.se/product/1l-kangaroo-hydration-bladder/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "2,5L hydration cover -16",
+      "articleNo": "44-01305-",
+      "url": "https://products.snigel.se/product/25l-hydration-cover-16/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Restraint sling -06",
+      "articleNo": "34-01199-01-000",
+      "url": "https://products.snigel.se/product/restraint-sling-06/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Ribs Chest rig 1.0",
+      "articleNo": "16-01868A09-000",
+      "url": "https://products.snigel.se/product/carry-cord-10/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Pancake holster -16",
+      "articleNo": "35-00809-",
+      "url": "https://products.snigel.se/product/pancake-holster-16/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Crotch pistol holster 2.0",
+      "articleNo": "35-00605B01-000",
+      "url": "https://products.snigel.se/product/crotch-pistol-holster-11/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Shotgun holder 1.0",
+      "articleNo": "36-01076-",
+      "url": "https://products.snigel.se/product/shotgun-holder-1-0/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Weapon attachment, side -00",
+      "articleNo": "36-00579-01-000",
+      "url": "https://products.snigel.se/product/weapon-attachment-side-00/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Back holder 2.0",
+      "articleNo": "DWA-02B",
+      "url": "https://products.snigel.se/product/weapon-attachment-back-02/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Machine gun sling  -16",
+      "articleNo": "34-00539-09-000",
+      "url": "https://products.snigel.se/product/machine-gun-sling-16/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Weapon sling system 1.0",
+      "articleNo": "34-01586A",
+      "url": "https://products.snigel.se/product/weapon-sling-system-1-0/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Rifle sling w attachment -09",
+      "articleNo": "34-00580",
+      "url": "https://products.snigel.se/product/rifle-sling-w-attachment-09/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Weapon hook -10",
+      "articleNo": "WH-10B",
+      "url": "https://products.snigel.se/product/weapon-hook-10/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Leg strap -11",
+      "articleNo": "26-00515-",
+      "url": "https://products.snigel.se/product/leg-strap-11/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Sniper patch, Small -12",
+      "articleNo": "30-00186-09-00",
+      "url": "https://products.snigel.se/product/sniper-patch-small-12/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Förhandlar patch -12",
+      "articleNo": "30-00190-09-00",
+      "url": "https://products.snigel.se/product/forhandlar-patch-12/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Tekniker patch, small -12",
+      "articleNo": "30-00182-09-00",
+      "url": "https://products.snigel.se/product/tekniker-patch-small-12/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Instructor patch, Small -12",
+      "articleNo": "30-00866-09-00",
+      "url": "https://products.snigel.se/product/instructor-patch-small-12/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Small instruktors patch -11",
+      "articleNo": "30-00181-09-00",
+      "url": "https://products.snigel.se/product/litet-instrukt%c2%9arsm%c2%8arke-11/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Stort Instruktörsmärke -11",
+      "articleNo": "30-00192-09-00",
+      "url": "https://products.snigel.se/product/stort-instruktorsmarke-11/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Police-Swe patch -12",
+      "articleNo": "30-00240-09-00",
+      "url": "https://products.snigel.se/product/police-swe-patch-12/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Polis patch, Large -11",
+      "articleNo": "30-00185-09-00",
+      "url": "https://products.snigel.se/product/polis-patch-large-11/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Polis patch, Small -11",
+      "articleNo": "30-00191-09-00",
+      "url": "https://products.snigel.se/product/polis-patch-small-11/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    },
+    {
+      "name": "Medic patch, small -16",
+      "articleNo": "30-01422-09-000",
+      "url": "https://products.snigel.se/product/medic-patch-small-16/",
+      "description": {
+        "cleanText": "",
+        "features": [],
+        "paragraphs": [],
+        "fitsIn": null,
+        "fitsOn": null
+      }
+    }
+  ]
+}

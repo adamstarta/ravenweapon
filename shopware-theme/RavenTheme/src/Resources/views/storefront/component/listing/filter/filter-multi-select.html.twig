@@ -22,13 +22,9 @@
             {% endif %}
 
             {% if not skipElement %}
-                {% block component_filter_multi_select_list_item %}
-                    <li class="filter-multi-select-list-item">
-                        {% block component_filter_multi_select_list_item_inner %}
-                            {% sw_include '@Storefront/storefront/component/listing/filter/filter-multi-select-list-item.html.twig' %}
-                        {% endblock %}
-                    </li>
-                {% endblock %}
+                <li class="filter-multi-select-list-item">
+                    {% sw_include '@Storefront/storefront/component/listing/filter/filter-multi-select-list-item.html.twig' %}
+                </li>
             {% endif %}
         {% endfor %}
     </ul>

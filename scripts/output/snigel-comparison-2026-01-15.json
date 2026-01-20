@@ -1,0 +1,4806 @@
+{
+  "compared_at": "2026-01-15T15:48:25.583Z",
+  "source_scrape": "snigel-full-scrape-2026-01-15.json",
+  "comparisons": [
+    {
+      "product": "Belt closure pack  (5) -11",
+      "snigel_article_no": "13-00110-01-000",
+      "snigel_url": "https://products.snigel.se/product/belt-closure-pack-5-11/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Belt closure pack  (5) -11",
+      "staging_sku": "SN-belt-closure-pack-5-11",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Featherweight stretcher -09",
+      "snigel_article_no": "54-00540B09-000",
+      "snigel_url": "https://products.snigel.se/product/featherweight-stretcher-09/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Featherweight stretcher -09",
+      "staging_sku": "54-00540B09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Foldable drinking cup",
+      "snigel_article_no": "48-00819A20-000",
+      "snigel_url": "https://products.snigel.se/product/foldable-drinking-cup-13/",
+      "snigel_colors": [
+        "Khaki"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Foldable drinking cup",
+      "staging_sku": "48-00819A20-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Plastic bag, ziplock A6 -09, 10 pack",
+      "snigel_article_no": "PBA6-09",
+      "snigel_url": "https://products.snigel.se/product/plastic-bag-ziplock-a6-09-10-pack/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Plastic bag, ziplock A6 -09, 10 pack",
+      "staging_sku": "SN-plastic-bag-ziplock-a6-09-10-pack",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Sleeping bag cover with hood 2.0",
+      "snigel_article_no": "53-02494A09-000",
+      "snigel_url": "https://products.snigel.se/product/sleeping-bag-cover-with-hood-2-0/",
+      "snigel_colors": [
+        "Swecam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Sleeping bag cover with hood 2.0",
+      "staging_sku": "53-02494A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Light field blanket 2.0",
+      "snigel_article_no": "53-02172B09-000",
+      "snigel_url": "https://products.snigel.se/product/light-field-blanket-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Light field blanket 2.0",
+      "staging_sku": "53-02172A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "3x2m Multi Tarp 1.0",
+      "snigel_article_no": "51-02472A09-000",
+      "snigel_url": "https://products.snigel.se/product/multi-tarp-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Multi-tarp 1.0",
+      "staging_sku": "51-02472A09-000",
+      "match_status": "partial",
+      "image_comparison": []
+    },
+    {
+      "product": "Hypothermal bag 1.1",
+      "snigel_article_no": "54-02403B09-000",
+      "snigel_url": "https://products.snigel.se/product/hypothermal-bag-1-1/",
+      "snigel_colors": [
+        "Swecam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Hypothermal bag 1.1",
+      "staging_sku": "54-02403B09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "A3 Commander’s aid 1.0",
+      "snigel_article_no": "52-01558A09-000",
+      "snigel_url": "https://products.snigel.se/product/a3-commanders-aid-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "A3 Commander�s aid 1.0",
+      "staging_sku": "52-01558A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "A5 Field binder",
+      "snigel_article_no": "52-00506-",
+      "snigel_url": "https://products.snigel.se/product/a5-field-binder-07/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "A5 Field binder",
+      "staging_sku": "52-00506-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "52-00506-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "52-00506-01-000_DEFAULT-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Police Notebook cover-10",
+      "snigel_article_no": "52-00490-01-000",
+      "snigel_url": "https://products.snigel.se/product/police-notebook-cover-10/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Police Notebook cover-10",
+      "staging_sku": "52-00490-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Medium Notebook cover",
+      "snigel_article_no": "52-00489-",
+      "snigel_url": "https://products.snigel.se/product/medium-notebook-cover-07/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Medium Notebook cover",
+      "staging_sku": "52-00489-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "52-00489B01-012_0603-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "52-00489B09-012_1592-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Small Notebook cover",
+      "snigel_article_no": "52-00489-XX-011",
+      "snigel_url": "https://products.snigel.se/product/small-notebook-cover-07/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Small Notebook cover",
+      "staging_sku": "52-00489-XX-011",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "52-00489-01-011-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "52-00489-01-011_3-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Memo board -14",
+      "snigel_article_no": "52-00411-09-000",
+      "snigel_url": "https://products.snigel.se/product/memo-board-14/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Memo board -14",
+      "staging_sku": "52-00411-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Badge holder -16",
+      "snigel_article_no": "52-01347-09-000",
+      "snigel_url": "https://products.snigel.se/product/badge-holder-16/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Badge holder -16",
+      "staging_sku": "52-01347-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Wallet",
+      "snigel_article_no": "52-00563-",
+      "snigel_url": "https://products.snigel.se/product/wallet-10/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Wallet",
+      "staging_sku": "52-00090-01-000",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "52-00563-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "52-00563-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Mini wallet",
+      "snigel_article_no": "52-00090-01-000",
+      "snigel_url": "https://products.snigel.se/product/mini-wallet-15/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Mini wallet",
+      "staging_sku": "52-00563-",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Spotting Scope cover",
+      "snigel_article_no": "40-01416-09-000",
+      "snigel_url": "https://products.snigel.se/product/spotting-scope-cover/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Spotting Scope cover",
+      "staging_sku": "40-01416-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "XL Snipers support bag -03",
+      "snigel_article_no": "33-00652-09-000",
+      "snigel_url": "https://products.snigel.se/product/xl-snipers-support-bag-03/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "XL Snipers support bag -03",
+      "staging_sku": "33-00652-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Low profile 3L hydration bladder",
+      "snigel_article_no": "46-00585-09-000",
+      "snigel_url": "https://products.snigel.se/product/source-low-profile-3l-hydration-bladder/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Low profile 3L hydration bladder",
+      "staging_sku": "46-00585-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "1L Kangaroo hydration bladder",
+      "snigel_article_no": "46-00536-05-000",
+      "snigel_url": "https://products.snigel.se/product/1l-kangaroo-hydration-bladder/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "1L Kangaroo hydration bladder",
+      "staging_sku": "46-00536-05-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "2,5L hydration cover -16",
+      "snigel_article_no": "44-01305-",
+      "snigel_url": "https://products.snigel.se/product/25l-hydration-cover-16/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "2,5L hydration cover -16",
+      "staging_sku": "44-01305-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "44-01305-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Restraint sling -06",
+      "snigel_article_no": "34-01199-01-000",
+      "snigel_url": "https://products.snigel.se/product/restraint-sling-06/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Restraint sling -06",
+      "staging_sku": "34-01199-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Ribs Chest rig 1.0",
+      "snigel_article_no": "16-01868A09-000",
+      "snigel_url": "https://products.snigel.se/product/carry-cord-10/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Ribs Chest rig 1.0",
+      "staging_sku": "16-01868A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Pancake holster -16",
+      "snigel_article_no": "35-00809-",
+      "snigel_url": "https://products.snigel.se/product/pancake-holster-16/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Pancake holster -16",
+      "staging_sku": "35-00809-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "35-00809-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "35-00809-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Crotch pistol holster 2.0",
+      "snigel_article_no": "35-00605B01-000",
+      "snigel_url": "https://products.snigel.se/product/crotch-pistol-holster-11/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Crotch pistol holster 2.0",
+      "staging_sku": "SN-crotch-pistol-holster-11",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Shotgun holder 1.0",
+      "snigel_article_no": "36-01076-",
+      "snigel_url": "https://products.snigel.se/product/shotgun-holder-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Shotgun holder 1.0",
+      "staging_sku": "36-01076-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "36-01076-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Weapon attachment, side -00",
+      "snigel_article_no": "36-00579-01-000",
+      "snigel_url": "https://products.snigel.se/product/weapon-attachment-side-00/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Weapon attachment, side -00",
+      "staging_sku": "36-00579-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Back holder 2.0",
+      "snigel_article_no": "DWA-02B",
+      "snigel_url": "https://products.snigel.se/product/weapon-attachment-back-02/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Back holder 2.0",
+      "staging_sku": "SN-weapon-attachment-back-02",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "36-00631A09_2064-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "36-00631A09_2064-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Machine gun sling  -16",
+      "snigel_article_no": "34-00539-09-000",
+      "snigel_url": "https://products.snigel.se/product/machine-gun-sling-16/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Machine gun sling  -16",
+      "staging_sku": "SN-machine-gun-sling-16",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Weapon sling system 1.0",
+      "snigel_article_no": "34-01586A",
+      "snigel_url": "https://products.snigel.se/product/weapon-sling-system-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Weapon sling system 1.0",
+      "staging_sku": "34-01586A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "34-01586A01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "34-01586A09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "34-01586A56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Rifle sling w attachment -09",
+      "snigel_article_no": "34-00580",
+      "snigel_url": "https://products.snigel.se/product/rifle-sling-w-attachment-09/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Rifle sling w attachment -09",
+      "staging_sku": "34-00580",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "34-00580-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Weapon hook -10",
+      "snigel_article_no": "WH-10B",
+      "snigel_url": "https://products.snigel.se/product/weapon-hook-10/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Weapon hook -10",
+      "staging_sku": "SN-weapon-hook-10",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Leg strap -11",
+      "snigel_article_no": "26-00515-",
+      "snigel_url": "https://products.snigel.se/product/leg-strap-11/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "staging_name": "Leg strap -11",
+      "staging_sku": "26-00515-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Sizes": "XSmall"
+          },
+          "snigel_image": "26-00515-00-010-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Small"
+          },
+          "snigel_image": "26-00515-00-011-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Medium"
+          },
+          "snigel_image": "26-00515-00-012-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Large"
+          },
+          "snigel_image": "26-00515-00-013-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "XLarge"
+          },
+          "snigel_image": "26-00515-00-014-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Sniper patch, Small -12",
+      "snigel_article_no": "30-00186-09-00",
+      "snigel_url": "https://products.snigel.se/product/sniper-patch-small-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Sniper patch, Small -12",
+      "staging_sku": "30-00186-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Förhandlar patch -12",
+      "snigel_article_no": "30-00190-09-00",
+      "snigel_url": "https://products.snigel.se/product/forhandlar-patch-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "F�rhandlar patch -12",
+      "staging_sku": "30-00190-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Tekniker patch, small -12",
+      "snigel_article_no": "30-00182-09-00",
+      "snigel_url": "https://products.snigel.se/product/tekniker-patch-small-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Tekniker patch, small -12",
+      "staging_sku": "30-00182-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Instructor patch, Small -12",
+      "snigel_article_no": "30-00866-09-00",
+      "snigel_url": "https://products.snigel.se/product/instructor-patch-small-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Instructor patch, Small -12",
+      "staging_sku": "30-00866-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Small instruktors patch -11",
+      "snigel_article_no": "30-00181-09-00",
+      "snigel_url": "https://products.snigel.se/product/litet-instrukt%c2%9arsm%c2%8arke-11/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Small instruktors patch -11",
+      "staging_sku": "30-00181-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Stort Instruktörsmärke -11",
+      "snigel_article_no": "30-00192-09-00",
+      "snigel_url": "https://products.snigel.se/product/stort-instruktorsmarke-11/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Stort Instrukt�rsm�rke -11",
+      "staging_sku": "30-00192-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Police-Swe patch -12",
+      "snigel_article_no": "30-00240-09-00",
+      "snigel_url": "https://products.snigel.se/product/police-swe-patch-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Police-Swe patch -12",
+      "staging_sku": "30-00240-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Polis patch, Large -11",
+      "snigel_article_no": "30-00185-09-00",
+      "snigel_url": "https://products.snigel.se/product/polis-patch-large-11/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Polis patch, Large -11",
+      "staging_sku": "30-00185-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Polis patch, Small -11",
+      "snigel_article_no": "30-00191-09-00",
+      "snigel_url": "https://products.snigel.se/product/polis-patch-small-11/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Polis patch, Small -11",
+      "staging_sku": "30-00191-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Medic patch, small -16",
+      "snigel_article_no": "30-01422-09-000",
+      "snigel_url": "https://products.snigel.se/product/medic-patch-small-16/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Medic patch, small -16",
+      "staging_sku": "30-01422-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Medic patch w Velcro",
+      "snigel_article_no": "30-00888-",
+      "snigel_url": "https://products.snigel.se/product/medic-patch-w-velcro/",
+      "snigel_colors": [
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Medic patch w Velcro",
+      "staging_sku": "30-00888-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "30-00888-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "30-00888-17-000.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Cross patch, Small -12",
+      "snigel_article_no": "30-00323-09-00",
+      "snigel_url": "https://products.snigel.se/product/cross-patch-small-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Cross patch, Small -12",
+      "staging_sku": "30-00323-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Fin patch, Small -12",
+      "snigel_article_no": "30-00217-09-00",
+      "snigel_url": "https://products.snigel.se/product/fin-patch-small-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Fin patch, Small -12",
+      "staging_sku": "30-00217-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Blue and yellow patch -16",
+      "snigel_article_no": "30-01301-27-000",
+      "snigel_url": "https://products.snigel.se/product/fin-patch-small-w-velcro-12/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Blue and yellow patch -16",
+      "staging_sku": "30-01301-27-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Swedish flag -16",
+      "snigel_article_no": "30-01423-14-000",
+      "snigel_url": "https://products.snigel.se/product/swedish-flag-16/",
+      "snigel_colors": [
+        "Navy"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Swedish flag -16",
+      "staging_sku": "30-01423-14-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Swe patch, Small -12",
+      "snigel_article_no": "30-00189-01-00",
+      "snigel_url": "https://products.snigel.se/product/swe-patch-small-12/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Swe patch, Small -12",
+      "staging_sku": "30-00189-01-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Dog patch -12",
+      "snigel_article_no": "30-00187-09-00",
+      "snigel_url": "https://products.snigel.se/product/dog-patch-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Dog patch -12",
+      "staging_sku": "30-00187-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "K9 patch, Small -12",
+      "snigel_article_no": "30-00196-09-00",
+      "snigel_url": "https://products.snigel.se/product/k9-patch-small-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "K9 patch, Small -12",
+      "staging_sku": "30-00196-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "HUNDFÖRARE, Dog handler patch, small",
+      "snigel_article_no": "30-00324-09-00",
+      "snigel_url": "https://products.snigel.se/product/litet-hundforarmarke-11/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "HUNDF�RARE, Dog handler patch, small",
+      "staging_sku": "30-00324-09-00",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Small blank patch-13",
+      "snigel_article_no": "30-00658-09-000",
+      "snigel_url": "https://products.snigel.se/product/small-blank-patch-13/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Small blank patch-13",
+      "staging_sku": "30-00658-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "SNIGEL patch w Velcro",
+      "snigel_article_no": "30-01970A09-000",
+      "snigel_url": "https://products.snigel.se/product/snigel-patch-w-velcro/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "SNIGEL patch w Velcro",
+      "staging_sku": "30-01970A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Admin case",
+      "snigel_article_no": "52-00140-",
+      "snigel_url": "https://products.snigel.se/product/admin-case-14/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Admin case",
+      "staging_sku": "52-00140-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "52-00140B01_2543-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "52-00140B09_6732-uai-516x517.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Gas mask bag -11",
+      "snigel_article_no": "23-00571-XX-000",
+      "snigel_url": "https://products.snigel.se/product/gas-mask-bag-11/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Gas mask bag -11",
+      "staging_sku": "23-00571-XX-000",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "23-00571-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "23-00571-01-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Medium Schwung bag 1.1",
+      "snigel_article_no": "28-00073-",
+      "snigel_url": "https://products.snigel.se/product/medium-schwung-bag-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Medium Schwung bag 1.1",
+      "staging_sku": "28-00073-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "28-00073-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "28-00073B09_9642-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Rope bag -05",
+      "snigel_article_no": "ROBA-05",
+      "snigel_url": "https://products.snigel.se/product/rope-bag-05/",
+      "snigel_colors": [
+        "Black",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Rope bag -05",
+      "staging_sku": "SN-rope-bag-05",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "ROBA-05O-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "ROBA-05O-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Carrier pouch -16",
+      "snigel_article_no": "23-01165-09-000",
+      "snigel_url": "https://products.snigel.se/product/carrier-pouch-16/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Carrier pouch -16",
+      "staging_sku": "SN-carrier-pouch-16",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "3L Multipurpose bag -15",
+      "snigel_article_no": "28-00100-",
+      "snigel_url": "https://products.snigel.se/product/3l-multipurpose-bag-15/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "3L Multipurpose bag -15",
+      "staging_sku": "28-00100-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "28-00100-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "28-00100-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "6L Funny pack",
+      "snigel_article_no": "28-01291-",
+      "snigel_url": "https://products.snigel.se/product/6l-funny-pack-18/",
+      "snigel_colors": [
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "6L Funny pack",
+      "staging_sku": "28-01291-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "28-01291-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "28-01291-56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "10L Multi-purpose bag",
+      "snigel_article_no": "28-00271-09-000",
+      "snigel_url": "https://products.snigel.se/product/10l-multi-purpose-bag-15/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "10L Multi-purpose bag",
+      "staging_sku": "28-00271-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "30×61 cm Weapon bag -13",
+      "snigel_article_no": "28-00251-01-000",
+      "snigel_url": "https://products.snigel.se/product/30x61-cm-weapon-bag-13/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "30�61 cm Weapon bag -13",
+      "staging_sku": "28-00251-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "34×64 cm dual Weapon bag -11",
+      "snigel_article_no": "28-00055-01-000",
+      "snigel_url": "https://products.snigel.se/product/34x64-cm-dual-weapon-bag-11/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "34�64 cm dual Weapon bag -11",
+      "staging_sku": "28-00055-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "34×100 cm dual Weapon bag -11",
+      "snigel_article_no": "28-00054-01-000",
+      "snigel_url": "https://products.snigel.se/product/34x100-cm-dual-weapon-bag-11/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "34�100 cm dual Weapon bag -11",
+      "staging_sku": "28-00054-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Organized bag -11",
+      "snigel_article_no": "28-00501-",
+      "snigel_url": "https://products.snigel.se/product/organized-bag-11/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Organized bag -11",
+      "staging_sku": "28-00501-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "28-00501-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "28-00501-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "55L Duffel bag -17",
+      "snigel_article_no": "28-01350-",
+      "snigel_url": "https://products.snigel.se/product/55l-duffel-bag-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [
+        "55L"
+      ],
+      "staging_name": "55L Duffel bag -17",
+      "staging_sku": "28-01350-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "Backpack Size": "55L"
+          },
+          "snigel_image": "28-01350A01-900_0194-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Backpack Size": "55L"
+          },
+          "snigel_image": "28-01350A09-900_0065-1-uai-516x517.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "90L Duffel bag 1.0",
+      "snigel_article_no": "28-01350",
+      "snigel_url": "https://products.snigel.se/product/90l-duffel-bag-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [
+        "90L"
+      ],
+      "staging_name": "90L Duffel bag 1.0",
+      "staging_sku": "28-01350",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "Backpack Size": "90L"
+          },
+          "snigel_image": "28-01349-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Backpack Size": "90L"
+          },
+          "snigel_image": "28-01349-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "230 Roller bag -15",
+      "snigel_article_no": "28-00851-09-000",
+      "snigel_url": "https://products.snigel.se/product/230-roller-bag-15/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "230 Roller bag -15",
+      "staging_sku": "28-00851-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "15L Princess backpack  -17",
+      "snigel_article_no": "29-01067-",
+      "snigel_url": "https://products.snigel.se/product/15l-princess-backpack-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "15L Princess backpack  -17",
+      "staging_sku": "SN-15l-princess-backpack-17",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "29-01067-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-01067-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "29-01067-56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "30-40L Combat backpack 1.0",
+      "snigel_article_no": "29-01410A",
+      "snigel_url": "https://products.snigel.se/product/30-40l-combat-backpack-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "30-40L Combat backpack 1.0",
+      "staging_sku": "29-01410A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "29-01410A01_8707-uai-516x687.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-01410A09_9018-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "15-20L All pack",
+      "snigel_article_no": "29-00363-",
+      "snigel_url": "https://products.snigel.se/product/10-20l-all-pack-16-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "15-20L All pack",
+      "staging_sku": "29-00363-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "29-00363IMG_6999-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-00363C09_1473-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "30L Waterproof mission backpack 1.0",
+      "snigel_article_no": "29-01754A09-000",
+      "snigel_url": "https://products.snigel.se/product/30l-waterproof-mission-backpack-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "30L Waterproof mission backpack 1.0",
+      "staging_sku": "29-01754A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "30L Mission backpack 1.1",
+      "snigel_article_no": "29-00394B",
+      "snigel_url": "https://products.snigel.se/product/30l-mission-backpack-16/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "30L Mission backpack 1.1",
+      "staging_sku": "29-00394B",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "29-00394B56-B8277-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-00394B56-B8277-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "29-00394-56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "30L Specialist backpack",
+      "snigel_article_no": "29-0002X-",
+      "snigel_url": "https://products.snigel.se/product/25-30l-specialist-backpack-14/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "30L Specialist backpack",
+      "staging_sku": "29-0002X-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "29-00026-01-030_1379-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-00026-09-030_1358-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "29-00026-17-030_1407-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "30L insert wall -10",
+      "snigel_article_no": "27-00569-20-000",
+      "snigel_url": "https://products.snigel.se/product/25l-insert-wall-10/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "30L insert wall -10",
+      "staging_sku": "27-00569-20-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Multi insert panel 1.0",
+      "snigel_article_no": "27-01973A",
+      "snigel_url": "https://products.snigel.se/product/multi-insert-panel-1-0/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "30L",
+        "40L"
+      ],
+      "staging_name": "Multi insert panel 1.0",
+      "staging_sku": "27-01973A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Backpack Size": "30L"
+          },
+          "snigel_image": "27-01973A24-030_9338-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Backpack Size": "40L"
+          },
+          "snigel_image": "27-01973A24-040_9343-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Small Insert pouches 2.0",
+      "snigel_article_no": "27-00532B00-000",
+      "snigel_url": "https://products.snigel.se/product/small-insert-pouches-10/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Small Insert pouches 2.0",
+      "staging_sku": "27-00532B00-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "30L protective insert 1.1",
+      "snigel_article_no": "27-00076C09-000",
+      "snigel_url": "https://products.snigel.se/product/25l-protective-insert-bag-15/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "30L protective insert 1.1",
+      "staging_sku": "27-00076C09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Elastic insert stripes (6) -10",
+      "snigel_article_no": "27-00520-09-000",
+      "snigel_url": "https://products.snigel.se/product/elastic-insert-stripes-6-10/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Elastic insert stripes (6) -10",
+      "staging_sku": "27-00520-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "40L Specialist backpack",
+      "snigel_article_no": "29-00026-XX-000",
+      "snigel_url": "https://products.snigel.se/product/40l-specialist-backpack-14/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "40L Specialist backpack",
+      "staging_sku": "29-00026-XX-000",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "29-00026-01-000_DEFAULT-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-00026-01-030_6-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Large insert pouch 1.0",
+      "snigel_article_no": "27-02538A20-000",
+      "snigel_url": "https://products.snigel.se/product/large-insert-pouch-1-0/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Large insert pouch 1.0",
+      "staging_sku": "27-02538A20-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Medium insert pouches",
+      "snigel_article_no": "27-00533-00-000",
+      "snigel_url": "https://products.snigel.se/product/medium-insert-pouches-10/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Medium insert pouches",
+      "staging_sku": "27-00533-00-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "40L Velcro and webbing  panel -10",
+      "snigel_article_no": "27-01028-09-000",
+      "snigel_url": "https://products.snigel.se/product/40l-velcro-and-webbing-panel-10/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "40L Velcro and webbing  panel -10",
+      "staging_sku": "SN-40l-velcro-and-webbing-panel-10",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "40L insert wall",
+      "snigel_article_no": "27-00568-20-000",
+      "snigel_url": "https://products.snigel.se/product/40l-insert-wall-10/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "40L insert wall",
+      "staging_sku": "27-00568-20-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "40L protective insert",
+      "snigel_article_no": "27-00105-09-000",
+      "snigel_url": "https://products.snigel.se/product/40l-protective-insert-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "40L protective insert",
+      "staging_sku": "27-00105-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "50L Mission backpack 2.0",
+      "snigel_article_no": "29-00160C",
+      "snigel_url": "https://products.snigel.se/product/50l-mission-backpack-2-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "50L Mission backpack 2.0",
+      "staging_sku": "29-00160C",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-00160B09_3665-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Side pockets pair 2.0",
+      "snigel_article_no": "26-02140A",
+      "snigel_url": "https://products.snigel.se/product/side-pockets-pair-2-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Side pockets pair 2.0",
+      "staging_sku": "26-02140A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-00160B09_3679-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "100L Backpack 2.0",
+      "snigel_article_no": "29-01161C09-000",
+      "snigel_url": "https://products.snigel.se/product/100l-backpack-2-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "100L Backpack 2.0",
+      "staging_sku": "29-01161C09-000",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "29-01161C09_3882-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Backpack belt-12",
+      "snigel_article_no": "26-00910-09-001",
+      "snigel_url": "https://products.snigel.se/product/backpack-belt-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Backpack belt-12",
+      "staging_sku": "26-00910-09-001",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Dry bag set 1.0",
+      "snigel_article_no": "26-01082A09-000",
+      "snigel_url": "https://products.snigel.se/product/120l-dry-bag-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Dry bag set 1.0",
+      "staging_sku": "26-01082A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Covert backpack -21",
+      "snigel_article_no": "29-00155-01-000",
+      "snigel_url": "https://products.snigel.se/product/covert-backpack-12/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Covert backpack -21",
+      "staging_sku": "29-00155-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Binder mechanism",
+      "snigel_article_no": "50-00019",
+      "snigel_url": "https://products.snigel.se/product/binder-mechanism/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "2",
+        "4"
+      ],
+      "staging_name": "Binder mechanism",
+      "staging_sku": "50-00019",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Number": "2"
+          },
+          "snigel_image": "50-00019-01-000_DEFAULT-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Number": "4"
+          },
+          "snigel_image": "50-00019-01-000_9-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Herma 25 mm buckle",
+      "snigel_article_no": "01-200B09",
+      "snigel_url": "https://products.snigel.se/product/herma-25-mm-buckle-pair/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Herma 25 mm buckle",
+      "staging_sku": "01-200B09",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Herma 25 mm repair buckle",
+      "snigel_article_no": "01-202B",
+      "snigel_url": "https://products.snigel.se/product/malefemale-rep-buckle-stealth/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Herma 25 mm repair buckle",
+      "staging_sku": "01-202B",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "01-202-09_5388C-1-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "01-202B-09_5388-uai-516x517.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Shoulder pad set -15",
+      "snigel_article_no": "26-00623-",
+      "snigel_url": "https://products.snigel.se/product/shoulder-pad-set-15/",
+      "snigel_colors": [
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Shoulder pad set -15",
+      "staging_sku": "26-00623-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "26-00623-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "26-00623-56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Herma I-bar set 1.0",
+      "snigel_article_no": "26-00487B",
+      "snigel_url": "https://products.snigel.se/product/herma-i-bar-set-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Herma I-bar set 1.0",
+      "staging_sku": "26-00487B",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "26-00487B01_1583-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "26-00487B09_1577-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "26-00487B17_1579-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "I-Bar set -10",
+      "snigel_article_no": "26-00487-",
+      "snigel_url": "https://products.snigel.se/product/i-bar-set-10/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "I-Bar set -10",
+      "staging_sku": "26-00487-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "26-00487-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "26-00487-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "26-00487-17-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Herma T-bar set 1.0",
+      "snigel_article_no": "26-00491--1",
+      "snigel_url": "https://products.snigel.se/product/herma-t-bar-set-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Herma T-bar set 1.0",
+      "staging_sku": "26-00491--1",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "26-00491-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "26-00491B09_1575-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "26-00491B17_1555-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "T-bar set -12",
+      "snigel_article_no": "26-00491-",
+      "snigel_url": "https://products.snigel.se/product/t-bar-set-12/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "T-bar set -12",
+      "staging_sku": "26-00491-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "26-00491-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "26-00491-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "26-00491-17-000.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Duffel Strap-12",
+      "snigel_article_no": "26-00428-09-000",
+      "snigel_url": "https://products.snigel.se/product/duffel-strap-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Duffel Strap-12",
+      "staging_sku": "26-00428-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Name card holder -11",
+      "snigel_article_no": "26-00547-",
+      "snigel_url": "https://products.snigel.se/product/name-card-holder-11/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Name card holder -11",
+      "staging_sku": "26-00547-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "26-00547-01-000-uai-516x515.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "26-00547-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "T-Tape holder 1.0",
+      "snigel_article_no": "20-02045A09-000",
+      "snigel_url": "https://products.snigel.se/product/t-tape-holder-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "T-Tape holder 1.0",
+      "staging_sku": "20-02045A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Trauma shears holder 1.0",
+      "snigel_article_no": "20-02044A09-000",
+      "snigel_url": "https://products.snigel.se/product/trauma-shears-holder-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Trauma shears holder 1.0",
+      "staging_sku": "20-02044A09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Large hammer holder -14",
+      "snigel_article_no": "20-00966-09-000",
+      "snigel_url": "https://products.snigel.se/product/large-hammer-holder-14/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Large hammer holder -14",
+      "staging_sku": "SN-large-hammer-holder-14",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Padded pouch -12",
+      "snigel_article_no": "24-00350-09-000",
+      "snigel_url": "https://products.snigel.se/product/padded-pouch-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Padded pouch -12",
+      "staging_sku": "24-00350-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "1L Bottle pouch -18",
+      "snigel_article_no": "21-01590B09-000",
+      "snigel_url": "https://products.snigel.se/product/1l-bottle-pouch-18/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "1L Bottle pouch -18",
+      "staging_sku": "21-01590B09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "8×19 pouch -14",
+      "snigel_article_no": "21-00349-",
+      "snigel_url": "https://products.snigel.se/product/8x19-pouch-14/",
+      "snigel_colors": [
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "8�19 pouch -14",
+      "staging_sku": "21-00349-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "21-00349-56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Oyster pouch 1.0",
+      "snigel_article_no": "21-01774A",
+      "snigel_url": "https://products.snigel.se/product/oyster-pouch-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large"
+      ],
+      "staging_name": "Oyster pouch 1.0",
+      "staging_sku": "21-01774A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "XSmall"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "Small"
+          },
+          "snigel_image": "21-01774A01-001_5724-uai-516x517.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "Medium"
+          },
+          "snigel_image": "21-01774A01-002_5714-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "Large"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Sizes": "XSmall"
+          },
+          "snigel_image": "21-01774A09-000_3413-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Sizes": "Small"
+          },
+          "snigel_image": "21-01774AXX-001_9423-1-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Sizes": "Medium"
+          },
+          "snigel_image": "21-01774A09-002_4238-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Sizes": "Large"
+          },
+          "snigel_image": "21-01774AXX-003_9383-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "XSmall"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "Small"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "Medium"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "Large"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Trauma pouch insert -17",
+      "snigel_article_no": "25-01167-09-000",
+      "snigel_url": "https://products.snigel.se/product/trauma-pouch-insert-17/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Trauma pouch insert -17",
+      "staging_sku": "25-01167-09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Trauma pouch -17",
+      "snigel_article_no": "21-01166-",
+      "snigel_url": "https://products.snigel.se/product/trauma-pouch-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Trauma pouch -17",
+      "staging_sku": "21-01166-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-01166-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-01166-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Medium Admin pouch -18",
+      "snigel_article_no": "23-00420-",
+      "snigel_url": "https://products.snigel.se/product/medium-admin-pouch-18/",
+      "snigel_colors": [
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Medium Admin pouch -18",
+      "staging_sku": "23-00420-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "23-00420B09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "23-00420B17-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Small Admin pouch",
+      "snigel_article_no": "21-00309(B)",
+      "snigel_url": "https://products.snigel.se/product/small-admin-pouch-12/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Small Admin pouch",
+      "staging_sku": "21-00309",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-00309B01_6642-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-00309B09_6644-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Virve radio pouch -10",
+      "snigel_article_no": "21-01078-",
+      "snigel_url": "https://products.snigel.se/product/virve-radio-pouch-10/",
+      "snigel_colors": [
+        "Black",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Virve radio pouch -10",
+      "staging_sku": "21-01078-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-01078-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "21-01078-17-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "VIRVE pouch, Basic-11",
+      "snigel_article_no": "21-00144-",
+      "snigel_url": "https://products.snigel.se/product/virve-pouch-basic-11/",
+      "snigel_colors": [
+        "Black",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "VIRVE pouch, Basic-11",
+      "staging_sku": "21-00144-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-00144-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "21-00144-17-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Radio pouch -15",
+      "snigel_article_no": "21-00270-",
+      "snigel_url": "https://products.snigel.se/product/radio-pouch-06-15/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "HighVis yellow"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Radio pouch -15",
+      "staging_sku": "21-00270-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-00270-01-900-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-00270-09-900-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow"
+          },
+          "snigel_image": "21-00270-28_3299-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Canister pouch -15",
+      "snigel_article_no": "21-01101-01-000",
+      "snigel_url": "https://products.snigel.se/product/canister-pouch-15/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Canister pouch -15",
+      "staging_sku": "21-01101-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Zipped dump bag -10",
+      "snigel_article_no": "22-00519-",
+      "snigel_url": "https://products.snigel.se/product/zipped-dump-bag-10/",
+      "snigel_colors": [
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Zipped dump bag -10",
+      "staging_sku": "22-00519-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "22-00519-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "22-00519-17-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Micro dump pouch 2.0",
+      "snigel_article_no": "22-02066B",
+      "snigel_url": "https://products.snigel.se/product/ballistic-nijiiia-blanket-15/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Micro dump pouch 2.0",
+      "staging_sku": "22-02066B",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "22-02066B01_1523-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "22-02066B09_1533-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Small dump pouch 2.0",
+      "snigel_article_no": "22-00301B",
+      "snigel_url": "https://products.snigel.se/product/small-dump-pouch-2-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Small dump pouch 2.0",
+      "staging_sku": "22-00301B",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "22-00301BA09_4732-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "MG Ammunition pouch  -09",
+      "snigel_article_no": "22-00511-09-000",
+      "snigel_url": "https://products.snigel.se/product/mg-ammunition-pouch-09/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "MG Ammunition pouch  -09",
+      "staging_sku": "SN-mg-ammunition-pouch-09",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Cal 50 Magazine pouch -10",
+      "snigel_article_no": "22-00510-",
+      "snigel_url": "https://products.snigel.se/product/cal-50-magazine-pouch-10/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Cal 50 Magazine pouch -10",
+      "staging_sku": "SN-cal-50-magazine-pouch-10",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Dual Magazine pouch -18",
+      "snigel_article_no": "20-00248-/22-00248B",
+      "snigel_url": "https://products.snigel.se/product/dual-magazine-pouch-15/",
+      "snigel_colors": [
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Dual Magazine pouch -18",
+      "staging_sku": "20-00248-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "22-00248B09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "22-00248-17-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Dual holder insert -12",
+      "snigel_article_no": "25-00307-09-000",
+      "snigel_url": "https://products.snigel.se/product/dual-holder-insert-12/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Dual holder insert -12",
+      "staging_sku": "SN-dual-holder-insert-12",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Speed magazine pouch 2.0",
+      "snigel_article_no": "22-01888A",
+      "snigel_url": "https://products.snigel.se/product/speed-magazine-pouch-2-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Speed magazine pouch 2.0",
+      "staging_sku": "22-01888A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "22-01888B01_0583-3-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "22-01888B09_0560-1-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "22-01888B17_0586-3-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Elastic pouch 1.0",
+      "snigel_article_no": "21-01701A01-556",
+      "snigel_url": "https://products.snigel.se/product/elastic-pouch-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [
+        "5.56",
+        "7.62"
+      ],
+      "staging_name": "Elastic pouch 1.0",
+      "staging_sku": "21-01701A01-556",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Mag Size": "5.56",
+            "Colour": "Black"
+          },
+          "snigel_image": "21-01701A01-556-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Mag Size": "5.56",
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-01701A09-556-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Mag Size": "7.62",
+            "Colour": "Black"
+          },
+          "snigel_image": "21-01701A01-762-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Mag Size": "7.62",
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-01701A09-762-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "SMG Magazine pouch 14",
+      "snigel_article_no": "22-00452-01-000",
+      "snigel_url": "https://products.snigel.se/product/smg-magazine-pouch-00-14/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "SMG Magazine pouch 14",
+      "staging_sku": "22-00452-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Grenade pouch -10",
+      "snigel_article_no": "22-00527-",
+      "snigel_url": "https://products.snigel.se/product/grenade-pouch-10/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Grenade pouch -10",
+      "staging_sku": "22-00527-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "22-00527-09-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Covert Telescopic baton wrist holder -08",
+      "snigel_article_no": "20-00632-01-000",
+      "snigel_url": "https://products.snigel.se/product/covert-telescopic-baton-wrist-holder-08/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Covert Telescopic baton wrist holder -08",
+      "staging_sku": "ners",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Double handcuff pouch -11",
+      "snigel_article_no": "21-00057-01-000",
+      "snigel_url": "https://products.snigel.se/product/twin-handcuff-pouch-11/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Double handcuff pouch -11",
+      "staging_sku": "21-00057-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Handcuff pouch -09",
+      "snigel_article_no": "21-00485-01-000",
+      "snigel_url": "https://products.snigel.se/product/handcuff-pouch-09/",
+      "snigel_colors": [
+        "Black",
+        "HighVis yellow"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Handcuff pouch -09",
+      "staging_sku": "21-00485-01-000",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "HCP-09B-12926-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow"
+          },
+          "snigel_image": "21-00485-28_3298-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Topless Handcuff pouch 06",
+      "snigel_article_no": "21-00495-01-000",
+      "snigel_url": "https://products.snigel.se/product/topless-handcuff-pouch-06/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Topless Handcuff pouch 06",
+      "staging_sku": "21-00495-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "GP pouch 3 long",
+      "snigel_article_no": "21-0016821/ 01855AXX-013",
+      "snigel_url": "https://products.snigel.se/product/gp-pouch-3-long-12/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "GP pouch 3 long",
+      "staging_sku": "SN-gp-pouch-3-long-12",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-01855A01-013_1612-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-01855A09-002_6703-uai-516x517.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "21-01855A17-003_1606-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "GP pouch 3",
+      "snigel_article_no": "21-0029821/ 01855AXX-003",
+      "snigel_url": "https://products.snigel.se/product/gp-pouch-3/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "HighVis yellow",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "GP pouch 3",
+      "staging_sku": "21-0029821",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-01855A01-003_6656-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-00298-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow"
+          },
+          "snigel_image": "21-00298-28_3295-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "21-01855A17-003_1609-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "GP pouch 2 long",
+      "snigel_article_no": "21-00493-",
+      "snigel_url": "https://products.snigel.se/product/gp-pouch-2-long/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "GP pouch 2 long",
+      "staging_sku": "SN-gp-pouch-2-long",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-00493-01-000-600x600.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-00493-09-000-600x600.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "GP pouch 2",
+      "snigel_article_no": "21-00167/ 21-01855AXX-002",
+      "snigel_url": "https://products.snigel.se/product/gp-pouch-2-12/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam",
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "GP pouch 2",
+      "staging_sku": "21-00167",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "21-00167-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "21-00167-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "21-00167-56-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive"
+          },
+          "snigel_image": "21-01855A17-003_1606-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Telescopic baton holder -08",
+      "snigel_article_no": "20-00499",
+      "snigel_url": "https://products.snigel.se/product/telescopic-baton-holder-08/",
+      "snigel_colors": [
+        "Black",
+        "HighVis yellow"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Telescopic baton holder -08",
+      "staging_sku": "20-00499",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "EBH-08B_71-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow"
+          },
+          "snigel_image": "20-00499-28_3292-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Telescopic baton holder 26",
+      "snigel_article_no": "20-00499-1",
+      "snigel_url": "https://products.snigel.se/product/telescopic-baton-holder-26/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Telescopic baton holder 26",
+      "staging_sku": "20-00499-1",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "20-02603A01_IMG_6913-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Large key silencer-05",
+      "snigel_article_no": "20-00561-01-000",
+      "snigel_url": "https://products.snigel.se/product/large-key-silencer-05/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Large key silencer-05",
+      "staging_sku": "20-00561-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Regular Key silencer -05",
+      "snigel_article_no": "20-00560-01-000",
+      "snigel_url": "https://products.snigel.se/product/regular-key-silencer-05/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Regular Key silencer -05",
+      "staging_sku": "20-00560-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Combination glove holder -09",
+      "snigel_article_no": "20-00531",
+      "snigel_url": "https://products.snigel.se/product/combination-glove-holder-09/",
+      "snigel_colors": [
+        "Black",
+        "HighVis yellow"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Combination glove holder -09",
+      "staging_sku": "20-00531",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "GDP-08B_06452_1-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow"
+          },
+          "snigel_image": "20-00531-28_3291-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Elastic glove holder -05",
+      "snigel_article_no": "20-00530-01-000",
+      "snigel_url": "https://products.snigel.se/product/elastic-glove-holder-05/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Elastic glove holder -05",
+      "staging_sku": "SN-elastic-glove-holder-05",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Glove holder -05",
+      "snigel_article_no": "20-00500-01-000",
+      "snigel_url": "https://products.snigel.se/product/glove-holder-05/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Glove holder -05",
+      "staging_sku": "20-00500-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Modular Key holder -05",
+      "snigel_article_no": "20-00494-01-000",
+      "snigel_url": "https://products.snigel.se/product/modular-key-holder-05/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Modular Key holder -05",
+      "staging_sku": "20-00494-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Ballistic thigh protection -15",
+      "snigel_article_no": "85-01153",
+      "snigel_url": "https://products.snigel.se/product/ballistic-thigh-protection-15/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Ballistic thigh protection -15",
+      "staging_sku": "85-01153",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "85-01153-09_3333.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "85-01153-09_3333.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "85-01153-09_3333.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Squeeze buckle closure 1.0",
+      "snigel_article_no": "86-01487--1",
+      "snigel_url": "https://products.snigel.se/product/squeeze-buckle-closure-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Squeeze buckle closure 1.0",
+      "staging_sku": "86-01487--1",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "86-02026A_3099-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "86-02026A_3100-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "86-02026A_1885-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Squeeze zipper closure -17",
+      "snigel_article_no": "86-01487-",
+      "snigel_url": "https://products.snigel.se/product/squeeze-zipper-closure-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Squeeze zipper closure -17",
+      "staging_sku": "86-01487-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "86-01487-01-000_DEFAULT-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "86-01487-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "86-01487-01-000_DEFAULT-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Squeeze quick adjust -17",
+      "snigel_article_no": "26-01102-",
+      "snigel_url": "https://products.snigel.se/product/squeeze-quick-adjust-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Squeeze quick adjust -17",
+      "staging_sku": "26-01102-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "26-01102-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "26-01102-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "26-01102-56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "3 row cummerbund 1.0",
+      "snigel_article_no": "26-02012A",
+      "snigel_url": "https://products.snigel.se/product/squeeze-3-row-cummerbund-1-0/",
+      "snigel_colors": [
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [
+        "008",
+        "010"
+      ],
+      "staging_name": "3 row cummerbund 1.0",
+      "staging_sku": "26-02012A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Panel Sizes": "008"
+          },
+          "snigel_image": "26-02012A09_9934-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Panel Sizes": "010"
+          },
+          "snigel_image": "26-02012A09_9934-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "Panel Sizes": "008"
+          },
+          "snigel_image": "26-02012A09_9934-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "Panel Sizes": "010"
+          },
+          "snigel_image": "26-02012A09_9934-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Elastic cumber band w compartments 1.0",
+      "snigel_article_no": "84-00984--1",
+      "snigel_url": "https://products.snigel.se/product/elastic-cumber-band-w-compartments-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Elastic cumber band w compartments 1.0",
+      "staging_sku": "84-00984--1",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "86-01948A09.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Squeeze side panel pouch set -18",
+      "snigel_article_no": "84-00984-",
+      "snigel_url": "https://products.snigel.se/product/squeeze-side-panel-pouch-set-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [
+        "007",
+        "009",
+        "011"
+      ],
+      "staging_name": "Squeeze side panel pouch set -18",
+      "staging_sku": "84-00984-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "Panel Sizes": "007"
+          },
+          "snigel_image": "84-00984-01-007-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Panel Sizes": "009"
+          },
+          "snigel_image": "84-00984-01-009-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Panel Sizes": "011"
+          },
+          "snigel_image": "84-00984A09_8918-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Panel Sizes": "007"
+          },
+          "snigel_image": "84-00984-09-007-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Panel Sizes": "009"
+          },
+          "snigel_image": "84-00984A09_8918-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Panel Sizes": "011"
+          },
+          "snigel_image": "84-00984A09_8918-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "Panel Sizes": "007"
+          },
+          "snigel_image": "84-00984-56-007-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "Panel Sizes": "009"
+          },
+          "snigel_image": "84-00984-56-009-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "Panel Sizes": "011"
+          },
+          "snigel_image": "84-00984-56-011-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Squeeze ballistic front and back 1.3 S2",
+      "snigel_article_no": "17-00944--2",
+      "snigel_url": "https://products.snigel.se/product/squeeze-ballistic-front-and-back-1-3-s2/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [
+        "Size 2"
+      ],
+      "staging_name": "Squeeze ballistic front and back 1.3 S2",
+      "staging_sku": "17-00944--2",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "17-02813A09_1182-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Squeeze vest/plate carrier",
+      "snigel_article_no": "17-00944-",
+      "snigel_url": "https://products.snigel.se/product/squeeze-vest-plate-carrier-17/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [
+        "Size 1",
+        "Size 2",
+        "Size 3"
+      ],
+      "staging_name": "Squeeze vest/plate carrier",
+      "staging_sku": "17-00944-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 1"
+          },
+          "snigel_image": "17-00944-01-001-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "17-00944-01-002-uai-516x497.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "17-00944-56-003_3435-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "V Size": "Size 1"
+          },
+          "snigel_image": "17-00944-09-001-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "17-00944-09-002_3365-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "17-00944-09-002_3365-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "V Size": "Size 1"
+          },
+          "snigel_image": "17-00944-56-001-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "17-00944-56-003_3435-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "17-00944-56-002_3424-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Squeeze MOLLE front panel 1.0",
+      "snigel_article_no": "26-02027A",
+      "snigel_url": "https://products.snigel.se/product/squeeze-molle-front-panel-1-0/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Squeeze MOLLE front panel 1.0",
+      "staging_sku": "26-02027A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "26-02027A56_3094-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "26-02027A56_3094-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "26-02027A56_3094-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Elastic 40 mm T-bar set -12",
+      "snigel_article_no": "26-00280-01-000",
+      "snigel_url": "https://products.snigel.se/product/elastic-40-mm-t-bar-set-12/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Elastic 40 mm T-bar set -12",
+      "staging_sku": "26-00280-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Plate carrier, Strap on DF -13",
+      "snigel_article_no": "17-00642-",
+      "snigel_url": "https://products.snigel.se/product/plate-carrier-strap-on-df-13/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [
+        "Size 3"
+      ],
+      "staging_name": "Plate carrier, Strap on DF -13",
+      "staging_sku": "17-00642-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "17-00642-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "17-00642-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "17-00642-56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Plate carrier, Strap on -14",
+      "snigel_article_no": "17-01020-09-000",
+      "snigel_url": "https://products.snigel.se/product/plate-carrier-strap-on-14/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Plate carrier, Strap on -14",
+      "staging_sku": "ments",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Equipment vest -16",
+      "snigel_article_no": "18-01162-",
+      "snigel_url": "https://products.snigel.se/product/tactical-vest-16/",
+      "snigel_colors": [
+        "Black",
+        "HighVis yellow"
+      ],
+      "snigel_sizes": [
+        "Size 1",
+        "Size 2",
+        "Size 3",
+        "Size 4"
+      ],
+      "staging_name": "Equipment vest -16",
+      "staging_sku": "18-01162-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 1"
+          },
+          "snigel_image": "18-01162-01-001-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "18-01162-01-002-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "18-01162-01-003-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 4"
+          },
+          "snigel_image": "18-01162-01-004-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow",
+            "V Size": "Size 1"
+          },
+          "snigel_image": "18-01162-28_3467-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "18-01162-28_3461-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "18-01162-28_3461-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "HighVis yellow",
+            "V Size": "Size 4"
+          },
+          "snigel_image": "18-01162-28_3461-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Covert equipment vest -12",
+      "snigel_article_no": "18-00095-",
+      "snigel_url": "https://products.snigel.se/product/covert-equipment-vest-12/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "Size 1",
+        "Size 2",
+        "Size 3"
+      ],
+      "staging_name": "Covert equipment vest -12",
+      "staging_sku": "SN-covert-equipment-vest-12",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "V Size": "Size 1"
+          },
+          "snigel_image": "18-00095-09-002_3-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "V Size": "Size 2"
+          },
+          "snigel_image": "18-00095-09-002-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "V Size": "Size 3"
+          },
+          "snigel_image": "18-00095-09-003-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Technical equipment vest 2.0",
+      "snigel_article_no": "18-00575-",
+      "snigel_url": "https://products.snigel.se/product/technical-equipment-vest-11/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "M-XXL",
+        "XS-M"
+      ],
+      "staging_name": "Technical equipment vest 2.0",
+      "staging_sku": "18-00575-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Sizes": "M-XXL"
+          },
+          "snigel_image": "18-00575B01_017-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "XS-M"
+          },
+          "snigel_image": "18-00575B01_017-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Covert equipment vest -12 FIN",
+      "snigel_article_no": "18-00343-",
+      "snigel_url": "https://products.snigel.se/product/covert-equipment-vest-12-fin/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "Size 1"
+      ],
+      "staging_name": "COVERT EQUIPMENT VEST -12 FIN",
+      "staging_sku": "18-00095-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "V Size": "Size 1"
+          },
+          "snigel_image": "18-00343-01-001_DEFAULT-uai-516x551.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Covert surveillance vest -05",
+      "snigel_article_no": "18-00484-",
+      "snigel_url": "https://products.snigel.se/product/covert-surveillance-equipment-vest-05/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "Size 1",
+        "Size 2",
+        "Size 3"
+      ],
+      "staging_name": "Covert surveillance vest -05",
+      "staging_sku": "18-00484-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "V Size": "Size 1"
+          },
+          "snigel_image": "18-00484-01-001-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "V Size": "Size 2"
+          },
+          "snigel_image": "18-00484-01-002-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "V Size": "Size 3"
+          },
+          "snigel_image": "18-00484-01-003-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Covert stretch vest -16",
+      "snigel_article_no": "19-01098-",
+      "snigel_url": "https://products.snigel.se/product/covert-stretch-vest-16/",
+      "snigel_colors": [
+        "Black",
+        "White"
+      ],
+      "snigel_sizes": [
+        "Size 1,5",
+        "Size 1",
+        "Size 2",
+        "Size 3"
+      ],
+      "staging_name": "Covert stretch vest -16",
+      "staging_sku": "19-01098-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 1,5"
+          },
+          "snigel_image": "19-01098-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 1"
+          },
+          "snigel_image": "19-01098-01-001-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "19-01098-01-002-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "19-01098-01-003-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "White",
+            "V Size": "Size 1,5"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "White",
+            "V Size": "Size 1"
+          },
+          "snigel_image": "19-01098-25-001-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "White",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "19-01098-25-002-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "White",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "19-01098-25-003-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Dual side covert equipment harness -11",
+      "snigel_article_no": "15-00492-01-000",
+      "snigel_url": "https://products.snigel.se/product/dual-side-covert-equipment-harness-11/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Dual side covert equipment harness -11",
+      "staging_sku": "15-00492-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Single side covert equipment harness -11",
+      "snigel_article_no": "15-00602-01-000",
+      "snigel_url": "https://products.snigel.se/product/single-side-covert-equipment-harness-11/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Single side covert equipment harness -11",
+      "staging_sku": "15-00602-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Small leg panel -12",
+      "snigel_article_no": "14-00101-",
+      "snigel_url": "https://products.snigel.se/product/small-leg-panel-12/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Small leg panel -12",
+      "staging_sku": "14-00101-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "14-00101-01-000_11-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "14-00101-01-000_12-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "50 mm buckle adapter set",
+      "snigel_article_no": "40-00102-01-000",
+      "snigel_url": "https://products.snigel.se/product/50-mm-buckle-adapter-set/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "50 mm buckle adapter set",
+      "staging_sku": "40-00102-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Leg attachment light -10",
+      "snigel_article_no": "ALL-10",
+      "snigel_url": "https://products.snigel.se/product/leg-attachment-light-10/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Leg attachment light -10",
+      "staging_sku": "SN-leg-attachment-light-10",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "ALL-10B-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Belt attachment -11",
+      "snigel_article_no": "26-00598-01-000",
+      "snigel_url": "https://products.snigel.se/product/belt-attachment-11/",
+      "snigel_colors": [
+        "Various"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Belt attachment -11",
+      "staging_sku": "26-00598-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Covert elastic equipment belt 2.0",
+      "snigel_article_no": "12-01757A01-000",
+      "snigel_url": "https://products.snigel.se/product/covert-elastic-equipment-belt-2-0/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Covert elastic equipment belt 2.0",
+      "staging_sku": "12-01757A01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Combat belt harness -14",
+      "snigel_article_no": "15-01029-",
+      "snigel_url": "https://products.snigel.se/product/combat-belt-harness-14/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Multicam"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Combat belt harness -14",
+      "staging_sku": "15-01029-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "15-01029-01-000_DEFAULT-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "15-01029-09-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Multicam"
+          },
+          "snigel_image": "15-01029-56-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Light combat belt 1.0",
+      "snigel_article_no": "13-01897-",
+      "snigel_url": "https://products.snigel.se/product/light-combat-belt-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [
+        "Size 1",
+        "Size 2",
+        "Size 3"
+      ],
+      "staging_name": "Light combat belt 1.0",
+      "staging_sku": "13-01897-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Grey",
+            "V Size": "Size 1"
+          },
+          "snigel_image": "13-01897A09_2426-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "V Size": "Size 2"
+          },
+          "snigel_image": "13-01897A09_2426-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "V Size": "Size 3"
+          },
+          "snigel_image": "13-01897A09_5042-uai-516x517.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Ribs combat belt 1.0",
+      "snigel_article_no": "13-01864A",
+      "snigel_url": "https://products.snigel.se/product/ribs-combat-belt-1-0/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "Size 1",
+        "Size 2",
+        "Size 3"
+      ],
+      "staging_name": "Ribs combat belt 1.0",
+      "staging_sku": "13-01864A",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "V Size": "Size 1"
+          },
+          "snigel_image": "13-01864AB09_3477-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "V Size": "Size 2"
+          },
+          "snigel_image": "13-01864AB09_3477-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "V Size": "Size 3"
+          },
+          "snigel_image": "13-01864AB09_3477-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Comfort belt-13",
+      "snigel_article_no": "13-00327-",
+      "snigel_url": "https://products.snigel.se/product/comfort-belt-13/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge",
+        "XXL"
+      ],
+      "staging_name": "Comfort belt-13",
+      "staging_sku": "13-00327-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "XSmall"
+          },
+          "snigel_image": "13-00327-01-010-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "Small"
+          },
+          "snigel_image": "13-00327-01-011-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "Medium"
+          },
+          "snigel_image": "13-00327-01-010_3-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "Large"
+          },
+          "snigel_image": "13-00327-01-010_DEFAULT-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "XLarge"
+          },
+          "snigel_image": "13-00327-01-010_4-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "XXL"
+          },
+          "snigel_image": "13-00327-01-010_3-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Equipment belt harness -10",
+      "snigel_article_no": "15-00607-01-000",
+      "snigel_url": "https://products.snigel.se/product/equipment-belt-harness-10/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "EQUIPMENT BELT HARNESS -10",
+      "staging_sku": "15-00607-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Belt adjuster -09",
+      "snigel_article_no": "10-00486-01-000",
+      "snigel_url": "https://products.snigel.se/product/belt-adjuster-09/",
+      "snigel_colors": [
+        "Black"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Belt adjuster -09",
+      "staging_sku": "10-00486-01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Police Equipment belt -09",
+      "snigel_article_no": "13-00483-",
+      "snigel_url": "https://products.snigel.se/product/police-equipment-belt-09/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "XSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge",
+        "XXL"
+      ],
+      "staging_name": "Police Equipment belt -09",
+      "staging_sku": "13-00483-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Sizes": "XSmall"
+          },
+          "snigel_image": "13-00483-01-010-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Small"
+          },
+          "snigel_image": "13-00483-01-011-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Medium"
+          },
+          "snigel_image": "13-00483-01-012-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Large"
+          },
+          "snigel_image": "13-00483-01-013-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "XLarge"
+          },
+          "snigel_image": "13-00483-01-010-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "XXL"
+          },
+          "snigel_image": "13-00483-01-015-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Basic Equipment belt",
+      "snigel_article_no": "12-00507-",
+      "snigel_url": "https://products.snigel.se/product/basic-equipment-belt/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "staging_name": "Basic Equipment belt",
+      "staging_sku": "12-00507-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Sizes": "Small"
+          },
+          "snigel_image": "12-00507-01-011-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Medium"
+          },
+          "snigel_image": "12-00507-01-012-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Large"
+          },
+          "snigel_image": "12-00507-01-013-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "XLarge"
+          },
+          "snigel_image": "12-00507-01-014-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Braces",
+      "snigel_article_no": "10-00215-",
+      "snigel_url": "https://products.snigel.se/product/braces-12/",
+      "snigel_colors": [
+        "Black",
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Braces",
+      "staging_sku": "10-00215-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black"
+          },
+          "snigel_image": "10-00215B09_1186-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey"
+          },
+          "snigel_image": "10-00215B09_1185-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Covert equipment belt -17",
+      "snigel_article_no": "11-01426-",
+      "snigel_url": "https://products.snigel.se/product/covert-equipment-belt-17/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge",
+        "XXL"
+      ],
+      "staging_name": "Covert equipment belt -17",
+      "staging_sku": "11-01426-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Sizes": "Small"
+          },
+          "snigel_image": "11-01426-01-011-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Medium"
+          },
+          "snigel_image": "11-01426-01-012-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "Large"
+          },
+          "snigel_image": "11-01426-01-013-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "XLarge"
+          },
+          "snigel_image": "11-01426-01-014-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes": "XXL"
+          },
+          "snigel_image": "11-01426-01-015-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Rigid trouser belt -05",
+      "snigel_article_no": "11-00498-",
+      "snigel_url": "https://products.snigel.se/product/rigid-trouser-belt-05/",
+      "snigel_colors": [
+        "Black",
+        "Grey",
+        "Olive"
+      ],
+      "snigel_sizes": [
+        "XS/S",
+        "M/L"
+      ],
+      "staging_name": "Rigid trouser belt -05",
+      "staging_sku": "11-00498-",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "XS/S"
+          },
+          "snigel_image": "11-00498-01-000_4-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Black",
+            "Sizes": "M/L"
+          },
+          "snigel_image": "11-00498-01-000-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Sizes": "XS/S"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Grey",
+            "Sizes": "M/L"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "XS/S"
+          },
+          "snigel_image": null,
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "M/L"
+          },
+          "snigel_image": "11-00498-17-000-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Elastic trousers belt 1.1",
+      "snigel_article_no": "11-01295B09-000",
+      "snigel_url": "https://products.snigel.se/product/elastic-trousers-belt-16/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Elastic trousers belt 1.1",
+      "staging_sku": "11-01295B09-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Tactical coverall, Digi  -09F",
+      "snigel_article_no": "08-00707-",
+      "snigel_url": "https://products.snigel.se/product/tactical-coverall-digi-09f/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "241",
+        "242"
+      ],
+      "staging_name": "Tactical coverall, Digi  -09F",
+      "staging_sku": "SN-tactical-coverall-digi-09f",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Variant": "241"
+          },
+          "snigel_image": "08-00707-53-8XX-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Variant": "242"
+          },
+          "snigel_image": "08-00707-53-8XX-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Tactical coverall 09F",
+      "snigel_article_no": "08-00707-",
+      "snigel_url": "https://products.snigel.se/product/tactical-coverall-09f-complete/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "Briefs",
+        "COMPLETE",
+        "Coverall",
+        "Vest"
+      ],
+      "staging_name": "Tactical coverall 09F",
+      "staging_sku": "08-01056-14-XXX",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Parts": "Briefs"
+          },
+          "snigel_image": "08-00707-14-9XX-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Parts": "COMPLETE"
+          },
+          "snigel_image": "08-00707-14-XXX-uai-516x517.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Parts": "Coverall"
+          },
+          "snigel_image": "08-00707-14-7XX-uai-516x517.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Parts": "Vest"
+          },
+          "snigel_image": "08-00707-14-8XX-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Tactical coverall 09F Briefs",
+      "snigel_article_no": "08-01056-14-XXX",
+      "snigel_url": "https://products.snigel.se/product/tactical-coverall-10jk/",
+      "snigel_colors": [
+        "Navy"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Tactical coverall 09F Briefs",
+      "staging_sku": "SN-tactical-coverall-10jk",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Flight suit other -09",
+      "snigel_article_no": "08-00523-14-XXX",
+      "snigel_url": "https://products.snigel.se/product/flight-suit-other-09/",
+      "snigel_colors": [
+        "Navy"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Flight suit other -09",
+      "staging_sku": "08-00523-14-XXX",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Tactical coverall BG -10F",
+      "snigel_article_no": "08-00699-17-XXX",
+      "snigel_url": "https://products.snigel.se/product/tactical-coverall-bg-10f/",
+      "snigel_colors": [
+        "Olive"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Tactical coverall BG -10F",
+      "staging_sku": "SN-tactical-coverall-bg-10f",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Flight suit, Pilot -09",
+      "snigel_article_no": "08-00522-14-XXX",
+      "snigel_url": "https://products.snigel.se/product/flight-suit-pilot-09/",
+      "snigel_colors": [
+        "Navy"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "Flight suit, Pilot -09",
+      "staging_sku": "SN-flight-suit-pilot-09",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Fleece jacket 1.0",
+      "snigel_article_no": "07-01927A09",
+      "snigel_url": "https://products.snigel.se/product/fleece-jacket-1-0/",
+      "snigel_colors": [],
+      "snigel_sizes": [
+        "IJ3= Small short",
+        "KL4= Medium regular",
+        "MN4= Large regular",
+        "OP4= XL regular"
+      ],
+      "staging_name": "Fleece jacket 1.0",
+      "staging_sku": "07-01927A09",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Sizes Double All": "IJ3= Small short"
+          },
+          "snigel_image": "07-01927A09_3423-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes Double All": "KL4= Medium regular"
+          },
+          "snigel_image": "07-01927A09_3423-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes Double All": "MN4= Large regular"
+          },
+          "snigel_image": "07-01927A09_3423-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Sizes Double All": "OP4= XL regular"
+          },
+          "snigel_image": "07-01927A09_3423-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "Elbow pads 2.0",
+      "snigel_article_no": "00-01670A01-000",
+      "snigel_url": "https://products.snigel.se/product/elbow-pads-2-0/",
+      "snigel_colors": [],
+      "snigel_sizes": [],
+      "staging_name": "Elbow pads 2.0",
+      "staging_sku": "00-01670A01-000",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Knee pads 2.0",
+      "snigel_article_no": "00-01669A01-000",
+      "snigel_url": "https://products.snigel.se/product/knee-pads-2-0/",
+      "snigel_colors": [],
+      "snigel_sizes": [],
+      "staging_name": "Knee pads 2.0",
+      "staging_sku": "SN-knee-pads-2-0",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "Snigel T-shirt 2.0",
+      "snigel_article_no": "05-01962A",
+      "snigel_url": "https://products.snigel.se/product/snigel-t-shirt-2-0/",
+      "snigel_colors": [
+        "Navy",
+        "Olive"
+      ],
+      "snigel_sizes": [
+        "Small",
+        "Medium",
+        "Large",
+        "XLarge"
+      ],
+      "staging_name": "Snigel T-shirt 2.0",
+      "staging_sku": "SN-snigel-t-shirt-2-0",
+      "match_status": "exact",
+      "image_comparison": [
+        {
+          "selection": {
+            "Colour": "Navy",
+            "Sizes": "Small"
+          },
+          "snigel_image": "05-01962A14_9700-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Navy",
+            "Sizes": "Medium"
+          },
+          "snigel_image": "05-01962A14_9700-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Navy",
+            "Sizes": "Large"
+          },
+          "snigel_image": "05-01962A14_9700-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Navy",
+            "Sizes": "XLarge"
+          },
+          "snigel_image": "05-01962A14_9700-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "Small"
+          },
+          "snigel_image": "05-01962A17_1333-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "Medium"
+          },
+          "snigel_image": "05-01962A17_1333-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "Large"
+          },
+          "snigel_image": "05-01962A17_1333-uai-516x516.jpg",
+          "staging_has": null
+        },
+        {
+          "selection": {
+            "Colour": "Olive",
+            "Sizes": "XLarge"
+          },
+          "snigel_image": "05-01962A17_1333-uai-516x516.jpg",
+          "staging_has": null
+        }
+      ]
+    },
+    {
+      "product": "FR Annaclava 1.0",
+      "snigel_article_no": "09-00409A09-000",
+      "snigel_url": "https://products.snigel.se/product/fr-annaclava-1-0/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "FR Annaclava 1.0",
+      "staging_sku": "SN-fr-annaclava-1-0",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "FR Beanie",
+      "snigel_article_no": "09-01352-09-000",
+      "snigel_url": "https://products.snigel.se/product/fr-beanie-17/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "FR Beanie",
+      "staging_sku": "SN-fr-beanie-17",
+      "match_status": "exact",
+      "image_comparison": []
+    },
+    {
+      "product": "FR Neck gaiter -17",
+      "snigel_article_no": "09-01353-09-000",
+      "snigel_url": "https://products.snigel.se/product/fr-neck-gaiter-17/",
+      "snigel_colors": [
+        "Grey"
+      ],
+      "snigel_sizes": [],
+      "staging_name": "FR Neck gaiter -17",
+      "staging_sku": "SN-fr-neck-gaiter-17",
+      "match_status": "exact",
+      "image_comparison": []
+    }
+  ],
+  "summary": {
+    "total_snigel_products": 196,
+    "matched": 196,
+    "not_found": 0,
+    "products_with_multiple_colors": 65,
+    "products_with_sizes": 29,
+    "total_variant_images": 270
+  }
+}
