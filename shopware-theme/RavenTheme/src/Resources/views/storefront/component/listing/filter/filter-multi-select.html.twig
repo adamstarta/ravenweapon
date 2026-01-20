@@ -1,0 +1,35 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter/filter-multi-select.html.twig' %}
+
+{#
+   Custom filter that excludes root navigation categories from the Kategorie filter.
+   These categories shouldn't appear as filter options:
+   - "Raven Shop AG" (sales channel root)
+   - "Alle Produkte" (root navigation)
+   - Level 2 navigation categories
+#}
+
+{% block component_filter_multi_select_list %}
+    <ul class="filter-multi-select-list" aria-label="{{ displayName }}">
+        {% for element in elements %}
+            {# Skip root categories that shouldn't be filter options #}
+            {% set skipElement = false %}
+            {% if name == 'categoryIds' or name == 'categories' %}
+                {% set categoryName = element.translated.name|default('') %}
+                {# Skip sales channel root and main navigation categories #}
+                {% if categoryName == 'Raven Shop AG' or categoryName == 'Alle Produkte' %}
+                    {% set skipElement = true %}
+                {% endif %}
+            {% endif %}
+
+            {% if not skipElement %}
+                {% block component_filter_multi_select_list_item %}
+                    <li class="filter-multi-select-list-item">
+                        {% block component_filter_multi_select_list_item_inner %}
+                            {% sw_include '@Storefront/storefront/component/listing/filter/filter-multi-select-list-item.html.twig' %}
+                        {% endblock %}
+                    </li>
+                {% endblock %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
