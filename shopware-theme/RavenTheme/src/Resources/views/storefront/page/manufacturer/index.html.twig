@@ -300,10 +300,14 @@
                         </button>
                         <div class="raven-filter-dropdown" data-filter-panel="category">
                             {% for category in categories %}
-                            <div class="raven-filter-option">
-                                <input type="checkbox" id="cat-{{ category.id }}" value="{{ category.id }}" data-filter-category>
-                                <label for="cat-{{ category.id }}">{{ category.translated.name }}</label>
-                            </div>
+                                {# Skip root navigation categories that shouldn't be filter options #}
+                                {% set categoryName = category.translated.name|default('') %}
+                                {% if categoryName != 'Raven Shop AG' and categoryName != 'Alle Produkte' %}
+                                <div class="raven-filter-option">
+                                    <input type="checkbox" id="cat-{{ category.id }}" value="{{ category.id }}" data-filter-category>
+                                    <label for="cat-{{ category.id }}">{{ categoryName }}</label>
+                                </div>
+                                {% endif %}
                             {% endfor %}
                             <button type="button" class="raven-filter-apply" data-apply-filter="category">Anwenden</button>
                         </div>
