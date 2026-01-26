@@ -2,9 +2,15 @@
 
 {% block base_body_classes %}configurator-page{% endblock %}
 
+{# Remove all header, navigation, breadcrumb, and footer elements #}
 {% block base_header %}{% endblock %}
+{% block base_header_inner %}{% endblock %}
 {% block base_navigation %}{% endblock %}
+{% block base_navigation_inner %}{% endblock %}
+{% block base_breadcrumb %}{% endblock %}
+{% block base_content %}{% endblock %}
 {% block base_footer %}{% endblock %}
+{% block base_footer_inner %}{% endblock %}
 
 {% block base_main %}
 <style>
