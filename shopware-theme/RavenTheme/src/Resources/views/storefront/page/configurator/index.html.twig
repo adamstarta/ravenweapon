@@ -1,0 +1,79 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_classes %}configurator-page{% endblock %}
+
+{% block base_header %}{% endblock %}
+{% block base_navigation %}{% endblock %}
+{% block base_footer %}{% endblock %}
+
+{% block base_main %}
+<style>
+    .configurator-page {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .configurator-iframe {
+        width: 100vw;
+        height: 100vh;
+        border: none;
+        display: block;
+    }
+    .configurator-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #111827;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: 'Inter', sans-serif;
+        z-index: 1000;
+        transition: opacity 0.3s ease;
+    }
+    .configurator-loading.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+</style>
+
+<div class="configurator-loading" id="configurator-loading">
+    <p>Konfigurator wird geladen...</p>
+</div>
+
+<iframe
+    src="https://konfigurator.ravenweapon.ch"
+    class="configurator-iframe"
+    id="configurator-iframe"
+    allow="clipboard-read; clipboard-write"
+    onload="document.getElementById('configurator-loading').classList.add('hidden')"
+></iframe>
+
+<script>
+    // Handle messages from configurator
+    window.addEventListener('message', function(event) {
+        if (event.origin !== 'https://konfigurator.ravenweapon.ch') return;
+
+        const { action, payLoad } = event.data;
+
+        if (action === 'share') {
+            navigator.clipboard.writeText(payLoad.url);
+            alert('Link in die Zwischenablage kopiert.');
+        }
+        if (action === 'setUrl') {
+            window.history.pushState({}, '', payLoad.url);
+        }
+    });
+
+    // Send current URL to iframe on load
+    document.getElementById('configurator-iframe').addEventListener('load', function() {
+        this.contentWindow.postMessage({
+            action: 'setUrl',
+            payLoad: { url: window.location.href }
+        }, 'https://konfigurator.ravenweapon.ch');
+    });
+</script>
+{% endblock %}
