@@ -1033,7 +1033,7 @@
     // Add body class for Optik & Visierung page to hide manufacturer names only there
     (function() {
         var path = window.location.pathname.toLowerCase();
-        if (path.indexOf('/optik-visierung') === 0) {
+        if (path.indexOf('/optik-und-visierung') === 0) {
             document.body.classList.add('page-optik-visierung');
         }
     })();
@@ -1139,7 +1139,7 @@
     // When on a category page, filter products client-side within that category
     function initCategorySearch() {
         var categoryPaths = {
-            '/optik-visierung/': 'Optik & Visierung',
+            '/optik-und-visierung/': 'Optik & Visierung',
             '/Raven-Weapons/': 'Waffen',
             '/waffen/raven-caliber-kit/': 'Raven Caliber Kit'
         };
@@ -1890,7 +1890,7 @@
             {% set mainCategorySeoUrls = {
                 '019aee0f487c79a1a8814377c46e0c10': '/alle-produkte/',
                 'a61f19c9cb4b11f0b4074aca3d279c31': '/waffen/',
-                '019adeff65f97225927586968691dc02': '/optik-visierung/',
+                '019adeff65f97225927586968691dc02': '/optik-und-visierung/',
                 '2f40311624aea6de289c770f0bfd0ff9': '/munition/',
                 '604131c6ae1646c98623da4fe61a739b': '/zubehoer/',
                 '019b0857613474e6a799cfa07d143c76': '/ausruestung/',
