@@ -46,6 +46,9 @@ backups/
 # Screenshots (debug/temp)
 *.png
 !assets/*.png
+!shopware-theme/RavenTheme/src/Resources/public/assets/*.png
+# Keep original backup PNGs ignored
+shopware-theme/RavenTheme/src/Resources/public/assets/*-original.png
 
 # Temporary files
 temp-*.twig
