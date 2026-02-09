@@ -18,8 +18,9 @@
 {% endblock %}
 
 {% block layout_head_favicon %}
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('bundles/raventheme/assets/favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('bundles/raventheme/assets/favicon.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('bundles/raventheme/assets/favicon.png') }}">
 {% endblock %}
 
 {% block layout_head_meta_tags_image_og %}{{ app.request.schemeAndHttpHost }}/bundles/raventheme/assets/raven-logo.png{% endblock %}
