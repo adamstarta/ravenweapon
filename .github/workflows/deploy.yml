@@ -7,6 +7,7 @@ on:
       - 'shopware-theme/**'
       - 'scripts/server/**'
       - '.github/workflows/deploy.yml'
+      - 'google*.html'
   workflow_dispatch:
 
 jobs:
@@ -33,12 +34,20 @@ jobs:
           # Copy theme to server using tar to preserve structure
           tar -czf - -C shopware-theme RavenTheme | ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "tar -xzf - -C /tmp/"
 
+          # Copy Google verification file to server
+          scp google*.html ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/ 2>/dev/null || true
+
           # Deploy to staging container (shopware-dev)
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
             set -e
 
             # Copy theme to staging container
             docker cp /tmp/RavenTheme shopware-dev:/var/www/html/custom/plugins/
+
+            # Copy Google verification file to public root (so it's accessible at site root)
+            for f in /tmp/google*.html; do
+              [ -f "$f" ] && docker cp "$f" shopware-dev:/var/www/html/public/
+            done
 
             # Remove ALL cached templates and data, then rebuild
             docker exec shopware-dev bash -c "cd /var/www/html && rm -rf var/cache/* && bin/console cache:clear && bin/console theme:refresh && bin/console theme:compile && bin/console cache:warmup"
@@ -83,12 +92,20 @@ jobs:
           # Copy theme to server using tar to preserve structure
           tar -czf - -C shopware-theme RavenTheme | ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "tar -xzf - -C /tmp/"
 
+          # Copy Google verification file to server
+          scp google*.html ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/ 2>/dev/null || true
+
           # Deploy to production container (shopware-chf)
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
             set -e
 
             # Copy theme to production container
             docker cp /tmp/RavenTheme shopware-chf:/var/www/html/custom/plugins/
+
+            # Copy Google verification file to public root (so it's accessible at site root)
+            for f in /tmp/google*.html; do
+              [ -f "$f" ] && docker cp "$f" shopware-chf:/var/www/html/public/
+            done
 
             # Remove ALL cached templates and data, then rebuild
             docker exec shopware-chf bash -c "cd /var/www/html && rm -rf var/cache/* && bin/console cache:clear && bin/console theme:refresh && bin/console theme:compile && bin/console cache:warmup"
