@@ -146,6 +146,9 @@
             var action = form.getAttribute('action');
             if (!action) return;
 
+            // On the main cart page, let forms submit normally (full page reload)
+            if (window.location.pathname.indexOf('/checkout/cart') !== -1) return;
+
             if (action.indexOf('checkout/line-item/delete') !== -1 ||
                 action.indexOf('checkout/line-item/change-quantity') !== -1) {
                 e.preventDefault();
@@ -170,8 +173,11 @@
             }
         }, true);
 
-        // Handle quantity and delete button clicks
+        // Handle quantity and delete button clicks (off-canvas cart only)
         document.addEventListener('click', function(e) {
+            // On the main cart page, let native form submissions handle it
+            if (window.location.pathname.indexOf('/checkout/cart') !== -1) return;
+
             var minusBtn = e.target.closest('.js-btn-minus');
             if (minusBtn) {
                 e.preventDefault();

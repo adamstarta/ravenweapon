@@ -139,7 +139,7 @@ input[type="number"] {
             <div>
                 <div style="font-size: 1.25rem; font-weight: 600; color: #111827; display: flex; align-items: baseline; gap: 0.5rem;">
                     <span>Zwischensumme</span>
-                    {% set subP = page.cart.price.totalPrice %}
+                    {% set subP = page.cart.price.positionPrice %}
                     <span style="font-weight: 700;">CHF {{ subP|number_format(2, '.', "'") }}</span>
                 </div>
                 <p style="font-size: 0.875rem; color: #6B7280; margin: 0.25rem 0 0 0;">Inklusive Steuer. Versandkosten werden an der Kasse berechnet.</p>
