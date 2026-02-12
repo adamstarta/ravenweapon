@@ -473,9 +473,8 @@
             </div>
             {% endif %}
 
-            {# Product Details: Article Number, Stock, Weight, Dimensions #}
-            <!-- DEBUG: weight={{ page.product.weight|default('NULL') }}, length={{ page.product.length|default('NULL') }}, width={{ page.product.width|default('NULL') }}, height={{ page.product.height|default('NULL') }}, stock={{ page.product.stock|default('NULL') }} -->
-            {% if page.product.productNumber or page.product.weight or page.product.length %}
+            {# Product Details: Article Number, Dimensions #}
+            {% if page.product.productNumber or page.product.length %}
             <div class="mt-5 pt-5 border-t border-gray-100">
                 <div class="product-specs" style="font-family: 'Inter', sans-serif;">
                     {# Article Number #}
@@ -486,15 +485,7 @@
                     </div>
                     {% endif %}
 
-                    {# Weight - stored in kg, always display in grams #}
-                    {% if page.product.weight %}
-                    <div class="spec-row" style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">
-                        <span class="text-xs text-gray-400">Gewicht</span>
-                        <span class="text-xs font-medium text-gray-600">
-                            {{ (page.product.weight * 1000)|number_format(0) }} g
-                        </span>
-                    </div>
-                    {% endif %}
+                    {# Weight hidden from display (kept in database for shipping calculations) #}
 
                     {# Dimensions (length x width x height) - stored in mm, display in cm #}
                     {% if page.product.length and page.product.width and page.product.height %}

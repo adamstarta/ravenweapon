@@ -576,15 +576,7 @@
                     </div>
                     {% endif %}
 
-                    {# Weight - stored in kg, always display in grams #}
-                    {% if page.product.weight %}
-                    <div class="spec-row" style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">
-                        <span class="text-xs text-gray-400">Gewicht</span>
-                        <span class="text-xs font-medium text-gray-600">
-                            {{ (page.product.weight * 1000)|number_format(0) }} g
-                        </span>
-                    </div>
-                    {% endif %}
+                    {# Weight hidden from display (kept in database for shipping calculations) #}
 
                     {# Dimensions (length x width x height) - stored in mm, display in cm #}
                     {% if page.product.length and page.product.width and page.product.height %}
