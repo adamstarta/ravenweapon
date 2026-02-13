@@ -36,8 +36,8 @@
     padding: 24px;
 }
 .raven-card-image img {
-    max-width: 70%;
-    max-height: 70%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -103,23 +103,14 @@
     {% block component_product_box_content %}
     {# Image Section #}
     {% block component_product_box_image %}
-    {# Scale ammo images proportionally to real bullet size #}
-    {% set imageScale = 1 %}
-    {% set productNameLower = product.translated.name|default('')|lower %}
-    {% if '9mm' in productNameLower or '9x19' in productNameLower %}
-        {% set imageScale = 0.55 %}
-    {% elseif '.22 lr' in productNameLower or '.22lr' in productNameLower or '22 lr' in productNameLower %}
-        {% set imageScale = 0.45 %}
-    {% endif %}
-    <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}" class="raven-card-image" title="{{ product.translated.name }}"{% if imageScale != 1 %} style="padding: {{ (1 - imageScale) * 50 + 24 }}px 24px;"{% endif %}>
+    <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}" class="raven-card-image" title="{{ product.translated.name }}">
         {% if product.cover.media %}
             {% sw_thumbnails 'product-image-thumbnails' with {
                 media: product.cover.media,
                 sizes: { 'default': '300px' },
                 attributes: {
                     'alt': product.cover.media.translated.alt ?: product.translated.name,
-                    'title': product.cover.media.translated.title ?: product.translated.name,
-                    'style': imageScale != 1 ? 'max-width: ' ~ (imageScale * 70) ~ '%; max-height: ' ~ (imageScale * 70) ~ '%;' : ''
+                    'title': product.cover.media.translated.title ?: product.translated.name
                 }
             } %}
         {% else %}

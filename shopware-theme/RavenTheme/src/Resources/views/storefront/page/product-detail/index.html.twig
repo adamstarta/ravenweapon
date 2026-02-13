@@ -115,14 +115,6 @@
 
         {# LEFT: Product Image Gallery #}
         <div class="product-image-section">
-            {# Scale ammo images proportionally to real bullet size #}
-            {% set detailImageScale = 1 %}
-            {% set detailProductNameLower = page.product.translated.name|default('')|lower %}
-            {% if '9mm' in detailProductNameLower or '9x19' in detailProductNameLower %}
-                {% set detailImageScale = 0.6 %}
-            {% elseif '.22 lr' in detailProductNameLower or '.22lr' in detailProductNameLower or '22 lr' in detailProductNameLower %}
-                {% set detailImageScale = 0.5 %}
-            {% endif %}
             {# Main Image with Zoom #}
             <div class="product-main-image bg-white rounded-xl p-8 shadow-sm mb-4" id="image-zoom-container">
                 {% if page.product.cover.media %}
@@ -130,7 +122,7 @@
                      src="{{ page.product.cover.media.url }}"
                      alt="{{ page.product.translated.name }}"
                      class="w-full h-auto object-contain zoom-image"
-                     style="max-height: {{ (400 * detailImageScale)|round }}px; max-width: {{ (80 * detailImageScale)|round }}%; margin: 0 auto; display: block;">
+                     style="max-height: 500px;">
                 {# Zoom Lens (hidden by default) #}
                 <div id="zoom-lens" class="zoom-lens"></div>
                 {# Zoomed Result Box #}
