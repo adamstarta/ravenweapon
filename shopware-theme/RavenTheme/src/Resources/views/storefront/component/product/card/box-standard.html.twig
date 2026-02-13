@@ -103,14 +103,17 @@
     {% block component_product_box_content %}
     {# Image Section #}
     {% block component_product_box_image %}
-    <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}" class="raven-card-image" title="{{ product.translated.name }}">
+    {# Shrink only 9mm product image to match real bullet proportions #}
+    {% set is9mm = '9mm' in product.translated.name|default('')|lower or '9x19' in product.translated.name|default('')|lower %}
+    <a href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}" class="raven-card-image" title="{{ product.translated.name }}"{% if is9mm %} style="padding: 48px 60px;"{% endif %}>
         {% if product.cover.media %}
             {% sw_thumbnails 'product-image-thumbnails' with {
                 media: product.cover.media,
                 sizes: { 'default': '300px' },
                 attributes: {
                     'alt': product.cover.media.translated.alt ?: product.translated.name,
-                    'title': product.cover.media.translated.title ?: product.translated.name
+                    'title': product.cover.media.translated.title ?: product.translated.name,
+                    'style': is9mm ? 'max-width: 60%; max-height: 60%;' : ''
                 }
             } %}
         {% else %}

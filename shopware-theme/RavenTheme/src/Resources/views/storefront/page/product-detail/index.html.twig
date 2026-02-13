@@ -115,6 +115,8 @@
 
         {# LEFT: Product Image Gallery #}
         <div class="product-image-section">
+            {# Shrink only 9mm product image #}
+            {% set is9mm = '9mm' in page.product.translated.name|default('')|lower or '9x19' in page.product.translated.name|default('')|lower %}
             {# Main Image with Zoom #}
             <div class="product-main-image bg-white rounded-xl p-8 shadow-sm mb-4" id="image-zoom-container">
                 {% if page.product.cover.media %}
@@ -122,7 +124,7 @@
                      src="{{ page.product.cover.media.url }}"
                      alt="{{ page.product.translated.name }}"
                      class="w-full h-auto object-contain zoom-image"
-                     style="max-height: 500px;">
+                     style="max-height: {% if is9mm %}320px{% else %}500px{% endif %};">
                 {# Zoom Lens (hidden by default) #}
                 <div id="zoom-lens" class="zoom-lens"></div>
                 {# Zoomed Result Box #}
