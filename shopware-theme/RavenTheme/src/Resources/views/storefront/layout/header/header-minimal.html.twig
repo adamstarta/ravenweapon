@@ -1,11 +1,14 @@
 {% sw_extends '@Storefront/storefront/layout/header/header-minimal.html.twig' %}
 
 {# Constrain the logo size in minimal header (used on checkout/TWINT pages) #}
-{% block layout_header_minimal %}
+{% block layout_header_minimal_inner %}
     <style>
         .header-minimal .header-logo-main-img {
             max-height: 45px !important;
             width: auto !important;
+        }
+        .header-minimal .header-logo-main {
+            max-width: 200px !important;
         }
     </style>
     {{ parent() }}
