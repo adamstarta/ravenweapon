@@ -1307,7 +1307,13 @@
             width: 40px !important;
             height: 28px !important;
             object-fit: contain !important;
-            margin-left: auto !important;
+        }
+
+        /* Payment method images inside labels (e.g. TWINT logo) - keep left-aligned */
+        .payment-method-header label .payment-method-image,
+        .payment-method-header .form-check-label .payment-method-image {
+            margin-left: 0 !important;
+            margin-right: 0.25rem !important;
         }
 
         /* Multiple card icons container */
