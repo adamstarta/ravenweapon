@@ -123,8 +123,8 @@
                 <img id="product-main-image"
                      src="{{ page.product.cover.media.url }}"
                      alt="{{ page.product.translated.name }}"
-                     class="w-full h-auto object-contain zoom-image"
-                     style="max-height: {% if is9mm %}320px{% else %}500px{% endif %};">
+                     class="w-full h-auto zoom-image"
+                     style="max-height: {% if is9mm %}320px{% else %}500px{% endif %}; object-fit: contain;">
                 {# Zoom Lens (hidden by default) #}
                 <div id="zoom-lens" class="zoom-lens"></div>
                 {# Zoomed Result Box #}
