@@ -137,8 +137,8 @@
                 <img id="product-main-image"
                      src="{{ initialImageUrl }}"
                      alt="{{ page.product.translated.name }}"
-                     class="w-full h-auto object-contain zoom-image"
-                     style="max-height: {% if is9mm %}320px{% else %}500px{% endif %};"
+                     class="w-full h-auto zoom-image"
+                     style="max-height: {% if is9mm %}320px{% else %}500px{% endif %}; object-fit: contain;"
                      onerror="this.onerror=null; this.src='{{ coverMediaUrl }}';">
                 {# Zoom Lens (hidden by default) #}
                 <div id="zoom-lens" class="zoom-lens"></div>
