@@ -1916,6 +1916,16 @@
                                     {% endif %}
                                 {% endfor %}
                             {% endfor %}
+                            {# Konfigurator - External link (not from Shopware categories) #}
+                            <div class="raven-nav-item">
+                                <a href="https://konfigurator.ravenweapon.ch/"
+                                   class="raven-nav-link inline-flex items-center gap-1.5 font-medium text-gray-600 hover:text-gray-900 py-2"
+                                   style="font-size: 16px;"
+                                   target="_blank"
+                                   rel="noopener">
+                                    Konfigurator
+                                </a>
+                            </div>
                         </div>
                         {# ROW 2: Specialty Items #}
                         <div class="raven-nav-row raven-nav-row-2">
@@ -1967,6 +1977,16 @@
                                     </div>
                                 {% endif %}
                             {% endfor %}
+                            {# Konfigurator - External link #}
+                            <div class="raven-nav-item">
+                                <a href="https://konfigurator.ravenweapon.ch/"
+                                   class="raven-nav-link inline-flex items-center gap-1.5 font-medium text-gray-600 hover:text-gray-900 py-2"
+                                   style="font-size: 16px;"
+                                   target="_blank"
+                                   rel="noopener">
+                                    Konfigurator
+                                </a>
+                            </div>
                         </div>
                         <div class="raven-nav-row raven-nav-row-2">
                             {% for mainCat in categories %}
@@ -2117,6 +2137,15 @@
                         {% endfor %}
                     {% endfor %}
                 {% endif %}
+                {# Konfigurator - External link #}
+                <a href="https://konfigurator.ravenweapon.ch/" class="raven-mobile-menu-item" target="_blank" rel="noopener">
+                    <span>Konfigurator</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5;">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
             </nav>
 
             {# Footer Section #}
