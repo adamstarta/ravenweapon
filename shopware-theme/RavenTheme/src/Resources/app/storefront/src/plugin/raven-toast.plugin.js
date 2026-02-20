@@ -32,23 +32,72 @@ export default class RavenToastPlugin extends Plugin {
             'items added': 'Artikel hinzugefügt',
             'removed from cart': 'Aus dem Warenkorb entfernt',
             'item removed': 'Artikel entfernt',
+            // Promo / Discount codes
+            'promo code added successfully': 'Aktionscode wurde erfolgreich hinzugefügt.',
+            'promotion code added': 'Aktionscode wurde hinzugefügt.',
+            'promotion discount added': 'Rabatt wurde hinzugefügt.',
+            'discount added': 'Rabatt wurde hinzugefügt.',
+            'voucher added': 'Gutschein wurde hinzugefügt.',
+            'coupon added': 'Gutschein wurde hinzugefügt.',
+            'promo code removed': 'Aktionscode wurde entfernt.',
+            'promotion code removed': 'Aktionscode wurde entfernt.',
+            'promo code is not valid': 'Aktionscode ist ungültig.',
+            'promotion code is not valid': 'Aktionscode ist ungültig.',
+            'promotion not found': 'Aktionscode wurde nicht gefunden.',
+            'this promotion code is invalid': 'Dieser Aktionscode ist ungültig.',
+            'promotion discount has been added': 'Rabatt wurde hinzugefügt.',
+            // Wishlist
+            'product added to wishlist': 'Artikel zur Wunschliste hinzugefügt.',
+            'added to wishlist': 'Zur Wunschliste hinzugefügt.',
+            'removed from wishlist': 'Von der Wunschliste entfernt.',
+            'product removed from wishlist': 'Artikel von der Wunschliste entfernt.',
+            // Newsletter
+            'newsletter subscription successful': 'Newsletter-Anmeldung erfolgreich.',
+            'you have been subscribed': 'Sie wurden erfolgreich angemeldet.',
+            'newsletter unsubscribed': 'Newsletter-Abmeldung erfolgreich.',
+            // Account / Profile
+            'profile updated successfully': 'Profil wurde erfolgreich aktualisiert.',
+            'profile saved': 'Profil wurde gespeichert.',
+            'email changed successfully': 'E-Mail-Adresse wurde erfolgreich geändert.',
+            'password changed successfully': 'Passwort wurde erfolgreich geändert.',
+            'address saved successfully': 'Adresse wurde erfolgreich gespeichert.',
+            'address deleted successfully': 'Adresse wurde erfolgreich gelöscht.',
+            'address has been saved': 'Adresse wurde gespeichert.',
+            'address has been deleted': 'Adresse wurde gelöscht.',
+            'default address changed': 'Standardadresse wurde geändert.',
+            // Reviews
+            'review submitted successfully': 'Bewertung wurde erfolgreich eingereicht.',
+            'thank you for your review': 'Vielen Dank für Ihre Bewertung!',
             // Payment/Shipping cart validation
             'payment is not available': 'Die Zahlungsart wurde automatisch angepasst.',
             'shipping is not available': 'Die Versandart wurde automatisch angepasst.',
+            'payment method changed': 'Zahlungsart wurde geändert.',
+            'shipping method changed': 'Versandart wurde geändert.',
             'was changed to': 'wurde geändert zu',
             // Login errors
             'Invalid credentials': 'Die Anmeldedaten sind nicht korrekt.',
             'Bad credentials': 'Die Anmeldedaten sind nicht korrekt.',
             'Your account is locked': 'Ihr Konto ist gesperrt.',
+            'Customer not found': 'Kunde nicht gefunden.',
             // Cart errors
             'Product not found': 'Produkt nicht gefunden.',
             'Out of stock': 'Nicht auf Lager.',
             'Not enough stock': 'Nicht genügend auf Lager.',
+            'product is no longer available': 'Produkt ist nicht mehr verfügbar.',
+            'the cart position could not be found': 'Der Warenkorb-Artikel konnte nicht gefunden werden.',
+            'line item not found': 'Artikel wurde nicht gefunden.',
+            'line item not stackable': 'Artikel kann nicht hinzugefügt werden.',
             // General success/error
+            'saved successfully': 'Erfolgreich gespeichert.',
+            'updated successfully': 'Erfolgreich aktualisiert.',
+            'deleted successfully': 'Erfolgreich gelöscht.',
             'successfully': 'erfolgreich',
             'Success': 'Erfolg',
             'Error': 'Fehler',
-            'Warning': 'Warnung'
+            'Warning': 'Warnung',
+            'An error occurred': 'Ein Fehler ist aufgetreten.',
+            'Please try again': 'Bitte versuchen Sie es erneut.',
+            'Something went wrong': 'Etwas ist schiefgelaufen.'
         }
     };
 
@@ -385,12 +434,86 @@ export default class RavenToastPlugin extends Plugin {
             return 'Erfolgreich abgemeldet';
         }
 
+        // Check for promo/coupon/voucher messages
+        if ((lowerMessage.includes('promo') || lowerMessage.includes('promotion') || lowerMessage.includes('coupon') || lowerMessage.includes('voucher') || lowerMessage.includes('discount'))) {
+            if (lowerMessage.includes('added') || lowerMessage.includes('applied') || lowerMessage.includes('success')) {
+                return 'Aktionscode wurde erfolgreich hinzugefügt.';
+            }
+            if (lowerMessage.includes('removed') || lowerMessage.includes('deleted')) {
+                return 'Aktionscode wurde entfernt.';
+            }
+            if (lowerMessage.includes('not valid') || lowerMessage.includes('invalid') || lowerMessage.includes('not found') || lowerMessage.includes('expired')) {
+                return 'Aktionscode ist ungültig oder abgelaufen.';
+            }
+        }
+
+        // Check for wishlist messages
+        if (lowerMessage.includes('wishlist')) {
+            if (lowerMessage.includes('added')) {
+                return 'Zur Wunschliste hinzugefügt.';
+            }
+            if (lowerMessage.includes('removed') || lowerMessage.includes('deleted')) {
+                return 'Von der Wunschliste entfernt.';
+            }
+        }
+
+        // Check for newsletter messages
+        if (lowerMessage.includes('newsletter') || lowerMessage.includes('subscri')) {
+            if (lowerMessage.includes('success') || lowerMessage.includes('subscribed')) {
+                return 'Newsletter-Anmeldung erfolgreich.';
+            }
+            if (lowerMessage.includes('unsubscri')) {
+                return 'Newsletter-Abmeldung erfolgreich.';
+            }
+        }
+
+        // Check for address messages
+        if (lowerMessage.includes('address')) {
+            if (lowerMessage.includes('saved') || lowerMessage.includes('created') || lowerMessage.includes('added')) {
+                return 'Adresse wurde erfolgreich gespeichert.';
+            }
+            if (lowerMessage.includes('deleted') || lowerMessage.includes('removed')) {
+                return 'Adresse wurde erfolgreich gelöscht.';
+            }
+            if (lowerMessage.includes('changed') || lowerMessage.includes('updated')) {
+                return 'Adresse wurde erfolgreich aktualisiert.';
+            }
+        }
+
+        // Check for profile/account messages
+        if (lowerMessage.includes('profile') || lowerMessage.includes('account')) {
+            if (lowerMessage.includes('saved') || lowerMessage.includes('updated') || lowerMessage.includes('success')) {
+                return 'Profil wurde erfolgreich aktualisiert.';
+            }
+        }
+
+        // Check for password/email change messages
+        if (lowerMessage.includes('password') && (lowerMessage.includes('changed') || lowerMessage.includes('updated') || lowerMessage.includes('success'))) {
+            return 'Passwort wurde erfolgreich geändert.';
+        }
+        if (lowerMessage.includes('email') && (lowerMessage.includes('changed') || lowerMessage.includes('updated') || lowerMessage.includes('success'))) {
+            return 'E-Mail-Adresse wurde erfolgreich geändert.';
+        }
+
+        // Check for review messages
+        if (lowerMessage.includes('review') && (lowerMessage.includes('submit') || lowerMessage.includes('success') || lowerMessage.includes('thank'))) {
+            return 'Vielen Dank für Ihre Bewertung!';
+        }
+
         // Check for save/update success messages
         if (lowerMessage.includes('saved successfully') || lowerMessage.includes('successfully saved')) {
-            return 'Erfolgreich gespeichert';
+            return 'Erfolgreich gespeichert.';
         }
         if (lowerMessage.includes('updated successfully') || lowerMessage.includes('successfully updated')) {
-            return 'Erfolgreich aktualisiert';
+            return 'Erfolgreich aktualisiert.';
+        }
+        if (lowerMessage.includes('deleted successfully') || lowerMessage.includes('successfully deleted')) {
+            return 'Erfolgreich gelöscht.';
+        }
+
+        // Catch-all: any remaining "... successfully" message
+        if (lowerMessage.includes('successfully') || lowerMessage.includes('successful')) {
+            return 'Erfolgreich durchgeführt.';
         }
 
         // Check for partial matches in translations
