@@ -213,42 +213,57 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         }
 
         foreach ($lineItems as $lineItem) {
-            if ($lineItem->getType() !== LineItem::PRODUCT_LINE_ITEM_TYPE) {
-                continue;
-            }
+            $type = $lineItem->getType();
+            $payload = $lineItem->getPayload() ?? [];
 
-            $payload = $lineItem->getPayload();
-            $variantInfo = '';
+            // Handle product line items
+            if ($type === LineItem::PRODUCT_LINE_ITEM_TYPE) {
+                $variantInfo = '';
 
-            if (!empty($payload['variantenDisplay'])) {
-                $variantInfo = ' (' . $payload['variantenDisplay'] . ')';
-            } elseif (!empty($payload['selectedColor']) || !empty($payload['selectedSize'])) {
-                $parts = [];
-                if (!empty($payload['selectedColor'])) {
-                    $parts[] = $payload['selectedColor'];
+                if (!empty($payload['variantenDisplay'])) {
+                    $variantInfo = ' (' . $payload['variantenDisplay'] . ')';
+                } elseif (!empty($payload['selectedColor']) || !empty($payload['selectedSize'])) {
+                    $parts = [];
+                    if (!empty($payload['selectedColor'])) {
+                        $parts[] = $payload['selectedColor'];
+                    }
+                    if (!empty($payload['selectedSize'])) {
+                        $parts[] = $payload['selectedSize'];
+                    }
+                    $variantInfo = ' (' . implode(' / ', $parts) . ')';
                 }
-                if (!empty($payload['selectedSize'])) {
-                    $parts[] = $payload['selectedSize'];
+
+                $imageUrl = '';
+                if (!empty($payload['variantImageUrl'])) {
+                    $imageUrl = $payload['variantImageUrl'];
+                } elseif ($cover = $lineItem->getCover()) {
+                    $imageUrl = $cover->getUrl();
                 }
-                $variantInfo = ' (' . implode(' / ', $parts) . ')';
-            }
 
-            $imageUrl = '';
-            if (!empty($payload['variantImageUrl'])) {
-                $imageUrl = $payload['variantImageUrl'];
-            } elseif ($cover = $lineItem->getCover()) {
-                $imageUrl = $cover->getUrl();
+                $items[] = [
+                    'name' => $lineItem->getLabel() . $variantInfo,
+                    'quantity' => $lineItem->getQuantity(),
+                    'unitPrice' => 'CHF ' . number_format($lineItem->getUnitPrice(), 2, '.', "'"),
+                    'totalPrice' => 'CHF ' . number_format($lineItem->getTotalPrice(), 2, '.', "'"),
+                    'totalPriceRaw' => $lineItem->getTotalPrice(),
+                    'productNumber' => $payload['productNumber'] ?? '',
+                    'imageUrl' => $imageUrl,
+                    'isDiscount' => false,
+                ];
             }
-
-            $items[] = [
-                'name' => $lineItem->getLabel() . $variantInfo,
-                'quantity' => $lineItem->getQuantity(),
-                'unitPrice' => 'CHF ' . number_format($lineItem->getUnitPrice(), 2, '.', "'"),
-                'totalPrice' => 'CHF ' . number_format($lineItem->getTotalPrice(), 2, '.', "'"),
-                'totalPriceRaw' => $lineItem->getTotalPrice(),
-                'productNumber' => $payload['productNumber'] ?? '',
-                'imageUrl' => $imageUrl,
-            ];
+            // Handle promotions, discounts, and other non-product line items
+            elseif ($type === LineItem::PROMOTION_LINE_ITEM_TYPE || $lineItem->getTotalPrice() < 0) {
+                $items[] = [
+                    'name' => $lineItem->getLabel() ?: 'Rabatt',
+                    'quantity' => $lineItem->getQuantity(),
+                    'unitPrice' => 'CHF ' . number_format($lineItem->getUnitPrice(), 2, '.', "'"),
+                    'totalPrice' => 'CHF ' . number_format($lineItem->getTotalPrice(), 2, '.', "'"),
+                    'totalPriceRaw' => $lineItem->getTotalPrice(),
+                    'productNumber' => '',
+                    'imageUrl' => '',
+                    'isDiscount' => true,
+                ];
+            }
         }
 
         return $items;
@@ -269,42 +284,61 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         // Build product rows - mobile-friendly with fixed table layout
         $itemsHtml = '';
         foreach ($items as $item) {
-            $imageHtml = '';
-            if (!empty($item['imageUrl'])) {
-                $imageHtml = sprintf(
-                    '<img src="%s" alt="" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; display: block;">',
-                    htmlspecialchars($item['imageUrl'])
+            $isDiscount = $item['isDiscount'] ?? false;
+
+            if ($isDiscount) {
+                // Discount/promotion row with green styling
+                $itemsHtml .= sprintf(
+                    '<tr style="background: #f0fdf4;">
+                        <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top;">
+                            <div style="font-size: 13px; color: #16a34a; font-weight: 500;">&#9998; %s</div>
+                        </td>
+                        <td style="padding: 12px 4px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: top; font-size: 13px; color: #16a34a;">%d</td>
+                        <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: top; font-size: 13px; color: #16a34a; font-weight: 600; white-space: nowrap;">%s</td>
+                    </tr>',
+                    htmlspecialchars($item['name']),
+                    $item['quantity'],
+                    $item['unitPrice']
+                );
+            } else {
+                // Product row with image
+                $imageHtml = '';
+                if (!empty($item['imageUrl'])) {
+                    $imageHtml = sprintf(
+                        '<img src="%s" alt="" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; display: block;">',
+                        htmlspecialchars($item['imageUrl'])
+                    );
+                }
+
+                $productNumberHtml = '';
+                if (!empty($item['productNumber'])) {
+                    $productNumberHtml = sprintf(
+                        '<div style="font-size: 11px; color: #6b7280; margin-top: 2px;">Art.Nr: %s</div>',
+                        htmlspecialchars($item['productNumber'])
+                    );
+                }
+
+                $itemsHtml .= sprintf(
+                    '<tr>
+                        <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top;">
+                            <table style="border-collapse: collapse;"><tr>
+                                <td style="padding: 0; vertical-align: top; width: 58px;">%s</td>
+                                <td style="padding: 0 0 0 8px; vertical-align: top;">
+                                    <div style="font-size: 13px; color: #111827; font-weight: 500; line-height: 1.3;">%s</div>
+                                    %s
+                                </td>
+                            </tr></table>
+                        </td>
+                        <td style="padding: 12px 4px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: top; font-size: 13px; color: #374151;">%d</td>
+                        <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: top; font-size: 13px; color: #111827; font-weight: 600; white-space: nowrap;">%s</td>
+                    </tr>',
+                    $imageHtml,
+                    htmlspecialchars($item['name']),
+                    $productNumberHtml,
+                    $item['quantity'],
+                    $item['unitPrice']
                 );
             }
-
-            $productNumberHtml = '';
-            if (!empty($item['productNumber'])) {
-                $productNumberHtml = sprintf(
-                    '<div style="font-size: 11px; color: #6b7280; margin-top: 2px;">Art.Nr: %s</div>',
-                    htmlspecialchars($item['productNumber'])
-                );
-            }
-
-            $itemsHtml .= sprintf(
-                '<tr>
-                    <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top;">
-                        <table style="border-collapse: collapse;"><tr>
-                            <td style="padding: 0; vertical-align: top; width: 58px;">%s</td>
-                            <td style="padding: 0 0 0 8px; vertical-align: top;">
-                                <div style="font-size: 13px; color: #111827; font-weight: 500; line-height: 1.3;">%s</div>
-                                %s
-                            </td>
-                        </tr></table>
-                    </td>
-                    <td style="padding: 12px 4px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: top; font-size: 13px; color: #374151;">%d</td>
-                    <td style="padding: 12px 8px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: top; font-size: 13px; color: #111827; font-weight: 600; white-space: nowrap;">%s</td>
-                </tr>',
-                $imageHtml,
-                htmlspecialchars($item['name']),
-                $productNumberHtml,
-                $item['quantity'],
-                $item['unitPrice']
-            );
         }
 
         // Bank details section (only for prepayment)

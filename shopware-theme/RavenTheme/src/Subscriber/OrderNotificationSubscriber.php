@@ -156,44 +156,59 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         }
 
         foreach ($lineItems as $lineItem) {
-            if ($lineItem->getType() !== LineItem::PRODUCT_LINE_ITEM_TYPE) {
-                continue;
-            }
+            $type = $lineItem->getType();
+            $payload = $lineItem->getPayload() ?? [];
 
-            $payload = $lineItem->getPayload();
-            $variantInfo = '';
+            // Handle product line items
+            if ($type === LineItem::PRODUCT_LINE_ITEM_TYPE) {
+                $variantInfo = '';
 
-            // Check for variant display info
-            if (!empty($payload['variantenDisplay'])) {
-                $variantInfo = ' (' . $payload['variantenDisplay'] . ')';
-            } elseif (!empty($payload['selectedColor']) || !empty($payload['selectedSize'])) {
-                $parts = [];
-                if (!empty($payload['selectedColor'])) {
-                    $parts[] = $payload['selectedColor'];
+                // Check for variant display info
+                if (!empty($payload['variantenDisplay'])) {
+                    $variantInfo = ' (' . $payload['variantenDisplay'] . ')';
+                } elseif (!empty($payload['selectedColor']) || !empty($payload['selectedSize'])) {
+                    $parts = [];
+                    if (!empty($payload['selectedColor'])) {
+                        $parts[] = $payload['selectedColor'];
+                    }
+                    if (!empty($payload['selectedSize'])) {
+                        $parts[] = $payload['selectedSize'];
+                    }
+                    $variantInfo = ' (' . implode(' / ', $parts) . ')';
                 }
-                if (!empty($payload['selectedSize'])) {
-                    $parts[] = $payload['selectedSize'];
+
+                // Get product image URL - prefer variant image from payload, fallback to cover
+                $imageUrl = '';
+                if (!empty($payload['variantImageUrl'])) {
+                    $imageUrl = $payload['variantImageUrl'];
+                } elseif ($cover = $lineItem->getCover()) {
+                    $imageUrl = $cover->getUrl();
                 }
-                $variantInfo = ' (' . implode(' / ', $parts) . ')';
-            }
 
-            // Get product image URL - prefer variant image from payload, fallback to cover
-            $imageUrl = '';
-            if (!empty($payload['variantImageUrl'])) {
-                $imageUrl = $payload['variantImageUrl'];
-            } elseif ($cover = $lineItem->getCover()) {
-                $imageUrl = $cover->getUrl();
+                $items[] = [
+                    'name' => $lineItem->getLabel() . $variantInfo,
+                    'quantity' => $lineItem->getQuantity(),
+                    'unitPrice' => 'CHF ' . number_format($lineItem->getUnitPrice(), 2, '.', "'"),
+                    'totalPrice' => 'CHF ' . number_format($lineItem->getTotalPrice(), 2, '.', "'"),
+                    'totalPriceRaw' => $lineItem->getTotalPrice(),
+                    'productNumber' => $payload['productNumber'] ?? 'N/A',
+                    'imageUrl' => $imageUrl,
+                    'isDiscount' => false,
+                ];
             }
-
-            $items[] = [
-                'name' => $lineItem->getLabel() . $variantInfo,
-                'quantity' => $lineItem->getQuantity(),
-                'unitPrice' => 'CHF ' . number_format($lineItem->getUnitPrice(), 2, '.', "'"),
-                'totalPrice' => 'CHF ' . number_format($lineItem->getTotalPrice(), 2, '.', "'"),
-                'totalPriceRaw' => $lineItem->getTotalPrice(),
-                'productNumber' => $payload['productNumber'] ?? 'N/A',
-                'imageUrl' => $imageUrl,
-            ];
+            // Handle promotions, discounts, and other non-product line items
+            elseif ($type === LineItem::PROMOTION_LINE_ITEM_TYPE || $lineItem->getTotalPrice() < 0) {
+                $items[] = [
+                    'name' => $lineItem->getLabel() ?: 'Rabatt',
+                    'quantity' => $lineItem->getQuantity(),
+                    'unitPrice' => 'CHF ' . number_format($lineItem->getUnitPrice(), 2, '.', "'"),
+                    'totalPrice' => 'CHF ' . number_format($lineItem->getTotalPrice(), 2, '.', "'"),
+                    'totalPriceRaw' => $lineItem->getTotalPrice(),
+                    'productNumber' => '',
+                    'imageUrl' => '',
+                    'isDiscount' => true,
+                ];
+            }
         }
 
         return $items;
@@ -214,26 +229,42 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         // Build table rows for each item (with image, no Gesamt column for more space)
         $itemsHtml = '';
         foreach ($items as $item) {
-            // Build image HTML if available
-            $imageHtml = '';
-            if (!empty($item['imageUrl'])) {
-                $imageHtml = sprintf(
-                    '<img src="%s" alt="" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; margin-right: 8px; vertical-align: middle;">',
-                    htmlspecialchars($item['imageUrl'])
+            $isDiscount = $item['isDiscount'] ?? false;
+
+            if ($isDiscount) {
+                // Discount/promotion row with green styling
+                $itemsHtml .= sprintf(
+                    '<tr style="background: #f0fdf4;">
+                        <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; vertical-align: middle; font-size: 13px; color: #16a34a;">&#9998; %s</td>
+                        <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: middle; font-size: 13px; color: #16a34a;">%d</td>
+                        <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: middle; font-size: 13px; font-weight: 600; color: #16a34a;">%s</td>
+                    </tr>',
+                    htmlspecialchars($item['name']),
+                    $item['quantity'],
+                    $item['unitPrice']
+                );
+            } else {
+                // Product row with image
+                $imageHtml = '';
+                if (!empty($item['imageUrl'])) {
+                    $imageHtml = sprintf(
+                        '<img src="%s" alt="" style="width: 40px; height: 40px; object-fit: cover; border-radius: 4px; margin-right: 8px; vertical-align: middle;">',
+                        htmlspecialchars($item['imageUrl'])
+                    );
+                }
+
+                $itemsHtml .= sprintf(
+                    '<tr>
+                        <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; vertical-align: middle; font-size: 13px; color: #374151;">%s<span style="vertical-align: middle;">%s</span></td>
+                        <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: middle; font-size: 13px; color: #374151;">%d</td>
+                        <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: middle; font-size: 13px; font-weight: 600; color: #374151;">%s</td>
+                    </tr>',
+                    $imageHtml,
+                    htmlspecialchars($item['name']),
+                    $item['quantity'],
+                    $item['unitPrice']
                 );
             }
-
-            $itemsHtml .= sprintf(
-                '<tr>
-                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; vertical-align: middle; font-size: 13px; color: #374151;">%s<span style="vertical-align: middle;">%s</span></td>
-                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: center; vertical-align: middle; font-size: 13px; color: #374151;">%d</td>
-                    <td style="padding: 10px 5px; border-bottom: 1px solid #e5e7eb; text-align: right; vertical-align: middle; font-size: 13px; font-weight: 600; color: #374151;">%s</td>
-                </tr>',
-                $imageHtml,
-                htmlspecialchars($item['name']),
-                $item['quantity'],
-                $item['unitPrice']
-            );
         }
 
         return <<<HTML
