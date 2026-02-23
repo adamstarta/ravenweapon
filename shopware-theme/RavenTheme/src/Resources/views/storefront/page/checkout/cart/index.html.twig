@@ -33,6 +33,47 @@ input[type="number"] {
     -moz-appearance: textfield !important;
     text-align: center !important;
 }
+
+/* Mobile cart fixes */
+@media (max-width: 767px) {
+    /* Fix 1: Push content below sticky header */
+    .raven-cart {
+        padding-top: 0.5rem !important;
+    }
+
+    /* Fix 2: Stack quantity + total price vertically */
+    .raven-cart-item-bottom {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+    }
+    .raven-cart-item-bottom .raven-cart-item-total {
+        text-align: right !important;
+        border-top: 1px solid #E5E7EB;
+        padding-top: 0.75rem;
+    }
+
+    /* Fix 3: Stack Zwischensumme vertically */
+    .raven-cart-summary-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+    }
+    .raven-cart-summary-row .raven-cart-summary-info {
+        width: 100%;
+    }
+    .raven-cart-summary-row .raven-cart-summary-info .raven-zwischensumme {
+        flex-direction: column !important;
+        gap: 0.25rem !important;
+    }
+    .raven-cart-summary-row .raven-cart-summary-action {
+        width: 100%;
+    }
+    .raven-cart-summary-row .raven-cart-summary-action a {
+        width: 100%;
+        text-align: center;
+    }
+}
 </style>
 <div class="raven-cart" style="max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem;">
     {# Cart Header #}
@@ -107,7 +148,7 @@ input[type="number"] {
             </div>
 
             {# Bottom Row: Quantity Controls + Total Price #}
-            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: #F9FAFB; border-radius: 0.75rem; margin-top: 0.5rem;">
+            <div class="raven-cart-item-bottom" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: #F9FAFB; border-radius: 0.75rem; margin-top: 0.5rem;">
                 {# Quantity Controls #}
                 <div style="display: flex; flex-direction: row; align-items: center; gap: 0.75rem;">
                     <span style="font-size: 0.875rem; color: #6B7280; font-weight: 500;">Menge:</span>
@@ -120,7 +161,7 @@ input[type="number"] {
 
                 {# Total Price #}
                 {% set totalP = lineItem.price.totalPrice %}
-                <div style="text-align: right;">
+                <div class="raven-cart-item-total" style="text-align: right;">
                     <span style="font-size: 0.75rem; color: #6B7280; display: block;">Gesamt</span>
                     <span style="font-weight: 700; color: #111827; font-size: 1.25rem;">CHF {{ totalP|number_format(2, '.', "'") }}</span>
                 </div>
@@ -131,24 +172,28 @@ input[type="number"] {
 
     {# Summary Section #}
     <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #E5E7EB;">
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
-            <div>
-                <div style="font-size: 1.25rem; font-weight: 600; color: #111827; display: flex; align-items: baseline; gap: 0.5rem;">
+        <div class="raven-cart-summary-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;">
+            <div class="raven-cart-summary-info">
+                <div class="raven-zwischensumme" style="font-size: 1.25rem; font-weight: 600; color: #111827; display: flex; align-items: baseline; gap: 0.5rem;">
                     <span>Zwischensumme</span>
                     {% set subP = page.cart.price.positionPrice %}
-                    <span style="font-weight: 700;">CHF {{ subP|number_format(2, '.', "'") }}</span>
+                    <span style="font-weight: 700; font-size: 1.5rem;">CHF {{ subP|number_format(2, '.', "'") }}</span>
                 </div>
                 <p style="font-size: 0.875rem; color: #6B7280; margin: 0.25rem 0 0 0;">Inklusive Steuer. Versandkosten werden an der Kasse berechnet.</p>
             </div>
             {% if context.customer %}
-            <a href="{{ path('frontend.checkout.confirm.page') }}" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; color: #111827; text-decoration: none; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
-                Zur Kasse
-            </a>
+            <div class="raven-cart-summary-action">
+                <a href="{{ path('frontend.checkout.confirm.page') }}" style="display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; color: #111827; text-decoration: none; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                    Zur Kasse
+                </a>
+            </div>
             {% else %}
-            <a href="{{ path('frontend.account.login.page') }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; color: #111827; text-decoration: none; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
-                Anmelden um fortzufahren
-            </a>
+            <div class="raven-cart-summary-action">
+                <a href="{{ path('frontend.account.login.page') }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; color: #111827; text-decoration: none; background: linear-gradient(to top, #F2B90D 12%, #F6CE55 88%); border: 1px solid #C59A0F; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                    Anmelden um fortzufahren
+                </a>
+            </div>
             {% endif %}
         </div>
     </div>
