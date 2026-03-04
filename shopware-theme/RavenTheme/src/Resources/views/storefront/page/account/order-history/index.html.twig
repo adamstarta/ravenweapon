@@ -225,10 +225,10 @@
                             <span class="order-date">{{ order.orderDateTime|date('d.m.Y H:i') }}</span>
                         </div>
                         {% set orderTechName = order.stateMachineState.technicalName|default('') %}
+                        {% set payTechName = order.transactions.last ? order.transactions.last.stateMachineState.technicalName|default('') : '' %}
                         <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                             <span class="status-badge {% if orderTechName == 'cancelled' %}status-error{% elseif orderTechName == 'completed' or orderTechName == 'done' %}status-success{% elseif orderTechName == 'open' or orderTechName == 'in_progress' %}status-pending{% endif %}">{{ order.stateMachineState.translated.name|default('Unbekannt') }}</span>
-                            {% if order.transactions.last %}
-                                {% set payTechName = order.transactions.last.stateMachineState.technicalName|default('') %}
+                            {% if order.transactions.last and payTechName != orderTechName %}
                                 <span class="status-badge {% if payTechName == 'paid' or payTechName == 'authorized' %}status-success{% elseif payTechName == 'cancelled' or payTechName == 'failed' %}status-error{% elseif payTechName == 'open' or payTechName == 'in_progress' or payTechName == 'reminded' %}status-pending{% endif %}">{{ order.transactions.last.stateMachineState.translated.name|default('') }}</span>
                             {% endif %}
                         </div>
