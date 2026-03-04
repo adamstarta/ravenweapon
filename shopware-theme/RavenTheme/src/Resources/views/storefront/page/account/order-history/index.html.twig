@@ -93,8 +93,9 @@
                 </div>
                 <div class="status-item">
                     <span class="status-label">Zahlungsstatus</span>
-                    {% set paymentState = order.transactions.first.stateMachineState.translated.name|default('Unbekannt') %}
-                    <span class="status-badge status-payment {% if paymentState in ['Bezahlt', 'Paid', 'Authorized'] %}status-success{% elseif paymentState in ['Offen', 'Open', 'Pending'] %}status-pending{% elseif paymentState in ['Storniert', 'Cancelled', 'Failed'] %}status-error{% endif %}">{{ paymentState }}</span>
+                    {% set paymentStateTech = order.transactions.last.stateMachineState.technicalName|default('') %}
+                    {% set paymentState = order.transactions.last.stateMachineState.translated.name|default('Unbekannt') %}
+                    <span class="status-badge status-payment {% if paymentStateTech in ['paid', 'authorized'] %}status-success{% elseif paymentStateTech in ['open'] %}status-pending{% elseif paymentStateTech in ['cancelled', 'failed'] %}status-error{% elseif paymentStateTech in ['in_progress', 'reminded'] %}status-pending{% endif %}">{{ paymentState }}</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Lieferstatus</span>
@@ -223,7 +224,14 @@
                             <span class="order-number">#{{ order.orderNumber }}</span>
                             <span class="order-date">{{ order.orderDateTime|date('d.m.Y H:i') }}</span>
                         </div>
-                        <span class="status-badge">{{ order.stateMachineState.translated.name|default('Unbekannt') }}</span>
+                        {% set orderTechName = order.stateMachineState.technicalName|default('') %}
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            <span class="status-badge {% if orderTechName == 'cancelled' %}status-error{% elseif orderTechName == 'completed' or orderTechName == 'done' %}status-success{% elseif orderTechName == 'open' or orderTechName == 'in_progress' %}status-pending{% endif %}">{{ order.stateMachineState.translated.name|default('Unbekannt') }}</span>
+                            {% if order.transactions.last %}
+                                {% set payTechName = order.transactions.last.stateMachineState.technicalName|default('') %}
+                                <span class="status-badge {% if payTechName == 'paid' or payTechName == 'authorized' %}status-success{% elseif payTechName == 'cancelled' or payTechName == 'failed' %}status-error{% elseif payTechName == 'open' or payTechName == 'in_progress' or payTechName == 'reminded' %}status-pending{% endif %}">{{ order.transactions.last.stateMachineState.translated.name|default('') }}</span>
+                            {% endif %}
+                        </div>
                     </div>
 
                     <div class="card-items">
