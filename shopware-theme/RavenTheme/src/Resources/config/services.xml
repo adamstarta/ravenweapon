@@ -130,11 +130,10 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <!-- TWINT Cancellation Subscriber - auto-cancels order + sends email when TWINT payment cancelled -->
+        <!-- TWINT Cancellation Subscriber - auto-cancels order when TWINT payment is cancelled -->
         <service id="RavenTheme\Subscriber\TwintCancellationSubscriber">
             <argument type="service" id="order_transaction.repository"/>
             <argument type="service" id="Shopware\Core\System\StateMachine\StateMachineRegistry"/>
-            <argument type="service" id="mailer"/>
             <argument type="service" id="logger"/>
             <tag name="kernel.event_subscriber"/>
         </service>

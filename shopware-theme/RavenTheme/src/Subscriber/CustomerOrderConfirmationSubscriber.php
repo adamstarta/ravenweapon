@@ -55,6 +55,11 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
             return;
         }
 
+        // Skip TWINT orders — they get confirmation later when payment completes (via Flow Builder)
+        if ($this->isTwintPayment($order)) {
+            return;
+        }
+
         $customer = $order->getOrderCustomer();
         if (!$customer || !$customer->getEmail()) {
             return;
@@ -201,6 +206,24 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         }
 
         return false;
+    }
+
+    private function isTwintPayment(OrderEntity $order): bool
+    {
+        $transactions = $order->getTransactions();
+        if (!$transactions || $transactions->count() === 0) {
+            return false;
+        }
+
+        $paymentMethod = $transactions->first()?->getPaymentMethod();
+        if (!$paymentMethod) {
+            return false;
+        }
+
+        $name = strtolower($paymentMethod->getName() ?? '');
+        $shortName = strtolower($paymentMethod->getShortName() ?? '');
+
+        return str_contains($name, 'twint') || str_contains($shortName, 'twint');
     }
 
     private function buildItemsList(OrderEntity $order): array

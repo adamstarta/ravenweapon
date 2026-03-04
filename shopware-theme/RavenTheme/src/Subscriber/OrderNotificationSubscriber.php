@@ -77,6 +77,16 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         $customerName = $customer ? ($customer->getFirstName() . ' ' . $customer->getLastName()) : 'Unbekannt';
         $customerEmail = $customer ? $customer->getEmail() : 'N/A';
 
+        // Get payment method name
+        $paymentMethodName = 'N/A';
+        $transactions = $order->getTransactions();
+        if ($transactions && $transactions->count() > 0) {
+            $paymentMethod = $transactions->first()?->getPaymentMethod();
+            if ($paymentMethod) {
+                $paymentMethodName = $paymentMethod->getTranslation('name') ?? $paymentMethod->getName() ?? 'N/A';
+            }
+        }
+
         // Get shipping address and delivery info
         $shippingAddress = null;
         $shippingMethodName = 'N/A';
@@ -119,8 +129,8 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         // Build email content
         $subject = sprintf('Neue Bestellung #%s - CHF %s', $orderNumber, number_format($order->getAmountTotal(), 2));
 
-        $htmlContent = $this->buildHtmlEmail($orderNumber, $orderDate, $customerName, $customerEmail, $shippingInfo, $shippingMethodName, $itemsList, $subtotalFormatted, $shippingCostFormatted, $totalAmount);
-        $textContent = $this->buildTextEmail($orderNumber, $orderDate, $customerName, $customerEmail, $shippingInfo, $shippingMethodName, $itemsList, $subtotalFormatted, $shippingCostFormatted, $totalAmount);
+        $htmlContent = $this->buildHtmlEmail($orderNumber, $orderDate, $customerName, $customerEmail, $shippingInfo, $shippingMethodName, $paymentMethodName, $itemsList, $subtotalFormatted, $shippingCostFormatted, $totalAmount);
+        $textContent = $this->buildTextEmail($orderNumber, $orderDate, $customerName, $customerEmail, $shippingInfo, $shippingMethodName, $paymentMethodName, $itemsList, $subtotalFormatted, $shippingCostFormatted, $totalAmount);
 
         $email = (new Email())
             ->from(self::FROM_NAME . ' <' . self::FROM_EMAIL . '>')
@@ -221,6 +231,7 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
         string $customerEmail,
         string $shippingInfo,
         string $shippingMethodName,
+        string $paymentMethodName,
         array $items,
         string $subtotal,
         string $shippingCost,
@@ -326,6 +337,9 @@ class OrderNotificationSubscriber implements EventSubscriberInterface
                 </h2>
                 <div style="font-size: 14px; color: #374151; white-space: pre-line; line-height: 1.5;">{$shippingInfo}</div>
                 <div style="margin-top: 10px; font-size: 14px;">
+                    <span style="color: #6b7280;">Zahlungsart:</span> <span style="color: #374151; font-weight: 600;">{$paymentMethodName}</span>
+                </div>
+                <div style="margin-top: 4px; font-size: 14px;">
                     <span style="color: #6b7280;">Versandart:</span> <span style="color: #374151;">{$shippingMethodName}</span>
                 </div>
             </div>
@@ -400,6 +414,7 @@ HTML;
         string $customerEmail,
         string $shippingInfo,
         string $shippingMethodName,
+        string $paymentMethodName,
         array $items,
         string $subtotal,
         string $shippingCost,
@@ -437,6 +452,7 @@ Lieferadresse
 -------------------------------------
 {$shippingInfo}
 
+Zahlungsart: {$paymentMethodName}
 Versandart: {$shippingMethodName}
 
 -------------------------------------
