@@ -330,6 +330,20 @@
                                     {% endif %}
 
                                     <span class="status-badge {{ stateColor }}">{{ stateName }}</span>
+                                    {% if order.transactions.last %}
+                                        {% set paymentState = order.transactions.last.stateMachineState %}
+                                        {% set paymentColor = 'default' %}
+                                        {% if paymentState.technicalName == 'paid' or paymentState.technicalName == 'authorized' %}
+                                            {% set paymentColor = 'success' %}
+                                        {% elseif paymentState.technicalName == 'open' %}
+                                            {% set paymentColor = 'info' %}
+                                        {% elseif paymentState.technicalName == 'cancelled' or paymentState.technicalName == 'failed' %}
+                                            {% set paymentColor = 'error' %}
+                                        {% elseif paymentState.technicalName == 'in_progress' or paymentState.technicalName == 'reminded' %}
+                                            {% set paymentColor = 'warning' %}
+                                        {% endif %}
+                                        <span class="status-badge {{ paymentColor }}">{{ paymentState.translated.name }}</span>
+                                    {% endif %}
                                 </div>
                             </div>
 

@@ -67,8 +67,8 @@ class TwintCancellationSubscriber implements EventSubscriberInterface
         }
 
         $paymentName = strtolower($paymentMethod->getName() ?? '');
-        $paymentShortName = strtolower($paymentMethod->getShortName() ?? '');
-        $isTwint = str_contains($paymentName, 'twint') || str_contains($paymentShortName, 'twint');
+        $handlerId = strtolower($paymentMethod->getHandlerIdentifier() ?? '');
+        $isTwint = str_contains($paymentName, 'twint') || str_contains($handlerId, 'twint');
 
         if (!$isTwint) {
             return;

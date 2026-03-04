@@ -107,17 +107,19 @@
                             <span class="status-badge {{ stateColor }}">{{ stateName }}</span>
                         </div>
 
-                        {% if order.transactions.first %}
+                        {% if order.transactions.last %}
                         <div class="status-info">
                             <span class="status-label">Zahlungsstatus</span>
-                            {% set paymentState = order.transactions.first.stateMachineState %}
+                            {% set paymentState = order.transactions.last.stateMachineState %}
                             {% set paymentColor = 'default' %}
-                            {% if paymentState.technicalName == 'paid' %}
+                            {% if paymentState.technicalName == 'paid' or paymentState.technicalName == 'authorized' %}
                                 {% set paymentColor = 'success' %}
                             {% elseif paymentState.technicalName == 'open' %}
                                 {% set paymentColor = 'info' %}
                             {% elseif paymentState.technicalName == 'cancelled' or paymentState.technicalName == 'failed' %}
                                 {% set paymentColor = 'error' %}
+                            {% elseif paymentState.technicalName == 'in_progress' or paymentState.technicalName == 'reminded' %}
+                                {% set paymentColor = 'warning' %}
                             {% endif %}
                             <span class="status-badge {{ paymentColor }}">{{ paymentState.translated.name }}</span>
                         </div>

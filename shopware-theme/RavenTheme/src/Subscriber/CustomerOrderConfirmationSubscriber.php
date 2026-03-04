@@ -221,9 +221,9 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         }
 
         $name = strtolower($paymentMethod->getName() ?? '');
-        $shortName = strtolower($paymentMethod->getShortName() ?? '');
+        $handlerId = strtolower($paymentMethod->getHandlerIdentifier() ?? '');
 
-        return str_contains($name, 'twint') || str_contains($shortName, 'twint');
+        return str_contains($name, 'twint') || str_contains($handlerId, 'twint');
     }
 
     private function buildItemsList(OrderEntity $order): array
