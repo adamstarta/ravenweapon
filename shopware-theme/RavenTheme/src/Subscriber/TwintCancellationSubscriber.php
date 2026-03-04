@@ -3,13 +3,13 @@
 namespace RavenTheme\Subscriber;
 
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionEntity;
+use Shopware\Core\Checkout\Order\Event\OrderStateMachineStateChangeEvent;
 use Shopware\Core\Checkout\Order\OrderEntity;
-use Shopware\Core\Checkout\Order\OrderStates;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\System\StateMachine\Aggregation\StateMachineTransition\StateMachineTransitionActions;
-use Shopware\Core\System\StateMachine\Event\StateMachineStateChangeEvent;
 use Shopware\Core\System\StateMachine\StateMachineRegistry;
 use Shopware\Core\System\StateMachine\Transition;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -22,18 +22,11 @@ use Psr\Log\LoggerInterface;
  */
 class TwintCancellationSubscriber implements EventSubscriberInterface
 {
-    private EntityRepository $orderTransactionRepository;
-    private StateMachineRegistry $stateMachineRegistry;
-    private LoggerInterface $logger;
-
     public function __construct(
-        EntityRepository $orderTransactionRepository,
-        StateMachineRegistry $stateMachineRegistry,
-        LoggerInterface $logger
+        private readonly EntityRepository $orderTransactionRepository,
+        private readonly StateMachineRegistry $stateMachineRegistry,
+        private readonly LoggerInterface $logger
     ) {
-        $this->orderTransactionRepository = $orderTransactionRepository;
-        $this->stateMachineRegistry = $stateMachineRegistry;
-        $this->logger = $logger;
     }
 
     public static function getSubscribedEvents(): array
@@ -43,45 +36,39 @@ class TwintCancellationSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onTransactionCancelled(StateMachineStateChangeEvent $event): void
+    public function onTransactionCancelled(OrderStateMachineStateChangeEvent $event): void
     {
-        $transactionId = $event->getTransition()->getEntityId();
+        $order = $event->getOrder();
         $context = $event->getContext();
 
-        // Load the transaction with order and payment method
-        $criteria = new Criteria([$transactionId]);
+        // Load the order's transactions with payment method
+        $criteria = new Criteria();
+        $criteria->addFilter(new EqualsFilter('orderId', $order->getId()));
         $criteria->addAssociation('paymentMethod');
-        $criteria->addAssociation('order');
-        $criteria->addAssociation('order.stateMachineState');
 
-        $transaction = $this->orderTransactionRepository->search($criteria, $context)->first();
+        $transactions = $this->orderTransactionRepository->search($criteria, $context);
 
-        if (!$transaction instanceof OrderTransactionEntity) {
-            return;
+        $isTwint = false;
+        foreach ($transactions as $transaction) {
+            $paymentMethod = $transaction->getPaymentMethod();
+            if (!$paymentMethod) {
+                continue;
+            }
+
+            $name = strtolower($paymentMethod->getName() ?? '');
+            $handlerId = strtolower($paymentMethod->getHandlerIdentifier() ?? '');
+            if (str_contains($name, 'twint') || str_contains($handlerId, 'twint')) {
+                $isTwint = true;
+                break;
+            }
         }
-
-        // Check if payment method is TWINT
-        $paymentMethod = $transaction->getPaymentMethod();
-        if (!$paymentMethod) {
-            return;
-        }
-
-        $paymentName = strtolower($paymentMethod->getName() ?? '');
-        $handlerId = strtolower($paymentMethod->getHandlerIdentifier() ?? '');
-        $isTwint = str_contains($paymentName, 'twint') || str_contains($handlerId, 'twint');
 
         if (!$isTwint) {
             return;
         }
 
-        $order = $transaction->getOrder();
-        if (!$order) {
-            return;
-        }
-
         $this->logger->info('TWINT payment cancelled, auto-cancelling order', [
             'orderNumber' => $order->getOrderNumber(),
-            'transactionId' => $transactionId,
         ]);
 
         // Auto-cancel the order status (payment is already cancelled by TWINT plugin)
@@ -91,11 +78,6 @@ class TwintCancellationSubscriber implements EventSubscriberInterface
     private function cancelOrder(OrderEntity $order, Context $context): void
     {
         try {
-            $currentState = $order->getStateMachineState()?->getTechnicalName();
-            if ($currentState === OrderStates::STATE_CANCELLED) {
-                return;
-            }
-
             $this->stateMachineRegistry->transition(
                 new Transition(
                     'order',
