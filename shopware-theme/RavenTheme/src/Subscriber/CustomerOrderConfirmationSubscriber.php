@@ -108,6 +108,16 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
             );
         }
 
+        // Get payment method name
+        $paymentMethodName = 'N/A';
+        $transactions = $order->getTransactions();
+        if ($transactions && $transactions->count() > 0) {
+            $paymentMethod = $transactions->first()?->getPaymentMethod();
+            if ($paymentMethod) {
+                $paymentMethodName = $paymentMethod->getTranslation('name') ?? $paymentMethod->getName() ?? 'N/A';
+            }
+        }
+
         // Get shipping info
         $shippingMethodName = 'Standard';
         $shippingCost = 0.0;
@@ -141,6 +151,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
             $billingInfo,
             $items,
             $subtotalFormatted,
+            $paymentMethodName,
             $shippingMethodName,
             $shippingCostFormatted,
             $totalAmount,
@@ -154,6 +165,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
             $billingInfo,
             $items,
             $subtotalFormatted,
+            $paymentMethodName,
             $shippingMethodName,
             $shippingCostFormatted,
             $totalAmount,
@@ -194,13 +206,13 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
             return false;
         }
 
-        $shortName = strtolower($paymentMethod->getShortName() ?? '');
-        $translatedName = strtolower($paymentMethod->getTranslation('name') ?? '');
+        $handlerId = strtolower($paymentMethod->getHandlerIdentifier() ?? '');
+        $translatedName = strtolower($paymentMethod->getTranslation('name') ?? $paymentMethod->getName() ?? '');
 
         $bankTransferKeywords = ['vorkasse', 'bank', 'prepayment', 'paid_in_advance', 'überweisung'];
 
         foreach ($bankTransferKeywords as $keyword) {
-            if (str_contains($shortName, $keyword) || str_contains($translatedName, $keyword)) {
+            if (str_contains($handlerId, $keyword) || str_contains($translatedName, $keyword)) {
                 return true;
             }
         }
@@ -299,6 +311,7 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
         string $billingInfo,
         array $items,
         string $subtotal,
+        string $paymentMethodName,
         string $shippingMethodName,
         string $shippingCost,
         string $totalAmount,
@@ -435,6 +448,10 @@ class CustomerOrderConfirmationSubscriber implements EventSubscriberInterface
                 </h3>
                 <table style="width: 100%; font-size: 14px; border-collapse: collapse;">
                     <tr>
+                        <td style="padding: 6px 0; color: #6b7280;">Zahlungsart</td>
+                        <td style="padding: 6px 0; text-align: right; color: #374151;">{$paymentMethodName}</td>
+                    </tr>
+                    <tr>
                         <td style="padding: 6px 0; color: #6b7280;">Versand ({$shippingMethodName})</td>
                         <td style="padding: 6px 0; text-align: right; color: #374151; white-space: nowrap;">{$shippingCost}</td>
                     </tr>
@@ -537,6 +554,7 @@ HTML;
         string $billingInfo,
         array $items,
         string $subtotal,
+        string $paymentMethodName,
         string $shippingMethodName,
         string $shippingCost,
         string $totalAmount,
@@ -594,6 +612,7 @@ BESTELLTE PRODUKTE
 -------------------------------------
 {$itemsText}
 -------------------------------------
+Zahlungsart: {$paymentMethodName}
 Versand ({$shippingMethodName}): {$shippingCost}
 Gesamtsumme: {$totalAmount}
 -------------------------------------
